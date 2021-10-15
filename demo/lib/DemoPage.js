@@ -7,23 +7,6 @@ import './SharedStyles.js';
 
 /**
  * Base class for AWC components demo page.
- *
- * ## Usage
- *
- * ```javascript
- * import { html, render } from 'lit-html';
- * import { DemoPage } from '@advanced-rest-client/arc-demo-helper';
- *
- * class ComponentDemo extends DemoPage {
- *  contentTemplate() {
- *    return html`
- *      return html`<my-component ?narrow="${this.narrow}"></my-component>`;
- *    `;
- *  }
- * }
- * const instance = new ComponentDemo();
- * instance.render();
- * ```
  */
 export class DemoPage extends EventTarget {
   constructor() {

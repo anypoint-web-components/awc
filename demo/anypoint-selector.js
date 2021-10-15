@@ -1,11 +1,12 @@
 import { html } from 'lit-html';
 import { DemoPage } from './lib/DemoPage.js';
 import '../anypoint-selector.js';
+import './lib/demo-helper.js'
 
 class ComponentDemo extends DemoPage {
   constructor() {
     super();
-    this._componentName = 'anypoint-selector';
+    this.componentName = 'anypoint-selector';
     this.initObservableProperties();
     this._dynamicItems = ['item 1', 'item 2', 'item 3'];
     this._addDynamicItem = this._addDynamicItem.bind(this);
@@ -37,7 +38,7 @@ class ComponentDemo extends DemoPage {
   contentTemplate() {
     return html`
     <h3>Basic</h3>
-    <arc-demo-helper>
+    <demo-helper>
       <template>
         <anypoint-selector selected="3">
           <div>Item 0</div>
@@ -47,12 +48,12 @@ class ComponentDemo extends DemoPage {
           <div>Item 4</div>
         </anypoint-selector>
       </template>
-    </arc-demo-helper>
+    </demo-helper>
 
     <h3>Use <code>multi</code> to enable multiple selection.</h3>
-    <arc-demo-helper>
+    <demo-helper>
       <template>
-        <anypoint-selector multi selectedvalues="[0,2]">
+        <anypoint-selector multi selectedValues="[0,2]">
           <div>Item 0</div>
           <div>Item 1</div>
           <div>Item 2</div>
@@ -60,13 +61,13 @@ class ComponentDemo extends DemoPage {
           <div>Item 4</div>
         </anypoint-selector>
       </template>
-    </arc-demo-helper>
+    </demo-helper>
 
     <h3>
       Use <code>attrforselected</code> to specify the attribute of the
       selectable elements containing the selection key.
     </h3>
-    <arc-demo-helper>
+    <demo-helper>
       <template>
         <anypoint-selector selected="bar" attrforselected="name">
           <div name="foo">Foo</div>
@@ -76,12 +77,12 @@ class ComponentDemo extends DemoPage {
           <div name="quux">Quux</div>
         </anypoint-selector>
       </template>
-    </arc-demo-helper>
+    </demo-helper>
 
     <h3>
       Use <code>selectable</code> to specify which elements can be selected
     </h3>
-    <arc-demo-helper>
+    <demo-helper>
       <template>
         <anypoint-selector selectable=".allowed">
           <div class="allowed">Foo</div>
@@ -91,12 +92,12 @@ class ComponentDemo extends DemoPage {
           <div class="allowed">Quux</div>
         </anypoint-selector>
       </template>
-    </arc-demo-helper>
+    </demo-helper>
 
     <h3>
       Use <code>selectedAttribute</code> add an attribute to selected item
     </h3>
-    <arc-demo-helper>
+    <demo-helper>
       <template>
         <anypoint-selector selectedAttribute="selected-item">
           <div>Foo</div>
@@ -111,12 +112,12 @@ class ComponentDemo extends DemoPage {
         }
         </style>
       </template>
-    </arc-demo-helper>
+    </demo-helper>
 
     <h3>
       Use <code>fallbackSelection</code> to instruct which should be selected when selection not sound
     </h3>
-    <arc-demo-helper>
+    <demo-helper>
       <template>
         <anypoint-selector fallbackSelection="0" selected="10">
           <div>Foo</div>
@@ -131,7 +132,7 @@ class ComponentDemo extends DemoPage {
         }
         </style>
       </template>
-    </arc-demo-helper>
+    </demo-helper>
 
     <section class="card">
       <h3>

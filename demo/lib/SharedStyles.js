@@ -86,15 +86,15 @@ body.styled.dark {
   --error-color: #FF5722;
 }
 
-body.styled.dark arc-demo-helper {
-  --arc-demo-helper-code-container-background-color: #263238;
+body.styled.dark demo-helper {
+  --demo-helper-code-container-background-color: #263238;
   --code-background-color: #263238;
   --code-type-boolean-value-color: #F07178;
   --code-type-number-value-color: #F78C6A;
   --code-type-text-value-color: #C3E88D;
   --code-property-value-color: #F07178;
   --code-operator-value-background-color: transparent;
-  --arc-demo-helper-demo-background-color: #263238;
+  --demo-helper-demo-background-color: #263238;
 }
 
 body.styled.dark .card {

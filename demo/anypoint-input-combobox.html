@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, minimum-scale=1, initial-scale=1, user-scalable=yes">
+  <title>Anypoint Input Combo Box demo</title>
+
+  <style>
+  body.styled {
+    --anypoint-dropdown-shadow: 0 4px 5px 0 rgba(0, 0, 0, 0.14), 0 1px 10px 0 rgba(0, 0, 0, 0.12), 0 2px 4px -1px rgba(0, 0, 0, 0.4);
+    --anypoint-autocomplete-dropdown-shadow: 0 4px 5px 0 rgba(0, 0, 0, 0.14), 0 1px 10px 0 rgba(0, 0, 0, 0.12), 0 2px 4px -1px rgba(0, 0, 0, 0.4);
+  }
+
+  body.styled.dark {
+    --primary-background-color: #424242;
+    --secondary-text-color: #616161;
+
+    --anypoint-dropdown-menu-background-color: #37474F;
+    --anypoint-dropdown-menu-label-background-color: var(--primary-background-color);
+    --anypoint-listbox-background-color: #37474F;
+    --anypoint-dropdown-menu-focus-background-color: #37474F;
+    --anypoint-dropdown-menu-label-color: #fff;
+    --anypoint-dropdown-menu-info-message-color: #fff;
+  }
+
+  body.styled.material {
+    --secondary-text-color: #616161;
+    --anypoint-item-min-height: 48px;
+    --anypoint-item-focus-color: currentColor;
+    --anypoint-item-focused-color: currentColor;
+    --anypoint-item-before-background: currentColor;
+    --anypoint-item-before-opacity: 0.12;
+    --anypoint-item-border-left-width: 0;
+    --anypoint-item-border-right-width: 0;
+    --anypoint-item-hover-background-color: #F5F5F5;
+    --anypoint-item-pressed-background-color: #BDBDBD;
+    --anypoint-item-secondary-focus-color: var(--secondary-text-color);
+  }
+
+  body.styled.material.dark {
+    --anypoint-item-hover-background-color: #616161;
+    --anypoint-item-pressed-background-color: #757575;
+    --secondary-text-color: #9E9E9E;
+  }
+
+  .centered[role="main"] {
+    max-width: 1400px;
+  }
+  </style>
+</head>
+
+<body class="styled material">
+  <div id="demo"></div>
+  <script type="module" src="anypoint-input-combobox.js"></script>
+  </script>
+</body>
+
+</html>

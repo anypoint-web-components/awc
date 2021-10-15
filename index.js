@@ -27,6 +27,7 @@ export { default as AnypointComboboxElement } from './src/AnypointComboboxElemen
 export { default as AnypointRadioGroupElement } from './src/AnypointRadioGroupElement.js';
 export { default as AnypointRadioButtonElement } from './src/AnypointRadioButtonElement.js';
 export { default as AnypointCollapseElement } from './src/AnypointCollapseElement.js';
+export { default as AnypointInputComboboxElement } from './src/AnypointInputComboboxElement.js';
 
 export { ButtonStateMixin } from "./src/ButtonStateMixin.js";
 export { ControlStateMixin } from "./src/ControlStateMixin.js";

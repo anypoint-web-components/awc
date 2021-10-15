@@ -1,12 +1,11 @@
-import {TemplateResult, CSSResult, LitElement} from 'lit-element';
-import {AnypointInputMixin} from './AnypointInputMixin';
+import { TemplateResult, LitElement } from 'lit-element';
+import { AnypointInputMixin } from './AnypointInputMixin';
 
 /**
  * @fires search When the type is `search` and the search term change.
  */
-export default class AnypointInputElement extends AnypointInputMixin(LitElement)  {
-  get styles(): CSSResult|CSSResult[];
-  get _prefixed(): HTMLSlotElement|null;
+export default class AnypointInputElement extends AnypointInputMixin(LitElement) {
+  get _prefixed(): HTMLSlotElement | null;
   get _labelClass(): string;
   get _infoAddonClass(): string;
   get _errorAddonClass(): string;

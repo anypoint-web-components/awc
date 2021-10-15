@@ -18,7 +18,6 @@ class ComponentDemoPage extends DemoPage {
       'closeOnActivate'
     ]);
     this.componentName = 'anypoint-menu-button';
-    this.demoStates = ['Material Design', 'Anypoint'];
     this.closeOnActivate = false;
     this.noOverlap = false;
     this.ignoreSelect = false;

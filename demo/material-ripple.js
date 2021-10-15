@@ -2,6 +2,7 @@ import { html } from 'lit-html';
 import { DemoPage } from './lib/DemoPage.js';
 import '@advanced-rest-client/arc-icons/arc-icon.js';
 import '../material-ripple.js';
+import './lib/demo-helper.js'
 
 class ComponentDemo extends DemoPage {
   constructor() {
@@ -12,7 +13,7 @@ class ComponentDemo extends DemoPage {
   contentTemplate() {
     return html`
       <h2>Material ripple</h2>
-      <arc-demo-helper class="centered-demo">
+      <demo-helper class="centered-demo">
         <template>
           <div class="button raised">
             <div class="center" tabindex="0">SUBMIT</div>
@@ -39,9 +40,9 @@ class ComponentDemo extends DemoPage {
             <material-ripple></material-ripple>
           </div>
         </template>
-      </arc-demo-helper>
+      </demo-helper>
 
-      <arc-demo-helper class="centered-demo">
+      <demo-helper class="centered-demo">
         <template>
           <div class="button raised grey narrow">
             <div class="center" tabindex="0">Like</div>
@@ -58,9 +59,9 @@ class ComponentDemo extends DemoPage {
             <material-ripple></material-ripple>
           </div>
         </template>
-      </arc-demo-helper>
+      </demo-helper>
 
-      <arc-demo-helper class="centered-demo">
+      <demo-helper class="centered-demo">
         <template>
           <div class="icon-button">
             <arc-icon icon="menu" tabindex="0"></arc-icon>
@@ -82,9 +83,9 @@ class ComponentDemo extends DemoPage {
             <material-ripple class="circle" recenters></material-ripple>
           </div>
         </template>
-      </arc-demo-helper>
+      </demo-helper>
 
-      <arc-demo-helper class="centered-demo">
+      <demo-helper class="centered-demo">
         <template>
           <div class="fab red">
             <arc-icon icon="add" tabindex="0"></arc-icon>
@@ -101,9 +102,9 @@ class ComponentDemo extends DemoPage {
             <material-ripple class="circle" recenters></material-ripple>
           </div>
         </template>
-      </arc-demo-helper>
+      </demo-helper>
 
-      <arc-demo-helper class="centered-demo">
+      <demo-helper class="centered-demo">
         <template>
           <div class="menu">
             <div class="item">
@@ -143,9 +144,9 @@ class ComponentDemo extends DemoPage {
             </div>
           </div>
         </template>
-      </arc-demo-helper>
+      </demo-helper>
       
-      <arc-demo-helper class="centered-demo">
+      <demo-helper class="centered-demo">
         <template>
           <div class="dialog">
             <div class="content">
@@ -173,7 +174,7 @@ class ComponentDemo extends DemoPage {
             <material-ripple recenters></material-ripple>
           </div>
         </template>
-      </arc-demo-helper>
+      </demo-helper>
     `;
   }
 }

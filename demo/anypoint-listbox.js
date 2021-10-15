@@ -11,7 +11,6 @@ class ComponentDemo extends DemoPage {
     this.initObservableProperties([
       'demoCompatibility'
     ]);
-    this.demoStates = ['Material Design', 'Anypoint'];
     this.fruits = ['Apple', 'Apricot', 'Avocado',
       'Banana', 'Bilberry', 'Blackberry', 'Blackcurrant', 'Blueberry',
       'Boysenberry', 'Cantaloupe', 'Currant', 'Cherry', 'Cherimoya',

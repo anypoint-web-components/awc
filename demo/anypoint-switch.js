@@ -15,19 +15,7 @@ class ComponentPage extends DemoPage {
     ]);
     this.componentName = 'anypoint-switch';
     this.demoDisabled = false;
-    this.demoStates = ['Material Design', 'Anypoint'];
     this.disabledSwitch = true;
-  }
-
-  _toggleMainOption(e) {
-    const { name, checked } = e.target;
-    this[name] = checked;
-  }
-
-  _demoStateHandler(e) {
-    const state = e.detail.value;
-    this.anypoint = state === 1;
-    this._updateAnypoint();
   }
 
   _toggleDisabled() {

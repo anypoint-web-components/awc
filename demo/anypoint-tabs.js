@@ -15,8 +15,7 @@ class ComponentDemo extends DemoPage {
       'demoNoSlide',
       'dynamicTab'
     ]);
-    this._componentName = 'anypoint-tabs';
-    this.demoStates = ['Material', 'Anypoint'];
+    this.componentName = 'anypoint-tabs';
     this.darkThemeActive = false;
     this.demoRtl = false;
     this.demoAutoselect = false;
