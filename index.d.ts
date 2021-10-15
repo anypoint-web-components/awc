@@ -27,3 +27,5 @@ export { SelectableMixin, SelectableMixinConstructor } from './src/SelectableMix
 export { MultiSelectableMixin, MultiSelectableMixinConstructor } from './src/MultiSelectableMixin';
 export { default as AnypointSelectorElement } from './src/AnypointSelectorElement';
 export { AnypointSelection } from './src/AnypointSelection';
+export { MenuMixin, MenuMixinConstructor } from './src/MenuMixin';
+export { MenubarMixin, MenubarMixinConstructor } from './src/MenubarMixin';

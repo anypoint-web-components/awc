@@ -26,3 +26,5 @@ export { SelectableMixin } from './src/SelectableMixin.js';
 export { MultiSelectableMixin } from './src/MultiSelectableMixin.js';
 export { default as AnypointSelectorElement } from './src/AnypointSelectorElement.js';
 export { AnypointSelection } from './src/AnypointSelection.js';
+export { MenuMixin } from './src/MenuMixin.js';
+export { MenubarMixin } from './src/MenubarMixin.js';
