@@ -29,3 +29,4 @@ export { default as AnypointSelectorElement } from './src/AnypointSelectorElemen
 export { AnypointSelection } from './src/AnypointSelection';
 export { MenuMixin, MenuMixinConstructor } from './src/MenuMixin';
 export { MenubarMixin, MenubarMixinConstructor } from './src/MenubarMixin';
+export { default as AnypointSwitchElement } from './src/AnypointSwitchElement';

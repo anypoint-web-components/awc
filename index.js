@@ -28,3 +28,4 @@ export { default as AnypointSelectorElement } from './src/AnypointSelectorElemen
 export { AnypointSelection } from './src/AnypointSelection.js';
 export { MenuMixin } from './src/MenuMixin.js';
 export { MenubarMixin } from './src/MenubarMixin.js';
+export { default as AnypointSwitchElement } from './src/AnypointSwitchElement.js';
