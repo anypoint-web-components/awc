@@ -1,3 +1,4 @@
+/* eslint-disable lit-a11y/click-events-have-key-events */
 import { html, css, LitElement } from 'lit-element';
 import '../anypoint-dropdown.js';
 
@@ -54,6 +55,8 @@ export class SimpleDropdown extends LitElement {
     this.horizontalAlign = 'left';
     this.verticalAlign = 'top';
     this.scrollAction = 'refit';
+    this.disabled = false;
+    this.noAnimations = false;
   }
 
   open() {
@@ -68,7 +71,7 @@ export class SimpleDropdown extends LitElement {
       scrollAction,
       openAnimationConfig,
       closeAnimationConfig,
-      noAnimations
+      noAnimations,
     } = this;
     return html`<style>${this.styles}</style>
       <div @click="${this.open}">

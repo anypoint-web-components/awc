@@ -19,6 +19,10 @@ class ComponentDemo extends DemoPage {
       'demoHorizontalAlign'
     ]);
     this.componentName = 'anypoint-dropdown';
+    this.demoDisabled = false;
+    this.demoNoAnimations = false;
+    this.demoVerticalAlign = undefined;
+    this.demoHorizontalAlign = undefined;
     this.items = [
       'allosaurus',
       'brontosaurus',
@@ -47,14 +51,6 @@ class ComponentDemo extends DemoPage {
       'yandusaurus',
       'zephyrosaurus'
     ];
-    this.demoStates = ['Normal'];
-    this._toggleMainOption = this._toggleMainOption.bind(this);
-    this._toggleRadioOption = this._toggleRadioOption.bind(this);
-  }
-
-  _toggleMainOption(e) {
-    const { name, checked } = e.target;
-    this[name] = checked;
   }
 
   _toggleRadioOption(e) {
@@ -86,8 +82,8 @@ class ComponentDemo extends DemoPage {
     >
       <simple-dropdown
         slot="content"
-        ?noanimations="${demoNoAnimations}"
-        ?disabled="${demoDisabled}",
+        ?noAnimations="${demoNoAnimations}"
+        ?disabled="${demoDisabled}"
         .verticalAlign="${demoVerticalAlign}"
         .horizontalAlign="${demoHorizontalAlign}"
       >
@@ -213,7 +209,7 @@ ${`<html>
 
         <p>
           You can decide whether the overlay is closed or repositioned on
-          document scroll by setting <code>scrollaction</code> to <code>refit</code>
+          document scroll by setting <code>scrollAction</code> to <code>refit</code>
           or <code>cancel</code>.
         </p>
 
@@ -223,7 +219,7 @@ ${`<html>
           The position of the overlay is recalculated when document scrolls.
         </p>
 
-        <simple-dropdown scrollaction="refit">
+        <simple-dropdown scrollAction="refit">
           <button slot="dropdown-trigger">Refit on scroll</button>
           <div slot="dropdown-content" class="random-content">
             Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et

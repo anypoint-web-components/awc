@@ -1,4 +1,4 @@
-import { ValidatorMixin } from '@anypoint-web-components/validator-mixin/validator-mixin.js';
+import { ValidatorMixin } from '../src/ValidatorMixin.js';
 
 class MinimumLength extends ValidatorMixin(HTMLElement) {
   static get observedAttributes() {

@@ -96,14 +96,13 @@ const style = css`
     }
   }
 `;
+
 try {
+  // @ts-ignore
   document.adoptedStyleSheets = document.adoptedStyleSheets.concat(style.styleSheet);
 } catch (_) {
-  /* istanbul ignore next */
-  {
-    const s = document.createElement('style');
-    s.type = 'text/css';
-    s.innerHTML = style.cssText;
-    document.getElementsByTagName('head')[0].appendChild(s);
-  }
+  const s = document.createElement('style');
+  s.type = 'text/css';
+  s.innerHTML = style.cssText;
+  document.getElementsByTagName('head')[0].appendChild(s);
 }

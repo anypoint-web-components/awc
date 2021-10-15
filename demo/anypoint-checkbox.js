@@ -1,6 +1,5 @@
 /* eslint-disable no-param-reassign */
 import { html } from 'lit-html';
-import '@polymer/iron-form/iron-form.js';
 import { DemoPage } from './lib/DemoPage.js';
 import './lib/interactive-demo.js';
 import '../anypoint-radio-button.js';
@@ -9,30 +8,18 @@ import '../colors.js';
 import '../anypoint-checkbox.js';
 
 /** @typedef {import('../').AnypointCheckboxElement} AnypointCheckboxElement */
-/** @typedef {import('@polymer/iron-form').IronFormElement} IronFormElement */
 
 const hasFormAssociatedElements = 'attachInternals' in document.createElement('span');
 
-class ComponentDemo extends ArcDemoPage {
+class ComponentDemo extends DemoPage {
   constructor() {
     super();
     this.initObservableProperties([
       'demoDisabled'
     ]);
     this.componentName = 'anypoint-checkbox';
-    this.demoStates = ['Regular'];
     this.darkThemeActive = false;
     this.demoDisabled = false;
-    this._toggleMainOption = this._toggleMainOption.bind(this);
-    this._communicationHandler = this._communicationHandler.bind(this);
-    this._communicationItemHandler = this._communicationItemHandler.bind(this);
-    this._ironFormSubmit = this._ironFormSubmit.bind(this);
-    this._nativeSubmit = this._nativeSubmit.bind(this);
-  }
-
-  _toggleMainOption(e) {
-    const { name, checked } = e.target;
-    this[name] = checked;
   }
 
   _communicationHandler(e) {
@@ -73,13 +60,6 @@ class ComponentDemo extends ArcDemoPage {
         parent.checked = false;
       }
     }
-  }
-
-  _ironFormSubmit() {
-    const form = /** @type IronFormElement */ (document.getElementById('form'));
-    const out = /** @type HTMLElement */ (document.querySelector('#formValues'));
-    const values = form.serializeForm();
-    out.innerText = JSON.stringify(values, null, 2);
   }
 
   _nativeSubmit(e) {
@@ -225,43 +205,6 @@ class ComponentDemo extends ArcDemoPage {
     `;
   }
 
-  _ironFormTemplate() {
-    return html`
-    <section class="documentation-section">
-      <h3>Form usage with iron-form</h3>
-
-      <p>
-        Currently the spec allowing custom elements to be accepted by the &lt;form&gt; element
-        is work in progress. We suggest using
-        <a href="https://www.webcomponents.org/element/@polymer/iron-form">iron-form</a>
-        to handle forms with custom elements.
-      </p>
-
-      <div class="centered">
-        <iron-form id="form">
-          <form>
-            <fieldset>
-              <anypoint-checkbox
-                name="subscribe"
-                value="newsletter">Subscribe to our newsletter</anypoint-checkbox>
-              <anypoint-checkbox
-                name="terms"
-                value="accepted" checked required>Agree to terms and conditions</anypoint-checkbox>
-              <anypoint-checkbox
-                name="disabled"
-                value="noop" disabled>This is never included</anypoint-checkbox>
-            </fieldset>
-          </form>
-        </iron-form>
-        <button id="submitButton" @click="${this._ironFormSubmit}">Submit</button>
-        <div>
-          <code id="formValues"></code>
-        </div>
-      </div>
-    </section>
-    `;
-  }
-
   _formTemplate() {
     return html`
     <section class="documentation-section">
@@ -306,7 +249,6 @@ class ComponentDemo extends ArcDemoPage {
   _workingWithFormsTemplate() {
     return html`<section class="documentation-section">
       <h2>Working with forms</h2>
-      ${this._ironFormTemplate()}
       ${this._formTemplate()}
     </section>`;
   }

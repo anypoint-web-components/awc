@@ -471,7 +471,7 @@
     names.forEach((item) => {
       meta[0].textContent = item.name;
       meta[1].textContent = item.color;
-      preview.className = 'preview color-' + item.name;
+      preview.className = `preview color-${item.name}`;
       const clone = document.importNode(tpl.content, true);
       container.appendChild(clone);
     });

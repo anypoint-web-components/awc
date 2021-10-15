@@ -1,18 +1,15 @@
 /* eslint-disable no-param-reassign */
 /* eslint-disable default-case */
 import { html } from 'lit-html';
-import '@polymer/iron-icon/iron-icon.js';
-import '@polymer/iron-icons/iron-icons.js';
-import '@polymer/iron-icons/communication-icons.js';
-import '@polymer/iron-icons/editor-icons.js';
+import '@advanced-rest-client/arc-icons/arc-icon.js';
 import { DemoPage } from './lib/DemoPage.js';
-import '../anypoint-checkbox.js';
 import '../colors.js';
+import '../anypoint-checkbox.js';
 import './lib/interactive-demo.js';
 import '../anypoint-button.js';
 import '../anypoint-icon-button.js';
 
-class ComponentDemo extends ArcDemoPage {
+class ComponentDemo extends DemoPage {
   constructor() {
     super();
     this.initObservableProperties([
@@ -29,14 +26,12 @@ class ComponentDemo extends ArcDemoPage {
       'iconToggles'
     ]);
     this._demoEmphasisHandler = this._demoEmphasisHandler.bind(this);
-    this._toggleMainOption = this._toggleMainOption.bind(this);
     this._contentControlClick = this._contentControlClick.bind(this);
     this._iconsEmphasisHandler = this._iconsEmphasisHandler.bind(this);
     this.mainTransitionHandler = this.mainTransitionHandler.bind(this);
     this.buttonTransitionHandler = this.buttonTransitionHandler.bind(this);
 
-    this._componentName = 'anypoint-button';
-    this.buttonStates = ['Text', 'Outlined', 'Contained'];
+    this.componentName = 'anypoint-button';
     /** @type {"low" | "medium" | "high"} */
     this.demoButtonEmphasis = 'low';
     /** @type {"low" | "medium" | "high"} */
@@ -78,11 +73,6 @@ class ComponentDemo extends ArcDemoPage {
     this.iconButtonEmphasis = value;
   }
 
-  _toggleMainOption(e) {
-    const { name, checked } = e.target;
-    this[name] = checked;
-  }
-
   _contentControlClick(e) {
     const items = document.querySelectorAll('.content-control.group');
     Array.from(items).forEach((node) => {
@@ -116,7 +106,7 @@ class ComponentDemo extends ArcDemoPage {
 
   _demoTemplate() {
     const {
-      buttonStates,
+      demoStates,
       demoButtonEmphasis,
       demoButtonCompatibility,
       demoNoink,
@@ -133,7 +123,7 @@ class ComponentDemo extends ArcDemoPage {
           configuration options.
         </p>
         <interactive-demo
-          .states="${buttonStates}"
+          .states="${demoStates}"
           @state-changed="${this._demoEmphasisHandler}"
           ?dark="${darkThemeActive}"
         >
@@ -147,7 +137,7 @@ class ComponentDemo extends ArcDemoPage {
             ?disabled="${demoDisabled}"
             @transitionend="${this.mainTransitionHandler}"
           >
-            ${demoLeadingIcon ? html`<iron-icon icon="add-shopping-cart"></iron-icon>` : undefined}
+            ${demoLeadingIcon ? html`<arc-icon icon="message"></arc-icon>` : undefined}
             Label
           </anypoint-button>
 
@@ -265,17 +255,17 @@ class ComponentDemo extends ArcDemoPage {
 
         <div class="centered">
           <anypoint-button emphasis="low" class="icons">
-            <iron-icon icon="card-giftcard"></iron-icon>
+            <arc-icon icon="refresh"></arc-icon>
             Send gift card
           </anypoint-button>
 
           <anypoint-button emphasis="medium" class="icons">
-            <iron-icon icon="open-in-new"></iron-icon>
+            <arc-icon icon="modeEdit"></arc-icon>
             More details
           </anypoint-button>
 
           <anypoint-button emphasis="high" class="icons">
-            <iron-icon icon="add-shopping-cart"></iron-icon>
+            <arc-icon icon="message"></arc-icon>
             Add to cart
           </anypoint-button>
         </div>
@@ -285,7 +275,7 @@ class ComponentDemo extends ArcDemoPage {
 
   _iconButtonsTemplate() {
     const {
-      buttonStates,
+      demoStates,
       iconButtonEmphasis,
       iconButtonCompatibility,
       iconNoink,
@@ -312,7 +302,7 @@ class ComponentDemo extends ArcDemoPage {
 
 
         <interactive-demo
-          .states="${buttonStates}"
+          .states="${demoStates}"
           @state-changed="${this._iconsEmphasisHandler}"
           ?dark="${darkThemeActive}"
         >
@@ -328,7 +318,7 @@ class ComponentDemo extends ArcDemoPage {
             aria-label="Activate to see the demo."
             @transitionend="${this.buttonTransitionHandler}"
           >
-            <iron-icon icon="star-border"></iron-icon>
+            <arc-icon icon="star"></arc-icon>
           </anypoint-icon-button>
 
           <label slot="options" id="iconOptionsLabel">Options</label>
@@ -366,7 +356,7 @@ class ComponentDemo extends ArcDemoPage {
             emphasis="low"
             title="Add alarm"
             aria-label="Activate to set an alarm">
-            <iron-icon icon="alarm-add"></iron-icon>
+            <arc-icon icon="add"></arc-icon>
           </anypoint-icon-button>
 
           <anypoint-icon-button
@@ -374,7 +364,7 @@ class ComponentDemo extends ArcDemoPage {
             toggles
             title="Star this project"
             aria-label="Activate to star this project">
-            <iron-icon icon="star-border"></iron-icon>
+            <arc-icon icon="star"></arc-icon>
           </anypoint-icon-button>
 
           <anypoint-icon-button
@@ -382,7 +372,7 @@ class ComponentDemo extends ArcDemoPage {
             title="I am an image"
             aria-label="This button uses an image element">
             <img
-              src="https://github.githubassets.com/images/modules/logos_page/Octocat.png" alt="octocat">
+              src="https://github.githubassets.com/images/modules/logos_page/Octocat.png" alt="a cat">
           </anypoint-icon-button>
 
           <anypoint-icon-button
@@ -390,7 +380,7 @@ class ComponentDemo extends ArcDemoPage {
             disabled
             title="Reply"
             aria-label="This button is disabled">
-            <iron-icon icon="reply"></iron-icon>
+            <arc-icon icon="message"></arc-icon>
           </anypoint-icon-button>
 
           <anypoint-icon-button
@@ -398,7 +388,7 @@ class ComponentDemo extends ArcDemoPage {
             noink
             title="Cancel action"
             aria-label="Activate to see no ripple effect">
-            <iron-icon icon="cancel"></iron-icon>
+            <arc-icon icon="cancel"></arc-icon>
           </anypoint-icon-button>
         </div>
 
@@ -408,7 +398,7 @@ class ComponentDemo extends ArcDemoPage {
             emphasis="medium"
             title="Add alarm"
             aria-label="Activate to set an alarm">
-            <iron-icon icon="alarm-add"></iron-icon>
+            <arc-icon icon="add"></arc-icon>
           </anypoint-icon-button>
 
           <anypoint-icon-button
@@ -416,7 +406,7 @@ class ComponentDemo extends ArcDemoPage {
             toggles
             title="Star this project"
             aria-label="Activate to star this project">
-            <iron-icon icon="star-border"></iron-icon>
+            <arc-icon icon="star"></arc-icon>
           </anypoint-icon-button>
 
           <anypoint-icon-button
@@ -424,7 +414,7 @@ class ComponentDemo extends ArcDemoPage {
             title="I am an image"
             aria-label="This button uses an image element">
             <img
-              src="https://github.githubassets.com/images/modules/logos_page/Octocat.png" alt="octocat">
+              src="https://github.githubassets.com/images/modules/logos_page/Octocat.png" alt="a cat">
           </anypoint-icon-button>
 
           <anypoint-icon-button
@@ -432,7 +422,7 @@ class ComponentDemo extends ArcDemoPage {
             disabled
             title="Reply"
             aria-label="This button is disabled">
-            <iron-icon icon="reply"></iron-icon>
+            <arc-icon icon="message"></arc-icon>
           </anypoint-icon-button>
 
           <anypoint-icon-button
@@ -440,7 +430,7 @@ class ComponentDemo extends ArcDemoPage {
             noink
             title="Cancel action"
             aria-label="Activate to see no ripple effect">
-            <iron-icon icon="cancel"></iron-icon>
+            <arc-icon icon="cancel"></arc-icon>
           </anypoint-icon-button>
         </div>
 
@@ -450,7 +440,7 @@ class ComponentDemo extends ArcDemoPage {
             emphasis="high"
             title="Add alarm"
             aria-label="Activate to set an alarm">
-            <iron-icon icon="alarm-add"></iron-icon>
+            <arc-icon icon="add"></arc-icon>
           </anypoint-icon-button>
 
           <anypoint-icon-button
@@ -458,7 +448,7 @@ class ComponentDemo extends ArcDemoPage {
             toggles
             title="Star this project"
             aria-label="Activate to star this project">
-            <iron-icon icon="star-border"></iron-icon>
+            <arc-icon icon="star"></arc-icon>
           </anypoint-icon-button>
 
           <anypoint-icon-button
@@ -466,7 +456,7 @@ class ComponentDemo extends ArcDemoPage {
             title="I am an image"
             aria-label="This button uses an image element">
             <img
-              src="https://github.githubassets.com/images/modules/logos_page/Octocat.png" alt="octocat">
+              src="https://github.githubassets.com/images/modules/logos_page/Octocat.png" alt="a cat">
           </anypoint-icon-button>
 
           <anypoint-icon-button
@@ -474,7 +464,7 @@ class ComponentDemo extends ArcDemoPage {
             disabled
             title="Reply"
             aria-label="This button is disabled">
-            <iron-icon icon="reply"></iron-icon>
+            <arc-icon icon="message"></arc-icon>
           </anypoint-icon-button>
 
           <anypoint-icon-button
@@ -482,7 +472,7 @@ class ComponentDemo extends ArcDemoPage {
             noink
             title="Cancel action"
             aria-label="Activate to see no ripple effect">
-            <iron-icon icon="cancel"></iron-icon>
+            <arc-icon icon="cancel"></arc-icon>
           </anypoint-icon-button>
         </div>
       </section>
@@ -505,7 +495,7 @@ class ComponentDemo extends ArcDemoPage {
             class="content-control"
             toggles
             @click=${this._contentControlClick}>
-            <iron-icon icon="editor:format-italic"></iron-icon>
+            <arc-icon icon="settings"></arc-icon>
           </anypoint-icon-button>
 
           <anypoint-icon-button
@@ -514,7 +504,7 @@ class ComponentDemo extends ArcDemoPage {
             class="content-control"
             toggles
             @click=${this._contentControlClick}>
-            <iron-icon icon="editor:format-bold"></iron-icon>
+            <arc-icon icon="toggleOn"></arc-icon>
           </anypoint-icon-button>
 
           <anypoint-icon-button
@@ -523,7 +513,7 @@ class ComponentDemo extends ArcDemoPage {
             class="content-control"
             toggles
             @click=${this._contentControlClick}>
-            <iron-icon icon="editor:format-underlined"></iron-icon>
+            <arc-icon icon="toggleOff"></arc-icon>
           </anypoint-icon-button>
 
           <anypoint-icon-button
@@ -532,7 +522,7 @@ class ComponentDemo extends ArcDemoPage {
             class="content-control"
             toggles
             @click=${this._contentControlClick}>
-            <iron-icon icon="editor:format-color-text"></iron-icon>
+            <arc-icon icon="warning"></arc-icon>
           </anypoint-icon-button>
 
           <span class="space"></span>
@@ -543,7 +533,7 @@ class ComponentDemo extends ArcDemoPage {
             class="content-control group"
             toggles
             @click=${this._contentControlClick}>
-            <iron-icon icon="editor:format-align-left"></iron-icon>
+            <arc-icon icon="zoomIn"></arc-icon>
           </anypoint-icon-button>
           <anypoint-icon-button
             title="Align text center"
@@ -551,15 +541,15 @@ class ComponentDemo extends ArcDemoPage {
             class="content-control group"
             toggles
             @click=${this._contentControlClick}>
-            <iron-icon icon="editor:format-align-center"></iron-icon>
+            <arc-icon icon="shortText"></arc-icon>
           </anypoint-icon-button>
           <anypoint-icon-button
             title="Align text right"
-            aria-label="Toggle align text rigth"
+            aria-label="Toggle align text right"
             class="content-control group"
             toggles
             @click=${this._contentControlClick}>
-            <iron-icon icon="editor:format-align-right"></iron-icon>
+            <arc-icon icon="spellcheck"></arc-icon>
           </anypoint-icon-button>
         </div>
       </section>

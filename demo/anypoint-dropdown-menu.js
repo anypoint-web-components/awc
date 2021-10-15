@@ -479,7 +479,7 @@ class ComponentDemo extends DemoPage {
             <summary>Code example</summary>
             <code>
               <pre>
-              &lt;anypoint-dropdown-menu autovalidate required&gt;
+              &lt;anypoint-dropdown-menu autoValidate required&gt;
                 &lt;label slot="label"&gt;Select a dinosaur&lt;/label&gt;
                 &lt;anypoint-listbox slot="dropdown-content"&gt;
                   &lt;anypoint-item label="Allosaurus"&gt;Allosaurus&lt;/anypoint-item&gt;
@@ -506,7 +506,7 @@ class ComponentDemo extends DemoPage {
           .states='${["Native form"]}'
           ?dark="${darkThemeActive}"
         >
-          <form enctype="application/json" @submit="${this._formSubmit}" slot="content">
+          <form @submit="${this._formSubmit}" slot="content">
             <fieldset ?disabled="${formFieldsDisabled}">
               <legend>Form fields group</legend>
               <anypoint-dropdown-menu required name="dino" ?disabled="${formMenuDisabled}">

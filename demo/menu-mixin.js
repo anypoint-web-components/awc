@@ -1,3 +1,4 @@
+/* eslint-disable lit-a11y/anchor-is-valid */
 import { html } from 'lit-html';
 import { DemoPage } from './lib/DemoPage.js';
 import '../anypoint-item.js';
@@ -7,8 +8,7 @@ import './simple-menubar.js';
 class ComponentDemo extends DemoPage {
   constructor() {
     super();
-    this._componentName = 'anypoint-menu-mixin';
-    this._mdHandler = this._mdHandler.bind(this);
+    this.componentName = 'anypoint-menu-mixin';
     this.fruits = [
       'Apple',
       'Apricot',
@@ -59,11 +59,6 @@ class ComponentDemo extends DemoPage {
       'Olive',
       'Orange',
     ];
-
-    this._highlightPreviousHandler = this._highlightPreviousHandler.bind(this);
-    this._highlightNextHandler = this._highlightNextHandler.bind(this);
-    this._focusPreviousHandler = this._focusPreviousHandler.bind(this);
-    this._focusNextHandler = this._focusNextHandler.bind(this);
   }
 
   get highlightElement() {
@@ -72,14 +67,6 @@ class ComponentDemo extends DemoPage {
 
   get focusElement() {
     return document.getElementById('focus');
-  }
-
-  _mdHandler(e) {
-    if (e.target.checked) {
-      document.body.classList.add('material');
-    } else {
-      document.body.classList.remove('material');
-    }
   }
 
   _highlightNextHandler() {
@@ -100,29 +87,6 @@ class ComponentDemo extends DemoPage {
   _focusPreviousHandler() {
     // @ts-ignore
     this.focusElement.focusPrevious();
-  }
-
-  _headerControlsTemplate() {
-    return html`<div class="settings-action-item">
-        <paper-toggle-button @checked-changed="${this._darkThemeHandler}"
-          >Toggle dark theme</paper-toggle-button
-        >
-      </div>
-      <div class="settings-action-item">
-        <paper-toggle-button @checked-changed="${this._mdHandler}"
-          >Toggle material design</paper-toggle-button
-        >
-      </div>
-      <div class="settings-action-item">
-        <paper-toggle-button @checked-changed="${this._narrowHandler}"
-          >Toggle narrow attribute</paper-toggle-button
-        >
-      </div>
-      <div class="settings-action-item">
-        <paper-toggle-button checked @checked-changed="${this._stylesHandler}"
-          >Toggle styles</paper-toggle-button
-        >
-      </div>`;
   }
 
   contentTemplate() {

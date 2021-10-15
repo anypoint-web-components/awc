@@ -1,5 +1,6 @@
 import { html } from 'lit-html';
 import { DemoPage } from './lib/DemoPage.js';
+import '@advanced-rest-client/arc-icons/arc-icon.js'
 import './lib/interactive-demo.js';
 import '../anypoint-icon-button.js';
 import '../anypoint-item.js';
@@ -9,95 +10,15 @@ import '../anypoint-item-body.js';
 class ComponentDemo extends DemoPage {
   constructor() {
     super();
-    this.initObservableProperties([
-      'demoCompatibility',
-      'twoLineCompatibility',
-      'iconCompatibility',
-      'demoWithIcon',
-      'demoTwoLines',
-      'complexCompatibility',
-      'linksCompatibility'
-    ]);
-    this._componentName = 'anypoint-dropdown-menu';
-    this.demoStates = ['Material Design', 'Anypoint'];
-    this._mainDemoStateHandler = this._mainDemoStateHandler.bind(this);
-    this._twoLineDemoStateHandler = this._twoLineDemoStateHandler.bind(this);
-    this._iconDemoStateHandler = this._iconDemoStateHandler.bind(this);
-    this._toggleDemoOption = this._toggleDemoOption.bind(this);
-    this._complexStateHandler = this._complexStateHandler.bind(this);
-    this._linksStateHandler = this._linksStateHandler.bind(this);
+    this.componentName = 'anypoint-dropdown-menu';
   }
 
-  _mainDemoStateHandler(e) {
-    const state = e.detail.value;
-    switch (state) {
-      case 0:
-        this.demoCompatibility = false;
-        break;
-      case 1:
-        this.demoCompatibility = true;
-        break;
-    }
-  }
-
-  _twoLineDemoStateHandler(e) {
-    const state = e.detail.value;
-    switch (state) {
-      case 0:
-        this.twoLineCompatibility = false;
-        break;
-      case 1:
-        this.twoLineCompatibility = true;
-        break;
-    }
-  }
-
-  _iconDemoStateHandler(e) {
-    const state = e.detail.value;
-    switch (state) {
-      case 0:
-        this.iconCompatibility = false;
-        break;
-      case 1:
-        this.iconCompatibility = true;
-        break;
-    }
-  }
-
-  _complexStateHandler(e) {
-    const state = e.detail.value;
-    switch (state) {
-      case 0:
-        this.complexCompatibility = false;
-        break;
-      case 1:
-        this.complexCompatibility = true;
-        break;
-    }
-  }
-
-  _linksStateHandler(e) {
-    const state = e.detail.value;
-    switch (state) {
-      case 0:
-        this.linksCompatibility = false;
-        break;
-      case 1:
-        this.linksCompatibility = true;
-        break;
-    }
-  }
-
-  _toggleDemoOption(e) {
-    const { name, checked } = e.target;
-    this[name] = checked;
-  }
 
   _demoTemplate() {
     const {
       demoStates,
       darkThemeActive,
-      demoCompatibility
+      anypoint,
     } = this;
     return html`<section class="documentation-section">
     <h3>Interactive demo</h3>
@@ -107,22 +28,22 @@ class ComponentDemo extends DemoPage {
     </p>
     <interactive-demo
       .states="${demoStates}"
-      @state-changed="${this._mainDemoStateHandler}"
+      @state-changed="${this._demoStateHandler}"
       ?dark="${darkThemeActive}"
     >
       <div
         role="listbox"
         slot="content">
-        <anypoint-item ?compatibility="${demoCompatibility}">
+        <anypoint-item ?compatibility="${anypoint}">
           Option 1
         </anypoint-item>
-        <anypoint-item ?compatibility="${demoCompatibility}">
+        <anypoint-item ?compatibility="${anypoint}">
           Option 2
         </anypoint-item>
-        <anypoint-item ?compatibility="${demoCompatibility}">
+        <anypoint-item ?compatibility="${anypoint}">
           Option 3
         </anypoint-item>
-        <anypoint-item ?compatibility="${demoCompatibility}">
+        <anypoint-item ?compatibility="${anypoint}">
           <p>Paragraph as a child</p>
         </anypoint-item>
       </div>
@@ -153,7 +74,7 @@ class ComponentDemo extends DemoPage {
     const {
       demoStates,
       darkThemeActive,
-      twoLineCompatibility
+      anypoint
     } = this;
     return html`<section class="documentation-section">
     <h3>Two line list item</h3>
@@ -167,28 +88,28 @@ class ComponentDemo extends DemoPage {
     </p>
     <interactive-demo
       .states="${demoStates}"
-      @state-changed="${this._twoLineDemoStateHandler}"
+      @state-changed="${this._demoStateHandler}"
       ?dark="${darkThemeActive}"
     >
       <div
         role="listbox"
         slot="content">
-        <anypoint-item ?compatibility="${twoLineCompatibility}">
-          <anypoint-item-body twoline ?compatibility="${twoLineCompatibility}">
+        <anypoint-item ?compatibility="${anypoint}">
+          <anypoint-item-body twoline ?compatibility="${anypoint}">
             <div>Pawel Psztyc</div>
             <div data-secondary>Sr. Software Engineer</div>
           </anypoint-item-body>
         </anypoint-item>
 
-        <anypoint-item ?compatibility="${twoLineCompatibility}">
-          <anypoint-item-body twoline ?compatibility="${twoLineCompatibility}">
+        <anypoint-item ?compatibility="${anypoint}">
+          <anypoint-item-body twoline ?compatibility="${anypoint}">
             <div>John Smith</div>
             <div data-secondary>QA specialist</div>
           </anypoint-item-body>
         </anypoint-item>
 
-        <anypoint-item ?compatibility="${twoLineCompatibility}">
-          <anypoint-item-body twoline ?compatibility="${twoLineCompatibility}">
+        <anypoint-item ?compatibility="${anypoint}">
+          <anypoint-item-body twoline ?compatibility="${anypoint}">
             <div>John Q. Public</div>
             <div data-secondary>Interaction designer</div>
           </anypoint-item-body>
@@ -202,7 +123,7 @@ class ComponentDemo extends DemoPage {
     const {
       demoStates,
       darkThemeActive,
-      iconCompatibility
+      anypoint
     } = this;
     return html`<section class="documentation-section">
     <h3>Icon item</h3>
@@ -211,19 +132,19 @@ class ComponentDemo extends DemoPage {
     </p>
     <interactive-demo
       .states="${demoStates}"
-      @state-changed="${this._iconDemoStateHandler}"
+      @state-changed="${this._demoStateHandler}"
       ?dark="${darkThemeActive}"
     >
       <div
         role="listbox"
         slot="content">
-        <anypoint-icon-item ?compatibility="${iconCompatibility}">
-          <iron-icon icon="anypoint:add" slot="item-icon"></iron-icon> Add
+        <anypoint-icon-item ?compatibility="${anypoint}">
+          <arc-icon icon="add" slot="item-icon"></arc-icon> Add
         </anypoint-icon-item>
-        <anypoint-icon-item ?compatibility="${iconCompatibility}">
-          <iron-icon icon="anypoint:refresh" slot="item-icon"></iron-icon> Refresh
+        <anypoint-icon-item ?compatibility="${anypoint}">
+          <arc-icon icon="refresh" slot="item-icon"></arc-icon> Refresh
         </anypoint-icon-item>
-        <anypoint-icon-item ?compatibility="${iconCompatibility}">
+        <anypoint-icon-item ?compatibility="${anypoint}">
           <span slot="item-icon" class="circle"></span> Refresh
         </anypoint-icon-item>
       </div>
@@ -235,7 +156,7 @@ class ComponentDemo extends DemoPage {
     const {
       demoStates,
       darkThemeActive,
-      complexCompatibility
+      anypoint
     } = this;
     return html`<section class="documentation-section">
     <h3>Complex layouts</h3>
@@ -245,35 +166,35 @@ class ComponentDemo extends DemoPage {
 
     <interactive-demo
       .states="${demoStates}"
-      @state-changed="${this._complexStateHandler}"
+      @state-changed="${this._demoStateHandler}"
       ?dark="${darkThemeActive}"
     >
       <div
         role="listbox"
         slot="content">
-        <anypoint-icon-item ?compatibility="${complexCompatibility}">
+        <anypoint-icon-item ?compatibility="${anypoint}">
           <div class="avatar blue" slot="item-icon"></div>
-          <anypoint-item-body twoline ?compatibility="${complexCompatibility}">
+          <anypoint-item-body twoline ?compatibility="${anypoint}">
             <div>Photos</div>
             <div data-secondary>Jan 9, 2014</div>
           </anypoint-item-body>
           <anypoint-icon-button
-            ?compatibility="${complexCompatibility}"
+            ?compatibility="${anypoint}"
             aria-label="Activate to toggle favourite">
-            <iron-icon icon="star" alt="favourite this!"></iron-icon>
+            <arc-icon icon="star"></arc-icon>
           </anypoint-icon-button>
         </anypoint-icon-item>
 
-        <anypoint-icon-item ?compatibility="${complexCompatibility}">
+        <anypoint-icon-item ?compatibility="${anypoint}">
           <div class="avatar" slot="item-icon"></div>
-          <anypoint-item-body twoline ?compatibility="${complexCompatibility}">
+          <anypoint-item-body twoline ?compatibility="${anypoint}">
             <div>Recipes</div>
             <div data-secondary>Jan 17, 2014</div>
           </anypoint-item-body>
           <anypoint-icon-button
-            ?compatibility="${complexCompatibility}"
+            ?compatibility="${anypoint}"
             aria-label="Activate to toggle favourite">
-            <iron-icon icon="star" alt="favourite this!"></iron-icon>
+            <arc-icon icon="star"></arc-icon>
           </anypoint-icon-button>
         </anypoint-icon-item>
       </div>
@@ -285,7 +206,7 @@ class ComponentDemo extends DemoPage {
     const {
       demoStates,
       darkThemeActive,
-      linksCompatibility
+      anypoint
     } = this;
     return html`<section class="documentation-section">
     <h3>Item as a link</h3>
@@ -295,20 +216,20 @@ class ComponentDemo extends DemoPage {
 
     <interactive-demo
       .states="${demoStates}"
-      @state-changed="${this._linksStateHandler}"
+      @state-changed="${this._demoStateHandler}"
       ?dark="${darkThemeActive}"
     >
       <div
         role="listbox"
         slot="content">
         <a class="anypoint-item-link" href="#inbox" tabindex="-1">
-          <anypoint-item ?compatibility="${linksCompatibility}">Inbox</anypoint-item>
+          <anypoint-item ?compatibility="${anypoint}">Inbox</anypoint-item>
         </a>
         <a class="anypoint-item-link" href="#starred" tabindex="-1">
-          <anypoint-item ?compatibility="${linksCompatibility}">Starred</anypoint-item>
+          <anypoint-item ?compatibility="${anypoint}">Starred</anypoint-item>
         </a>
         <a class="anypoint-item-link" href="#sent" tabindex="-1">
-          <anypoint-item ?compatibility="${linksCompatibility}">Sent mail</anypoint-item>
+          <anypoint-item ?compatibility="${anypoint}">Sent mail</anypoint-item>
         </a>
       </div>
     </interactive-demo>

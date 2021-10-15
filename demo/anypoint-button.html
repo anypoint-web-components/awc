@@ -52,11 +52,11 @@
   <script type="module" src="./anypoint-button.js"></script>
 
   <script>
-  document.addEventListener('WebComponentsReady', function() {
+  document.addEventListener('WebComponentsReady', () => {
     function shouldAddDocumentStyle(n) {
       return n.nodeType === Node.ELEMENT_NODE && n.localName === 'style' && !n.hasAttribute('scope');
     }
-    const CustomStyleInterface = window.ShadyCSS.CustomStyleInterface;
+    const {CustomStyleInterface} = window.ShadyCSS;
 
     const candidates = document.querySelectorAll('style');
     for (let i = 0; i < candidates.length; i++) {

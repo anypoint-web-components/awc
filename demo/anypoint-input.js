@@ -2,6 +2,7 @@
 /* eslint-disable no-plusplus */
 import { html } from 'lit-html';
 import { DemoPage } from './lib/DemoPage.js';
+import '@advanced-rest-client/arc-icons/arc-icon.js'
 import '../anypoint-checkbox.js';
 import '../anypoint-radio-button.js';
 import '../anypoint-radio-group.js';
@@ -61,6 +62,7 @@ class ComponentDemo extends DemoPage {
     this.textFieldStates = ['Normal', 'Outlined', 'Anypoint'];
     this.textFieldCompatibility = false;
     this.textFieldOutlined = false;
+    /** @type any */
     this.typeSelector = 'text';
     this.darkThemeActive = false;
     this.textFiledLeading = false;
@@ -209,7 +211,7 @@ class ComponentDemo extends DemoPage {
             ?outlined="${textFieldOutlined}"
             ?compatibility="${textFieldCompatibility}"
             .infoMessage="${infoMessage}"
-            invalidmessage="This value is invalid"
+            invalidMessage="This value is invalid"
             ?invalid="${textFieldError}"
             ?nolabelfloat="${textFiledNoLabelFloat}"
             ?readOnly="${mainFiledReadOnly}"
@@ -217,11 +219,11 @@ class ComponentDemo extends DemoPage {
           >
             <label slot="label">Label</label>
             ${textFiledLeading ? html`
-                  <iron-icon icon="lock-outline" slot="prefix"></iron-icon>
+                  <arc-icon icon="infoOutline" slot="prefix"></arc-icon>
                 `
               : undefined}
             ${textFiledTrailing ? html`
-                  <iron-icon icon="clear" slot="suffix"></iron-icon>
+                  <arc-icon icon="clear" slot="suffix"></arc-icon>
                 `
               : undefined}
           </anypoint-input>
@@ -592,16 +594,16 @@ class ComponentDemo extends DemoPage {
       </p>
 
       <p>
-        Use this attributes with combination with <code>autovalidate</code> attribute which
+        Use this attributes with combination with <code>autoValidate</code> attribute which
         validates the state on user input
       </p>
 
       <anypoint-input
         title="This input is required"
         type="text"
-        autovalidate
+        autoValidate
         required
-        invalidmessage="The value is required"
+        invalidMessage="The value is required"
       >
         <label slot="label">Required input</label>
       </anypoint-input>
@@ -609,10 +611,10 @@ class ComponentDemo extends DemoPage {
       <anypoint-input
         title="Min and max length"
         type="text"
-        autovalidate
+        autoValidate
         minlength="5"
-        maxlength="10"
-        invalidmessage="Use 5 to 10 characters"
+        maxLength="10"
+        invalidMessage="Use 5 to 10 characters"
       >
         <label slot="label">Min and max length</label>
       </anypoint-input>
@@ -620,10 +622,10 @@ class ComponentDemo extends DemoPage {
       <anypoint-input
         title="Min and max number"
         type="number"
-        autovalidate
+        autoValidate
         min="10"
         max="20"
-        invalidmessage="Only number in range 10 - 20"
+        invalidMessage="Only number in range 10 - 20"
       >
         <label slot="label">Min and max number</label>
       </anypoint-input>
@@ -631,9 +633,9 @@ class ComponentDemo extends DemoPage {
       <anypoint-input
         title="Letters only via pattern"
         type="text"
-        autovalidate
+        autoValidate
         pattern="[a-zA-Z]*"
-        invalidmessage="Only letters are allowed"
+        invalidMessage="Only letters are allowed"
       >
         <label slot="label">Pattern</label>
       </anypoint-input>
@@ -662,7 +664,7 @@ class ComponentDemo extends DemoPage {
       <anypoint-input
         title="Custom validation is enabled"
         type="text"
-        autovalidate
+        autoValidate
         validator="minimum-maximum-length number-required uppercase-required"
         infoMessage="Try to create a password"
       >
@@ -705,7 +707,7 @@ class ComponentDemo extends DemoPage {
             ?outlined="${textAreaOutlined}"
             ?compatibility="${textAreaCompatibility}"
             .infoMessage="${infoMessage}"
-            invalidmessage="This value is invalid"
+            invalidMessage="This value is invalid"
             ?invalid="${textAreaError}"
             ?nolabelfloat="${textAreaNoLabelFloat}"
           >

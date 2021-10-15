@@ -22,8 +22,9 @@
     ]
   },
   "include": [
+    "!test/**/*",
     "**/*.js",
     "node_modules/@open-wc/**/*.js"
   ],
-  "exclude": ["node_modules/!(@open-wc)"]
+  "exclude": ["node_modules/!(@open-wc)", "test/**/*", "test/*"]
 }

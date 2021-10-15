@@ -1,6 +1,6 @@
 import { LitElement, html, css } from 'lit-element';
-import { CheckedElementMixin } from '../checked-element-mixin.js';
-import '@polymer/paper-button/paper-button.js';
+import { CheckedElementMixin } from '../src/CheckedElementMixin.js';
+import '../anypoint-button.js';
 
 class SimpleCheckbox extends CheckedElementMixin(LitElement) {
   static get styles() {
@@ -21,13 +21,11 @@ class SimpleCheckbox extends CheckedElementMixin(LitElement) {
   }
 
   render() {
-    return html` <input
-        type="checkbox"
-        id="checkbox"
-        @click="${this._onCheckClick}"
-      />
-      <span id="labelText">${this.label}</span>
-      <paper-button raised @click="${this._onClick}">validate</paper-button>`;
+    return html`
+    <input type="checkbox" id="checkbox" @click="${this._onCheckClick}"/>
+    <span id="labelText">${this.label}</span>
+    <anypoint-button emphasis="high" @click="${this._onClick}">validate</anypoint-button>
+    `;
   }
 
   static get properties() {
