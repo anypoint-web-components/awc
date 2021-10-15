@@ -20,6 +20,7 @@ export { default as AnypointSelectorElement } from './src/AnypointSelectorElemen
 export { default as AnypointDropdownElement } from './src/AnypointDropdownElement.js';
 export { default as AnypointTabsElement } from './src/AnypointTabsElement.js';
 export { default as AnypointTabElement } from './src/AnypointTabElement.js';
+export { default as AnypointMenuButtonElement } from './src/AnypointMenuButtonElement.js';
 
 export { ButtonStateMixin } from "./src/ButtonStateMixin.js";
 export { ControlStateMixin } from "./src/ControlStateMixin.js";
