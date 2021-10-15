@@ -23,6 +23,7 @@ export { default as AnypointTabElement } from './src/AnypointTabElement';
 export { default as AnypointMenuButtonElement } from './src/AnypointMenuButtonElement';
 export { default as AnypointDropdownMenuElement } from './src/AnypointDropdownMenuElement';
 export { default as AnypointAutocompleteElement } from './src/AnypointAutocompleteElement';
+export { default as AnypointComboboxElement } from './src/AnypointComboboxElement';
 
 export { ButtonStateMixin } from './src/ButtonStateMixin';
 export { ControlStateMixin } from './src/ControlStateMixin';
