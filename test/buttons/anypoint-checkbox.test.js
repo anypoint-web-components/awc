@@ -1,55 +1,55 @@
 import { fixture, assert, aTimeout } from '@open-wc/testing';
 import * as MockInteractions from '@polymer/iron-test-helpers/mock-interactions.js';
-import '@anypoint-web-components/anypoint-styles/colors.js';
-import '../anypoint-checkbox.js';
+import '../../colors.js';
+import '../../anypoint-checkbox.js';
 
-/** @typedef {import('../').AnypointCheckbox} AnypointCheckbox */
+/** @typedef {import('../..').AnypointCheckboxElement} AnypointCheckboxElement */
 
 describe('<anypoint-checkbox>', () => {
   /**
-   * @returns {Promise<AnypointCheckbox>}
+   * @returns {Promise<AnypointCheckboxElement>}
    */
   async function basicFixture() {
     return (fixture(`<anypoint-checkbox></anypoint-checkbox>`));
   }
 
   /**
-   * @returns {Promise<AnypointCheckbox>}
+   * @returns {Promise<AnypointCheckboxElement>}
    */
   async function noLabelFixture() {
     return (fixture(`<anypoint-checkbox></anypoint-checkbox>`));
   }
 
   /**
-   * @returns {Promise<AnypointCheckbox>}
+   * @returns {Promise<AnypointCheckboxElement>}
    */
   async function withLabelFixture() {
     return (fixture(`<anypoint-checkbox>Batman</anypoint-checkbox>`));
   }
 
   /**
-   * @returns {Promise<AnypointCheckbox>}
+   * @returns {Promise<AnypointCheckboxElement>}
    */
   async function roleFixture() {
     return (fixture(`<anypoint-checkbox role="button">Batman</anypoint-checkbox>`));
   }
 
   /**
-   * @returns {Promise<AnypointCheckbox>}
+   * @returns {Promise<AnypointCheckboxElement>}
    */
   async function checkedFixture() {
     return (fixture(`<anypoint-checkbox checked>Batman</anypoint-checkbox>`));
   }
 
   /**
-   * @returns {Promise<AnypointCheckbox>}
+   * @returns {Promise<AnypointCheckboxElement>}
    */
   async function tabindexFixture() {
     return (fixture(`<anypoint-checkbox tabindex="-1">Batman</anypoint-checkbox>`));
   }
 
   /**
-   * @returns {Promise<AnypointCheckbox>}
+   * @returns {Promise<AnypointCheckboxElement>}
    */
   async function indeterminateFixture() {
     return (fixture(`<anypoint-checkbox indeterminate></anypoint-checkbox>`));
@@ -336,7 +336,7 @@ describe('<anypoint-checkbox>', () => {
   });
 
   describe('change', () => {
-    let element = /** @type AnypointCheckbox */ (null);
+    let element = /** @type AnypointCheckboxElement */ (null);
     beforeEach(async () => {
       element = await basicFixture();
     });

@@ -1,7 +1,7 @@
 import { LitElement, html, css } from 'lit-element';
-import { HoverableMixin } from '../index.js';
+import { HoverableMixin } from '../../index.js';
 
-class HoverableTestElement extends HoverableMixin(LitElement) {
+export class HoverableTestElement extends HoverableMixin(LitElement) {
   static get styles() {
     return css`:host {
       display: block;

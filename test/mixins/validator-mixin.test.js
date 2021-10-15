@@ -1,8 +1,10 @@
 import { fixture, assert } from '@open-wc/testing';
-import { ValidatorMixin, ValidatorStore } from '../index.js';
+import { ValidatorMixin, ValidatorStore } from '../../index.js';
 import './simple-validator.js';
 
 /* eslint-disable no-new */
+
+/** @typedef {import('./simple-validator').SimpleValidator} SimpleValidator */
 
 // @ts-ignore
 class TestClass extends ValidatorMixin(Object) {
@@ -13,12 +15,15 @@ class TestClass extends ValidatorMixin(Object) {
 
 describe('ValidatorMixin', () => {
   /**
-   * @return {Promise<ValidatorMixin>}
+   * @return {Promise<SimpleValidator>}
    */
   async function basicFixture() {
     return fixture('<simple-validator></simple-validator>');
   }
 
+  /**
+   * @return {Promise<SimpleValidator>}
+   */
   async function messageFixture() {
     return fixture('<simple-validator message="test"></simple-validator>');
   }
@@ -50,12 +55,12 @@ describe('ValidatorMixin', () => {
     );
   });
 
-  it('validate() returnes true by default', async () => {
+  it('validate() returns true by default', async () => {
     const element = await basicFixture();
     assert.isTrue(element.validate());
   });
 
-  it('Has a message poroperty', async () => {
+  it('Has a message property', async () => {
     const element = await messageFixture();
     assert.equal(element.message, 'test');
   });

@@ -1,25 +1,25 @@
-import { fixture, expect, aTimeout, nextFrame } from '@open-wc/testing';
+import { fixture, expect, aTimeout, nextFrame, html } from '@open-wc/testing';
 import sinon from 'sinon';
 import * as MockInteractions from '@polymer/iron-test-helpers/mock-interactions.js';
 import './test-elements.js';
-import '@polymer/paper-input/paper-input.js';
+import '../../anypoint-input.js';
 
 describe('Active state tests', () => {
   async function trivialActiveState() {
-    return fixture(`<test-button></test-button>`);
+    return fixture(html`<test-button></test-button>`);
   }
 
   async function toggleActiveState() {
-    return fixture(`<test-button toggles></test-button>`);
+    return fixture(html`<test-button toggles></test-button>`);
   }
 
   async function buttonWithNativeInput() {
-    return fixture(`<test-light-dom><input id="input"></test-light-dom>`);
+    return fixture(html`<test-light-dom><input id="input"></test-light-dom>`);
   }
 
   async function buttonWithPaperInput() {
     return fixture(
-      `<test-light-dom><paper-input id="input"></paper-input></test-light-dom>`
+      html`<test-light-dom><anypoint-input id="input"></anypoint-input></test-light-dom>`
     );
   }
 
@@ -214,6 +214,7 @@ describe('Active state tests', () => {
         const input = item.querySelector('#input');
         const itemClickHandler = sinon.spy();
         item.addEventListener('click', itemClickHandler);
+        // @ts-ignore
         input.focus();
         MockInteractions.pressSpace(input);
         await aTimeout(20);
@@ -230,12 +231,13 @@ describe('Active state tests', () => {
       });
     });
 
-    describe('nested paper-input inside button', () => {
+    describe('nested anypoint-input inside button', () => {
       it('space in light child input does not trigger a button click event', async () => {
         const item = await buttonWithPaperInput();
         const input = item.querySelector('#input');
         const itemClickHandler = sinon.spy();
         item.addEventListener('click', itemClickHandler);
+        // @ts-ignore
         input.focus();
         MockInteractions.pressSpace(input);
         await aTimeout(20);

@@ -14,6 +14,8 @@ export { default as AnypointCheckboxElement } from "./src/AnypointCheckboxElemen
 export { default as AnypointInputElement } from "./src/AnypointInputElement.js";
 export { default as AnypointMaskedInputElement } from "./src/AnypointMaskedInput.js";
 export { default as AnypointTextareaElement } from './src/AnypointTextareaElement.js';
+export { default as AnypointSwitchElement } from './src/AnypointSwitchElement.js';
+export { default as AnypointListboxElement } from './src/AnypointListboxElement.js';
 export { ButtonStateMixin } from "./src/ButtonStateMixin.js";
 export { ControlStateMixin } from "./src/ControlStateMixin.js";
 export { HoverableMixin } from "./src/HoverableMixin.js";
@@ -28,4 +30,3 @@ export { default as AnypointSelectorElement } from './src/AnypointSelectorElemen
 export { AnypointSelection } from './src/AnypointSelection.js';
 export { MenuMixin } from './src/MenuMixin.js';
 export { MenubarMixin } from './src/MenubarMixin.js';
-export { default as AnypointSwitchElement } from './src/AnypointSwitchElement.js';

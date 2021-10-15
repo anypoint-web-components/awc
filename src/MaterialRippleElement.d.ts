@@ -1,4 +1,4 @@
-import { CSSResult, LitElement, TemplateResult  } from 'lit-element';
+import { LitElement, TemplateResult  } from 'lit-element';
 import { Ripple } from './Ripple.js';
 
 export const animating: unique symbol;
@@ -17,8 +17,6 @@ export const removeRipple: unique symbol;
  * @fires transitionend
  */
 export default class MaterialRippleElement extends LitElement {
-  get styles(): CSSResult;
-
   /**
    * The initial opacity set on the wave.
    * @attribute

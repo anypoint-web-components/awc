@@ -2,10 +2,10 @@
 /* eslint-disable lit-a11y/tabindex-no-positive */
 import { fixture, assert, aTimeout, nextFrame, html } from '@open-wc/testing';
 import * as MockInteractions from '@polymer/iron-test-helpers/mock-interactions.js';
-import '../colors.js';
-import '../anypoint-switch.js';
+import '../../colors.js';
+import '../../anypoint-switch.js';
 
-/** @typedef {import('../').AnypointSwitchElement} AnypointSwitchElement */
+/** @typedef {import('../../').AnypointSwitchElement} AnypointSwitchElement */
 
 describe('<anypoint-switch>', () => {
   /**

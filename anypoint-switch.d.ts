@@ -1,4 +1,4 @@
-import Element from './src/AnypointSwitchElement.js';
+import Element from './src/AnypointSwitchElement';
 
 declare global {
   interface HTMLElementTagNameMap {

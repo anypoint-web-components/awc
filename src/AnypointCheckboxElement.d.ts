@@ -1,4 +1,4 @@
-import {TemplateResult, CSSResult, LitElement} from 'lit-element';
+import { TemplateResult, LitElement } from 'lit-element';
 import { ButtonStateMixin } from './ButtonStateMixin';
 import { ControlStateMixin } from './ControlStateMixin';
 import { CheckedElementMixin } from './CheckedElementMixin';
@@ -21,17 +21,16 @@ import { CheckedElementMixin } from './CheckedElementMixin';
  * 
  * @fires change Fired when the checked state changes due to user interaction.
  */
-export default class AnypointCheckboxElement  extends ButtonStateMixin(ControlStateMixin(CheckedElementMixin(LitElement))) {
-  get styles(): CSSResult;
+export default class AnypointCheckboxElement extends ButtonStateMixin(ControlStateMixin(CheckedElementMixin(LitElement))) {
 
   render(): TemplateResult;
 
   static get formAssociated(): boolean;
 
-  get form(): HTMLFormElement|null;
+  get form(): HTMLFormElement | null;
 
   onchange: EventListener;
-  
+
   /**
    * @attribute
    */

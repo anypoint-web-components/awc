@@ -1,20 +1,20 @@
 import { fixture, assert, aTimeout, nextFrame, html, oneEvent } from '@open-wc/testing';
-import * as sinon from 'sinon';
-import '../anypoint-button.js';
+import sinon from 'sinon';
+import '../../anypoint-button.js';
 import * as MockInteractions from '@polymer/iron-test-helpers/mock-interactions.js';
 
-/** @typedef {import('..').AnypointButton} AnypointButton */
+/** @typedef {import('../../').AnypointButtonElement} AnypointButtonElement */
 
 describe('<anypoint-button>', () => {
   /**
-   * @returns {Promise<AnypointButton>} 
+   * @returns {Promise<AnypointButtonElement>} 
    */
   async function basicFixture() {
     return fixture(html`<anypoint-button>Button</anypoint-button>`);
   }
 
   /**
-   * @returns {Promise<AnypointButton>} 
+   * @returns {Promise<AnypointButtonElement>} 
    */
   async function roleFixture() {
     return fixture(
@@ -23,28 +23,28 @@ describe('<anypoint-button>', () => {
   }
 
   /**
-   * @returns {Promise<AnypointButton>} 
+   * @returns {Promise<AnypointButtonElement>} 
    */
   async function tabindexFixture() {
     return fixture(html`<anypoint-button tabindex="-1">Button</anypoint-button>`);
   }
 
   /**
-   * @returns {Promise<AnypointButton>} 
+   * @returns {Promise<AnypointButtonElement>} 
    */
   async function togglesFixture() {
     return fixture(html`<anypoint-button toggles>Button</anypoint-button>`);
   }
 
   /**
-   * @returns {Promise<AnypointButton>} 
+   * @returns {Promise<AnypointButtonElement>} 
    */
   async function noinkFixture() {
     return fixture(html`<anypoint-button noink>Button</anypoint-button>`);
   }
 
   /**
-   * @returns {Promise<AnypointButton>} 
+   * @returns {Promise<AnypointButtonElement>} 
    */
   async function highEmphasisFixture() {
     return fixture(html`<anypoint-button emphasis="high">Button</anypoint-button>`);
@@ -168,7 +168,7 @@ describe('<anypoint-button>', () => {
   });
 
   describe('Ripple effect', () => {
-    /** @type AnypointButton */
+    /** @type AnypointButtonElement */
     let element;
 
     it('Ripple has noink set', async () => {

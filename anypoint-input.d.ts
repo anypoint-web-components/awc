@@ -1,4 +1,4 @@
-import Element from './src/AnypointInput';
+import Element from './src/AnypointInputElement';
 
 declare global {
   interface HTMLElementTagNameMap {

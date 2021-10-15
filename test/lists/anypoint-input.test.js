@@ -1,9 +1,9 @@
 import { fixture, assert, nextFrame, aTimeout, html } from '@open-wc/testing';
 import sinon from 'sinon';
 import * as MockInteractions from '@polymer/iron-test-helpers/mock-interactions.js';
-import '../anypoint-input.js';
+import '../../anypoint-input.js';
 
-/** @typedef {import('../index').AnypointInputElement} AnypointInputElement */
+/** @typedef {import('../../index').AnypointInputElement} AnypointInputElement */
 
 describe('<anypoint-input>', () => {
   /**

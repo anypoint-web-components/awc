@@ -1,8 +1,7 @@
-import {TemplateResult, SVGTemplateResult, CSSResult} from 'lit-element';
+import { TemplateResult, SVGTemplateResult } from 'lit-element';
 import AnypointInputElement from './AnypointInputElement';
 
 export default class AnypointMaskedInputElement extends AnypointInputElement {
-  get styles(): CSSResult|CSSResult[];
   get _inputType(): string;
   get _visibilityToggleIcon(): SVGTemplateResult;
   get _visibilityToggleTitle(): string;

@@ -1,9 +1,9 @@
 import { aTimeout, fixture, expect, assert, nextFrame, html } from '@open-wc/testing';
 import sinon from 'sinon';
-import '../anypoint-item.js';
-import '../anypoint-icon-item.js';
+import '../../anypoint-item.js';
+import '../../anypoint-icon-item.js';
 
-/** @typedef {import('../').AnypointItem} AnypointItem */
+/** @typedef {import('../..').AnypointItemElement} AnypointItemElement */
 
 describe('<anypoint-item>', () => {
   /**
@@ -43,49 +43,49 @@ describe('<anypoint-item>', () => {
   }
 
   /**
-   * @returns {Promise<AnypointItem>}
+   * @returns {Promise<AnypointItemElement>}
    */
   async function itemRoleFixture() {
     return fixture(html`<anypoint-item role="button">item</anypoint-item>`);
   }
 
   /**
-   * @returns {Promise<AnypointItem>}
+   * @returns {Promise<AnypointItemElement>}
    */
   async function itemTabindexFixture() {
     return fixture(html`<anypoint-item tabindex="-1">item</anypoint-item>`);
   }
 
   /**
-   * @returns {Promise<AnypointItem>}
+   * @returns {Promise<AnypointItemElement>}
    */
   async function iconItemRoleFixture() {
     return fixture(html`<anypoint-icon-item role="button">item</anypoint-icon-item>`);
   }
 
   /**
-   * @returns {Promise<AnypointItem>}
+   * @returns {Promise<AnypointItemElement>}
    */
   async function iconItemTabindexFixture() {
     return fixture(html`<anypoint-icon-item tabindex="-1">item</anypoint-icon-item>`);
   }
 
   /**
-   * @returns {Promise<AnypointItem>}
+   * @returns {Promise<AnypointItemElement>}
    */
   async function itemBasicFixture() {
     return fixture(html`<anypoint-item>item</anypoint-item>`);
   }
 
   /**
-   * @returns {Promise<AnypointItem>}
+   * @returns {Promise<AnypointItemElement>}
    */
   async function iconItemBasicFixture() {
     return fixture(html`<anypoint-icon-item>item</anypoint-icon-item>`);
   }
 
   describe('anypoint-item basic', () => {
-    let item = /** @type AnypointItem */ (null);
+    let item = /** @type AnypointItemElement */ (null);
     let clickHandler;
     beforeEach(async () => {
       const element = await itemFixture();
@@ -129,7 +129,7 @@ describe('<anypoint-item>', () => {
   });
 
   describe('anypoint-icon-item basic', () => {
-    let item = /** @type AnypointItem */ (null);
+    let item = /** @type AnypointItemElement */ (null);
     let clickHandler;
     beforeEach(async () => {
       const element = await iconItemFixture();

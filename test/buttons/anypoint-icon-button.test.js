@@ -1,28 +1,27 @@
 import { fixture, assert, html, oneEvent } from '@open-wc/testing';
 import sinon from 'sinon';
-import '../anypoint-icon-button.js';
-import '@polymer/iron-icon/iron-icon.js';
-import '@polymer/iron-icons/iron-icons.js';
+import '../../anypoint-icon-button.js';
+import '@advanced-rest-client/arc-icons/arc-icon.js';
 import * as MockInteractions from '@polymer/iron-test-helpers/mock-interactions.js';
 
-/** @typedef {import('..').AnypointIconButton} AnypointIconButton */
+/** @typedef {import('../..').AnypointIconButtonElement} AnypointIconButtonElement */
 
 describe('<anypoint-icon-button>', () => {
   /**
-   * @returns {Promise<AnypointIconButton>} 
+   * @returns {Promise<AnypointIconButtonElement>} 
    */
   async function basicFixture() {
     return fixture(html`<anypoint-icon-button>
-        <iron-icon icon="alarm-add"></iron-icon>
+        <arc-icon icon="add"></arc-icon>
     </anypoint-icon-button>`);
   }
 
   /**
-   * @returns {Promise<AnypointIconButton>} 
+   * @returns {Promise<AnypointIconButtonElement>} 
    */
   async function noinkFixture() {
     return fixture(html`<anypoint-icon-button noink>
-        <iron-icon icon="alarm-add"></iron-icon>
+        <arc-icon icon="add"></arc-icon>
     </anypoint-icon-button>`);
   }
 
@@ -51,6 +50,7 @@ describe('<anypoint-icon-button>', () => {
   });
 
   describe('_spaceKeyDownHandler()', () => {
+    /** @type AnypointIconButtonElement */
     let element;
     beforeEach(async () => {
       element = await basicFixture();
@@ -58,12 +58,13 @@ describe('<anypoint-icon-button>', () => {
 
     it('Calls _enterDownHandler() when changing value', () => {
       const spy = sinon.spy(element, '_enterDownHandler');
-      element._spaceKeyDownHandler(new CustomEvent('keydown'));
+      element._spaceKeyDownHandler(new KeyboardEvent('keydown'));
       assert.isTrue(spy.calledOnce, 'Function called');
     });
   });
 
   describe('_spaceKeyUpHandler()', () => {
+    /** @type AnypointIconButtonElement */
     let element;
     beforeEach(async () => {
       element = await basicFixture();
@@ -71,12 +72,13 @@ describe('<anypoint-icon-button>', () => {
 
     it('Calls _enterUpHandler() ', () => {
       const spy = sinon.spy(element, '_enterUpHandler');
-      element._spaceKeyUpHandler(new CustomEvent('keyup'));
+      element._spaceKeyUpHandler(new KeyboardEvent('keyup'));
       assert.isTrue(spy.called, 'Function called');
     });
   });
 
   describe('_buttonStateChanged()', () => {
+    /** @type AnypointIconButtonElement */
     let element;
     beforeEach(async () => {
       element = await basicFixture();
@@ -90,6 +92,7 @@ describe('<anypoint-icon-button>', () => {
   });
 
   describe('_enterDownHandler()', () => {
+    /** @type AnypointIconButtonElement */
     let element;
     beforeEach(async () => {
       element = await basicFixture();
@@ -127,6 +130,7 @@ describe('<anypoint-icon-button>', () => {
   });
 
   describe('_enterUpHandler()', () => {
+    /** @type AnypointIconButtonElement */
     let element;
     beforeEach(async () => {
       element = await basicFixture();
@@ -190,28 +194,28 @@ describe('<anypoint-icon-button>', () => {
 
     it('is accessible in normal state', async () => {
       const element = await fixture(`<anypoint-icon-button aria-label="Click me">
-        <iron-icon icon="alarm-add"></iron-icon>
+        <arc-icon icon="add"></arc-icon>
       </anypoint-icon-button>`);
       await assert.isAccessible(element);
     });
 
     it('is accessible in disabled state', async () => {
       const element = await fixture(`<anypoint-icon-button disabled  aria-label="Click me">
-        <iron-icon icon="alarm-add"></iron-icon>
+        <arc-icon icon="add"></arc-icon>
       </anypoint-icon-button>`);
       await assert.isAccessible(element);
     });
 
     it('is accessible in active state', async () => {
       const element = await fixture(`<anypoint-icon-button toggles active  aria-label="Click me">
-        <iron-icon icon="alarm-add"></iron-icon>
+        <arc-icon icon="add"></arc-icon>
       </anypoint-icon-button>`);
       await assert.isAccessible(element);
     });
   });
 
   describe('Ripple effect', () => {
-    /** @type AnypointIconButton */
+    /** @type AnypointIconButtonElement */
     let element;
 
     it('dispatched transitionend event on ripple end', async () => {

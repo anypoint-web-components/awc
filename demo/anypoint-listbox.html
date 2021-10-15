@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1, user-scalable=yes">
+  <title>anypoint-listbox demo</title>
+  <style>
+    .scrolled {
+      max-height: 250px;
+      overflow: auto;
+    }
+
+    body.styled hr {
+      border-left: 1px #cacbcc solid;
+      border-right: 1px #cacbcc solid;
+      margin: 0;
+    }
+
+    body.styled.dark {
+      --anypoint-item-hover-background-color: #757575;
+      --anypoint-item-pressed-background-color: #757575;
+      --secondary-text-color: #9E9E9E;
+    }
+
+    .centered[role="main"] {
+      max-width: 1400px;
+    }
+  </style>
+</head>
+<body>
+  <div id="demo"></div>
+  <script type="module" src="./anypoint-listbox.js"></script>
+</body>
+</html>

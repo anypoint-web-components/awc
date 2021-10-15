@@ -12,9 +12,9 @@ License for the specific language governing permissions and limitations under
 the License.
 */
 import { LitElement, html } from 'lit-element';
-import { ValidatableMixin } from '../index.js';
+import { ValidatableMixin } from '../../index.js';
 
-class TestValidatable extends ValidatableMixin(LitElement) {
+export class TestValidatable extends ValidatableMixin(LitElement) {
   render() {
     return html`<slot></slot>`;
   }

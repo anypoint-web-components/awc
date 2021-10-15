@@ -1,8 +1,8 @@
 import { fixture, assert, html } from '@open-wc/testing';
 import * as MockInteractions from '@polymer/iron-test-helpers/mock-interactions.js';
-import '../anypoint-masked-input.js';
+import '../../anypoint-masked-input.js';
 
-/** @typedef {import('../index').AnypointMaskedInputElement} AnypointMaskedInputElement */
+/** @typedef {import('../../index').AnypointMaskedInputElement} AnypointMaskedInputElement */
 
 describe('<anypoint-masked-input>', () => {
   /**

@@ -3,15 +3,27 @@ import sinon from 'sinon';
 import './hoverable-test-element.js';
 import './hoverable-test-native.js';
 
+/** @typedef {import('./hoverable-test-element').HoverableTestElement} HoverableTestElement */
+/** @typedef {import('./hoverable-test-native').HoverableTestNative} HoverableTestNative */
+
 describe('HoverableMixin', () => {
+  /**
+   * @returns {Promise<HoverableTestElement>}
+   */
   async function hoverableFixture() {
     return fixture(`<hoverable-test-element></hoverable-test-element>`);
   }
 
+  /**
+   * @returns {Promise<HoverableTestElement>}
+   */
   async function hoverableChildFixture() {
     return fixture(`<hoverable-test-element><input/></hoverable-test-element>`);
   }
 
+  /**
+   * @returns {Promise<HoverableTestNative>}
+   */
   async function nativeFixture() {
     return fixture(`<hoverable-test-native></hoverable-test-native>`);
   }

@@ -1,6 +1,6 @@
-import { HoverableMixin } from '../index.js';
+import { HoverableMixin } from '../../index.js';
 
-class HoverableTestNative extends HoverableMixin(HTMLElement) {
+export class HoverableTestNative extends HoverableMixin(HTMLElement) {
   constructor() {
     super();
     const shadow = this.attachShadow({mode: 'open'});

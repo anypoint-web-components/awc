@@ -1,11 +1,11 @@
 import { fixture, assert, nextFrame, html } from '@open-wc/testing';
 import * as MockInteractions from '@polymer/iron-test-helpers/mock-interactions.js';
-import '../anypoint-textarea.js';
+import '../../anypoint-textarea.js';
 
 // Because input and textarea uses the same input it only tests for textarea specific
 // code as everything else was tested in input element.
 
-/** @typedef {import('../index').AnypointTextareaElement} AnypointTextareaElement */
+/** @typedef {import('../../index').AnypointTextareaElement} AnypointTextareaElement */
 
 describe('<anypoint-textarea>', () => {
   /**

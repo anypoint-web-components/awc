@@ -1,7 +1,8 @@
+/* eslint-disable no-plusplus */
 import { assert, fixture, html, nextFrame, oneEvent } from '@open-wc/testing';
-import '../material-ripple.js';
+import '../../material-ripple.js';
 
-/** @typedef {import('..').MaterialRippleElement} MaterialRippleElement */
+/** @typedef {import('../..').MaterialRippleElement} MaterialRippleElement */
 
 describe('MaterialRippleElement', () => {
   /**

@@ -1,6 +1,6 @@
 import { assert, fixture, html, nextFrame, aTimeout } from '@open-wc/testing';
-import * as sinon from 'sinon';
-import { AnypointButtonBase } from '../src/AnypointButtonBase.js';
+import sinon from 'sinon';
+import { AnypointButtonBase } from '../../src/AnypointButtonBase.js';
 
 class TestButton extends AnypointButtonBase {
   render() {
@@ -90,9 +90,7 @@ describe('AnypointButtonBase', () => {
   describe('_calculateElevation()', () => {
     let base;
     beforeEach(async () => {
-      base = await fixture(html` <anypoint-button-base
-        emphasis="high"
-      ></anypoint-button-base>`);
+      base = await fixture(html` <anypoint-button-base emphasis="high"></anypoint-button-base>`);
     });
 
     it('Sets elevation to 0 when not high', async () => {

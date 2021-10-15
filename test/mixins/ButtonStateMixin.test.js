@@ -1,6 +1,6 @@
 import { fixture, assert } from '@open-wc/testing';
 import sinon from 'sinon';
-import { ButtonStateMixin } from '../button-state-mixin.js';
+import { ButtonStateMixin } from '../../index.js';
 
 class TestButtonElement extends ButtonStateMixin(HTMLElement) {}
 window.customElements.define('test-button-element', TestButtonElement);
@@ -16,7 +16,7 @@ describe('ButtonStateMixin', () => {
       element = await basicFixture();
     });
 
-    it('sets private proeprty', () => {
+    it('sets private property', () => {
       element._setChanged('a', 'b');
       assert.equal(element._a, 'b');
     });

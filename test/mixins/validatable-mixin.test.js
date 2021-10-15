@@ -1,7 +1,7 @@
 import { nextFrame, fixture, assert } from '@open-wc/testing';
 import './test-validatable.js';
-import '../demo/cats-only.js';
-import '../demo/minimum-length.js';
+import '../../demo/cats-only.js';
+import '../../demo/minimum-length.js';
 
 /* eslint-disable prefer-destructuring */
 
@@ -51,14 +51,14 @@ describe('ValidatableMixin', () => {
 
     it('validates multiple validators', () => {
       input.validator = 'cats-only minimum-length';
-      // validates agains `cats-only` but not `minimum-length`
+      // validates against `cats-only` but not `minimum-length`
       assert.isFalse(input.validate('cat'), 'validate is false');
       assert.isTrue(input.validate('cats'), 'validate is true');
     });
 
     it('Sets validationStates when invalid', () => {
       input.validator = 'cats-only minimum-length';
-      // validates agains `cats-only` but not `minimum-length`
+      // validates against `cats-only` but not `minimum-length`
       input.validate('cat');
       const states = input.validationStates;
 
@@ -68,7 +68,7 @@ describe('ValidatableMixin', () => {
 
     it('Sets validationStates when valid', () => {
       input.validator = 'cats-only minimum-length';
-      // validates agains `cats-only` but not `minimum-length`
+      // validates against `cats-only` but not `minimum-length`
       input.validate('cat');
       const states = input.validationStates;
 
