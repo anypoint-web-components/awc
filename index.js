@@ -16,6 +16,9 @@ export { default as AnypointMaskedInputElement } from "./src/AnypointMaskedInput
 export { default as AnypointTextareaElement } from './src/AnypointTextareaElement.js';
 export { default as AnypointSwitchElement } from './src/AnypointSwitchElement.js';
 export { default as AnypointListboxElement } from './src/AnypointListboxElement.js';
+export { default as AnypointSelectorElement } from './src/AnypointSelectorElement.js';
+export { default as AnypointDropdownElement } from './src/AnypointDropdownElement.js';
+
 export { ButtonStateMixin } from "./src/ButtonStateMixin.js";
 export { ControlStateMixin } from "./src/ControlStateMixin.js";
 export { HoverableMixin } from "./src/HoverableMixin.js";
@@ -26,7 +29,6 @@ export * as ValidatorStore from "./src/ValidatorStore.js";
 export { ValidatableMixin } from "./src/ValidatableMixin.js";
 export { SelectableMixin } from './src/SelectableMixin.js';
 export { MultiSelectableMixin } from './src/MultiSelectableMixin.js';
-export { default as AnypointSelectorElement } from './src/AnypointSelectorElement.js';
 export { AnypointSelection } from './src/AnypointSelection.js';
 export { MenuMixin } from './src/MenuMixin.js';
 export { MenubarMixin } from './src/MenubarMixin.js';
