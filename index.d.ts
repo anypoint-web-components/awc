@@ -18,6 +18,8 @@ export { default as AnypointSwitchElement } from './src/AnypointSwitchElement';
 export { default as AnypointListboxElement } from './src/AnypointListboxElement';
 export { default as AnypointSelectorElement } from './src/AnypointSelectorElement';
 export { default as AnypointDropdownElement } from './src/AnypointDropdownElement.js';
+export { default as AnypointTabsElement } from './src/AnypointTabsElement.js';
+export { default as AnypointTabElement } from './src/AnypointTabElement.js';
 
 export { ButtonStateMixin } from './src/ButtonStateMixin';
 export { ControlStateMixin } from './src/ControlStateMixin';
