@@ -82,7 +82,7 @@ body.styled.dark {
   --paper-toggle-button-label-color: #fff;
   --primary-background-color: #424242;
   --secondary-text-color: #616161;
-  --arc-interactive-demo-options-color: #F5F5F5;
+  --interactive-demo-options-color: #F5F5F5;
   --error-color: #FF5722;
 }
 

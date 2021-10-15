@@ -132,9 +132,9 @@ class ComponentDemo extends ArcDemoPage {
           This demo lets you preview the button element with various
           configuration options.
         </p>
-        <arc-interactive-demo
+        <interactive-demo
           .states="${buttonStates}"
-          @state-chanegd="${this._demoEmphasisHandler}"
+          @state-changed="${this._demoEmphasisHandler}"
           ?dark="${darkThemeActive}"
         >
           <anypoint-button
@@ -182,7 +182,7 @@ class ComponentDemo extends ArcDemoPage {
             name="demoButtonCompatibility"
             @change="${this._toggleMainOption}"
             >Anypoint</anypoint-checkbox>
-        </arc-interactive-demo>
+        </interactive-demo>
       </section>
     `;
   }
@@ -311,9 +311,9 @@ class ComponentDemo extends ArcDemoPage {
         </p>
 
 
-        <arc-interactive-demo
+        <interactive-demo
           .states="${buttonStates}"
-          @state-chanegd="${this._iconsEmphasisHandler}"
+          @state-changed="${this._iconsEmphasisHandler}"
           ?dark="${darkThemeActive}"
         >
           <anypoint-icon-button
@@ -356,7 +356,7 @@ class ComponentDemo extends ArcDemoPage {
             name="iconButtonCompatibility"
             @change="${this._toggleMainOption}"
             >Anypoint</anypoint-checkbox>
-        </arc-interactive-demo>
+        </interactive-demo>
 
         <h3>More examples</h3>
 

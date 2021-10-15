@@ -35,7 +35,7 @@ export class DemoPage extends EventTarget {
     ]);
 
     /**
-     * A list of demo states to be passed to `arc-interactive-demo` element
+     * A list of demo states to be passed to `interactive-demo` element
      * @type {string[]}
      */
     this.demoStates = ['Material', 'Anypoint'];
