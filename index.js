@@ -22,3 +22,7 @@ export { CheckedElementMixin } from "./src/CheckedElementMixin.js";
 export { ValidatorMixin } from "./src/ValidatorMixin.js";
 export * as ValidatorStore from "./src/ValidatorStore.js";
 export { ValidatableMixin } from "./src/ValidatableMixin.js";
+export { SelectableMixin } from './src/SelectableMixin.js';
+export { MultiSelectableMixin } from './src/MultiSelectableMixin.js';
+export { default as AnypointSelectorElement } from './src/AnypointSelectorElement.js';
+export { AnypointSelection } from './src/AnypointSelection.js';

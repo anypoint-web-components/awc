@@ -23,3 +23,7 @@ export { default as AnypointInputElement } from "./src/AnypointInputElement";
 export { default as AnypointMaskedInputElement } from "./src/AnypointMaskedInput";
 export { default as AnypointTextareaElement } from './src/AnypointTextareaElement';
 export * from './src/types';
+export { SelectableMixin, SelectableMixinConstructor } from './src/SelectableMixin';
+export { MultiSelectableMixin, MultiSelectableMixinConstructor } from './src/MultiSelectableMixin';
+export { default as AnypointSelectorElement } from './src/AnypointSelectorElement';
+export { AnypointSelection } from './src/AnypointSelection';
