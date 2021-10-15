@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1, user-scalable=yes">
+  <title>anypoint-button demo</title>
+  <style>
+  .icons {
+    display: block;
+    margin: 8px 0;
+    text-align: center;
+  }
+
+  .centered[role="main"] {
+    max-width: 1400px;
+  }
+
+  .content-control {
+    border: 1px #BDBDBD solid;
+    padding: 4px;
+    margin: -2px;
+    --anypoint-icon-button-emphasis-low-active-background-color: transparent;
+  }
+
+  .content-control[active] {
+    background-color: #EEEEEE;
+  }
+
+  .space {
+    display: inline-block;
+    width: 8px;
+  }
+
+
+  anypoint-icon-button img {
+    width: 24px;
+    height: 24px;
+  }
+  </style>
+  <custom-style>
+    <style class="document-style">
+    html {
+      --anypoint-color-robustBlue1: red;
+    }
+    </style>
+  </custom-style>
+
+</head>
+<body class="styled">
+  <div id="demo"></div>
+  <script type="module" src="./anypoint-button.js"></script>
+
+  <script>
+  document.addEventListener('WebComponentsReady', function() {
+    function shouldAddDocumentStyle(n) {
+      return n.nodeType === Node.ELEMENT_NODE && n.localName === 'style' && !n.hasAttribute('scope');
+    }
+    const CustomStyleInterface = window.ShadyCSS.CustomStyleInterface;
+
+    const candidates = document.querySelectorAll('style');
+    for (let i = 0; i < candidates.length; i++) {
+      const candidate = candidates[i];
+      if (shouldAddDocumentStyle(candidate)) {
+        CustomStyleInterface.addCustomStyle(candidate);
+      }
+    }
+  });
+  </script>
+</body>
+</html>

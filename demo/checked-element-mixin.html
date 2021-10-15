@@ -1,0 +1,56 @@
+<!doctype html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1, user-scalable=yes">
+  <title>Anypoint Form Mixins Demo</title>
+  <script type="module" src="./simple-checkbox.js"></script>
+  <style>
+    html {
+      font-size: 65%;
+    }
+
+    .vertical-section-container {
+      max-width: 800px !important;
+    }
+
+    input {
+      width: 100%;
+      box-sizing: border-box;
+    }
+
+    .hover-with-child span {
+      display: block;
+      width: 50%;
+      text-align: center;
+      background-color: #CFD8DC;
+      padding: 4px;
+    }
+  </style>
+</head>
+
+<body unresolved>
+  <div class="vertical-section-container centered">
+    <h1>Anypoint Form Mixins</h1>
+    <section>
+      <h2>Not required</h2>
+      <div class="horizontal-section">
+        <simple-checkbox name="checkbox" toggles checked></simple-checkbox>
+      </div>
+
+      <h2>Required</h2>
+      <div class="horizontal-section">
+        <simple-checkbox required></simple-checkbox>
+      </div>
+
+      <h2>onchange listener</h2>
+      <div class="horizontal-section">
+        <simple-checkbox onchange="alert('change')"></simple-checkbox>
+      </div>
+    </section>
+  </div>
+</body>
+
+</html>
