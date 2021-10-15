@@ -36,6 +36,7 @@
   "devDependencies": {
     "@open-wc/eslint-config": "^4.3.0",
     "@open-wc/testing": "^2.5.33",
+    "@pawel-up/data-mock": "^0.1.7",
     "@polymer/iron-test-helpers": "^3.0.0",
     "@web/dev-server": "^0.1.25",
     "@web/test-runner": "^0.13.19",
