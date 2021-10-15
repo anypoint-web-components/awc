@@ -14,7 +14,7 @@ Text field allows the user to enter a value into the UI. It can appear in a `for
 <html>
   <head>
     <script type="module">
-      import '@anypoint-web-components/anypoint-input/anypoint-input.js';
+      import '@anypoint-web-components/awc/anypoint-input.js';
     </script>
   </head>
   <body>

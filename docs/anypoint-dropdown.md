@@ -16,7 +16,7 @@ The element does not offer `aria-*` or `role` attributes. The elements that uses
 <html>
   <head>
     <script type="module">
-      import '@anypoint-web-components/anypoint-dropdown/anypoint-dropdown.js';
+      import '@anypoint-web-components/awc/anypoint-dropdown.js';
     </script>
     <style>
       #container {

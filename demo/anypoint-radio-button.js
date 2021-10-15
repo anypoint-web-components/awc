@@ -98,7 +98,7 @@ class ComponentDemo extends DemoPage {
 
         <h3>Installation</h3>
 
-        <code>npm install --save @anypoint-web-components/anypoint-radio-button</code>
+        <code>npm install --save @anypoint-web-components/awc</code>
 
         <details>
           <summary>In a HTML document</summary>
@@ -107,8 +107,8 @@ class ComponentDemo extends DemoPage {
       ${`<html>
         <head>
           <script type="module">
-            import '@anypoint-web-components/anypoint-radio-button/anypoint-radio-button.js';
-            import '@anypoint-web-components/anypoint-radio-button/anypoint-radio-group.js';
+            import '@anypoint-web-components/awc/anypoint-radio-button.js';
+            import '@anypoint-web-components/awc/anypoint-radio-group.js';
           </script>
         </head>
         <body>

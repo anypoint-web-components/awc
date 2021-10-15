@@ -1,5 +1,5 @@
 import { dedupeMixin } from '@open-wc/dedupe-mixin';
-import { MultiSelectableMixin } from '@anypoint-web-components/anypoint-selector';
+import { MultiSelectableMixin } from './MultiSelectableMixin.js';
 /* eslint-disable no-plusplus */
 /* eslint-disable no-continue */
 /**

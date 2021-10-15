@@ -9,7 +9,7 @@ UI of an input field with suggestions.
 
 ```js
 import { LitElement, html } from 'lit-element';
-import '@anypoint-web-components/anypoint-combobox/anypoint-combobox.js';
+import '@anypoint-web-components/awc/anypoint-combobox.js';
 
 class SampleElement extends PolymerElement {
   render() {
