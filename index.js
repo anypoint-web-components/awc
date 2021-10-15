@@ -28,7 +28,12 @@ export { default as AnypointRadioGroupElement } from './src/AnypointRadioGroupEl
 export { default as AnypointRadioButtonElement } from './src/AnypointRadioButtonElement.js';
 export { default as AnypointCollapseElement } from './src/AnypointCollapseElement.js';
 export { default as AnypointInputComboboxElement } from './src/AnypointInputComboboxElement.js';
+export { default as AnypointDialogElement } from './src/AnypointDialogElement.js';
+export { default as AnypointDialogScrollableElement } from './src/AnypointDialogScrollableElement.js';
 
+export { AnypointDialogMixin } from './src/AnypointDialogMixin.js';
+export { default as AnypointDialogStyles } from './src/styles/AnypointDialogStyles.js';
+export { default as AnypointDialogStylesInternal } from './src/styles/AnypointDialogInternalStyles.js';
 export { ButtonStateMixin } from "./src/ButtonStateMixin.js";
 export { ControlStateMixin } from "./src/ControlStateMixin.js";
 export { HoverableMixin } from "./src/HoverableMixin.js";
