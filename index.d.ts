@@ -21,6 +21,7 @@ export { default as AnypointDropdownElement } from './src/AnypointDropdownElemen
 export { default as AnypointTabsElement } from './src/AnypointTabsElement';
 export { default as AnypointTabElement } from './src/AnypointTabElement';
 export { default as AnypointMenuButtonElement } from './src/AnypointMenuButtonElement';
+export { default as AnypointDropdownMenuElement } from './src/AnypointDropdownMenuElement';
 
 export { ButtonStateMixin } from './src/ButtonStateMixin';
 export { ControlStateMixin } from './src/ControlStateMixin';

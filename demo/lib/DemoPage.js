@@ -31,14 +31,14 @@ export class DemoPage extends EventTarget {
     this._mediaQueryHandler = this._mediaQueryHandler.bind(this);
 
     this.initObservableProperties([
-      'narrow', 'componentName', 'stylesActive', 'anypoint',
+      'narrow', 'componentName', 'stylesActive', 'anypoint', 'outlined',
     ]);
 
     /**
      * A list of demo states to be passed to `interactive-demo` element
      * @type {string[]}
      */
-    this.demoStates = ['Material', 'Anypoint'];
+    this.demoStates = ['Filled', 'Outlined', 'Anypoint'];
 
     /**
      * Component name rendered in the header section.
@@ -75,6 +75,13 @@ export class DemoPage extends EventTarget {
      * @default false
      */
     this.anypoint = false;
+
+    /**
+     * Enables Material's outlined theme.
+     * @type {boolean}
+     * @default false
+     */
+    this.outlined = false;
 
     document.body.classList.add('styled');
 
@@ -171,7 +178,8 @@ export class DemoPage extends EventTarget {
    */
   _demoStateHandler(e) {
     const { value } = e.detail;
-    this.anypoint = value === 1;
+    this.outlined = value === 1;
+    this.anypoint = value === 2;
     this._updateAnypoint();
   }
 
