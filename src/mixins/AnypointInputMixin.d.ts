@@ -250,10 +250,10 @@ interface AnypointInputMixin extends ValidatableMixin, ControlStateMixin {
   outlined: boolean;
 
   /**
-   * Enables compatibility with Anypoint components.
+   * Enables Anypoint theme.
    * @attribute
    */
-  compatibility: boolean;
+  anypoint: boolean;
 
   /**
    * When set, it reduces height of the button and hides

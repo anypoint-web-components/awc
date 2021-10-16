@@ -15,12 +15,11 @@ A list item to be used in menus and list views.
 The element has two built-in themes:
 
 - Material Design - Default style
-- Anypoint Design - Enabled by adding `legacy` attribute to the elements.
+- Anypoint Design - Enabled by adding `anypoint` attribute to the elements.
 
 OSS application should not use Anypoint based styling as it's protected by MuleSoft copyrights. This property is reserved for OSS applications embedded in the Anypoint platform.
 
 ## Usage
-
 
 ### In an HTML file
 

@@ -249,7 +249,7 @@ export default class AnypointChipInputElement extends AnypointInputElement {
    * @param {string=} id An ID to be used as a value.
    */
   addChip(label, removable, icon, id) {
-    const chips = this.chips || [];
+    const { chips=[] } = this;
     for (let i = 0, len = chips.length; i < len; i++) {
       if (chips[i].label === label) {
         // TODO: highlight the chip?
@@ -527,7 +527,7 @@ export default class AnypointChipInputElement extends AnypointInputElement {
     return html`<anypoint-autocomplete
       .target="${this.inputElement}"
       .source="${this.source}"
-      ?compatibility="${this.compatibility}"
+      ?anypoint="${this.anypoint}"
       @selected="${this._selectedHandler}"></anypoint-autocomplete>`;
   }
 
@@ -542,7 +542,7 @@ export default class AnypointChipInputElement extends AnypointInputElement {
       @chipremoved="${this._chipRemovedHandler}"
       tabindex="-1"
       .removeIcon="${this.chipRemoveIcon}"
-      ?compatibility="${this.compatibility}"
+      ?anypoint="${this.anypoint}"
       data-index="${index}">
       ${this._itemIconTemplate(item)}
       ${item.label}

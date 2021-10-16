@@ -397,14 +397,10 @@ const mxFunction = base => {
          */
         outlined: { type: Boolean, reflect: true },
         /**
-         * Enables compatibility with Anypoint components.
+         * Enables Anypoint theme.
          * @attribute
          */
-        compatibility: { type: Boolean, reflect: true },
-        /**
-         * @deprecated Use `compatibility` instead
-         */
-        legacy: { type: Boolean },
+        anypoint: { type: Boolean, reflect: true },
         /**
          * When set, it reduces height of the button and hides
          * the label when the value is provided.
@@ -415,14 +411,6 @@ const mxFunction = base => {
          */
         noLabelFloat: { type: Boolean, reflect: true },
       };
-    }
-
-    get legacy() {
-      return this.compatibility;
-    }
-
-    set legacy(value) {
-      this.compatibility = value;
     }
 
     constructor() {

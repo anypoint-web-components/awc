@@ -14,10 +14,10 @@ export default class AnypointSwitchElement extends ButtonStateMixin(ControlState
    */
   formDisabled: boolean;
   /**
-   * Enables Anypoint compatibility
+   * Enables Anypoint theme.
    * @attribute
    */
-  compatibility: boolean;
+  anypoint: boolean;
 
   static get formAssociated(): boolean;
 

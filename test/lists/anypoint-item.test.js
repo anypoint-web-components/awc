@@ -70,20 +70,6 @@ describe('<anypoint-item>', () => {
     return fixture(html`<anypoint-icon-item tabindex="-1">item</anypoint-icon-item>`);
   }
 
-  /**
-   * @returns {Promise<AnypointItemElement>}
-   */
-  async function itemBasicFixture() {
-    return fixture(html`<anypoint-item>item</anypoint-item>`);
-  }
-
-  /**
-   * @returns {Promise<AnypointItemElement>}
-   */
-  async function iconItemBasicFixture() {
-    return fixture(html`<anypoint-icon-item>item</anypoint-icon-item>`);
-  }
-
   describe('anypoint-item basic', () => {
     let item = /** @type AnypointItemElement */ (null);
     let clickHandler;
@@ -207,34 +193,6 @@ describe('<anypoint-item>', () => {
       await aTimeout(1);
       
       expect(itemClickHandler.callCount).to.be.equal(0);
-    });
-  });
-
-  describe('compatibility mode', () => {
-    it('sets compatibility on item when setting legacy', async () => {
-      const element = await itemBasicFixture();
-      element.legacy = true;
-      assert.isTrue(element.legacy, 'legacy is set');
-      assert.isTrue(element.compatibility, 'compatibility is set');
-    });
-
-    it('returns compatibility value from item when getting legacy', async () => {
-      const element = await itemBasicFixture();
-      element.compatibility = true;
-      assert.isTrue(element.legacy, 'legacy is set');
-    });
-
-    it('sets compatibility on icon item when setting legacy', async () => {
-      const element = await iconItemBasicFixture();
-      element.legacy = true;
-      assert.isTrue(element.legacy, 'legacy is set');
-      assert.isTrue(element.compatibility, 'compatibility is set');
-    });
-
-    it('returns compatibility value from icon item when getting legacy', async () => {
-      const element = await iconItemBasicFixture();
-      element.compatibility = true;
-      assert.isTrue(element.legacy, 'legacy is set');
     });
   });
 

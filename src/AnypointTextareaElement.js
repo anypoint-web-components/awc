@@ -64,16 +64,16 @@ export default class AnypointTextareaElement extends AnypointInputMixin(LitEleme
           top: 0;
         }
 
-        :host([compatibility]) {
+        :host([anypoint]) {
           height: auto;
         }
 
-        :host([compatibility]) .textarea .label {
+        :host([anypoint]) .textarea .label {
           top: -18px;
           transform: none;
         }
 
-        :host([compatibility]) .textarea .input-element {
+        :host([anypoint]) .textarea .input-element {
           margin: 0;
         }
 

@@ -52,39 +52,39 @@ export default class AnypointInputElement extends AnypointInputMixin(LitElement)
       floatTypes.indexOf(this.type) !== -1 ||
       !!this.placeholder ||
       this.focused;
-    let klas = 'label';
+    let result = 'label';
     if (this._prefixed) {
-      klas += ' with-prefix';
+      result += ' with-prefix';
     }
     if (labelFloating && this.noLabelFloat) {
-      klas += ' hidden';
+      result += ' hidden';
     } else {
-      klas += labelFloating ? ' floating' : ' resting';
+      result += labelFloating ? ' floating' : ' resting';
     }
-    if (this.compatibility) {
-      klas += ' compatibility';
+    if (this.anypoint) {
+      result += ' anypoint';
     }
-    return klas;
+    return result;
   }
 
   get _infoAddonClass() {
-    let klas = 'info';
+    let result = 'info';
     const isInvalidWithMessage = !!this.invalidMessage && this.invalid;
     if (isInvalidWithMessage) {
-      klas += ' label-hidden';
+      result += ' label-hidden';
     }
-    return klas;
+    return result;
   }
 
   get _errorAddonClass() {
-    let klas = 'invalid';
+    let result = 'invalid';
     if (!this.invalid) {
-      klas += ' label-hidden';
+      result += ' label-hidden';
     }
     if (this.infoMessage) {
-      klas += ' info-offset';
+      result += ' info-offset';
     }
-    return klas;
+    return result;
   }
 
   get _inputType() {

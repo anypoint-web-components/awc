@@ -43,7 +43,7 @@ class ComponentPage extends DemoPage {
         >
           <anypoint-switch
             slot="content"
-            ?compatibility="${anypoint}"
+            ?anypoint="${anypoint}"
             ?disabled="${demoDisabled}"
           >
             off/on
@@ -92,7 +92,7 @@ class ComponentPage extends DemoPage {
         <ul>
           <li><b>Material Design</b> - Normal state</li>
           <li>
-            <b>Compatibility</b> - To provide compatibility with Anypoint design
+            <b>Anypoint</b> - To enable Anypoint theme
           </li>
         </ul>
 

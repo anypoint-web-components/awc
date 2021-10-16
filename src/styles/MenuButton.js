@@ -36,7 +36,7 @@ export default css`
   cursor: pointer;
 }
 
-:host([compatibility]) .dropdown-content {
+:host([anypoint]) .dropdown-content {
   box-shadow: none;
   border-top-width: 2px;
   border-bottom-width: 2px;

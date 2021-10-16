@@ -14,12 +14,10 @@ class ComponentDemo extends DemoPage {
     super();
     this.initObservableProperties([
       'demoButtonEmphasis',
-      'demoButtonCompatibility',
       'demoToggles',
       'demoLeadingIcon',
       'demoNoink',
       'demoDisabled',
-      'iconButtonCompatibility',
       'iconButtonEmphasis',
       'iconNoink',
       'iconDisabled',
@@ -39,12 +37,10 @@ class ComponentDemo extends DemoPage {
 
     this.demoDisabled = false;
     this.iconDisabled = false;
-    this.demoButtonCompatibility = false;
     this.demoNoink = false;
     this.demoToggles = false;
     this.demoLeadingIcon = false;
     this.darkThemeActive = false;
-    this.iconButtonCompatibility = false;
     this.iconNoink = false;
     this.iconToggles = false;
   }
@@ -108,7 +104,7 @@ class ComponentDemo extends DemoPage {
     const {
       demoStates,
       demoButtonEmphasis,
-      demoButtonCompatibility,
+      anypoint,
       demoNoink,
       demoToggles,
       demoLeadingIcon,
@@ -131,7 +127,7 @@ class ComponentDemo extends DemoPage {
             slot="content"
             emphasis="${demoButtonEmphasis}"
             title="Low emphasis button"
-            ?compatibility="${demoButtonCompatibility}"
+            ?anypoint="${anypoint}"
             ?noink="${demoNoink}"
             ?toggles="${demoToggles}"
             ?disabled="${demoDisabled}"
@@ -166,12 +162,6 @@ class ComponentDemo extends DemoPage {
             name="demoDisabled"
             @change="${this._toggleMainOption}"
             >Disabled</anypoint-checkbox>
-          <anypoint-checkbox
-            aria-describedby="mainOptionsLabel"
-            slot="options"
-            name="demoButtonCompatibility"
-            @change="${this._toggleMainOption}"
-            >Anypoint</anypoint-checkbox>
         </interactive-demo>
       </section>
     `;
@@ -207,7 +197,7 @@ class ComponentDemo extends DemoPage {
           <li><b>Outlined</b> - For medium emphasis actions</li>
           <li><b>Filled</b> - For primary actions</li>
           <li>
-            <b>Compatibility</b> - To provide compatibility with Anypoint design
+            <b>Anypoint</b> - To enable Anypoint theme
           </li>
         </ul>
 
@@ -241,10 +231,9 @@ class ComponentDemo extends DemoPage {
           button or change in the information architecture.
         </p>
 
-        <h4>Compatibility buttons</h4>
+        <h4>Anypoint buttons</h4>
         <p>
-          Do not use <code>compatibility</code> buttons in your UI. These are to ensure compatibility
-          with Anypoint applications.
+          Do not use <code>anypoint</code> buttons in your UI. These are to be used with Anypoint applications.
         </p>
 
         <h3>Icons in buttons</h3>
@@ -277,7 +266,7 @@ class ComponentDemo extends DemoPage {
     const {
       demoStates,
       iconButtonEmphasis,
-      iconButtonCompatibility,
+      anypoint,
       iconNoink,
       iconToggles,
       iconDisabled,
@@ -310,7 +299,7 @@ class ComponentDemo extends DemoPage {
             slot="content"
             emphasis="${iconButtonEmphasis}"
             title="Icon button"
-            ?compatibility="${iconButtonCompatibility}"
+            ?anypoint="${anypoint}"
             ?noink="${iconNoink}"
             ?toggles="${iconToggles}"
             ?disabled="${iconDisabled}"
@@ -340,12 +329,6 @@ class ComponentDemo extends DemoPage {
             name="iconDisabled"
             @change="${this._toggleMainOption}"
             >Disabled</anypoint-checkbox>
-          <anypoint-checkbox
-            aria-describedby="mainOptionsLabel"
-            slot="options"
-            name="iconButtonCompatibility"
-            @change="${this._toggleMainOption}"
-            >Anypoint</anypoint-checkbox>
         </interactive-demo>
 
         <h3>More examples</h3>

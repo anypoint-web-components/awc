@@ -41,10 +41,10 @@ export default class AnypointItemBodyElement extends LitElement {
         margin-top: 4px;
       }
 
-      :host([compatibility]:hover) > ::slotted([secondary]),
-      :host([compatibility]:hover) > ::slotted([data-secondary]),
-      .anypoint-item[compatibility]:hover > [secondary],
-      .anypoint-item[compatibility]:hover > [data-secondary] {
+      :host([anypoint]:hover) > ::slotted([secondary]),
+      :host([anypoint]:hover) > ::slotted([data-secondary]),
+      .anypoint-item[anypoint]:hover > [secondary],
+      .anypoint-item[anypoint]:hover > [data-secondary] {
         color: var(
           --anypoint-item-secondary-focus-color,
           var(--anypoint-item-focus-color,
@@ -67,14 +67,10 @@ export default class AnypointItemBodyElement extends LitElement {
   static get properties() {
     return {
       /**
-       * Enables compatibility with Anypoint components.
+       * Enables Anypoint theme.
        * @attribute
        */
-      compatibility: { type: Boolean, reflect: true },
-      /**
-       * @deprecated Use `compatibility` instead
-       */
-      legacy: { type: Boolean },
+      anypoint: { type: Boolean, reflect: true },
       /**
        * Renders the item in a 2-line layout
        * @attribute
@@ -87,15 +83,7 @@ export default class AnypointItemBodyElement extends LitElement {
       threeLine: { type: Boolean, reflect: true },
     };
   }
-
-  get legacy() {
-    return this.compatibility;
-  }
-
-  set legacy(value) {
-    this.compatibility = value;
-  }
-
+  
   render() {
     return html`<style>${this.styles}</style><slot></slot>`;
   }

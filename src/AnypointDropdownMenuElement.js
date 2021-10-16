@@ -43,7 +43,7 @@ export default class AnypointDropdownMenuElement extends ValidatableMixin(Contro
       value,
       invalidMessage,
       infoMessage,
-      compatibility,
+      anypoint,
       _labelClass,
       _errorAddonClass,
       _infoAddonClass,
@@ -72,7 +72,7 @@ export default class AnypointDropdownMenuElement extends ValidatableMixin(Contro
             aria-label="Toggles dropdown menu"
             tabindex="-1"
             class="${_triggerClass}"
-            ?compatibility="${compatibility}"
+            ?anypoint="${anypoint}"
           >
             <span class="trigger-icon ${opened ? 'opened' : ''}"
               >${arrowDown}</span
@@ -229,8 +229,8 @@ export default class AnypointDropdownMenuElement extends ValidatableMixin(Contro
     if (this._formDisabled || this.disabled) {
       className += ' form-disabled';
     }
-    if (this.compatibility) {
-      className += ' compatibility';
+    if (this.anypoint) {
+      className += ' anypoint';
     }
     return className;
   }
@@ -363,14 +363,6 @@ export default class AnypointDropdownMenuElement extends ValidatableMixin(Contro
     if (this.opened) {
       this.opened = false;
     }
-  }
-
-  get legacy() {
-    return this.compatibility;
-  }
-
-  set legacy(value) {
-    this.compatibility = value;
   }
 
   static get properties() {
@@ -512,13 +504,9 @@ export default class AnypointDropdownMenuElement extends ValidatableMixin(Contro
        */
       outlined: { type: Boolean, reflect: true },
       /**
-       * Enables compatibility with Anypoint components.
+       * Enables Anypoint theme.
        */
-      compatibility: { type: Boolean, reflect: true },
-      /**
-       * @deprecated Use `compatibility` instead
-       */
-      legacy: { type: Boolean },
+      anypoint: { type: Boolean, reflect: true },
       /**
        * When set the label is rendered only when not selected state.
        * It is useful when using the dropdown in an application menu bar.
@@ -555,6 +543,7 @@ export default class AnypointDropdownMenuElement extends ValidatableMixin(Contro
     this.noLabelFloat = false;
     this.required = false;
     this.fitPositionTarget = false;
+    this.anypoint = false;
 
     this._clickHandler = this._clickHandler.bind(this);
     this._onKeydown = this._onKeydown.bind(this);

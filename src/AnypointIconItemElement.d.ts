@@ -1,4 +1,4 @@
-import { TemplateResult, LitElement, CSSResult } from 'lit-element';
+import { TemplateResult, LitElement } from 'lit-element';
 import { ButtonStateMixin } from './mixins/ButtonStateMixin';
 import { ControlStateMixin } from './mixins/ControlStateMixin';
 import { HoverableMixin } from './mixins/HoverableMixin';
@@ -12,17 +12,11 @@ import { HoverableMixin } from './mixins/HoverableMixin';
  * name `item-icon` is placed in the icon area.
  */
 export default class AnypointIconItemElement extends HoverableMixin(ControlStateMixin(ButtonStateMixin(LitElement))) {
-  get styles(): CSSResult;
   /**
-   * @deprecated Use `compatibility` instead.
-   */
-  legacy: boolean;
-
-  /**
-   * Enables compatibility with Anypoint components.
+   * Enables Anypoint theme.
    * @attribute
    */
-  compatibility: boolean;
+  anypoint: boolean;
   render(): TemplateResult;
   connectedCallback(): void;
 }

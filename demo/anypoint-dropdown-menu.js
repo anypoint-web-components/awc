@@ -140,7 +140,7 @@ class ComponentDemo extends DemoPage {
         name="mainDemo"
         title="Dropdown menu"
         ?outlined="${outlined}"
-        ?compatibility="${anypoint}"
+        ?anypoint="${anypoint}"
         .infoMessage="${infoMessage}"
         invalidMessage="This value is invalid"
         ?invalid="${demoError}"
@@ -149,7 +149,7 @@ class ComponentDemo extends DemoPage {
         ?fitPositionTarget="${fitPositionTarget}"
       >
         <label slot="label">Select a dinosaur</label>
-        <anypoint-listbox slot="dropdown-content" tabindex="-1" ?compatibility="${anypoint}">
+        <anypoint-listbox slot="dropdown-content" tabindex="-1" ?anypoint="${anypoint}">
         ${this.items.map((item) => html`<anypoint-item>${item}</anypoint-item>`)}
         </anypoint-listbox>
       </anypoint-dropdown-menu>
@@ -230,7 +230,7 @@ class ComponentDemo extends DemoPage {
           <li><b>Filled</b> (normal) - For low emphasis inputs</li>
           <li><b>Outlined</b> - For high emphasis inputs</li>
           <li>
-            <b>Compatibility</b> - To provide compatibility with Anypoint design
+            <b>Anypoint</b> - To enable Anypoint theme
           </li>
         </ul>
 
@@ -430,7 +430,7 @@ class ComponentDemo extends DemoPage {
 
         <h3>Invalid selection</h3>
         <p>
-          When invalid the component renders error colors and, if defiend, an error message.
+          When invalid the component renders error colors and, when defined, an error message.
         </p>
 
         <anypoint-dropdown-menu invalid>
@@ -458,17 +458,17 @@ class ComponentDemo extends DemoPage {
 
         <h3>Auto validation</h3>
         <p>
-          Set <code>autovalidate</code> and, for example, <code>required</code> proeprty to
+          Set <code>autoValidate</code> and, for example, <code>required</code> property to
           automatically validate the input when selection change.
         </p>
 
         <p>
           Anypoint web components offers <code>ValidatorMixin</code> that allows to define
           a custom element that validates an input field. This allows to reuse validation
-          logic accross different parts of the application.
+          logic across different parts of the application.
         </p>
 
-        <anypoint-dropdown-menu autovalidate required>
+        <anypoint-dropdown-menu autoValidate required>
           <label slot="label">Select a dinosaur</label>
           <anypoint-listbox slot="dropdown-content" tabindex="-1">
           ${this.items.map((item) => html`<anypoint-item>${item}</anypoint-item>`)}
@@ -565,7 +565,7 @@ class ComponentDemo extends DemoPage {
         the user about the reason of collecting the input.
       </p>
 
-      <anypoint-dropdown-menu infomessage="Will be added to your order.">
+      <anypoint-dropdown-menu infoMessage="Will be added to your order.">
         <label slot="label">Select a dinosaur</label>
         <anypoint-listbox slot="dropdown-content" tabindex="-1">
         ${this.items.map((item) => html`<anypoint-item>${item}</anypoint-item>`)}
@@ -585,7 +585,7 @@ class ComponentDemo extends DemoPage {
         example <code>Selection is required</code>.
       </p>
 
-      <anypoint-dropdown-menu invalidmessage="Dino is required with the order" invalid required>
+      <anypoint-dropdown-menu invalidMessage="Dino is required with the order" invalid required>
         <label slot="label">Select a dinosaur</label>
         <anypoint-listbox slot="dropdown-content" tabindex="-1">
         ${this.items.map((item) => html`<anypoint-item>${item}</anypoint-item>`)}
@@ -598,8 +598,8 @@ class ComponentDemo extends DemoPage {
       </p>
 
       <anypoint-dropdown-menu
-        invalidmessage="Dino is required with the order"
-        infomessage="Will be added to your order."
+        invalidMessage="Dino is required with the order"
+        infoMessage="Will be added to your order."
         invalid required>
         <label slot="label">Select a dinosaur</label>
         <anypoint-listbox slot="dropdown-content" tabindex="-1">

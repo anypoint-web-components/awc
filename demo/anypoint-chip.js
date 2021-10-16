@@ -102,7 +102,7 @@ class ComponentDemoPage extends DemoPage {
         >
           <anypoint-chip
             slot="content"
-            ?compatibility="${anypoint}"
+            ?anypoint="${anypoint}"
             ?removable="${demoRemovable}"
             ?disabled="${demoDisabled}"
           >
@@ -159,7 +159,7 @@ class ComponentDemoPage extends DemoPage {
         <ul>
           <li><b>Material</b> - Normal state</li>
           <li>
-            <b>Compatibility</b> - To provide compatibility with Anypoint design
+            <b>Anypoint</b> - To enable Anypoint theme
           </li>
         </ul>
 

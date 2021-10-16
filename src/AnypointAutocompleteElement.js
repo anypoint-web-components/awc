@@ -159,14 +159,10 @@ export default class AnypointAutocompleteElement extends LitElement {
        */
       noAnimations: { type: Boolean, reflect: true },
       /**
-       * Enables compatibility with Anypoint components.
+       * Enables Anypoint theme.
        * @attribute
        */
-      compatibility: { type: Boolean, reflect: true },
-      /**
-       * @deprecated Use `compatibility` instead
-       */
-      legacy: { type: Boolean },
+      anypoint: { type: Boolean, reflect: true },
       /**
        * When set it won't setup `aria-controls` on target element.
        * @attribute
@@ -300,14 +296,6 @@ export default class AnypointAutocompleteElement extends LitElement {
     this.dispatchEvent(new CustomEvent('openedchange'));
   }
 
-  get legacy() {
-    return this.compatibility;
-  }
-
-  set legacy(value) {
-    this.compatibility = value;
-  }
-
   get disabled() {
     return this._disabled;
   }
@@ -418,6 +406,8 @@ export default class AnypointAutocompleteElement extends LitElement {
     this.positionTarget = undefined;
     this.ignoreDropdownStyling = false;
     this.disabled = false;
+    /** @type boolean */
+    this.anypoint = undefined;
   }
 
   connectedCallback() {
@@ -963,11 +953,11 @@ export default class AnypointAutocompleteElement extends LitElement {
       verticalOffset,
       noAnimations,
       styles,
-      compatibility,
+      anypoint,
       fitPositionTarget,
       positionTarget,
     } = this;
-    const offset = compatibility ? -2 : 0;
+    const offset = anypoint ? -2 : 0;
     const finalVerticalOffset = verticalOffset  + offset;
     return html`
     <style>${styles}</style>
@@ -1002,7 +992,7 @@ export default class AnypointAutocompleteElement extends LitElement {
         selectable="anypoint-item,anypoint-item-body"
         useariaselected
         @select="${this._selectionHandler}"
-        ?compatibility="${this.compatibility}"
+        ?anypoint="${this.anypoint}"
       >
         ${this._loaderTemplate()}
         ${this._listTemplate()}
@@ -1048,17 +1038,17 @@ export default class AnypointAutocompleteElement extends LitElement {
   [itemTemplate](item) {
     const label = this[readLabelValue](item);
     const { description } = item;
-    const { compatibility } = this;
+    const { anypoint } = this;
     if (description) {
       return html`
-      <anypoint-item ?compatibility="${compatibility}">
-        <anypoint-item-body ?compatibility="${compatibility}" twoline>
+      <anypoint-item ?anypoint="${anypoint}">
+        <anypoint-item-body ?anypoint="${anypoint}" twoline>
           <div>${label}</div>
           <div data-secondary>${description}</div>
         </anypoint-item-body>
       </anypoint-item>`;
     }
-    return html`<anypoint-item ?compatibility="${compatibility}">
+    return html`<anypoint-item ?anypoint="${anypoint}">
       <div>${label}</div>
     </anypoint-item>`;
   }

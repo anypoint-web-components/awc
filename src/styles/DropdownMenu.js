@@ -152,7 +152,7 @@ export default css`
     max-width: calc(100% + 20%);
   }
 
-  :host([nolabelfloat]:not([compatibility])) .label.floating {
+  :host([nolabelfloat]:not([anypoint])) .label.floating {
     display: none !important;
   }
 
@@ -191,7 +191,7 @@ export default css`
   }
 
   .dropdown-content {
-    box-shadow: var(--anypoint-dropdown-shadow, var(--anypoiont-dropdown-shaddow));
+    box-shadow: var(--anypoint-dropdown-shadow, var(--anypoint-dropdown-shadow));
     border-radius: var(--anypoint-dropdown-border-radius);
   }
 
@@ -273,18 +273,18 @@ export default css`
     border: 1px solid var(--anypoint-dropdown-error-color, var(--error-color)) !important;
   }
 
-  /* Anypoint compatibility theme */
+  /* Anypoint theme */
 
-  :host([compatibility]) {
+  :host([anypoint]) {
     height: 40px;
     margin-top: 25px;
   }
 
-  :host([compatibility]) .label.compatibility {
+  :host([anypoint]) .label.anypoint {
     top: -22px;
   }
 
-  :host([compatibility]) .input-container {
+  :host([anypoint]) .input-container {
     border: none;
     border-left: 2px var(--anypoint-dropdown-menu-border-color, #8e8e8e) solid;
     border-right: 2px var(--anypoint-dropdown-menu-border-color, #8e8e8e) solid;
@@ -292,23 +292,14 @@ export default css`
     box-sizing: border-box;
   }
 
-  :host([compatibility][focused]) .input-container,
-  :host([compatibility]:hover) .input-container {
-    border-left-color: var(
-      --anypoint-dropdown-menu-compatibility-focus-border-color,
-      #58595a
-    );
-    border-right-color: var(
-      --anypoint-dropdown-menu-compatibility-focus-border-color,
-      #58595a
-    );
-    background-color: var(
-      --anypoint-dropdown-menu-compatibility-focus-background-color,
-      #f9fafb
-    );
+  :host([anypoint][focused]) .input-container,
+  :host([anypoint]:hover) .input-container {
+    border-left-color: var(--anypoint-dropdown-menu-anypoint-focus-border-color, var(--anypoint-dropdown-menu-compatibility-focus-border-color, #58595a));
+    border-right-color: var(--anypoint-dropdown-menu-anypoint-focus-border-color, var(--anypoint-dropdown-menu-compatibility-focus-border-color, #58595a));
+    background-color: var(--anypoint-dropdown-menu-anypoint-focus-background-color, var(--anypoint-dropdown-menu-compatibility-focus-background-color, #f9fafb));
   }
 
-  :host([compatibility][invalid]) .input-container {
+  :host([anypoint][invalid]) .input-container {
     border-left-color: var(
       --anypoint-dropdown-menu-error-color,
       var(--error-color)
@@ -320,42 +311,42 @@ export default css`
     border-bottom: none !important;
   }
 
-  :host([compatibility]) .label {
+  :host([anypoint]) .label {
     font-size: 0.875rem;
     left: -2px;
     top: -18px;
     transform: none;
     font-weight: 500;
-    color: var(--anypoint-dropdown-menu-compatibility-label-color, #616161);
+    color: var(--anypoint-dropdown-menu-anypoint-label-color, var(--anypoint-dropdown-menu-compatibility-label-color, #616161));
   }
 
-  :host([compatibility]) anypoint-dropdown {
+  :host([anypoint]) anypoint-dropdown {
     margin-top: 40px;
   }
 
-  :host([compatibility]) .input {
+  :host([anypoint]) .input {
     margin-top: 0;
   }
 
-  :host([compatibility]) .invalid,
-  :host([compatibility]) .info {
+  :host([anypoint]) .invalid,
+  :host([anypoint]) .info {
     margin-left: 0px;
   }
 
-  :host([nolabelfloat][compatibility]) {
+  :host([nolabelfloat][anypoint]) {
     margin-top: 0px;
   }
 
-  :host([compatibility]) anypoint-dropdown {
+  :host([anypoint]) anypoint-dropdown {
     border-bottom: 2px var(--anypoint-dropdown-menu-border-color, #e0e0e0) solid;
     border-top: 2px var(--anypoint-dropdown-menu-border-color, #e0e0e0) solid;
   }
 
-  :host([compatibility]) .dropdown-content {
+  :host([anypoint]) .dropdown-content {
     box-shadow: none;
   }
 
-  :host([nolabelfloat][compatibility]) .label.resting {
+  :host([nolabelfloat][anypoint]) .label.resting {
     top: calc(100% / 2 - 8px);
     left: 10px;
     font-size: 1rem;

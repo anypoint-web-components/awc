@@ -12,7 +12,6 @@ class ComponentDemoPage extends DemoPage {
   constructor() {
     super();
     this.initObservableProperties([
-      'demoCompatibility',
       'demoDisabled',
       'hasTitle',
       'hasActions',
@@ -65,7 +64,7 @@ class ComponentDemoPage extends DemoPage {
         >
           <anypoint-button
             slot="content"
-            ?compatibility="${anypoint}"
+            ?anypoint="${anypoint}"
             @click="${this._openHandler}"
           >
             Open dialog
@@ -104,7 +103,7 @@ class ComponentDemoPage extends DemoPage {
 
         <anypoint-dialog
           id="dialog"
-          ?compatibility="${anypoint}"
+          ?anypoint="${anypoint}"
           ?modal="${modal}">
           ${hasTitle ? html`<h6 class="title">Dialog Title</h6>` : ''}
 
@@ -162,20 +161,20 @@ sunt in culpa qui officia deserunt mollit anim id est laborum.
           ${hasActions ? html`<div class="buttons">
             ${nested ? html`<anypoint-button
               @click="${this._nestedHandler}"
-              ?compatibility="${anypoint}">Open nested</anypoint-button>` : ''}
+              ?anypoint="${anypoint}">Open nested</anypoint-button>` : ''}
             <anypoint-button
               data-dialog-dismiss
-              ?compatibility="${anypoint}">Cancel</anypoint-button>
+              ?anypoint="${anypoint}">Cancel</anypoint-button>
             <anypoint-button
               data-dialog-confirm
               autofocus
-              ?compatibility="${anypoint}">OK</anypoint-button>
+              ?anypoint="${anypoint}">OK</anypoint-button>
           </div>` : ''}
         </anypoint-dialog>
 
         <anypoint-dialog
           id="nested"
-          ?compatibility="${anypoint}">
+          ?anypoint="${anypoint}">
           <h6 class="title">Nested dialog</h6>
 
           <p>
@@ -218,7 +217,7 @@ sunt in culpa qui officia deserunt mollit anim id est laborum.
         <ul>
           <li><b>Material Design</b> - Normal state</li>
           <li>
-            <b>Compatibility</b> - To provide compatibility with Anypoint design
+            <b>Anypoint</b> - To enable Anypoint theme
           </li>
         </ul>
 

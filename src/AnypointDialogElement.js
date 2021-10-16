@@ -13,9 +13,9 @@ export default class AnypointDialogElement extends AnypointDialogMixin(LitElemen
   static get properties() {
     return {
       /** 
-       * Enables compatibility theme for Anypoint
+       * Enables Anypoint theme.
        */
-      compatibility: { type: Boolean, reflect: true, }
+      anypoint: { type: Boolean, reflect: true, }
     };
   }
 

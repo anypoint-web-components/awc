@@ -49,8 +49,8 @@ export default css`
   justify-content: flex-end;
 }
 
-:host([compatibility]) > h2,
-:host([compatibility]) > .title {
+:host([anypoint]) > h2,
+:host([anypoint]) > .title {
   font-size: 2rem;
   padding: 20px 40px;
   margin: 0;
@@ -60,7 +60,7 @@ export default css`
 }
 
 
-:host([compatibility]) > * {
+:host([anypoint]) > * {
   padding: 20px 40px;
   color: var(--anypoint-dialog-content-color, rgba(0,0,0,1));
 }

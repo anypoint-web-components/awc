@@ -110,7 +110,7 @@ export default css`
     flex: none;
   }
 
-  :host([compatibility]) ::slotted(anypoint-tab) {
+  :host([anypoint]) ::slotted(anypoint-tab) {
     text-transform: none;
   }
 `;

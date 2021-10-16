@@ -96,7 +96,7 @@ describe('AnypointAutocompleteElement', () => {
     return fixture(html`
       <div>
         <input id="f1" />
-        <anypoint-autocomplete noanimations target="f1" .source="${model}"></anypoint-autocomplete>
+        <anypoint-autocomplete noAnimations target="f1" .source="${model}"></anypoint-autocomplete>
       </div>
     `);
   }
@@ -124,9 +124,9 @@ describe('AnypointAutocompleteElement', () => {
   /**
    * @return {Promise<HTMLDivElement>}
    */
-  async function compatibilityFixture() {
+  async function anypointFixture() {
     return fixture(html`<div><input id="f2">
-    <anypoint-autocomplete compatibility target="f2"></anypoint-autocomplete></div>`);
+    <anypoint-autocomplete anypoint target="f2"></anypoint-autocomplete></div>`);
   }
 
   /**
@@ -136,7 +136,7 @@ describe('AnypointAutocompleteElement', () => {
     return fixture(html`
       <div>
         <input id="f1" />
-        <anypoint-autocomplete noanimations target="f1" .source="${suggestions}"></anypoint-autocomplete>
+        <anypoint-autocomplete noAnimations target="f1" .source="${suggestions}"></anypoint-autocomplete>
       </div>
     `);
   }
@@ -1006,12 +1006,12 @@ describe('AnypointAutocompleteElement', () => {
     });
   });
 
-  describe('compatibility property', () => {
+  describe('anypoint property', () => {
     let element = /** @type AnypointAutocomplete */ (null);
     const source = ['Apple', 'Appli', 'Applo'];
 
     beforeEach(async () => {
-      const region = await compatibilityFixture();
+      const region = await anypointFixture();
       element = region.querySelector('anypoint-autocomplete');
       element.source = source;
       element.openOnFocus = true;
@@ -1019,9 +1019,9 @@ describe('AnypointAutocompleteElement', () => {
       await nextFrame();
     });
 
-    it('sets compatibility property on anypoint-item', () => {
+    it('sets anypoint property on anypoint-item', () => {
       const item = element.querySelector('anypoint-item');
-      assert.isTrue(item.compatibility);
+      assert.isTrue(item.anypoint);
     });
 
     it('does not render ripple effect', () => {
@@ -1328,28 +1328,13 @@ describe('AnypointAutocompleteElement', () => {
     });
   });
 
-  describe('compatibility mode', () => {
-    it('sets compatibility on item when setting legacy', async () => {
-      const element = await basicFixture();
-      element.legacy = true;
-      assert.isTrue(element.legacy, 'legacy is set');
-      assert.isTrue(element.compatibility, 'compatibility is set');
-    });
-
-    it('returns compatibility value from item when getting legacy', async () => {
-      const element = await basicFixture();
-      element.compatibility = true;
-      assert.isTrue(element.legacy, 'legacy is set');
-    });
-  });
-
   describe('a11y', () => {
     async function basicFixtureA11y() {
       return fixture(html`
         <div>
           <label id="inputLabel">Test</label>
           <input id="f1" aria-labelledby="inputLabel" />
-          <anypoint-autocomplete noanimations target="f1" .source="${suggestions}"></anypoint-autocomplete>
+          <anypoint-autocomplete noAnimations target="f1" .source="${suggestions}"></anypoint-autocomplete>
         </div>
       `);
     }

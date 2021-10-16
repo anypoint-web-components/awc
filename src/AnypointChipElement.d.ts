@@ -54,10 +54,10 @@ export default class AnypointChipElement extends LitElement {
   toggles: boolean;
 
   /**
-   * Enables Anypoint compatibility
+   * Enables Anypoint theme.
    * @attribute
    */
-  compatibility: boolean;
+  anypoint: boolean;
 
   /**
    * True if the button is currently in active state. Only

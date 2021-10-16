@@ -9,15 +9,10 @@ import { HoverableMixin } from './mixins/HoverableMixin';
  */
 export default class AnypointItemElement extends HoverableMixin(ControlStateMixin(ButtonStateMixin(LitElement))) {
   /**
-   * @deprecated Use `compatibility` instead.
-   */
-  legacy: boolean;
-
-  /**
-   * Enables compatibility with Anypoint components.
+   * Enables Anypoint theme.
    * @attribute
    */
-  compatibility: boolean;
+  anypoint: boolean;
   render(): TemplateResult;
   connectedCallback(): void;
 }

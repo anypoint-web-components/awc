@@ -186,14 +186,14 @@ export default css`
     left: -22px;
   }
 
-  /* Anypoint compatibility theme */
+  /* Anypoint theme */
 
-  :host([compatibility]) {
+  :host([anypoint]) {
     height: 40px;
     margin-top: 25px;
   }
 
-  :host([compatibility]) .input-container {
+  :host([anypoint]) .input-container {
     border: none;
     border-left: 2px var(--anypoint-input-border-color, #8e8e8e) solid;
     border-right: 2px var(--anypoint-input-border-color, #8e8e8e) solid;
@@ -201,58 +201,49 @@ export default css`
     box-sizing: border-box;
   }
 
-  :host([compatibility]) .label.compatibility {
+  :host([anypoint]) .label.anypoint {
     top: -22px;
   }
 
-  :host([compatibility][focused]) .input-container,
-  :host([compatibility]:hover) .input-container {
-    border-left-color: var(
-      --anypoint-input-compatibility-focus-border-color,
-      #58595a
-    );
-    border-right-color: var(
-      --anypoint-input-compatibility-focus-border-color,
-      #58595a
-    );
-    background-color: var(
-      --anypoint-input-compatibility-focus-background-color,
-      #f9fafb
-    );
+  :host([anypoint][focused]) .input-container,
+  :host([anypoint]:hover) .input-container {
+    border-left-color: var(--anypoint-input-anypoint-focus-border-color, var(--anypoint-input-compatibility-focus-border-color, #58595a));
+    border-right-color: var(--anypoint-input-anypoint-focus-border-color, var(--anypoint-input-compatibility-focus-border-color, #58595a));
+    background-color: var(--anypoint-input-anypoint-focus-background-color, var(--anypoint-input-compatibility-focus-background-color, #f9fafb));
   }
 
-  :host([compatibility][invalid]) .input-container {
+  :host([anypoint][invalid]) .input-container {
     border-left-color: var(--anypoint-input-error-color, var(--error-color));
     border-right-color: var(--anypoint-input-error-color, var(--error-color));
   }
 
-  :host([compatibility]) .input-element {
+  :host([anypoint]) .input-element {
     padding: 0 10px;
   }
 
-  :host([compatibility]) .label {
+  :host([anypoint]) .label {
     font-size: 0.935rem;
     left: -2px;
     top: -18px;
     transform: none;
     font-weight: 500;
-    color: var(--anypoint-input-compatibility-label-color, #616161);
+    color: var(--anypoint-input-anypoint-label-color, #616161);
   }
 
-  :host([compatibility]) .label.with-prefix {
+  :host([anypoint]) .label.with-prefix {
     left: -34px;
   }
 
-  :host([compatibility]) .invalid,
-  :host([compatibility]) .info {
+  :host([anypoint]) .invalid,
+  :host([anypoint]) .info {
     margin-left: 0px;
   }
 
-  :host([nolabelfloat][compatibility]) {
+  :host([nolabelfloat][anypoint]) {
     margin-top: 0px;
   }
 
-  :host([nolabelfloat][compatibility]) .label.resting {
+  :host([nolabelfloat][anypoint]) .label.resting {
     top: calc(100% / 2 - 8px);
     left: 10px;
   }

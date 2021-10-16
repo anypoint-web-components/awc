@@ -93,7 +93,7 @@ class ComponentDemoPage extends DemoPage {
         >
           <anypoint-input-combobox
             slot="content"
-            ?compatibility="${anypoint}"
+            ?anypoint="${anypoint}"
             ?outlined="${outlined}"
             ?disabled="${disabled}"
             ?noOverlap="${noOverlap}"
@@ -104,7 +104,7 @@ class ComponentDemoPage extends DemoPage {
             @change="${this._changeHandler}"
           >
             <label slot="label">Fruit name</label>
-            <anypoint-listbox slot="dropdown-content" tabindex="-1" ?compatibility="${anypoint}">
+            <anypoint-listbox slot="dropdown-content" tabindex="-1" ?anypoint="${anypoint}">
             ${this.items.map((item) => html`<anypoint-item>${item}</anypoint-item>`)}
             </anypoint-listbox>
           </anypoint-input-combobox>

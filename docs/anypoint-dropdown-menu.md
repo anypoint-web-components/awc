@@ -13,7 +13,7 @@ The element has three built-in themes:
 
 - Material Design - Filled
 - Material Design - Outlined
-- Anypoint Design - Compatibility
+- Anypoint Design - Anypoint
 
 ## Usage
 

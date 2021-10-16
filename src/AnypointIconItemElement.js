@@ -51,23 +51,11 @@ export default class AnypointIconItemElement extends HoverableMixin(ControlState
   static get properties() {
     return {
       /**
-       * Enables compatibility with Anypoint components.
+       * Enables Anypoint theme.
        * @attribute
        */
-      compatibility: { type: Boolean, reflect: true },
-      /**
-       * @deprecated Use `compatibility` instead
-       */
-      legacy: { type: Boolean },
+      anypoint: { type: Boolean, reflect: true },
     };
-  }
-
-  get legacy() {
-    return this.compatibility;
-  }
-
-  set legacy(value) {
-    this.compatibility = value;
   }
 
   render() {

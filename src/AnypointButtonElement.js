@@ -18,8 +18,8 @@ export default class AnypointButton extends AnypointButtonBase {
   }
 
   render() {
-    const { noink, compatibility, styles } = this;
-    const stopRipple = !!noink || !!compatibility;
+    const { noink, anypoint, styles } = this;
+    const stopRipple = !!noink || !!anypoint;
     return html`<style>${styles}</style><slot></slot><material-ripple .noink="${stopRipple}" @transitionend="${this._transitionEndHandler}"></material-ripple>`;
   }
 

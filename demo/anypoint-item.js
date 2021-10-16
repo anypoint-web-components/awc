@@ -34,16 +34,16 @@ class ComponentDemo extends DemoPage {
       <div
         role="listbox"
         slot="content">
-        <anypoint-item ?compatibility="${anypoint}">
+        <anypoint-item ?anypoint="${anypoint}">
           Option 1
         </anypoint-item>
-        <anypoint-item ?compatibility="${anypoint}">
+        <anypoint-item ?anypoint="${anypoint}">
           Option 2
         </anypoint-item>
-        <anypoint-item ?compatibility="${anypoint}">
+        <anypoint-item ?anypoint="${anypoint}">
           Option 3
         </anypoint-item>
-        <anypoint-item ?compatibility="${anypoint}">
+        <anypoint-item ?anypoint="${anypoint}">
           <p>Paragraph as a child</p>
         </anypoint-item>
       </div>
@@ -94,22 +94,22 @@ class ComponentDemo extends DemoPage {
       <div
         role="listbox"
         slot="content">
-        <anypoint-item ?compatibility="${anypoint}">
-          <anypoint-item-body twoline ?compatibility="${anypoint}">
+        <anypoint-item ?anypoint="${anypoint}">
+          <anypoint-item-body twoline ?anypoint="${anypoint}">
             <div>Pawel Psztyc</div>
             <div data-secondary>Sr. Software Engineer</div>
           </anypoint-item-body>
         </anypoint-item>
 
-        <anypoint-item ?compatibility="${anypoint}">
-          <anypoint-item-body twoline ?compatibility="${anypoint}">
+        <anypoint-item ?anypoint="${anypoint}">
+          <anypoint-item-body twoline ?anypoint="${anypoint}">
             <div>John Smith</div>
             <div data-secondary>QA specialist</div>
           </anypoint-item-body>
         </anypoint-item>
 
-        <anypoint-item ?compatibility="${anypoint}">
-          <anypoint-item-body twoline ?compatibility="${anypoint}">
+        <anypoint-item ?anypoint="${anypoint}">
+          <anypoint-item-body twoline ?anypoint="${anypoint}">
             <div>John Q. Public</div>
             <div data-secondary>Interaction designer</div>
           </anypoint-item-body>
@@ -138,13 +138,13 @@ class ComponentDemo extends DemoPage {
       <div
         role="listbox"
         slot="content">
-        <anypoint-icon-item ?compatibility="${anypoint}">
+        <anypoint-icon-item ?anypoint="${anypoint}">
           <arc-icon icon="add" slot="item-icon"></arc-icon> Add
         </anypoint-icon-item>
-        <anypoint-icon-item ?compatibility="${anypoint}">
+        <anypoint-icon-item ?anypoint="${anypoint}">
           <arc-icon icon="refresh" slot="item-icon"></arc-icon> Refresh
         </anypoint-icon-item>
-        <anypoint-icon-item ?compatibility="${anypoint}">
+        <anypoint-icon-item ?anypoint="${anypoint}">
           <span slot="item-icon" class="circle"></span> Refresh
         </anypoint-icon-item>
       </div>
@@ -172,27 +172,27 @@ class ComponentDemo extends DemoPage {
       <div
         role="listbox"
         slot="content">
-        <anypoint-icon-item ?compatibility="${anypoint}">
+        <anypoint-icon-item ?anypoint="${anypoint}">
           <div class="avatar blue" slot="item-icon"></div>
-          <anypoint-item-body twoline ?compatibility="${anypoint}">
+          <anypoint-item-body twoline ?anypoint="${anypoint}">
             <div>Photos</div>
             <div data-secondary>Jan 9, 2014</div>
           </anypoint-item-body>
           <anypoint-icon-button
-            ?compatibility="${anypoint}"
+            ?anypoint="${anypoint}"
             aria-label="Activate to toggle favourite">
             <arc-icon icon="star"></arc-icon>
           </anypoint-icon-button>
         </anypoint-icon-item>
 
-        <anypoint-icon-item ?compatibility="${anypoint}">
+        <anypoint-icon-item ?anypoint="${anypoint}">
           <div class="avatar" slot="item-icon"></div>
-          <anypoint-item-body twoline ?compatibility="${anypoint}">
+          <anypoint-item-body twoline ?anypoint="${anypoint}">
             <div>Recipes</div>
             <div data-secondary>Jan 17, 2014</div>
           </anypoint-item-body>
           <anypoint-icon-button
-            ?compatibility="${anypoint}"
+            ?anypoint="${anypoint}"
             aria-label="Activate to toggle favourite">
             <arc-icon icon="star"></arc-icon>
           </anypoint-icon-button>
@@ -223,13 +223,13 @@ class ComponentDemo extends DemoPage {
         role="listbox"
         slot="content">
         <a class="anypoint-item-link" href="#inbox" tabindex="-1">
-          <anypoint-item ?compatibility="${anypoint}">Inbox</anypoint-item>
+          <anypoint-item ?anypoint="${anypoint}">Inbox</anypoint-item>
         </a>
         <a class="anypoint-item-link" href="#starred" tabindex="-1">
-          <anypoint-item ?compatibility="${anypoint}">Starred</anypoint-item>
+          <anypoint-item ?anypoint="${anypoint}">Starred</anypoint-item>
         </a>
         <a class="anypoint-item-link" href="#sent" tabindex="-1">
-          <anypoint-item ?compatibility="${anypoint}">Sent mail</anypoint-item>
+          <anypoint-item ?anypoint="${anypoint}">Sent mail</anypoint-item>
         </a>
       </div>
     </interactive-demo>

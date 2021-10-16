@@ -48,7 +48,7 @@ class ComponentDemoPage extends DemoPage {
         >
           <anypoint-combobox
             slot="content"
-            ?compatibility="${anypoint}"
+            ?anypoint="${anypoint}"
             ?outlined="${outlined}"
             ?disabled="${disabled}"
             .source="${suggestions}"

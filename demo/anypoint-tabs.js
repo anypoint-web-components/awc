@@ -47,7 +47,7 @@ class ComponentDemo extends DemoPage {
     >
       <anypoint-tabs
         slot="content"
-        ?compatibility="${anypoint}"
+        ?anypoint="${anypoint}"
         dir="${demoRtl ? 'rtl' : 'ltr'}"
         selected="0"
         ?autoselect="${demoAutoselect}"
@@ -123,7 +123,7 @@ class ComponentDemo extends DemoPage {
       <ul>
         <li><b>Material</b> (default) - Material Design styled tabs</li>
         <li>
-          <b>Compatibility</b> - To provide compatibility with Anypoint design
+          <b>Anypoint</b> - To enable Anypoint theme
         </li>
       </ul>
 

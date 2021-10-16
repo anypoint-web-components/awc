@@ -17,7 +17,6 @@ export const removeRipple = Symbol('removeRipple');
 
 export default class MaterialRippleElement extends LitElement {
   get styles() {
-    // compatibility with ACM.
     return elementStyles;
   }
 

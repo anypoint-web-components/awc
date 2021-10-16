@@ -9,13 +9,11 @@ class ComponentDemoPage extends DemoPage {
   constructor() {
     super();
     this.initObservableProperties([
-      'demoRemovable',
       'demoDisabled',
       'demoAllowedOnly',
       'demoSuggestions'
     ]);
     this.componentName = 'anypoint-chip-input';
-    this.demoRemovable = false;
     this.demoDisabled = false;
     this.demoAllowedOnly = false;
     this.demoSuggestions = false;
@@ -34,7 +32,7 @@ class ComponentDemoPage extends DemoPage {
     this.auto4Out = ['activity-1', 'activity-2'];
     this.auto5Out = ['Biking', 'Shopping'];
 
-    this.predefChips = [
+    this.predefinedChips = [
       {
         label: 'Chip #1'
       },
@@ -128,7 +126,6 @@ class ComponentDemoPage extends DemoPage {
       demoStates,
       anypoint,
       darkThemeActive,
-      demoRemovable,
       demoDisabled,
       demoAllowedOnly,
       demoSuggestions,
@@ -150,8 +147,7 @@ class ComponentDemoPage extends DemoPage {
         >
           <anypoint-chip-input
             slot="content"
-            ?compatibility="${anypoint}"
-            ?removable="${demoRemovable}"
+            ?anypoint="${anypoint}"
             ?disabled="${demoDisabled}"
             .allowed="${allowed}"
             .infoMessage="${info}"
@@ -208,7 +204,7 @@ class ComponentDemoPage extends DemoPage {
         <ul>
           <li><b>Material</b> - Normal state</li>
           <li>
-            <b>Compatibility</b> - To provide compatibility with Anypoint design
+            <b>Anypoint</b> - To enable Anypoint theme
           </li>
         </ul>
 
@@ -217,7 +213,7 @@ class ComponentDemoPage extends DemoPage {
           <a href="https://material.io/components/chips/"
             >chips</a
           >
-          documentation in Material Defign documentation for principles and
+          documentation in Material Design documentation for principles and
           anatomy of a chip.
         </p>
 
@@ -247,9 +243,9 @@ class ComponentDemoPage extends DemoPage {
         </p>
 
         <anypoint-chip-input
-          data-property="predefOut"
-          label="Chips input demo"
-          .chips="${this.predefChips}"
+          data-property="predefinedOut"
+          data-label="Chips input demo"
+          .chips="${this.predefinedChips}"
         ></anypoint-chip-input>
 
         <p>

@@ -76,39 +76,27 @@ export default class AnypointTabsElement extends MenubarMixin(ArcResizableMixin(
        */
       autoselectDelay: { type: Number },
       /**
-       * Enables compatibility with Anypoint components.
+       * Enables Anypoint theme.
        */
-      compatibility: { type: Boolean, reflect: true },
-      /**
-       * @deprecated Use `compatibility` instead
-       */
-      legacy: { type: Boolean },
+      anypoint: { type: Boolean, reflect: true },
 
       _leftHidden: { type: Boolean },
       _rightHidden: { type: Boolean },
     };
   }
 
-  get legacy() {
-    return this._compatibility;
+  get anypoint() {
+    return this._anypoint;
   }
 
-  set legacy(value) {
-    this.compatibility = value;
-  }
-
-  get compatibility() {
-    return this._compatibility;
-  }
-
-  set compatibility(value) {
-    const old = this._compatibility;
+  set anypoint(value) {
+    const old = this._anypoint;
     if (old === value) {
       return;
     }
-    this._compatibility = value;
-    this._compatibilityChanged(value);
-    this.requestUpdate('compatibility', old);
+    this._anypoint = value;
+    this._anypointChanged(value);
+    this.requestUpdate('anypoint', old);
   }
 
   get _contentClass() {
@@ -260,7 +248,7 @@ export default class AnypointTabsElement extends MenubarMixin(ArcResizableMixin(
 
   _itemsHandler() {
     this._sizingHandler();
-    if (!this.compatibility) {
+    if (!this.anypoint) {
       return;
     }
     // it is safe to cast this as `selectable` property is set to `anypoint-tab`.
@@ -483,7 +471,7 @@ export default class AnypointTabsElement extends MenubarMixin(ArcResizableMixin(
     }
   }
 
-  _compatibilityChanged(value) {
+  _anypointChanged(value) {
     const items = /** @type AnypointTabElement[] */ (this.items || []);
     items.forEach((item) => {
       item.noink = value;

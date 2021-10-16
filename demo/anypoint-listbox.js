@@ -7,10 +7,7 @@ import '../anypoint-listbox.js';
 class ComponentDemo extends DemoPage {
   constructor() {
     super();
-    this._componentName = 'anypoint-listbox';
-    this.initObservableProperties([
-      'demoCompatibility'
-    ]);
+    this.componentName = 'anypoint-listbox';
     this.fruits = ['Apple', 'Apricot', 'Avocado',
       'Banana', 'Bilberry', 'Blackberry', 'Blackcurrant', 'Blueberry',
       'Boysenberry', 'Cantaloupe', 'Currant', 'Cherry', 'Cherimoya',
@@ -41,7 +38,7 @@ class ComponentDemo extends DemoPage {
         @state-changed="${this._demoStateHandler}"
         ?dark="${darkThemeActive}"
       >
-        <anypoint-listbox slot="content" ?compatibility="${anypoint}">
+        <anypoint-listbox slot="content" ?anypoint="${anypoint}">
           <anypoint-item>API project 1</anypoint-item>
           <anypoint-item>API project 2</anypoint-item>
           <anypoint-item>API project 3</anypoint-item>
@@ -83,13 +80,13 @@ class ComponentDemo extends DemoPage {
         <ul>
           <li><b>Normal</b></li>
           <li>
-            <b>Compatibility</b> - To provide compatibility with Anypoint design
+            <b>Anypoint</b> - To enable Anypoint theme
           </li>
         </ul>
 
         <p>
           Even though the element has no particular styling options for Anypoint style,
-          it sets <code>compatibility</code> attribute on children. This way you can
+          it sets <code>anypoint</code> attribute on children. This way you can
           propagate Anypoint theme without setting the attribute on each element.
         </p>
 

@@ -51,7 +51,7 @@ window.customElements.define('simple-element', SimpleElement);
 Anypoint tabs comes with 2 predefined styles:
 
 - Material - (default) - Material Design styled tabs
-- Compatibility To provide compatibility with Anypoint design
+- Anypoint To enable Anypoint theme
 
 See [Tabs](https://material.io/components/tabs/) documentation in Material Design documentation for principles and anatomy of tabs.
 

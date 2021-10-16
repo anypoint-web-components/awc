@@ -53,15 +53,15 @@ describe('<anypoint-switch>', () => {
   /**
    * @returns {Promise<AnypointSwitchElement>}
    */
-  async function compatibilityFixture() {
-    return (fixture(html`<anypoint-switch compatibility>on/off</anypoint-switch>`));
+  async function anypointFixture() {
+    return (fixture(html`<anypoint-switch anypoint>on/off</anypoint-switch>`));
   }
 
   /**
    * @returns {Promise<AnypointSwitchElement>}
    */
-  async function checkedCompatibilityFixture() {
-    return (fixture(html`<anypoint-switch checked compatibility>on/off</anypoint-switch>`));
+  async function checkedAnypointFixture() {
+    return (fixture(html`<anypoint-switch checked anypoint>on/off</anypoint-switch>`));
   }
 
   /**
@@ -173,10 +173,10 @@ describe('<anypoint-switch>', () => {
     });
   });
 
-  describe('compatibility', () => {
+  describe('anypoint', () => {
     let element;
     beforeEach(async () => {
-      element = await compatibilityFixture();
+      element = await anypointFixture();
     });
 
     it('renders unchecked icon', () => {
@@ -257,13 +257,13 @@ describe('<anypoint-switch>', () => {
       await assert.isAccessible(element);
     });
 
-    it('is accessible when not checked (compatibility)', async () => {
-      const element = await compatibilityFixture();
+    it('is accessible when not checked (anypoint)', async () => {
+      const element = await anypointFixture();
       await assert.isAccessible(element);
     });
 
-    it('is accessible when checked  (compatibility)', async () => {
-      const element = await checkedCompatibilityFixture();
+    it('is accessible when checked (anypoint)', async () => {
+      const element = await checkedAnypointFixture();
       await assert.isAccessible(element);
     });
   });

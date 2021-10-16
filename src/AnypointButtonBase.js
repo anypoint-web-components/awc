@@ -5,8 +5,6 @@ import '../material-ripple.js';
 
 /**
  * A base class for Anypoint buttons.
- * Use this class to create buttons that can be elevated (Material Design) and has
- * compatibility layer with the Anypoint platform.
  */
 export class AnypointButtonBase extends ControlStateMixin(ButtonStateMixin(LitElement)) {
   static get properties() {
@@ -34,22 +32,10 @@ export class AnypointButtonBase extends ControlStateMixin(ButtonStateMixin(LitEl
        */
       noink: { type: Boolean, reflect: true },
       /**
-       * @deprecated Use `compatibility` instead
+       * Enables Anypoint theme.
        */
-      legacy: { type: Boolean },
-      /**
-       * Enables compatibility with Anypoint components.
-       */
-      compatibility: { type: Boolean, reflect: true },
+      anypoint: { type: Boolean, reflect: true },
     };
-  }
-
-  get legacy() {
-    return this.compatibility;
-  }
-
-  set legacy(value) {
-    this.compatibility = value;
   }
 
   get emphasis() {
@@ -80,18 +66,18 @@ export class AnypointButtonBase extends ControlStateMixin(ButtonStateMixin(LitEl
     this.requestUpdate('toggles', old);
   }
 
-  get compatibility() {
-    return this._compatibility;
+  get anypoint() {
+    return this._anypoint;
   }
 
-  set compatibility(value) {
-    const old = this._compatibility;
+  set anypoint(value) {
+    const old = this._anypoint;
     if (old === value) {
       return;
     }
-    this._compatibility = value;
+    this._anypoint = value;
     this._calculateElevation();
-    this.requestUpdate('compatibility', old);
+    this.requestUpdate('anypoint', old);
   }
 
   constructor() {
@@ -106,7 +92,7 @@ export class AnypointButtonBase extends ControlStateMixin(ButtonStateMixin(LitEl
    */
   async _calculateElevation() {
     let e = 0;
-    if (this.emphasis === 'high' && !this.compatibility) {
+    if (this.emphasis === 'high' && !this.anypoint) {
       if (this.toggles && this.active) {
         e = 2;
       } else if (this.pressed) {
@@ -131,7 +117,7 @@ export class AnypointButtonBase extends ControlStateMixin(ButtonStateMixin(LitEl
   /**
    * Redirects the `transitionend` from the `material-ripple` element.
    * This is the only way to perform an action when the animation ends instead of counting on `click`.
-   * Note, when compatibility is enabled this event is not dispatched.
+   * Note, when anypoint is enabled this event is not dispatched.
    * 
    * @param {TransitionEvent} e 
    */

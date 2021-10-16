@@ -6,15 +6,10 @@ import { TemplateResult, LitElement } from 'lit-element';
  */
 export default class AnypointItemBodyElement extends LitElement {
   /**
-   * @deprecated Use `compatibility` instead.
-   */
-  legacy: boolean;
-
-  /**
-   * Enables compatibility with Anypoint components.
+   * Enables Anypoint theme.
    * @attribute
    */
-  compatibility: boolean;
+  anypoint: boolean;
   /**
    * Renders the item in a 2-line layout
    * @attribute

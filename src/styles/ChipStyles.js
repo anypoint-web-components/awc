@@ -28,18 +28,18 @@ export default css`
   align-items: center;
 }
 
-:host([compatibility]) .container {
+:host([anypoint]) .container {
   border-radius: 0;
 }
 
-:host([focused]:not([compatibility])) .container {
+:host([focused]:not([anypoint])) .container {
   box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14),
               0 1px 5px 0 rgba(0, 0, 0, 0.12),
               0 3px 1px -2px rgba(0, 0, 0, 0.2);
   background-color: var(--anypoint-chip-focused-background-color, #D6D6D6);
 }
 
-:host([focused][compatibility]) .container {
+:host([focused][anypoint]) .container {
   background-color: var(--anypoint-chip-focused-background-color, #D6D6D6);
 }
 

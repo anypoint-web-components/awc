@@ -44,24 +44,6 @@ describe('AnypointButtonBase', () => {
     });
   });
 
-  describe('compatibility mode', () => {
-    let base;
-    beforeEach(() => {
-      base = new TestButton();
-    });
-
-    it('sets compatibility on item when setting legacy', async () => {
-      base.legacy = true;
-      assert.isTrue(base.legacy, 'legacy is set');
-      assert.isTrue(base.compatibility, 'compatibility is set');
-    });
-
-    it('returns compatibility value from item when getting legacy', async () => {
-      base.compatibility = true;
-      assert.isTrue(base.legacy, 'legacy is set');
-    });
-  });
-
   describe('toggles setter and getter', () => {
     let base;
     beforeEach(() => {

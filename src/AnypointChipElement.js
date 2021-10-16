@@ -60,10 +60,10 @@ export default class AnypointChipElement extends LitElement {
        */
       toggles: { type: Boolean, reflect: true },
       /**
-       * Enables Anypoint compatibility
+       * Enables Anypoint theme.
        * @attribute
        */
-      compatibility: { type: Boolean, reflect: true }
+      anypoint: { type: Boolean, reflect: true }
     };
   }
 

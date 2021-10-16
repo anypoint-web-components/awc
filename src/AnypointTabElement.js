@@ -105,8 +105,8 @@ export default class AnypointTabElement extends AnypointButtonElement {
   }
 
   render() {
-    const { noink, compatibility } = this;
-    const stopRipple = !!noink || !!compatibility;
+    const { noink, anypoint } = this;
+    const stopRipple = !!noink || !!anypoint;
     return html`<style>
         ${this.styles}
       </style>

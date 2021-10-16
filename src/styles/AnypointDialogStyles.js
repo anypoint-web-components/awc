@@ -53,8 +53,8 @@ export default css`
   justify-content: flex-end;
 }
 
-:host([compatibility]) > ::slotted(h2),
-:host([compatibility]) > ::slotted(.title) {
+:host([anypoint]) > ::slotted(h2),
+:host([anypoint]) > ::slotted(.title) {
   font-size: 2rem;
   padding: 20px 40px;
   margin: 0;
@@ -64,7 +64,7 @@ export default css`
 }
 
 
-:host([compatibility]) > ::slotted(*) {
+:host([anypoint]) > ::slotted(*) {
   padding: 20px 40px;
   color: var(--anypoint-dialog-content-color, rgba(0,0,0,1));
 }

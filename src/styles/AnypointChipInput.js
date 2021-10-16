@@ -24,7 +24,7 @@ export default css`
   min-height: inherit;
 }
 
-:host([compatibility]) {
+:host([anypoint]) {
   min-height: 40px;
   height: 40px;
 }

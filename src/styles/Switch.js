@@ -115,7 +115,7 @@ export default css`
   transform: translateX(20px);
 }
 
-:host([compatibility]) {
+:host([anypoint]) {
   height: 36px;
 }
 

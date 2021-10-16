@@ -46,35 +46,23 @@ export default class AnypointListboxElement extends MenuMixin(LitElement) {
   static get properties() {
     return {
       /**
-       * Enables compatibility with Anypoint components.
+       * Enables Anypoint theme.
        */
-      compatibility: { type: Boolean, reflect: true },
-      /**
-       * @deprecated Use `compatibility` instead
-       */
-      legacy: { type: Boolean },
+      anypoint: { type: Boolean, reflect: true },
     };
   }
 
-  get legacy() {
-    return this.compatibility;
+  get anypoint() {
+    return this._anypoint;
   }
 
-  set legacy(value) {
-    this.compatibility = value;
-  }
-
-  get compatibility() {
-    return this._compatibility;
-  }
-
-  set compatibility(value) {
-    const old = this._compatibility;
+  set anypoint(value) {
+    const old = this._anypoint;
     if (old === value) {
       return;
     }
-    this._compatibility = value;
-    this._updateChildrenCompatibility(value);
+    this._anypoint = value;
+    this._updateChildrenAnypoint(value);
   }
 
   constructor() {
@@ -108,9 +96,9 @@ export default class AnypointListboxElement extends MenuMixin(LitElement) {
   }
 
   firstUpdated() {
-    const { compatibility } = this;
-    if (compatibility) {
-      this._updateChildrenCompatibility(compatibility);
+    const { anypoint } = this;
+    if (anypoint) {
+      this._updateChildrenAnypoint(anypoint);
     }
   }
 
@@ -152,13 +140,13 @@ export default class AnypointListboxElement extends MenuMixin(LitElement) {
   }
 
   /**
-   * Updates `compatibility` state on children.
-   * This is a convenience method to set `compatibility` property on this element
+   * Updates `anypoint` state on children.
+   * This is a convenience method to set `anypoint` property on this element
    * and propagate it on children instead of setting this property on each
    * item separately.
-   * @param {Boolean} compatibility Current state of `compatibility` property
+   * @param {Boolean} anypoint Current state of `anypoint` property
    */
-  _updateChildrenCompatibility(compatibility) {
+  _updateChildrenAnypoint(anypoint) {
     const slot = this.shadowRoot.querySelector('slot');
     if (!slot) {
       return;
@@ -169,10 +157,10 @@ export default class AnypointListboxElement extends MenuMixin(LitElement) {
       if (node.nodeType !== Node.ELEMENT_NODE) {
         continue;
       }
-      if (compatibility) {
-        node.setAttribute('compatibility', '');
+      if (anypoint) {
+        node.setAttribute('anypoint', '');
       } else {
-        node.removeAttribute('compatibility');
+        node.removeAttribute('anypoint');
       }
     }
   }

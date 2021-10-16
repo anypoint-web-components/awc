@@ -48,7 +48,7 @@ class ComponentDemoPage extends DemoPage {
         >
           <anypoint-menu-button
             slot="content"
-            ?compatibility="${anypoint}"
+            ?anypoint="${anypoint}"
             ?disabled="${disabled}"
             ?ignoreSelect="${ignoreSelect}"
             ?noOverlap="${noOverlap}"
@@ -57,12 +57,12 @@ class ComponentDemoPage extends DemoPage {
             <anypoint-icon-button
               slot="dropdown-trigger"
               aria-label="activate for context menu"
-              ?compatibility="${anypoint}">
+              ?anypoint="${anypoint}">
               <arc-icon icon="menu"></arc-icon>
             </anypoint-icon-button>
             <anypoint-listbox
               slot="dropdown-content"
-              ?compatibility="${anypoint}">
+              ?anypoint="${anypoint}">
               <anypoint-item>alpha</anypoint-item>
               <anypoint-item>beta</anypoint-item>
               <anypoint-item>gamma</anypoint-item>
@@ -126,7 +126,7 @@ class ComponentDemoPage extends DemoPage {
         <ul>
           <li><b>Material Design</b> - Normal state</li>
           <li>
-            <b>Compatibility</b> - To provide compatibility with Anypoint design
+            <b>Anypoint</b> - To enable Anypoint theme
           </li>
         </ul>
 

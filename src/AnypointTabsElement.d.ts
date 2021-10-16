@@ -70,14 +70,10 @@ export default class AnypointTabsElement extends MenubarMixin(ArcResizableMixin(
    */
   autoselectDelay: number;
   /**
-   * Enables compatibility with Anypoint components.
+   * Enables Anypoint theme.
    * @attribute
    */
-  compatibility: boolean;
-  /**
-   * @deprecated Use `compatibility` instead
-   */
-  legacy: boolean;
+  anypoint: boolean;
 
   _leftHidden: boolean;
   _rightHidden: boolean;
@@ -136,7 +132,7 @@ export default class AnypointTabsElement extends MenubarMixin(ArcResizableMixin(
 
   _onBarTransitionEnd(): void;
 
-  _compatibilityChanged(value: boolean): void;
+  _anypointChanged(value: boolean): void;
 
   _scrollToSelectedIfNeeded(tabWidth: number, tabOffsetLeft: number): void;
 

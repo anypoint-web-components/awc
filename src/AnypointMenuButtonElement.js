@@ -84,9 +84,9 @@ export default class AnypointMenuButtonElement extends ControlStateMixin(LitElem
        */
       closeOnActivate: { type: Boolean },
       /**
-       * Enables Anypoint compatibility
+       * Enables Anypoint theme.
        */
-      compatibility: { type: Boolean, reflect: true },
+      anypoint: { type: Boolean, reflect: true },
       /**
        * This is the element intended to be bound as the focus target
        * for the `iron-dropdown` contained by `paper-menu-button`.
@@ -177,7 +177,7 @@ export default class AnypointMenuButtonElement extends ControlStateMixin(LitElem
     this.noAnimations = false;
     this.allowOutsideScroll = false;
     this.restoreFocusOnClose = false;
-    this.compatibility = false;
+    this.anypoint = false;
   }
 
   connectedCallback() {
@@ -266,7 +266,7 @@ export default class AnypointMenuButtonElement extends ControlStateMixin(LitElem
       typeOld = 'dropdown-close';
     }
     this.dispatchEvent(new CustomEvent(type));
-    // this is left for compatibility. TO be removed in the future
+    // this is left for compatibility. To be removed in the future
     this.dispatchEvent(new CustomEvent(typeOld, {
       bubbles: true,
       composed: true

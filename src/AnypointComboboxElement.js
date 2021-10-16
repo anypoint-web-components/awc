@@ -54,7 +54,7 @@ export default class AnypointComboboxElement extends AnypointInputElement {
       <anypoint-autocomplete
         .target="${this}"
         .source="${this.source}"
-        .compatibility="${this.compatibility}"
+        .anypoint="${this.anypoint}"
         noTargetControls
         openOnFocus
       ></anypoint-autocomplete>

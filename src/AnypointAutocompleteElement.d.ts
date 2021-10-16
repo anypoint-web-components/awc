@@ -152,15 +152,10 @@ export default class AnypointAutocompleteElement extends LitElement {
    */
   noAnimations: boolean;
   /**
-   * Enables compatibility with Anypoint components.
+   * Enables Anypoint theme.
    * @attribute
    */
-  compatibility: boolean;
-  /**
-   * @deprecated Use `compatibility` instead.
-   */
-  legacy: boolean;
-
+  anypoint: boolean;
   /**
    * When set it won't setup `aria-controls` on target element.
    * @attribute

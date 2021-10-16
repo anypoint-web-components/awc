@@ -73,7 +73,7 @@ describe('AnypointTabsElement', () => {
    */
   async function noBarFixture() {
     return fixture(html`
-      <anypoint-tabs nobar>
+      <anypoint-tabs noBar>
         ${renderTabs(3)}
       </anypoint-tabs>
     `);
@@ -84,7 +84,7 @@ describe('AnypointTabsElement', () => {
    */
   async function alignBottomFixture() {
     return fixture(html`
-      <anypoint-tabs alignbottom>
+      <anypoint-tabs alignBottom>
         ${renderTabs(3)}
       </anypoint-tabs>
     `);
@@ -93,9 +93,9 @@ describe('AnypointTabsElement', () => {
   /**
    * @returns {Promise<AnypointTabsElement>}
    */
-  async function compatibilityFixture() {
+  async function anypointFixture() {
     return fixture(html`
-      <anypoint-tabs compatibility>
+      <anypoint-tabs anypoint>
         ${renderTabs(3)}
       </anypoint-tabs>
     `);
@@ -190,7 +190,7 @@ describe('AnypointTabsElement', () => {
       assert.equal(element._contentClass, 'fit-container');
     });
 
-    it('returns both names for both proeprties', async () => {
+    it('returns both names for both properties', async () => {
       const element = await fitContainerFixture();
       element.scrollable = true;
       assert.equal(element._contentClass, 'scrollable fit-container');
@@ -198,7 +198,7 @@ describe('AnypointTabsElement', () => {
   });
 
   describe('_selectionClass', () => {
-    it('returns "hidden" when nobar', async () => {
+    it('returns "hidden" when noBar', async () => {
       const element = await noBarFixture();
       assert.equal(element._selectionClass, 'hidden');
     });
@@ -208,7 +208,7 @@ describe('AnypointTabsElement', () => {
       assert.equal(element._selectionClass, 'align-bottom');
     });
 
-    it('returns empty string when no proeprties', async () => {
+    it('returns empty string when no properties', async () => {
       const element = await basicFixture();
       assert.equal(element._selectionClass, '');
     });
@@ -319,10 +319,10 @@ describe('AnypointTabsElement', () => {
     });
   });
 
-  describe('compatibility mode', () => {
+  describe('anypoint mode', () => {
     let element;
     beforeEach(async () => {
-      element = await compatibilityFixture();
+      element = await anypointFixture();
     });
 
     it('sets noink on children', async () => {
@@ -337,9 +337,9 @@ describe('AnypointTabsElement', () => {
       assert.isTrue(tab.noink);
     });
 
-    it('removes noink when reseting compatibility', async () => {
+    it('removes noink when resetting anypoint', async () => {
       await aTimeout(0);
-      element.compatibility = false;
+      element.anypoint = false;
       const tab = element.items[0];
       assert.isFalse(tab.noink);
     });

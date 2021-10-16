@@ -66,7 +66,7 @@ class SampleElement extends LitElement {
     return html`
     <anypoint-menu-button
       slot="content"
-      ?compatibility="${compatibility}"
+      ?anypoint="${anypoint}"
       ?disabled="${disabled}"
       ?ignoreSelect="${ignoreSelect}"
       ?noOverlap="${noOverlap}"
@@ -75,12 +75,12 @@ class SampleElement extends LitElement {
       <anypoint-icon-button
         slot="dropdown-trigger"
         aria-label="activate for context menu"
-        ?compatibility="${compatibility}">
+        ?anypoint="${anypoint}">
         <iron-icon icon="menu" alt="menu"></iron-icon>
       </anypoint-icon-button>
       <anypoint-listbox
         slot="dropdown-content"
-        ?compatibility="${compatibility}">
+        ?anypoint="${anypoint}">
         <anypoint-item>alpha</anypoint-item>
         <anypoint-item>beta</anypoint-item>
         <anypoint-item>gamma</anypoint-item>

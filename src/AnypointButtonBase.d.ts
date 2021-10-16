@@ -5,8 +5,6 @@ export declare type EmphasisValue = 'low'|'medium'|'high';
 
 /**
  * A base class for Anypoint buttons.
- * Use this class to create buttons that can be elevated (Material Design) and has
- * compatibility layer with the Anypoint platform.
  */
 export declare class AnypointButtonBase  extends ControlStateMixin(ButtonStateMixin(LitElement)) {
   /**
@@ -37,14 +35,10 @@ export declare class AnypointButtonBase  extends ControlStateMixin(ButtonStateMi
    */
   noink?: boolean;
   /**
-   * @deprecated Use legacy instead.
-   */
-  legacy: boolean;
-  /**
-   * Enables compatibility with Anypoint components.
+   * Enables Anypoint theme.
    * @attribute
    */
-  compatibility: boolean;
+  anypoint: boolean;
   constructor();
 
   /**
@@ -57,7 +51,7 @@ export declare class AnypointButtonBase  extends ControlStateMixin(ButtonStateMi
   /**
    * Redirects the `transitionend` from the `material-ripple` element.
    * This is the only way to perform an action when the animation ends instead of counting on `click`.
-   * Note, when compatibility is enabled this event is not dispatched.
+   * Note, when anypoint is enabled this event is not dispatched.
    */
   _transitionEndHandler(e: TransitionEvent): void;
 }

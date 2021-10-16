@@ -3,10 +3,10 @@ import { AnypointDialogMixin } from './mixins/AnypointDialogMixin';
 
 export default class AnypointDialogElement extends AnypointDialogMixin(LitElement) {
   /** 
-   * Enables compatibility theme for Anypoint
+   * Enables Anypoint theme.
    * @attribute
    */
-  compatibility: boolean;
+  anypoint: boolean;
 
   render(): TemplateResult;
 }

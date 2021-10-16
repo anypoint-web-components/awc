@@ -209,14 +209,10 @@ export default class AnypointDropdownMenuElement extends ValidatableMixin(Contro
    */
   outlined: boolean;
   /**
-   * Enables compatibility with Anypoint components.
+   * Enables Anypoint theme.
    * @attribute
    */
-  compatibility: boolean;
-  /**
-   * @deprecated Use `compatibility` instead
-   */
-  legacy: boolean;
+  anypoint: boolean;
   /**
    * When set the label is rendered only when not selected state.
    * It is useful when using the dropdown in an application menu bar.

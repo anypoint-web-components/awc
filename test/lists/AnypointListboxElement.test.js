@@ -43,8 +43,8 @@ describe('AnypointListbox', () => {
   /**
    * @returns {Promise<AnypointListboxElement>}
    */
-  async function compatibilityFixture() {
-    return fixture(html`<anypoint-listbox compatibility>
+  async function anypointFixture() {
+    return fixture(html`<anypoint-listbox anypoint>
       <div>Item 1</div>
       <div>Item 2</div>
       <div>Item 3</div>
@@ -131,43 +131,30 @@ describe('AnypointListbox', () => {
     });
   });
 
-  describe('compatibility state', () => {
-    it('sets compatibility attribute on children', async () => {
-      const element = await compatibilityFixture();
+  describe('anypoint state', () => {
+    it('sets anypoint attribute on children', async () => {
+      const element = await anypointFixture();
       const nodes = element.querySelectorAll('div');
       for (let i = 0; i < nodes.length; i++) {
-        assert.isTrue(nodes[i].hasAttribute('compatibility'));
+        assert.isTrue(nodes[i].hasAttribute('anypoint'));
       }
     });
 
-    it('removes compatibility attribute from the children', async () => {
-      const element = await compatibilityFixture();
-      element.compatibility = false;
+    it('removes anypoint attribute from the children', async () => {
+      const element = await anypointFixture();
+      element.anypoint = false;
       const nodes = element.querySelectorAll('div');
       for (let i = 0; i < nodes.length; i++) {
-        assert.isFalse(nodes[i].hasAttribute('compatibility'));
+        assert.isFalse(nodes[i].hasAttribute('anypoint'));
       }
     });
 
-    it('ignores adding compatibility on children at the init time', async () => {
+    it('ignores adding anypoint on children at the init time', async () => {
       const element = await basicFixture();
       const nodes = element.querySelectorAll('div');
       for (let i = 0; i < nodes.length; i++) {
-        assert.isFalse(nodes[i].hasAttribute('compatibility'));
+        assert.isFalse(nodes[i].hasAttribute('anypoint'));
       }
-    });
-
-    it('sets compatibility on item when setting legacy', async () => {
-      const element = await basicFixture();
-      element.legacy = true;
-      assert.isTrue(element.legacy, 'legacy is set');
-      assert.isTrue(element.compatibility, 'compatibility is set');
-    });
-
-    it('returns compatibility value from item when getting legacy', async () => {
-      const element = await basicFixture();
-      element.compatibility = true;
-      assert.isTrue(element.legacy, 'legacy is set');
     });
   });
 

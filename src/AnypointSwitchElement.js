@@ -19,9 +19,9 @@ export default class AnypointSwitchElement extends ButtonStateMixin(ControlState
     return {
       formDisabled: { type: Boolean, reflect: true },
       /**
-       * Enables Anypoint compatibility
+       * Enables Anypoint theme.
        */
-      compatibility: { type: Boolean, reflect: true }
+      anypoint: { type: Boolean, reflect: true }
     };
   }
 
@@ -63,7 +63,7 @@ export default class AnypointSwitchElement extends ButtonStateMixin(ControlState
     super();
     this.ariaActiveAttribute = 'aria-checked';
     this.checked = false;
-    this.compatibility = false;
+    this.anypoint = false;
     this.toggles = true;
     /* to work with iron-form */
     this._hasIronCheckedElementBehavior = true;
@@ -179,10 +179,10 @@ export default class AnypointSwitchElement extends ButtonStateMixin(ControlState
   }
 
   render() {
-    const { compatibility } = this;
+    const { anypoint } = this;
     return html`
     <style>${this.styles}</style>
-    ${compatibility ?
+    ${anypoint ?
       this._compatibleContent() :
       this._mdContent()}
     <div class="label"><slot></slot></div>

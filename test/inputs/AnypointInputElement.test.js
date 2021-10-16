@@ -1154,24 +1154,6 @@ describe('<anypoint-input>', () => {
     });
   });
 
-  describe('compatibility mode', () => {
-    it('sets compatibility on item when setting legacy', async () => {
-      const element = await basicFixture();
-      // @ts-ignore
-      element.legacy = true;
-      // @ts-ignore
-      assert.isTrue(element.legacy, 'legacy is set');
-      assert.isTrue(element.compatibility, 'compatibility is set');
-    });
-
-    it('returns compatibility value from item when getting legacy', async () => {
-      const element = await basicFixture();
-      element.compatibility = true;
-      // @ts-ignore
-      assert.isTrue(element.legacy, 'legacy is set');
-    });
-  });
-
   describe('Event re-targeting', () => {
     it('re-targets search event', async () => {
       const element = await searchFixture();
@@ -1185,36 +1167,36 @@ describe('<anypoint-input>', () => {
 
   describe('a11y', () => {
     async function a11yBasicFixture() {
-      return fixture(`<anypoint-input value="test value">
+      return fixture(html`<anypoint-input value="test value">
       <label slot="label">test label</label>
       </anypoint-input>`);
     }
 
     async function a11yNoLabelFixture() {
-      return fixture(`<anypoint-input value="test value"></anypoint-input>`);
+      return fixture(html`<anypoint-input value="test value"></anypoint-input>`);
     }
 
     async function a11yPrefixFixture() {
-      return fixture(`<anypoint-input name="amount-usd">
+      return fixture(html`<anypoint-input name="amount-usd">
         <label slot="label">Amount to transfer</label>
         <span slot="prefix" aria-label="Value in US dollars">$</span>
       </anypoint-input>`);
     }
 
     async function a11ySuffixFixture() {
-      return fixture(`<anypoint-input type="email" name="email-suffix">
+      return fixture(html`<anypoint-input type="email" name="email-suffix">
         <label slot="label">Email</label>
         <div slot="suffix">@mulesoft.com</div>
       </anypoint-input>`);
     }
 
-    async function formFixtrue() {
-      return fixture(`
+    async function formFixture() {
+      return fixture(html`
       <form>
         <fieldset name="form-fields">
           <anypoint-input name="formItem" value="test-value">
             <label slot="label">Text input</label>
-          </anypoint-listbox>
+          </anypoint-input>
         </fieldset>
         <input type="reset" value="Reset">
         <input type="submit" value="Submit">
@@ -1222,13 +1204,13 @@ describe('<anypoint-input>', () => {
     }
 
     async function a11yOutlinedFixture() {
-      return fixture(`<anypoint-input value="test value" outlined>
+      return fixture(html`<anypoint-input value="test value" outlined>
       <label slot="label">test label</label>
       </anypoint-input>`);
     }
 
-    async function a11yCompatibilityFixture() {
-      return fixture(`<anypoint-input value="test value" compatibility>
+    async function a11yAnypointFixture() {
+      return fixture(html`<anypoint-input value="test value" anypoint>
       <label slot="label">test label</label>
       </anypoint-input>`);
     }
@@ -1266,7 +1248,7 @@ describe('<anypoint-input>', () => {
     });
 
     it('is accessible in a form', async () => {
-      const element = await formFixtrue();
+      const element = await formFixture();
       await assert.isAccessible(element);
     });
 
@@ -1275,8 +1257,8 @@ describe('<anypoint-input>', () => {
       await assert.isAccessible(element);
     });
 
-    it('is accessible when compatibility mode', async () => {
-      const element = await a11yCompatibilityFixture();
+    it('is accessible when anypoint mode', async () => {
+      const element = await a11yAnypointFixture();
       await assert.isAccessible(element);
     });
   });
@@ -1293,7 +1275,7 @@ describe('<anypoint-input>', () => {
       element.dataType = 'input';
       element.required = true;
       element.name = 'page';
-      element.compatibility = true;
+      element.anypoint = true;
       element.readOnly = false;
       await nextFrame();
 

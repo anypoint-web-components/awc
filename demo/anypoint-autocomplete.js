@@ -103,7 +103,7 @@ class ComponentDemo extends DemoPage {
             aria-label="Input field with list suggestions">
             <anypoint-input
               ?outlined="${outlined}"
-              ?compatibility="${anypoint}"
+              ?anypoint="${anypoint}"
               id="fruitsSuggestions1"
               >
               <label slot="label">Enter fruit name</label>
@@ -113,7 +113,7 @@ class ComponentDemo extends DemoPage {
               slot="content"
               openOnFocus
               target="fruitsSuggestions1"
-              ?compatibility="${anypoint}"
+              ?anypoint="${anypoint}"
               ?noAnimations="${demoNoAnimation}"
               ?loader="${demoUseLoader}"
               .source="${items}"
@@ -172,7 +172,7 @@ class ComponentDemo extends DemoPage {
         <ul>
           <li><b>Regular</b> - The list is styled for Material Design</li>
           <li>
-            <b>Compatibility</b> - To provide compatibility with Anypoint design
+            <b>Anypoint</b> - To enable Anypoint theme
           </li>
         </ul>
 

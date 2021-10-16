@@ -38,7 +38,7 @@ export default css`
   pointer-events: none;
 }
 
-:host([emphasis="low"]:not([compatibility])) {
+:host([emphasis="low"]:not([anypoint])) {
   box-shadow: none !important;
 }
 
@@ -50,7 +50,7 @@ export default css`
   background-color: var(--anypoint-button-emphasis-low-hover-background-color, rgba(0, 162, 223, .08));
 }
 
-:host(:not([pressed]):not([compatibility])[emphasis="low"][focused]) {
+:host(:not([pressed]):not([anypoint])[emphasis="low"][focused]) {
   background-color: var(--anypoint-button-emphasis-low-focus-background-color, rgba(0, 162, 223, .12));
   color: var(--anypoint-button-emphasis-low-focus-color, var(--anypoint-color-coreBlue4));
 }
@@ -59,7 +59,7 @@ export default css`
   background-color: var(--anypoint-button-emphasis-low-active-background-color, rgba(0, 162, 223, .16));
 }
 
-:host([emphasis="medium"]:not([compatibility])) {
+:host([emphasis="medium"]:not([anypoint])) {
   box-shadow: none !important;
 }
 
@@ -86,27 +86,27 @@ export default css`
   background-color: var(--anypoint-button-emphasis-low-active-background-color, rgba(94, 102, 249, 0.16));
 }
 
-:host([emphasis="high"]:not([compatibility])) {
+:host([emphasis="high"]:not([anypoint])) {
   will-change: box-shadow;
   background-color: var(--anypoint-button-emphasis-high-background-color, var(--anypoint-color-primary));
   color: var(--anypoint-button-emphasis-high-color, var(--anypoint-color-tertiary));
 }
 
-:host([emphasis="high"][disabled]:not([compatibility])) {
+:host([emphasis="high"][disabled]:not([anypoint])) {
   background: var(--anypoint-button-disabled-background-color, #eaeaea);
   color: var(--anypoint-button-disabled-color, #a8a8a8);
   box-shadow: none;
 }
 
-:host(:not([pressed]):not([compatibility])[emphasis="high"]:hover) {
+:host(:not([pressed]):not([anypoint])[emphasis="high"]:hover) {
   background-color: var(--anypoint-button-emphasis-high-hover-background-color, rgba(0, 162, 223, 0.87));
 }
 
-:host(:not([pressed]):not([compatibility])[emphasis="high"]:focus) {
+:host(:not([pressed]):not([anypoint])[emphasis="high"]:focus) {
   background-color: var(--anypoint-button-emphasis-high-focus-background-color, rgba(0, 162, 223, 0.87));
 }
 
-:host(:not([pressed]):not([compatibility])[emphasis="high"][active]) {
+:host(:not([pressed]):not([anypoint])[emphasis="high"][active]) {
   background-color: var(--anypoint-button-emphasis-high-active-background-color, var(--anypoint-color-indigo3));
 }
 
@@ -128,38 +128,38 @@ export default css`
               0 3px 5px -1px rgba(0, 0, 0, 0.4);
 }
 
-:host([emphasis="high"][compatibility]) {
+:host([emphasis="high"][anypoint]) {
   background-color: var(--anypoint-button-background-color, var(--anypoint-color-primary));
   color: var(--anypoint-button-color, var(--anypoint-color-tertiary));
   border-radius: var(--anypoint-button-border-radius, 2px);
   height: 40px;
 }
 
-:host([emphasis="high"][compatibility]:hover) {
+:host([emphasis="high"][anypoint]:hover) {
   background-color: var(--anypoint-button-hover-background-color, var(--anypoint-color-coreBlue4));
 }
 
-:host([compatibility][focused]) {
-  box-shadow: var(--anypoint-button-foxus-box-shadow-color, 0 0 0 3px #abe2f5);
+:host([anypoint][focused]) {
+  box-shadow: var(--anypoint-button-focus-box-shadow-color, 0 0 0 3px #abe2f5);
 }
 
-:host([emphasis="high"][compatibility][pressed]) {
+:host([emphasis="high"][anypoint][pressed]) {
   background-color: var(--anypoint-button-hover-background-color, var(--anypoint-color-coreBlue5));
 }
 
-:host([emphasis="high"][compatibility][active]) {
+:host([emphasis="high"][anypoint][active]) {
   background-color: var(--anypoint-button-active-background-color, var(--anypoint-color-coreBlue5));
 }
 
-:host([compatibility]) {
+:host([anypoint]) {
   text-transform: var(--anypoint-button-text-transform, initial);
 }
 
-:host([compatibility]) material-ripple {
+:host([anypoint]) material-ripple {
   display: none;
 }
 
-:host([compatibility][disabled]) {
+:host([anypoint][disabled]) {
   background: var(--anypoint-button-disabled-background-color, #eaeaea);
   color: var(--anypoint-button-disabled-color, #a8a8a8);
 }

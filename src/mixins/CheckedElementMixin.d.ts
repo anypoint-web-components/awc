@@ -63,7 +63,7 @@ interface CheckedElementMixin extends ValidatableMixin {
   _requiredChanged(required: boolean): void;
 
   /**
-   * Fire `iron-changed`for compatibility with iron elements, `change` event
+   * Fires `iron-changed`for iron elements, `change` event
    * for consistency with HTML elements, and `checked-changed` for Polymer.
    */
   _checkedChanged(value: boolean): void;

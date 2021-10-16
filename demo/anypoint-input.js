@@ -24,44 +24,23 @@ class ComponentDemo extends DemoPage {
     this.initObservableProperties([
       'readonly',
       'formData',
-      'textFieldOutlined',
-      'textFieldCompatibility',
       'textFiledLeading',
       'textFiledTrailing',
       'textFieldError',
       'textFieldInfo',
       'textFiledNoLabelFloat',
       'typeSelector',
-      'textAreaOutlined',
-      'textAreaCompatibility',
       'textAreaInfo',
       'textAreaError',
       'textAreaNoLabelFloat',
-      'typeFieldOutlined',
-      'typeFieldCompatibility',
       'mainFiledReadOnly',
       'mainFiledDisabled',
-      'maskedOutlined',
-      'maskedCompatibility',
       'maskedNoLabelFloat',
       'maskedDisabled',
       'maskedReadOnly'
     ]);
-    this._readonlyHandler = this._readonlyHandler.bind(this);
-    this._valueHandler = this._valueHandler.bind(this);
-    this._textFiledStateHandler = this._textFiledStateHandler.bind(this);
-    this._typesFiledStateHandler = this._typesFiledStateHandler.bind(this);
-    this._textFiledAssistiveHandler = this._textFiledAssistiveHandler.bind(this);
-    this._textAreaStateHandler = this._textAreaStateHandler.bind(this);
-    this._maskedStateHandler = this._maskedStateHandler.bind(this);
-    this._textAreaAssistiveHandler = this._textAreaAssistiveHandler.bind(this);
-    this._textFiledTypeHandler = this._textFiledTypeHandler.bind(this);
-    this._toggleMainOption = this._toggleMainOption.bind(this);
 
-    this._componentName = 'anypoint-input';
-    this.textFieldStates = ['Normal', 'Outlined', 'Anypoint'];
-    this.textFieldCompatibility = false;
-    this.textFieldOutlined = false;
+    this.componentName = 'anypoint-input';    
     /** @type any */
     this.typeSelector = 'text';
     this.darkThemeActive = false;
@@ -76,11 +55,6 @@ class ComponentDemo extends DemoPage {
     this.maskedReadOnly = false;
   }
 
-  _toggleMainOption(e) {
-    const { name, checked } = e.target;
-    this[name] = checked;
-  }
-
   _readonlyHandler(e) {
     this.readonly = e.target.checked;
   }
@@ -88,14 +62,6 @@ class ComponentDemo extends DemoPage {
   _valueHandler(e) {
     const prop = e.target.dataset.target;
     this[prop] = e.detail.value;
-  }
-
-  _mdHandler(e) {
-    if (e.target.checked) {
-      document.body.classList.add('material');
-    } else {
-      document.body.classList.remove('material');
-    }
   }
 
   _formSubmit(e) {
@@ -109,30 +75,6 @@ class ComponentDemo extends DemoPage {
       result[node.name] = node.value;
     }
     this.formData = JSON.stringify(result, null, 2);
-  }
-
-  _textFiledStateHandler(e) {
-    const state = e.detail.value;
-    this.textFieldOutlined = state === 1;
-    this.textFieldCompatibility = state === 2;
-  }
-
-  _typesFiledStateHandler(e) {
-    const state = e.detail.value;
-    this.typeFieldOutlined = state === 1;
-    this.typeFieldCompatibility = state === 2;
-  }
-
-  _textAreaStateHandler(e) {
-    const state = e.detail.value;
-    this.textAreaOutlined = state === 1;
-    this.textAreaCompatibility = state === 2;
-  }
-
-  _maskedStateHandler(e) {
-    const state = e.detail.value;
-    this.maskedOutlined = state === 1;
-    this.maskedCompatibility = state === 2;
   }
 
   _textFiledAssistiveHandler(e) {
@@ -179,9 +121,9 @@ class ComponentDemo extends DemoPage {
 
   _demoTemplate() {
     const {
-      textFieldStates,
-      textFieldOutlined,
-      textFieldCompatibility,
+      demoStates,
+      outlined,
+      anypoint,
       darkThemeActive,
       textFiledLeading,
       textFiledTrailing,
@@ -200,16 +142,16 @@ class ComponentDemo extends DemoPage {
           configuration options.
         </p>
         <interactive-demo
-          .states="${textFieldStates}"
-          @state-changed="${this._textFiledStateHandler}"
+          .states="${demoStates}"
+          @state-changed="${this._demoStateHandler}"
           ?dark="${darkThemeActive}"
         >
           <anypoint-input
             slot="content"
             name="main"
             title="Text field"
-            ?outlined="${textFieldOutlined}"
-            ?compatibility="${textFieldCompatibility}"
+            ?outlined="${outlined}"
+            ?anypoint="${anypoint}"
             .infoMessage="${infoMessage}"
             invalidMessage="This value is invalid"
             ?invalid="${textFieldError}"
@@ -323,7 +265,7 @@ class ComponentDemo extends DemoPage {
           <li><b>Filled</b> (normal) - For low emphasis inputs</li>
           <li><b>Outlined</b> - For high emphasis inputs</li>
           <li>
-            <b>Compatibility</b> - To provide compatibility with Anypoint design
+            <b>Anypoint</b> - To enable Anypoint theme
           </li>
         </ul>
 
@@ -350,9 +292,9 @@ class ComponentDemo extends DemoPage {
         </p>
 
         <p>
-          The compatibility text filed style is for Anypoint native applications for
+          The anypoint text filed style is for Anypoint native applications for
           easy integration. Every component including this element should expose
-          the <code>compatibility</code> property and propagate it to the text filed.
+          the <code>anypoint</code> property and propagate it to the text filed.
           An application importing the component can simply set this value to
           adjust styling to the general UI.
         </p>
@@ -469,9 +411,9 @@ class ComponentDemo extends DemoPage {
 
   _typesTemplate() {
     const {
-      textFieldStates,
-      typeFieldOutlined,
-      typeFieldCompatibility,
+      demoStates,
+      outlined,
+      anypoint,
       darkThemeActive,
       typeSelector,
     } = this;
@@ -484,15 +426,15 @@ class ComponentDemo extends DemoPage {
 
         <interactive-demo
           opened
-          .states="${textFieldStates}"
-          @state-changed="${this._typesFiledStateHandler}"
+          .states="${demoStates}"
+          @state-changed="${this._demoStateHandler}"
           ?dark="${darkThemeActive}"
         >
           <anypoint-input
             slot="content"
             title="Text field"
-            ?outlined="${typeFieldOutlined}"
-            ?compatibility="${typeFieldCompatibility}"
+            ?outlined="${outlined}"
+            ?anypoint="${anypoint}"
             .type="${typeSelector}"
             name="ex7"
           >
@@ -675,11 +617,11 @@ class ComponentDemo extends DemoPage {
 
   _textareaTemplate() {
     const {
-      textFieldStates,
+      demoStates,
+      outlined,
+      anypoint,
       darkThemeActive,
       textAreaInfo,
-      textAreaOutlined,
-      textAreaCompatibility,
       textAreaError,
       textAreaNoLabelFloat,
     } = this;
@@ -696,16 +638,16 @@ class ComponentDemo extends DemoPage {
       </p>
 
       <interactive-demo
-        .states="${textFieldStates}"
-        @state-changed="${this._textAreaStateHandler}"
+        .states="${demoStates}"
+        @state-changed="${this._demoStateHandler}"
         ?dark="${darkThemeActive}"
       >
         <section slot="content">
           <anypoint-textarea
             name="main"
             title="Text field"
-            ?outlined="${textAreaOutlined}"
-            ?compatibility="${textAreaCompatibility}"
+            ?outlined="${outlined}"
+            ?anypoint="${anypoint}"
             .infoMessage="${infoMessage}"
             invalidMessage="This value is invalid"
             ?invalid="${textAreaError}"
@@ -761,10 +703,10 @@ class ComponentDemo extends DemoPage {
 
   _maskedInputTemplate() {
     const {
-      textFieldStates,
+      demoStates,
+      outlined,
+      anypoint,
       darkThemeActive,
-      maskedOutlined,
-      maskedCompatibility,
       maskedNoLabelFloat,
       maskedDisabled,
       maskedReadOnly,
@@ -778,16 +720,16 @@ class ComponentDemo extends DemoPage {
       </p>
 
       <interactive-demo
-        .states="${textFieldStates}"
-        @state-changed="${this._maskedStateHandler}"
+        .states="${demoStates}"
+        @state-changed="${this._demoStateHandler}"
         ?dark="${darkThemeActive}"
       >
         <section slot="content">
           <anypoint-masked-input
             name="main"
             title="Text field"
-            ?outlined="${maskedOutlined}"
-            ?compatibility="${maskedCompatibility}"
+            ?outlined="${outlined}"
+            ?anypoint="${anypoint}"
             ?nolabelfloat="${maskedNoLabelFloat}"
             ?disabled="${maskedDisabled}"
             ?readOnly="${maskedReadOnly}"

@@ -87,10 +87,10 @@ export default class AnypointMenuButtonElement extends ControlStateMixin(LitElem
    */
   closeOnActivate: boolean;
   /**
-   * Enables Anypoint compatibility
+   * Enables Anypoint theme.
    * @attribute
    */
-  compatibility: boolean;
+  anypoint: boolean;
   /**
    * This is the element intended to be bound as the focus target
    * for the `iron-dropdown` contained by `paper-menu-button`.

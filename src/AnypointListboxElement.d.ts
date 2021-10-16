@@ -10,15 +10,10 @@ export declare function ensureNodeId(node: HTMLElement): void;
 
 export default class AnypointListboxElement extends MenuMixin(SelectableMixin(MultiSelectableMixin(LitElement))) {
   /**
-   * Enables compatibility with Anypoint components.
+   * Enables Anypoint theme.
    * @attribute
    */
-  compatibility: boolean;
-  /**
-   * Enables compatibility with Anypoint components.
-   * @deprecated Use `compatibility` instead.
-   */
-  legacy: boolean;
+  anypoint: boolean;
   render(): TemplateResult;
   constructor();
   connectedCallback(): void;
@@ -28,5 +23,5 @@ export default class AnypointListboxElement extends MenuMixin(SelectableMixin(Mu
   _selectHandler(e: CustomEvent): void;
   _setActiveDescendant(node: HTMLElement): void;
   _deselectHandler(): void;
-  _updateChildrenCompatibility(compatibility: boolean): void;
+  _updateChildrenAnypoint(anypoint: boolean): void;
 }
