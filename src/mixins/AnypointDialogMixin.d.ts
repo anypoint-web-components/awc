@@ -1,10 +1,10 @@
-import { ArcOverlayMixin } from '@advanced-rest-client/arc-overlay-mixin';
+import { OverlayMixin } from './OverlayMixin';
 
 declare function AnypointDialogMixin<T extends new (...args: any[]) => {}>(base: T): T & AnypointDialogMixinConstructor;
 interface AnypointDialogMixinConstructor {
   new(...args: any[]): AnypointDialogMixin;
 }
-interface AnypointDialogMixin extends ArcOverlayMixin {
+interface AnypointDialogMixin extends OverlayMixin {
   /**
    * If `modal` is true, this implies `noCancelOnOutsideClick`,
    * `noCancelOnEscKey` and `withBackdrop`.

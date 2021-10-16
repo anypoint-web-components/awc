@@ -732,7 +732,7 @@ const mxFunction = base => {
  *
  * ```javascript
  * import { LitElement } from 'lit-element';
- * import { FitMixin } from '@advanced-rest-client/arc-fit-mixin';
+ * import { FitMixin } from 'anypoint-web-components/awc';
  *
  * class ArcFitImpl extends FitMixin(LitElement) {
  *  ...

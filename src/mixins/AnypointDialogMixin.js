@@ -1,5 +1,5 @@
-import { ArcOverlayMixin } from '@advanced-rest-client/arc-overlay-mixin';
 import { dedupeMixin } from '@open-wc/dedupe-mixin';
+import { OverlayMixin } from './OverlayMixin.js';
 
 /* eslint-disable no-plusplus */
 /* eslint-disable class-methods-use-this */
@@ -8,7 +8,7 @@ import { dedupeMixin } from '@open-wc/dedupe-mixin';
  * @param {typeof HTMLElement} base
  */
 const mxFunction = (base) => {
-  class AnypointDialogMixinImpl extends ArcOverlayMixin(base) {
+  class AnypointDialogMixinImpl extends OverlayMixin(base) {
     static get properties() {
       return {
         /**

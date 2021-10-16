@@ -1,5 +1,5 @@
 import { html, css, LitElement } from 'lit-element';
-import { ArcOverlayMixin } from '@advanced-rest-client/arc-overlay-mixin/arc-overlay-mixin.js';
+import { OverlayMixin } from './mixins/OverlayMixin.js';
 import { ControlStateMixin } from './mixins/ControlStateMixin.js';
 
 /* eslint-disable class-methods-use-this */
@@ -7,7 +7,7 @@ import { ControlStateMixin } from './mixins/ControlStateMixin.js';
 /* eslint-disable no-continue */
 /* eslint-disable no-param-reassign */
 
-export default class AnypointDropdownElement extends ArcOverlayMixin(ControlStateMixin(LitElement)) {
+export default class AnypointDropdownElement extends OverlayMixin(ControlStateMixin(LitElement)) {
   get styles() {
     return css`
     :host {
@@ -205,7 +205,7 @@ export default class AnypointDropdownElement extends ArcOverlayMixin(ControlStat
   }
 
   _updateOverlayPosition() {
-    // from ArcOverlayMixin
+    // from OverlayMixin
     if (this.isAttached) {
       // from ResizableMixin
       this.notifyResize();
@@ -214,7 +214,7 @@ export default class AnypointDropdownElement extends ArcOverlayMixin(ControlStat
 
   _openedChanged(opened) {
     if (opened && this.disabled) {
-      // from ArcOverlayMixin
+      // from OverlayMixin
       this.cancel();
     } else {
       this.cancelAnimation();

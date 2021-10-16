@@ -298,7 +298,7 @@ const mxFunction = base => {
  *
  * ```javascript
  * import { LitElement } from 'lit-element';
- * import { ResizableMixin } from '@advanced-rest-client/arc-resizable-mixin.js';
+ * import { ResizableMixin } from 'anypoint-web-components/awc';
  *
  * class ResizableImpl extends ResizableMixin(LitElement) {
  *  ...

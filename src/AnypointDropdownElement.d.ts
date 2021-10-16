@@ -1,8 +1,8 @@
 import { TemplateResult, LitElement } from 'lit-element';
-import { ArcOverlayMixin } from '@advanced-rest-client/arc-overlay-mixin';
+import { OverlayMixin } from './mixins/OverlayMixin.js';
 import { ControlStateMixin } from './mixins/ControlStateMixin';
 
-export default class AnypointDropdownElement extends ArcOverlayMixin(ControlStateMixin(LitElement)) {
+export default class AnypointDropdownElement extends OverlayMixin(ControlStateMixin(LitElement)) {
   /**
    * An animation config. If provided, this will be used to animate the
    * opening of the dropdown. Pass an Array for multiple animations.

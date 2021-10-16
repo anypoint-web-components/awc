@@ -64,7 +64,7 @@ The following attributes are supported for compatibility with older and Polymer 
 
 ```javascript
 import { LitElement } from 'lit-element';
-import { FitMixin } from '@advanced-rest-client/awc';
+import { FitMixin } from '@anypoint-web-components/awc';
 
 class ArcFitImpl extends FitMixin(LitElement) {
   static get properties() {
