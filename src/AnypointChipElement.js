@@ -1,8 +1,8 @@
 /* eslint-disable lit-a11y/click-events-have-key-events */
 /* eslint-disable class-methods-use-this */
 import { LitElement, html } from 'lit-element';
-import { clear } from '@advanced-rest-client/arc-icons';
 import { classMap } from 'lit-html/directives/class-map.js';
+import { clear } from './resources/Icons.js';
 import elementStyles from './styles/ChipStyles.js';
 
 /** @typedef {import('lit-element').SVGTemplateResult} SVGTemplateResult */

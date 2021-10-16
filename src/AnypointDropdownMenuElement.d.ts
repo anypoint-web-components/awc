@@ -1,9 +1,7 @@
 import { TemplateResult, LitElement, CSSResult } from 'lit-element';
 import { ControlStateMixin } from './mixins/ControlStateMixin';
 import { ValidatableMixin, ValidationResult } from './mixins/ValidatableMixin';
-
-export type VerticalAlign = 'top' | 'bottom' | 'middle' | 'auto';
-export type HorizontalAlign = 'left' | 'right' | 'center' | 'auto';
+import { VerticalAlign, HorizontalAlign } from './mixins/FitMixin';
 
 /**
  * Accessible dropdown menu for Anypoint platform.

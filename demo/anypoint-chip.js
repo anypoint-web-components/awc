@@ -1,7 +1,7 @@
 import { html } from 'lit-html';
-import { clearAll } from '@advanced-rest-client/arc-icons/ArcIcons.js';
-import '@advanced-rest-client/arc-icons/arc-icon.js';
+import { clearAll } from './lib/Icons.js';
 import { DemoPage } from './lib/DemoPage.js';
+import './lib/demo-icon.js';
 import './lib/interactive-demo.js';
 import '../anypoint-checkbox.js';
 import '../anypoint-chip.js';
@@ -106,7 +106,7 @@ class ComponentDemoPage extends DemoPage {
             ?removable="${demoRemovable}"
             ?disabled="${demoDisabled}"
           >
-            ${demoLeadingIcon ? html`<arc-icon icon="message" slot="icon"></arc-icon>`: ''}
+            ${demoLeadingIcon ? html`<demo-icon icon="message" slot="icon"></demo-icon>`: ''}
             Biking
           </anypoint-chip>
 
@@ -168,7 +168,7 @@ class ComponentDemoPage extends DemoPage {
           <a href="https://material.io/components/chips/"
             >chips</a
           >
-          documentation in Material Defign documentation for principles and
+          documentation in Material Design documentation for principles and
           anatomy of a chip.
         </p>
 
@@ -178,12 +178,12 @@ class ComponentDemoPage extends DemoPage {
         </p>
         <div>
           <anypoint-chip removable="">
-            <arc-icon icon="rateReview" slot="icon"></arc-icon>
+            <demo-icon icon="rateReview" slot="icon"></demo-icon>
             Portland
           </anypoint-chip>
 
           <anypoint-chip removable="">
-            <arc-icon icon="refresh" slot="icon"></arc-icon>
+            <demo-icon icon="refresh" slot="icon"></demo-icon>
             Biking
           </anypoint-chip>
         </div>
@@ -211,7 +211,7 @@ class ComponentDemoPage extends DemoPage {
             @click="${this._toggleAmenitiesFilter}"
             toggles
             data-index="${index}">
-            ${item.selected ? html`<arc-icon icon="search" slot="icon"></arc-icon>` : ''}
+            ${item.selected ? html`<demo-icon icon="search" slot="icon"></demo-icon>` : ''}
             ${item.label}
           </anypoint-chip>`)}
         </div>
@@ -222,17 +222,17 @@ class ComponentDemoPage extends DemoPage {
         </p>
         <div class="wrap-horizontal actions">
           <anypoint-chip @click="${this._handleAction}" data-action="brightness">
-            <arc-icon icon="search" slot="icon"></arc-icon>
+            <demo-icon icon="search" slot="icon"></demo-icon>
             <span>Turn on lights</span>
           </anypoint-chip>
 
           <anypoint-chip @click="${this._handleAction}" data-action="alarm">
-            <arc-icon icon="addCircleOutline" slot="icon"></arc-icon>
+            <demo-icon icon="addCircleOutline" slot="icon"></demo-icon>
             <span>Set alarm</span>
           </anypoint-chip>
 
           <anypoint-chip @click="${this._handleAction}" data-action="clear">
-            <arc-icon icon="clearAll" slot="icon"></arc-icon>
+            <demo-icon icon="clearAll" slot="icon"></demo-icon>
             <span>Clear all</span>
           </anypoint-chip>
         </div>
@@ -245,12 +245,12 @@ class ComponentDemoPage extends DemoPage {
           <div class="wrap-horizontal actions">
             <div class="themed">
               <anypoint-chip>
-                <arc-icon icon="desktopWindows" slot="icon"></arc-icon>
+                <demo-icon icon="desktopWindows" slot="icon"></demo-icon>
                 Styled text child
               </anypoint-chip>
 
               <anypoint-chip>
-                <arc-icon icon="edit" slot="icon"></arc-icon>
+                <demo-icon icon="edit" slot="icon"></demo-icon>
                 <span>Styled element child</span>
               </anypoint-chip>
             </div>
@@ -265,12 +265,12 @@ class ComponentDemoPage extends DemoPage {
         <div class="wrap-horizontal actions">
           <div class="themed-parts">
             <anypoint-chip removable>
-              <arc-icon icon="expandMore" slot="icon"></arc-icon>
+              <demo-icon icon="expandMore" slot="icon"></demo-icon>
               Styled with CSS parts
             </anypoint-chip>
 
             <anypoint-chip>
-              <arc-icon icon="expandLess" slot="icon"></arc-icon>
+              <demo-icon icon="expandLess" slot="icon"></demo-icon>
               <span>Also styled with parts</span>
             </anypoint-chip>
           </div>

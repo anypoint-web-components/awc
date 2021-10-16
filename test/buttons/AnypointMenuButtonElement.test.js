@@ -1,6 +1,5 @@
 /* eslint-disable prefer-destructuring */
 import { fixture, expect, nextFrame, assert, html } from '@open-wc/testing';
-import '@advanced-rest-client/arc-icons/arc-icon.js';
 import '../../anypoint-menu-button.js';
 
 /** @typedef {import('../..').AnypointMenuButtonElement} AnypointMenuButtonElement */

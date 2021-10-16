@@ -1,7 +1,7 @@
 /* eslint-disable class-methods-use-this */
 /* eslint-disable no-param-reassign */
 import { html, LitElement } from 'lit-element';
-import '@advanced-rest-client/arc-icons/arc-icon';
+import './demo-icon.js';
 import '../../anypoint-tabs.js';
 import '../../anypoint-tab.js';
 import '../../anypoint-button.js';
@@ -201,10 +201,10 @@ export default class InteractiveDemoElement extends LitElement {
 
   _configTemplate() {
     const { opened } = this;
-    const klass = opened ? 'opened' : '';
+    const css = opened ? 'opened' : '';
     const hdn = opened ? 'false' : 'true';
     return html`
-    <div id="cnfPanel" class="demo-config ${klass}" aria-hidden="${hdn}">
+    <div id="cnfPanel" class="demo-config ${css}" aria-hidden="${hdn}">
       <div class="config-title">
         <h3>Configuration</h3>
         <anypoint-icon-button
@@ -213,7 +213,7 @@ export default class InteractiveDemoElement extends LitElement {
           tabindex="${opened ? '0': '-1'}"
           @click="${this._toggleOptions}"
         >
-          <arc-icon icon="close"></arc-icon>
+          <demo-icon icon="close"></demo-icon>
         </anypoint-icon-button>
       </div>
       <div class="options">

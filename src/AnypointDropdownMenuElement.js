@@ -3,12 +3,14 @@ import { ControlStateMixin } from './mixins/ControlStateMixin.js';
 import { ValidatableMixin } from './mixins/ValidatableMixin.js';
 import '../anypoint-dropdown.js';
 import '../anypoint-icon-button.js';
-import { arrowDown } from './AnypointDropdownMenuIcons.js';
+import { arrowDown } from './resources/Icons.js';
 import DropdownStyles from './styles/DropdownMenu.js';
 
 /** @typedef {import('./mixins/ValidatableMixin').ValidationResult} ValidationResult */
 /** @typedef {import('./AnypointDropdownElement').default} AnypointDropdownElement */
 /** @typedef {import('./AnypointListboxElement').default} AnypointListboxElement */
+/** @typedef {import('./mixins/FitMixin').HorizontalAlign} HorizontalAlign */
+/** @typedef {import('./mixins/FitMixin').VerticalAlign} VerticalAlign */
 
 /* eslint-disable class-methods-use-this */
 /* eslint-disable no-plusplus */
@@ -527,7 +529,9 @@ export default class AnypointDropdownMenuElement extends ValidatableMixin(Contro
 
   constructor() {
     super();
+    /** @type HorizontalAlign */
     this.horizontalAlign = 'left';
+    /** @type VerticalAlign */
     this.verticalAlign = 'top';
     this.noAnimations = false;
     this.allowOutsideScroll = false;

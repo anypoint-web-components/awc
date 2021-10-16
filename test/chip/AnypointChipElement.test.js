@@ -1,7 +1,8 @@
 import { fixture, assert, nextFrame, aTimeout } from '@open-wc/testing';
 import sinon from 'sinon';
 import * as MockInteractions from '@polymer/iron-test-helpers/mock-interactions.js';
-import { clearAll, clear } from '@advanced-rest-client/arc-icons/ArcIcons.js';
+import { clearAll } from '../../demo/lib/Icons.js';
+import { clear } from '../../src/resources/Icons.js';
 import '../../anypoint-chip.js';
 import { hasIconNodeValue } from '../../src/AnypointChipElement.js';
 
@@ -463,11 +464,11 @@ describe('AnypointChipElement', () => {
       element = await basicFixture();
     });
 
-    it('has default close icon', () => {
+    it('has the default close icon', () => {
       assert.equal(element.removeIcon, clear);
     });
 
-    it('sets custom icon', () => {
+    it('sets a custom icon', () => {
       element.removeIcon = clearAll;
       assert.equal(element.removeIcon, clearAll);
     });

@@ -3,7 +3,7 @@ import { html} from 'lit-element';
 import {classMap} from 'lit-html/directives/class-map.js';
 import AnypointInputElement from './AnypointInputElement.js';
 import '../anypoint-dropdown.js';
-import { arrowDown } from './InputComboboxIcons.js';
+import { arrowDown } from './resources/Icons.js';
 import elementStyles from './styles/InputComboboxStyles.js';
 
 export const dropdownTemplate = Symbol('dropdownTemplate');
@@ -17,6 +17,9 @@ export const keydownHandler = Symbol('keydownHandler');
 export const onArrowUp = Symbol('onArrowUp');
 export const onArrowDown = Symbol('onArrowDown');
 export const onEsc = Symbol('onEsc');
+
+/** @typedef {import('./mixins/FitMixin').HorizontalAlign} HorizontalAlign */
+/** @typedef {import('./mixins/FitMixin').VerticalAlign} VerticalAlign */
 
 /**
  * `anypoint-input-combobox`
@@ -157,7 +160,9 @@ export default class AnypointInputComboboxElement extends AnypointInputElement {
 
   constructor() {
     super();
+    /** @type HorizontalAlign */
     this.horizontalAlign = 'left';
+    /** @type VerticalAlign */
     this.verticalAlign = 'top';
     this.noAnimations = false;
     this.allowOutsideScroll = false;

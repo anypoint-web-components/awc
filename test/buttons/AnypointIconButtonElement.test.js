@@ -1,7 +1,7 @@
 import { fixture, assert, html, oneEvent } from '@open-wc/testing';
 import sinon from 'sinon';
 import '../../anypoint-icon-button.js';
-import '@advanced-rest-client/arc-icons/arc-icon.js';
+import '../../demo/lib/demo-icon.js';
 import * as MockInteractions from '@polymer/iron-test-helpers/mock-interactions.js';
 import { keyDownUp } from '../lib/helpers.js';
 
@@ -13,7 +13,7 @@ describe('<anypoint-icon-button>', () => {
    */
   async function basicFixture() {
     return fixture(html`<anypoint-icon-button>
-        <arc-icon icon="add"></arc-icon>
+        <demo-icon icon="add"></demo-icon>
     </anypoint-icon-button>`);
   }
 
@@ -22,7 +22,7 @@ describe('<anypoint-icon-button>', () => {
    */
   async function noinkFixture() {
     return fixture(html`<anypoint-icon-button noink>
-        <arc-icon icon="add"></arc-icon>
+        <demo-icon icon="add"></demo-icon>
     </anypoint-icon-button>`);
   }
 
@@ -195,21 +195,21 @@ describe('<anypoint-icon-button>', () => {
 
     it('is accessible in normal state', async () => {
       const element = await fixture(`<anypoint-icon-button aria-label="Click me">
-        <arc-icon icon="add"></arc-icon>
+        <demo-icon icon="add"></demo-icon>
       </anypoint-icon-button>`);
       await assert.isAccessible(element);
     });
 
     it('is accessible in disabled state', async () => {
       const element = await fixture(`<anypoint-icon-button disabled  aria-label="Click me">
-        <arc-icon icon="add"></arc-icon>
+        <demo-icon icon="add"></demo-icon>
       </anypoint-icon-button>`);
       await assert.isAccessible(element);
     });
 
     it('is accessible in active state', async () => {
       const element = await fixture(`<anypoint-icon-button toggles active  aria-label="Click me">
-        <arc-icon icon="add"></arc-icon>
+        <demo-icon icon="add"></demo-icon>
       </anypoint-icon-button>`);
       await assert.isAccessible(element);
     });

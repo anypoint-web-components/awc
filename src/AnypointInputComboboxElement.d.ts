@@ -1,5 +1,6 @@
 import { TemplateResult } from 'lit-element';
 import AnypointInputElement from './AnypointInputElement.js';
+import { VerticalAlign, HorizontalAlign } from './mixins/FitMixin';
 
 /**
  * `anypoint-input-combobox`
@@ -20,14 +21,14 @@ export default class AnypointInputComboboxElement extends AnypointInputElement {
    * "middle", "auto".
    * @attribute
    */
-  verticalAlign: string;
+  verticalAlign: VerticalAlign;
   /**
    * The orientation against which to align the element horizontally
    * relative to the `positionTarget`. Possible values are "left", "right",
    * "center", "auto".
    * @attribute
    */
-  horizontalAlign: string;
+  horizontalAlign: HorizontalAlign;
   /**
    * A pixel value that will be added to the position calculated for the
    * given `verticalAlign`, in the direction of alignment. You can think

@@ -13,7 +13,7 @@ Note, the `resize` event is non-bubbling.
 
 ```javascript
 import { LitElement } from 'lit-element';
-import { ResizableMixin } from '@advanced-rest-client/awc';
+import { ResizableMixin } from '@anypoint-web-components/awc';
 
 class ResizableImpl extends ResizableMixin(LitElement) {
 

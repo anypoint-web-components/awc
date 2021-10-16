@@ -1,11 +1,11 @@
 /* eslint-disable no-param-reassign */
 /* eslint-disable default-case */
 import { html } from 'lit-html';
-import '@advanced-rest-client/arc-icons/arc-icon.js';
 import { DemoPage } from './lib/DemoPage.js';
+import './lib/demo-icon.js';
+import './lib/interactive-demo.js';
 import '../colors.js';
 import '../anypoint-checkbox.js';
-import './lib/interactive-demo.js';
 import '../anypoint-button.js';
 import '../anypoint-icon-button.js';
 
@@ -133,7 +133,7 @@ class ComponentDemo extends DemoPage {
             ?disabled="${demoDisabled}"
             @transitionend="${this.mainTransitionHandler}"
           >
-            ${demoLeadingIcon ? html`<arc-icon icon="message"></arc-icon>` : undefined}
+            ${demoLeadingIcon ? html`<demo-icon icon="message"></demo-icon>` : undefined}
             Label
           </anypoint-button>
 
@@ -244,17 +244,17 @@ class ComponentDemo extends DemoPage {
 
         <div class="centered">
           <anypoint-button emphasis="low" class="icons">
-            <arc-icon icon="refresh"></arc-icon>
+            <demo-icon icon="refresh"></demo-icon>
             Send gift card
           </anypoint-button>
 
           <anypoint-button emphasis="medium" class="icons">
-            <arc-icon icon="modeEdit"></arc-icon>
+            <demo-icon icon="modeEdit"></demo-icon>
             More details
           </anypoint-button>
 
           <anypoint-button emphasis="high" class="icons">
-            <arc-icon icon="message"></arc-icon>
+            <demo-icon icon="message"></demo-icon>
             Add to cart
           </anypoint-button>
         </div>
@@ -307,7 +307,7 @@ class ComponentDemo extends DemoPage {
             aria-label="Activate to see the demo."
             @transitionend="${this.buttonTransitionHandler}"
           >
-            <arc-icon icon="star"></arc-icon>
+            <demo-icon icon="star"></demo-icon>
           </anypoint-icon-button>
 
           <label slot="options" id="iconOptionsLabel">Options</label>
@@ -339,7 +339,7 @@ class ComponentDemo extends DemoPage {
             emphasis="low"
             title="Add alarm"
             aria-label="Activate to set an alarm">
-            <arc-icon icon="add"></arc-icon>
+            <demo-icon icon="add"></demo-icon>
           </anypoint-icon-button>
 
           <anypoint-icon-button
@@ -347,7 +347,7 @@ class ComponentDemo extends DemoPage {
             toggles
             title="Star this project"
             aria-label="Activate to star this project">
-            <arc-icon icon="star"></arc-icon>
+            <demo-icon icon="star"></demo-icon>
           </anypoint-icon-button>
 
           <anypoint-icon-button
@@ -363,7 +363,7 @@ class ComponentDemo extends DemoPage {
             disabled
             title="Reply"
             aria-label="This button is disabled">
-            <arc-icon icon="message"></arc-icon>
+            <demo-icon icon="message"></demo-icon>
           </anypoint-icon-button>
 
           <anypoint-icon-button
@@ -371,7 +371,7 @@ class ComponentDemo extends DemoPage {
             noink
             title="Cancel action"
             aria-label="Activate to see no ripple effect">
-            <arc-icon icon="cancel"></arc-icon>
+            <demo-icon icon="cancel"></demo-icon>
           </anypoint-icon-button>
         </div>
 
@@ -381,7 +381,7 @@ class ComponentDemo extends DemoPage {
             emphasis="medium"
             title="Add alarm"
             aria-label="Activate to set an alarm">
-            <arc-icon icon="add"></arc-icon>
+            <demo-icon icon="add"></demo-icon>
           </anypoint-icon-button>
 
           <anypoint-icon-button
@@ -389,7 +389,7 @@ class ComponentDemo extends DemoPage {
             toggles
             title="Star this project"
             aria-label="Activate to star this project">
-            <arc-icon icon="star"></arc-icon>
+            <demo-icon icon="star"></demo-icon>
           </anypoint-icon-button>
 
           <anypoint-icon-button
@@ -405,7 +405,7 @@ class ComponentDemo extends DemoPage {
             disabled
             title="Reply"
             aria-label="This button is disabled">
-            <arc-icon icon="message"></arc-icon>
+            <demo-icon icon="message"></demo-icon>
           </anypoint-icon-button>
 
           <anypoint-icon-button
@@ -413,7 +413,7 @@ class ComponentDemo extends DemoPage {
             noink
             title="Cancel action"
             aria-label="Activate to see no ripple effect">
-            <arc-icon icon="cancel"></arc-icon>
+            <demo-icon icon="cancel"></demo-icon>
           </anypoint-icon-button>
         </div>
 
@@ -423,7 +423,7 @@ class ComponentDemo extends DemoPage {
             emphasis="high"
             title="Add alarm"
             aria-label="Activate to set an alarm">
-            <arc-icon icon="add"></arc-icon>
+            <demo-icon icon="add"></demo-icon>
           </anypoint-icon-button>
 
           <anypoint-icon-button
@@ -431,7 +431,7 @@ class ComponentDemo extends DemoPage {
             toggles
             title="Star this project"
             aria-label="Activate to star this project">
-            <arc-icon icon="star"></arc-icon>
+            <demo-icon icon="star"></demo-icon>
           </anypoint-icon-button>
 
           <anypoint-icon-button
@@ -447,7 +447,7 @@ class ComponentDemo extends DemoPage {
             disabled
             title="Reply"
             aria-label="This button is disabled">
-            <arc-icon icon="message"></arc-icon>
+            <demo-icon icon="message"></demo-icon>
           </anypoint-icon-button>
 
           <anypoint-icon-button
@@ -455,7 +455,7 @@ class ComponentDemo extends DemoPage {
             noink
             title="Cancel action"
             aria-label="Activate to see no ripple effect">
-            <arc-icon icon="cancel"></arc-icon>
+            <demo-icon icon="cancel"></demo-icon>
           </anypoint-icon-button>
         </div>
       </section>
@@ -478,7 +478,7 @@ class ComponentDemo extends DemoPage {
             class="content-control"
             toggles
             @click=${this._contentControlClick}>
-            <arc-icon icon="settings"></arc-icon>
+            <demo-icon icon="settings"></demo-icon>
           </anypoint-icon-button>
 
           <anypoint-icon-button
@@ -487,7 +487,7 @@ class ComponentDemo extends DemoPage {
             class="content-control"
             toggles
             @click=${this._contentControlClick}>
-            <arc-icon icon="toggleOn"></arc-icon>
+            <demo-icon icon="toggleOn"></demo-icon>
           </anypoint-icon-button>
 
           <anypoint-icon-button
@@ -496,7 +496,7 @@ class ComponentDemo extends DemoPage {
             class="content-control"
             toggles
             @click=${this._contentControlClick}>
-            <arc-icon icon="toggleOff"></arc-icon>
+            <demo-icon icon="toggleOff"></demo-icon>
           </anypoint-icon-button>
 
           <anypoint-icon-button
@@ -505,7 +505,7 @@ class ComponentDemo extends DemoPage {
             class="content-control"
             toggles
             @click=${this._contentControlClick}>
-            <arc-icon icon="warning"></arc-icon>
+            <demo-icon icon="warning"></demo-icon>
           </anypoint-icon-button>
 
           <span class="space"></span>
@@ -516,7 +516,7 @@ class ComponentDemo extends DemoPage {
             class="content-control group"
             toggles
             @click=${this._contentControlClick}>
-            <arc-icon icon="zoomIn"></arc-icon>
+            <demo-icon icon="zoomIn"></demo-icon>
           </anypoint-icon-button>
           <anypoint-icon-button
             title="Align text center"
@@ -524,7 +524,7 @@ class ComponentDemo extends DemoPage {
             class="content-control group"
             toggles
             @click=${this._contentControlClick}>
-            <arc-icon icon="shortText"></arc-icon>
+            <demo-icon icon="shortText"></demo-icon>
           </anypoint-icon-button>
           <anypoint-icon-button
             title="Align text right"
@@ -532,7 +532,7 @@ class ComponentDemo extends DemoPage {
             class="content-control group"
             toggles
             @click=${this._contentControlClick}>
-            <arc-icon icon="spellcheck"></arc-icon>
+            <demo-icon icon="spellcheck"></demo-icon>
           </anypoint-icon-button>
         </div>
       </section>

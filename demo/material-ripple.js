@@ -1,8 +1,8 @@
 import { html } from 'lit-html';
 import { DemoPage } from './lib/DemoPage.js';
-import '@advanced-rest-client/arc-icons/arc-icon.js';
-import '../material-ripple.js';
+import './lib/demo-icon.js';
 import './lib/demo-helper.js'
+import '../material-ripple.js';
 
 class ComponentDemo extends DemoPage {
   constructor() {
@@ -64,22 +64,22 @@ class ComponentDemo extends DemoPage {
       <demo-helper class="centered-demo">
         <template>
           <div class="icon-button">
-            <arc-icon icon="menu" tabindex="0"></arc-icon>
+            <demo-icon icon="menu" tabindex="0"></demo-icon>
             <material-ripple class="circle" recenters></material-ripple>
           </div>
 
           <div class="icon-button">
-            <arc-icon icon="moreVert" tabindex="0"></arc-icon>
+            <demo-icon icon="moreVert" tabindex="0"></demo-icon>
             <material-ripple class="circle" recenters></material-ripple>
           </div>
 
           <div class="icon-button red">
-            <arc-icon icon="remove" tabindex="0"></arc-icon>
+            <demo-icon icon="remove" tabindex="0"></demo-icon>
             <material-ripple class="circle" recenters></material-ripple>
           </div>
 
           <div class="icon-button blue">
-            <arc-icon icon="archive" tabindex="0"></arc-icon>
+            <demo-icon icon="archive" tabindex="0"></demo-icon>
             <material-ripple class="circle" recenters></material-ripple>
           </div>
         </template>
@@ -88,17 +88,17 @@ class ComponentDemo extends DemoPage {
       <demo-helper class="centered-demo">
         <template>
           <div class="fab red">
-            <arc-icon icon="add" tabindex="0"></arc-icon>
+            <demo-icon icon="add" tabindex="0"></demo-icon>
             <material-ripple class="circle" recenters></material-ripple>
           </div>
 
           <div class="fab blue">
-            <arc-icon icon="remove" tabindex="0"></arc-icon>
+            <demo-icon icon="remove" tabindex="0"></demo-icon>
             <material-ripple class="circle" recenters></material-ripple>
           </div>
 
           <div class="fab green">
-            <arc-icon icon="clearAll" tabindex="0"></arc-icon>
+            <demo-icon icon="clearAll" tabindex="0"></demo-icon>
             <material-ripple class="circle" recenters></material-ripple>
           </div>
         </template>

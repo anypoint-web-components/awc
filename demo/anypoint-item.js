@@ -1,6 +1,6 @@
 import { html } from 'lit-html';
 import { DemoPage } from './lib/DemoPage.js';
-import '@advanced-rest-client/arc-icons/arc-icon.js'
+import './lib/demo-icon.js';
 import './lib/interactive-demo.js';
 import '../anypoint-icon-button.js';
 import '../anypoint-item.js';
@@ -139,10 +139,10 @@ class ComponentDemo extends DemoPage {
         role="listbox"
         slot="content">
         <anypoint-icon-item ?anypoint="${anypoint}">
-          <arc-icon icon="add" slot="item-icon"></arc-icon> Add
+          <demo-icon icon="add" slot="item-icon"></demo-icon> Add
         </anypoint-icon-item>
         <anypoint-icon-item ?anypoint="${anypoint}">
-          <arc-icon icon="refresh" slot="item-icon"></arc-icon> Refresh
+          <demo-icon icon="refresh" slot="item-icon"></demo-icon> Refresh
         </anypoint-icon-item>
         <anypoint-icon-item ?anypoint="${anypoint}">
           <span slot="item-icon" class="circle"></span> Refresh
@@ -181,7 +181,7 @@ class ComponentDemo extends DemoPage {
           <anypoint-icon-button
             ?anypoint="${anypoint}"
             aria-label="Activate to toggle favourite">
-            <arc-icon icon="star"></arc-icon>
+            <demo-icon icon="star"></demo-icon>
           </anypoint-icon-button>
         </anypoint-icon-item>
 
@@ -194,7 +194,7 @@ class ComponentDemo extends DemoPage {
           <anypoint-icon-button
             ?anypoint="${anypoint}"
             aria-label="Activate to toggle favourite">
-            <arc-icon icon="star"></arc-icon>
+            <demo-icon icon="star"></demo-icon>
           </anypoint-icon-button>
         </anypoint-icon-item>
       </div>

@@ -1,6 +1,6 @@
 import { fixture, assert, nextFrame, aTimeout, html } from '@open-wc/testing';
-import '@advanced-rest-client/arc-icons/arc-icon.js';
-import { clearAll, clear } from '@advanced-rest-client/arc-icons/ArcIcons.js';
+import { clearAll } from '../../demo/lib/Icons.js';
+import { clear } from '../../src/resources/Icons.js';
 import { directionsBike, directionsBoat, directionsBus } from '../../demo/maps-icons.js';
 import '../../anypoint-chip-input.js';
 import { keyDown } from '../lib/helpers.js';

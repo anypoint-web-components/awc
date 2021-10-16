@@ -1,6 +1,6 @@
 import { html } from 'lit-html';
-import '@advanced-rest-client/arc-icons/arc-icon.js';
 import { DemoPage } from './lib/DemoPage.js';
+import './lib/demo-icon.js';
 import './lib/interactive-demo.js';
 import '../anypoint-checkbox.js';
 import '../anypoint-item.js';
@@ -58,7 +58,7 @@ class ComponentDemoPage extends DemoPage {
               slot="dropdown-trigger"
               aria-label="activate for context menu"
               ?anypoint="${anypoint}">
-              <arc-icon icon="menu"></arc-icon>
+              <demo-icon icon="menu"></demo-icon>
             </anypoint-icon-button>
             <anypoint-listbox
               slot="dropdown-content"
@@ -152,7 +152,7 @@ class ComponentDemoPage extends DemoPage {
               <anypoint-icon-button
                 slot="dropdown-trigger"
                 aria-label="activate for context menu">
-                <arc-icon icon="menu" alt="menu"></arc-icon>
+                <demo-icon icon="menu" alt="menu"></demo-icon>
               </anypoint-icon-button>
               <anypoint-listbox
                 slot="dropdown-content">

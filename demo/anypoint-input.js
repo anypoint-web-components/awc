@@ -2,13 +2,13 @@
 /* eslint-disable no-plusplus */
 import { html } from 'lit-html';
 import { DemoPage } from './lib/DemoPage.js';
-import '@advanced-rest-client/arc-icons/arc-icon.js'
+import './lib/demo-icon.js';
+import './lib/interactive-demo.js';
 import '../anypoint-checkbox.js';
 import '../anypoint-radio-button.js';
 import '../anypoint-radio-group.js';
 import '../colors.js';
 import '../anypoint-button.js';
-import './lib/interactive-demo.js';
 import '../anypoint-input.js';
 import '../anypoint-textarea.js';
 import '../anypoint-masked-input.js';
@@ -161,11 +161,11 @@ class ComponentDemo extends DemoPage {
           >
             <label slot="label">Label</label>
             ${textFiledLeading ? html`
-                  <arc-icon icon="infoOutline" slot="prefix"></arc-icon>
+                  <demo-icon icon="infoOutline" slot="prefix"></demo-icon>
                 `
               : undefined}
             ${textFiledTrailing ? html`
-                  <arc-icon icon="clear" slot="suffix"></arc-icon>
+                  <demo-icon icon="clear" slot="suffix"></demo-icon>
                 `
               : undefined}
           </anypoint-input>

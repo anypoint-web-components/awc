@@ -1,5 +1,5 @@
 import { html, css } from 'lit-element';
-import { visibilityOff, visibility, } from '@advanced-rest-client/arc-icons/ArcIcons.js';
+import { visibilityOff, visibility, } from './resources/Icons.js';
 import AnypointInputElement from './AnypointInputElement.js';
 import '../anypoint-icon-button.js';
 
