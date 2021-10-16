@@ -1,5 +1,5 @@
 import { html, css, LitElement } from 'lit-element';
-import { MenuMixin } from './MenuMixin.js';
+import { MenuMixin } from './mixins/MenuMixin.js';
 
 /* eslint-disable no-plusplus */
 /* eslint-disable no-param-reassign */

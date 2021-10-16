@@ -1,5 +1,5 @@
 import { LitElement } from 'lit-element';
-import { MultiSelectableMixin } from './MultiSelectableMixin';
+import { MultiSelectableMixin } from './mixins/MultiSelectableMixin';
 
 export default class AnypointSelectorElement extends MultiSelectableMixin(LitElement) {
   createRenderRoot(): AnypointSelectorElement;

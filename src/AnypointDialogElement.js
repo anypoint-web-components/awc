@@ -1,5 +1,5 @@
 import { html, LitElement } from 'lit-element';
-import { AnypointDialogMixin } from './AnypointDialogMixin.js';
+import { AnypointDialogMixin } from './mixins/AnypointDialogMixin.js';
 import dialogStyles from './styles/AnypointDialogStyles.js';
 
 export default class AnypointDialogElement extends AnypointDialogMixin(LitElement) {

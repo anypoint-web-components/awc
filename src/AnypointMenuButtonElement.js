@@ -1,7 +1,7 @@
 /* eslint-disable lit-a11y/click-events-have-key-events */
 import { html, LitElement } from 'lit-element';
 import { ifDefined } from 'lit-html/directives/if-defined.js';
-import { ControlStateMixin } from './ControlStateMixin.js';
+import { ControlStateMixin } from './mixins/ControlStateMixin.js';
 import '../anypoint-dropdown.js';
 import buttonStyles from './styles/MenuButton.js';
 

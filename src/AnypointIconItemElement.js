@@ -12,9 +12,9 @@ License for the specific language governing permissions and limitations under
 the License.
 */
 import { LitElement, html, css } from 'lit-element';
-import { HoverableMixin } from './HoverableMixin.js';
-import { ButtonStateMixin } from './ButtonStateMixin.js';
-import { ControlStateMixin } from './ControlStateMixin.js';
+import { HoverableMixin } from './mixins/HoverableMixin.js';
+import { ButtonStateMixin } from './mixins/ButtonStateMixin.js';
+import { ControlStateMixin } from './mixins/ControlStateMixin.js';
 import styles from './styles/ItemStyles.js';
 
 /* eslint-disable class-methods-use-this */

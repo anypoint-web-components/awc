@@ -1,6 +1,6 @@
 import { html, css, LitElement } from 'lit-element';
 import { ArcOverlayMixin } from '@advanced-rest-client/arc-overlay-mixin/arc-overlay-mixin.js';
-import { ControlStateMixin } from './ControlStateMixin.js';
+import { ControlStateMixin } from './mixins/ControlStateMixin.js';
 
 /* eslint-disable class-methods-use-this */
 /* eslint-disable no-plusplus */

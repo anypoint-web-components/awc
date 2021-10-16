@@ -1,5 +1,5 @@
 import { TemplateResult, LitElement } from 'lit-element';
-import { AnypointInputMixin } from './AnypointInputMixin';
+import { AnypointInputMixin } from './mixins/AnypointInputMixin';
 
 /**
  * @fires search When the type is `search` and the search term change.

@@ -1,5 +1,5 @@
 import { LitElement, html, css } from 'lit-element';
-import { CheckedElementMixin } from '../src/CheckedElementMixin.js';
+import { CheckedElementMixin } from '../src/mixins/CheckedElementMixin.js';
 import '../anypoint-button.js';
 
 class SimpleCheckbox extends CheckedElementMixin(LitElement) {

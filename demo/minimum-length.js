@@ -1,4 +1,4 @@
-import { ValidatorMixin } from '../src/ValidatorMixin.js';
+import { ValidatorMixin } from '../src/mixins/ValidatorMixin.js';
 
 class MinimumLength extends ValidatorMixin(HTMLElement) {
   static get observedAttributes() {

@@ -1,6 +1,6 @@
 import { LitElement } from 'lit-element';
-import { ControlStateMixin } from './ControlStateMixin.js';
-import { ButtonStateMixin } from './ButtonStateMixin.js';
+import { ControlStateMixin } from './mixins/ControlStateMixin.js';
+import { ButtonStateMixin } from './mixins/ButtonStateMixin.js';
 import '../material-ripple.js';
 
 /**

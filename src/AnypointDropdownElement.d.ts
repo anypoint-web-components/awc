@@ -1,6 +1,6 @@
 import { TemplateResult, LitElement } from 'lit-element';
 import { ArcOverlayMixin } from '@advanced-rest-client/arc-overlay-mixin';
-import { ControlStateMixin } from './ControlStateMixin';
+import { ControlStateMixin } from './mixins/ControlStateMixin';
 
 export default class AnypointDropdownElement extends ArcOverlayMixin(ControlStateMixin(LitElement)) {
   /**

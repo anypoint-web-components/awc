@@ -1,6 +1,6 @@
 import { html, css, LitElement } from 'lit-element';
 import { ifDefined } from 'lit-html/directives/if-defined.js';
-import { AnypointInputMixin } from './AnypointInputMixin.js';
+import { AnypointInputMixin } from './mixins/AnypointInputMixin.js';
 import commonStyles from './styles/anypoint-input-styles.js';
 
 /* eslint-disable class-methods-use-this */

@@ -1,6 +1,6 @@
 import { ValidatableMixin } from './ValidatableMixin.js';
 import { ControlStateMixin } from './ControlStateMixin.js';
-import { SupportedAutocapitalize, SupportedAutocomplete, SupportedInputTypes } from './types';
+import { SupportedAutocapitalize, SupportedAutocomplete, SupportedInputTypes } from '../types';
 
 declare function AnypointInputMixin<T extends new (...args: any[]) => {}>(base: T): T & AnypointInputMixinConstructor;
 interface AnypointInputMixinConstructor {

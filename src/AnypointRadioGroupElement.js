@@ -1,5 +1,5 @@
 import { LitElement } from 'lit-element';
-import { MenuMixin } from './MenuMixin.js';
+import { MenuMixin } from './mixins/MenuMixin.js';
 import { isRadioButton } from './Utility.js';
 
 /* eslint-disable no-plusplus */

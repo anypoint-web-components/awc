@@ -1,5 +1,5 @@
 import { LitElement } from 'lit-element';
-import { MenuMixin } from './MenuMixin';
+import { MenuMixin } from './mixins/MenuMixin';
 
 /**
  * A web component that groups custom radio buttons and handles selection inside

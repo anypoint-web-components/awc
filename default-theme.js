@@ -35,18 +35,16 @@ const style = css`
     --http-method-label-head-background-color: var(--method-display-head-color);
     --http-method-label-head-color: #fff;
     --http-method-label-padding: 4px 5px;
-    --method-display-font-weigth: 100;
+    --method-display-font-weight: 100;
   }
 `;
 
 try {
+  // @ts-ignore
   document.adoptedStyleSheets = document.adoptedStyleSheets.concat(style.styleSheet);
 } catch (_) {
-  /* istanbul ignore next */
-  {
-    const s = document.createElement('style');
-    s.type = 'text/css';
-    s.innerHTML = style.cssText;
-    document.getElementsByTagName('head')[0].appendChild(s);
-  }
+  const s = document.createElement('style');
+  s.type = 'text/css';
+  s.innerHTML = style.cssText;
+  document.getElementsByTagName('head')[0].appendChild(s);
 }

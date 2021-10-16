@@ -1,8 +1,8 @@
 import { LitElement, html } from 'lit-element';
-import { CheckedElementMixin } from './CheckedElementMixin.js';
 import checkboxStyles from './styles/Checkbox.js';
-import { ButtonStateMixin } from './ButtonStateMixin.js';
-import { ControlStateMixin } from './ControlStateMixin.js';
+import { CheckedElementMixin } from './mixins/CheckedElementMixin.js';
+import { ButtonStateMixin } from './mixins/ButtonStateMixin.js';
+import { ControlStateMixin } from './mixins/ControlStateMixin.js';
 
 /* eslint-disable class-methods-use-this */
 

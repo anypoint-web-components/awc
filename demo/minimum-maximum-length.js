@@ -1,5 +1,5 @@
 import { LitElement } from 'lit-element';
-import { ValidatorMixin } from '../src/ValidatorMixin.js';
+import { ValidatorMixin } from '../src/mixins/ValidatorMixin.js';
 
 export class MinimumMaximumLength extends ValidatorMixin(LitElement) {
   static get properties() {

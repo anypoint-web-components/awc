@@ -539,7 +539,7 @@ export default class AnypointChipInputElement extends AnypointInputElement {
     return chips.map((item, index) => html`
     <anypoint-chip
       .removable="${this._computeChipRemovable(item)}"
-      @chip-removed="${this._chipRemovedHandler}"
+      @chipremoved="${this._chipRemovedHandler}"
       tabindex="-1"
       .removeIcon="${this.chipRemoveIcon}"
       ?compatibility="${this.compatibility}"

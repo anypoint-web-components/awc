@@ -1,7 +1,7 @@
 import { TemplateResult, LitElement, CSSResult } from 'lit-element';
-import { ButtonStateMixin } from './ButtonStateMixin';
-import { ControlStateMixin } from './ControlStateMixin';
-import { HoverableMixin } from './HoverableMixin';
+import { ButtonStateMixin } from './mixins/ButtonStateMixin';
+import { ControlStateMixin } from './mixins/ControlStateMixin';
+import { HoverableMixin } from './mixins/HoverableMixin';
 
 /**
  * `anypoint-icon-item`

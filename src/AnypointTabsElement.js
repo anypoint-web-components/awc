@@ -1,6 +1,6 @@
 import { html, LitElement } from 'lit-element';
 import { ArcResizableMixin } from '@advanced-rest-client/arc-resizable-mixin';
-import { MenubarMixin } from './MenubarMixin.js';
+import { MenubarMixin } from './mixins/MenubarMixin.js';
 import '../anypoint-icon-button.js';
 import styles from './styles/TabsStyles.js';
 

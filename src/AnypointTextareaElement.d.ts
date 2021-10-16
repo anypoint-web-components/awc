@@ -1,5 +1,5 @@
 import { TemplateResult, LitElement, CSSResult } from 'lit-element';
-import { AnypointInputMixin } from './AnypointInputMixin';
+import { AnypointInputMixin } from './mixins/AnypointInputMixin';
 
 export default class AnypointTextareaElement extends AnypointInputMixin(LitElement) {
   get styles(): CSSResult | CSSResult[];

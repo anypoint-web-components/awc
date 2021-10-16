@@ -5,7 +5,7 @@ Anypoint typography.
 This CSS variables has to be applied to the corresponding elements in Anypoint
 Web Components.
 
-This may not be a convinient way of applying styles but at the moment of making it
+This may not be a convenient way of applying styles but at the moment of making it
 there's nmo other way. There's promising `::parts` and `::theme` spec proposal
 but it is only implemented in Chrome and it is not sure whether the spec will be adopted.
 */
@@ -62,14 +62,13 @@ const style = css`
     --font-code-line-height: 20px;
   }
 `;
+
 try {
+  // @ts-ignore
   document.adoptedStyleSheets = document.adoptedStyleSheets.concat(style.styleSheet);
 } catch (_) {
-  /* istanbul ignore next */
-  {
-    const s = document.createElement('style');
-    s.type = 'text/css';
-    s.innerHTML = style.cssText;
-    document.getElementsByTagName('head')[0].appendChild(s);
-  }
+  const s = document.createElement('style');
+  s.type = 'text/css';
+  s.innerHTML = style.cssText;
+  document.getElementsByTagName('head')[0].appendChild(s);
 }

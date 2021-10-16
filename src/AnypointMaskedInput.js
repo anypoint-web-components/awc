@@ -11,7 +11,8 @@ import '../anypoint-icon-button.js';
 export default class AnypointMaskedInputElement extends AnypointInputElement {
   get styles() {
     return [
-      /** @type CSSResult */ (super.styles),
+      // @ts-ignore
+      super.styles,
       css`
         .icon {
           display: inline-block;

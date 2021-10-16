@@ -1,7 +1,7 @@
 import { TemplateResult, LitElement } from 'lit-element';
-import { ButtonStateMixin } from './ButtonStateMixin';
-import { ControlStateMixin } from './ControlStateMixin';
-import { CheckedElementMixin } from './CheckedElementMixin';
+import { ButtonStateMixin } from './mixins/ButtonStateMixin';
+import { ControlStateMixin } from './mixins/ControlStateMixin';
+import { CheckedElementMixin } from './mixins/CheckedElementMixin';
 
 /**
  * `anypoint-checkbox`

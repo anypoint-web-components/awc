@@ -28,7 +28,7 @@ export default class ArcInteractiveDemo extends LitElement {
    */
   dark: boolean;
   
-  readonly tabs: AnypointTabs;
+  readonly tabs: AnypointTabsElement;
   _updateTabsTimer: number;
   
   constructor();

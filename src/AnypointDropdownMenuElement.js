@@ -1,12 +1,12 @@
 import { html, LitElement } from 'lit-element';
-import { ControlStateMixin } from './ControlStateMixin.js';
-import { ValidatableMixin } from './ValidatableMixin.js';
+import { ControlStateMixin } from './mixins/ControlStateMixin.js';
+import { ValidatableMixin } from './mixins/ValidatableMixin.js';
 import '../anypoint-dropdown.js';
 import '../anypoint-icon-button.js';
 import { arrowDown } from './AnypointDropdownMenuIcons.js';
 import DropdownStyles from './styles/DropdownMenu.js';
 
-/** @typedef {import('./ValidatableMixin').ValidationResult} ValidationResult */
+/** @typedef {import('./mixins/ValidatableMixin').ValidationResult} ValidationResult */
 
 /* eslint-disable class-methods-use-this */
 /* eslint-disable no-plusplus */

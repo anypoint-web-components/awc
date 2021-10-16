@@ -1,5 +1,5 @@
 import { LitElement, TemplateResult } from 'lit-element';
-import { CheckedElementMixin } from './CheckedElementMixin';
+import { CheckedElementMixin } from './mixins/CheckedElementMixin';
 
 /**
  * `anypoint-radio-button`

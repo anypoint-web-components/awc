@@ -6,9 +6,9 @@ import '../anypoint-autocomplete.js';
  * `anypoint-combobox`
  */
 export default class AnypointComboboxElement extends AnypointInputElement {
-  // @ts-ignore
   get styles() {
     return [
+      // @ts-ignore
       super.styles,
       css`
       .ac-wrapper {

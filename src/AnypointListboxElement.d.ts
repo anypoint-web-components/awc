@@ -1,7 +1,7 @@
 import { LitElement, TemplateResult } from 'lit-element';
-import { MenuMixin } from './MenuMixin';
-import { MultiSelectableMixin } from './MultiSelectableMixin';
-import { SelectableMixin } from './SelectableMixin';
+import { MenuMixin } from './mixins/MenuMixin';
+import { MultiSelectableMixin } from './mixins/MultiSelectableMixin';
+import { SelectableMixin } from './mixins/SelectableMixin';
 /**
  * Ensures the node to have an ID.
  * It is later used with aria attributes.

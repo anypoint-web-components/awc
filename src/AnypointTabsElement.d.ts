@@ -1,6 +1,6 @@
 import { TemplateResult, LitElement } from 'lit-element';
 import { ArcResizableMixin } from '@advanced-rest-client/arc-resizable-mixin';
-import { MenubarMixin } from './MenubarMixin.js';
+import { MenubarMixin } from './mixins/MenubarMixin.js';
 
 /* eslint-disable no-param-reassign */
 /* eslint-disable class-methods-use-this */

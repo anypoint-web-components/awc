@@ -1,5 +1,5 @@
 import { TemplateResult, LitElement } from 'lit-element';
-import { AnypointDialogMixin } from './AnypointDialogMixin';
+import { AnypointDialogMixin } from './mixins/AnypointDialogMixin';
 
 export default class AnypointDialogElement extends AnypointDialogMixin(LitElement) {
   /** 

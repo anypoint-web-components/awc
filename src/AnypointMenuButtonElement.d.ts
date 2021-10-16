@@ -1,6 +1,6 @@
 import { TemplateResult, LitElement, CSSResult } from 'lit-element';
 import AnypointDropdownElement from './AnypointDropdownElement';
-import { ControlStateMixin } from './ControlStateMixin';
+import { ControlStateMixin } from './mixins/ControlStateMixin';
 
 /**
  * @fires dropdownopen When the dropdown becomes opened
