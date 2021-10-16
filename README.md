@@ -1,43 +1,30 @@
-# anypoint-item, anypoint-item-body, anypoint-icon-item
+# Anypoint Web Components
 
-This component is based on Material Design text field and adjusted for Anypoint platform components.
+This module consists of all base Anypoint web components. Use them to build an OSS app UI using Material Design with an ability to switch to Anypoint theme on demand.
 
-Anypoint web components are set of components that allows to build Anypoint enabled UI in open source projects.
+[![tests](https://github.com/anypoint-web-components/awc/actions/workflows/deployment.yml/badge.svg)](https://github.com/anypoint-web-components/awc/actions/workflows/deployment.yml)
 
-A list item to be used in menus and list views.
+[![Published on NPM](https://img.shields.io/npm/v/@anypoint-web-components/awc.svg)](https://www.npmjs.com/package/@anypoint-web-components/awc)
 
-```html
-<anypoint-item>Item</anypoint-item>
-```
+## Previous components
 
-[![tests](https://github.com/anypoint-web-components/anypoint-item/actions/workflows/deployment.yml/badge.svg)](https://github.com/anypoint-web-components/anypoint-item/actions/workflows/deployment.yml)
-
-[![Published on NPM](https://img.shields.io/npm/v/@anypoint-web-components/anypoint-item.svg)](https://www.npmjs.com/package/@anypoint-web-components/anypoint-item)
-
-## Styling options
-
-The element has two built-in themes:
-
-- Material Design - Default style
-- Anypoint Design - Enabled by adding `anypoint` attribute to the elements.
-
-OSS application should not use Anypoint based styling as it's protected by MuleSoft copyrights. This property is reserved for OSS applications embedded in the Anypoint platform.
+All components with `@anypoint-web-components` scope has been consolidate under this module. Use this module instead of installing individual packages.
 
 ## Usage
 
 ### Installation
 
 ```sh
-npm install --save @anypoint-web-components/anypoint-item
+npm install --save @anypoint-web-components/awc
 ```
 
-### In an HTML file
+### Example use
 
 ```html
 <html>
   <head>
     <script type="module">
-      import '@anypoint-web-components/anypoint-item/anypoint-item.js';
+      import '@anypoint-web-components/awc/anypoint-item.js';
     </script>
   </head>
   <body>
@@ -59,85 +46,13 @@ npm install --save @anypoint-web-components/anypoint-item
 </html>
 ```
 
-Use this element with `<anypoint-item-body>` to make styled `twoLine` and `threeLine` items.
-
-```html
-<html>
-  <head>
-    <script type="module">
-      import '@anypoint-web-components/anypoint-item/anypoint-item.js';
-      import '@anypoint-web-components/anypoint-item/anypoint-item-body.js';
-    </script>
-  </head>
-  <body>
-    <div role="listbox" slot="content">
-      <anypoint-item-body twoline>
-        <div>Show your status</div>
-        <div secondary>Your status is visible to everyone</div>
-      </anypoint-item-body>
-      <iron-icon icon="warning"></iron-icon>
-    </div>
-  </body>
-</html>
-```
-
-To use `anypoint-item` as a link, wrap it in an anchor tag. Since `anypoint-item` will already receive focus, you may want to prevent the anchor tag from receiving focus as well by setting its tabindex to -1.
-
-```html
-<a href="https://domain.com/project" tabindex="-1">
-  <anypoint-item raised>API Project</anypoint-item>
-</a>
-```
-
-If you are concerned about performance and want to use `anypoint-item` in a `anypoint-listbox` with many items, you can just use a native `button` with the `anypoint-item` class applied (provided you have correctly included the shared styles):
-
-```javascript
-import { LitElement, html, css } from 'lit-element';
-import itemStyles from '@anypoint-web-components/anypoint-item/anypoint-item-shared-styles.js';
-
-class SampleElement extends LitElement {
-  get styles() {
-    return [
-      itemStyles,
-      css`...`;
-    ];
-  }
-
-  render() {
-    return html`<style>${this.styles}</style>
-    <anypoint-listbox>
-      <button class="anypoint-item" role="option">Inbox</button>
-      <button class="anypoint-item" role="option">Starred</button>
-      <button class="anypoint-item" role="option">Sent mail</button>
-    </anypoint-listbox>
-    `;
-  }
-}
-customElements.define('sample-element', SampleElement);
-```
-
-### Styling
-
-See [anypoint-item-shared-styles.js](anypoint-item-shared-styles.js) for list of CSS variables.
-
-### Accessibility
-
-This element has `role="listitem"` by default. Depending on usage, it may be more appropriate to set `role="menuitem"`, `role="menuitemcheckbox"` or `role="menuitemradio"`.
-
-```html
-<anypoint-item role="menuitemcheckbox">
-  <anypoint-item-body>
-    Show your status
-  </anypoint-item-body>
-  <paper-checkbox></paper-checkbox>
-</anypoint-item>
-```
+Check the `docs/` directory for a readme for each component.
 
 ## Development
 
 ```sh
-git clone https://github.com/anypoint-web-components/anypoint-item
-cd anypoint-item
+git clone https://github.com/anypoint-web-components/awc
+cd awc
 npm install
 ```
 
