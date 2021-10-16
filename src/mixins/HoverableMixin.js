@@ -93,25 +93,11 @@ const mxFunction = base => {
       this._hovered = false;
     }
 
+    /**
+     * @param {boolean} value
+     */
     _notifyHovered(value) {
-      // this is the legacy event
-      this.dispatchEvent(
-        new CustomEvent('hovered-changed', {
-          composed: true,
-          detail: {
-            value,
-          },
-        })
-      );
-      // this is the correct event
-      this.dispatchEvent(
-        new CustomEvent('hoverchange', {
-          composed: true,
-          detail: {
-            value,
-          },
-        })
-      );
+      this.dispatchEvent(new CustomEvent('hoverchange', { detail: { value } }));
     }
   }
   return HoverableMixinImpl;

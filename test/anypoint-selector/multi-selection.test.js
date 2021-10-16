@@ -185,15 +185,15 @@ describe('AnypointSelector', () => {
       assert.isFalse(item1.classList.contains('selected'));
     });
 
-    it('fires selected-values-changed when selection changes', () => {
-      let selectedValuesChangedEventCounter = 0;
-      s.addEventListener('selectedvalues-changed', () => {
-        selectedValuesChangedEventCounter++;
+    it('dispatches selectedvalueschange when selection changes', () => {
+      let counter = 0;
+      s.addEventListener('selectedvalueschange', () => {
+        counter++;
       });
       MockInteractions.tap(s.children[0]);
       MockInteractions.tap(s.children[0]);
       MockInteractions.tap(s.children[0]);
-      assert.isAbove(selectedValuesChangedEventCounter, 0);
+      assert.isAbove(counter, 0);
     });
 
     it('updates selection when dom changes', async () => {

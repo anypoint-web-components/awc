@@ -154,46 +154,18 @@ const mxFunction = base => {
       }
     }
 
+    /**
+     * @param {boolean} value
+     */
     _notifyFocus(value) {
-      // this is the legacy event
-      this.dispatchEvent(
-        new CustomEvent('focused-changed', {
-          composed: true,
-          detail: {
-            value,
-          },
-        })
-      );
-      // this is the correct event
-      this.dispatchEvent(
-        new CustomEvent('focusedchange', {
-          composed: true,
-          detail: {
-            value,
-          },
-        })
-      );
+      this.dispatchEvent(new CustomEvent('focusedchange', {detail: { value, } }));
     }
 
+    /**
+     * @param {boolean} value
+     */
     _notifyDisabled(value) {
-      // this is the legacy event
-      this.dispatchEvent(
-        new CustomEvent('disabled-changed', {
-          composed: true,
-          detail: {
-            value,
-          },
-        })
-      );
-      // this is the correct event
-      this.dispatchEvent(
-        new CustomEvent('disabledchange', {
-          composed: true,
-          detail: {
-            value,
-          },
-        })
-      );
+      this.dispatchEvent(new CustomEvent('disabledchange', { detail: { value } }));
     }
   }
   return ControlStateMixinImpl;

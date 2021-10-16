@@ -176,7 +176,7 @@ const mxFunction = (base) => {
       }
       this.addEventListener('focus', this._onFocus);
       this.addEventListener('keydown', this._onKeydown);
-      this.addEventListener('children-changed', this._onItemsChanged);
+      this.addEventListener('childrenchange', this._onItemsChanged);
 
       if (this._disabled === undefined) {
         this.disabled = false;
@@ -194,7 +194,7 @@ const mxFunction = (base) => {
       }
       this.removeEventListener('focus', this._onFocus);
       this.removeEventListener('keydown', this._onKeydown);
-      this.removeEventListener('children-changed', this._onItemsChanged);
+      this.removeEventListener('childrenchange', this._onItemsChanged);
     }
 
     _multiChanged(value) {

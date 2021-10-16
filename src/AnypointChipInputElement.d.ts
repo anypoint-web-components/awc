@@ -3,8 +3,8 @@ import AnypointInputElement from './AnypointInputElement.js';
 import { ChipSuggestion, ChipItem } from './types';
 
 /**
- * @fires chips-changed Dispatched when a list of chips change
- * @fires value-changed Dispatched when the current value change
+ * @fires chipschange Dispatched when a list of chips change
+ * @fires valuechange Dispatched when the current value change
  */
 export default class AnypointChipInputElement extends AnypointInputElement {
   /**

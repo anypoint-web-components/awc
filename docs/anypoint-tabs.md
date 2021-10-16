@@ -31,7 +31,7 @@ import '@anypoint-web-components/awc/anypoint-tab.js';
 class SimpleElement extends ControlStateMixin(ButtonStateMixin(LitElement)) {
   render() {
     return html`
-    <anypoint-tabs .selected="${this.selectedTab}" @selected-changed="${this._tabHandler}">
+    <anypoint-tabs .selected="${this.selectedTab}" @selectedchange="${this._tabHandler}">
       <anypoint-tab>Tab one</anypoint-tab>
       <anypoint-tab>Tab two</anypoint-tab>
       <anypoint-tab>Tab three</anypoint-tab>

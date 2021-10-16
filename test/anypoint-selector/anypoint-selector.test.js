@@ -1,5 +1,4 @@
-import { fixture, assert, expect, aTimeout } from '@open-wc/testing';
-import sinon from 'sinon';
+import { fixture, assert, expect, aTimeout, html } from '@open-wc/testing';
 import '../../anypoint-selector.js';
 
 const style = document.createElement('style');
@@ -13,7 +12,7 @@ style.innerHTML = `.selected {
 
 describe('AnypointSelector', () => {
   async function defaultsFixture() {
-    return fixture(`<anypoint-selector>
+    return fixture(html`<anypoint-selector>
       <div>Item 0</div>
       <div>Item 1</div>
       <div>Item 2</div>
@@ -23,7 +22,7 @@ describe('AnypointSelector', () => {
   }
 
   async function basicFixture() {
-    return fixture(`<anypoint-selector selected="item2" attrforselected="id">
+    return fixture(html`<anypoint-selector selected="item2" attrforselected="id">
       <div id="item0">Item 0</div>
       <div id="item1">Item 1</div>
       <div id="item2">Item 2</div>
@@ -144,13 +143,12 @@ describe('AnypointSelector', () => {
         s1 = await defaultsFixture();
       });
 
-      it('cause children-changed to fire', async () => {
+      it('dispatches the childrenchange event', async () => {
         const newItem = document.createElement('div');
         let changeCount = 0;
         newItem.id = 'item999';
 
-        s2.addEventListener('children-changed', (event) => {
-          // eslint-disable-next-line no-plusplus
+        s2.addEventListener('childrenchange', (event) => {
           changeCount++;
           const mutations = event.detail;
           assert.typeOf(mutations, 'array');
@@ -171,7 +169,7 @@ describe('AnypointSelector', () => {
         expect(firstElementChild).to.be.equal(s1.selectedItem);
         expect(firstElementChild.classList.contains('selected')).to.be.eql(true);
 
-        s1.addEventListener('children-changed', () => {
+        s1.addEventListener('childrenchange', () => {
           firstElementChild = s1.firstElementChild;
           expect(firstElementChild).to.be.equal(s1.selectedItem);
           expect(firstElementChild.classList.contains('selected')).to.be.eql(true);
@@ -179,29 +177,9 @@ describe('AnypointSelector', () => {
         });
         s1.removeChild(s1.selectedItem);
       });
-
-      it('navigation-close dispatched when selecting same item', () => {
-        const spy = sinon.spy();
-        s1.addEventListener('closed', spy);
-
-        s1.selected = 0;
-        let { firstElementChild } = s1;
-        expect(firstElementChild).to.be.equal(s1.selectedItem);
-        expect(firstElementChild.classList.contains('selected')).to.be.eql(true);
-        assert.isFalse(spy.called);
-
-        s1.selected = 0;
-        firstElementChild = s1.firstElementChild;
-        expect(firstElementChild).to.be.equal(s1.selectedItem);
-        expect(firstElementChild.classList.contains('selected')).to.be.eql(true);
-        assert.isTrue(spy.called);
-      });
     });
 
     describe('dynamic selector', () => {
-      // NOTE(bicknellr): Polymer 2 only upgrades elements once they have been
-      // connected to the document. This test now connects the selector
-      // *first* and appends the child afterwards.
       it('selects dynamically added child automatically', (done) => {
         // Create the selector, set selected, connect to force upgrade.
         const selector = document.createElement('anypoint-selector');
@@ -211,8 +189,8 @@ describe('AnypointSelector', () => {
         const child = document.createElement('div');
         child.textContent = 'Item 0';
         selector.appendChild(child);
-        selector.addEventListener('children-changed', function onIronItemsChanged() {
-          selector.removeEventListener('children-changed', onIronItemsChanged);
+        selector.addEventListener('childrenchange', function onIronItemsChanged() {
+          selector.removeEventListener('childrenchange', onIronItemsChanged);
           assert.equal(child.className, 'selected');
           document.body.removeChild(selector);
           done();

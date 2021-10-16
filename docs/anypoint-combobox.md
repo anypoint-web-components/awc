@@ -17,7 +17,7 @@ class SampleElement extends PolymerElement {
     return html`
     <anypoint-combobox
       .source="${suggestions}"
-      @value-changed="${this._valueHandler}">on/off</anypoint-combobox>
+      @valuechange="${this._valueHandler}">on/off</anypoint-combobox>
     `;
   }
 

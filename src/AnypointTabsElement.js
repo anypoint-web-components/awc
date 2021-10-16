@@ -446,7 +446,7 @@ export default class AnypointTabsElement extends MenubarMixin(ArcResizableMixin(
     this._pendingActivationItem = undefined;
     this._pendingActivationTimeout = undefined;
     item.dispatchEvent(
-      new CustomEvent(this.activateEvent, { bubbles: true, cancelable: true })
+      new Event(this.activateEvent, { bubbles: true, cancelable: true })
     );
   }
 

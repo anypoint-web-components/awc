@@ -60,10 +60,10 @@ describe('HoverableMixin', () => {
       assert.isFalse(spy.called);
     });
 
-    it('Dispatches hovered-changed event', async () => {
+    it('dispatches the hoverchange event', async () => {
       const element = await hoverableFixture();
       const spy = sinon.spy();
-      element.addEventListener('hovered-changed', spy);
+      element.addEventListener('hoverchange', spy);
       element._hovered = true;
       assert.isTrue(spy.args[0][0].detail.value);
     });

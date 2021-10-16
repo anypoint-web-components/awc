@@ -38,11 +38,16 @@ export const matchesSelector = (node, selector) => normalizedMatchesSelector.cal
 
 const filterItem = (node) => !excludedLocalNames[node.localName];
 
-const toggleClass = (klass, selected, node) => {
+/**
+ * @param {string} css
+ * @param {boolean} selected
+ * @param {Element} node
+ */
+const toggleClass = (css, selected, node) => {
   if (selected) {
-    node.classList.add(klass);
+    node.classList.add(css);
   } else {
-    node.classList.remove(klass);
+    node.classList.remove(css);
   }
 };
 
@@ -76,41 +81,8 @@ const mxFunction = (base) => {
      * added or removed). The detail of the event is a mutation record that
      * describes what changed.
      *
-     * @event children-changed
+     * @event childrenchange
      */
-
-    /**
-     * Fired when anypoint-selector is activated (selected or deselected).
-     * It is fired before the selected items are changed.
-     * Cancel the event to abort selection.
-     *
-     * @event iron-activate
-     * @deprecated Use `activate`instead. It is for compatibility with Polymer elements.
-     */
-
-    /**
-     * Fired when an item is selected
-     *
-     * @event iron-select
-     * @deprecated Use `select. It is for compatibility with Polymer elements.
-     */
-
-    /**
-     * Fired when an item is deselected
-     *
-     * @event iron-deselect
-     * @deprecated Use `deselect`instead. It is for compatibility with Polymer elements.
-     */
-
-    /**
-     * Fired when the list of selectable items changes (e.g., items are
-     * added or removed). The detail of the event is a mutation record that
-     * describes what changed.
-     *
-     * @event iron-items-changed
-     * @deprecated Use `children-changed`instead. It is for compatibility with Polymer elements.
-     */
-
     static get properties() {
       return {
         /**
@@ -197,8 +169,6 @@ const mxFunction = (base) => {
       const old = this._selected;
       /* istanbul ignore if */
       if (old === value) {
-        const detail = { bubbles: true, composed: true };
-        this.dispatchEvent(new CustomEvent('closed', detail));
         return;
       }
       this._selected = value;
@@ -209,15 +179,7 @@ const mxFunction = (base) => {
         this.requestUpdate('selected', value);
       }
       this._updateSelected();
-      this.dispatchEvent(
-        new CustomEvent('selected-changed', {
-          detail: {
-            value,
-          },
-        })
-      );
-      // new events API. Keep the above for compatibility
-      this.dispatchEvent(new CustomEvent('selectedchange'));
+      this.dispatchEvent(new Event('selectedchange'));
     }
 
     get items() {
@@ -241,15 +203,7 @@ const mxFunction = (base) => {
         // @ts-ignore
         this.requestUpdate('_items', value);
       }
-      this.dispatchEvent(
-        new CustomEvent('items-changed', {
-          detail: {
-            value,
-          },
-        })
-      );
-      // new events API. Keep the above for compatibility
-      this.dispatchEvent(new CustomEvent('itemschange'));
+      this.dispatchEvent(new Event('itemschange'));
     }
 
     get selectedItem() {
@@ -273,15 +227,7 @@ const mxFunction = (base) => {
         // @ts-ignore
         this.requestUpdate('_selectedItem', value);
       }
-      this.dispatchEvent(
-        new CustomEvent('selecteditem-changed', {
-          detail: {
-            value,
-          },
-        })
-      );
-      // new events API. Keep the above for compatibility
-      this.dispatchEvent(new CustomEvent('selecteditemchange'));
+      this.dispatchEvent(new Event('selecteditemchange'));
     }
 
     get activateEvent() {
@@ -313,23 +259,7 @@ const mxFunction = (base) => {
     }
 
     /**
-     * @return {EventListener} Previously registered handler for `selected-changed` event
-     */
-    get onselectedchanged() {
-      return this['_onselected-changed'];
-    }
-
-    /**
-     * Registers a callback function for `selected-changed` event
-     * @param {EventListener} value A callback to register. Pass `null` or `undefined`
-     * to clear the listener.
-     */
-    set onselectedchanged(value) {
-      this._registerCallback('selected-changed', value);
-    }
-
-    /**
-     * @return {EventListener} Previously registered handler for `selected-changed` event
+     * @return {EventListener} Previously registered handler for `selectedchange` event
      */
     get onselectedchange() {
       return this._onselectedchange;
@@ -345,7 +275,7 @@ const mxFunction = (base) => {
     }
 
     /**
-     * @return {EventListener} Previously registered handler for `selected-changed` event
+     * @return {EventListener} Previously registered handler for `selectedchange` event
      */
     get onselected() {
       return this._onselected;
@@ -363,22 +293,6 @@ const mxFunction = (base) => {
     }
 
     /**
-     * @return {EventListener} Previously registered handler for `selectedchange` event
-     */
-    get onselecteditemchanged() {
-      return this['_onselecteditem-changed'];
-    }
-
-    /**
-     * Registers a callback function for `selecteditem-changed` event
-     * @param {EventListener} value A callback to register. Pass `null` or `undefined`
-     * to clear the listener.
-     */
-    set onselecteditemchanged(value) {
-      this._registerCallback('selecteditem-changed', value);
-    }
-
-    /**
      * @return {EventListener} Previously registered handler for `selecteditemchange` event
      */
     get onselecteditemchange() {
@@ -392,22 +306,6 @@ const mxFunction = (base) => {
      */
     set onselecteditemchange(value) {
       this._registerCallback('selecteditemchange', value);
-    }
-
-    /**
-     * @return {EventListener} Previously registered handler for `items-changed` event
-     */
-    get onitemschanged() {
-      return this['_onitems-changed'];
-    }
-
-    /**
-     * Registers a callback function for `items-changed` event
-     * @param {EventListener} value A callback to register. Pass `null` or `undefined`
-     * to clear the listener.
-     */
-    set onitemschanged(value) {
-      this._registerCallback('items-changed', value);
     }
 
     /**
@@ -627,8 +525,7 @@ const mxFunction = (base) => {
         composed: true,
         detail: mutationsList,
       };
-      this.dispatchEvent(new CustomEvent('children-changed', config));
-      this.dispatchEvent(new CustomEvent('iron-items-changed', config));
+      this.dispatchEvent(new CustomEvent('childrenchange', config));
     }
 
     /**
@@ -875,7 +772,6 @@ const mxFunction = (base) => {
       };
       const name = isSelected ? 'select' : 'deselect';
       this.dispatchEvent(new CustomEvent(name, opts));
-      this.dispatchEvent(new CustomEvent(`iron-${name}`, opts));
     }
 
     /**
@@ -923,19 +819,13 @@ const mxFunction = (base) => {
           item,
         },
       };
-      let e = new CustomEvent('activate', opts);
-      this.dispatchEvent(e);
-      if (e.defaultPrevented) {
-        return;
-      }
-      // compatibility with polymer based components
-      e = new CustomEvent('iron-activate', opts);
+      const e = new CustomEvent('activate', opts);
       this.dispatchEvent(e);
       if (e.defaultPrevented) {
         return;
       }
       this.select(value);
-      this.dispatchEvent(new CustomEvent('selected'));
+      this.dispatchEvent(new Event('selected', { bubbles: true, composed: true, }));
     }
   }
   return SelectableMixinImpl;

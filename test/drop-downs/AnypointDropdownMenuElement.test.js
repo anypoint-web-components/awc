@@ -185,10 +185,10 @@ describe('<anypoint-dropdown-menu>', () => {
       assert.isFalse(element.opened);
     });
 
-    it('dispatches opened-changed event', async () => {
+    it('dispatches openedchange event', async () => {
       const element = await basicFixture();
       const spy = sinon.spy();
-      element.addEventListener('opened-changed', spy);
+      element.addEventListener('openedchange', spy);
       element.opened = true;
       assert.isTrue(spy.called);
     });
@@ -359,7 +359,7 @@ describe('<anypoint-dropdown-menu>', () => {
 
     it('value change dispatches value-change event', async () => {
       const spy = sinon.spy();
-      element.addEventListener('validationstates-changed', spy);
+      element.addEventListener('validationstateschange', spy);
       element.validationStates = states;
       assert.deepEqual(spy.args[0][0].detail.value, states);
     });
@@ -367,7 +367,7 @@ describe('<anypoint-dropdown-menu>', () => {
     it('setting the same value ignores setter', async () => {
       element.validationStates = states;
       const spy = sinon.spy();
-      element.addEventListener('validationstates-changed', spy);
+      element.addEventListener('validationstateschange', spy);
       element.validationStates = states;
       assert.isFalse(spy.called);
     });

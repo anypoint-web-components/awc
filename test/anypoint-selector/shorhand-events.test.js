@@ -30,48 +30,6 @@ describe('AnypointSelector', () => {
     </anypoint-selector>`);
   }
 
-  describe('onselectedchanged', () => {
-    let element;
-    beforeEach(async () => {
-      element = await singleFixture();
-    });
-
-    it('Getter returns previously registered handler', () => {
-      assert.isUndefined(element.onselectedchanged);
-      const f = () => {};
-      element.onselectedchanged = f;
-      assert.isTrue(element.onselectedchanged === f);
-    });
-
-    it('Calls registered function', () => {
-      let called = false;
-      const f = () => {
-        called = true;
-      };
-      element.onselectedchanged = f;
-      element.selected = 1;
-      element.onselectedchanged = null;
-      assert.isTrue(called);
-    });
-
-    it('Unregisteres old function', () => {
-      let called1 = false;
-      let called2 = false;
-      const f1 = () => {
-        called1 = true;
-      };
-      const f2 = () => {
-        called2 = true;
-      };
-      element.onselectedchanged = f1;
-      element.onselectedchanged = f2;
-      element.selected = 1;
-      element.onselectedchanged = null;
-      assert.isFalse(called1);
-      assert.isTrue(called2);
-    });
-  });
-
   describe('onselectedchange', () => {
     let element;
     beforeEach(async () => {
@@ -168,48 +126,6 @@ describe('AnypointSelector', () => {
     });
   });
 
-  describe('onselecteditemchanged', () => {
-    let element;
-    beforeEach(async () => {
-      element = await singleFixture();
-    });
-
-    it('Getter returns previously registered handler', () => {
-      assert.isUndefined(element.onselecteditemchanged);
-      const f = () => {};
-      element.onselecteditemchanged = f;
-      assert.isTrue(element.onselecteditemchanged === f);
-    });
-
-    it('Calls registered function', () => {
-      let called = false;
-      const f = () => {
-        called = true;
-      };
-      element.onselecteditemchanged = f;
-      element.selected = 1;
-      element.onselecteditemchanged = null;
-      assert.isTrue(called);
-    });
-
-    it('Unregisteres old function', () => {
-      let called1 = false;
-      let called2 = false;
-      const f1 = () => {
-        called1 = true;
-      };
-      const f2 = () => {
-        called2 = true;
-      };
-      element.onselecteditemchanged = f1;
-      element.onselecteditemchanged = f2;
-      element.selected = 1;
-      element.onselecteditemchanged = null;
-      assert.isFalse(called1);
-      assert.isTrue(called2);
-    });
-  });
-
   describe('onselecteditemchange', () => {
     let element;
     beforeEach(async () => {
@@ -247,50 +163,6 @@ describe('AnypointSelector', () => {
       element.onselecteditemchange = f2;
       element.selected = 1;
       element.onselecteditemchange = null;
-      assert.isFalse(called1);
-      assert.isTrue(called2);
-    });
-  });
-
-  describe('onitemschanged', () => {
-    let element;
-    beforeEach(async () => {
-      element = await singleFixture();
-    });
-
-    it('Getter returns previously registered handler', () => {
-      assert.isUndefined(element.onitemschanged);
-      const f = () => {};
-      element.onitemschanged = f;
-      assert.isTrue(element.onitemschanged === f);
-    });
-
-    it('Calls registered function', async () => {
-      let called = false;
-      const f = () => {
-        called = true;
-      };
-      element.onitemschanged = f;
-      element.appendChild(document.createElement('div'));
-      await nextFrame();
-      element.onitemschanged = null;
-      assert.isTrue(called);
-    });
-
-    it('Unregisteres old function', async () => {
-      let called1 = false;
-      let called2 = false;
-      const f1 = () => {
-        called1 = true;
-      };
-      const f2 = () => {
-        called2 = true;
-      };
-      element.onitemschanged = f1;
-      element.onitemschanged = f2;
-      element.appendChild(document.createElement('div'));
-      await nextFrame();
-      element.onitemschanged = null;
       assert.isFalse(called1);
       assert.isTrue(called2);
     });
@@ -468,48 +340,6 @@ describe('AnypointSelector', () => {
     });
   });
 
-  describe('onselectedvalueschanged', () => {
-    let element;
-    beforeEach(async () => {
-      element = await multiFixture();
-    });
-
-    it('Getter returns previously registered handler', () => {
-      assert.isUndefined(element.onselectedvalueschanged);
-      const f = () => {};
-      element.onselectedvalueschanged = f;
-      assert.isTrue(element.onselectedvalueschanged === f);
-    });
-
-    it('Calls registered function', () => {
-      let called = false;
-      const f = () => {
-        called = true;
-      };
-      element.onselectedvalueschanged = f;
-      element.selectedValues = [0, 1];
-      element.onselectedvalueschanged = null;
-      assert.isTrue(called);
-    });
-
-    it('Unregisteres old function', () => {
-      let called1 = false;
-      let called2 = false;
-      const f1 = () => {
-        called1 = true;
-      };
-      const f2 = () => {
-        called2 = true;
-      };
-      element.onselectedvalueschanged = f1;
-      element.onselectedvalueschanged = f2;
-      element.selectedValues = [0, 1];
-      element.onselectedvalueschanged = null;
-      assert.isFalse(called1);
-      assert.isTrue(called2);
-    });
-  });
-
   describe('onselectedvalueschange', () => {
     let element;
     beforeEach(async () => {
@@ -551,49 +381,7 @@ describe('AnypointSelector', () => {
       assert.isTrue(called2);
     });
   });
-
-  describe('onselecteditemschanged', () => {
-    let element;
-    beforeEach(async () => {
-      element = await multiFixture();
-    });
-
-    it('Getter returns previously registered handler', () => {
-      assert.isUndefined(element.onselecteditemschanged);
-      const f = () => {};
-      element.onselecteditemschanged = f;
-      assert.isTrue(element.onselecteditemschanged === f);
-    });
-
-    it('Calls registered function', () => {
-      let called = false;
-      const f = () => {
-        called = true;
-      };
-      element.onselecteditemschanged = f;
-      element._selectedItems = [element.querySelectorAll('div')[2]];
-      element.onselecteditemschanged = null;
-      assert.isTrue(called);
-    });
-
-    it('Unregisteres old function', () => {
-      let called1 = false;
-      let called2 = false;
-      const f1 = () => {
-        called1 = true;
-      };
-      const f2 = () => {
-        called2 = true;
-      };
-      element.onselecteditemschanged = f1;
-      element.onselecteditemschanged = f2;
-      element._selectedItems = [element.querySelectorAll('div')[2]];
-      element.onselecteditemschanged = null;
-      assert.isFalse(called1);
-      assert.isTrue(called2);
-    });
-  });
-
+  
   describe('onselecteditemschange', () => {
     let element;
     beforeEach(async () => {

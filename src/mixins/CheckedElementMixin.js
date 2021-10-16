@@ -161,24 +161,13 @@ const mxFunction = base => {
     }
 
     /**
-     * Fires `iron-changed` for iron elements, `change` event
-     * for consistency with HTML elements, and `checked-changed` for Polymer.
+     * Dispatches the `checkedchange` event
      * @param {boolean} value
      */
     _checkedChanged(value) {
       this.active = value;
       // this event to be moved to a specific implementation to notify on user interaction.
-      // this.dispatchEvent(new CustomEvent('change'));
       this.dispatchEvent(new CustomEvent('checkedchange'));
-      this.dispatchEvent(new CustomEvent('iron-change'));
-      this.dispatchEvent(
-        new CustomEvent('checked-changed', {
-          composed: true,
-          detail: {
-            value,
-          },
-        })
-      );
     }
 
     /**

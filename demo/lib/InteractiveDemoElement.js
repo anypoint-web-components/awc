@@ -91,10 +91,10 @@ export default class InteractiveDemoElement extends LitElement {
   }
 
   /**
-   * @param {CustomEvent} e
+   * @param {Event} e
    */
   _stateChangeHandler(e) {
-    this.selectedState = e.detail.value;
+    this.selectedState = /** @type AnypointTabsElement */ (e.target).selected;
   }
 
   _toggleOptions() {
@@ -178,7 +178,7 @@ export default class InteractiveDemoElement extends LitElement {
     return html`
     <anypoint-tabs
       .selected="${selectedState}"
-      @selected-changed="${this._stateChangeHandler}"
+      @selectedchange="${this._stateChangeHandler}"
       aria-label="Element state selection">
       ${states.map((item) => html`
         <anypoint-tab

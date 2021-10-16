@@ -115,7 +115,7 @@ describe('<anypoint-input>', () => {
 
     it('value change dispatches value-change event', async () => {
       const spy = sinon.spy();
-      element.addEventListener('value-changed', spy);
+      element.addEventListener('valuechange', spy);
       element.value = 'test';
       assert.equal(spy.args[0][0].detail.value, 'test');
     });
@@ -123,7 +123,7 @@ describe('<anypoint-input>', () => {
     it('setting the same value ignores setter', async () => {
       element.value = 'test';
       const spy = sinon.spy();
-      element.addEventListener('value-changed', spy);
+      element.addEventListener('valuechange', spy);
       element.value = 'test';
       assert.isFalse(spy.called);
     });
@@ -135,9 +135,9 @@ describe('<anypoint-input>', () => {
       },
     ];
 
-    it('value change dispatches value-change event', async () => {
+    it('value change dispatches validationstateschange event', async () => {
       const spy = sinon.spy();
-      element.addEventListener('validationstates-changed', spy);
+      element.addEventListener('validationstateschange', spy);
       element.validationStates = states;
       assert.deepEqual(spy.args[0][0].detail.value, states);
     });
@@ -145,7 +145,7 @@ describe('<anypoint-input>', () => {
     it('setting the same value ignores setter', async () => {
       element.validationStates = states;
       const spy = sinon.spy();
-      element.addEventListener('validationstates-changed', spy);
+      element.addEventListener('validationstateschange', spy);
       element.validationStates = states;
       assert.isFalse(spy.called);
     });
@@ -893,7 +893,7 @@ describe('<anypoint-input>', () => {
     });
 
     function fire(node, value) {
-      const e = new CustomEvent('validationstates-changed', {
+      const e = new CustomEvent('validationstateschange', {
         detail: {
           value,
         },

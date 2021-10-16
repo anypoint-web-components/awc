@@ -15,9 +15,9 @@ export type HorizontalAlign = 'left' | 'right' | 'center' | 'auto';
  *
  * See README.md file for detailed documentation.
  * 
- * @fires validationstates-changed
- * @fires hasvalidationmessage-changed
- * @fires opened-changed
+ * @fires validationstateschange
+ * @fires hasvalidationmessagechange
+ * @fires openedchange
  */
 export default class AnypointDropdownMenuElement extends ValidatableMixin(ControlStateMixin(LitElement)) {
   readonly styles: CSSResult;

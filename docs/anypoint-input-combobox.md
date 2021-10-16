@@ -14,7 +14,7 @@ import '@anypoint-web-components/anypoint-input-combobox/anypoint-input-combobox
 class SampleElement extends PolymerElement {
   render() {
     return html`
-    <anypoint-input-combobox @value-changed="${this._valueHandler}" type="number" .value="{this.zoom}">
+    <anypoint-input-combobox @valuechange="${this._valueHandler}" type="number" .value="{this.zoom}">
       <label slot="label">Zoom level</label>
       <anypoint-listbox slot="dropdown-content" tabindex="-1">
         <anypoint-item>1</anypoint-item>

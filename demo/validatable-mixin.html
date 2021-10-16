@@ -62,8 +62,8 @@
   <script>
     const Demo = {
       init: () => {
-        document.getElementById('input1').addEventListener('invalid-changed', Demo._i1changed);
-        document.getElementById('input2').addEventListener('invalid-changed', Demo._i2changed);
+        document.getElementById('input1').addEventListener('invalidchange', Demo._i1changed);
+        document.getElementById('input2').addEventListener('invalidchange', Demo._i2changed);
         document.getElementById('input2').addEventListener('validation-states-changed', Demo._v2changed);
       },
 

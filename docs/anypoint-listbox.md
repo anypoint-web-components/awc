@@ -40,14 +40,14 @@ Children can be selected by any attribute instead of index:
 </anypoint-listbox>
 ```
 
-You can observe changes by listening to `selected-changed` event or by setting `onselected` property:
+You can observe changes by listening to `selectedchange` event or by setting `onselected` property:
 
 ```javascript
 list.onselected = (e) => {
   console.log(e.target.selected);
 };
 // or
-list.addEventListener('selected-changed', (e) => {
+list.addEventListener('selectedchange', (e) => {
   console.log(e.target.selected);
   // also e.detail.value
 });
@@ -88,7 +88,7 @@ class SimpleElement extends LitElement {
   render() {
     const { options, selected } = this;
     return html`
-    <anypoint-listbox .selected="${selected}" @selected-changed="${this._selectedHandler}">
+    <anypoint-listbox .selected="${selected}" @selectedchange="${this._selectedHandler}">
     ${options.map((item) => html`<anypoint-item>${item}</anypoint-item>`)}
     </anypoint-listbox>
     `;

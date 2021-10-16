@@ -185,9 +185,7 @@ export default class AnypointDropdownElement extends ArcOverlayMixin(ControlStat
   }
 
   connectedCallback() {
-    if (super.connectedCallback) {
-      super.connectedCallback();
-    }
+    super.connectedCallback();
     // Ensure scrollAction is set.
     if (!this.scrollAction) {
       this.scrollAction = this.allowOutsideScroll ? 'refit' : 'lock';
@@ -202,9 +200,7 @@ export default class AnypointDropdownElement extends ArcOverlayMixin(ControlStat
   }
 
   disconnectedCallback() {
-    if (super.disconnectedCallback) {
-      super.disconnectedCallback();
-    }
+    super.disconnectedCallback();
     this.cancelAnimation();
   }
 

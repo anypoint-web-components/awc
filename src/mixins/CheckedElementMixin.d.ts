@@ -5,8 +5,6 @@ interface CheckedElementMixinConstructor {
 }
 
 /**
- * @fires iron-change Deprecated
- * @fires checked-changed Deprecated
  * @fires checkedchange Dispatched when the `checked` property change regardless of the source of the change.
  */
 interface CheckedElementMixin extends ValidatableMixin {
@@ -63,8 +61,7 @@ interface CheckedElementMixin extends ValidatableMixin {
   _requiredChanged(required: boolean): void;
 
   /**
-   * Fires `iron-changed`for iron elements, `change` event
-   * for consistency with HTML elements, and `checked-changed` for Polymer.
+   * Dispatches the `checkedchange` event
    */
   _checkedChanged(value: boolean): void;
 

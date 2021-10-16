@@ -94,7 +94,7 @@ export default class AnypointChipInputElement extends AnypointInputElement {
    * @param {ChipItem[]} value Each array item must have `label` property
    * for the chip. It can contain `removable` property it the chip can
    * be removed. It is added by default when chip's source is user input.
-   * @fires chips-changed
+   * @fires chipschange
    */
   set chips(value) {
     const oldValue = this._chips;
@@ -103,7 +103,7 @@ export default class AnypointChipInputElement extends AnypointInputElement {
     }
     this._chips = value;
     this.requestUpdate('chips', oldValue);
-    this.dispatchEvent(new CustomEvent('chips-changed', {
+    this.dispatchEvent(new CustomEvent('chipschange', {
       composed: true,
       detail: {
         value: this.chipsValue
@@ -127,7 +127,7 @@ export default class AnypointChipInputElement extends AnypointInputElement {
       value = '';
     }
     this._value = value;
-    this.dispatchEvent(new CustomEvent('value-changed', {
+    this.dispatchEvent(new CustomEvent('valuechange', {
       composed: true,
       detail: {
         value
@@ -164,28 +164,27 @@ export default class AnypointChipInputElement extends AnypointInputElement {
   }
 
   /**
-   * @return {EventListener} Previously registered handler for `chips-changed` event
+   * @return {EventListener} Previously registered handler for `chipschange` event
    */
   get onchipschanged() {
-    return this['_onchips-changed'];
+    return this._onchipschange;
   }
 
   /**
-   * Registers a callback function for `chips-changed` event
+   * Registers a callback function for `chipschange` event
    * @param {EventListener} value A callback to register. Pass `null` or `undefined`
    * to clear the listener.
    */
   set onchipschanged(value) {
-    const key = `_onchips-changed`;
-    if (this[key]) {
-      this.removeEventListener('chips-changed', this[key]);
+    if (this._onchipschange) {
+      this.removeEventListener('chipschange', this._onchipschange);
     }
     if (typeof value !== 'function') {
-      this[key] = null;
+      this._onchipschange = null;
       return;
     }
-    this[key] = value;
-    this.addEventListener('chips-changed', value);
+    this._onchipschange = value;
+    this.addEventListener('chipschange', value);
   }
 
   /**

@@ -1,0 +1,50 @@
+body {
+  color: var(--primary-text-color);
+  background-color: var(--secondary-background-color);
+  color: #000;
+  --error-color: red;
+  --primary-text-color: #000;
+  --primary-color: #e91e63;
+  --primary-background-color: #ffffff;
+  --dark-divider-opacity: 0.12;
+  --api-divider-color: #e5e5e5;
+  --anypoint-button-emphasis-high-background-color: var(--accent-color);
+  --anypoint-dropdown-shadow: 0 4px 5px 0 rgba(0, 0, 0, 0.14), 0 1px 10px 0 rgba(0, 0, 0, 0.12), 0 2px 4px -1px rgba(0, 0, 0, 0.4);
+}
+
+@media (prefers-color-scheme: dark) {
+  body {
+    --primary-color: #ffcc80;
+    --primary-text-color: #fff;
+    --accent-color: #E040FB;
+    --secondary-text-color: rgba(255, 255, 255, 0.84);
+    --primary-background-color: #424242;
+    --secondary-background-color: #313131;
+    --error-color: #ff9090;
+    --error-message-color: var(--error-color);
+    --link-color: #8bc34a;
+    --input-background-color: var(--primary-background-color);
+    --active-background-color: #616161;
+
+    --anypoint-checkbox-label-color:  #F5F5F5;
+    --anypoint-input-background-color: var(--input-background-color);
+    --anypoint-input-label-color: var(--primary-text-color);
+    --anypoint-input-input-color: var(--primary-text-color);
+    --anypoint-input-border-bottom-color: var(--primary-text-color);
+    --anypoint-input-focused-border-bottom-color: var(--primary-text-color);
+    --anypoint-input-label-background-color: rgb(66, 66, 66);
+    --anypoint-input-legacy-focus-background-color: #3a3b3c;
+    --anypoint-input-legacy-focus-border-color: #178bea;
+    --anypoint-input-info-message-color: var(--primary-text-color);
+
+    --anypoint-dropdown-menu-background-color: #494949;
+    --anypoint-dropdown-menu-label-background-color: var(--primary-background-color);
+    --anypoint-listbox-background-color: #494949;
+    --anypoint-dropdown-menu-focus-background-color: #9E9E9E;
+    --anypoint-dropdown-menu-label-color: #fff;
+    --anypoint-dropdown-menu-info-message-color: #fff;
+    --anypoint-item-hover-background-color: #9E9E9E;
+    --anypoint-item-focused-background-color: var(--primary-background-color);
+    --anypoint-icon-button-emphasis-low-color: #fff;
+  }
+}

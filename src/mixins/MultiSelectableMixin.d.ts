@@ -21,22 +21,10 @@ interface MultiSelectableMixin extends SelectableMixin {
    */
   selectedItems: any[];
   _selectedItems: any[];
-
-  /**
-   * Registers a callback function for `selectedvalues-changed` event
-   */
-  onselectedvalueschanged: EventListener|null;
-
   /**
    * Registers a callback function for `selectedvalueschange` event
    */
   onselectedvalueschange: EventListener|null;
-
-  /**
-   * Registers a callback function for `selecteditems-changed` event
-   */
-  onselecteditemschanged: EventListener|null;
-
   /**
    * Registers a callback function for `selecteditemschange` event
    */

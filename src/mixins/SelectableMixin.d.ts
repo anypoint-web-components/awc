@@ -6,12 +6,10 @@ interface SelectableMixinConstructor {
 }
 
 /**
- * @fires selected-changed
  * @fires selectedchange
- * @fires selecteditem-changed
  * @fires selecteditemchange
- * @fires items-changed
  * @fires itemschange
+ * @fires childrenchange
  * @fires select When an item is selected. This also is dispatched when the `selected` property is set.
  * @fires deselect When an item is deselected. This also is dispatched when the `selected` property is set.
  * @fires activate When an item is about to be selected. Cancelling this event cancels the selection.
@@ -85,34 +83,17 @@ interface SelectableMixin {
    */
   items: HTMLElement[];
   _items: HTMLElement[];
-
-  /**
-   * @returns Previously registered handler for `selected-changed` event
-   * @deprecated
-   */
-  onselectedchanged: EventListener;
   /**
    * @returns Previously registered handler for `selectedchange` event
    * @deprecated
    */
   onselectedchange: EventListener;
-  /**
-   * @returns Previously registered handler for `selecteditem-changed` event
-   * @deprecated
-   */
-  onselecteditemchanged: EventListener;
 
   /**
    * @returns Previously registered handler for `selecteditemchange` event
    * @deprecated
    */
   onselecteditemchange: EventListener;
-
-  /**
-   * @returns Previously registered handler for `items-changed` event
-   * @deprecated
-   */
-  onitemschanged: EventListener;
 
   /**
    * @returns Previously registered handler for `itemschange` event

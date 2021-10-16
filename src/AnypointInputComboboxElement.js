@@ -284,8 +284,8 @@ export default class AnypointInputComboboxElement extends AnypointInputElement {
     // but the input won't dispatch this event in this situation. However,
     // this is an input from the user side. Change, however, is dispatched
     // when value is changed on the input's property.
-    this.dispatchEvent(new CustomEvent('input'));
-    this.dispatchEvent(new CustomEvent('change'));
+    this.dispatchEvent(new Event('input'));
+    this.dispatchEvent(new Event('change'));
   }
 
   [dropdownClosed]() {

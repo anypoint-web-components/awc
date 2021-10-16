@@ -7,6 +7,8 @@ import { arrowDown } from './AnypointDropdownMenuIcons.js';
 import DropdownStyles from './styles/DropdownMenu.js';
 
 /** @typedef {import('./mixins/ValidatableMixin').ValidationResult} ValidationResult */
+/** @typedef {import('./AnypointDropdownElement').default} AnypointDropdownElement */
+/** @typedef {import('./AnypointListboxElement').default} AnypointListboxElement */
 
 /* eslint-disable class-methods-use-this */
 /* eslint-disable no-plusplus */
@@ -96,7 +98,7 @@ export default class AnypointDropdownMenuElement extends ValidatableMixin(Contro
           .restoreFocusOnClose="${restoreFocusOnClose}"
           @closed="${this._dropdownClosed}"
           @opened="${this._dropdownOpened}"
-          @select="${this._selectHandler}"
+          @selected="${this._selectHandler}"
           @deselect="${this._deselectHandler}"
           aria-labelledby="${name}"
         >
@@ -149,7 +151,7 @@ export default class AnypointDropdownMenuElement extends ValidatableMixin(Contro
     this._hasValidationMessage = !!(value && value.length);
     this._validationStatesChanged(value);
     this.dispatchEvent(
-      new CustomEvent('validationstates-changed', {
+      new CustomEvent('validationstateschange', {
         detail: {
           value,
         },
@@ -178,7 +180,7 @@ export default class AnypointDropdownMenuElement extends ValidatableMixin(Contro
     }
     this.__hasValidationMessage = value;
     this.dispatchEvent(
-      new CustomEvent('hasvalidationmessage-changed', {
+      new CustomEvent('hasvalidationmessagechange', {
         detail: {
           value,
         },
@@ -305,7 +307,7 @@ export default class AnypointDropdownMenuElement extends ValidatableMixin(Contro
     this.requestUpdate('opened', old);
     this._openedChanged(value);
     this.dispatchEvent(
-      new CustomEvent('opened-changed', {
+      new CustomEvent('openedchange', {
         detail: {
           value,
         },
@@ -557,10 +559,7 @@ export default class AnypointDropdownMenuElement extends ValidatableMixin(Contro
   }
 
   connectedCallback() {
-    /* istanbul ignore else */
-    if (super.connectedCallback) {
-      super.connectedCallback();
-    }
+    super.connectedCallback();
     if (!this.hasAttribute('tabindex')) {
       this.setAttribute('tabindex', '0');
     }
@@ -574,10 +573,7 @@ export default class AnypointDropdownMenuElement extends ValidatableMixin(Contro
   }
 
   disconnectedCallback() {
-    /* istanbul ignore else */
-    if (super.disconnectedCallback) {
-      super.disconnectedCallback();
-    }
+    super.disconnectedCallback();
     this.removeEventListener('click', this._clickHandler);
     this.removeEventListener('keydown', this._onKeydown);
     this.removeEventListener('focus', this._focusHandler);
@@ -816,9 +812,13 @@ export default class AnypointDropdownMenuElement extends ValidatableMixin(Contro
     this._focusContent();
   }
 
+  /**
+   * @param {Event} e
+   */
   _selectHandler(e) {
     this.opened = false;
-    this._selectedItem = e.detail.item;
+    const node = /** @type AnypointListboxElement */ (e.target);
+    this._selectedItem = node.selectedItem;
   }
 
   _deselectHandler() {

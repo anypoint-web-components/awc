@@ -20,7 +20,7 @@ const tag = defineCE(
       this._selected = value;
       this.requestUpdate('selected', old);
       this.dispatchEvent(
-        new CustomEvent('selected-changed', {
+        new CustomEvent('selectedchange', {
           detail: {
             value
           }

@@ -102,9 +102,7 @@ export default css`
     display: none !important;
   }
 
-  :host(.iron-selected),
   :host(.selected),
-  .anypoint-item.iron-selected,
   .anypoint-item.selected {
     font-weight: var(--anypoint-item-selected-weight, bold);
   }

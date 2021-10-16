@@ -105,7 +105,7 @@ export default class AnypointInputElement extends AnypointInputMixin(LitElement)
    * @param {Event} e The event to retarget
    */
   _retargetEvent(e) {
-    this.dispatchEvent(new CustomEvent(e.type));
+    this.dispatchEvent(new Event(e.type));
   }
 
   render() {

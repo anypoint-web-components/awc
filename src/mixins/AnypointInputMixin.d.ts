@@ -34,8 +34,8 @@ interface AnypointInputMixinConstructor {
  * @fires change When the input value change
  * @fires input On user input
  * @fires iron-announce When requesting a11y announcement
- * @fires value-changed When the `value` property has changed
- * @fires hasvalidationmessage-changed When the `hasValidationMessage` property has changed
+ * @fires valuechange When the `value` property has changed
+ * @fires hasvalidationmessagechange When the `hasValidationMessage` property has changed
  */
 interface AnypointInputMixin extends ValidatableMixin, ControlStateMixin {
   /**

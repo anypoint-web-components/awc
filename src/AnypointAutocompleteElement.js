@@ -285,14 +285,6 @@ export default class AnypointAutocompleteElement extends LitElement {
     this[openedValuePrivate] = value;
     this.requestUpdate();
     this._openedChanged(value);
-    // deprecate this.
-    this.dispatchEvent(
-      new CustomEvent('opened-changed', {
-        detail: {
-          value
-        }
-      })
-    );
     this.dispatchEvent(new CustomEvent('openedchange'));
   }
 

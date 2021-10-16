@@ -150,33 +150,17 @@ describe('Active state tests', () => {
       assert.isFalse(spy.called);
     });
 
-    it('Dispatches iron-change event', () => {
+    it('dispatches the checkedchange event', () => {
       const spy = sinon.spy();
-      element.addEventListener('iron-change', spy);
+      element.addEventListener('checkedchange', spy);
       element.checked = true;
       assert.isTrue(spy.called);
     });
 
-    it('Ignores iron-change event when the value was already set', () => {
+    it('ignores checkedchange event when the value was already set', () => {
       element.checked = true;
       const spy = sinon.spy();
-      element.addEventListener('iron-change', spy);
-      element.checked = true;
-      assert.isFalse(spy.called);
-    });
-
-    it('Dispatches checked-changed event', () => {
-      const spy = sinon.spy();
-      element.addEventListener('checked-changed', spy);
-      element.checked = true;
-      assert.isTrue(spy.called);
-      assert.isTrue(spy.args[0][0].detail.value);
-    });
-
-    it('Ignores checked-changed event when the value was already set', () => {
-      element.checked = true;
-      const spy = sinon.spy();
-      element.addEventListener('checked-changed', spy);
+      element.addEventListener('checkedchange', spy);
       element.checked = true;
       assert.isFalse(spy.called);
     });

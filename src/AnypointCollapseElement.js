@@ -103,7 +103,7 @@ export default class AnypointCollapseElement extends ArcResizableMixin(LitElemen
       return;
     }
     this[transitioningValue] = value;
-    this.dispatchEvent(new CustomEvent('transitioningchange'));
+    this.dispatchEvent(new Event('transitioningchange'));
   }
 
   get [dimension]() {
@@ -166,7 +166,7 @@ export default class AnypointCollapseElement extends ArcResizableMixin(LitElemen
    */
   toggle() {
     this.opened = !this.opened;
-    this.dispatchEvent(new CustomEvent('openedchange'));
+    this.dispatchEvent(new Event('openedchange'));
   }
 
   /**
@@ -174,7 +174,7 @@ export default class AnypointCollapseElement extends ArcResizableMixin(LitElemen
    */
   open() {
     this.opened = true;
-    this.dispatchEvent(new CustomEvent('openedchange'));
+    this.dispatchEvent(new Event('openedchange'));
   }
 
   /**
@@ -182,7 +182,7 @@ export default class AnypointCollapseElement extends ArcResizableMixin(LitElemen
    */
   close() {
     this.opened = false;
-    this.dispatchEvent(new CustomEvent('openedchange'));
+    this.dispatchEvent(new Event('openedchange'));
   }
 
   /**

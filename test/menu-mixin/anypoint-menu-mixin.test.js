@@ -278,7 +278,7 @@ describe('AnypointMenuMixin', () => {
     });
 
     it('focusing on next item in empty menu', async () => {
-      // This menu will not dispatch an 'iron-items-changed' event.
+      // This menu will not dispatch an 'childrenchange' event.
       const menu = await emptyFixture();
       menu.focus();
       // Wait for async focus
@@ -374,7 +374,7 @@ describe('AnypointMenuMixin', () => {
     });
 
     it('focusing on previous item in empty menu', async () => {
-      // This menu will not dispatch an 'iron-items-changed' event.
+      // This menu will not dispatch an 'childrenchange' event.
       const menu = await emptyFixture();
       menu.focus();
       // Wait for async focus
@@ -679,7 +679,7 @@ describe('AnypointMenuMixin', () => {
     });
 
     it('empty menus do not un-focus themselves', async () => {
-      // This menu will not dispatch an 'iron-items-changed' event.
+      // This menu will not dispatch an 'childrenchange' event.
       const menu = await emptyFixture();
       menu.focus();
       await aTimeout(0);

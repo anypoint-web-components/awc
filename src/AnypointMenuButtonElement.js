@@ -188,7 +188,7 @@ export default class AnypointMenuButtonElement extends ControlStateMixin(LitElem
     this.setAttribute('role', 'group');
     this.setAttribute('aria-haspopup', 'true');
     this.addEventListener('activate', this._activateHandler);
-    this.addEventListener('select', this._selectHandler);
+    this.addEventListener('selected', this._selectHandler);
   }
 
   disconnectedCallback() {
@@ -197,7 +197,7 @@ export default class AnypointMenuButtonElement extends ControlStateMixin(LitElem
       super.disconnectedCallback();
     }
     this.removeEventListener('activate', this._activateHandler);
-    this.removeEventListener('select', this._selectHandler);
+    this.removeEventListener('selected', this._selectHandler);
   }
 
   _openedHandler(e) {
@@ -256,21 +256,13 @@ export default class AnypointMenuButtonElement extends ControlStateMixin(LitElem
 
   _openedChanged(opened) {
     let type;
-    let typeOld;
     if (opened) {
       this._dropdownContent = this.contentElement;
       type = 'dropdownopen';
-      typeOld = 'dropdown-open';
     } else {
       type = 'dropdownclose';
-      typeOld = 'dropdown-close';
     }
-    this.dispatchEvent(new CustomEvent(type));
-    // this is left for compatibility. To be removed in the future
-    this.dispatchEvent(new CustomEvent(typeOld, {
-      bubbles: true,
-      composed: true
-    }));
+    this.dispatchEvent(new Event(type));
   }
 
   __overlayCanceledHandler(e) {

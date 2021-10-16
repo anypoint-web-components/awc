@@ -87,7 +87,7 @@ const mxFunction = base => {
         this._internals.setFormValue(value);
       }
       this.dispatchEvent(
-        new CustomEvent('value-changed', {
+        new CustomEvent('valuechange', {
           detail: {
             value,
           },
@@ -118,7 +118,7 @@ const mxFunction = base => {
       }
       this.__hasValidationMessage = value;
       this.dispatchEvent(
-        new CustomEvent('hasvalidationmessage-changed', {
+        new CustomEvent('hasvalidationmessagechange', {
           detail: {
             value,
           },
@@ -449,10 +449,7 @@ const mxFunction = base => {
         super.connectedCallback();
       }
       this.addEventListener('keydown', this._onKeydown);
-      this.addEventListener(
-        'validationstates-changed',
-        this._validationStatesHandler
-      );
+      this.addEventListener('validationstateschange', this._validationStatesHandler);
     }
 
     disconnectedCallback() {
@@ -463,10 +460,7 @@ const mxFunction = base => {
         super.disconnectedCallback();
       }
       this.removeEventListener('keydown', this._onKeydown);
-      this.removeEventListener(
-        'validationstates-changed',
-        this._validationStatesHandler
-      );
+      this.removeEventListener('validationstateschange', this._validationStatesHandler);
     }
 
     /**

@@ -1,7 +1,6 @@
 /* eslint-disable prefer-destructuring */
 import { fixture, expect, nextFrame, assert, html } from '@open-wc/testing';
 import '@advanced-rest-client/arc-icons/arc-icon.js';
-import * as MockInteractions from '@polymer/iron-test-helpers/mock-interactions.js';
 import '../../anypoint-menu-button.js';
 
 /** @typedef {import('../..').AnypointMenuButtonElement} AnypointMenuButtonElement */
@@ -50,24 +49,24 @@ describe('<anypoint-menu-button>', () => {
       const contentRect = content.getBoundingClientRect();
       expect(contentRect.width).to.be.equal(0);
       expect(contentRect.height).to.be.equal(0);
-      element.addEventListener('dropdown-open', () => {
+      element.addEventListener('dropdownopen', () => {
         expect(element.opened).to.be.equal(true);
         done();
       });
-      MockInteractions.tap(trigger);
+      trigger.click();
     });
 
     it('closes when trigger is clicked again', (done) => {
-      element.addEventListener('dropdown-open', () => {
-        element.addEventListener('dropdown-close', () => {
+      element.addEventListener('dropdownopen', () => {
+        element.addEventListener('dropdownclose', () => {
           expect(element.opened).to.be.equal(false);
           done();
         });
         setTimeout(() => {
-          MockInteractions.tap(trigger);
+          trigger.click();
         });
       });
-      MockInteractions.tap(trigger);
+      trigger.click();
     });
 
     it('closes when disabled while open', () => {
@@ -81,7 +80,7 @@ describe('<anypoint-menu-button>', () => {
 
     it('does not open when disabled (click)', () => {
       element.disabled = true;
-      MockInteractions.tap(trigger);
+      trigger.click();
       expect(element.opened).not.to.be.equal(true);
     });
 
@@ -93,30 +92,29 @@ describe('<anypoint-menu-button>', () => {
 
     it('closes on activate if closeOnActivate is true', (done) => {
       element.closeOnActivate = true;
-      element.addEventListener('dropdown-open', () => {
-        element.addEventListener('dropdown-close', () => {
+      element.addEventListener('dropdownopen', () => {
+        element.addEventListener('dropdownclose', () => {
           done();
         });
         content.dispatchEvent(
             new CustomEvent('activate', { bubbles: true, cancelable: true }));
       });
-      MockInteractions.tap(trigger);
+      trigger.click();
     });
 
-    it('closes on select', (done) => {
-      element.addEventListener('dropdown-open', () => {
-        element.addEventListener('dropdown-close', () => {
+    it('closes on selected', (done) => {
+      element.addEventListener('dropdownopen', () => {
+        element.addEventListener('dropdownclose', () => {
           done();
         });
-        content.dispatchEvent(
-            new CustomEvent('select', { bubbles: true, cancelable: true }));
+        content.dispatchEvent(new CustomEvent('selected', { bubbles: true, cancelable: true }));
       });
-      MockInteractions.tap(trigger);
+      trigger.click();
     });
 
     it('does not close on select when ignoreSelect is set', (done) => {
       element.ignoreSelect = true;
-      element.addEventListener('dropdown-open', () => {
+      element.addEventListener('dropdownopen', () => {
         setTimeout(() => {
           expect(element.opened).to.be.equal(true);
           done();
@@ -124,7 +122,7 @@ describe('<anypoint-menu-button>', () => {
         content.dispatchEvent(
             new CustomEvent('select', { bubbles: true, cancelable: true }));
       });
-      MockInteractions.tap(trigger);
+      trigger.click();
     });
 
     it('allowOutsideScroll propagates to <anypoint-dropdown>', async () => {
@@ -172,14 +170,14 @@ describe('<anypoint-menu-button>', () => {
 
         let firstClosed = false;
         let secondOpened = false;
-        element.addEventListener('dropdown-close', () => {
+        element.addEventListener('dropdownclose', () => {
           firstClosed = true;
         });
-        other.addEventListener('dropdown-open', () => {
+        other.addEventListener('dropdownopen', () => {
           secondOpened = true;
         });
         setTimeout(() => {
-          MockInteractions.tap(otherTrigger);
+          otherTrigger.click();
         });
         setTimeout(() => {
           expect(firstClosed).to.be.equal(true);
@@ -187,7 +185,7 @@ describe('<anypoint-menu-button>', () => {
           done();
         });
       });
-      MockInteractions.tap(trigger);
+      trigger.click();
     });
   });
 

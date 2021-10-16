@@ -111,15 +111,7 @@ const mxFunction = base => {
       }
       this._invalid = value;
       this._invalidChanged(value);
-      this.dispatchEvent(
-        new CustomEvent(`invalid-changed`, {
-          composed: true,
-          detail: {
-            value,
-          },
-        })
-      );
-
+      this.dispatchEvent(new Event('invalidchange'));
       // @ts-ignore
       if (this.requestUpdate) {
         // @ts-ignore
@@ -144,7 +136,7 @@ const mxFunction = base => {
       }
       this._validationStates = value;
       this.dispatchEvent(
-        new CustomEvent(`validationstates-changed`, {
+        new CustomEvent(`validationstateschange`, {
           composed: true,
           detail: {
             value,
@@ -160,27 +152,27 @@ const mxFunction = base => {
     }
 
     /**
-     * @return {EventListener} Previously registered handler for `chips-changed` event
+     * @return {EventListener} Previously registered handler for `invalid` event
      */
     get oninvalid() {
       return this._oninvalid;
     }
 
     /**
-     * Registers a callback function for `chips-changed` event
+     * Registers a callback function for `invalid` event
      * @param {EventListener} value A callback to register. Pass `null` or `undefined`
      * to clear the listener.
      */
     set oninvalid(value) {
       if (this._oninvalid) {
-        this.removeEventListener('invalid-changed', this._oninvalid);
+        this.removeEventListener('invalidchange', this._oninvalid);
       }
       if (typeof value !== 'function') {
         this._oninvalid = null;
         return;
       }
       this._oninvalid = value;
-      this.addEventListener('invalid-changed', value);
+      this.addEventListener('invalidchange', value);
     }
 
     /**

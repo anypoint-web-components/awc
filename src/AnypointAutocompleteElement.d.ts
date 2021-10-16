@@ -41,7 +41,6 @@ export declare const ignoreNextFocus: unique symbol;
  * @fires selected When a suggestion is selected
  * @fires resize When a dropdown resize
  * @fires loadingchange When the loading (querying) state changed
- * @fires opened-changed Deprecated. Use openedchange instead.
  * @fires openedchange When the `opened` state changes.
  */
 export default class AnypointAutocompleteElement extends LitElement {

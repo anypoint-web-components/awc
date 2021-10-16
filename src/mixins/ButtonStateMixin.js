@@ -80,14 +80,6 @@ const mxFunction = base => {
       }
       this._active = value;
       this.dispatchEvent(new Event('activechange'));
-      this.dispatchEvent(
-        new CustomEvent('active-changed', {
-          composed: true,
-          detail: {
-            value,
-          },
-        })
-      );
       this._activeChanged();
       // @ts-ignore
       if (this.requestUpdate) {
