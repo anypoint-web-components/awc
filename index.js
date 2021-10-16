@@ -50,3 +50,4 @@ export { AnypointSelection } from './src/mixins/AnypointSelection.js';
 export { MenuMixin } from './src/mixins/MenuMixin.js';
 export { MenubarMixin } from './src/mixins/MenubarMixin.js';
 export { ResizableMixin } from './src/mixins/ResizableMixin.js';
+export { FitMixin } from './src/mixins/FitMixin.js';

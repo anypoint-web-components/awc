@@ -50,4 +50,5 @@ export { AnypointSelection } from './src/mixins/AnypointSelection';
 export { MenuMixin, MenuMixinConstructor } from './src/mixins/MenuMixin';
 export { MenubarMixin, MenubarMixinConstructor } from './src/mixins/MenubarMixin';
 export { ResizableMixin, ResizableMixinConstructor } from './src/mixins/ResizableMixin';
+export { FitMixin, FitMixinConstructor, HorizontalAlign, VerticalAlign } from './src/mixins/FitMixin.js';
 export * from './src/types';

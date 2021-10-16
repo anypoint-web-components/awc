@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="en-GB">
+
+<head>
+  <meta charset="utf-8">
+  <style>
+    .centered {
+      min-width: 600px;
+    }
+    .target {
+    cursor: pointer;
+    text-align: center;
+    display: inline-block;
+    box-sizing: border-box;
+    border: 1px solid;
+    width: 120px;
+    padding: 26px 0;
+    margin: 8px;
+  }
+  #myFit {
+    z-index: 10;
+    padding: 20px;
+    overflow: auto;
+    min-width: 100px;
+    min-height: 100px;
+  }
+  button {
+    background-color: white;
+    border-radius: 5px;
+    border-width: 1px;
+  }
+  button.selected {
+    background-color: #b3e5fc;
+  }
+  </style>
+</head>
+
+<body>
+  <div id="demo"></div>
+  <script type="module" src="fit-mixin.js"></script>
+</body>
+
+</html>
