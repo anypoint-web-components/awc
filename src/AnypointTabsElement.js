@@ -1,5 +1,5 @@
 import { html, LitElement } from 'lit-element';
-import { ArcResizableMixin } from '@advanced-rest-client/arc-resizable-mixin';
+import { ResizableMixin } from './mixins/ResizableMixin.js';
 import { MenubarMixin } from './mixins/MenubarMixin.js';
 import '../anypoint-icon-button.js';
 import styles from './styles/TabsStyles.js';
@@ -22,7 +22,7 @@ export function calcPercent(w, w0) {
 /**
  * Tabs for anypoint web components
  */
-export default class AnypointTabsElement extends MenubarMixin(ArcResizableMixin(LitElement)) {
+export default class AnypointTabsElement extends MenubarMixin(ResizableMixin(LitElement)) {
   get styles() {
     return styles;
   }

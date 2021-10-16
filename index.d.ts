@@ -49,4 +49,5 @@ export { MultiSelectableMixin, MultiSelectableMixinConstructor } from './src/mix
 export { AnypointSelection } from './src/mixins/AnypointSelection';
 export { MenuMixin, MenuMixinConstructor } from './src/mixins/MenuMixin';
 export { MenubarMixin, MenubarMixinConstructor } from './src/mixins/MenubarMixin';
+export { ResizableMixin, ResizableMixinConstructor } from './src/mixins/ResizableMixin';
 export * from './src/types';

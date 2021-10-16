@@ -207,7 +207,7 @@ export default class AnypointDropdownElement extends ArcOverlayMixin(ControlStat
   _updateOverlayPosition() {
     // from ArcOverlayMixin
     if (this.isAttached) {
-      // from  ArcResizableMixin
+      // from ResizableMixin
       this.notifyResize();
     }
   }

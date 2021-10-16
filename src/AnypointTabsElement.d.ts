@@ -1,5 +1,5 @@
 import { TemplateResult, LitElement } from 'lit-element';
-import { ArcResizableMixin } from '@advanced-rest-client/arc-resizable-mixin';
+import { ResizableMixin } from './mixins/ResizableMixin';
 import { MenubarMixin } from './mixins/MenubarMixin.js';
 
 /* eslint-disable no-param-reassign */
@@ -13,7 +13,7 @@ import { MenubarMixin } from './mixins/MenubarMixin.js';
  */
 export declare function calcPercent(w: number, w0: number): number;
 
-export default class AnypointTabsElement extends MenubarMixin(ArcResizableMixin(LitElement)) {
+export default class AnypointTabsElement extends MenubarMixin(ResizableMixin(LitElement)) {
   /**
    * If true, the bottom bar to indicate the selected tab will not be shown.
    * @attribute

@@ -41,6 +41,7 @@
     "transitioningchange",
     "UA's",
     "validationstateschange",
-    "valuechange"
+    "valuechange",
+    "Xresizable"
   ]
 }

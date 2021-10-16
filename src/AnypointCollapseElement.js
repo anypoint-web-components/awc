@@ -1,5 +1,5 @@
 import { html, css, LitElement } from 'lit-element';
-import { ArcResizableMixin } from '@advanced-rest-client/arc-resizable-mixin';
+import { ResizableMixin } from './mixins/ResizableMixin.js';
 
 const transitionEndHandler = Symbol('transitionEndHandler');
 const updateSize = Symbol('updateSize');
@@ -17,7 +17,7 @@ const openedChanged = Symbol('openedChanged');
 const horizontalChanged = Symbol('horizontalChanged');
 const toggleAttribute = Symbol('toggleAttribute');
 
-export default class AnypointCollapseElement extends ArcResizableMixin(LitElement) {
+export default class AnypointCollapseElement extends ResizableMixin(LitElement) {
   // eslint-disable-next-line class-methods-use-this
   get styles() {
     return css`

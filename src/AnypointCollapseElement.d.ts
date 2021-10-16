@@ -1,11 +1,11 @@
 import { TemplateResult, LitElement } from 'lit-element';
-import { ArcResizableMixin } from '@advanced-rest-client/arc-resizable-mixin';
+import { ResizableMixin } from './mixins/ResizableMixin';
 
 /**
  * @fires openedchange
  * @fires transitioningchange
  */
-export default class AnypointCollapseElement extends ArcResizableMixin(LitElement) {
+export default class AnypointCollapseElement extends ResizableMixin(LitElement) {
   /**
    * Renders the collapse horizontally when true and vertically otherwise
    * @attribute

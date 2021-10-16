@@ -49,3 +49,4 @@ export { MultiSelectableMixin } from './src/mixins/MultiSelectableMixin.js';
 export { AnypointSelection } from './src/mixins/AnypointSelection.js';
 export { MenuMixin } from './src/mixins/MenuMixin.js';
 export { MenubarMixin } from './src/mixins/MenubarMixin.js';
+export { ResizableMixin } from './src/mixins/ResizableMixin.js';
