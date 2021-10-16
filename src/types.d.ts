@@ -1,4 +1,4 @@
-import { TemplateResult } from 'lit-element';
+import { TemplateResult, SVGTemplateResult } from 'lit-element';
 
 export type SupportedInputTypes = "hidden" | "text" | "search" | "tel" | "url" | "email" | "password" | "datetime" | "date" | "month" | "week" | "time" | "datetime-local" | "number" | "range" | "color" | "checkbox" | "radio" | "file" | "submit" | "image" | "reset" | "button";
 export type SupportedAutocomplete = "on" | "off" | "additional-name" | "street-address" | "address-level1" | "address-level2" | "address-level3" | "address-level4" | "address-line1" | "address-line2" | "address-line3" | "bday" | "bday-year" | "bday-day" | "bday-month" | "billing" | "cc-additional-name" | "honorific-prefix" | "given-name" | "additional-name" | "family-name" | "honorific-suffix" | "nickname" | "username" | "new-password" | "current-password" | "organization-title" | "organization" | "country" | "country-name" | "postal-code" | "cc-name" | "cc-given-name" | "cc-additional-name" | "cc-family-name" | "cc-number" | "cc-exp" | "cc-exp-month" | "cc-exp-year" | "cc-csc" | "cc-type" | "transaction-currency" | "transaction-amount" | "language" | "sex" | "tel" | "tel-country-code" | "tel-national" | "tel-area-code" | "tel-local" | "tel-extension" | "impp" | "url" | "photo";
@@ -28,4 +28,22 @@ export declare interface Suggestion {
    * property.
    */
   id?: string|number;
+}
+
+export declare interface ChipSuggestion extends Suggestion {
+  /**
+   * An instance of `SVGTemplateResult` from `lit-html` library.
+   */
+  icon?: SVGTemplateResult;
+  /**
+   * This value will be returned as the value of the input
+   */
+  id?: string;
+}
+
+export declare interface ChipItem {
+  label: string;
+  removable?: boolean;
+  icon?: SVGTemplateResult;
+  id?: string;
 }
