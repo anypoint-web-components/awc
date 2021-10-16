@@ -70,9 +70,9 @@ describe('ButtonStateMixin', () => {
       assert.isFalse(spy.called);
     });
 
-    it('dispatches pressed-changed event', () => {
+    it('dispatches pressedchange event', () => {
       const spy = sinon.spy();
-      element.addEventListener('pressed-changed', spy);
+      element.addEventListener('pressedchange', spy);
       element._pressed = true;
       assert.isTrue(spy.calledOnce);
     });

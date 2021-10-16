@@ -252,9 +252,9 @@ export default class AnypointChipElement extends LitElement {
    * @param {KeyboardEvent} e
    */
   _keyDownHandler(e) {
-    if (this.removable && (e.key === 'Backspace' || e.key === 'Delete')) {
+    if (this.removable && ['Backspace', 'Delete'].includes(e.code)) {
       this.remove();
-    } else if (e.key === ' ' || e.key === 'Enter') {
+    } else if (['Enter', 'Space'].includes(e.code)) {
       this._clickHandler();
       this._asyncClick();
     }

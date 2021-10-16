@@ -5,9 +5,9 @@ import {
   aTimeout,
   nextFrame
 } from '@open-wc/testing';
-import * as MockInteractions from '@polymer/iron-test-helpers/mock-interactions.js';
 import '../../anypoint-tabs.js';
 import '../../anypoint-tab.js';
+import { keyDown } from '../lib/helpers.js';
 
 /** @typedef {import('lit-element').TemplateResult} TemplateResult */
 /** @typedef {import('../../').AnypointTabElement} AnypointTabElement */
@@ -351,7 +351,7 @@ describe('AnypointTabsElement', () => {
       element = await hiddenFixture();
     });
 
-    it('sets bar posittion once visible', async () => {
+    it('sets bar position once visible', async () => {
       element.removeAttribute('hidden');
       element.selected = 1;
       await aTimeout(200);
@@ -386,7 +386,7 @@ describe('AnypointTabsElement', () => {
       // a bit
       element.noSlide = true;
       const tab = element.items[2];
-      MockInteractions.tap(tab);
+      tab.click();
       await aTimeout(200);
       checkSelectionBar(element, tab);
     });
@@ -394,7 +394,7 @@ describe('AnypointTabsElement', () => {
     it('selects a tab when clicking on it', async () => {
       await aTimeout(20);
       const tab = element.items[0];
-      MockInteractions.pressEnter(tab);
+      keyDown(tab, 'Enter');
       await aTimeout(20);
       assert.equal(element.selected, 0);
     });
@@ -409,18 +409,18 @@ describe('AnypointTabsElement', () => {
   }
 
   describe('Auto selection', () => {
-    it('does not select tab when no autoselect', async () => {
+    it('does not select a tab when no autoselect', async () => {
       const element = await basicFixture();
       ensureDocumentHasFocus();
       element.select(0);
-      MockInteractions.pressAndReleaseKeyOn(element.selectedItem, 39, [], 'ArrowRight');
-      await aTimeout(0);
+      keyDown(element.selectedItem, 'ArrowRight');
+      await aTimeout(1);
       assert.equal(element.selected, 0);
-      MockInteractions.pressAndReleaseKeyOn(element.selectedItem, 37, [], 'ArrowLeft');
-      await aTimeout(0);
+      keyDown(element.selectedItem, 'ArrowLeft');
+      await aTimeout(1);
       assert.equal(element.selected, 0);
-      MockInteractions.pressAndReleaseKeyOn(element.selectedItem, 37, [], 'ArrowLeft');
-      await aTimeout(0);
+      keyDown(element.selectedItem, 'ArrowLeft');
+      await aTimeout(1);
       assert.equal(element.selected, 0);
     });
 
@@ -428,14 +428,14 @@ describe('AnypointTabsElement', () => {
       const element = await autoselectFixture();
       ensureDocumentHasFocus();
       element.select(1);
-      MockInteractions.pressAndReleaseKeyOn(element.selectedItem, 39, [], 'ArrowRight');
-      await aTimeout(0);
+      keyDown(element.selectedItem, 'ArrowRight');
+      await aTimeout(2);
       assert.equal(element.selected, 2);
-      MockInteractions.pressAndReleaseKeyOn(element.selectedItem, 39, [], 'ArrowRight');
-      await aTimeout(0);
+      keyDown(element.selectedItem, 'ArrowRight');
+      await aTimeout(2);
       assert.equal(element.selected, 3);
-      MockInteractions.pressAndReleaseKeyOn(element.selectedItem, 39, [], 'ArrowRight');
-      await aTimeout(0);
+      keyDown(element.selectedItem, 'ArrowRight');
+      await aTimeout(2);
       assert.equal(element.selected, 0);
     });
 
@@ -444,13 +444,13 @@ describe('AnypointTabsElement', () => {
       element.setAttribute('dir', 'rtl');
       ensureDocumentHasFocus();
       element.select(1);
-      MockInteractions.pressAndReleaseKeyOn(element.selectedItem, 39, [], 'ArrowRight');
+      keyDown(element.selectedItem, 'ArrowRight');
       await aTimeout(0);
       assert.equal(element.selected, 0);
-      MockInteractions.pressAndReleaseKeyOn(element.selectedItem, 39, [], 'ArrowRight');
+      keyDown(element.selectedItem, 'ArrowRight');
       await aTimeout(0);
       assert.equal(element.selected, 3);
-      MockInteractions.pressAndReleaseKeyOn(element.selectedItem, 39, [], 'ArrowRight');
+      keyDown(element.selectedItem, 'ArrowRight');
       await aTimeout(0);
       assert.equal(element.selected, 2);
     });
@@ -459,13 +459,13 @@ describe('AnypointTabsElement', () => {
       const element = await autoselectFixture();
       ensureDocumentHasFocus();
       element.select(1);
-      MockInteractions.pressAndReleaseKeyOn(element.selectedItem, 37, [], 'ArrowLeft');
+      keyDown(element.selectedItem, 'ArrowLeft');
       await aTimeout(0);
       assert.equal(element.selected, 0);
-      MockInteractions.pressAndReleaseKeyOn(element.selectedItem, 37, [], 'ArrowLeft');
+      keyDown(element.selectedItem, 'ArrowLeft');
       await aTimeout(0);
       assert.equal(element.selected, 3);
-      MockInteractions.pressAndReleaseKeyOn(element.selectedItem, 37, [], 'ArrowLeft');
+      keyDown(element.selectedItem, 'ArrowLeft');
       await aTimeout(0);
       assert.equal(element.selected, 2);
     });
@@ -475,13 +475,13 @@ describe('AnypointTabsElement', () => {
       element.setAttribute('dir', 'rtl');
       ensureDocumentHasFocus();
       element.select(1);
-      MockInteractions.pressAndReleaseKeyOn(element.selectedItem, 37, [], 'ArrowLeft');
+      keyDown(element.selectedItem, 'ArrowLeft');
       await aTimeout(0);
       assert.equal(element.selected, 2);
-      MockInteractions.pressAndReleaseKeyOn(element.selectedItem, 37, [], 'ArrowLeft');
+      keyDown(element.selectedItem, 'ArrowLeft');
       await aTimeout(0);
       assert.equal(element.selected, 3);
-      MockInteractions.pressAndReleaseKeyOn(element.selectedItem, 37, [], 'ArrowLeft');
+      keyDown(element.selectedItem, 'ArrowLeft');
       await aTimeout(0);
       assert.equal(element.selected, 0);
     });

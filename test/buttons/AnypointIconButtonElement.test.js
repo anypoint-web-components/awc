@@ -3,6 +3,7 @@ import sinon from 'sinon';
 import '../../anypoint-icon-button.js';
 import '@advanced-rest-client/arc-icons/arc-icon.js';
 import * as MockInteractions from '@polymer/iron-test-helpers/mock-interactions.js';
+import { keyDownUp } from '../lib/helpers.js';
 
 /** @typedef {import('../..').AnypointIconButtonElement} AnypointIconButtonElement */
 
@@ -220,7 +221,7 @@ describe('<anypoint-icon-button>', () => {
 
     it('dispatched transitionend event on ripple end', async () => {
       element = await basicFixture();
-      MockInteractions.pressSpace(element);
+      await keyDownUp(element, 'Space');
       const e = /** @type TransitionEvent */ (/** @type unknown */ (await oneEvent(element, 'transitionend')));
       assert.isUndefined(e.propertyName);
     });

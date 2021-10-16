@@ -42,6 +42,9 @@ export default class AnypointButton extends AnypointButtonBase {
     }
   }
 
+  /**
+   * @param {KeyboardEvent} e
+   */
   _spaceKeyDownHandler(e) {
     super._spaceKeyDownHandler(e);
     this._calculateElevation();
@@ -51,6 +54,9 @@ export default class AnypointButton extends AnypointButtonBase {
     }
   }
 
+  /**
+   * @param {KeyboardEvent} e
+   */
   _spaceKeyUpHandler(e) {
     super._spaceKeyUpHandler(e);
     this._calculateElevation();

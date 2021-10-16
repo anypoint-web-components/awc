@@ -1,9 +1,9 @@
 import { fixture, assert, html, nextFrame } from '@open-wc/testing';
-import * as MockInteractions from '@polymer/iron-test-helpers/mock-interactions.js';
 import sinon from 'sinon';
 import '../../anypoint-item.js';
 import '../../anypoint-listbox.js';
 import '../../anypoint-input-combobox.js';
+import { keyDown } from '../lib/helpers.js';
 
 /** @typedef {import('../../src/AnypointInputComboboxElement').default} AnypointInputComboboxElement */
 /** @typedef {import('../../src/AnypointListboxElement').default} AnypointListbox */
@@ -116,7 +116,7 @@ describe('AnypointInputComboboxElement', () => {
     it('toggles the state with the toggle icon click', async () => {
       const element = await listFixture();
       const node = element.shadowRoot.querySelector('.trigger-icon');
-      MockInteractions.click(node);
+      node.click();
       assert.isTrue(element.opened);
     });
 
@@ -159,14 +159,14 @@ describe('AnypointInputComboboxElement', () => {
 
     it('opens the dropdown on the arrow down', async () => {
       const element = await listFixture();
-      MockInteractions.keyDownOn(element, 13, '', 'ArrowDown');
+      keyDown(element, 'ArrowDown');
       await nextFrame();
       assert.isTrue(element.opened);
     });
 
     it('opens the dropdown on the arrow up', async () => {
       const element = await listFixture();
-      MockInteractions.keyDownOn(element, 13, '', 'ArrowUp');
+      keyDown(element, 'ArrowUp');
       await nextFrame();
       assert.isTrue(element.opened);
     });
@@ -177,7 +177,7 @@ describe('AnypointInputComboboxElement', () => {
       listbox.focus();
       await nextFrame();
       const spy = sinon.spy(listbox, 'focusNext');
-      MockInteractions.keyDownOn(element, 13, '', 'ArrowDown');
+      keyDown(element, 'ArrowDown');
       assert.isTrue(spy.called);
     });
 
@@ -187,7 +187,7 @@ describe('AnypointInputComboboxElement', () => {
       listbox.focus();
       await nextFrame();
       const spy = sinon.spy(listbox, 'focusPrevious');
-      MockInteractions.keyDownOn(element, 13, '', 'ArrowUp');
+      keyDown(element, 'ArrowUp');
       assert.isTrue(spy.called);
     });
 
@@ -195,7 +195,7 @@ describe('AnypointInputComboboxElement', () => {
       const element = await openedListFixture();
       element.contentElement.focus();
       await nextFrame();
-      MockInteractions.keyDownOn(element, 13, '', 'ArrowDown');
+      keyDown(element, 'ArrowDown');
       await nextFrame();
     });
 
@@ -203,7 +203,7 @@ describe('AnypointInputComboboxElement', () => {
       const element = await openedListFixture();
       element.contentElement.focus();
       await nextFrame();
-      MockInteractions.keyDownOn(element, 13, '', 'ArrowUp');
+      keyDown(element, 'ArrowUp');
       await nextFrame();
     });
   });
@@ -212,7 +212,7 @@ describe('AnypointInputComboboxElement', () => {
     it('inserts the value from the click event', async () => {
       const element = await listFixture();
       const item = element.querySelector('anypoint-item');
-      MockInteractions.click(item);
+      item.click();
       assert.equal(element.value, '1');
     });
 
@@ -221,7 +221,7 @@ describe('AnypointInputComboboxElement', () => {
       const spy = sinon.spy();
       element.addEventListener('change', spy);
       const item = element.querySelector('anypoint-item');
-      MockInteractions.click(item);
+      item.click();
       assert.isTrue(spy.called);
     });
 
@@ -230,7 +230,7 @@ describe('AnypointInputComboboxElement', () => {
       const spy = sinon.spy();
       element.addEventListener('input', spy);
       const item = element.querySelector('anypoint-item');
-      MockInteractions.click(item);
+      item.click();
       assert.isTrue(spy.called);
     });
 
@@ -243,7 +243,7 @@ describe('AnypointInputComboboxElement', () => {
           item,
         }
       }));
-      MockInteractions.click(item);
+      item.click();
       assert.equal(element.value, 'v1');
     });
   });

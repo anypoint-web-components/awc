@@ -1,22 +1,38 @@
 import { fixture, expect, aTimeout, nextFrame, html } from '@open-wc/testing';
 import sinon from 'sinon';
 import * as MockInteractions from '@polymer/iron-test-helpers/mock-interactions.js';
+import { keyDown, keyUp, keyDownUp } from '../lib/helpers.js';
 import './test-elements.js';
 import '../../anypoint-input.js';
 
+/** @typedef {import('./test-elements').TestButton} TestButton */
+/** @typedef {import('./test-elements').TestLightDom} TestLightDom */
+
 describe('Active state tests', () => {
+  /**
+   * @returns {Promise<TestButton>}
+   */
   async function trivialActiveState() {
     return fixture(html`<test-button></test-button>`);
   }
 
+  /**
+   * @returns {Promise<TestButton>}
+   */
   async function toggleActiveState() {
     return fixture(html`<test-button toggles></test-button>`);
   }
 
+  /**
+   * @returns {Promise<TestLightDom>}
+   */
   async function buttonWithNativeInput() {
     return fixture(html`<test-light-dom><input id="input"></test-light-dom>`);
   }
 
+  /**
+   * @returns {Promise<TestLightDom>}
+   */
   async function buttonWithPaperInput() {
     return fixture(
       html`<test-light-dom><anypoint-input id="input"></anypoint-input></test-light-dom>`
@@ -24,6 +40,7 @@ describe('Active state tests', () => {
   }
 
   describe('active-state', () => {
+    /** @type TestButton */
     let activeTarget;
     beforeEach(async () => {
       activeTarget = await trivialActiveState();
@@ -159,11 +176,12 @@ describe('Active state tests', () => {
     });
 
     describe('when space is pressed', () => {
-      it('triggers a click event', done => {
+      it('triggers a click event', (done) => {
         activeTarget.addEventListener('click', () => {
           done();
         });
-        MockInteractions.pressSpace(activeTarget);
+        keyDown(activeTarget, 'Space');
+        keyUp(activeTarget, 'Space');
       });
 
       it('only triggers click after the key is released', done => {
@@ -179,7 +197,9 @@ describe('Active state tests', () => {
             done(e);
           }
         });
-        MockInteractions.pressSpace(activeTarget);
+        // MockInteractions.pressSpace(activeTarget);
+        keyDown(activeTarget, 'Space');
+        keyUp(activeTarget, 'Space');
       });
     });
 
@@ -188,7 +208,8 @@ describe('Active state tests', () => {
         activeTarget.addEventListener('click', () => {
           done();
         });
-        MockInteractions.pressEnter(activeTarget);
+        keyDown(activeTarget, 'Enter');
+        keyUp(activeTarget, 'Enter');
       });
 
       it('only triggers click before the key is released', done => {
@@ -204,7 +225,10 @@ describe('Active state tests', () => {
             done(e);
           }
         });
-        MockInteractions.pressEnter(activeTarget);
+        keyDown(activeTarget, 'Enter');
+        setTimeout(() => {
+          keyUp(activeTarget, 'Enter');
+        });
       });
     });
 
@@ -225,8 +249,8 @@ describe('Active state tests', () => {
         const item = await buttonWithNativeInput();
         const itemClickHandler = sinon.spy();
         item.addEventListener('click', itemClickHandler);
-        MockInteractions.pressSpace(item);
-        await aTimeout(40);
+        await keyDownUp(item, 'Space');
+        await aTimeout(1);
         expect(itemClickHandler.callCount).to.be.equal(1);
       });
     });
@@ -248,8 +272,8 @@ describe('Active state tests', () => {
         const item = await buttonWithPaperInput();
         const itemClickHandler = sinon.spy();
         item.addEventListener('click', itemClickHandler);
-        MockInteractions.pressSpace(item);
-        await aTimeout(40);
+        await keyDownUp(item, 'Space');
+        await aTimeout(1);
         expect(itemClickHandler.callCount).to.be.equal(1);
       });
     });

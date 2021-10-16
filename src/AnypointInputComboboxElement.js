@@ -217,9 +217,9 @@ export default class AnypointInputComboboxElement extends AnypointInputElement {
    * @param {KeyboardEvent} e
    */
   [keydownHandler](e) {
-    if (e.key === 'ArrowDown') {
+    if (e.code === 'ArrowDown') {
       this[onArrowDown](e);
-    } else if (e.key === 'ArrowUp') {
+    } else if (e.code === 'ArrowUp') {
       this[onArrowUp](e);
     }
   }
@@ -314,7 +314,6 @@ export default class AnypointInputComboboxElement extends AnypointInputElement {
     <div class="suffixes">
       <slot name="suffix"></slot>
       <span class="${classes}"
-        aria-label="Activate to toggle suggestions"
         title="Toggle suggestions"
         @click="${this.toggle}"
       >${arrowDown}</span>

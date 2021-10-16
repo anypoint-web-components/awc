@@ -2,6 +2,7 @@ import { fixture, assert, aTimeout, nextFrame, html, oneEvent } from '@open-wc/t
 import sinon from 'sinon';
 import '../../anypoint-button.js';
 import * as MockInteractions from '@polymer/iron-test-helpers/mock-interactions.js';
+import { keyDownUp } from '../lib/helpers.js';
 
 /** @typedef {import('../../').AnypointButtonElement} AnypointButtonElement */
 
@@ -161,7 +162,7 @@ describe('<anypoint-button>', () => {
     });
 
     it('receives focused', async () => {
-      MockInteractions.focus(element);
+      element.dispatchEvent(new Event('focus'));
       await nextFrame();
       assert.equal(element.elevation, 1);
     });
@@ -190,7 +191,7 @@ describe('<anypoint-button>', () => {
 
     it('Space bar runs ripple', async () => {
       element = await highEmphasisFixture();
-      MockInteractions.pressSpace(element);
+      await keyDownUp(element, 'Space');
       await aTimeout(40);
       const ripple = element.shadowRoot.querySelector('material-ripple');
       assert.ok(ripple);
@@ -198,7 +199,7 @@ describe('<anypoint-button>', () => {
 
     it('dispatched transitionend event on ripple end', async () => {
       element = await basicFixture();
-      MockInteractions.pressSpace(element);
+      await keyDownUp(element, 'Space');
       const e = /** @type TransitionEvent */ (/** @type unknown */ (await oneEvent(element, 'transitionend')));
       assert.isUndefined(e.propertyName);
     });

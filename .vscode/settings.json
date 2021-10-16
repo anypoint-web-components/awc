@@ -5,9 +5,17 @@
     "chipremoved",
     "collapsable",
     "combobox",
+    "highlighteditem",
+    "highlighteditemvalue",
     "Hoverable",
+    "itemschange",
     "listitem",
+    "multiselectable",
     "myattr",
-    "recenters"
+    "onchipschanged",
+    "pressedchange",
+    "recenters",
+    "tablist",
+    "UA's"
   ]
 }

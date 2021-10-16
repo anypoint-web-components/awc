@@ -132,10 +132,10 @@ describe('AnypointChipElement', () => {
 
   describe('remove()', () => {
     let element;
-    it('Dispatches `chip-removed` custom event', async () => {
+    it('dispatches the `chipremoved` custom event', async () => {
       element = await removableFixture();
       const spy = sinon.spy();
-      element.addEventListener('chip-removed', spy);
+      element.addEventListener('chipremoved', spy);
       const node = element.shadowRoot.querySelector('.close');
       // @ts-ignore
       node.click();
@@ -172,18 +172,18 @@ describe('AnypointChipElement', () => {
     [
       ['Backspace', 'remove'],
       ['Delete', 'remove'],
-      [' ', '_clickHandler'],
+      ['Space', '_clickHandler'],
       ['Enter', '_clickHandler'],
-      [' ', '_asyncClick'],
+      ['Space', '_asyncClick'],
       ['Enter', '_asyncClick']
     ].forEach((item) => {
-      it(`Calls ${item[1]}() when backspace key`, async () => {
+      it(`calls ${item[1]}() when ${item[0]} key`, async () => {
         element = await removableFixture();
         // @ts-ignore
         const spy = sinon.spy(element, item[1]);
         // @ts-ignore
         element._keyDownHandler({
-          key: item[0],
+          code: item[0],
         });
         assert.isTrue(spy.called);
       });

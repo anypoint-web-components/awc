@@ -272,7 +272,7 @@ const mxFunction = (base) => {
       // Make sure that the key pressed is not a modifier key.
       // getModifierState is not being used, as it is not available in Safari
       // earlier than 10.0.2 (https://trac.webkit.org/changeset/206725/webkit)
-      if (MODIFIER_KEYS.indexOf(e.key) !== -1) {
+      if (MODIFIER_KEYS.includes(e.code)) {
         return;
       }
       if (this._clearSearchTextDebouncer) {
@@ -412,7 +412,7 @@ const mxFunction = (base) => {
     }
 
     /**
-     * Highlights, by setting the `highlight` css class, the next availabl element.
+     * Highlights, by setting the `highlight` css class, the next available element.
      * If there's no highlighted item but there is a selection (focused item)
      * then a next item after the selection is selected.
      */
@@ -437,7 +437,7 @@ const mxFunction = (base) => {
     }
 
     /**
-     * Highlights, by setting the `highlight` css class, the previous availabl element.
+     * Highlights, by setting the `highlight` css class, the previous available element.
      * If there's no highlighted item but there is a selection (focused item)
      * then a previous item before the selection is selected.
      */

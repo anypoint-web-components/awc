@@ -832,19 +832,19 @@ export default class AnypointAutocompleteElement extends LitElement {
     if (this.disabled) {
       return;
     }
-    if (e.key === 'ArrowDown') {
+    if (e.code === 'ArrowDown') {
       this._onDownKey();
       e.preventDefault();
       e.stopPropagation();
-    } else if (e.key === 'ArrowUp') {
+    } else if (e.code === 'ArrowUp') {
       this._onUpKey();
       e.preventDefault();
       e.stopPropagation();
-    } else if (e.key === 'Enter' || e.key === 'NumEnter') {
+    } else if (e.code === 'Enter' || e.code === 'NumEnter') {
       this._onEnterKey();
-    } else if (e.key === 'Tab') {
+    } else if (e.code === 'Tab') {
       this._onTabDown();
-    } else if (e.key === 'Escape') {
+    } else if (e.code === 'Escape') {
       this._onEscKey();
     }
   }

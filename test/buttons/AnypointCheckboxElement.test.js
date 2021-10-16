@@ -2,6 +2,7 @@ import { fixture, assert, aTimeout } from '@open-wc/testing';
 import * as MockInteractions from '@polymer/iron-test-helpers/mock-interactions.js';
 import '../../colors.js';
 import '../../anypoint-checkbox.js';
+import { keyDownUp } from '../lib/helpers.js';
 
 /** @typedef {import('../..').AnypointCheckboxElement} AnypointCheckboxElement */
 
@@ -265,13 +266,13 @@ describe('<anypoint-checkbox>', () => {
     });
 
     it('Removes indeterminate when space pressed', async () => {
-      MockInteractions.pressSpace(element);
-      await aTimeout(0);
+      keyDownUp(element, 'Space');
+      await aTimeout(1);
       assert.isFalse(element.indeterminate);
     });
 
     it('Removes indeterminate when enter pressed', async () => {
-      MockInteractions.pressEnter(element);
+      keyDownUp(element, 'Enter');
       await aTimeout(0);
       assert.isFalse(element.indeterminate);
     });

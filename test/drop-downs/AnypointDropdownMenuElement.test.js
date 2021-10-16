@@ -1,8 +1,8 @@
 import { fixture, assert, nextFrame, aTimeout } from '@open-wc/testing';
-import * as MockInteractions from '@polymer/iron-test-helpers/mock-interactions.js';
 import sinon from 'sinon';
 import '../../anypoint-listbox.js';
 import '../../anypoint-dropdown-menu.js';
+import { keyDown } from '../lib/helpers.js';
 
 const hasFormAssociatedElements =
   'attachInternals' in document.createElement('span');
@@ -211,7 +211,7 @@ describe('<anypoint-dropdown-menu>', () => {
     it('hides the content on outside click', async () => {
       const element = await basicFixture();
       await untilOpened(element);
-      MockInteractions.tap(document.body);
+      document.body.click();
     });
 
     it('renders the label', async () => {
@@ -263,25 +263,25 @@ describe('<anypoint-dropdown-menu>', () => {
     it('closes the list when Escape is pressed', async () => {
       const element = await basicFixture();
       await untilOpened(element);
-      MockInteractions.keyDownOn(element, 27, [], 'Escape');
+      keyDown(element, 'Escape');
       assert.isFalse(element.opened);
     });
 
     it('does nothing when Escape and is already closed', async () => {
       const element = await basicFixture();
-      MockInteractions.keyDownOn(element, 27, [], 'Escape');
+      keyDown(element, 'Escape');
       assert.isFalse(element.opened);
     });
 
     it('opens the list when ArrowUp is pressed', async () => {
       const element = await basicFixture();
-      MockInteractions.keyDownOn(element, 38, [], 'ArrowUp');
+      keyDown(element, 'ArrowUp');
       assert.isTrue(element.opened);
     });
 
     it('opens the list when ArrowDown is pressed', async () => {
       const element = await basicFixture();
-      MockInteractions.keyDownOn(element, 40, [], 'ArrowDown');
+      keyDown(element, 'ArrowDown');
       assert.isTrue(element.opened);
     });
 
@@ -289,7 +289,7 @@ describe('<anypoint-dropdown-menu>', () => {
       const element = await basicFixture();
       await untilOpened(element);
       const spy = sinon.spy(element, '_focusContent');
-      MockInteractions.keyDownOn(element, 38, [], 'ArrowUp');
+      keyDown(element, 'ArrowUp');
       assert.isTrue(spy.called);
     });
 
@@ -297,13 +297,13 @@ describe('<anypoint-dropdown-menu>', () => {
       const element = await basicFixture();
       await untilOpened(element);
       const spy = sinon.spy(element, '_focusContent');
-      MockInteractions.keyDownOn(element, 40, [], 'ArrowDown');
+      keyDown(element, 'ArrowDown');
       assert.isTrue(spy.called);
     });
 
     it('opens the element on click', async () => {
       const element = await basicFixture();
-      MockInteractions.tap(element);
+      element.click();
       assert.isTrue(element.opened);
     });
 
@@ -311,7 +311,7 @@ describe('<anypoint-dropdown-menu>', () => {
       const element = await selectedFixture();
       await untilOpened(element);
       const node = element.querySelector('div');
-      MockInteractions.tap(node);
+      node.click();
       assert.equal(element.value, 'item 1');
     });
 
@@ -319,7 +319,7 @@ describe('<anypoint-dropdown-menu>', () => {
       const element = await labeledFixture();
       await untilOpened(element);
       const node = element.querySelector('div[label="item2-label"]');
-      MockInteractions.tap(node);
+      node.click();
       assert.equal(element.value, 'item2-label');
     });
 
@@ -327,7 +327,7 @@ describe('<anypoint-dropdown-menu>', () => {
       const element = await labeledFixture();
       await untilOpened(element);
       const node = element.querySelector('div[data-label="item4-label"]');
-      MockInteractions.tap(node);
+      node.click();
       assert.equal(element.value, 'item4-label');
     });
 
@@ -391,7 +391,7 @@ describe('<anypoint-dropdown-menu>', () => {
       element = await basicFixture();
     });
 
-    it('calls validate() when autovalidate is on', async () => {
+    it('calls validate() when autoValidate is on', async () => {
       const spy = sinon.spy(element, 'validate');
       element.autoValidate = true;
       assert.isTrue(spy.called);
@@ -446,12 +446,12 @@ describe('<anypoint-dropdown-menu>', () => {
   });
 
   describe('firstUpdated()', () => {
-    it('sets selectedItem when initalizing', async () => {
+    it('sets selectedItem when initializing', async () => {
       const element = await selectedFixture();
       assert.ok(element.selectedItem);
     });
 
-    it('selectedItem is not set when no selction', async () => {
+    it('selectedItem is not set when no selection', async () => {
       const element = await basicFixture();
       assert.notOk(element.selectedItem);
     });
@@ -580,7 +580,7 @@ describe('<anypoint-dropdown-menu>', () => {
         });
       });
 
-      describe('Resseting the form', () => {
+      describe('Resetting the form', () => {
         let element;
         let form;
         beforeEach(async () => {
@@ -602,7 +602,7 @@ describe('<anypoint-dropdown-menu>', () => {
           element = form.querySelector('anypoint-dropdown-menu');
         });
 
-        it('calls internall checkValidity()', () => {
+        it('calls internal checkValidity()', () => {
           const spy = sinon.spy(element._internals, 'checkValidity');
           element.checkValidity();
           assert.isTrue(spy.called);
@@ -684,7 +684,7 @@ describe('<anypoint-dropdown-menu>', () => {
 
       it('disabled cannot be opened via click', async () => {
         const element = await disabledFixture();
-        MockInteractions.tap(element);
+        element.click();
         assert.isFalse(element.opened);
       });
 
@@ -761,7 +761,7 @@ describe('<anypoint-dropdown-menu>', () => {
         it('disabled cannot be opened via click', async () => {
           fieldset.disabled = true;
           await nextFrame();
-          MockInteractions.tap(element);
+          element.click();
           assert.isFalse(element.opened);
         });
 
@@ -846,7 +846,7 @@ describe('<anypoint-dropdown-menu>', () => {
       assert.equal(element.getAttribute('aria-expanded'), 'false');
     });
 
-    it('is accessible with chidren', async () => {
+    it('is accessible with children', async () => {
       const element = await basicFixture();
       await assert.isAccessible(element);
     });

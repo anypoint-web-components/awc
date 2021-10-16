@@ -119,7 +119,7 @@ export default class AnypointChipInputElement extends AnypointInputElement {
   _getValidity(): boolean;
 
   /**
-   * Handler for `chip-removed` event.
+   * Handler for the `chipremoved` event.
    */
   _chipRemovedHandler(e: CustomEvent): void;
   _keydownHandler(e: KeyboardEvent): void;

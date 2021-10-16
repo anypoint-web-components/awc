@@ -401,7 +401,7 @@ export default class AnypointChipInputElement extends AnypointInputElement {
   }
 
   /**
-   * Handler for `chip-removed` event.
+   * Handler for `chipremoved` event.
    * @param {CustomEvent} e
    */
   _chipRemovedHandler(e) {
@@ -417,9 +417,9 @@ export default class AnypointChipInputElement extends AnypointInputElement {
    * @param {KeyboardEvent} e
    */
   _keydownHandler(e) {
-    if (e.key === 'Enter') {
+    if (e.code === 'Enter') {
       this._enterDown(e);
-    } else if (e.key === 'Backspace') {
+    } else if (e.code === 'Backspace') {
       this._backspaceDown(e);
     }
   }

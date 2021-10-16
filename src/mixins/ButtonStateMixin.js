@@ -1,3 +1,4 @@
+/* eslint-disable class-methods-use-this */
 /**
 @license
 Copyright 2017 MuleSoft.
@@ -42,7 +43,7 @@ const mxFunction = base => {
     }
 
     /**
-     * @return {Boolean} True when the element is currently being pressed as
+     * @return {boolean} True when the element is currently being pressed as
      * the user is holding down the button on the element.
      */
     get pressed() {
@@ -60,15 +61,6 @@ const mxFunction = base => {
       }
       this.__pressed = value;
       this.dispatchEvent(new Event('pressedchange'));
-      // deprecate this event
-      this.dispatchEvent(
-        new CustomEvent('pressed-changed', {
-          composed: true,
-          detail: {
-            value,
-          },
-        })
-      );
       this._pressedChanged();
       // @ts-ignore
       if (this.requestUpdate) {
@@ -245,9 +237,9 @@ const mxFunction = base => {
      * @param {KeyboardEvent} e
      */
     _keyDownHandler(e) {
-      if (e.code === 'Enter' || e.code === 'NumpadEnter' || e.keyCode === 13) {
+      if (['Enter', 'NumpadEnter'].includes(e.code)) {
         this._asyncClick();
-      } else if (e.code === 'Space' || e.keyCode === 32) {
+      } else if (e.code === 'Space' || e.key === ' ') {
         this._spaceKeyDownHandler(e);
       }
     }
@@ -257,7 +249,7 @@ const mxFunction = base => {
      * @param {KeyboardEvent} e
      */
     _keyUpHandler(e) {
-      if (e.code === 'Space' || e.keyCode === 32) {
+      if (e.code === 'Space') {
         this._spaceKeyUpHandler(e);
       }
     }
@@ -271,19 +263,28 @@ const mxFunction = base => {
       this._detectKeyboardFocus(true);
     }
 
+    /**
+     * @param {boolean} focused
+     */
     _detectKeyboardFocus(focused) {
       this._receivedFocusFromKeyboard = !this.pointerDown && focused;
     }
 
+    /**
+     * @param {Element} node
+     */
     _isLightDescendant(node) {
       return node !== this && this.contains(node);
     }
 
+    /**
+     * @param {KeyboardEvent} e
+     */
     _spaceKeyDownHandler(e) {
       const { target } = e;
       // Ignore the event if this is coming from a focused light child, since that
       // element will deal with it.
-      if (!target || this._isLightDescendant(/** @type {Node} */ (target))) {
+      if (!target || this._isLightDescendant(/** @type {Element} */ (target))) {
         return;
       }
       e.preventDefault();
@@ -291,11 +292,14 @@ const mxFunction = base => {
       this._pressed = true;
     }
 
+    /**
+     * @param {KeyboardEvent} e
+     */
     _spaceKeyUpHandler(e) {
       const { target } = e;
       // Ignore the event if this is coming from a focused light child, since that
       // element will deal with it.
-      if (!target || this._isLightDescendant(/** @type {Node} */ (target))) {
+      if (!target || this._isLightDescendant(/** @type {Element} */ (target))) {
         return;
       }
       if (this.pressed) {
@@ -312,12 +316,13 @@ const mxFunction = base => {
       this._changedButtonState();
     }
 
+    /** To be implemented by the child classes. */
+    _buttonStateChanged() {
+      // ...
+    }
+
     _changedButtonState() {
-      // @ts-ignore
-      if (this._buttonStateChanged) {
-        // @ts-ignore
-        this._buttonStateChanged(); // abstract
-      }
+      this._buttonStateChanged();
     }
 
     _activeChanged() {

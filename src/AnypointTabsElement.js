@@ -115,17 +115,17 @@ export default class AnypointTabsElement extends MenubarMixin(ArcResizableMixin(
     const { scrollable, fitContainer } = this;
     // return scrollable ? 'scrollable' + (fitContainer ? ' fit-container' : '') :
     //                     ' fit-container';
-    let klas = '';
+    let result = '';
     if (scrollable) {
-      klas = 'scrollable';
+      result = 'scrollable';
     }
     if (fitContainer) {
-      if (klas) {
-        klas += ' ';
+      if (result) {
+        result += ' ';
       }
-      klas += 'fit-container';
+      result += 'fit-container';
     }
-    return klas;
+    return result;
   }
 
   get _selectionClass() {
@@ -237,7 +237,6 @@ export default class AnypointTabsElement extends MenubarMixin(ArcResizableMixin(
       super.connectedCallback();
     }
     this.addEventListener('resize', this._sizingHandler);
-    this.addEventListener('iron-resize', this._sizingHandler);
     this.addEventListener('itemschange', this._itemsHandler);
     this.addEventListener('select', this._selectHandler);
     this.addEventListener('deselect', this._deselectHandler);
@@ -252,7 +251,6 @@ export default class AnypointTabsElement extends MenubarMixin(ArcResizableMixin(
     this.__selectionBar = null;
     this.__tabsContainer = null;
     this.removeEventListener('resize', this._sizingHandler);
-    this.removeEventListener('iron-resize', this._sizingHandler);
     this.removeEventListener('itemschange', this._itemsHandler);
     this.removeEventListener('select', this._selectHandler);
     this.removeEventListener('deselect', this._deselectHandler);
@@ -348,6 +346,10 @@ export default class AnypointTabsElement extends MenubarMixin(ArcResizableMixin(
     }
   }
 
+  /**
+   * @param {HTMLElement} tab 
+   * @param {HTMLElement=} old 
+   */
   _tabChanged(tab, old) {
     // This is a port of a great work of the Polymer team.
     const bar = this._selectionBar;
@@ -433,9 +435,12 @@ export default class AnypointTabsElement extends MenubarMixin(ArcResizableMixin(
     super._activateHandler(e);
   }
 
+  /**
+   * @param {KeyboardEvent} e 
+   */
   _onKeydown(e) {
     super._onKeydown(e);
-    if (this.autoselect && (e.key === 'ArrowLeft' || e.key === 'ArrowRight')) {
+    if (this.autoselect && ['ArrowRight', 'ArrowLeft'].includes(e.code)) {
       this._scheduleActivation(this.focusedItem, this.autoselectDelay);
     }
   }

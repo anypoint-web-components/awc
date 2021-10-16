@@ -1,9 +1,9 @@
 import { fixture, assert, nextFrame, aTimeout, html } from '@open-wc/testing';
 import '@advanced-rest-client/arc-icons/arc-icon.js';
-import * as MockInteractions from '@polymer/iron-test-helpers/mock-interactions.js';
 import { clearAll, clear } from '@advanced-rest-client/arc-icons/ArcIcons.js';
 import { directionsBike, directionsBoat, directionsBus } from '../../demo/maps-icons.js';
 import '../../anypoint-chip-input.js';
+import { keyDown } from '../lib/helpers.js';
 
 /** @typedef {import('../../index').AnypointChipInputElement} AnypointChipInputElement */
 
@@ -129,7 +129,7 @@ describe('AnypointChipInputElement', () => {
       element = await basicFixture();
       element.value = 'test';
       await nextFrame();
-      MockInteractions.keyDownOn(element.inputElement, 13, [], 'Enter');
+      keyDown(element.inputElement, 'Enter');
       await nextFrame();
       assert.typeOf(element.chipsValue, 'array');
       assert.lengthOf(element.chipsValue, 1);
@@ -140,7 +140,7 @@ describe('AnypointChipInputElement', () => {
       element = await basicFixture();
       element.value = '';
       await nextFrame();
-      MockInteractions.keyDownOn(element.inputElement, 13, [], 'Enter');
+      keyDown(element.inputElement, 'Enter');
       await nextFrame();
       assert.isEmpty(element.chipsValue);
     });
@@ -149,7 +149,7 @@ describe('AnypointChipInputElement', () => {
       element = await basicFixture();
       element.value = 'test';
       await nextFrame();
-      MockInteractions.keyDownOn(element.inputElement, 13, [], 'Enter');
+      keyDown(element.inputElement, 'Enter');
       await nextFrame();
       assert.equal(element.value, '');
     });
@@ -158,7 +158,7 @@ describe('AnypointChipInputElement', () => {
       element = await chipsFixture();
       element.value = 'c-1';
       await nextFrame();
-      MockInteractions.keyDownOn(element.inputElement, 13, [], 'Enter');
+      keyDown(element.inputElement, 'Enter');
       await nextFrame();
       assert.typeOf(element.chipsValue, 'array');
       assert.lengthOf(element.chipsValue, 3);
@@ -168,7 +168,7 @@ describe('AnypointChipInputElement', () => {
       element = await chipsFixture();
       element.value = 'c-1';
       await nextFrame();
-      MockInteractions.keyDownOn(element.inputElement, 13, [], 'Enter');
+      keyDown(element.inputElement, 'Enter');
       await nextFrame();
       assert.equal(element.value, '');
     });
@@ -177,7 +177,7 @@ describe('AnypointChipInputElement', () => {
       element = await allowedFixture();
       element.value = 'c1';
       await nextFrame();
-      MockInteractions.keyDownOn(element.inputElement, 13, [], 'Enter');
+      keyDown(element.inputElement, 'Enter');
       await nextFrame();
       assert.equal(element.value, '');
     });
@@ -186,7 +186,7 @@ describe('AnypointChipInputElement', () => {
       element = await allowedFixture();
       element.value = 'c1';
       await nextFrame();
-      MockInteractions.keyDownOn(element.inputElement, 13, [], 'Enter');
+      keyDown(element.inputElement, 'Enter');
       await nextFrame();
       assert.typeOf(element.chipsValue, 'array');
       assert.equal(element.chipsValue[0], 'c1');
@@ -197,7 +197,7 @@ describe('AnypointChipInputElement', () => {
       element.source = [{ value: 'c1 label', id: 'c1' }];
       element.value = 'c1 label';
       await nextFrame();
-      MockInteractions.keyDownOn(element.inputElement, 13, [], 'Enter');
+      keyDown(element.inputElement, 'Enter');
       await nextFrame();
       assert.typeOf(element.chipsValue, 'array');
       assert.equal(element.chipsValue[0], 'c1');
@@ -208,7 +208,7 @@ describe('AnypointChipInputElement', () => {
       element.source = [{ value: 'c1 label', id: 'c-not-allowed' }];
       await nextFrame();
       element.value = 'c1 label';
-      MockInteractions.keyDownOn(element.inputElement, 13, [], 'Enter');
+      keyDown(element.inputElement, 'Enter');
       await nextFrame();
       assert.isEmpty(element.chipsValue, 'array');
     });
@@ -224,7 +224,7 @@ describe('AnypointChipInputElement', () => {
       element = await allRemoveFixture();
       element.value = 'test';
       await nextFrame();
-      MockInteractions.keyDownOn(element.inputElement, 8, [], 'Backspace');
+      keyDown(element.inputElement, 'Backspace');
       await nextFrame();
       assert.typeOf(element.chipsValue, 'array');
       assert.lengthOf(element.chipsValue, 3);
@@ -233,7 +233,7 @@ describe('AnypointChipInputElement', () => {
     it('Removes the chip when input is empty', async () => {
       element = await allRemoveFixture();
       await nextFrame();
-      MockInteractions.keyDownOn(element.inputElement, 8, [], 'Backspace');
+      keyDown(element.inputElement, 'Backspace');
       assert.typeOf(element.chipsValue, 'array');
       assert.lengthOf(element.chipsValue, 2);
       assert.deepEqual(element.chipsValue, ['c-1', 'c-2']);
@@ -242,7 +242,7 @@ describe('AnypointChipInputElement', () => {
     it('removes only removable chips', async () => {
       element = await chipsFixture();
       await nextFrame();
-      MockInteractions.keyDownOn(element.inputElement, 8, [], 'Backspace');
+      keyDown(element.inputElement, 'Backspace');
       assert.typeOf(element.chipsValue, 'array');
       assert.lengthOf(element.chipsValue, 2);
       assert.deepEqual(element.chipsValue, ['c-1', 'c-3']);
@@ -250,15 +250,15 @@ describe('AnypointChipInputElement', () => {
 
     it('Enters chip label into the input field', async () => {
       element = await allRemoveFixture();
-      MockInteractions.keyDownOn(element.inputElement, 8, [], 'Backspace');
+      keyDown(element.inputElement, 'Backspace');
       await aTimeout(0);
       assert.equal(element.value, 'c-3');
     });
 
-    it('Handles remove event', async () => {
+    it('handles the remove event', async () => {
       element = await chipsFixture();
       const node = element.shadowRoot.querySelectorAll('anypoint-chip')[1];
-      node.dispatchEvent(new CustomEvent('chip-removed', {
+      node.dispatchEvent(new CustomEvent('chipremoved', {
         composed: true
       }));
       assert.typeOf(element.chipsValue, 'array');
@@ -276,7 +276,7 @@ describe('AnypointChipInputElement', () => {
     it('Accepts allowed value', async () => {
       element.value = 'c1';
       await nextFrame();
-      MockInteractions.keyDownOn(element.inputElement, 13, [], 'Enter');
+      keyDown(element.inputElement, 'Enter');
       await nextFrame();
       assert.equal(element.chipsValue[0], 'c1');
     });
@@ -284,7 +284,7 @@ describe('AnypointChipInputElement', () => {
     it('Ignores unknown value', async () => {
       element.value = 'unknown';
       await nextFrame();
-      MockInteractions.keyDownOn(element.inputElement, 13, [], 'Enter');
+      keyDown(element.inputElement, 'Enter');
       await nextFrame();
       assert.isEmpty(element.chipsValue);
     });
@@ -396,9 +396,9 @@ describe('AnypointChipInputElement', () => {
     it('commits value to a chip when blur', async () => {
       element.value = 'test';
       await nextFrame();
-      MockInteractions.focus(element);
+      element.dispatchEvent(new Event('focus'));
       await nextFrame();
-      MockInteractions.blur(element);
+      element.dispatchEvent(new Event('blur'));
       await aTimeout(0);
       assert.equal(element.value, '', 'input value is cleared');
       assert.deepEqual(element.chipsValue, ['test'], 'chipsValue has the value');
@@ -407,9 +407,9 @@ describe('AnypointChipInputElement', () => {
     it('ignores when no value', async () => {
       element.value = '';
       await nextFrame();
-      MockInteractions.focus(element);
+      element.dispatchEvent(new Event('focus'));
       await nextFrame();
-      MockInteractions.blur(element);
+      element.dispatchEvent(new Event('blur'));
       await aTimeout(0);
       assert.deepEqual(element.chipsValue, [], 'chipsValue has no value');
     });
@@ -417,10 +417,10 @@ describe('AnypointChipInputElement', () => {
     it('ignores when refocusing', async () => {
       element.value = '';
       await nextFrame();
-      MockInteractions.focus(element);
+      element.dispatchEvent(new Event('focus'));
       await nextFrame();
-      MockInteractions.blur(element);
-      MockInteractions.focus(element);
+      element.dispatchEvent(new Event('blur'));
+      element.dispatchEvent(new Event('focus'));
       await aTimeout(0);
       assert.deepEqual(element.chipsValue, [], 'chipsValue has no value');
     });

@@ -6,7 +6,6 @@ interface ButtonStateMixinConstructor {
 /**
  * @fires pressedchange When the `pressed` property has changed
  * @fires activechange When the `active` property has changed
- * @fires pressed-changed This event is deprecated
  * @fires active-changed This event is deprecated
  */
 interface ButtonStateMixin {

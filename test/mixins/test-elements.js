@@ -3,22 +3,22 @@
 import { LitElement, html } from 'lit-element';
 import { ButtonStateMixin, ControlStateMixin } from '../../index.js';
 
-class TestControl extends ControlStateMixin(LitElement) {}
+export class TestControl extends ControlStateMixin(LitElement) {}
 window.customElements.define('test-control', TestControl);
 
-class TestButton extends ButtonStateMixin(ControlStateMixin(LitElement)) {
+export class TestButton extends ButtonStateMixin(ControlStateMixin(LitElement)) {
   _buttonStateChanged() {}
 }
 window.customElements.define('test-button', TestButton);
 
-class NestedFocusable extends ControlStateMixin(LitElement) {
+export class NestedFocusable extends ControlStateMixin(LitElement) {
   render() {
     return html`<input id="input" />`;
   }
 }
 window.customElements.define('nested-focusable', NestedFocusable);
 
-class TestLightDom extends ButtonStateMixin(ControlStateMixin(LitElement)) {
+export class TestLightDom extends ButtonStateMixin(ControlStateMixin(LitElement)) {
   render() {
     return html`<slot></slot>`;
   }

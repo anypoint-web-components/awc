@@ -688,11 +688,11 @@ export default class AnypointDropdownMenuElement extends ValidatableMixin(Contro
    * @param {KeyboardEvent} e
    */
   _onKeydown(e) {
-    if (e.key === 'ArrowDown') {
+    if (e.code === 'ArrowDown') {
       this._onDownKey(e);
-    } else if (e.key === 'ArrowUp') {
+    } else if (e.code === 'ArrowUp') {
       this._onUpKey(e);
-    } else if (e.key === 'Escape') {
+    } else if (e.code === 'Escape') {
       this._onEscKey();
     }
   }

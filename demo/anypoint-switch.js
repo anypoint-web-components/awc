@@ -122,10 +122,5 @@ class ComponentPage extends DemoPage {
   }
 }
 
-window.addEventListener('chip-removed', (e) => {
-  // @ts-ignore
-  e.target.parentNode.removeChild(e.target);
-});
-
 const instance = new ComponentPage();
 instance.render();

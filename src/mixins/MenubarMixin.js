@@ -23,16 +23,25 @@ const mxFunction = (base) => {
       }
     }
 
+    /**
+     * @param {KeyboardEvent} e 
+     */
     _onUpKey(e) {
       this.focusedItem.click();
       e.preventDefault();
     }
 
+    /**
+     * @param {KeyboardEvent} e 
+     */
     _onDownKey(e) {
       this.focusedItem.click();
       e.preventDefault();
     }
 
+    /**
+     * @param {KeyboardEvent} e 
+     */
     _onLeftKey(e) {
       if (this._isRTL) {
         this.focusNext();
@@ -42,6 +51,9 @@ const mxFunction = (base) => {
       e.preventDefault();
     }
 
+    /**
+     * @param {KeyboardEvent} e 
+     */
     _onRightKey(e) {
       if (this._isRTL) {
         this.focusPrevious();
@@ -51,6 +63,9 @@ const mxFunction = (base) => {
       e.preventDefault();
     }
 
+    /**
+     * @param {KeyboardEvent} e 
+     */
     _onKeydown(e) {
       if (e.code === 'ArrowLeft') {
         this._onLeftKey(e);
