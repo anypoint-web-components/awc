@@ -39,6 +39,11 @@ export declare class AnypointButtonBase  extends ControlStateMixin(ButtonStateMi
    * @attribute
    */
   anypoint: boolean;
+  /**
+   * In some cases, this support auto focus on the button.
+   * @attribute
+   */
+  autofocus: boolean;
   constructor();
 
   /**

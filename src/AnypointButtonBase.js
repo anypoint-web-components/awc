@@ -35,6 +35,10 @@ export class AnypointButtonBase extends ControlStateMixin(ButtonStateMixin(LitEl
        * Enables Anypoint theme.
        */
       anypoint: { type: Boolean, reflect: true },
+      /** 
+       * In some cases, this support auto focus on the button.
+       */
+      autofocus: { type: Boolean, reflect: true },
     };
   }
 
