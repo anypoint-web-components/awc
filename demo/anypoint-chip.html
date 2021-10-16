@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, minimum-scale=1, initial-scale=1, user-scalable=yes">
+  <title>Anypoint Chip demo</title>
+
+  <style>
+  .wrap-horizontal {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    flex-wrap: wrap;
+  }
+
+  .types anypoint-chip,
+  .actions anypoint-chip {
+    cursor: pointer;
+  }
+
+  body.styled.dark {
+    --anypoint-chip-label-color: #fff;
+    --anypoint-chip-icon-color: #fff;
+    --anypoint-chip-focused-background-color: #34434b;
+    color: #fff;
+  }
+
+  .selected {
+    --anypoint-chip-label-color: #673AB7;
+    --anypoint-chip-background-color: #D1C4E9;
+    --anypoint-chip-focused-background-color: #D1C4E9;
+  }
+
+  .themed {
+    --anypoint-chip-background-color: rgb(176, 190, 197);
+    --anypoint-chip-icon-color: yellow;
+    --anypoint-chip-label-color: red;
+    --anypoint-chip-label-focused-color: pink;
+    --anypoint-chip-focused-background-color: #fff;
+  }
+
+  .themed-parts anypoint-chip::part(anypoint-chip-container) {
+    background-color: #CDDC39;
+    padding: 4px;
+  }
+
+  .themed-parts anypoint-chip::part(anypoint-chip-label) {
+    color: black;
+  }
+
+  .themed-parts anypoint-chip::part(anypoint-chip-remove) {
+    color: white;
+    background-color: #F44336;
+  }
+  </style>
+</head>
+
+<body>
+  <div id="demo"></div>
+  <script type="module" src="anypoint-chip.js"></script>
+  </script>
+</body>
+
+</html>

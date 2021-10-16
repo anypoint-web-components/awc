@@ -30,6 +30,7 @@ export { default as AnypointCollapseElement } from './src/AnypointCollapseElemen
 export { default as AnypointInputComboboxElement } from './src/AnypointInputComboboxElement';
 export { default as AnypointDialogElement } from './src/AnypointDialogElement';
 export { default as AnypointDialogScrollableElement } from './src/AnypointDialogScrollableElement';
+export { default as AnypointChipElement } from './src/AnypointChipElement';
 
 export { AnypointDialogMixin, AnypointDialogMixinConstructor } from './src/AnypointDialogMixin';
 export { default as AnypointDialogStylesInternal } from './src/styles/AnypointDialogInternalStyles.js';
