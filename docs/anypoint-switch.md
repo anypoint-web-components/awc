@@ -14,7 +14,7 @@ Anypoint web components are set of components that allows to build Anypoint enab
 <html>
   <head>
     <script type="module">
-      import './node_modules/@anypoint-web-components/awc/anypoint-switch.js';
+      import '@anypoint-web-components/awc/anypoint-switch.js';
     </script>
   </head>
   <body>

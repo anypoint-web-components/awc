@@ -52,4 +52,5 @@ export { MenubarMixin } from './src/mixins/MenubarMixin.js';
 export { ResizableMixin } from './src/mixins/ResizableMixin.js';
 export { FitMixin } from './src/mixins/FitMixin.js';
 export { OverlayMixin } from './src/mixins/OverlayMixin.js';
+export { EventsTargetMixin } from './src/mixins/EventsTargetMixin.js';
 export * as ScrollManager from './src/lib/ScrollManager.js';
