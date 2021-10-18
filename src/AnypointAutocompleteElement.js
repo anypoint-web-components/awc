@@ -1021,7 +1021,7 @@ export default class AnypointAutocompleteElement extends LitElement {
    * @return {TemplateResult|string} Value for the label part of the suggestion
    */
   [readLabelValue](item) {
-    if (item.label && item.label.constructor && item.label.constructor.name === 'TemplateResult') {
+    if (item.label && item.label.constructor) {
       return item.label;
     }
     return String(item.label || item.value);

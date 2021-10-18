@@ -24,7 +24,7 @@ const fullSuggestions = [
   {
     value: 'apple',
     label: 'Apple',
-    description: 'Select apple to be healthy',
+    description: html`Select <b>apple</b> to be healthy`,
   },
   {
     value: 'banana',

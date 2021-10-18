@@ -1,4 +1,5 @@
 import { fixture, assert, aTimeout, nextFrame, html } from '@open-wc/testing';
+import { html as LitHtml } from 'lit-html';
 import sinon from 'sinon';
 import '../../anypoint-autocomplete.js';
 import { openedValue, autocompleteFocus, ignoreNextFocus } from '../../src/AnypointAutocompleteElement.js';
@@ -38,35 +39,33 @@ describe('AnypointAutocompleteElement', () => {
   const htmlSuggestions = [
     {
       value: 'Apple',
-      label: html`<b>Apple</b>`,
+      label: LitHtml`<b>Apple</b>`,
       id: 1,
     },
     {
       value: 'Apricot',
-      label: html`<b>Apricot</b>`,
+      label: LitHtml`<b>Apricot</b>`,
       id: 2,
     },
     {
       value: 'Avocado',
-      label: html`<b>Avocado</b>`,
+      label: LitHtml`<b>Avocado</b>`,
       id: 3,
     },
     {
       value: 'Banana',
-      label: html`<b>Banana</b>`,
+      label: LitHtml`<b>Banana</b>`,
       id: 4,
     },
     {
       value: 'Olive',
-      label: html`<b>Olive</b>`,
+      label: LitHtml`<b>Olive</b>`,
       id: 5,
     },
   ];
 
   function notifyInput(target) {
-    const e = document.createEvent('Event');
-    e.initEvent('input', true, false);
-    target.dispatchEvent(e);
+    target.dispatchEvent(new Event('input', { composed: true, bubbles: true }));
   }
 
   /**
@@ -324,7 +323,7 @@ describe('AnypointAutocompleteElement', () => {
 
     it('renders HTML template description', async () => {
       element.source = htmlSuggestions.map((i) => {
-        i.description = html`<i>item description</i>`;
+        i.description = LitHtml`<i>item description</i>`;
         return i;
       });
       await nextFrame();
