@@ -21,6 +21,8 @@
     "itemschange",
     "listitem",
     "loadingchange",
+    "lowerchange",
+    "lowerthreshold",
     "multiselectable",
     "myattr",
     "onchipschange",
@@ -40,6 +42,8 @@
     "tablist",
     "transitioningchange",
     "UA's",
+    "upperchange",
+    "upperthreshold",
     "validationstateschange",
     "valuechange",
     "Xresizable"

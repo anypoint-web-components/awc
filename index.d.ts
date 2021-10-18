@@ -53,5 +53,6 @@ export { ResizableMixin, ResizableMixinConstructor } from './src/mixins/Resizabl
 export { FitMixin, FitMixinConstructor, HorizontalAlign, VerticalAlign } from './src/mixins/FitMixin.js';
 export { OverlayMixin } from './src/mixins/OverlayMixin';
 export { EventsTargetMixin } from './src/mixins/EventsTargetMixin';
+export { ScrollTargetMixin } from './src/mixins/ScrollTargetMixin';
 export * as ScrollManager from './src/lib/ScrollManager';
 export * from './src/types';

@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="en-GB">
+
+<head>
+  <meta charset="utf-8">
+  <title>arc-scroll-target-mixin using a scrolling region</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script type="module">
+  import './scrollable-element.js';
+  </script>
+
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+    }
+
+    #region {
+      height: 50vh;
+      overflow: auto;
+      position: absolute;
+      top: 25vh;
+      left: 25vh;
+      right: 25vh;
+      box-shadow: 0 0 60px rgba(0,0,0,0.5);
+    }
+  </style>
+</head>
+
+<body>
+  <div id="region">
+    <scrollable-element scrollTarget="region"></scrollable-element>
+  </div>
+</body>
+
+</html>
