@@ -1,6 +1,7 @@
 import { TemplateResult, LitElement, CSSResult } from 'lit-element';
 import AnypointDropdownElement from './AnypointDropdownElement';
 import { ControlStateMixin } from './mixins/ControlStateMixin';
+import { VerticalAlign, HorizontalAlign } from './mixins/FitMixin';
 
 /**
  * @fires dropdownopen When the dropdown becomes opened
@@ -19,13 +20,13 @@ export default class AnypointMenuButtonElement extends ControlStateMixin(LitElem
    * horizontally relative to the dropdown trigger.
    * @attribute
    */
-  horizontalAlign: string;
+  horizontalAlign: HorizontalAlign;
   /**
    * The orientation against which to align the menu dropdown
    * vertically relative to the dropdown trigger.
    * @attribute
    */
-  verticalAlign: string;
+  verticalAlign: VerticalAlign;
   /**
    * If true, the `horizontalAlign` and `verticalAlign` properties will
    * be considered preferences instead of strict requirements when

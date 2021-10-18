@@ -25,6 +25,8 @@ import '../anypoint-listbox.js';
 /** @typedef {import('./types').Suggestion} Suggestion */
 /** @typedef {import('./AnypointAutocompleteElement').InternalSuggestion} InternalSuggestion */
 /** @typedef {import('lit-element').TemplateResult} TemplateResult */
+/** @typedef {import('./mixins/FitMixin').HorizontalAlign} HorizontalAlign */
+/** @typedef {import('./mixins/FitMixin').VerticalAlign} VerticalAlign */
 
 /**
  * Generates an id on passed element.
@@ -386,7 +388,9 @@ export default class AnypointAutocompleteElement extends LitElement {
     this.loader = false;
     this.openOnFocus = false;
     this[openedValue] = false;
+    /** @type HorizontalAlign */
     this.horizontalAlign = 'center';
+    /** @type VerticalAlign */
     this.verticalAlign = 'top';
     this.scrollAction = 'refit';
     this.horizontalOffset = 0;

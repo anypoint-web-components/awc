@@ -6,6 +6,8 @@ import '../anypoint-dropdown.js';
 import buttonStyles from './styles/MenuButton.js';
 
 /** @typedef {import('./AnypointDropdownElement').default} AnypointDropdownElement */
+/** @typedef {import('./mixins/FitMixin').HorizontalAlign} HorizontalAlign */
+/** @typedef {import('./mixins/FitMixin').VerticalAlign} VerticalAlign */
 
 /* eslint-disable no-plusplus */
 
@@ -167,7 +169,9 @@ export default class AnypointMenuButtonElement extends ControlStateMixin(LitElem
 
     this.horizontalOffset = 0;
     this.verticalOffset = 0;
+    /** @type HorizontalAlign */
     this.horizontalAlign = 'left';
+    /** @type VerticalAlign */
     this.verticalAlign = 'top';
 
     this.closeOnActivate = false;

@@ -1,6 +1,8 @@
 import { html, css, LitElement } from 'lit-element';
 import { OverlayMixin } from './mixins/OverlayMixin.js';
 import { ControlStateMixin } from './mixins/ControlStateMixin.js';
+/** @typedef {import('./mixins/FitMixin').HorizontalAlign} HorizontalAlign */
+/** @typedef {import('./mixins/FitMixin').VerticalAlign} VerticalAlign */
 
 /* eslint-disable class-methods-use-this */
 /* eslint-disable no-plusplus */
@@ -96,10 +98,12 @@ export default class AnypointDropdownElement extends OverlayMixin(ControlStateMi
     this._updateOverlayPosition();
   }
 
+  /** @returns VerticalAlign */
   get verticalAlign() {
     return this._verticalAlign;
   }
 
+  /** @param {VerticalAlign} value */
   set verticalAlign(value) {
     const old = this._verticalAlign;
     /* istanbul ignore if */
@@ -110,10 +114,12 @@ export default class AnypointDropdownElement extends OverlayMixin(ControlStateMi
     this._updateOverlayPosition();
   }
 
+  /** @returns HorizontalAlign */
   get horizontalAlign() {
     return this._horizontalAlign;
   }
 
+  /** @param {HorizontalAlign} value */
   set horizontalAlign(value) {
     const old = this._horizontalAlign;
     /* istanbul ignore if */

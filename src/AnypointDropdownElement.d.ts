@@ -1,6 +1,7 @@
 import { TemplateResult, LitElement } from 'lit-element';
 import { OverlayMixin } from './mixins/OverlayMixin.js';
 import { ControlStateMixin } from './mixins/ControlStateMixin';
+import { VerticalAlign, HorizontalAlign } from './mixins/FitMixin';
 
 export default class AnypointDropdownElement extends OverlayMixin(ControlStateMixin(LitElement)) {
   /**
@@ -46,12 +47,18 @@ export default class AnypointDropdownElement extends OverlayMixin(ControlStateMi
    */
   fitPositionTarget: boolean;
 
+  get verticalAlign(): VerticalAlign;
+  set verticalAlign(value: VerticalAlign);
+
+  get horizontalAlign(): HorizontalAlign;
+  set horizontalAlign(value: HorizontalAlign);
+
   /**
    * The element that is contained by the dropdown, if any.
    */
-  readonly containedElement: HTMLElement;
+  get containedElement(): HTMLElement;
 
-  readonly contentWrapper: HTMLElement;
+  get contentWrapper(): HTMLElement;
 
   constructor();
 

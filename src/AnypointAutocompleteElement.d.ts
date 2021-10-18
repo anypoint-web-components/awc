@@ -16,6 +16,7 @@ the License.
 import { LitElement, TemplateResult } from 'lit-element';
 import AnypointListboxElement from './AnypointListboxElement';
 import { Suggestion } from './types';
+import { VerticalAlign, HorizontalAlign } from './mixins/FitMixin';
 
 declare interface InternalSuggestion extends Suggestion {
   /**
@@ -97,7 +98,7 @@ export default class AnypointAutocompleteElement extends LitElement {
    * Possible values are "top", "bottom", "middle", "auto".
    * @attribute
    */
-  verticalAlign: string;
+  verticalAlign: VerticalAlign;
   /**
    * A pixel value that will be added to the position calculated for the
    * given `verticalAlign`, in the direction of alignment. You can think
@@ -120,7 +121,7 @@ export default class AnypointAutocompleteElement extends LitElement {
    * "center", "auto".
    * @attribute
    */
-  horizontalAlign: string;
+  horizontalAlign: HorizontalAlign;
   /**
    * A pixel value that will be added to the position calculated for the
    * given `horizontalAlign`, in the direction of alignment. You can think
