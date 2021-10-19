@@ -35,6 +35,8 @@ export { default as AnypointChipInputElement } from './src/AnypointChipInputElem
 export { default as DateTimeElement } from './src/DateTimeElement';
 export { default as BottomSheetElement } from './src/BottomSheetElement';
 export { default as StarRatingElement } from './src/StarRatingElement';
+export { default as ColorSelectorElement } from './src/ColorSelectorElement';
+export { default as ColorInputSelectorElement } from './src/ColorInputSelectorElement';
 
 export { AnypointDialogMixin, AnypointDialogMixinConstructor } from './src/mixins/AnypointDialogMixin';
 export { default as AnypointDialogStylesInternal } from './src/styles/AnypointDialogInternalStyles.js';
