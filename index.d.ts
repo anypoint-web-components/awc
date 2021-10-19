@@ -32,6 +32,7 @@ export { default as AnypointDialogElement } from './src/AnypointDialogElement';
 export { default as AnypointDialogScrollableElement } from './src/AnypointDialogScrollableElement';
 export { default as AnypointChipElement } from './src/AnypointChipElement';
 export { default as AnypointChipInputElement } from './src/AnypointChipInputElement';
+export { default as DateTimeElement } from './src/DateTimeElement';
 
 export { AnypointDialogMixin, AnypointDialogMixinConstructor } from './src/mixins/AnypointDialogMixin';
 export { default as AnypointDialogStylesInternal } from './src/styles/AnypointDialogInternalStyles.js';
