@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1, user-scalable=yes">
+  <title>bottom-sheet demo</title>
+
+  <style>
+  .card {
+    background-color: #fff;
+    padding: 12px;
+    margin: 20px;
+    box-shadow: 0 3px 4px 0 rgba(0, 0, 0, 0.14),
+                0 1px 8px 0 rgba(0, 0, 0, 0.12),
+                0 3px 3px -2px rgba(0, 0, 0, 0.4);
+  }
+
+  body.styled {
+    --arc-font-caption-font-size: 12px;
+    --arc-font-caption-font-weight: 400;
+    --arc-font-caption-letter-spacing: 0.011em;
+    --arc-font-caption-line-height: 20px;
+  }
+
+  body.styled.dark {
+    background-color: #424242;
+    height: 100vh;
+    color: #fff;
+    --bottom-sheet-background-color: #424242;
+    --bottom-sheet-label-color: rgba(255, 255, 255, 0.74);
+    --bottom-sheet-color: #fff;
+  }
+
+  body.styled.dark .card {
+    background-color: #424242;
+  }
+  </style>
+</head>
+
+<body class="styled">
+  <div id="demo"></div>
+
+  <script type="module" src="bottom-sheet.js"></script>
+</body>
+
+</html>

@@ -1090,8 +1090,8 @@ const mxFunction = base => {
  * and cancel is user intent. Closing generally implies that the user
  * acknowledged the content on the overlay. By default, it will cancel whenever
  * the user taps outside it or presses the escape key. This behavior is
- * configurable with the `nocancelonesckey` and the
- * `nocancelonoutsideclick` properties. `close()` should be called explicitly
+ * configurable with the `noCancelOnEscKey` and the
+ * `noCancelOnOutsideClick` properties. `close()` should be called explicitly
  * by the implementer when the user interacts with a control in the overlay
  * element. When the dialog is canceled, the overlay fires an
  * 'overlay-canceled' event. Call `preventDefault` on this event to prevent
@@ -1104,10 +1104,10 @@ const mxFunction = base => {
  *
  * ### Backdrop
  *
- * Set the `withbackdrop` attribute to display a backdrop behind the overlay.
+ * Set the `withBackdrop` attribute to display a backdrop behind the overlay.
  * The backdrop is appended to `<body>` and is of type `<arc-overlay-backdrop>`.
  * See its doc page for styling options.
- * In addition, `withbackdrop` will wrap the focus within the content in the
+ * In addition, `withBackdrop` will wrap the focus within the content in the
  * light DOM. Override the [`_focusableNodes`
  * getter](#OverlayMixin:property-_focusableNodes) to achieve a
  * different behavior.
