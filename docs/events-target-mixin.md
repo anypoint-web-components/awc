@@ -42,7 +42,7 @@ an object that is the default events target. If argument is not set then `window
 is used instead.
 
 ```javascript
-import { EventsTargetMixin } '@advanced-rest-client/events-target-mixin';
+import { EventsTargetMixin } '@anypoint-web-components/awc';
 
 class EventableObject extends EventsTargetMixin(Object) {
   constructor() {

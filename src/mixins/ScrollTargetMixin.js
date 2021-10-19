@@ -349,20 +349,6 @@ const mxFunction = base => {
  *
  * Elements that consume this mixin can override the `_scrollHandler`
  * method to add logic on the scroll event.
- *
- *
- * ## Usage
- *
- * ```javascript
- * import { LitElement } from 'lit-element';
- * import { ScrollTargetMixin } from '@advanced-rest-client/arc-scroll-target-mixin/arc-scroll-target-mixin.js';
- *
- * class ArcOverlayImpl extends ScrollTargetMixin(LitElement) {
- *  _scrollHandler(e) {
- *    ...
- *  }
- * }
- * ```
  * 
  * @mixin
  */

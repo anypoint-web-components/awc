@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, minimum-scale=1, initial-scale=1, user-scalable=yes">
+
+    <title>star-rating demo</title>
+
+    <style>
+      .demo {
+        max-width: 1200px;
+        width: 700px;
+        margin-bottom: 40px;
+      }
+
+      .card {
+        background-color: #fff;
+        padding: 12px;
+        margin: 20px;
+        box-shadow: 0 3px 4px 0 rgba(0, 0, 0, 0.14),
+                    0 1px 8px 0 rgba(0, 0, 0, 0.12),
+                    0 3px 3px -2px rgba(0, 0, 0, 0.4);
+      }
+
+      body.styled {
+        --primary-color: #00A2DF;
+      }
+
+      body.styled.dark {
+        background-color: #424242;
+        height: 100vh;
+        color: #fff;
+        --primary-color: #2196f3;
+        --primary-text-color: #fff;
+      }
+
+      body.styled.dark .card {
+        background-color: #424242;
+      }
+
+      body.styled .theme-blue {
+        --star-rating-unselected-color: #BBDEFB;
+        --star-rating-selected-color: #1565C0;
+        --star-rating-active-color: #2196F3;
+      }
+    </style>
+  </head>
+  <body class="styled">
+    <div class="vertical-section-container centered">
+      <h3>Rating with value</h3>
+      <demo-helper>
+        <template>
+          <star-rating value="3"></star-rating>
+        </template>
+      </demo-helper>
+
+      <h3>Readonly</h3>
+      <demo-helper>
+        <template>
+          <star-rating value="4" readonly></star-rating>
+        </template>
+      </demo-helper>
+
+      <h3>No value</h3>
+      <demo-helper>
+        <template>
+          <star-rating></star-rating>
+        </template>
+      </demo-helper>
+
+      <h3>Styled</h3>
+      <demo-helper>
+        <template>
+          <star-rating class="theme-blue" value="3"></star-rating>
+        </template>
+      </demo-helper>
+    </div>
+
+    <div class="centered actions card">
+      <h2>Options</h2>
+      <anypoint-switch id="theme">Toggle dark theme</anypoint-switch>
+      <anypoint-switch checked id="styled">Toggle styles</anypoint-switch>
+    </div>
+    <script type="module" src="./star-rating.js"></script>
+  </body>
+</html>

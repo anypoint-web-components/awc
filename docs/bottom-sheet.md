@@ -20,7 +20,7 @@ Bottom sheets slide up from the bottom of the screen to reveal more content.
 <html>
   <head>
     <script type="module">
-      import './node_modules/@advanced-rest-client/bottom-sheet/bottom-sheet.js';
+      import '@anypoint-web-components/awc/bottom-sheet.js';
     </script>
   </head>
   <body>
@@ -45,7 +45,7 @@ Bottom sheets slide up from the bottom of the screen to reveal more content.
 
 ```js
 import { LitElement, html } from 'lit-element';
-import '@advanced-rest-client/bottom-sheet/bottom-sheet.js';
+import '@anypoint-web-components/awc/bottom-sheet.js';
 
 class SampleElement extends LitElement {
   static get properties() {
