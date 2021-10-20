@@ -60,3 +60,4 @@ export { OverlayMixin } from './src/mixins/OverlayMixin.js';
 export { EventsTargetMixin } from './src/mixins/EventsTargetMixin.js';
 export { ScrollTargetMixin } from './src/mixins/ScrollTargetMixin.js';
 export * as ScrollManager from './src/lib/ScrollManager.js';
+export { RangeMixin } from './src/mixins/RangeMixin.js';

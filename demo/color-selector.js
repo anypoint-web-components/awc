@@ -49,7 +49,7 @@ class ComponentPage extends DemoPage {
 
       <section class="documentation-section">
         <h3>Input color selector</h3>
-        <arc-interactive-demo
+        <interactive-demo
           .states="${demoStates}"
           @state-changed="${this._demoStateHandler}"
           ?dark="${darkThemeActive}"
@@ -61,14 +61,13 @@ class ComponentPage extends DemoPage {
           >
             Select a color
           </color-input-selector>
-        </arc-interactive-demo>
+        </interactive-demo>
       </section>
     `;
   }
 
   contentTemplate() {
     return html`
-      <url-history-model></url-history-model>
       <h2>Color selector</h2>
       ${this._demoTemplate()}
     `;

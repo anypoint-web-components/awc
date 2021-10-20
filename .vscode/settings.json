@@ -35,6 +35,7 @@
     "onselectedvalueschanged",
     "openedchange",
     "pressedchange",
+    "ratiochange",
     "recenters",
     "selecteditemchange",
     "selecteditemschange",
