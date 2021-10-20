@@ -6,7 +6,7 @@ import {
 } from '@polymer/iron-test-helpers/mock-interactions.js';
 import '../../star-rating.js';
 
-/** @typedef {import('../index').StarRating} StarRating */
+/** @typedef {import('../../index').StarRatingElement} StarRating */
 
 describe('<star-rating>', () => {
   /**

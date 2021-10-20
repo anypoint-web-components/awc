@@ -339,25 +339,25 @@ class ComponentDemo extends DemoPage {
         role="combobox"
         aria-label="Text input with list suggestions"
         aria-expanded="true"
-        aria-owns="paperAutocompleteInput7302"
+        aria-owns="anypointAutocompleteInput7302"
         aria-haspopup="listbox">
         <anypoint-input
           id="targetInput"
           aria-autocomplete="list"
           autocomplete="off"
           aria-haspopup="true"
-          aria-controls="paperAutocompleteInput63418"></anypoint-input>
+          aria-controls="anypointAutocompleteInput63418"></anypoint-input>
         <anypoint-autocomplete
           target="targetInput"
-          id="paperAutocompleteInput7302"
-          aria-controls="paperAutocompleteInput63418"
+          id="anypointAutocompleteInput7302"
+          aria-controls="anypointAutocompleteInput63418"
           >
           <anypoint-dropdown>
             <anypoint-listbox
               aria-label="Use arrows and enter to select list item. Escape to close the list."
               role="listbox"
               aria-activeDescendant=""
-              id="paperAutocompleteInput63418"></anypoint-listbox>
+              id="anypointAutocompleteInput63418"></anypoint-listbox>
           </anypoint-dropdown>
         </anypoint-autocomplete>
       </div>`}

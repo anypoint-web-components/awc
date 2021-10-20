@@ -37,6 +37,7 @@ export { default as BottomSheetElement } from './src/BottomSheetElement';
 export { default as StarRatingElement } from './src/StarRatingElement';
 export { default as ColorSelectorElement } from './src/ColorSelectorElement';
 export { default as ColorInputSelectorElement } from './src/ColorInputSelectorElement';
+export { default as AnypointProgressElement } from './src/AnypointProgressElement';
 
 export { AnypointDialogMixin, AnypointDialogMixinConstructor } from './src/mixins/AnypointDialogMixin';
 export { default as AnypointDialogStylesInternal } from './src/styles/AnypointDialogInternalStyles.js';

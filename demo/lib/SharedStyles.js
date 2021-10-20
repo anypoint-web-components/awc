@@ -79,7 +79,7 @@ body.styled.dark {
   color: #fff;
   --primary-color: #2196f3;
   --primary-text-color: #fff;
-  --paper-toggle-button-label-color: #fff;
+  --anypoint-toggle-button-label-color: #fff;
   --primary-background-color: #424242;
   --secondary-text-color: #616161;
   --interactive-demo-options-color: #F5F5F5;

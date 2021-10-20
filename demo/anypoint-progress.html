@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+  <meta charset="utf-8">
+  <link rel="stylesheet" href="./styles/common.css" />
+  <style>
+    anypoint-progress {
+      display: block;
+      width: 100%;
+      margin: 20px 0;
+    }
+
+    anypoint-progress.slow {
+      --anypoint-progress-indeterminate-cycle-duration: 20s;
+    }
+
+    anypoint-progress.blue {
+      --anypoint-progress-active-color: #2196f3;
+      --anypoint-progress-secondary-color: #90caf9;
+    }
+
+    anypoint-progress.red {
+      --anypoint-progress-active-color: #f44336;
+      --anypoint-progress-secondary-color: #ef9a9a;
+    }
+
+    anypoint-progress.green {
+      --anypoint-progress-active-color: #4caf50;
+      --anypoint-progress-secondary-color: #80cbc4;
+    }
+  </style>
+</head>
+<body>
+  <div id="demo"></div>
+
+  <script type="module" src="anypoint-progress.js"></script>
+</body>
+</html>

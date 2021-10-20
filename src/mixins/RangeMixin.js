@@ -3,7 +3,7 @@
 import { dedupeMixin } from '@open-wc/dedupe-mixin';
 
 export const ratioValue = Symbol('rationValue');
-export const performUpdate = Symbol('performUpdate');
+export const rangeChanged = Symbol('rangeChanged');
 export const computeStep = Symbol('computeStep');
 export const clampValue = Symbol('clampValue');
 export const computeRatio = Symbol('computeRatio');
@@ -12,6 +12,8 @@ export const valueValue = Symbol('valueValue');
 export const minValue = Symbol('minValue');
 export const maxValue = Symbol('maxValue');
 export const stepValue = Symbol('stepValue');
+export const computeDebounce = Symbol('computeDebounce');
+export const debounceValue = Symbol('debounceValue');
 
 /**
  * @param {typeof HTMLElement} base
@@ -64,12 +66,11 @@ const mxFunction = base => {
       if (typeof parsed === 'string') {
         parsed = parseFloat(parsed);
       }
-      const v = this[clampValue](parsed);
-      if (this[valueValue] === v) {
+      if (this[valueValue] === parsed) {
         return;
       }
-      this[valueValue] = v;
-      this[performUpdate]();
+      this[valueValue] = parsed;
+      this[computeDebounce]();
     }
 
     /**
@@ -91,7 +92,7 @@ const mxFunction = base => {
         return;
       }
       this[minValue] = parsed;
-      this[performUpdate]();
+      this[computeDebounce]();
     }
 
     /**
@@ -113,7 +114,7 @@ const mxFunction = base => {
         return;
       }
       this[maxValue] = parsed;
-      this[performUpdate]();
+      this[computeDebounce]();
     }
 
     /**
@@ -135,7 +136,7 @@ const mxFunction = base => {
         return;
       }
       this[stepValue] = parsed;
-      this[performUpdate]();
+      this[computeDebounce]();
     }
 
     constructor() {
@@ -147,13 +148,13 @@ const mxFunction = base => {
       this[maxValue] = 100;
       this[stepValue] = 1;
 
-      this[performUpdate]();
+      this[rangeChanged]();
     }
 
     /**
      * Performs the update when values change.
      */
-    [performUpdate]() {
+    [rangeChanged]() {
       this[validateValue]();
       const ratio = this[computeRatio](this.value) * 100;
       if (this[ratioValue] !== ratio) {
@@ -200,10 +201,28 @@ const mxFunction = base => {
     }
 
     /**
+     * Performs the computations in a RAF.
+     * This is to make sure all attributes are set before computation occur.
+     */
+    [computeDebounce]() {
+      if (this[debounceValue]) {
+        return;
+      }
+      this[debounceValue] = requestAnimationFrame(() => {
+        this[debounceValue] = undefined;
+        this[rangeChanged]();
+      });
+    }
+
+    /**
      * @param {number} value
      * @returns {number} 
      */
     [computeRatio](value) {
+      const denominator = this.max - this.min;
+      if (denominator === 0) {
+        return 0;
+      }
       return (this[clampValue](value) - this.min) / (this.max - this.min);
     }
 

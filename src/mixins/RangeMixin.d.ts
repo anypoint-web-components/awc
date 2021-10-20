@@ -14,7 +14,7 @@ export interface RangeMixinConstructor {
 }
 
 export const ratioValue: unique symbol;
-export const performUpdate: unique symbol;
+export const rangeChanged: unique symbol;
 export const computeStep: unique symbol;
 export const clampValue: unique symbol;
 export const computeRatio: unique symbol;
@@ -23,6 +23,8 @@ export const valueValue: unique symbol;
 export const minValue: unique symbol;
 export const maxValue: unique symbol;
 export const stepValue: unique symbol;
+export const computeDebounce: unique symbol;
+export const debounceValue: unique symbol;
 
 /**
  * Use `RangeMixin` to implement an element that has a range of minimum and maximum.
@@ -59,10 +61,15 @@ export interface RangeMixin {
   /**
    * Performs the update when values change.
    */
-  [performUpdate](): void;
-  [computeStep](step: string|number): number;
-  [clampValue](value: string|number): number;
-  [computeRatio](value: string|number): number;
+  [rangeChanged](): void;
+  [computeStep](step: number): number;
+  [clampValue](value: number): number;
+  /**
+   * Performs the computations in a RAF.
+   * This is to make sure all attributes are set before computation occur.
+   */
+  [computeDebounce](): void;
+  [computeRatio](value: number): number;
   /**
    * Makes sure the value is in the right format.
    * @returns True when the value has changed.
