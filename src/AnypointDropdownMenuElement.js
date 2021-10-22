@@ -100,7 +100,7 @@ export default class AnypointDropdownMenuElement extends ValidatableMixin(Contro
           .restoreFocusOnClose="${restoreFocusOnClose}"
           @closed="${this._dropdownClosed}"
           @opened="${this._dropdownOpened}"
-          @selected="${this._selectHandler}"
+          @select="${this._selectHandler}"
           @deselect="${this._deselectHandler}"
           aria-labelledby="${name}"
         >

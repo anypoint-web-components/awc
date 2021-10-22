@@ -1,6 +1,6 @@
 {
   "name": "@anypoint-web-components/awc",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "description": "Anypoint web components - base components library",
   "license": "Apache-2.0",
   "main": "index.js",
@@ -31,7 +31,7 @@
     "lit-html": "^1.4.1"
   },
   "devDependencies": {
-    "@open-wc/eslint-config": "^6.0.0",
+    "@open-wc/eslint-config": "^7.0.0",
     "@open-wc/testing": "^3.0.1",
     "@pawel-up/data-mock": "^0.1.7",
     "@polymer/iron-test-helpers": "^3.0.0",
@@ -40,7 +40,7 @@
     "@web/test-runner-playwright": "^0.8.8",
     "eslint": "^8.0.1",
     "eslint-config-prettier": "^8.3.0",
-    "husky": "^7.0.2",
+    "husky": "^7.0.4",
     "lint-staged": "^11.2.3",
     "prismjs": "^1.25.0",
     "sinon": "^11.1.2",
