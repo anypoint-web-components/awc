@@ -17,6 +17,7 @@ the License.
 /** @typedef {import('./DateTimeElement').DateTimeTextOptions} DateTimeTextOptions */
 /** @typedef {import('./DateTimeElement').DateTimeNumberOptions} DateTimeNumberOptions */
 /** @typedef {import('./DateTimeElement').DateTimeTimezoneOptions} DateTimeTimezoneOptions */
+/** @typedef {import('./DateTimeElement').DateTimeTextNumberOptions} DateTimeTextNumberOptions */
 /**
  * An element to display formatted date and time.
  *
@@ -140,15 +141,15 @@ export default class DateTimeElement extends HTMLElement {
   /**
    * The representation of the month.
    * Possible values are "numeric", "2-digit", "narrow", "short", "long".
-   * @returns {DateTimeTextOptions}
+   * @returns {DateTimeTextNumberOptions}
    */
   get month() {
-    return /** @type DateTimeTextOptions */ (this.getAttribute('month'));
+    return /** @type DateTimeTextNumberOptions */ (this.getAttribute('month'));
   }
 
   /**
    * The representation of the month.
-   * @param {DateTimeTextOptions} v Possible values are "numeric", "2-digit", "narrow", "short", "long".
+   * @param {DateTimeTextNumberOptions} v Possible values are "numeric", "2-digit", "narrow", "short", "long".
    */
   set month(v) {
     this.setAttribute('month', v);

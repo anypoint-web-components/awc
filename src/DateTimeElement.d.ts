@@ -1,6 +1,7 @@
 export type DateTimeTextOptions = "long" | "short" | "narrow";
 export type DateTimeNumberOptions = "numeric" | "2-digit";
 export type DateTimeTimezoneOptions = "long" | "short";
+export type DateTimeTextNumberOptions = DateTimeTextOptions | DateTimeNumberOptions;
 /**
  * An element to display formatted date and time.
  *
@@ -64,7 +65,7 @@ export default class DateTimeElement extends HTMLElement {
    * Possible values are "numeric", "2-digit", "narrow", "short", "long".
    * @attribute
    */
-  month: DateTimeTextOptions;
+  month: DateTimeTextNumberOptions;
 
   /**
    * The representation of the day.
