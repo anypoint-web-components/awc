@@ -83,7 +83,7 @@ const mxFunction = base => {
         this.requestUpdate('value', old);
       }
       /* istanbul ignore else */
-      if (this._internals) {
+      if (this._internals && typeof this._internals.setFormValue === 'function') {
         this._internals.setFormValue(value);
       }
       this.dispatchEvent(
