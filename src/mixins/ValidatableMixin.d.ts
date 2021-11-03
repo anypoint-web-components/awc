@@ -45,6 +45,7 @@ export declare interface ValidationResult {
  * `aria-invalid` attribute.
  * 
  * @fires invalidchange
+ * @fires validationstateschange
  */
 interface ValidatableMixin {
   /**

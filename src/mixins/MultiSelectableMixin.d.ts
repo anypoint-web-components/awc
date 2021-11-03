@@ -5,6 +5,10 @@ interface MultiSelectableMixinConstructor {
   new(...args: any[]): MultiSelectableMixin;
 }
 
+/**
+ * @fires selectedvalueschange
+ * @fires selecteditemschange
+ */
 interface MultiSelectableMixin extends SelectableMixin {
   /**
    * If true, multiple selections are allowed.

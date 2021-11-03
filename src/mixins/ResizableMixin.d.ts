@@ -9,6 +9,7 @@ export interface ResizableMixinConstructor {
 
 /**
  * @fires resize Dispatched when the element should re-layout itself.
+ * @fires requestresizenotifications
  */
 export interface ResizableMixin {
   readonly _parentResizable: HTMLElement;
