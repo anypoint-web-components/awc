@@ -17,7 +17,7 @@ describe('<anypoint-input>', () => {
    * @return {Promise<AnypointInputElement>}
    */
   async function invalidMessageFixture() {
-    return fixture(html`<anypoint-input invalidmessage="test"></anypoint-input>`);
+    return fixture(html`<anypoint-input invalidMessage="test"></anypoint-input>`);
   }
 
   /**
@@ -25,9 +25,9 @@ describe('<anypoint-input>', () => {
    */
   async function autoValidateFixture() {
     return fixture(html`<anypoint-input
-      autovalidate
+      autoValidate
       required
-      invalidmessage="test"></anypoint-input>`);
+      invalidMessage="test"></anypoint-input>`);
   }
 
   /**
@@ -986,16 +986,22 @@ describe('<anypoint-input>', () => {
         });
 
         it('initializes ElementInternals interface', () => {
-          assert.ok(element._internals);
+          if (element._internals && element._internals.form) {
+            assert.ok(element._internals);
+          }
         });
 
         it('has associated form', () => {
-          assert.equal(element.form, form);
+          if (element._internals && element._internals.form) {
+            assert.equal(element.form, form);
+          }
         });
 
         it('the element is in the list of form elements', () => {
-          const elements = Array.from(form.elements);
-          assert.notEqual(elements.indexOf(element), -1);
+          if (element._internals && element._internals.form) {
+            const elements = Array.from(form.elements);
+            assert.notEqual(elements.indexOf(element), -1);
+          }
         });
       });
 
@@ -1008,9 +1014,11 @@ describe('<anypoint-input>', () => {
         });
 
         it('set value in forms submission value', () => {
-          const spy = sinon.spy(element._internals, 'setFormValue');
-          element.value = 'test';
-          assert.isTrue(spy.called);
+          if (element._internals && element._internals.form) {
+            const spy = sinon.spy(element._internals, 'setFormValue');
+            element.value = 'test';
+            assert.isTrue(spy.called);
+          }
         });
       });
 
@@ -1022,9 +1030,11 @@ describe('<anypoint-input>', () => {
           element = form.querySelector('anypoint-input');
         });
 
-        it('resets input value', () => {
-          form.reset();
-          assert.equal(element.value, '');
+        it('resets the input value', () => {
+          if (element._internals && element._internals.form) {
+            form.reset();
+            assert.equal(element.value, '');
+          }
         });
       });
 
@@ -1038,9 +1048,11 @@ describe('<anypoint-input>', () => {
           fieldset = form.querySelector('fieldset');
         });
 
-        it('resets input value', () => {
-          fieldset.disabled = true;
-          assert.isTrue(element.disabled);
+        it('resets the disabled input value', () => {
+          if (element._internals && element._internals.form) {
+            fieldset.disabled = true;
+            assert.isTrue(element.disabled);
+          }
         });
       });
 
@@ -1053,9 +1065,11 @@ describe('<anypoint-input>', () => {
         });
 
         it('calls internal checkValidity()', () => {
-          const spy = sinon.spy(element._internals, 'checkValidity');
-          element.checkValidity();
-          assert.isTrue(spy.called);
+          if (element._internals && element._internals.form) {
+            const spy = sinon.spy(element._internals, 'checkValidity');
+            element.checkValidity();
+            assert.isTrue(spy.called);
+          }
         });
       });
     }

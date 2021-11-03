@@ -310,7 +310,7 @@ describe('<anypoint-checkbox>', () => {
       const form = await formFixture();
       const element = form.querySelector('anypoint-checkbox');
       // @ts-ignore
-      if (element._internals) {
+      if (element._internals && element.form) {
         assert.isTrue(element.form === form);
       }
     });
@@ -319,7 +319,7 @@ describe('<anypoint-checkbox>', () => {
       const form = await formCheckedFixture();
       const element = form.querySelector('anypoint-checkbox');
       // @ts-ignore
-      if (element._internals) {
+      if (element._internals && element.form) {
         form.reset();
         assert.isFalse(element.checked);
       }
@@ -329,7 +329,7 @@ describe('<anypoint-checkbox>', () => {
       const form = await formCheckedRequiredFixture();
       const element = form.querySelector('anypoint-checkbox');
       // @ts-ignore
-      if (element._internals) {
+      if (element._internals && element.form) {
         element.checked = false;
         assert.isTrue(element.matches(':invalid'));
       }

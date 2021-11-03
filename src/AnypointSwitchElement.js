@@ -117,7 +117,7 @@ export default class AnypointSwitchElement extends ButtonStateMixin(ControlState
   _checkedChanged(value) {
     super._checkedChanged(value);
     this.setAttribute('aria-checked', value ? 'true' : 'false');
-    if (this._internals) {
+    if (this._internals && this._internals.setFormValue) {
       this._internals.setFormValue(value ? this.value : '');
 
       if (!this.matches(':disabled') && this.hasAttribute('required') && !value) {
@@ -133,7 +133,7 @@ export default class AnypointSwitchElement extends ButtonStateMixin(ControlState
   }
 
   checkValidity() {
-    if (this._internals) {
+    if (this._internals && this._internals.checkValidity) {
       return this._internals.checkValidity();
     }
     return this.required ? this.checked : true;

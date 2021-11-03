@@ -149,7 +149,7 @@ export default class AnypointCheckboxElement extends ButtonStateMixin(ControlSta
       this.indeterminate = false;
     }
     this.setAttribute('aria-checked', value ? 'true' : 'false');
-    if (this._internals) {
+    if (this._internals && this._internals.setFormValue) {
       this._internals.setFormValue(value ? this.value : '');
 
       if (!this.matches(':disabled') && this.hasAttribute('required') && !value) {
@@ -172,7 +172,7 @@ export default class AnypointCheckboxElement extends ButtonStateMixin(ControlSta
   }
 
   checkValidity() {
-    if (this._internals) {
+    if (this._internals && this._internals.checkValidity) {
       return this._internals.checkValidity();
     }
     return this.required ? this.checked : true;

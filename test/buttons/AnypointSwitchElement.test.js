@@ -147,7 +147,7 @@ describe('<anypoint-switch>', () => {
       const form = await formFixture();
       const element = form.querySelector('anypoint-switch');
       // @ts-ignore
-      if (element._internals) {
+      if (element._internals && element._internals.form) {
         assert.isTrue(element.form === form);
       }
     });
@@ -156,7 +156,7 @@ describe('<anypoint-switch>', () => {
       const form = await formCheckedFixture();
       const element = form.querySelector('anypoint-switch');
       // @ts-ignore
-      if (element._internals) {
+      if (element._internals && element._internals.form) {
         form.reset();
         assert.isFalse(element.checked);
       }
@@ -166,7 +166,7 @@ describe('<anypoint-switch>', () => {
       const form = await formCheckedRequiredFixture();
       const element = form.querySelector('anypoint-switch');
       // @ts-ignore
-      if (element._internals) {
+      if (element._internals && element._internals.form) {
         element.checked = false;
         assert.isTrue(element.matches(':invalid'));
       }

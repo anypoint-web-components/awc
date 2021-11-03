@@ -556,12 +556,16 @@ describe('<anypoint-dropdown-menu>', () => {
         });
 
         it('has associated form', () => {
-          assert.equal(element.form, form);
+          if (element._internals && element._internals.form) {
+            assert.equal(element.form, form);
+          }
         });
 
         it('the element is in the list of form elements', () => {
-          const elements = Array.from(form.elements);
-          assert.notEqual(elements.indexOf(element), -1);
+          if (element._internals && element._internals.form) {
+            const elements = Array.from(form.elements);
+            assert.notEqual(elements.indexOf(element), -1);
+          }
         });
       });
 
@@ -574,9 +578,11 @@ describe('<anypoint-dropdown-menu>', () => {
         });
 
         it('set value in forms submission value', () => {
-          const spy = sinon.spy(element._internals, 'setFormValue');
-          element.value = 'test';
-          assert.isTrue(spy.called);
+          if (element._internals && element._internals.form) {
+            const spy = sinon.spy(element._internals, 'setFormValue');
+            element.value = 'test';
+            assert.isTrue(spy.called);
+          }
         });
       });
 
@@ -589,8 +595,10 @@ describe('<anypoint-dropdown-menu>', () => {
         });
 
         it('resets input value', () => {
-          form.reset();
-          assert.equal(element.value, '');
+          if (element._internals && element._internals.form) {
+            form.reset();
+            assert.equal(element.value, '');
+          }
         });
       });
 
@@ -603,9 +611,11 @@ describe('<anypoint-dropdown-menu>', () => {
         });
 
         it('calls internal checkValidity()', () => {
-          const spy = sinon.spy(element._internals, 'checkValidity');
-          element.checkValidity();
-          assert.isTrue(spy.called);
+          if (element._internals && element._internals.form) {
+            const spy = sinon.spy(element._internals, 'checkValidity');
+            element.checkValidity();
+            assert.isTrue(spy.called);
+          }
         });
       });
     }
@@ -717,6 +727,9 @@ describe('<anypoint-dropdown-menu>', () => {
         });
 
         it('renders control disabled when fieldset is disabled', async () => {
+          if (!element._internals.form) {
+            return;
+          }
           fieldset.disabled = true;
           await nextFrame();
           const container = element.shadowRoot.querySelector(
@@ -745,6 +758,9 @@ describe('<anypoint-dropdown-menu>', () => {
         });
 
         it('disabled cannot be opened via open()', async () => {
+          if (!element._internals.form) {
+            return;
+          }
           fieldset.disabled = true;
           await nextFrame();
           element.open();
@@ -752,6 +768,9 @@ describe('<anypoint-dropdown-menu>', () => {
         });
 
         it('disabled cannot be opened via opened property', async () => {
+          if (!element._internals.form) {
+            return;
+          }
           fieldset.disabled = true;
           await nextFrame();
           element.opened = true;
@@ -759,6 +778,9 @@ describe('<anypoint-dropdown-menu>', () => {
         });
 
         it('disabled cannot be opened via click', async () => {
+          if (!element._internals.form) {
+            return;
+          }
           fieldset.disabled = true;
           await nextFrame();
           element.click();
@@ -766,6 +788,9 @@ describe('<anypoint-dropdown-menu>', () => {
         });
 
         it('restores state when disabled set to false', async () => {
+          if (!element._internals.form) {
+            return;
+          }
           fieldset.disabled = true;
           await nextFrame();
           fieldset.disabled = false;
@@ -775,6 +800,9 @@ describe('<anypoint-dropdown-menu>', () => {
         });
 
         it('closes overlay when disabling', async () => {
+          if (!element._internals.form) {
+            return;
+          }
           await untilOpened(element);
           fieldset.disabled = true;
           await nextFrame();

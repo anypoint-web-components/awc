@@ -56,7 +56,7 @@
     "lint": "npm run lint:eslint",
     "format": "npm run format:eslint",
     "test": "web-test-runner test/**/*.test.js --coverage --node-resolve --playwright --browsers chromium firefox webkit",
-    "test:watch": "web-test-runner test/**/*.test.js --node-resolve --watch --playwright --browsers chromium",
+    "test:watch": "web-test-runner --config web-test-runner.config.mjs --watch  --playwright --browsers firefox",
     "gen:wc": "wca analyze \"*.js\" --outFile custom-elements.json"
   },
   "eslintConfig": {
