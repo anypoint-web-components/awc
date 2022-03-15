@@ -185,6 +185,9 @@ export default class AnypointInputComboboxElement extends AnypointInputElement {
     if (!this.hasAttribute('aria-haspopup')) {
       this.setAttribute('aria-haspopup', 'true');
     }
+    if (!this.hasAttribute('role')) {
+      this.setAttribute('role', 'combobox');
+    }
     this.addEventListener('keydown', this[keydownHandler]);
   }
 
@@ -195,19 +198,20 @@ export default class AnypointInputComboboxElement extends AnypointInputElement {
 
   firstUpdated(updated) {
     super.firstUpdated(updated);
-    const ce = this.contentElement;
-    if (ce) {
-      ce.setAttribute('aria-expanded', String(this.opened));
-    }
+    // const ce = this.contentElement;
+    // if (ce) {
+    //   ce.setAttribute('aria-expanded', String(this.opened));
+    // }
+    this.setAttribute('aria-expanded', String(this.opened));
   }
 
   [openedChanged](opened) {
     const openState = opened ? 'true' : 'false';
     this.setAttribute('aria-expanded', openState);
-    const ce = this.contentElement;
-    if (ce) {
-      ce.setAttribute('aria-expanded', openState);
-    }
+    // const ce = this.contentElement;
+    // if (ce) {
+    //   ce.setAttribute('aria-expanded', openState);
+    // }
   }
 
   /**

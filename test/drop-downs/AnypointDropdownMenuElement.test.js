@@ -813,38 +813,6 @@ describe('<anypoint-dropdown-menu>', () => {
   });
 
   describe('a11y', () => {
-    it('sets aria-expanded when opened', async () => {
-      const element = await basicFixture();
-      await untilOpened(element);
-      assert.equal(element.getAttribute('aria-expanded'), 'true');
-    });
-
-    it('sets aria-expanded when closed', async () => {
-      const element = await basicFixture();
-      await untilOpened(element);
-      element.opened = false;
-      assert.equal(element.getAttribute('aria-expanded'), 'false');
-    });
-
-    it('sets aria-expanded on content element when opened', async () => {
-      const element = await basicFixture();
-      await untilOpened(element);
-      assert.equal(
-        element.contentElement.getAttribute('aria-expanded'),
-        'true'
-      );
-    });
-
-    it('sets aria-expanded on content element when closed', async () => {
-      const element = await basicFixture();
-      await untilOpened(element);
-      element.opened = false;
-      assert.equal(
-        element.contentElement.getAttribute('aria-expanded'),
-        'false'
-      );
-    });
-
     it('sets tabindex on the element', async () => {
       const element = await basicFixture();
       assert.equal(element.getAttribute('tabindex'), '0');
@@ -869,11 +837,6 @@ describe('<anypoint-dropdown-menu>', () => {
       assert.equal(element.getAttribute('aria-haspopup'), 'true');
     });
 
-    it('sets aria-expanded on the element', async () => {
-      const element = await basicFixture();
-      assert.equal(element.getAttribute('aria-expanded'), 'false');
-    });
-
     it('is accessible with children', async () => {
       const element = await basicFixture();
       await assert.isAccessible(element);
@@ -882,7 +845,7 @@ describe('<anypoint-dropdown-menu>', () => {
     it('is accessible when opened', async () => {
       const element = await basicFixture();
       element.opened = true;
-      // await untilOpened(element);
+      await untilOpened(element);
       await assert.isAccessible(element);
     });
 

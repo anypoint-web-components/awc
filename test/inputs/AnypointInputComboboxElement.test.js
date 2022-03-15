@@ -258,6 +258,11 @@ describe('AnypointInputComboboxElement', () => {
       `));
     }
 
+    it('sets the role on the element', async () => {
+      const element = await listFixture();
+      assert.equal(element.getAttribute('role'), 'combobox');
+    });
+
     it('sets aria-haspopup on the element', async () => {
       const element = await listFixture();
       assert.equal(element.getAttribute('aria-haspopup'), 'true');
@@ -273,11 +278,11 @@ describe('AnypointInputComboboxElement', () => {
       assert.equal(element.getAttribute('aria-expanded'), 'false');
     });
 
-    it('sets aria-expanded on the content element when not opened', async () => {
-      const element = await listFixture();
-      const ce = element.querySelector('anypoint-listbox');
-      assert.equal(ce.getAttribute('aria-expanded'), 'false');
-    });
+    // it('sets aria-expanded on the content element when not opened', async () => {
+    //   const element = await listFixture();
+    //   const ce = element.querySelector('anypoint-listbox');
+    //   assert.equal(ce.getAttribute('aria-expanded'), 'false');
+    // });
 
     it('sets aria-expanded on the element when opened', async () => {
       const element = await listFixture();
@@ -285,12 +290,12 @@ describe('AnypointInputComboboxElement', () => {
       assert.equal(element.getAttribute('aria-expanded'), 'true');
     });
 
-    it('sets aria-expanded on the content element when opened', async () => {
-      const element = await listFixture();
-      element.opened = true;
-      const ce = element.querySelector('anypoint-listbox');
-      assert.equal(ce.getAttribute('aria-expanded'), 'true');
-    });
+    // it('sets aria-expanded on the content element when opened', async () => {
+    //   const element = await listFixture();
+    //   element.opened = true;
+    //   const ce = element.querySelector('anypoint-listbox');
+    //   assert.equal(ce.getAttribute('aria-expanded'), 'true');
+    // });
 
     it('is accessible in a default state', async () => {
       const element = await listFixture();

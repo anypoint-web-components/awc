@@ -564,13 +564,15 @@ export default class AnypointAutocompleteElement extends LitElement {
     target.setAttribute('aria-autocomplete', 'list');
     target.setAttribute('autocomplete', 'off');
     target.setAttribute('aria-haspopup', 'true');
+    target.setAttribute('role', 'combobox');
+    target.setAttribute('aria-expanded', 'false');
     // parent node of the input also should have aria attributes
     const parent = target.parentElement;
     if (!parent) {
       return;
     }
-    parent.setAttribute('role', 'combobox');
-    parent.setAttribute('aria-expanded', 'false');
+    // parent.setAttribute('role', 'combobox');
+    // parent.setAttribute('aria-expanded', 'false');
     parent.setAttribute('aria-owns', this.id);
     parent.setAttribute('aria-haspopup', 'listbox');
     if (!parent.hasAttribute('aria-label') && !parent.hasAttribute('aria-labelledby')) {
@@ -584,11 +586,14 @@ export default class AnypointAutocompleteElement extends LitElement {
    */
   _openedChanged(opened) {
     const target = this._oldTarget;
-    const parent = target && target.parentElement;
-    if (!parent) {
-      return;
+    if (target) {
+      target.setAttribute('aria-expanded', String(opened));
     }
-    parent.setAttribute('aria-expanded', String(opened));
+    // const parent = target && target.parentElement;
+    // if (!parent) {
+    //   return;
+    // }
+    // parent.setAttribute('aria-expanded', String(opened));
   }
 
   /**

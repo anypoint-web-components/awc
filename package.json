@@ -1,6 +1,6 @@
 {
   "name": "@anypoint-web-components/awc",
-  "version": "1.0.8",
+  "version": "1.0.9",
   "description": "Anypoint web components - base components library",
   "license": "Apache-2.0",
   "main": "index.js",
@@ -42,9 +42,9 @@
     "eslint-config-prettier": "^8.3.0",
     "eslint-plugin-lit": "^1.6.1",
     "husky": "^7.0.4",
-    "lint-staged": "^11.2.4",
+    "lint-staged": "^12.3.5",
     "prismjs": "^1.25.0",
-    "sinon": "^12.0.0",
+    "sinon": "^13.0.1",
     "typescript": "^4.4.4",
     "typescript-lit-html-plugin": "^0.9.0"
   },
@@ -56,7 +56,7 @@
     "lint": "npm run lint:eslint",
     "format": "npm run format:eslint",
     "test": "web-test-runner test/**/*.test.js --coverage --node-resolve --playwright --browsers chromium firefox webkit",
-    "test:watch": "web-test-runner --config web-test-runner.config.mjs --watch  --playwright --browsers firefox",
+    "test:watch": "web-test-runner --config web-test-runner.config.mjs --watch  --playwright --browsers chromium",
     "gen:wc": "wca analyze \"*.js\" --outFile custom-elements.json"
   },
   "eslintConfig": {

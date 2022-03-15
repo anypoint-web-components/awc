@@ -145,11 +145,13 @@ export default class AnypointChipInputElement extends AnypointInputElement {
     this._source = value;
     this.requestUpdate('source', oldValue);
     this._computeChipsValues(this.chipsValue, value);
-    if (value && value.length) {
-      this.setAttribute('aria-autocomplete', 'list');
-    } else {
-      this.removeAttribute('aria-autocomplete');
-    }
+    // if (value && value.length) {
+    //   this.setAttribute('aria-autocomplete', 'list');
+    //   this.setAttribute('role', 'combobox');
+    // } else {
+    //   this.removeAttribute('aria-autocomplete');
+    //   this.removeAttribute('role');
+    // }
   }
 
   /**

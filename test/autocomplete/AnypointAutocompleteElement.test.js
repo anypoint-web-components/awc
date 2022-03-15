@@ -1403,15 +1403,27 @@ describe('AnypointAutocompleteElement', () => {
       assert.equal(result, 'off');
     });
 
-    it('sets role on parent', async () => {
+    // it('sets role on the parent', async () => {
+    //   const element = await basicFixtureA11y();
+    //   const result = element.getAttribute('role');
+    //   assert.equal(result, 'combobox');
+    // });
+
+    it('sets role on input the target', async () => {
       const element = await basicFixtureA11y();
-      const result = element.getAttribute('role');
+      const result = element.querySelector('#f1').getAttribute('role');
       assert.equal(result, 'combobox');
     });
 
-    it('sets aria-expanded on parent', async () => {
+    // it('sets aria-expanded on the parent', async () => {
+    //   const element = await basicFixtureA11y();
+    //   const result = element.getAttribute('aria-expanded');
+    //   assert.equal(result, 'false');
+    // });
+
+    it('sets aria-expanded on the target', async () => {
       const element = await basicFixtureA11y();
-      const result = element.getAttribute('aria-expanded');
+      const result = element.querySelector('#f1').getAttribute('aria-expanded');
       assert.equal(result, 'false');
     });
 

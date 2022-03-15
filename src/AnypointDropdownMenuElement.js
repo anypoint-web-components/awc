@@ -307,7 +307,6 @@ export default class AnypointDropdownMenuElement extends ValidatableMixin(Contro
     }
     this._opened = value;
     this.requestUpdate('opened', old);
-    this._openedChanged(value);
     this.dispatchEvent(
       new CustomEvent('openedchange', {
         detail: {
@@ -570,7 +569,6 @@ export default class AnypointDropdownMenuElement extends ValidatableMixin(Contro
     if (!this.hasAttribute('aria-haspopup')) {
       this.setAttribute('aria-haspopup', 'listbox');
     }
-    // aria-expanded is set with `opened` flag which is initialized in the constructor.
     this.addEventListener('click', this._clickHandler);
     this.addEventListener('keydown', this._onKeydown);
     this.addEventListener('focus', this._focusHandler);
@@ -627,7 +625,6 @@ export default class AnypointDropdownMenuElement extends ValidatableMixin(Contro
   }
 
   firstUpdated() {
-    this._openedChanged(this.opened);
     const { contentElement } = this;
     // @ts-ignore
     const item = contentElement && contentElement.selectedItem;
@@ -847,15 +844,6 @@ export default class AnypointDropdownMenuElement extends ValidatableMixin(Contro
       !this.required ||
       (this.required && !!this.value)
     );
-  }
-
-  _openedChanged(opened) {
-    const openState = opened ? 'true' : 'false';
-    this.setAttribute('aria-expanded', openState);
-    const e = this.contentElement;
-    if (e) {
-      e.setAttribute('aria-expanded', openState);
-    }
   }
 
   checkValidity() {
