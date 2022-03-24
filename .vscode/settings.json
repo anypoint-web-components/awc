@@ -41,6 +41,7 @@
     "selecteditemchange",
     "selecteditemschange",
     "selectedvalueschange",
+    "tabbable",
     "tablist",
     "transitioningchange",
     "UA's",
