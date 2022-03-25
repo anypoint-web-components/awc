@@ -259,7 +259,6 @@ export default class AnypointRadioGroupElement extends MenuMixin(LitElement) {
 
   /**
    * Disables children when disabled state changes
-   * @param {Boolean} disabled
    */
   _disabledChanged(disabled?: boolean): void {
     super._disabledChanged(disabled);

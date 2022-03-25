@@ -2,8 +2,6 @@ import { fixture, assert, html, nextFrame } from '@open-wc/testing';
 import '../../define/anypoint-progress.js';
 import { AnypointProgressElement } from '../../index.js';
 
-/** @typedef {import('../../index').AnypointProgressElement} AnypointProgressElement */
-
 describe('AnypointProgressElement', () => {
   async function basicFixture(): Promise<AnypointProgressElement> {
     return fixture(html`<anypoint-progress></anypoint-progress>`);
@@ -114,7 +112,7 @@ describe('AnypointProgressElement', () => {
       // @ts-ignore
       transitionProp = stylesForSecondaryProgress['transition-property'];
       
-      assert.isTrue(transitionProp === 'transform' ||transitionProp === '-webkit-transform');
+      assert.isTrue(transitionProp === 'transform' || transitionProp === '-webkit-transform');
       // @ts-ignore
       assert.equal(stylesForSecondaryProgress['transition-duration'], '0.08s');
     });

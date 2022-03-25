@@ -1,55 +1,45 @@
+/* eslint-disable @typescript-eslint/explicit-function-return-type */
 import { fixture, assert, aTimeout, nextFrame } from '@open-wc/testing';
 import sinon from 'sinon';
 import {
   click,
-  keyDownOn,
 } from '@polymer/iron-test-helpers/mock-interactions.js';
-import '../../star-rating.js';
+import '../../define/star-rating.js';
 
-/** @typedef {import('../../index').StarRatingElement} StarRating */
+import { StarRatingElement } from '../../index.js';
 
 describe('<star-rating>', () => {
-  /**
-   * @return {Promise<StarRating>} 
-   */
-  async function basicFixture() {
+  async function basicFixture(): Promise<StarRatingElement> {
     return fixture(`<star-rating></star-rating>`);
   }
-
-  /**
-   * @return {Promise<StarRating>} 
-   */
-  async function selectedFixture() {
+  async function selectedFixture(): Promise<StarRatingElement> {
     return fixture(`<star-rating value="3"></star-rating>`);
   }
-
-  /**
-   * @return {Promise<StarRating>} 
-   */
-  async function readonlyFixture() {
+  async function readonlyFixture(): Promise<StarRatingElement> {
     return fixture(`<star-rating readonly></star-rating>`);
   }
 
   describe('Constructor', () => {
-    let element = /** @type StarRating */ (null);
+    let element: StarRatingElement;
     beforeEach(async () => {
       element = await basicFixture();
     });
 
-    it('Sets __data__ property', () => {
+    it('sets the __data__ property', () => {
+      // @ts-ignore
       assert.typeOf(element.__data__, 'object');
     });
 
     it('Attaches shadow DOM', () => {
-      assert.ok(element.shadowRoot.querySelector('#container'));
+      assert.ok(element.shadowRoot!.querySelector('#container'));
     });
   });
 
   describe('observedAttributes()', () => {
     ['readonly', 'value'].forEach((attr) => {
       it(`Observes ${attr}`, () => {
-        const list = window.customElements.get('star-rating')
-          .observedAttributes;
+        // @ts-ignore
+        const list = window.customElements.get('star-rating')!.observedAttributes;
         assert.notEqual(list.indexOf(attr), -1);
       });
     });
@@ -59,6 +49,7 @@ describe('<star-rating>', () => {
     it('Sets value on __data__', async () => {
       const element = await basicFixture();
       element.value = 1;
+      // @ts-ignore
       assert.equal(element.__data__.value, 1);
     });
 
@@ -70,13 +61,17 @@ describe('<star-rating>', () => {
 
     it('Convents value to a number', async () => {
       const element = await basicFixture();
+      // @ts-ignore
       element.value = '2';
+      // @ts-ignore
       assert.equal(element.__data__.value, 2);
     });
 
     it('Sets 0 when not a number', async () => {
       const element = await basicFixture();
+      // @ts-ignore
       element.value = 'test';
+      // @ts-ignore
       assert.equal(element.__data__.value, 0);
     });
 
@@ -84,6 +79,7 @@ describe('<star-rating>', () => {
       const element = await selectedFixture();
       const spy = sinon.spy(element, 'setAttribute');
       element.value = 3;
+      // @ts-ignore
       element.setAttribute.restore();
       assert.isFalse(spy.called);
     });
@@ -92,6 +88,7 @@ describe('<star-rating>', () => {
       const element = await basicFixture();
       const spy = sinon.spy(element, '_render');
       element.value = 3;
+      // @ts-ignore
       element._render.restore();
       assert.isTrue(spy.called);
     });
@@ -110,6 +107,7 @@ describe('<star-rating>', () => {
 
     it('Removes attribute when value is null', async () => {
       const element = await selectedFixture();
+      // @ts-ignore
       element.value = null;
       assert.isFalse(element.hasAttribute('value'));
     });
@@ -142,14 +140,16 @@ describe('<star-rating>', () => {
     it('Calls _render() when value change', async () => {
       const element = await basicFixture();
       const spy = sinon.spy(element, '_render');
+      // @ts-ignore
       element.readOnly = true;
+      // @ts-ignore
       element._render.restore();
       assert.isTrue(spy.called);
     });
   });
 
   describe('_render()', () => {
-    let element = /** @type StarRating */ (null);
+    let element: StarRatingElement;
     beforeEach(async () => {
       element = await basicFixture();
       await aTimeout(0);
@@ -157,6 +157,7 @@ describe('<star-rating>', () => {
 
     it('Sets __rendering', () => {
       element._render();
+      // @ts-ignore
       assert.isTrue(element.__rendering);
     });
 
@@ -164,6 +165,7 @@ describe('<star-rating>', () => {
       const spy = sinon.spy(element, '_doRender');
       element._render();
       setTimeout(() => {
+        // @ts-ignore
         element._doRender.restore();
         assert.isTrue(spy.called);
         done();
@@ -173,6 +175,7 @@ describe('<star-rating>', () => {
     it('Eventually resets __rendering', (done) => {
       element._render();
       setTimeout(() => {
+        // @ts-ignore
         assert.isFalse(element.__rendering);
         done();
       });
@@ -180,11 +183,11 @@ describe('<star-rating>', () => {
   });
 
   describe('createStar()', () => {
-    let star;
+    let star: SVGElement;
     beforeEach(async () => {
       const element = await basicFixture();
       await aTimeout(0);
-      star = element.shadowRoot.querySelector('#container .star');
+      star = element.shadowRoot!.querySelector('#container .star')!;
     });
 
     it('Returns svg element', () => {
@@ -201,7 +204,7 @@ describe('<star-rating>', () => {
   });
 
   describe('_ensureStars()', () => {
-    let element = /** @type StarRating */ (null);
+    let element: StarRatingElement;
     beforeEach(async () => {
       element = await basicFixture();
       await aTimeout(0);
@@ -211,29 +214,29 @@ describe('<star-rating>', () => {
     // won't be executed
 
     it('Stars are in the shadow DOM', () => {
-      const stars = element.shadowRoot.querySelectorAll('#container .star');
+      const stars = element.shadowRoot!.querySelectorAll('#container .star');
       assert.lengthOf(stars, 5);
     });
 
     it('Inserts stars only once', () => {
       element._ensureStars();
-      const stars = element.shadowRoot.querySelectorAll('#container .star');
+      const stars = element.shadowRoot!.querySelectorAll('#container .star');
       assert.lengthOf(stars, 5);
     });
 
     it('Star has class name', () => {
-      const star = element.shadowRoot.querySelector('#container .star');
+      const star = element.shadowRoot!.querySelector('#container .star')!;
       assert.isTrue(star.classList.contains('star'));
     });
 
     it('Star has data-index property', () => {
-      const star = element.shadowRoot.querySelector('#container .star');
+      const star = element.shadowRoot!.querySelector('#container .star') as SVGElement;
       assert.equal(star.dataset.index, '0');
     });
   });
 
   describe('_doRender()', () => {
-    let element = /** @type StarRating */ (null);
+    let element: StarRatingElement;
     beforeEach(async () => {
       element = await selectedFixture();
       await aTimeout(0);
@@ -242,6 +245,7 @@ describe('<star-rating>', () => {
     it('Calls _ensureStars()', () => {
       const spy = sinon.spy(element, '_ensureStars');
       element._doRender();
+      // @ts-ignore
       element._ensureStars.restore();
       assert.isTrue(spy.called);
     });
@@ -249,12 +253,12 @@ describe('<star-rating>', () => {
     it('Removes selected class', () => {
       element.value = 2;
       element._doRender();
-      const stars = element.shadowRoot.querySelectorAll('#container .star');
+      const stars = element.shadowRoot!.querySelectorAll('#container .star');
       assert.isFalse(stars[2].classList.contains('selected'));
     });
 
     it('Sets stars selected', () => {
-      const stars = element.shadowRoot.querySelectorAll(
+      const stars = element.shadowRoot!.querySelectorAll(
         '#container .star.selected'
       );
       assert.lengthOf(stars, 3);
@@ -263,13 +267,13 @@ describe('<star-rating>', () => {
     it('Updates tabindex', () => {
       element.readOnly = true;
       element._doRender();
-      const star = element.shadowRoot.querySelector('#container .star');
+      const star = element.shadowRoot!.querySelector('#container .star') as SVGElement;
       assert.equal(star.getAttribute('tabindex'), '-1');
     });
   });
 
   describe('_clickHandler()', () => {
-    let element = /** @type StarRating */ (null);
+    let element: StarRatingElement;
     beforeEach(async () => {
       element = await selectedFixture();
       await aTimeout(0);
@@ -278,6 +282,7 @@ describe('<star-rating>', () => {
     it('Calls _selectionFromEvent()', () => {
       const spy = sinon.spy(element, '_selectionFromEvent');
       element.click();
+      // @ts-ignore
       element._selectionFromEvent.restore();
       assert.isTrue(spy.called);
     });
@@ -286,27 +291,28 @@ describe('<star-rating>', () => {
       element.readOnly = true;
       const spy = sinon.spy(element, '_selectionFromEvent');
       element.click();
+      // @ts-ignore
       element._selectionFromEvent.restore();
       assert.isFalse(spy.called);
     });
 
-    it('Star click changes value', () => {
-      const star = element.shadowRoot.querySelector('.star');
+    it('star click changes value', () => {
+      const star = element.shadowRoot!.querySelector('.star') as SVGElement;
       click(star);
       assert.equal(element.value, 1);
     });
 
-    it('Dispatches value-changed event', () => {
+    it('dispatches the change event', () => {
       const spy = sinon.spy();
-      element.addEventListener('value-changed', spy);
-      const star = element.shadowRoot.querySelector('.star');
+      element.addEventListener('change', spy);
+      const star = element.shadowRoot!.querySelector('.star') as SVGElement;
       click(star);
-      assert.equal(spy.args[0][0].detail.value, 1);
+      assert.isTrue(spy.calledOnce);
     });
   });
 
-  describe('_clickHandler()', () => {
-    let element = /** @type StarRating */ (null);
+  describe('_keydownHandler()', () => {
+    let element: StarRatingElement;
     beforeEach(async () => {
       element = await selectedFixture();
       await aTimeout(0);
@@ -314,21 +320,39 @@ describe('<star-rating>', () => {
 
     it('Calls _selectionFromEvent() for Space', () => {
       const spy = sinon.spy(element, '_selectionFromEvent');
-      keyDownOn(element, 32, '', ' ');
+      const e = new KeyboardEvent('keydown', {
+        key: ' ',
+        bubbles: true,
+        composed: true,
+      });
+      element.dispatchEvent(e);
+      // @ts-ignore
       element._selectionFromEvent.restore();
       assert.isTrue(spy.called);
     });
 
     it('Calls _selectionFromEvent() for Enter', () => {
       const spy = sinon.spy(element, '_selectionFromEvent');
-      keyDownOn(element, 13, '', 'Enter');
+      const e = new KeyboardEvent('keydown', {
+        key: 'Enter',
+        bubbles: true,
+        composed: true,
+      });
+      element.dispatchEvent(e);
+      // @ts-ignore
       element._selectionFromEvent.restore();
       assert.isTrue(spy.called);
     });
 
     it('ignores function call for other keys', () => {
       const spy = sinon.spy(element, '_selectionFromEvent');
-      keyDownOn(element, 83, '', 'S');
+      const e = new KeyboardEvent('keydown', {
+        key: 'S',
+        bubbles: true,
+        composed: true,
+      });
+      element.dispatchEvent(e);
+      // @ts-ignore
       element._selectionFromEvent.restore();
       assert.isFalse(spy.called);
     });
@@ -336,28 +360,44 @@ describe('<star-rating>', () => {
     it("Won't call _selectionFromEvent() when readOnly", () => {
       element.readOnly = true;
       const spy = sinon.spy(element, '_selectionFromEvent');
-      keyDownOn(element, 13, '', 'Enter');
+      const e = new KeyboardEvent('keydown', {
+        key: 'Enter',
+        bubbles: true,
+        composed: true,
+      });
+      element.dispatchEvent(e);
+      // @ts-ignore
       element._selectionFromEvent.restore();
       assert.isFalse(spy.called);
     });
 
-    it('Changes value', () => {
-      const star = element.shadowRoot.querySelector('.star');
-      keyDownOn(star, 13, '', 'Enter');
+    it('changes value', () => {
+      const star = element.shadowRoot!.querySelector('.star') as SVGElement;
+      const e = new KeyboardEvent('keydown', {
+        key: 'Enter',
+        bubbles: true,
+        composed: true,
+      });
+      star.dispatchEvent(e);
       assert.equal(element.value, 1);
     });
 
-    it('Dispatches value-changed event', () => {
+    it('dispatches the change event', () => {
       const spy = sinon.spy();
-      element.addEventListener('value-changed', spy);
-      const star = element.shadowRoot.querySelector('.star');
-      keyDownOn(star, 13, '', 'Enter');
-      assert.equal(spy.args[0][0].detail.value, 1);
+      element.addEventListener('change', spy);
+      const star = element.shadowRoot!.querySelector('.star') as SVGElement;
+      const e = new KeyboardEvent('keydown', {
+        key: 'Enter',
+        bubbles: true,
+        composed: true,
+      });
+      star.dispatchEvent(e);
+      assert.isTrue(spy.calledOnce);
     });
   });
 
   describe('onchange', () => {
-    let element = /** @type StarRating */ (null);
+    let element: StarRatingElement;
     beforeEach(async () => {
       element = await basicFixture();
       await aTimeout(0);
@@ -376,9 +416,10 @@ describe('<star-rating>', () => {
         called = true;
       };
       element.onchange = f;
-      const star = element.shadowRoot.querySelector('.star');
+      const star = element.shadowRoot!.querySelector('.star') as SVGElement;
       click(star);
-      element.onchange = null;
+      // @ts-ignore
+      element.onchange = undefined;
       assert.isTrue(called);
     });
 
@@ -393,9 +434,10 @@ describe('<star-rating>', () => {
       };
       element.onchange = f1;
       element.onchange = f2;
-      const star = element.shadowRoot.querySelector('.star');
+      const star = element.shadowRoot!.querySelector('.star') as SVGElement;
       click(star);
-      element.onchange = null;
+      // @ts-ignore
+      element.onchange = undefined;
       assert.isFalse(called1);
       assert.isTrue(called2);
     });

@@ -1,5 +1,5 @@
 import { html, CSSResult, TemplateResult } from 'lit';
-import { property, state } from 'lit/decorators.js';
+import { property, state, eventOptions } from 'lit/decorators.js';
 import AnypointElement from './AnypointElement.js';
 import { ResizableMixin } from '../mixins/ResizableMixin.js';
 import { MenubarMixin } from '../mixins/MenubarMixin.js';
@@ -173,21 +173,6 @@ export default class AnypointTabsElement extends MenubarMixin(ResizableMixin(Any
   _holdDelay = 1;
 
   _holdJob: any;
-
-  _touchstartConfig = {
-    handleEvent: this._touchStart,
-    passive: true,
-  };
-
-  _touchendConfig = {
-    handleEvent: this._touchEnd,
-    passive: true,
-  };
-
-  _touchmoveConfig = {
-    handleEvent: this._touchMove,
-    passive: true,
-  };
 
   constructor() {
     super();
@@ -528,6 +513,7 @@ export default class AnypointTabsElement extends MenubarMixin(ResizableMixin(Any
 
   __lastTouchX = 0;
 
+  @eventOptions({passive: true})
   _touchMove(e: TouchEvent): void {
     const touches = e.changedTouches;
     const touch = touches && touches[0];
@@ -539,6 +525,7 @@ export default class AnypointTabsElement extends MenubarMixin(ResizableMixin(Any
     this._scroll(ddx);
   }
 
+  @eventOptions({passive: true})
   _touchStart(e: TouchEvent): void {
     const { touches } = e;
     const touch = touches && touches[0];
@@ -548,6 +535,7 @@ export default class AnypointTabsElement extends MenubarMixin(ResizableMixin(Any
     this.__lastTouchX = touch.clientX;
   }
 
+  @eventOptions({passive: true})
   _touchEnd(): void {
     this.__lastTouchX = 0;
   }
@@ -609,16 +597,10 @@ export default class AnypointTabsElement extends MenubarMixin(ResizableMixin(Any
   }
 
   render(): TemplateResult {
-    const {
-      _contentClass,
-      _touchstartConfig,
-      _touchmoveConfig,
-      _touchendConfig,
-      scrollable,
-    } = this;
-    const startEvent = scrollable ? _touchstartConfig : undefined;
-    const moveEvent = scrollable ? _touchmoveConfig : undefined;
-    const endEvent = scrollable ? _touchendConfig : undefined;
+    const { _contentClass, scrollable, } = this;
+    const startEvent = scrollable ? this._touchStart : undefined;
+    const moveEvent = scrollable ? this._touchMove : undefined;
+    const endEvent = scrollable ? this._touchEnd : undefined;
     return html`
       ${this._leftButtonTemplate(scrollable)}
       <div

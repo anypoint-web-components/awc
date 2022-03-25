@@ -93,6 +93,8 @@ export interface AnypointInputMixinInterface extends ValidatableMixinInterface, 
    */
   invalidMessage?: string;
 
+  get _patternRegExp(): RegExp | undefined;
+
   /**
    * Assistive text value.
    * Rendered below the input.
@@ -150,7 +152,7 @@ export interface AnypointInputMixinInterface extends ValidatableMixinInterface, 
    * Binds this to the `<input>`'s `min` property.
    * @attribute
    */
-  min?: string;
+  min?: number;
 
   /**
    * The maximum (numeric or date-time) input value.
@@ -158,7 +160,7 @@ export interface AnypointInputMixinInterface extends ValidatableMixinInterface, 
    * Binds this to the `<input>`'s `max` property.
    * @attribute
    */
-  max?: string;
+  max?: number;
 
   /**
    * Limits the numeric or date-time increments.
@@ -269,10 +271,18 @@ export interface AnypointInputMixinInterface extends ValidatableMixinInterface, 
    */
   noLabelFloat?: boolean;
 
+  _previousValidInput: string;
+
+  _patternAlreadyChecked: boolean;
+
+  _shiftTabPressed: boolean;
+
   /**
    * A reference to the input element.
    */
   readonly inputElement: HTMLInputElement|HTMLTextAreaElement;
+
+  get hasValidationMessage(): boolean | undefined;
 
   checkValidity(): boolean;
 
@@ -623,8 +633,8 @@ export const AnypointInputMixin = dedupeMixin(<T extends Constructor<LitElement>
      * Binds this to the `<input>`'s `min` property.
      * @attribute
      */
-    @property({ type: String })
-    min?: string;
+    @property({ type: Number })
+    min?: number;
 
     /**
      * The maximum (numeric or date-time) input value.
@@ -632,8 +642,8 @@ export const AnypointInputMixin = dedupeMixin(<T extends Constructor<LitElement>
      * Binds this to the `<input>`'s `max` property.
      * @attribute
      */
-    @property({ type: String })
-    max?: string;
+    @property({ type: Number })
+    max?: number;
 
     /**
      * Limits the numeric or date-time increments.

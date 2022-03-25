@@ -1,11 +1,8 @@
 import { fixture, assert, aTimeout, nextFrame, html } from '@open-wc/testing';
 import './test-menu.js';
 import './test-nested-menu.js';
-
-/** @typedef {import('./test-menu').TestMenu} TestMenu */
-/** @typedef {import('./test-nested-menu').TestNestedMenu} TestNestedMenu */
-
-/* eslint-disable no-plusplus */
+import { TestMenu } from './test-menu.js';
+import { TestNestedMenu } from './test-nested-menu.js';
 
 const style = document.createElement('style');
 style.innerHTML = `.ghost, [hidden] {
@@ -17,30 +14,19 @@ style.innerHTML = `.ghost, [hidden] {
 document.head.appendChild(style);
 
 describe('AnypointMenuMixin', () => {
-  /**
-   * @return {Promise<TestMenu>}
-   */
-  async function basicFixture() {
+  async function basicFixture(): Promise<TestMenu> {
     return fixture(html`<test-menu>
       <div role="menuitem">item 1</div>
       <div role="menuitem">item 2</div>
       <div role="menuitem">item 3</div>
     </test-menu>`);
   }
-
-  /**
-   * @return {Promise<TestMenu>}
-   */
-  async function singleItemFixture() {
+  async function singleItemFixture(): Promise<TestMenu> {
     return fixture(html`<test-menu>
       <div>item 1</div>
     </test-menu>`);
   }
-
-  /**
-   * @return {Promise<TestMenu>}
-   */
-  async function disabledFixture() {
+  async function disabledFixture(): Promise<TestMenu> {
     return fixture(`<test-menu>
       <div>a item 1</div>
       <div disabled>item 2</div>
@@ -48,11 +34,7 @@ describe('AnypointMenuMixin', () => {
       <div disabled>c item 4</div>
     </test-menu>`);
   }
-
-  /**
-   * @return {Promise<TestMenu>}
-   */
-  async function invisibleFixture() {
+  async function invisibleFixture(): Promise<TestMenu> {
     return fixture(`<test-menu>
       <div>item 1</div>
       <div hidden>item 2</div>
@@ -63,41 +45,25 @@ describe('AnypointMenuMixin', () => {
       <div class="ghost">item 6</div>
     </test-menu>`);
   }
-
-  /**
-   * @return {Promise<TestNestedMenu>}
-   */
-  async function nestedInvisibleFixture() {
+  async function nestedInvisibleFixture(): Promise<TestNestedMenu> {
     return fixture(html`
       <test-nested-menu>
       </test-nested-menu>
   `);
   }
-
-  /**
-   * @return {Promise<TestMenu>}
-   */
-  async function onlyDisabledFixture() {
+  async function onlyDisabledFixture(): Promise<TestMenu> {
     return fixture(`<test-menu>
       <div disabled>disabled item</div>
     </test-menu>`);
   }
-
-  /**
-   * @return {Promise<TestMenu>}
-   */
-  async function multiFixture() {
+  async function multiFixture(): Promise<TestMenu> {
     return fixture(html`<test-menu multi>
       <div>item 1</div>
       <div>item 2</div>
       <div>item 3</div>
     </test-menu>`);
   }
-
-  /**
-   * @return {Promise<TestMenu>}
-   */
-  async function nestedFixture() {
+  async function nestedFixture(): Promise<TestMenu> {
     return fixture(html`<test-menu>
       <test-menu>
         <div>item 1</div>
@@ -106,67 +72,44 @@ describe('AnypointMenuMixin', () => {
       </test-menu>
     </test-menu>`);
   }
-
-  /**
-   * @return {Promise<TestMenu>}
-   */
-  async function emptyFixture() {
+  async function emptyFixture(): Promise<TestMenu> {
     return fixture(`<test-menu></test-menu>`);
   }
 
-  /**
-   * @return {Promise<TestMenu>}
-   */
-  async function disabledGroupAndOptionsFixture() {
+  async function disabledGroupAndOptionsFixture(): Promise<TestMenu> {
     return fixture(`<test-menu disabled>
       <div disabled>one</div>
       <div disabled>two</div>
     </test-menu>`);
   }
 
-  /**
-   * @return {Promise<TestMenu>}
-   */
-  async function nonzeroTabindexFixture() {
+  async function nonzeroTabindexFixture(): Promise<TestMenu> {
     return fixture(`<test-menu tabindex="32">
       <div disabled>one</div>
       <div disabled>two</div>
     </test-menu>`);
   }
-
-  /**
-   * @return {Promise<TestMenu>}
-   */
-  async function countriesFixture() {
+  async function countriesFixture(): Promise<TestMenu> {
     return fixture(html`<test-menu>
       <div>Ghana</div>
       <div>Uganda</div>
     </test-menu>`);
   }
 
-  /**
-   * @return {Promise<TestMenu>}
-   */
-  async function bogusAttrForItemTitleFixture() {
+  async function bogusAttrForItemTitleFixture(): Promise<TestMenu> {
     return fixture(html`<test-menu attrForItemTitle="totally-does-not-exist">
       <div>Focused by default</div>
       <div>I'm not entitled!</div>
     </test-menu>`);
   }
 
-  /**
-   * @return {Promise<TestMenu>}
-   */
-  async function useAriaSelectedFixture() {
+  async function useAriaSelectedFixture(): Promise<TestMenu> {
     return fixture(html`<test-menu useAriaSelected>
       <div>item 1</div>
       <div>item 2</div>
     </test-menu>`);
   }
-  /**
-   * @return {Promise<TestMenu>}
-   */
-  async function highlightAriaSelectedFixture() {
+  async function highlightAriaSelectedFixture(): Promise<TestMenu> {
     return fixture(html`<test-menu useAriaSelected highlightAriaSelected>
       <div>item 1</div>
       <div>item 2</div>
@@ -183,7 +126,7 @@ describe('AnypointMenuMixin', () => {
       const menu = await basicFixture();
       menu.focus();
       await aTimeout(0);
-      const ownerRoot = /** @type Document */ ((menu.firstElementChild.getRootNode && menu.firstElementChild.getRootNode()) || document);
+      const ownerRoot = ((menu.firstElementChild!.getRootNode && menu.firstElementChild!.getRootNode()) || document) as Document;
       const { activeElement } = ownerRoot;
       assert.equal(
         activeElement,
@@ -196,7 +139,7 @@ describe('AnypointMenuMixin', () => {
       const menu = await singleItemFixture();
       menu.focus();
       await aTimeout(0);
-      const ownerRoot = /** @type Document */ (menu.firstElementChild.getRootNode && menu.firstElementChild.getRootNode()) || document;
+      const ownerRoot = ((menu.firstElementChild!.getRootNode && menu.firstElementChild!.getRootNode()) || document) as Document;
       const { activeElement } = ownerRoot;
       assert.equal(
         activeElement,
@@ -210,7 +153,7 @@ describe('AnypointMenuMixin', () => {
       menu.selected = 1;
       menu.focus();
       await aTimeout(0);
-      const ownerRoot = /** @type Document */ (menu.selectedItem.getRootNode && menu.selectedItem.getRootNode()) || document;
+      const ownerRoot = ((menu.selectedItem!.getRootNode && menu.selectedItem!.getRootNode()) || document) as Document;
       const { activeElement } = ownerRoot;
       assert.equal(
         activeElement,
@@ -597,9 +540,7 @@ describe('AnypointMenuMixin', () => {
       const menu = await basicFixture();
       menu.extraContent.focus();
       await aTimeout(0);
-      const menuOwnerRoot =
-        /** @type Document */ (menu.extraContent.getRootNode && menu.extraContent.getRootNode()) ||
-        document;
+      const menuOwnerRoot = ((menu.extraContent.getRootNode && menu.extraContent.getRootNode()) || document) as Document;
       const menuActiveElement = menuOwnerRoot.activeElement;
       assert.equal(
         menuActiveElement,
@@ -618,8 +559,7 @@ describe('AnypointMenuMixin', () => {
       menu.selected = 0;
       menu.items[1].click();
       await aTimeout(0);
-      const ownerRoot =
-        /** @type Document */ (menu.items[1].getRootNode && menu.items[1].getRootNode()) || document;
+      const ownerRoot = ((menu.items[1].getRootNode && menu.items[1].getRootNode()) || document) as Document;
       const { activeElement } = ownerRoot;
       assert.equal(activeElement, menu.items[1], 'menu.items[1] is focused');
     });
@@ -629,8 +569,7 @@ describe('AnypointMenuMixin', () => {
       menu.selected = 0;
       menu.items[0].click();
       await aTimeout(0);
-      const ownerRoot =
-        /** @type Document */ (menu.items[0].getRootNode && menu.items[0].getRootNode()) || document;
+      const ownerRoot = ((menu.items[0].getRootNode && menu.items[0].getRootNode()) || document) as Document;
       const { activeElement } = ownerRoot;
       assert.equal(activeElement, menu.items[0], 'menu.items[0] is focused');
     });
@@ -650,7 +589,7 @@ describe('AnypointMenuMixin', () => {
         }
       });
       // up
-      menu.firstElementChild.dispatchEvent(new KeyboardEvent('keydown', {
+      menu.firstElementChild!.dispatchEvent(new KeyboardEvent('keydown', {
         bubbles: true,
         composed: true,
         cancelable: true,
@@ -658,7 +597,7 @@ describe('AnypointMenuMixin', () => {
         key: 'ArrowUp',
       }));
       // down
-      menu.firstElementChild.dispatchEvent(new KeyboardEvent('keydown', {
+      menu.firstElementChild!.dispatchEvent(new KeyboardEvent('keydown', {
         bubbles: true,
         composed: true,
         cancelable: true,
@@ -666,7 +605,7 @@ describe('AnypointMenuMixin', () => {
         key: 'ArrowDown',
       }));
       // esc
-      menu.firstElementChild.dispatchEvent(new KeyboardEvent('keydown', {
+      menu.firstElementChild!.dispatchEvent(new KeyboardEvent('keydown', {
         bubbles: true,
         composed: true,
         cancelable: true,
@@ -674,7 +613,7 @@ describe('AnypointMenuMixin', () => {
         key: 'Escape',
       }));
       await aTimeout(0);
-      assert.equal(menu.firstElementChild.tagName, 'TEST-MENU');
+      assert.equal(menu.firstElementChild!.tagName, 'TEST-MENU');
       assert.equal(keyCounter, 0);
     });
 
@@ -726,13 +665,16 @@ describe('AnypointMenuMixin', () => {
 
     it('`tabIndex` properties of all items are updated when items change', async () => {
       const menu = await basicFixture();
-      function assertTabIndexCounts(nodes, expected) {
+      function assertTabIndexCounts(nodes: HTMLElement[], expected: any): void {
         const tabIndexCounts = {};
         for (let i = 0; i < nodes.length; i++) {
           const { tabIndex } = nodes[i];
+          // @ts-ignore
           if (tabIndexCounts[tabIndex]) {
+            // @ts-ignore
             tabIndexCounts[tabIndex]++;
           } else {
+            // @ts-ignore
             tabIndexCounts[tabIndex] = 1;
           }
         }
@@ -741,24 +683,26 @@ describe('AnypointMenuMixin', () => {
           Object.keys(expected).length
         );
         Object.keys(expected).forEach((key) => {
+          // @ts-ignore
           assert.equal(tabIndexCounts[key], expected[key]);
         });
       }
-      function divWithTabIndex(tabIndex) {
+
+      function divWithTabIndex(tabIndex: number): HTMLDivElement {
         const div = document.createElement('div');
         div.tabIndex = tabIndex;
         return div;
       }
       // Only the selected item will have tabIndex 0.
       menu.select(0);
-      assertTabIndexCounts(menu.items, { '-1': 2, '0': 1 });
+      assertTabIndexCounts(menu.items, { '-1': 2, 0: 1 });
       menu.appendChild(divWithTabIndex(1));
       menu.appendChild(divWithTabIndex(2));
       menu.appendChild(divWithTabIndex(3));
       await nextFrame();
       // Async wait for `observeNodes`.
       await aTimeout(0);
-      assertTabIndexCounts(menu.items, { '-1': 5, '0': 1 });
+      assertTabIndexCounts(menu.items, { '-1': 5, 0: 1 });
     });
 
     it('shift+tab removes focus', async () => {
@@ -829,8 +773,7 @@ describe('AnypointMenuMixin', () => {
   });
 
   describe('_clearSearchText()', () => {
-    /** @type TestMenu */
-    let menu;
+    let menu: TestMenu;
     beforeEach(async () => {
       menu = await basicFixture();
     });
@@ -846,8 +789,7 @@ describe('AnypointMenuMixin', () => {
 
   describe('Items highlighting', () => {
     describe('highlightNext()', () => {
-      /** @type TestMenu */
-      let element;
+      let element: TestMenu;
       beforeEach(async () => {
         element = await basicFixture();
       });
@@ -898,8 +840,7 @@ describe('AnypointMenuMixin', () => {
     });
 
     describe('highlightPrevious()', () => {
-      /** @type TestMenu */
-      let element;
+      let element: TestMenu;
       beforeEach(async () => {
         element = await basicFixture();
       });
@@ -950,8 +891,7 @@ describe('AnypointMenuMixin', () => {
     });
 
     describe('Single item menu', () => {
-      /** @type TestMenu */
-      let element;
+      let element: TestMenu;
       beforeEach(async () => {
         element = await singleItemFixture();
       });
@@ -968,8 +908,7 @@ describe('AnypointMenuMixin', () => {
     });
 
     describe('a11y', () => {
-      /** @type TestMenu */
-      let element;
+      let element: TestMenu;
       beforeEach(async () => {
         element = await highlightAriaSelectedFixture();
       });

@@ -280,6 +280,6 @@ export default class StarRatingElement extends HTMLElement {
   }
 
   _notifyValueChanged(): void {
-    this.dispatchEvent(new CustomEvent('change'));
+    this.dispatchEvent(new Event('change'));
   }
 }

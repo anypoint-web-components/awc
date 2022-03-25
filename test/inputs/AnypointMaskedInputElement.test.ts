@@ -1,41 +1,28 @@
 import { fixture, assert, html } from '@open-wc/testing';
 import * as MockInteractions from '@polymer/iron-test-helpers/mock-interactions.js';
-import '../../anypoint-masked-input.js';
-
-/** @typedef {import('../../index').AnypointMaskedInputElement} AnypointMaskedInputElement */
+import { AnypointMaskedInputElement } from '../../index.js'
+import '../../define/anypoint-masked-input.js';
 
 describe('<anypoint-masked-input>', () => {
-  /**
-   * @return {Promise<AnypointMaskedInputElement>}
-   */
-  async function maskedFixture() {
+  async function maskedFixture(): Promise<AnypointMaskedInputElement> {
     return fixture(html`<anypoint-masked-input>
       <label slot="label">Label</label>
       </anypoint-masked-input>`);
   }
 
-  /**
-   * @return {Promise<AnypointMaskedInputElement>}
-   */
-  async function visibleFixture() {
+  async function visibleFixture(): Promise<AnypointMaskedInputElement> {
     return fixture(html`<anypoint-masked-input visible>
       <label slot="label">Label</label>
     </anypoint-masked-input>`);
   }
 
-  /**
-   * @return {Promise<AnypointMaskedInputElement>}
-   */
-  async function typeFixture() {
+  async function typeFixture(): Promise<AnypointMaskedInputElement> {
     return fixture(html`<anypoint-masked-input type="tel">
     <label slot="label">Label</label>
     </anypoint-masked-input>`);
   }
 
-  /**
-   * @return {Promise<AnypointMaskedInputElement>}
-   */
-  async function typeVisibleFixture() {
+  async function typeVisibleFixture(): Promise<AnypointMaskedInputElement> {
     return fixture(html`<anypoint-masked-input visible type="tel">
     <label slot="label">Label</label>
     </anypoint-masked-input>`);
@@ -107,13 +94,13 @@ describe('<anypoint-masked-input>', () => {
   });
 
   describe('toggleVisibility()', () => {
-    let element;
+    let element: AnypointMaskedInputElement;
     beforeEach(async () => {
       element = await maskedFixture();
     });
 
     it('Toggles visibility when button click', () => {
-      const node = element.shadowRoot.querySelector('anypoint-icon-button');
+      const node = element.shadowRoot!.querySelector('anypoint-icon-button')!;
       MockInteractions.tap(node);
 
       assert.isTrue(element.visible);

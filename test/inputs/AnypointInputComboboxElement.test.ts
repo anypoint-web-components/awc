@@ -1,18 +1,13 @@
 import { fixture, assert, html, nextFrame } from '@open-wc/testing';
 import sinon from 'sinon';
-import '../../anypoint-item.js';
-import '../../anypoint-listbox.js';
-import '../../anypoint-input-combobox.js';
 import { keyDown } from '../lib/helpers.js';
-
-/** @typedef {import('../../src/AnypointInputComboboxElement').default} AnypointInputComboboxElement */
-/** @typedef {import('../../src/AnypointListboxElement').default} AnypointListbox */
+import { AnypointInputComboboxElement, AnypointListboxElement } from '../../index.js'
+import '../../define/anypoint-item.js';
+import '../../define/anypoint-listbox.js';
+import '../../define/anypoint-input-combobox.js';
 
 describe('AnypointInputComboboxElement', () => {
-  /**
-   * @return {Promise<AnypointInputComboboxElement>}
-   */
-  async function listFixture() {
+  async function listFixture(): Promise<AnypointInputComboboxElement> {
     return (fixture(html`
     <anypoint-input-combobox>
       <label slot="label">Zoom level</label>
@@ -25,10 +20,7 @@ describe('AnypointInputComboboxElement', () => {
     `));
   }
 
-  /**
-   * @return {Promise<AnypointInputComboboxElement>}
-   */
-  async function openedFixture() {
+  async function openedFixture(): Promise<AnypointInputComboboxElement> {
     return (fixture(html`
     <anypoint-input-combobox opened>
       <label slot="label">Zoom level</label>
@@ -41,10 +33,7 @@ describe('AnypointInputComboboxElement', () => {
     `));
   }
 
-  /**
-   * @return {Promise<AnypointInputComboboxElement>}
-   */
-  async function openedListFixture() {
+  async function openedListFixture(): Promise<AnypointInputComboboxElement> {
     return (fixture(html`
     <anypoint-input-combobox opened>
       <label slot="label">Zoom level</label>
@@ -57,10 +46,7 @@ describe('AnypointInputComboboxElement', () => {
     `));
   }
 
-  /**
-   * @return {Promise<AnypointInputComboboxElement>}
-   */
-  async function disabledFixture() {
+  async function disabledFixture(): Promise<AnypointInputComboboxElement> {
     return (fixture(html`
     <anypoint-input-combobox disabled>
       <label slot="label">Zoom level</label>
@@ -74,13 +60,13 @@ describe('AnypointInputComboboxElement', () => {
   describe('Dropdown rendering', () => {
     it('has the anypoint-dropdown element', async () => {
       const element = await listFixture();
-      const node = element.shadowRoot.querySelector('anypoint-dropdown');
+      const node = element.shadowRoot!.querySelector('anypoint-dropdown')!;
       assert.ok(node);
     });
 
     it('finds the content element', async () => {
       const element = await listFixture();
-      const ce = element.contentElement;
+      const ce = element.contentElement as HTMLElement;
       assert.ok(ce, 'has the element');
       assert.equal(ce.localName, 'anypoint-listbox');
     });
@@ -90,7 +76,7 @@ describe('AnypointInputComboboxElement', () => {
     it('is closed by default', async () => {
       const element = await listFixture();
       assert.isFalse(element.opened, 'opened value is false');
-      const node = element.shadowRoot.querySelector('anypoint-dropdown');
+      const node = element.shadowRoot!.querySelector('anypoint-dropdown')!;
       const { display } = getComputedStyle(node);
       assert.equal(display, 'none', 'dropdown is not rendered');
     });
@@ -101,7 +87,7 @@ describe('AnypointInputComboboxElement', () => {
       await nextFrame();
       // one frame to update the input and the second to update the dropdown
       await nextFrame();
-      const node = element.shadowRoot.querySelector('anypoint-dropdown');
+      const node = element.shadowRoot!.querySelector('anypoint-dropdown')!;
       const { display } = getComputedStyle(node);
       assert.notEqual(display, 'none', 'dropdown is not hidden');
     });
@@ -115,7 +101,7 @@ describe('AnypointInputComboboxElement', () => {
 
     it('toggles the state with the toggle icon click', async () => {
       const element = await listFixture();
-      const node = element.shadowRoot.querySelector('.trigger-icon');
+      const node = element.shadowRoot!.querySelector('.trigger-icon') as HTMLElement;
       node.click();
       assert.isTrue(element.opened);
     });
@@ -130,20 +116,20 @@ describe('AnypointInputComboboxElement', () => {
   describe('Toggle icon', () => {
     it('has the regular class name set when closed', async () => {
       const element = await listFixture();
-      const node = element.shadowRoot.querySelector('.trigger-icon');
+      const node = element.shadowRoot!.querySelector('.trigger-icon')!;
       assert.equal(node.classList.length, 1, 'has one class name');
     });
 
     it('has the the opened class when opened', async () => {
       const element = await openedFixture();
-      const node = element.shadowRoot.querySelector('.trigger-icon');
+      const node = element.shadowRoot!.querySelector('.trigger-icon')!;
       assert.equal(node.classList.length, 2, 'has two class names');
       assert.isTrue(node.classList.contains('opened'), 'has opened class name');
     });
 
     it('the icon is rotated when opened', async () => {
       const element = await openedFixture();
-      const node = element.shadowRoot.querySelector('.trigger-icon');
+      const node = element.shadowRoot!.querySelector('.trigger-icon')!;
       const { transform } = getComputedStyle(node);
       assert.isNotEmpty(transform);
     });
@@ -173,7 +159,7 @@ describe('AnypointInputComboboxElement', () => {
 
     it('calls focusNext on the content element, when defined', async () => {
       const element = await openedFixture();
-      const listbox = /** @type AnypointListbox */ (element.contentElement);
+      const listbox = element.contentElement as AnypointListboxElement;
       listbox.focus();
       await nextFrame();
       const spy = sinon.spy(listbox, 'focusNext');
@@ -183,7 +169,7 @@ describe('AnypointInputComboboxElement', () => {
 
     it('calls focusPrevious on the content element, when defined', async () => {
       const element = await openedFixture();
-      const listbox = /** @type AnypointListbox */ (element.contentElement);
+      const listbox = element.contentElement as AnypointListboxElement;
       listbox.focus();
       await nextFrame();
       const spy = sinon.spy(listbox, 'focusPrevious');
@@ -193,7 +179,7 @@ describe('AnypointInputComboboxElement', () => {
 
     it('ignores focusNext when not defined', async () => {
       const element = await openedListFixture();
-      element.contentElement.focus();
+      element.contentElement!.focus();
       await nextFrame();
       keyDown(element, 'ArrowDown');
       await nextFrame();
@@ -201,7 +187,7 @@ describe('AnypointInputComboboxElement', () => {
 
     it('ignores focusPrevious when not defined', async () => {
       const element = await openedListFixture();
-      element.contentElement.focus();
+      element.contentElement!.focus();
       await nextFrame();
       keyDown(element, 'ArrowUp');
       await nextFrame();
@@ -211,7 +197,7 @@ describe('AnypointInputComboboxElement', () => {
   describe('Value selection', () => {
     it('inserts the value from the click event', async () => {
       const element = await listFixture();
-      const item = element.querySelector('anypoint-item');
+      const item = element.querySelector('anypoint-item')!;
       item.click();
       assert.equal(element.value, '1');
     });
@@ -220,7 +206,7 @@ describe('AnypointInputComboboxElement', () => {
       const element = await listFixture();
       const spy = sinon.spy();
       element.addEventListener('change', spy);
-      const item = element.querySelector('anypoint-item');
+      const item = element.querySelector('anypoint-item')!;
       item.click();
       assert.isTrue(spy.called);
     });
@@ -229,15 +215,15 @@ describe('AnypointInputComboboxElement', () => {
       const element = await listFixture();
       const spy = sinon.spy();
       element.addEventListener('input', spy);
-      const item = element.querySelector('anypoint-item');
+      const item = element.querySelector('anypoint-item')!;
       item.click();
       assert.isTrue(spy.called);
     });
 
     it('inserts value from the "label" attribute', async () => {
       const element = await openedListFixture();
-      const dropdown = element.shadowRoot.querySelector('anypoint-dropdown');
-      const item = element.querySelector('li');
+      const dropdown = element.shadowRoot!.querySelector('anypoint-dropdown')!;
+      const item = element.querySelector('li')!;
       dropdown.dispatchEvent(new CustomEvent('select', {
         detail: {
           item,
@@ -249,10 +235,7 @@ describe('AnypointInputComboboxElement', () => {
   });
 
   describe('a11y', () => {
-    /**
-     * @return {Promise<AnypointInputComboboxElement>}
-     */
-    async function haspopupFixture() {
+    async function haspopupFixture(): Promise<AnypointInputComboboxElement> {
       return (fixture(html`
       <anypoint-input-combobox aria-haspopup="false"></anypoint-input-combobox>
       `));

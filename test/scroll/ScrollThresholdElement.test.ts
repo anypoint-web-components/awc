@@ -1,5 +1,7 @@
+/* eslint-disable @typescript-eslint/explicit-function-return-type */
 import { fixture, assert, aTimeout } from '@open-wc/testing';
-import '../../scroll-threshold.js';
+import '../../define/scroll-threshold.js';
+import { ScrollThresholdElement } from '../../index.js';
 
 const style = document.createElement('style');
 style.innerHTML = `#scrollingRegion {
@@ -16,20 +18,20 @@ style.innerHTML = `#scrollingRegion {
 document.head.appendChild(style);
 
 describe('ScrollThresholdElement', () => {
-  async function trivialScrollThresholdFixture() {
+  async function trivialScrollThresholdFixture(): Promise<ScrollThresholdElement> {
     return fixture(`<scroll-threshold id="scrollingRegion">
       <div class="content"></div>
     </scroll-threshold>`);
   }
 
-  async function trivialDocumentScrollingFixture() {
+  async function trivialDocumentScrollingFixture(): Promise<ScrollThresholdElement> {
     return fixture(`<scroll-threshold scrollTarget="document">
       <div class="content"></div>
     </scroll-threshold>`);
   }
 
   describe('basic features', () => {
-    let scrollThreshold;
+    let scrollThreshold: ScrollThresholdElement;
     beforeEach(async () => {
       scrollThreshold = await trivialScrollThresholdFixture();
       scrollThreshold._scrollDebouncer = 1;
@@ -43,23 +45,16 @@ describe('ScrollThresholdElement', () => {
 
     it('default', async () => {
       await aTimeout(20);
-      assert.equal(
-        scrollThreshold._defaultScrollTarget,
-        scrollThreshold,
-        '_defaultScrollTarget');
+      assert.equal(scrollThreshold._defaultScrollTarget, scrollThreshold, '_defaultScrollTarget');
       assert.equal(scrollThreshold.scrollTarget, scrollThreshold, 'scrollTarget');
       assert.equal(scrollThreshold.upperThreshold, 100, 'upperThreshold');
       assert.equal(scrollThreshold.lowerThreshold, 100, 'lowerThreshold');
-      assert.equal(scrollThreshold.horizontal, false, 'horizontal');
-      assert.equal(
-        window.getComputedStyle(scrollThreshold.scrollTarget)
-        .overflow,
-        'auto',
-        'overflow');
+      assert.isUndefined(scrollThreshold.horizontal, 'horizontal');
+      assert.equal(window.getComputedStyle(scrollThreshold.scrollTarget as HTMLElement).overflow, 'auto', 'overflow');
     });
 
     it('upperthreshold event', async () => {
-      await aTimeout();
+      await aTimeout(0);
       let eventTriggered;
       scrollThreshold.addEventListener('upperthreshold', () => {
         eventTriggered = scrollThreshold.upperTriggered;
@@ -72,7 +67,7 @@ describe('ScrollThresholdElement', () => {
     });
 
     it('onupperthreshold setter', async () => {
-      await aTimeout();
+      await aTimeout(0);
       let eventTriggered;
       scrollThreshold.onupperthreshold = () => {
         eventTriggered = scrollThreshold.upperTriggered;
@@ -85,64 +80,64 @@ describe('ScrollThresholdElement', () => {
     });
 
     it('clears onupperthreshold', async () => {
-      await aTimeout();
+      await aTimeout(0);
       let called = false;
       function f() {
         called = true;
       }
       scrollThreshold.onupperthreshold = f;
-      scrollThreshold.onupperthreshold = null;
+      scrollThreshold.onupperthreshold = undefined;
       scrollThreshold._scrollTop += 10;
       await aTimeout(40);
       assert.isFalse(called);
     });
 
     it('lowerthreshold event', async () => {
-      await aTimeout();
+      await aTimeout(0);
       let eventTriggered;
       scrollThreshold.addEventListener('lowerthreshold', () => {
         eventTriggered = scrollThreshold.lowerTriggered;
       });
-      scrollThreshold._scrollTop = scrollThreshold.scrollTarget.scrollHeight;
+      scrollThreshold._scrollTop = (scrollThreshold.scrollTarget as HTMLElement).scrollHeight;
       await aTimeout(40);
       assert.isTrue(eventTriggered);
     });
 
     it('onlowerthreshold setter', async () => {
-      await aTimeout();
+      await aTimeout(0);
       let eventTriggered;
       scrollThreshold.onlowerthreshold = () => {
         eventTriggered = scrollThreshold.lowerTriggered;
       };
       assert.typeOf(scrollThreshold.onlowerthreshold, 'function');
-      scrollThreshold._scrollTop = scrollThreshold.scrollTarget.scrollHeight;
+      scrollThreshold._scrollTop = (scrollThreshold.scrollTarget as HTMLElement).scrollHeight;
       await aTimeout(40);
       assert.isTrue(eventTriggered);
     });
 
     it('clears onlowerthreshold', async () => {
-      await aTimeout();
+      await aTimeout(0);
       let called = false;
       function f() {
         called = true;
       }
       scrollThreshold.onlowerthreshold = f;
-      scrollThreshold.onlowerthreshold = null;
-      scrollThreshold._scrollTop = scrollThreshold.scrollTarget.scrollHeight;
+      scrollThreshold.onlowerthreshold = undefined;
+      scrollThreshold._scrollTop = (scrollThreshold.scrollTarget as HTMLElement).scrollHeight;
       await aTimeout(40);
       assert.isFalse(called);
     });
 
     it('clearTriggers', async () => {
-      await aTimeout();
+      await aTimeout(0);
       assert.isTrue(scrollThreshold.upperTriggered);
       scrollThreshold.clearTriggers();
       assert.isFalse(scrollThreshold.upperTriggered);
     });
 
     it('checkScrollThresholds', async () => {
-      await aTimeout();
-      scrollThreshold._scrollTop = scrollThreshold.scrollTarget.scrollHeight;
+      await aTimeout(0);
+      scrollThreshold._scrollTop = (scrollThreshold.scrollTarget as HTMLElement).scrollHeight;
       assert.isFalse(scrollThreshold.lowerTriggered, 'check assumption');
       scrollThreshold.checkScrollThresholds();
       assert.isTrue(scrollThreshold.lowerTriggered, 'check triggers');
@@ -151,10 +146,10 @@ describe('ScrollThresholdElement', () => {
     });
 
     it('horizontal', async () => {
-      await aTimeout();
+      await aTimeout(0);
       scrollThreshold.horizontal = true;
       scrollThreshold.clearTriggers();
-      scrollThreshold._scrollLeft = scrollThreshold.scrollTarget.scrollWidth;
+      scrollThreshold._scrollLeft = (scrollThreshold.scrollTarget as HTMLElement).scrollWidth;
       assert.isFalse(scrollThreshold.lowerTriggered, 'check assumption');
       scrollThreshold.checkScrollThresholds();
       assert.isTrue(scrollThreshold.lowerTriggered, 'check lowerTriggered');
@@ -165,7 +160,7 @@ describe('ScrollThresholdElement', () => {
   });
 
   describe('document scroll', () => {
-    let scrollThreshold;
+    let scrollThreshold: ScrollThresholdElement;
     beforeEach(async () => {
       scrollThreshold = await trivialDocumentScrollingFixture();
       scrollThreshold._scrollDebouncer = 1;
@@ -178,16 +173,15 @@ describe('ScrollThresholdElement', () => {
     });
 
     it('default', async () => {
-      await aTimeout();
-      assert.equal(
-        scrollThreshold.scrollTarget, scrollThreshold._doc, 'scrollTarget');
+      await aTimeout(0);
+      assert.equal(scrollThreshold.scrollTarget, scrollThreshold._doc, 'scrollTarget');
       assert.equal(scrollThreshold.upperThreshold, 100, 'upperThreshold');
       assert.equal(scrollThreshold.lowerThreshold, 100, 'lowerThreshold');
-      assert.equal(scrollThreshold.horizontal, false, 'horizontal');
+      assert.isUndefined(scrollThreshold.horizontal, 'horizontal');
     });
 
     it('upperthreshold event', async () => {
-      await aTimeout();
+      await aTimeout(0);
       let eventTriggered;
       scrollThreshold.addEventListener('upperthreshold', () => {
         eventTriggered = scrollThreshold.upperTriggered;
@@ -200,26 +194,26 @@ describe('ScrollThresholdElement', () => {
     });
 
     it('lowerthreshold event', async () => {
-      await aTimeout();
+      await aTimeout(0);
       let eventTriggered;
       scrollThreshold.addEventListener('lowerthreshold', () => {
         eventTriggered = scrollThreshold.lowerTriggered;
       });
-      scrollThreshold._scrollTop = scrollThreshold.scrollTarget.scrollHeight;
+      scrollThreshold._scrollTop = (scrollThreshold.scrollTarget as HTMLElement).scrollHeight;
       await aTimeout(40);
       assert.isTrue(eventTriggered);
     });
 
     it('clearTriggers', async () => {
-      await aTimeout();
+      await aTimeout(0);
       assert.isTrue(scrollThreshold.upperTriggered);
       scrollThreshold.clearTriggers();
       assert.isFalse(scrollThreshold.upperTriggered);
     });
 
     it('checkScrollThresholds', async () => {
-      await aTimeout();
-      scrollThreshold._scrollTop = scrollThreshold.scrollTarget.scrollHeight;
+      await aTimeout(0);
+      scrollThreshold._scrollTop = (scrollThreshold.scrollTarget as HTMLElement).scrollHeight;
       assert.isFalse(scrollThreshold.lowerTriggered, 'check assumption');
       scrollThreshold.checkScrollThresholds();
       assert.isTrue(scrollThreshold.lowerTriggered, 'check triggers');
@@ -228,10 +222,10 @@ describe('ScrollThresholdElement', () => {
     });
 
     it('horizontal', async () => {
-      await aTimeout();
+      await aTimeout(0);
       scrollThreshold.horizontal = true;
       scrollThreshold.clearTriggers();
-      scrollThreshold._scrollLeft = scrollThreshold.scrollTarget.scrollWidth;
+      scrollThreshold._scrollLeft = (scrollThreshold.scrollTarget as HTMLElement).scrollWidth;
       assert.isFalse(scrollThreshold.lowerTriggered, 'check assumption');
       scrollThreshold.checkScrollThresholds();
       assert.isTrue(scrollThreshold.lowerTriggered, 'check lowerTriggered');
@@ -242,7 +236,7 @@ describe('ScrollThresholdElement', () => {
   });
 
   describe('a11y', () => {
-    async function a11yFixture() {
+    async function a11yFixture(): Promise<ScrollThresholdElement> {
       return fixture(`<scroll-threshold id="scrollingRegion">
         <div class="content"></div>
       </scroll-threshold>`);

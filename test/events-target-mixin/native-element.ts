@@ -14,40 +14,40 @@ the License.
 /*
 Example implementation.
 */
-import { LitElement } from 'lit-element';
 import { EventsTargetMixin } from '../../index.js';
 
-class EventableElement extends EventsTargetMixin(LitElement) {
-  static get properties() {
-    return {
-      _calledCount: { type: Number }
-    };
-  }
+export class EventableNativeElement extends EventsTargetMixin(HTMLElement) {
+  _calledCount = 0;
 
   constructor() {
     super();
-    this._calledCount = 0;
     this._testEventHandler = this._testEventHandler.bind(this);
   }
 
-  get called() {
+  get called(): boolean {
     return this._calledCount > 0;
   }
 
-  get calledOnce() {
+  get calledOnce(): boolean {
     return this._calledCount === 1;
   }
 
-  _attachListeners(node) {
+  _attachListeners(node: EventTarget): void {
     node.addEventListener('test-event', this._testEventHandler);
   }
 
-  _detachListeners(node) {
+  _detachListeners(node: EventTarget): void {
     node.removeEventListener('test-event', this._testEventHandler);
   }
 
-  _testEventHandler() {
+  _testEventHandler(): void {
     this._calledCount++;
   }
 }
-window.customElements.define('eventable-element', EventableElement);
+window.customElements.define('eventable-native-element', EventableNativeElement);
+
+declare global {
+  interface HTMLElementTagNameMap {
+    "eventable-native-element": EventableNativeElement;
+  }
+}

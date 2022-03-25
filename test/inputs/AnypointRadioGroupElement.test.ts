@@ -1,37 +1,24 @@
 import { fixture, assert, nextFrame, html } from '@open-wc/testing';
-import '../../anypoint-radio-group.js';
-import '../../anypoint-radio-button.js';
-
-/** @typedef {import('../../src/AnypointRadioButtonElement').default} AnypointRadioButtonElement */
-/** @typedef {import('../../src/AnypointRadioGroupElement').default} AnypointRadioGroupElement */
+import { AnypointRadioButtonElement, AnypointRadioGroupElement } from '../../index.js'
+import '../../define/anypoint-radio-group.js';
+import '../../define/anypoint-radio-button.js';
 
 describe('<anypoint-radio-group>', () => {
-  /**
-   * @returns {Promise<AnypointRadioGroupElement>}
-   */
-  async function basicFixture() {
+  async function basicFixture(): Promise<AnypointRadioGroupElement> {
     return (fixture(html`<anypoint-radio-group>
        <anypoint-radio-button name="a">Apple</anypoint-radio-button>
        <anypoint-radio-button name="b">Banana</anypoint-radio-button>
        <anypoint-radio-button name="c">Orange</anypoint-radio-button>
     </anypoint-radio-group>`));
   }
-
-  /**
-   * @returns {Promise<AnypointRadioGroupElement>}
-   */
-  async function selectedFixture() {
+  async function selectedFixture(): Promise<AnypointRadioGroupElement> {
     return (fixture(html`<anypoint-radio-group>
       <anypoint-radio-button name="a" checked>Apple</anypoint-radio-button>
       <anypoint-radio-button name="b">Banana</anypoint-radio-button>
       <anypoint-radio-button name="c">Orange</anypoint-radio-button>
     </anypoint-radio-group>`));
   }
-
-  /**
-   * @returns {Promise<AnypointRadioGroupElement>}
-   */
-  async function ignoredFixture() {
+  async function ignoredFixture(): Promise<AnypointRadioGroupElement> {
     return (fixture(html`<anypoint-radio-group>
        <anypoint-radio-button checked name="a">Apple</anypoint-radio-button>
        <anypoint-radio-button name="b">Banana</anypoint-radio-button>
@@ -39,11 +26,7 @@ describe('<anypoint-radio-group>', () => {
        <div name="d">Strawberry</div>
     </anypoint-radio-group>`));
   }
-
-  /**
-   * @returns {Promise<AnypointRadioGroupElement>}
-   */
-  async function mixedFixture() {
+  async function mixedFixture(): Promise<AnypointRadioGroupElement> {
     return (fixture(html`<anypoint-radio-group>
        <anypoint-radio-button checked name="a">Apple</anypoint-radio-button>
        <anypoint-radio-button name="b">Banana</anypoint-radio-button>
@@ -51,44 +34,28 @@ describe('<anypoint-radio-group>', () => {
        <input type="radio" name="d"/>
     </anypoint-radio-group>`));
   }
-
-  /**
-   * @returns {Promise<AnypointRadioGroupElement>}
-   */
-  async function selected2Fixture() {
+  async function selected2Fixture(): Promise<AnypointRadioGroupElement> {
     return (fixture(html`<anypoint-radio-group selected="1">
        <anypoint-radio-button name="a">Apple</anypoint-radio-button>
        <anypoint-radio-button name="b">Banana</anypoint-radio-button>
        <anypoint-radio-button name="c">Orange</anypoint-radio-button>
     </anypoint-radio-group>`));
   }
-
-  /**
-   * @returns {Promise<AnypointRadioGroupElement>}
-   */
-  async function multiCheckedFixture() {
+  async function multiCheckedFixture(): Promise<AnypointRadioGroupElement> {
     return (fixture(html`<anypoint-radio-group>
        <anypoint-radio-button checked name="a">Apple</anypoint-radio-button>
        <anypoint-radio-button name="b">Banana</anypoint-radio-button>
        <anypoint-radio-button checked name="c">Orange</anypoint-radio-button>
     </anypoint-radio-group>`));
   }
-
-  /**
-   * @returns {Promise<AnypointRadioGroupElement>}
-   */
-  async function attrForSelectedFixture() {
+  async function attrForSelectedFixture(): Promise<AnypointRadioGroupElement> {
     return (fixture(html`<anypoint-radio-group selected="banana" attrforselected="data-label">
       <anypoint-radio-button name="a" data-label="apple">Apple</anypoint-radio-button>
       <anypoint-radio-button name="b" data-label="banana">Banana</anypoint-radio-button>
       <anypoint-radio-button name="c" data-label="orange">Orange</anypoint-radio-button>
     </anypoint-radio-group>`));
   }
-
-  /**
-   * @returns {Promise<AnypointRadioGroupElement>}
-   */
-  async function disabledFixture() {
+  async function disabledFixture(): Promise<AnypointRadioGroupElement> {
     return (fixture(html`<anypoint-radio-group disabled>
       <anypoint-radio-button>Apple</anypoint-radio-button>
       <anypoint-radio-button>Banana</anypoint-radio-button>
@@ -99,7 +66,7 @@ describe('<anypoint-radio-group>', () => {
   describe('Selection states', () => {
     it('sets selected property when selection changes', async () => {
       const element = await basicFixture();
-      const node = element.querySelector('anypoint-radio-button');
+      const node = element.querySelector('anypoint-radio-button')!;
       node.click();
       assert.equal(element.selected, 0);
     });
@@ -112,45 +79,45 @@ describe('<anypoint-radio-group>', () => {
     it('sets selected element checked', async () => {
       const element = await selected2Fixture();
       assert.equal(element.selected, 1);
-      const node = /** @type AnypointRadioButtonElement */ (element.querySelector('anypoint-radio-button[name="b"]'));
+      const node = element.querySelector('anypoint-radio-button[name="b"]') as AnypointRadioButtonElement;
       assert.isTrue(node.checked);
     });
 
     it('only selects last checked node', async () => {
       const element = await multiCheckedFixture();
       assert.equal(element.selected, 2);
-      const node = /** @type AnypointRadioButtonElement */ (element.querySelector('anypoint-radio-button[name="c"]'));
+      const node = element.querySelector('anypoint-radio-button[name="c"]') as AnypointRadioButtonElement;
       assert.isTrue(node.checked);
 
-      const oldNode = /** @type AnypointRadioButtonElement */ (element.querySelector('anypoint-radio-button[name="a"]'));
+      const oldNode = element.querySelector('anypoint-radio-button[name="a"]') as AnypointRadioButtonElement;
       assert.isFalse(oldNode.checked);
     });
 
     it('selects from attribute', async () => {
       const element = await attrForSelectedFixture();
-      const node = /** @type AnypointRadioButtonElement */ (element.querySelector('anypoint-radio-button[name="b"]'));
+      const node = element.querySelector('anypoint-radio-button[name="b"]') as AnypointRadioButtonElement;
       assert.isTrue(node.checked);
     });
 
     it('deselects old node', async () => {
       const element = await selectedFixture();
-      const oldSelected = /** @type AnypointRadioButtonElement */ (element.querySelector('anypoint-radio-button[name="a"]'));
+      const oldSelected = element.querySelector('anypoint-radio-button[name="a"]') as AnypointRadioButtonElement;
       assert.isTrue(oldSelected.checked, 'old selected is initially selected');
-      const node = /** @type AnypointRadioButtonElement */ (element.querySelector('anypoint-radio-button[name="c"]'));
+      const node = element.querySelector('anypoint-radio-button[name="c"]') as AnypointRadioButtonElement;
       node.click();
       assert.isFalse(oldSelected.checked, 'removes selection');
     });
 
     it('selects new node', async () => {
       const element = await selectedFixture();
-      const node = /** @type AnypointRadioButtonElement */ (element.querySelector('anypoint-radio-button[name="c"]'));
+      const node = element.querySelector('anypoint-radio-button[name="c"]') as AnypointRadioButtonElement;
       node.click();
       assert.isTrue(node.checked);
     });
 
     it('selected property changes after selection change', async () => {
       const element = await selectedFixture();
-      const node = /** @type AnypointRadioButtonElement */ (element.querySelector('anypoint-radio-button[name="c"]'));
+      const node = element.querySelector('anypoint-radio-button[name="c"]') as AnypointRadioButtonElement;
       node.click();
       assert.equal(element.selected, 2);
     });
@@ -168,14 +135,14 @@ describe('<anypoint-radio-group>', () => {
 
     it('ignores nodes that are not role radio', async () => {
       const element = await ignoredFixture();
-      const node = /** @type HTMLDivElement */ (element.querySelector('div[name="d"]'));
+      const node = element.querySelector('div[name="d"]') as HTMLDivElement;
       node.click();
       assert.equal(element.selected, 0);
     });
 
     it('ignores removed nodes', async () => {
       const element = await basicFixture();
-      const node = /** @type AnypointRadioButtonElement */ (element.querySelector('anypoint-radio-button[name="a"]'));
+      const node = element.querySelector('anypoint-radio-button[name="a"]') as AnypointRadioButtonElement;
       element.removeChild(node);
       await nextFrame();
       node.click();
@@ -184,7 +151,7 @@ describe('<anypoint-radio-group>', () => {
 
     it('ignores nodes with changed role', async () => {
       const element = await basicFixture();
-      const node = /** @type AnypointRadioButtonElement */ (element.querySelector('anypoint-radio-button[name="a"]'));
+      const node = element.querySelector('anypoint-radio-button[name="a"]') as AnypointRadioButtonElement;
       node.setAttribute('role', 'input');
       await nextFrame();
       node.click();
@@ -194,7 +161,7 @@ describe('<anypoint-radio-group>', () => {
 
     it('removes selection when removing selected node', async () => {
       const element = await selectedFixture();
-      const node = /** @type AnypointRadioButtonElement */ (element.querySelector('anypoint-radio-button[name="a"]'));
+      const node = element.querySelector('anypoint-radio-button[name="a"]') as AnypointRadioButtonElement;
       element.removeChild(node);
       await nextFrame();
       assert.isUndefined(element.selected);
@@ -203,7 +170,7 @@ describe('<anypoint-radio-group>', () => {
 
     it('accepts input radio', async () => {
       const element = await mixedFixture();
-      const node = /** @type HTMLInputElement */ (element.querySelector('input[name="d"]'));
+      const node = element.querySelector('input[name="d"]') as HTMLInputElement;
       node.click();
       assert.equal(element.selected, 3);
       assert.equal(element.selectedItem, node);
@@ -212,14 +179,14 @@ describe('<anypoint-radio-group>', () => {
     it('focuses on first item when no selection', async () => {
       const element = await basicFixture();
       element.focus();
-      const node = /** @type AnypointRadioButtonElement */ (element.querySelector('anypoint-radio-button[name="a"]'));
+      const node = element.querySelector('anypoint-radio-button[name="a"]') as AnypointRadioButtonElement;
       assert.equal(document.activeElement, node);
     });
 
     it('focuses on selected item when selection', async () => {
       const element = await selected2Fixture();
       element.focus();
-      const node = /** @type AnypointRadioButtonElement */ (element.querySelector('anypoint-radio-button[name="b"]'));
+      const node = element.querySelector('anypoint-radio-button[name="b"]') as AnypointRadioButtonElement;
       assert.equal(document.activeElement, node);
     });
 
@@ -233,7 +200,7 @@ describe('<anypoint-radio-group>', () => {
         code: 'ArrowRight',
       });
       element.dispatchEvent(e);
-      const node = /** @type AnypointRadioButtonElement */ (element.querySelector('anypoint-radio-button[name="c"]'));
+      const node = element.querySelector('anypoint-radio-button[name="c"]') as AnypointRadioButtonElement;
       assert.equal(document.activeElement, node);
     });
 
@@ -247,7 +214,7 @@ describe('<anypoint-radio-group>', () => {
         code: 'ArrowDown',
       });
       element.dispatchEvent(e);
-      const node = /** @type AnypointRadioButtonElement */ (element.querySelector('anypoint-radio-button[name="c"]'));
+      const node = element.querySelector('anypoint-radio-button[name="c"]') as AnypointRadioButtonElement;
       assert.equal(document.activeElement, node);
     });
 
@@ -261,7 +228,7 @@ describe('<anypoint-radio-group>', () => {
         code: 'ArrowLeft',
       });
       element.dispatchEvent(e);
-      const node = /** @type AnypointRadioButtonElement */ (element.querySelector('anypoint-radio-button[name="a"]'));
+      const node = element.querySelector('anypoint-radio-button[name="a"]') as AnypointRadioButtonElement;
       assert.equal(document.activeElement, node);
     });
 
@@ -275,7 +242,7 @@ describe('<anypoint-radio-group>', () => {
         code: 'ArrowUp',
       });
       element.dispatchEvent(e);
-      const node = /** @type AnypointRadioButtonElement */ (element.querySelector('anypoint-radio-button[name="a"]'));
+      const node = element.querySelector('anypoint-radio-button[name="a"]') as AnypointRadioButtonElement;
       assert.equal(document.activeElement, node);
     });
 
@@ -289,7 +256,7 @@ describe('<anypoint-radio-group>', () => {
         code: 'ArrowRight',
         key: 'ArrowRight',
       }));
-      const node = /** @type AnypointRadioButtonElement */ (element.querySelector('anypoint-radio-button[name="c"]'));
+      const node = element.querySelector('anypoint-radio-button[name="c"]') as AnypointRadioButtonElement;
       assert.equal(document.activeElement, node);
       node.dispatchEvent(new KeyboardEvent('keydown', {
         bubbles: true,
@@ -300,7 +267,7 @@ describe('<anypoint-radio-group>', () => {
       }));
       await nextFrame();
       assert.equal(element.selected, 2, 'updates the selection');
-      const unselected = /** @type AnypointRadioButtonElement */ (element.querySelector('anypoint-radio-button[name="b"]'));
+      const unselected = element.querySelector('anypoint-radio-button[name="b"]') as AnypointRadioButtonElement;
       assert.isFalse(unselected.checked, 'previously checked is not checked anymore');
     });
   });
@@ -309,7 +276,7 @@ describe('<anypoint-radio-group>', () => {
     it('disables children when disabled', async () => {
       const element = await basicFixture();
       element.disabled = true;
-      const nodes = /** @type NodeListOf<AnypointRadioButtonElement> */ (element.querySelectorAll('*'));
+      const nodes = element.querySelectorAll('*') as NodeListOf<AnypointRadioButtonElement>;
       for (let i = 0; i < nodes.length; i++) {
         assert.isTrue(nodes[i].disabled);
       }
@@ -318,7 +285,7 @@ describe('<anypoint-radio-group>', () => {
     it('enables children when enabled', async () => {
       const element = await disabledFixture();
       element.disabled = false;
-      const nodes = /** @type NodeListOf<AnypointRadioButtonElement> */ (element.querySelectorAll('*'));
+      const nodes = element.querySelectorAll('*') as NodeListOf<AnypointRadioButtonElement>;
       for (let i = 0; i < nodes.length; i++) {
         assert.isFalse(nodes[i].disabled);
       }
@@ -326,7 +293,7 @@ describe('<anypoint-radio-group>', () => {
 
     it('disables children when initializing', async () => {
       const element = await disabledFixture();
-      const nodes = /** @type NodeListOf<AnypointRadioButtonElement> */ (element.querySelectorAll('*'));
+      const nodes = element.querySelectorAll('*') as NodeListOf<AnypointRadioButtonElement>;
       for (let i = 0; i < nodes.length; i++) {
         assert.isTrue(nodes[i].disabled);
       }
@@ -334,7 +301,7 @@ describe('<anypoint-radio-group>', () => {
 
     it('ignores selection when disabled', async () => {
       const element = await disabledFixture();
-      const node = element.querySelector('anypoint-radio-button');
+      const node = element.querySelector('anypoint-radio-button')!;
       assert.isTrue(node.disabled, 'radio is initially disabled');
       assert.isFalse(node.checked, 'radio is initially not checked');
       node.click();

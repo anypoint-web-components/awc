@@ -25,13 +25,13 @@ export default class ScrollThresholdElement extends ScrollTargetMixin(LitElement
   @property({ type: Number })
   lowerThreshold = 100;
 
-  protected _horizontal?: boolean;
+  _horizontal?: boolean;
 
-  protected _upperTriggered = false;
+  _upperTriggered = false;
 
-  protected _lowerTriggered = false;
+  _lowerTriggered = false;
 
-  protected _scrollDebouncer = 200;
+  _scrollDebouncer = 200;
   
   /**
    * Read-only value that tracks the triggered state of the upper threshold.

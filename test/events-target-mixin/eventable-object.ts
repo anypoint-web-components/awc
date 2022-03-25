@@ -1,3 +1,4 @@
+/* eslint-disable no-useless-constructor */
 /* eslint-disable max-classes-per-file */
 /**
 @license
@@ -18,22 +19,11 @@ Example implementation.
 import { EventsTargetMixin } from '../../index.js';
 
 class TestClass {
-  /** 
-   * @param {any} value1 
-   * @param {any} value2
-   */
-  constructor(value1, value2) {
-    this.value1 = value1;
-    this.value2 = value2;
-  }
+  constructor(public value1: any, public value2: any) { }
 }
 
 export class EventableObject extends EventsTargetMixin(TestClass) {
-  /** 
-   * @param {any} value1 
-   * @param {any} value2
-   */
-  constructor(value1, value2) {
+  constructor(value1?: any, value2?: any) {
     super(value1, value2);
     this._eventsTargetChanged();
   }

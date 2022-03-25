@@ -1,9 +1,10 @@
 /* eslint-disable no-param-reassign */
-import { LitElement, html, css } from 'lit-element';
+import { LitElement, html, css, CSSResult, TemplateResult } from 'lit';
+import { property } from 'lit/decorators.js';
 import { ScrollTargetMixin } from '../../index.js';
 
-class XScrollableElement extends ScrollTargetMixin(LitElement) {
-  static get styles() {
+export class XScrollableElement extends ScrollTargetMixin(LitElement) {
+  static get styles(): CSSResult {
     return css`
     :host {
       display: block;
@@ -18,26 +19,17 @@ class XScrollableElement extends ScrollTargetMixin(LitElement) {
     }`;
   }
 
-  static get properties() {
-    return {
-      itemCount: { type: Number }
-    };
-  }
-
-  constructor() {
-    super();
-    this.itemCount = 200;
-    // this._defaultScrollTarget = null;
-  }
-
-  render() {
+  @property({ type: Number })
+  itemCount = 200;
+  
+  render(): TemplateResult {
     const items = this._getItems(this.itemCount);
     return html`
     ${items.map((item, index) => html`<div class="item">${index}</div>`)}
     `;
   }
 
-  _getItems(itemCount) {
+  _getItems(itemCount: number): number[] {
     const items = new Array(itemCount);
     while (itemCount > 0) {
       items[--itemCount] = true;
@@ -46,3 +38,9 @@ class XScrollableElement extends ScrollTargetMixin(LitElement) {
   }
 }
 window.customElements.define('scrollable-element', XScrollableElement);
+
+declare global {
+  interface HTMLElementTagNameMap {
+    "scrollable-element": XScrollableElement;
+  }
+}

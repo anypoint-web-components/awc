@@ -111,13 +111,13 @@ export const CheckedElementMixin = dedupeMixin(<T extends Constructor<LitElement
     }
 
     set disabled(value: boolean | undefined) {
-      const old = this._required;
+      const old = this._disabled;
       if (old === value) {
         return;
       }
-      this._required = value;
+      this._disabled = value;
       if (this.requestUpdate) {
-        this.requestUpdate('required', old);
+        this.requestUpdate('disabled', old);
       }
       this._disabledChanged(value);
     }
@@ -207,7 +207,7 @@ export const CheckedElementMixin = dedupeMixin(<T extends Constructor<LitElement
     constructor() {
       super();
       this.value = 'on';
-      this.disabled = false;
+      // this.disabled = false;
     }
 
     /**

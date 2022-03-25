@@ -1,9 +1,9 @@
 import { fixture, assert, nextFrame } from '@open-wc/testing';
 import sinon from 'sinon';
-
-
 import './scrollable-element.js';
 import './nested-scrollable-element.js';
+import { XScrollableElement } from './scrollable-element.js';
+import { XNestedScrollableElement } from './nested-scrollable-element.js';
 
 const s = document.createElement('style');
 s.type = 'text/css';
@@ -18,38 +18,32 @@ s.innerHTML = `
 document.getElementsByTagName('head')[0].appendChild(s);
 
 describe('ScrollTargetMixin', () => {
-  async function trivialScrollableFixture() {
+  async function trivialScrollableFixture(): Promise<HTMLDivElement> {
     return fixture(`<div id="temporaryScrollingRegion">
       <scrollable-element></scrollable-element>
     </div>`);
   }
 
-  async function trivialScrollingRegionFixture() {
+  async function trivialScrollingRegionFixture(): Promise<HTMLDivElement> {
     return fixture(`<div id="region">
       <scrollable-element scrollTarget="region"></scrollable-element>
     </div>`);
   }
 
-  async function trivialNestedScrollingRegionFixture() {
+  async function trivialNestedScrollingRegionFixture(): Promise<XNestedScrollableElement> {
     return fixture(`<nested-scrollable-element id="nestedScrollingRegion"></nested-scrollable-element>`);
   }
 
-  async function trivialDocumentScrollFixture() {
+  async function trivialDocumentScrollFixture(): Promise<XScrollableElement> {
     return fixture(`<scrollable-element scrollTarget="document"></scrollable-element>`);
   }
 
-  async function legacyFixture() {
-    return fixture(`<div id="region">
-      <scrollable-element scroll-target="region"></scrollable-element>
-    </div>`);
-  }
-
   describe('basic features', () => {
-    let scrollingRegion;
-    let xScroll;
+    let scrollingRegion: HTMLDivElement;
+    let xScroll: XScrollableElement;
     beforeEach(async () => {
       scrollingRegion = await trivialScrollableFixture();
-      xScroll = scrollingRegion.querySelector('scrollable-element');
+      xScroll = scrollingRegion.querySelector('scrollable-element')!;
       await nextFrame();
     });
 
@@ -59,10 +53,7 @@ describe('ScrollTargetMixin', () => {
       assert.equal(xScroll._scrollTargetWidth, window.innerWidth, '_scrollTargetWidth');
       assert.equal(xScroll._scrollTargetHeight, window.innerHeight, '_scrollTargetHeight');
       assert.equal(xScroll.scrollTarget, xScroll._defaultScrollTarget, 'scrollTarget');
-      assert.equal(
-          xScroll._defaultScrollTarget,
-          xScroll.scrollTarget,
-          '_defaultScrollTarget');
+      assert.equal(xScroll._defaultScrollTarget, xScroll.scrollTarget, '_defaultScrollTarget');
     });
 
     it('invalid `scrollTarget` selector', async () => {
@@ -73,6 +64,7 @@ describe('ScrollTargetMixin', () => {
 
     it('valid `scrollTarget` selector', () => {
       xScroll.scrollTarget = 'temporaryScrollingRegion';
+      // @ts-ignore
       assert.equal(xScroll.scrollTarget, scrollingRegion);
     });
 
@@ -87,6 +79,7 @@ describe('ScrollTargetMixin', () => {
         xScroll.toggleScrollListener(false);
         xScroll.scroll(0, 200);
         setTimeout(() => {
+          // @ts-ignore
           xScroll._scrollHandler.restore();
           assert.isFalse(spy.called, '_scrollHandler should not be called');
           done();
@@ -96,12 +89,12 @@ describe('ScrollTargetMixin', () => {
   });
 
   describe('scrolling region', () => {
-    let scrollingRegion;
-    let xScrollable;
+    let scrollingRegion: HTMLDivElement;
+    let xScrollable: XScrollableElement;
 
     beforeEach(async () => {
       scrollingRegion = await trivialScrollingRegionFixture();
-      xScrollable = scrollingRegion.querySelector('scrollable-element');
+      xScrollable = scrollingRegion.querySelector('scrollable-element')!;
       await nextFrame();
     });
 
@@ -145,7 +138,7 @@ describe('ScrollTargetMixin', () => {
   });
 
   describe('document scroll', () => {
-    let xScrollable;
+    let xScrollable: XScrollableElement;
 
     beforeEach(async () => {
       xScrollable = await trivialDocumentScrollFixture();
@@ -186,66 +179,14 @@ describe('ScrollTargetMixin', () => {
     });
   });
 
-  describe('legacy scroll-target', () => {
-    let scrollingRegion;
-    let xScrollable;
-
-    beforeEach(async () => {
-      scrollingRegion = await legacyFixture();
-      xScrollable = scrollingRegion.querySelector('scrollable-element');
-      await nextFrame();
-    });
-
-    afterEach(() => {
-      xScrollable._scrollTop = 0;
-      xScrollable._scrollLeft = 0;
-    });
-
-    it('scrollTarget reference', () => {
-      assert.equal(xScrollable.scrollTarget, scrollingRegion);
-    });
-
-    it('invalid scrollTarget', () => {
-      assert.equal(xScrollable.scrollTarget, scrollingRegion);
-    });
-
-    it('setters', () => {
-      xScrollable._scrollTop = 100;
-      xScrollable._scrollLeft = 100;
-      assert.equal(scrollingRegion.scrollTop, 100);
-      assert.equal(scrollingRegion.scrollLeft, 100);
-    });
-
-    it('getters', () => {
-      scrollingRegion.scrollTop = 50;
-      scrollingRegion.scrollLeft = 50;
-      assert.equal(xScrollable._scrollTop, 50, '_scrollTop');
-      assert.equal(xScrollable._scrollLeft, 50, '_scrollLeft');
-      assert.equal(xScrollable._scrollTargetWidth, scrollingRegion.offsetWidth, '_scrollTargetWidth');
-      assert.equal(xScrollable._scrollTargetHeight, scrollingRegion.offsetHeight, '_scrollTargetHeight');
-      assert.ok(xScrollable.scrollTarget, 'scrollTarget');
-      assert.ok(xScrollable._legacyTarget, '_legacyTarget');
-      assert.isTrue(xScrollable.scrollTarget === xScrollable._legacyTarget, 'Targets equal');
-    });
-
-    it('scroll method', () => {
-      xScrollable.scroll(110, 110);
-      assert.equal(xScrollable._scrollTop, 110);
-      assert.equal(xScrollable._scrollLeft, 110);
-      xScrollable.scroll(0, 0);
-      assert.equal(xScrollable._scrollTop, 0);
-      assert.equal(xScrollable._scrollLeft, 0);
-    });
-  });
-
   describe('nested scrolling region', () => {
-    let xScrollingRegion;
-    let xScrollable;
+    let xScrollingRegion: HTMLDivElement;
+    let xScrollable: XScrollableElement;
 
     beforeEach(async () => {
       const nestedScrollingRegion = await trivialNestedScrollingRegionFixture();
-      xScrollable = nestedScrollingRegion.shadowRoot.querySelector('#xScrollable');
-      xScrollingRegion = nestedScrollingRegion.shadowRoot.querySelector('#xRegion');
+      xScrollable = nestedScrollingRegion.shadowRoot!.querySelector('#xScrollable')!;
+      xScrollingRegion = nestedScrollingRegion.shadowRoot!.querySelector('#xRegion')!;
       await nextFrame();
     });
 

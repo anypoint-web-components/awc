@@ -38,6 +38,7 @@ export { default as ColorInputSelectorElement } from './src/elements/ColorInputS
 export { default as ColorSelectorElement } from './src/elements/ColorSelectorElement.js';
 export { default as DateTimeElement } from './src/elements/DateTimeElement.js';
 export { default as MaterialRippleElement } from "./src/elements/MaterialRippleElement.js";
+export { default as ScrollThresholdElement } from './src/elements/ScrollThresholdElement.js';
 export { default as StarRatingElement } from './src/elements/StarRatingElement.js';
 
 export { AnypointDialogMixin, AnypointDialogMixinInterface } from './src/mixins/AnypointDialogMixin.js';

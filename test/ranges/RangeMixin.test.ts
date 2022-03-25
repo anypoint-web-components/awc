@@ -1,18 +1,13 @@
 import { fixture, assert, html, nextFrame } from '@open-wc/testing';
 import './test-progress.js';
-
-/** @typedef {import('./test-progress').TestProgress} TestProgress */
+import { TestProgress } from './test-progress.js';
 
 describe('RangeMixin', () => {
-  /**
-   * @return {Promise<TestProgress>}
-   */
-  async function basicFixture() {
+  async function basicFixture(): Promise<TestProgress> {
     return fixture(html`<test-progress></test-progress>`);
   }
 
-  /** @type {TestProgress} */
-  let progress;
+  let progress: TestProgress;
   beforeEach(async () => {
     progress = await basicFixture();
   });

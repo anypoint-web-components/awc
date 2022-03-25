@@ -1,35 +1,24 @@
+/* eslint-disable import/no-duplicates */
 import { fixture, assert, aTimeout, html, nextFrame } from '@open-wc/testing';
 import './test-menubar.js';
-
-/** @typedef {import('./test-menubar').TestMenubar} TestMenubar */
+import { TestMenubar } from './test-menubar.js';
 
 describe('AnypointMenubarMixin', () => {
-  /**
-   * @return {Promise<TestMenubar>}
-   */
-  async function basicFixture() {
+  async function basicFixture(): Promise<TestMenubar> {
     return fixture(html`<test-menubar>
       <div role="menuitem">item 1</div>
       <div role="menuitem">item 2</div>
       <div role="menuitem">item 3</div>
     </test-menubar>`);
   }
-
-  /**
-   * @return {Promise<TestMenubar>}
-   */
-  async function multiFixture() {
+  async function multiFixture(): Promise<TestMenubar> {
     return fixture(html`<test-menubar multi>
       <div>item 1</div>
       <div>item 2</div>
       <div>item 3</div>
     </test-menubar>`);
   }
-
-  /**
-   * @return {Promise<TestMenubar>}
-   */
-  async function rtlFixture() {
+  async function rtlFixture(): Promise<TestMenubar> {
     return fixture(html`
     <div dir="rtl">
       <test-menubar>
@@ -98,7 +87,7 @@ describe('AnypointMenubarMixin', () => {
       const menubar = await basicFixture();
       menubar.extraContent.focus();
       await aTimeout(0);
-      const ownerRoot = /** @type Document */ (menubar.extraContent.getRootNode && menubar.extraContent.getRootNode()) || document;
+      const ownerRoot = ((menubar.extraContent.getRootNode && menubar.extraContent.getRootNode()) || document) as Document;
       const {activeElement} = ownerRoot;
       assert.equal(activeElement, menubar.extraContent, 'menubar.extraContent is focused');
       assert.equal(document.activeElement, menubar, 'menubar is document.activeElement');
@@ -181,7 +170,7 @@ describe('AnypointMenubarMixin', () => {
 
       it('left key moves to the next item with RTL', async () => {
         const rtlContainer = await rtlFixture();
-        const menubar = /** @type TestMenubar */ (rtlContainer.querySelector('test-menubar'));
+        const menubar = rtlContainer.querySelector('test-menubar')!;
         menubar.selected = 0;
         menubar.items[1].click();
         assert.equal(document.activeElement, menubar.items[1]);
@@ -210,7 +199,7 @@ describe('AnypointMenubarMixin', () => {
 
       it('right key moves to the previous item', async () => {
         const rtlContainer = await rtlFixture();
-        const menubar = /** @type TestMenubar */ (rtlContainer.querySelector('test-menubar'));
+        const menubar = rtlContainer.querySelector('test-menubar')!;
         menubar.selected = 0;
         menubar.items[1].click();
         assert.equal(document.activeElement, menubar.items[1]);

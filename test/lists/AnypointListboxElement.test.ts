@@ -1,18 +1,12 @@
 /* eslint-disable lit-a11y/role-has-required-aria-attrs */
 import { fixture, assert, nextFrame, html } from '@open-wc/testing';
 import sinon from 'sinon';
-import '../../anypoint-listbox.js';
-import { ensureNodeId } from '../../src/AnypointListboxElement.js';
-
-/* eslint-disable no-plusplus */
-
-/** @typedef {import('../../index').AnypointListboxElement} AnypointListboxElement */
+import '../../define/anypoint-listbox.js';
+import { ensureNodeId } from '../../src/elements/AnypointListboxElement.js';
+import { AnypointListboxElement } from '../../index.js';
 
 describe('AnypointListbox', () => {
-  /**
-   * @returns {Promise<AnypointListboxElement>}
-   */
-  async function basicFixture() {
+  async function basicFixture(): Promise<AnypointListboxElement> {
     return fixture(html`<anypoint-listbox aria-label="Select one of the options">
       <div role="option">Item 1</div>
       <div role="option">Item 2</div>
@@ -20,11 +14,7 @@ describe('AnypointListbox', () => {
       <div role="option">Item 4</div>
     </anypoint-listbox>`);
   }
-
-  /**
-   * @returns {Promise<AnypointListboxElement>}
-   */
-  async function selectedFixture() {
+  async function selectedFixture(): Promise<AnypointListboxElement> {
     return fixture(html`<anypoint-listbox aria-label="Select one of the options" selected="1">
       <div role="option">Item 1</div>
       <div role="option">Item 2</div>
@@ -32,18 +22,10 @@ describe('AnypointListbox', () => {
       <div role="option">Item 4</div>
     </anypoint-listbox>`);
   }
-
-  /**
-   * @returns {Promise<AnypointListboxElement>}
-   */
-  async function roleFixture() {
+  async function roleFixture(): Promise<AnypointListboxElement> {
     return fixture(html`<anypoint-listbox role="menu"></anypoint-listbox>`);
   }
-
-  /**
-   * @returns {Promise<AnypointListboxElement>}
-   */
-  async function anypointFixture() {
+  async function anypointFixture(): Promise<AnypointListboxElement> {
     return fixture(html`<anypoint-listbox anypoint>
       <div>Item 1</div>
       <div>Item 2</div>
@@ -79,7 +61,7 @@ describe('AnypointListbox', () => {
     it('has selection class name when selected', async () => {
       const element = await basicFixture();
       element.select(1);
-      const node = element.selectedItem;
+      const node = element.selectedItem!;
       assert.ok(node, 'has selected node');
       assert.isTrue(node.classList.contains('selected'), 'has selected class');
     });
@@ -91,7 +73,7 @@ describe('AnypointListbox', () => {
   });
 
   describe('_initSelection()', () => {
-    let element = /** @type AnypointListboxElement */ (null);
+    let element: AnypointListboxElement;
     beforeEach(async () => {
       element = await basicFixture();
     });
@@ -112,7 +94,7 @@ describe('AnypointListbox', () => {
   });
 
   describe('_setActiveDescendant()', () => {
-    let element = /** @type AnypointListboxElement */ (null);
+    let element: AnypointListboxElement;
     beforeEach(async () => {
       element = await basicFixture();
     });
@@ -189,7 +171,7 @@ describe('AnypointListbox', () => {
     it('sets aria-activedescendant when selecting an item', async () => {
       const element = await basicFixture();
       element.select(2);
-      const node = element.selectedItem;
+      const node = element.selectedItem!;
       const des = element.getAttribute('aria-activedescendant');
       assert.ok(des, 'aria-activedescendant is set');
       assert.equal(des, node.id);
@@ -206,7 +188,7 @@ describe('AnypointListbox', () => {
 
     it('has aria-activedescendant when pre selected', async () => {
       const element = await selectedFixture();
-      const node = element.selectedItem;
+      const node = element.selectedItem!;
       const des = element.getAttribute('aria-activedescendant');
       assert.ok(des, 'aria-activedescendant is set');
       assert.equal(des, node.id);

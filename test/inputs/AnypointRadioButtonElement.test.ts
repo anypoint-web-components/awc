@@ -1,39 +1,24 @@
 /* eslint-disable lit-a11y/role-has-required-aria-attrs */
 import { fixture, assert, aTimeout, html } from '@open-wc/testing';
 import sinon from 'sinon';
-import '../../anypoint-radio-button.js';
-
-/** @typedef {import('../../src/AnypointRadioButtonElement').default} AnypointRadioButtonElement */
+import { AnypointRadioButtonElement } from '../../index.js'
+import '../../define/anypoint-radio-button.js';
 
 describe('<anypoint-radio-button>', () => {
-  /**
-   * @returns {Promise<AnypointRadioButtonElement>}
-   */
-  async function basicFixture() {
+  async function basicFixture(): Promise<AnypointRadioButtonElement> {
     return fixture(html`<anypoint-radio-button>Label</anypoint-radio-button>`);
   }
-  /**
-   * @returns {Promise<AnypointRadioButtonElement>}
-   */
-  async function noLabelFixture() {
+  async function noLabelFixture(): Promise<AnypointRadioButtonElement> {
     return fixture(html`<anypoint-radio-button>Label</anypoint-radio-button>`);
   }
-  /**
-   * @returns {Promise<AnypointRadioButtonElement>}
-   */
-  async function roleFixture() {
+  
+  async function roleFixture(): Promise<AnypointRadioButtonElement> {
     return fixture(html`<anypoint-radio-button role="checkbox"></anypoint-radio-button>`);
   }
-  /**
-   * @returns {Promise<AnypointRadioButtonElement>}
-   */
-  async function tabindexFixture() {
+  async function tabindexFixture(): Promise<AnypointRadioButtonElement> {
     return fixture(html`<anypoint-radio-button tabindex="-1"></anypoint-radio-button>`);
   }
-  /**
-   * @returns {Promise<AnypointRadioButtonElement>}
-   */
-  async function checkedFixture() {
+  async function checkedFixture(): Promise<AnypointRadioButtonElement> {
     return fixture(html`<anypoint-radio-button checked>Label</anypoint-radio-button>`);
   }
 
@@ -50,6 +35,7 @@ describe('<anypoint-radio-button>', () => {
 
     it('checked set to false sets aria attribute', async () => {
       const element = await checkedFixture();
+      // @ts-ignore
       element.checked = undefined;
       assert.equal(element.getAttribute('aria-checked'), 'false');
     });
@@ -80,8 +66,7 @@ describe('<anypoint-radio-button>', () => {
   });
 
   describe('No label', () => {
-    /** @type AnypointRadioButtonElement */
-    let element;
+    let element: AnypointRadioButtonElement;
 
     beforeEach(async () => {
       element = await noLabelFixture();
@@ -110,8 +95,7 @@ describe('<anypoint-radio-button>', () => {
   });
 
   describe('User input', () => {
-    /** @type AnypointRadioButtonElement */
-    let element;
+    let element: AnypointRadioButtonElement;
 
     beforeEach(async () => {
       element = await noLabelFixture();

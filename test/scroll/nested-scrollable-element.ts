@@ -1,8 +1,8 @@
-import { LitElement, html, css } from 'lit-element';
+import { LitElement, html, css, CSSResult, TemplateResult } from 'lit';
 import './scrollable-element.js';
 
-class XNestedScrollableElement extends LitElement {
-  static get styles() {
+export class XNestedScrollableElement extends LitElement {
+  static get styles(): CSSResult {
     return css`
     :host {
       display: block;
@@ -14,10 +14,16 @@ class XNestedScrollableElement extends LitElement {
     }`;
   }
 
-  render() {
+  render(): TemplateResult {
     return html`<div id="xRegion">
       <scrollable-element id="xScrollable" scrollTarget="xRegion"></scrollable-element>
     </div>`;
   }
 }
 window.customElements.define('nested-scrollable-element', XNestedScrollableElement);
+
+declare global {
+  interface HTMLElementTagNameMap {
+    "nested-scrollable-element": XNestedScrollableElement;
+  }
+}

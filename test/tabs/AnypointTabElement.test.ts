@@ -5,7 +5,8 @@ import {
 } from '@open-wc/testing';
 import sinon from 'sinon';
 import * as MockInteractions from '@polymer/iron-test-helpers/mock-interactions.js';
-import '../../anypoint-tab.js';
+import '../../define/anypoint-tab.js';
+import { AnypointTabElement } from '../../index.js';
 
 describe('AnypointTabElement', () => {
   describe('Initialization', () => {
@@ -16,12 +17,8 @@ describe('AnypointTabElement', () => {
   });
 
   describe('a11y', () => {
-    async function basicFixture() {
-      return fixture(html `
-        <div role="tablist">
-        <anypoint-tab>Content</anypoint-tab>
-        </div>
-      `);
+    async function basicFixture(): Promise<HTMLDivElement> {
+      return fixture(html`<div role="tablist"><anypoint-tab>Content</anypoint-tab></div>`);
     }
 
     it('is accessible', async () => {
@@ -31,13 +28,13 @@ describe('AnypointTabElement', () => {
 
     it('has role attribute', async () => {
       const element = await basicFixture();
-      assert.equal(element.querySelector('anypoint-tab').getAttribute('role'), 'tab');
+      assert.equal(element.querySelector('anypoint-tab')!.getAttribute('role'), 'tab');
     });
   });
 
   describe('Rendering links', () => {
-    async function basicFixture() {
-      return fixture(html `
+    async function basicFixture(): Promise<AnypointTabElement> {
+      return fixture(html`
         <anypoint-tab link>
           <arc-icon icon="menu"></arc-icon>
           <a href="#">Link</a>
@@ -45,11 +42,11 @@ describe('AnypointTabElement', () => {
       `);
     }
 
-    let element;
-    let link;
+    let element: AnypointTabElement;
+    let link: HTMLAnchorElement;
     beforeEach(async () => {
       element = await basicFixture();
-      link = element.querySelector('a');
+      link = element.querySelector('a')!;
     });
 
     it.skip('clicks on a link', () => {

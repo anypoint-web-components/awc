@@ -1,15 +1,12 @@
-import { LitElement, html } from 'lit-element';
+import { LitElement, html, TemplateResult } from 'lit';
 import { MenubarMixin } from '../../index.js';
 
 export class TestMenubar extends MenubarMixin(LitElement) {
-  /**
-   * @returns {HTMLElement}
-   */
-  get extraContent() {
-    return this.shadowRoot.querySelector('.extraContent');
+  get extraContent(): HTMLElement {
+    return this.shadowRoot!.querySelector('.extraContent') as HTMLElement;
   }
 
-  render() {
+  render(): TemplateResult {
     return html`
       <slot></slot>
       <div class="extraContent" tabindex="-1">focusable extra content</div>
@@ -17,3 +14,9 @@ export class TestMenubar extends MenubarMixin(LitElement) {
   }
 }
 window.customElements.define('test-menubar', TestMenubar);
+
+declare global {
+  interface HTMLElementTagNameMap {
+    "test-menubar": TestMenubar;
+  }
+}

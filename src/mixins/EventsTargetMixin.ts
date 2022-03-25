@@ -32,6 +32,15 @@ export interface EventsTargetMixinInterface {
    * @param node A node to which remove event listeners to
    */
   _detachListeners(node: EventTarget): void;
+
+  /**
+   * Removes old handlers (if any) and attaches listeners on new event
+   * event target.
+   *
+   * @param eventsTarget Event target to set handlers on. If not set it
+   * will set handlers on the `window` object.
+   */
+  _eventsTargetChanged(eventsTarget?: EventTarget): void;
 }
 
 /**
@@ -64,7 +73,7 @@ export interface EventsTargetMixinInterface {
  *
  * @mixin
  */
-export const EventsTargetMixin = dedupeMixin(<T extends Constructor<HTMLElement>>(superClass: T): Constructor<EventsTargetMixinInterface> & T => {
+export const EventsTargetMixin = dedupeMixin(<T extends Constructor<Object>>(superClass: T): Constructor<EventsTargetMixinInterface> & T => {
   class MyMixinClass extends superClass {
     _eventsTarget?: EventTarget;
 
@@ -123,11 +132,11 @@ export const EventsTargetMixin = dedupeMixin(<T extends Constructor<HTMLElement>
      * @param eventsTarget Event target to set handlers on. If not set it
      * will set handlers on the `window` object.
      */
-    _eventsTargetChanged(eventsTarget?: EventTarget): void {
+    _eventsTargetChanged(eventsTarget: EventTarget = window): void {
       if (this._oldEventsTarget) {
         this._detachListeners(this._oldEventsTarget);
       }
-      this._oldEventsTarget = eventsTarget || window;
+      this._oldEventsTarget = eventsTarget;
       this._attachListeners(this._oldEventsTarget);
     }
 

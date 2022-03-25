@@ -1,81 +1,56 @@
 import { aTimeout, fixture, expect, assert, nextFrame, html } from '@open-wc/testing';
 import sinon from 'sinon';
-import '../../anypoint-item.js';
-import '../../anypoint-icon-item.js';
-
-/** @typedef {import('../..').AnypointItemElement} AnypointItemElement */
+import '../../define/anypoint-item.js';
+import '../../define/anypoint-icon-item.js';
+import { AnypointItemElement } from '../../index.js';
 
 describe('<anypoint-item>', () => {
-  /**
-   * @returns {Promise<HTMLDivElement>}
-   */
-  async function itemFixture() {
+  async function itemFixture(): Promise<HTMLDivElement> {
     return fixture(html`<div role="listbox">
       <anypoint-item>item</anypoint-item>
     </div>`);
   }
 
-  /**
-   * @returns {Promise<HTMLDivElement>}
-   */
-  async function iconItemFixture() {
+  async function iconItemFixture(): Promise<HTMLDivElement> {
     return fixture(html`<div role="listbox">
       <anypoint-icon-item>item</anypoint-icon-item>
     </div>`);
   }
 
-  /**
-   * @returns {Promise<HTMLDivElement>}
-   */
-  async function itemWithInputFixture() {
+  async function itemWithInputFixture(): Promise<HTMLDivElement> {
     return fixture(html`<div role="list">
       <anypoint-item><input></anypoint-item>
     </div>`);
   }
 
-  /**
-   * @returns {Promise<HTMLDivElement>}
-   */
-  async function iconItemWithInputFixture() {
+  async function iconItemWithInputFixture(): Promise<HTMLDivElement> {
     return fixture(html`<div role="list">
       <anypoint-icon-item><input></anypoint-icon-item>
     </div>`);
   }
 
-  /**
-   * @returns {Promise<AnypointItemElement>}
-   */
-  async function itemRoleFixture() {
+  async function itemRoleFixture(): Promise<AnypointItemElement> {
     return fixture(html`<anypoint-item role="button">item</anypoint-item>`);
   }
 
-  /**
-   * @returns {Promise<AnypointItemElement>}
-   */
-  async function itemTabindexFixture() {
+  async function itemTabindexFixture(): Promise<AnypointItemElement> {
     return fixture(html`<anypoint-item tabindex="-1">item</anypoint-item>`);
   }
 
-  /**
-   * @returns {Promise<AnypointItemElement>}
-   */
-  async function iconItemRoleFixture() {
+  async function iconItemRoleFixture(): Promise<AnypointItemElement> {
     return fixture(html`<anypoint-icon-item role="button">item</anypoint-icon-item>`);
   }
 
-  /**
-   * @returns {Promise<AnypointItemElement>}
-   */
-  async function iconItemTabindexFixture() {
+  async function iconItemTabindexFixture(): Promise<AnypointItemElement> {
     return fixture(html`<anypoint-icon-item tabindex="-1">item</anypoint-icon-item>`);
   }
 
   describe('anypoint-item basic', () => {
-    let item = /** @type AnypointItemElement */ (null);
-    let clickHandler;
+    let item: AnypointItemElement;
+    let clickHandler: sinon.SinonSpy<any[], any>;
     beforeEach(async () => {
       const element = await itemFixture();
-      item = element.querySelector('anypoint-item');
+      item = element.querySelector('anypoint-item')!;
       clickHandler = sinon.spy();
       item.addEventListener('click', clickHandler);
     });
@@ -115,11 +90,11 @@ describe('<anypoint-item>', () => {
   });
 
   describe('anypoint-icon-item basic', () => {
-    let item = /** @type AnypointItemElement */ (null);
-    let clickHandler;
+    let item: AnypointItemElement;
+    let clickHandler: sinon.SinonSpy<any[], any>;
     beforeEach(async () => {
       const element = await iconItemFixture();
-      item = element.querySelector('anypoint-icon-item');
+      item = element.querySelector('anypoint-icon-item')!;
       clickHandler = sinon.spy();
       item.addEventListener('click', clickHandler);
     });
@@ -150,8 +125,8 @@ describe('<anypoint-item>', () => {
   describe('clickable element inside item', () => {
     it('anypoint-item: space in child native input does not trigger a click event', async () => {
       const f = await itemWithInputFixture();
-      const outerItem = f.querySelector('anypoint-item');
-      const innerInput = f.querySelector('input');
+      const outerItem = f.querySelector('anypoint-item')!;
+      const innerInput = f.querySelector('input')!;
       const itemClickHandler = sinon.spy();
       outerItem.addEventListener('click', itemClickHandler);
       innerInput.focus();
@@ -174,8 +149,8 @@ describe('<anypoint-item>', () => {
 
     it('anypoint-icon-item: space in child input does not trigger a click event', async () => {
       const f = await iconItemWithInputFixture();
-      const outerItem = f.querySelector('anypoint-icon-item');
-      const innerInput = f.querySelector('input');
+      const outerItem = f.querySelector('anypoint-icon-item')!;
+      const innerInput = f.querySelector('input')!;
       const itemClickHandler = sinon.spy();
       outerItem.addEventListener('click', itemClickHandler);
       
@@ -199,13 +174,13 @@ describe('<anypoint-item>', () => {
   describe('item a11y tests', () => {
     it('item has role="listitem"', async () => {
       const element = await itemFixture();
-      const item = element.querySelector('anypoint-item');
+      const item = element.querySelector('anypoint-item')!;
       assert.equal(item.getAttribute('role'), 'option', 'has role="option"');
     });
 
     it('icon item has role="listitem"', async () => {
       const element = await iconItemFixture();
-      const iconItem = element.querySelector('anypoint-icon-item');
+      const iconItem = element.querySelector('anypoint-icon-item')!;
       assert.equal(iconItem.getAttribute('role'), 'option', 'has role="option"');
     });
 
@@ -221,7 +196,7 @@ describe('<anypoint-item>', () => {
 
     it('item has tabindex="0"', async () => {
       const element = await itemFixture();
-      const iconItem = element.querySelector('anypoint-item');
+      const iconItem = element.querySelector('anypoint-item')!;
       assert.equal(iconItem.getAttribute('tabindex'), '0', 'has tabindex="0"');
     });
 
@@ -232,7 +207,7 @@ describe('<anypoint-item>', () => {
 
     it('icon item has tabindex="0"', async () => {
       const element = await iconItemFixture();
-      const iconItem = element.querySelector('anypoint-icon-item');
+      const iconItem = element.querySelector('anypoint-icon-item')!;
       assert.equal(iconItem.getAttribute('tabindex'), '0', 'has tabindex="0"');
     });
 

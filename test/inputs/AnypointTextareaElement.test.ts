@@ -1,24 +1,17 @@
 import { fixture, assert, nextFrame, html } from '@open-wc/testing';
 import * as MockInteractions from '@polymer/iron-test-helpers/mock-interactions.js';
-import '../../anypoint-textarea.js';
+import { AnypointTextareaElement } from '../../index.js'
+import '../../define/anypoint-textarea.js';
 
 // Because input and textarea uses the same input it only tests for textarea specific
 // code as everything else was tested in input element.
 
-/** @typedef {import('../../index').AnypointTextareaElement} AnypointTextareaElement */
-
 describe('<anypoint-textarea>', () => {
-  /**
-   * @return {Promise<AnypointTextareaElement>}
-   */
-  async function basicFixture() {
+  async function basicFixture(): Promise<AnypointTextareaElement> {
     return fixture(html`<anypoint-textarea></anypoint-textarea>`);
   }
 
-  /**
-   * @return {Promise<AnypointTextareaElement>}
-   */
-  async function noLabelFloatFixture() {
+  async function noLabelFloatFixture(): Promise<AnypointTextareaElement> {
     return fixture(html`<anypoint-textarea nolabelfloat>
       <label slot="label">Label</label>
     </anypoint-textarea>`);
@@ -62,7 +55,7 @@ describe('<anypoint-textarea>', () => {
   });
 
   describe('_infoAddonClass getter', () => {
-    let element;
+    let element: AnypointTextareaElement;
     beforeEach(async () => {
       element = await basicFixture();
     });
@@ -93,7 +86,7 @@ describe('<anypoint-textarea>', () => {
   });
 
   describe('_errorAddonClass getter', () => {
-    let element;
+    let element: AnypointTextareaElement;
     beforeEach(async () => {
       element = await basicFixture();
     });
@@ -124,7 +117,7 @@ describe('<anypoint-textarea>', () => {
   });
 
   describe('Info message', () => {
-    let element;
+    let element: AnypointTextareaElement;
     beforeEach(async () => {
       element = await basicFixture();
       element.infoMessage = 'test';
@@ -132,12 +125,12 @@ describe('<anypoint-textarea>', () => {
     });
 
     it('renders info message', () => {
-      const node = element.shadowRoot.querySelector('p.info');
+      const node = element.shadowRoot!.querySelector('p.info')!;
       assert.ok(node);
     });
 
     it('info message is visible', () => {
-      const node = element.shadowRoot.querySelector('p.info');
+      const node = element.shadowRoot!.querySelector('p.info')!;
       assert.isFalse(node.classList.contains('label-hidden'));
     });
 
@@ -145,13 +138,13 @@ describe('<anypoint-textarea>', () => {
       element.invalid = true;
       element.invalidMessage = 'test msg';
       await nextFrame();
-      const node = element.shadowRoot.querySelector('p.info');
+      const node = element.shadowRoot!.querySelector('p.info')!;
       assert.isTrue(node.classList.contains('label-hidden'));
     });
   });
 
   describe('Error message', () => {
-    let element;
+    let element: AnypointTextareaElement;
     beforeEach(async () => {
       element = await basicFixture();
       element.invalidMessage = 'test';
@@ -159,31 +152,31 @@ describe('<anypoint-textarea>', () => {
     });
 
     it('renders error message', () => {
-      const node = element.shadowRoot.querySelector('p.invalid');
+      const node = element.shadowRoot!.querySelector('p.invalid');
       assert.ok(node);
     });
 
     it('info message is visible when error', async () => {
       element.invalid = true;
       await nextFrame();
-      const node = element.shadowRoot.querySelector('p.invalid');
+      const node = element.shadowRoot!.querySelector('p.invalid')!;
       assert.isFalse(node.classList.contains('label-hidden'));
     });
 
     it('hides info message when not invalid', async () => {
-      const node = element.shadowRoot.querySelector('p.invalid');
+      const node = element.shadowRoot!.querySelector('p.invalid')!;
       assert.isTrue(node.classList.contains('label-hidden'));
     });
   });
 
   describe('noLabelFloat', () => {
-    let element;
+    let element: AnypointTextareaElement;
     beforeEach(async () => {
       element = await noLabelFloatFixture();
     });
 
     it('renders label by default', () => {
-      const label = element.shadowRoot.querySelector('.label');
+      const label = element.shadowRoot!.querySelector('.label')!;
       const { display } = getComputedStyle(label);
       assert.notEqual(display, 'none');
     });
@@ -191,31 +184,22 @@ describe('<anypoint-textarea>', () => {
     it('hides label when has value', async () => {
       element.value = 'test';
       await nextFrame();
-      const label = element.shadowRoot.querySelector('.label');
+      const label = element.shadowRoot!.querySelector('.label')!;
       const { display } = getComputedStyle(label);
       assert.equal(display, 'none');
     });
   });
 
   describe('a11y', () => {
-    /**
-     * @return {Promise<AnypointTextareaElement>}
-     */
-    async function a11yBasicFixture() {
+    async function a11yBasicFixture(): Promise<AnypointTextareaElement> {
       return fixture(`<anypoint-textarea value="test value">
       <label slot="label">test label</label>
       </anypoint-textarea>`);
     }
-    /**
-     * @return {Promise<AnypointTextareaElement>}
-     */
-    async function a11yNoLabelFixture() {
+    async function a11yNoLabelFixture(): Promise<AnypointTextareaElement> {
       return fixture(`<anypoint-textarea value="test value"></anypoint-textarea>`);
     }
-    /**
-     * @return {Promise<AnypointTextareaElement>}
-     */
-    async function formFixture() {
+    async function formFixture(): Promise<AnypointTextareaElement> {
       return fixture(`
       <form>
         <fieldset name="form-fields">

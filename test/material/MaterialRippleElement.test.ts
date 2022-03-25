@@ -1,66 +1,45 @@
 /* eslint-disable no-plusplus */
 import { assert, fixture, html, nextFrame, oneEvent } from '@open-wc/testing';
-import '../../material-ripple.js';
-
-/** @typedef {import('../..').MaterialRippleElement} MaterialRippleElement */
+import '../../define/material-ripple.js';
+import { MaterialRippleElement } from '../../index.js';
 
 describe('MaterialRippleElement', () => {
-  /**
-   * @returns {Promise<HTMLElement>} 
-   */
-  async function trivialRipple() {
+  async function trivialRipple(): Promise<HTMLElement> {
     return fixture(html`
     <div id="RippleContainer">
       <material-ripple></material-ripple>
     </div>
     `);
   }
-  /**
-   * @returns {Promise<HTMLElement>} 
-   */
-  async function centeringRipple() {
+  async function centeringRipple(): Promise<HTMLElement> {
     return fixture(html`
     <div id="RippleContainer">
       <material-ripple center></material-ripple>
     </div>
     `);
   }
-  /**
-   * @returns {Promise<HTMLElement>} 
-   */
-  async function recenteringRipple() {
+  async function recenteringRipple(): Promise<HTMLElement> {
     return fixture(html`
     <div id="RippleContainer">
       <material-ripple recenters></material-ripple>
     </div>
     `);
   }
-  /**
-   * @returns {Promise<HTMLElement>} 
-   */
-  async function noinkTarget() {
+  async function noinkTarget(): Promise<HTMLElement> {
     return fixture(html`
     <div id="RippleContainer">
       <material-ripple noink></material-ripple>
     </div>
     `);
   }
-  /**
-   * @returns {Promise<HTMLElement>} 
-   */
-  async function noRipple() {
+  async function noRipple(): Promise<HTMLElement> {
     return fixture(html`
     <div id="RippleContainer">
     </div>
     `);
   }
 
-  /**
-   * @param {HTMLElement} ripple
-   * @param {number=} x
-   * @param {number=} y
-   */
-  function downEvent(ripple, x, y) {
+  function downEvent(ripple: HTMLElement, x?: number, y?: number): void {
     const box = ripple.getBoundingClientRect();
     const e = new MouseEvent('mousedown', {
       cancelable: true,
@@ -73,10 +52,7 @@ describe('MaterialRippleElement', () => {
     ripple.dispatchEvent(e);
   }
 
-  /**
-   * @param {HTMLElement} ripple
-   */
-  function upEvent(ripple) {
+  function upEvent(ripple: HTMLElement): void {
     const box = ripple.getBoundingClientRect();
     const e = new MouseEvent('mouseup', {
       cancelable: true,
@@ -90,14 +66,12 @@ describe('MaterialRippleElement', () => {
   }
 
   describe('mouse down event', () => {
-    /** @type HTMLElement */
-    let container;
-    /** @type MaterialRippleElement */
-    let ripple;
+    let container: HTMLElement;
+    let ripple: MaterialRippleElement;
 
     beforeEach(async () => {
       container = await trivialRipple();
-      ripple = container.querySelector('material-ripple');
+      ripple = container.querySelector('material-ripple')!;
     });
 
     it('creates a ripple', () => {
@@ -116,14 +90,12 @@ describe('MaterialRippleElement', () => {
   });
 
   describe('#noink', () => {
-    /** @type HTMLElement */
-    let container;
-    /** @type MaterialRippleElement */
-    let ripple;
+    let container: HTMLElement;
+    let ripple: MaterialRippleElement;
 
     beforeEach(async () => {
       container = await noinkTarget();
-      ripple = container.querySelector('material-ripple');
+      ripple = container.querySelector('material-ripple')!;
     });
 
     it('does not create a ripple', () => {
@@ -140,14 +112,12 @@ describe('MaterialRippleElement', () => {
   });
 
   describe('#center', () => {
-    /** @type HTMLElement */
-    let container;
-    /** @type MaterialRippleElement */
-    let ripple;
+    let container: HTMLElement;
+    let ripple: MaterialRippleElement;
 
     beforeEach(async () => {
       container = await centeringRipple();
-      ripple = container.querySelector('material-ripple');
+      ripple = container.querySelector('material-ripple')!;
     });
 
     it('centers the ripple', async () => {
@@ -169,14 +139,12 @@ describe('MaterialRippleElement', () => {
   });
 
   describe('#recenters', () => {
-    /** @type HTMLElement */
-    let container;
-    /** @type MaterialRippleElement */
-    let ripple;
+    let container: HTMLElement;
+    let ripple: MaterialRippleElement;
 
     beforeEach(async () => {
       container = await recenteringRipple();
-      ripple = container.querySelector('material-ripple');
+      ripple = container.querySelector('material-ripple')!;
     });
 
     it('gravitates towards the center', async () => {
@@ -193,8 +161,7 @@ describe('MaterialRippleElement', () => {
   });
 
   describe('removing a ripple', () => {
-    /** @type HTMLElement */
-    let container;
+    let container: HTMLElement;
 
     beforeEach(async () => {
       container = await noRipple();
@@ -227,8 +194,7 @@ describe('MaterialRippleElement', () => {
   });
 
   describe('avoid double transitionend event', () => {
-    /** @type HTMLElement */
-    let container;
+    let container: HTMLElement;
 
     beforeEach(async () => {
       container = await noRipple();

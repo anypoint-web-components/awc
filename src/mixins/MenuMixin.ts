@@ -83,6 +83,12 @@ export interface MenuMixinInterface extends MultiSelectableMixinInterface {
    */
   __highlighteditem: HTMLElement | null;
 
+  _searchText?: string;
+
+  _shiftTabPressed?: boolean;
+
+  _clearSearchTextDebouncer: any;
+
   _multiChanged(value: boolean): void;
 
   _onItemsChanged(e: Event): void;
@@ -112,6 +118,8 @@ export interface MenuMixinInterface extends MultiSelectableMixinInterface {
   _onEscKey(): void;
 
   _focusWithKeyboardEvent(e: KeyboardEvent): void;
+
+  _clearSearchText(): void;
 
   /**
    * Resets all tabindex attributes to the appropriate value based on the

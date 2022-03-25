@@ -1,19 +1,22 @@
-import { fixture, assert } from '@open-wc/testing';
+/* eslint-disable import/no-duplicates */
+import { fixture, assert, html } from '@open-wc/testing';
 import sinon from 'sinon';
-import './test-element.js';
-import './native-element.js';
+import { EventableElement } from './eventable-element.js';
+import { EventableNativeElement } from './native-element.js';
 import { EventableObject } from './eventable-object.js';
+import './eventable-element.js';
+import './native-element.js';
 
 describe('EventsTargetMixin', () => {
-  async function basicFixture() {
-    return fixture(`<eventable-element></eventable-element>`);
+  async function basicFixture(): Promise<EventableElement> {
+    return fixture(html`<eventable-element></eventable-element>`);
   }
 
-  async function nativeFixture() {
-    return fixture(`<eventable-native-element></eventable-native-element>`);
+  async function nativeFixture(): Promise<EventableNativeElement> {
+    return fixture(html`<eventable-native-element></eventable-native-element>`);
   }
 
-  function fire(type, bubbles, node) {
+  function fire(type: string, bubbles: boolean, node?: EventTarget): CustomEvent {
     const event = new CustomEvent(type, {
       cancelable: true,
       bubbles,
@@ -24,41 +27,41 @@ describe('EventsTargetMixin', () => {
   }
 
   describe('Listens on default', () => {
-    let element;
+    let element: EventableElement;
     beforeEach(async () => {
       element = await basicFixture();
     });
 
-    it('Receives an event from bubbling', () => {
+    it('receives an event from bubbling', () => {
       fire('test-event', true);
       assert.isTrue(element.calledOnce);
     });
 
-    it('Do not receives an event from parent', () => {
-      fire('test-event', false, document.body.parentElement);
+    it('does not receive an event from parent', () => {
+      fire('test-event', false, document.body.parentElement!);
       assert.isFalse(element.calledOnce);
     });
   });
 
   describe('Changes event listener', () => {
-    let element;
+    let element: EventableElement;
     beforeEach(async () => {
       element = await basicFixture();
     });
 
-    it('Receives on body', () => {
+    it('receives on body', () => {
       element.eventsTarget = document.body;
       fire('test-event', false, document.body);
       assert.isTrue(element.calledOnce);
     });
 
-    it('Do not receives on parent', () => {
+    it('does not receive on parent', () => {
       element.eventsTarget = window;
       fire('test-event', false, document.body);
       assert.isFalse(element.called);
     });
 
-    it('Reseives on self', () => {
+    it('receives on self', () => {
       element.eventsTarget = element;
       fire('test-event', false, element);
       assert.isTrue(element.calledOnce);
@@ -73,7 +76,7 @@ describe('EventsTargetMixin', () => {
   });
 
   describe('Native WC', () => {
-    let element;
+    let element: EventableNativeElement;
     beforeEach(async () => {
       element = await nativeFixture();
     });
@@ -90,7 +93,7 @@ describe('EventsTargetMixin', () => {
     });
 
     it('Removes event listener on detached', () => {
-      element.parentNode.removeChild(element);
+      element.parentNode!.removeChild(element);
       fire('test-event', true);
       assert.isFalse(element.called);
     });

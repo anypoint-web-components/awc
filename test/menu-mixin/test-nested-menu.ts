@@ -1,11 +1,11 @@
-import { LitElement, html, css } from 'lit-element';
+/* eslint-disable import/no-duplicates */
+import { LitElement, html, TemplateResult, css, CSSResult } from 'lit';
 import { MenuMixin } from '../../index.js';
 import './test-menu.js';
-
-/** @typedef {import('./test-menu').TestMenu} TestMenu */
+import { TestMenu } from './test-menu.js';
 
 export class TestNestedMenu extends MenuMixin(LitElement) {
-  static get styles() {
+  static get styles(): CSSResult {
     return css`
       div {
         display: block;
@@ -22,14 +22,11 @@ export class TestNestedMenu extends MenuMixin(LitElement) {
     `;
   }
 
-  /**
-   * @returns {TestMenu}
-   */
-  get actualMenu() {
-    return this.shadowRoot.querySelector('.actualMenu');
+  get actualMenu(): TestMenu {
+    return this.shadowRoot!.querySelector('.actualMenu') as TestMenu;
   }
 
-  render() {
+  render(): TemplateResult {
     return html`
       <test-menu class="actualMenu">
         <div>item 1</div>
@@ -44,3 +41,9 @@ export class TestNestedMenu extends MenuMixin(LitElement) {
   }
 }
 window.customElements.define('test-nested-menu', TestNestedMenu);
+
+declare global {
+  interface HTMLElementTagNameMap {
+    "test-nested-menu": TestNestedMenu;
+  }
+}
