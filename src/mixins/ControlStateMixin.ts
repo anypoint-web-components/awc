@@ -25,6 +25,12 @@ export interface ControlStateMixinInterface {
    */
   disabled?: boolean;
 
+  _focused?: boolean;
+
+  _disabled?: boolean;
+
+  _oldTabIndex?: string | null;
+
   /**
    * Calls `_controlStateChanged()` method if it is defined in the
    * prototype chain.

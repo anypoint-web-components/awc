@@ -3,45 +3,30 @@ import sinon from 'sinon';
 import * as MockInteractions from '@polymer/iron-test-helpers/mock-interactions.js';
 import { keyDown, keyUp, keyDownUp } from '../lib/helpers.js';
 import './test-elements.js';
-import '../../anypoint-input.js';
-
-/** @typedef {import('./test-elements').TestButton} TestButton */
-/** @typedef {import('./test-elements').TestLightDom} TestLightDom */
+import { TestButton, TestLightDom } from './test-elements.js';
+import '../../define/anypoint-input.js';
 
 describe('Active state tests', () => {
-  /**
-   * @returns {Promise<TestButton>}
-   */
-  async function trivialActiveState() {
+  async function trivialActiveState(): Promise<TestButton> {
     return fixture(html`<test-button></test-button>`);
   }
 
-  /**
-   * @returns {Promise<TestButton>}
-   */
-  async function toggleActiveState() {
+  async function toggleActiveState(): Promise<TestButton> {
     return fixture(html`<test-button toggles></test-button>`);
   }
 
-  /**
-   * @returns {Promise<TestLightDom>}
-   */
-  async function buttonWithNativeInput() {
+  async function buttonWithNativeInput(): Promise<TestLightDom> {
     return fixture(html`<test-light-dom><input id="input"></test-light-dom>`);
   }
 
-  /**
-   * @returns {Promise<TestLightDom>}
-   */
-  async function buttonWithPaperInput() {
+  async function buttonWithPaperInput(): Promise<TestLightDom> {
     return fixture(
       html`<test-light-dom><anypoint-input id="input"></anypoint-input></test-light-dom>`
     );
   }
 
   describe('active-state', () => {
-    /** @type TestButton */
-    let activeTarget;
+    let activeTarget: TestButton;
     beforeEach(async () => {
       activeTarget = await trivialActiveState();
     });
@@ -235,10 +220,9 @@ describe('Active state tests', () => {
     describe('nested native input inside button', () => {
       it('space in light child input does not trigger a button click event', async () => {
         const item = await buttonWithNativeInput();
-        const input = item.querySelector('#input');
+        const input = item.querySelector('#input') as HTMLElement;
         const itemClickHandler = sinon.spy();
         item.addEventListener('click', itemClickHandler);
-        // @ts-ignore
         input.focus();
         MockInteractions.pressSpace(input);
         await aTimeout(20);
@@ -258,10 +242,9 @@ describe('Active state tests', () => {
     describe('nested anypoint-input inside button', () => {
       it('space in light child input does not trigger a button click event', async () => {
         const item = await buttonWithPaperInput();
-        const input = item.querySelector('#input');
+        const input = item.querySelector('#input') as HTMLElement;
         const itemClickHandler = sinon.spy();
         item.addEventListener('click', itemClickHandler);
-        // @ts-ignore
         input.focus();
         MockInteractions.pressSpace(input);
         await aTimeout(20);

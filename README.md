@@ -1,6 +1,7 @@
 # Anypoint Web Components
 
-This module consists of all base Anypoint web components. Use them to build an OSS app UI using Material Design with an ability to switch to Anypoint theme on demand.
+Base UI web components made for Material Design with the compatibility layer with Anypoint Platform.
+Use them to build an OSS app UI using Material Design with an ability to switch to Anypoint theme on demand.
 
 [![tests](https://github.com/anypoint-web-components/awc/actions/workflows/deployment.yml/badge.svg)](https://github.com/anypoint-web-components/awc/actions/workflows/deployment.yml)
 
@@ -24,7 +25,7 @@ npm install --save @anypoint-web-components/awc
 <html>
   <head>
     <script type="module">
-      import '@anypoint-web-components/awc/anypoint-item.js';
+      import '@anypoint-web-components/awc/dist/define/anypoint-item.js';
     </script>
   </head>
   <body>

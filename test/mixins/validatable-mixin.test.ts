@@ -1,4 +1,6 @@
+/* eslint-disable @typescript-eslint/explicit-function-return-type */
 import { nextFrame, fixture, assert } from '@open-wc/testing';
+import { TestValidatable } from './test-validatable.js';
 import './test-validatable.js';
 import '../../demo/cats-only.js';
 import '../../demo/minimum-length.js';
@@ -8,18 +10,19 @@ import '../../demo/minimum-length.js';
 [
   ['cats-only', 'Error cat'],
   ['minimum-length', 'Error length'],
-].forEach(item => {
+].forEach((item) => {
   const validator = document.createElement(item[0]);
   // @ts-ignore
   validator.message = item[1];
   document.body.appendChild(validator);
 });
+
 describe('ValidatableMixin', () => {
-  async function basicFixture() {
+  async function basicFixture(): Promise<TestValidatable> {
     return fixture(`<test-validatable></test-validatable>`);
   }
 
-  async function invalidFixture() {
+  async function invalidFixture(): Promise<TestValidatable> {
     return fixture(`<test-validatable invalid></test-validatable>`);
   }
 
@@ -32,7 +35,7 @@ describe('ValidatableMixin', () => {
   });
 
   describe('Validation', () => {
-    let input;
+    let input: TestValidatable;
 
     beforeEach(async () => {
       input = await basicFixture();
@@ -60,7 +63,7 @@ describe('ValidatableMixin', () => {
       input.validator = 'cats-only minimum-length';
       // validates against `cats-only` but not `minimum-length`
       input.validate('cat');
-      const states = input.validationStates;
+      const states = input.validationStates!;
 
       assert.isFalse(states[1].valid, 'state.valid is false');
       assert.isString(states[1].message, 'state.message is string');
@@ -70,14 +73,14 @@ describe('ValidatableMixin', () => {
       input.validator = 'cats-only minimum-length';
       // validates against `cats-only` but not `minimum-length`
       input.validate('cat');
-      const states = input.validationStates;
+      const states = input.validationStates!;
 
       assert.isTrue(states[0].valid, 'state.valid is true');
     });
   });
 
   describe('oninvalid', () => {
-    let element;
+    let element: TestValidatable;
     beforeEach(async () => {
       element = await basicFixture();
     });
@@ -96,7 +99,8 @@ describe('ValidatableMixin', () => {
       };
       element.oninvalid = f;
       element.invalid = true;
-      element.oninvalid = null;
+      // @ts-ignore
+      element.oninvalid = undefined;
       assert.isTrue(called);
     });
 
@@ -112,7 +116,8 @@ describe('ValidatableMixin', () => {
       element.oninvalid = f1;
       element.oninvalid = f2;
       element.invalid = true;
-      element.oninvalid = null;
+      // @ts-ignore
+      element.oninvalid = undefined;
       assert.isFalse(called1);
       assert.isTrue(called2);
     });

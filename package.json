@@ -5,6 +5,7 @@
   "license": "Apache-2.0",
   "main": "dist/index.js",
   "module": "dist/index.js",
+  "types": "dist/index.d.ts",
   "type": "module",
   "author": {
     "name": "Pawel Uchida-Psztyc",

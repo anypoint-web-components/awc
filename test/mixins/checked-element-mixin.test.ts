@@ -1,35 +1,25 @@
+/* eslint-disable @typescript-eslint/explicit-function-return-type */
 import { fixture, assert } from '@open-wc/testing';
 import sinon from 'sinon';
 import './simple-checkbox.js';
+import { SimpleCheckbox } from './simple-checkbox.js';
 
 /** @typedef {import('./simple-checkbox').SimpleCheckbox} SimpleCheckbox */
 
 describe('Active state tests', () => {
-  /**
-   * @returns {Promise<SimpleCheckbox>}
-   */
-  async function basicFixture() {
+  async function basicFixture(): Promise<SimpleCheckbox> {
     return fixture(`<simple-checkbox></simple-checkbox>`);
   }
 
-  /**
-   * @returns {Promise<SimpleCheckbox>}
-   */
-  async function checkedFixture() {
+  async function checkedFixture(): Promise<SimpleCheckbox> {
     return fixture(`<simple-checkbox checked></simple-checkbox>`);
   }
 
-  /**
-   * @returns {Promise<SimpleCheckbox>}
-   */
-  async function withValueFixture() {
+  async function withValueFixture(): Promise<SimpleCheckbox> {
     return fixture(`<simple-checkbox value="batman"></simple-checkbox>`);
   }
 
-  /**
-   * @returns {Promise<SimpleCheckbox>}
-   */
-  async function requiredFixture() {
+  async function requiredFixture(): Promise<SimpleCheckbox> {
     return fixture(`<simple-checkbox required></simple-checkbox>`);
   }
 
@@ -103,6 +93,7 @@ describe('Active state tests', () => {
       const c = await basicFixture();
       c.value = 'abc';
       assert.equal(c.value, 'abc', 'returns "abc"');
+      // @ts-ignore
       c.value = undefined;
       assert.equal(c.value, 'on', 'returns "on"');
     });
@@ -130,7 +121,7 @@ describe('Active state tests', () => {
   });
 
   describe('Change events', () => {
-    let element = /** @type SimpleCheckbox */ (null);
+    let element: SimpleCheckbox;
     beforeEach(async () => {
       element = await basicFixture();
     });
@@ -167,13 +158,13 @@ describe('Active state tests', () => {
   });
 
   describe('checkedchange', () => {
-    let element = /** @type SimpleCheckbox */ (null);
+    let element: SimpleCheckbox;
     beforeEach(async () => {
       element = await basicFixture();
     });
 
     it('Getter returns previously registered handler', () => {
-      assert.equal(element.oncheckedchange, null);``
+      assert.equal(element.oncheckedchange, null);
       const f = () => {};
       element.oncheckedchange = f;
       assert.isTrue(element.oncheckedchange === f);
@@ -186,7 +177,7 @@ describe('Active state tests', () => {
       };
       element.oncheckedchange = f;
       element.checked = true;
-      element.oncheckedchange = null;
+      element.oncheckedchange = undefined;
       assert.isTrue(called);
     });
 
@@ -202,7 +193,7 @@ describe('Active state tests', () => {
       element.oncheckedchange = f1;
       element.oncheckedchange = f2;
       element.checked = true;
-      element.oncheckedchange = null;
+      element.oncheckedchange = undefined;
       assert.isFalse(called1);
       assert.isTrue(called2);
     });

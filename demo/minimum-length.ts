@@ -1,6 +1,7 @@
+import { LitElement } from 'lit';
 import { ValidatorMixin } from '../src/mixins/ValidatorMixin.js';
 
-class MinimumLength extends ValidatorMixin(HTMLElement) {
+class MinimumLength extends ValidatorMixin(LitElement) {
   static get observedAttributes(): string[] {
     return ['message'];
   }

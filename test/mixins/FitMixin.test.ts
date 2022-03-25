@@ -1,5 +1,5 @@
 import { fixture, assert, nextFrame, html, aTimeout } from '@open-wc/testing';
-
+import { TestFit } from './test-fit.js';
 import './test-fit.js';
 
 const s = document.createElement('style');
@@ -85,46 +85,46 @@ tpl.id = 'ipsum';
 document.body.appendChild(tpl);
 
 describe('FitMixin', () => {
-  async function basicFixture() {
+  async function basicFixture(): Promise<TestFit> {
     return fixture(html`<test-fit>Basic</test-fit>`);
   }
 
-  async function positionedXyFixture() {
+  async function positionedXyFixture(): Promise<TestFit> {
     return fixture(html`
       <test-fit autoFitOnAttach class="sized-x positioned-left positioned-top">
         Sized (x/y), positioned/positioned
       </test-fit>`);
   }
 
-  async function inlinePositionedXyFixture() {
+  async function inlinePositionedXyFixture(): Promise<TestFit> {
     return fixture(html`
     <test-fit autoFitOnAttach class="sized-x sized-y" style="position:absolute;left:100px;top:100px;">
       Sized (x/y), positioned/positioned
     </test-fit>`);
   }
 
-  async function absoluteFixture() {
+  async function absoluteFixture(): Promise<TestFit> {
     return fixture(html`
     <test-fit autoFitOnAttach class="absolute">
       Absolutely positioned
     </test-fit>`);
   }
 
-  async function sizedXyFixture() {
+  async function sizedXyFixture(): Promise<TestFit> {
     return fixture(html`
     <test-fit autoFitOnAttach class="sized-x sized-y">
       Sized (x/y), auto center/center
     </test-fit>`);
   }
 
-  async function sizedXFixture() {
+  async function sizedXFixture(): Promise<TestFit> {
     return fixture(html`
     <test-fit autoFitOnAttach class="sized-x">
       Sized (x), auto center/center
     </test-fit>`);
   }
 
-  async function sectionedFixture() {
+  async function sectionedFixture(): Promise<TestFit> {
     return fixture(html`
     <test-fit autoFitOnAttach class="sized-x">
       <div>
@@ -134,7 +134,7 @@ describe('FitMixin', () => {
     </test-fit>`);
   }
 
-  async function constrainTargetFixture() {
+  async function constrainTargetFixture(): Promise<HTMLDivElement> {
     return fixture(html`
     <div class="constrain">
       <test-fit autoFitOnAttach class="el sized-x sized-y">
@@ -145,7 +145,7 @@ describe('FitMixin', () => {
     </div>`);
   }
 
-  async function offscreenContainerFixture() {
+  async function offscreenContainerFixture(): Promise<HTMLDivElement> {
     return fixture(html`
     <div style="position: fixed; top: -1px; left: 0;">
       <test-fit autoFitOnAttach class="el sized-x">
@@ -156,7 +156,7 @@ describe('FitMixin', () => {
     </div>`);
   }
 
-  async function hostPropertiesFixture() {
+  async function hostPropertiesFixture(): Promise<TestFit> {
     return fixture(html`<test-fit my-prop="test-value"></test-fit>`);
   }
 
@@ -168,18 +168,18 @@ describe('FitMixin', () => {
   //   </test-fit>`);
   // }
 
-  function makeScrolling(el) {
+  function makeScrolling(el: TestFit): void {
     el.classList.add('scrolling');
-    const template = document.getElementById('ipsum');
+    const template = document.getElementById('ipsum') as HTMLTemplateElement;
     for (let i = 0; i < 20; i += 1) {
       el.appendChild(template.content.cloneNode(true));
     }
   }
 
-  function intersects(r1, r2) {
+  function intersects(r1: any, r2: any): boolean {
     return !(
-      r2.left >= r1.right || r2.right <= r1.left || r2.top >= r1.bottom ||
-      r2.bottom <= r1.top);
+      r2.left >= r1.right || r2.right <= r1.left || r2.top >= r1.bottom
+      || r2.bottom <= r1.top);
   }
 
   describe('Basic', () => {
@@ -197,24 +197,16 @@ describe('FitMixin', () => {
       const element = await basicFixture();
       element.constrain();
       const style = getComputedStyle(element);
-      assert.equal(style.maxWidth, `${window.innerWidth  }px`, 'maxWidth ok');
-      assert.equal(style.maxHeight, `${window.innerHeight  }px`, 'maxHeight ok');
+      assert.equal(style.maxWidth, `${window.innerWidth}px`, 'maxWidth ok');
+      assert.equal(style.maxHeight, `${window.innerHeight}px`, 'maxHeight ok');
     });
 
     it('center() works without autoFitOnAttach', async () => {
       const element = await basicFixture();
       element.center();
       const rect = element.getBoundingClientRect();
-      assert.closeTo(
-        rect.left - (window.innerWidth - rect.right),
-        0,
-        5,
-        'centered horizontally');
-      assert.closeTo(
-        rect.top - (window.innerHeight - rect.bottom),
-        0,
-        5,
-        'centered vertically');
+      assert.closeTo(rect.left - (window.innerWidth - rect.right), 0, 5, 'centered horizontally');
+      assert.closeTo(rect.top - (window.innerHeight - rect.bottom), 0, 5, 'centered vertically');
     });
 
     it('Computes _fitWidth for window', async () => {
@@ -225,7 +217,7 @@ describe('FitMixin', () => {
     });
 
     it('Computes _fitWidth for fit element', async () => {
-      const constrainElement = document.querySelector('.constrain');
+      const constrainElement = document.querySelector('.constrain') as HTMLElement;
       const element = await basicFixture();
       element.fitInto = constrain;
       await nextFrame();
@@ -241,7 +233,7 @@ describe('FitMixin', () => {
     });
 
     it('Computes _fitHeight for fit element', async () => {
-      const constrainElement = document.querySelector('.constrain');
+      const constrainElement = document.querySelector('.constrain') as HTMLElement;
       const element = await basicFixture();
       element.fitInto = constrainElement;
       await nextFrame();
@@ -257,7 +249,7 @@ describe('FitMixin', () => {
     });
 
     it('Computes _fitLeft for fit element', async () => {
-      const constrainElement = document.querySelector('.constrain');
+      const constrainElement = document.querySelector('.constrain') as HTMLElement;
       const element = await basicFixture();
       element.fitInto = constrainElement;
       await nextFrame();
@@ -273,7 +265,7 @@ describe('FitMixin', () => {
     });
 
     it('Computes _fitTop for fit element', async () => {
-      const constrainElement = document.querySelector('.constrain');
+      const constrainElement = document.querySelector('.constrain') as HTMLElement;
       const element = await basicFixture();
       element.fitInto = constrainElement;
       await nextFrame();
@@ -334,7 +326,8 @@ describe('FitMixin', () => {
         getComputedStyle(el)
         .position,
         'absolute',
-        'position:absolute is preserved');
+        'position:absolute is preserved'
+);
     });
   });
 
@@ -354,23 +347,25 @@ describe('FitMixin', () => {
   describe('fit to window', async () => {
     it('sized element is centered in viewport', async () => {
       const el = await sizedXyFixture();
-      await aTimeout();
+      await aTimeout(0);
       const rect = el.getBoundingClientRect();
       assert.closeTo(
         rect.left - (window.innerWidth - rect.right),
         0,
         5,
-        'centered horizontally');
+        'centered horizontally'
+);
       assert.closeTo(
         rect.top - (window.innerHeight - rect.bottom),
         0,
         5,
-        'centered vertically');
+        'centered vertically'
+);
     });
 
     it('sized element with margin is centered in viewport', async () => {
       const el = await sizedXyFixture();
-      await aTimeout();
+      await aTimeout(0);
       el.classList.add('with-margin');
       el.refit();
       const rect = el.getBoundingClientRect();
@@ -382,8 +377,8 @@ describe('FitMixin', () => {
 
     it.skip('sized element with transformed parent is centered in viewport', async () => {
       const constrainElement = await constrainTargetFixture();
-      await aTimeout();
-      const el = constrainElement.querySelector('.el');
+      await aTimeout(0);
+      const el = constrainElement.querySelector('.el') as TestFit;
       const rectBefore = el.getBoundingClientRect();
       constrainElement.style.transform = 'translate3d(5px, 5px, 0)';
       el.center();
@@ -396,7 +391,7 @@ describe('FitMixin', () => {
 
     it('scrolling element is centered in viewport', async () => {
       const el = await sizedXFixture();
-      await aTimeout();
+      await aTimeout(0);
       makeScrolling(el);
       el.refit();
       const rect = el.getBoundingClientRect();
@@ -408,19 +403,20 @@ describe('FitMixin', () => {
 
     it('scrolling element is constrained to viewport height', async () => {
       const el = await sizedXFixture();
-      await aTimeout();
+      await aTimeout(0);
       makeScrolling(el);
       el.refit();
       const rect = el.getBoundingClientRect();
       assert.isTrue(
         rect.height <= window.innerHeight,
-        'height is less than or equal to viewport height');
+        'height is less than or equal to viewport height'
+);
     });
 
     it('scrolling element with offscreen container is constrained to viewport height', async () => {
       const container = await offscreenContainerFixture();
-      await aTimeout();
-      const el = container.querySelector('.el');
+      await aTimeout(0);
+      const el = container.querySelector('.el') as TestFit;
       makeScrolling(el);
       el.refit();
       const rect = el.getBoundingClientRect();
@@ -430,7 +426,7 @@ describe('FitMixin', () => {
 
     it('scrolling element with max-height is centered in viewport', async () => {
       const el = await sizedXFixture();
-      await aTimeout();
+      await aTimeout(0);
       el.classList.add('with-max-height');
       makeScrolling(el);
       el.refit();
@@ -443,7 +439,7 @@ describe('FitMixin', () => {
 
     it('scrolling element with max-height respects max-height', async () => {
       const el = await sizedXFixture();
-      await aTimeout();
+      await aTimeout(0);
       el.classList.add('with-max-height');
       makeScrolling(el);
       el.refit();
@@ -453,7 +449,7 @@ describe('FitMixin', () => {
 
     it('css positioned, scrolling element is constrained to viewport height (top,left)', async () => {
       const el = await positionedXyFixture();
-      await aTimeout();
+      await aTimeout(0);
       makeScrolling(el);
       el.refit();
       const rect = el.getBoundingClientRect();
@@ -463,7 +459,7 @@ describe('FitMixin', () => {
 
     it('css positioned, scrolling element is constrained to viewport height (bottom, right)', async () => {
       const el = await sizedXFixture();
-      await aTimeout();
+      await aTimeout(0);
       el.classList.add('positioned-bottom');
       el.classList.add('positioned-right');
       el.refit();
@@ -474,7 +470,7 @@ describe('FitMixin', () => {
 
     it('sized, scrolling element with margin is centered in viewport', async () => {
       const el = await sizedXFixture();
-      await aTimeout();
+      await aTimeout(0);
       el.classList.add('with-margin');
       makeScrolling(el);
       el.refit();
@@ -487,7 +483,7 @@ describe('FitMixin', () => {
 
     it('sized, scrolling element is constrained to viewport height', async () => {
       const el = await sizedXFixture();
-      await aTimeout();
+      await aTimeout(0);
       el.classList.add('with-margin');
       makeScrolling(el);
       el.refit();
@@ -498,7 +494,7 @@ describe('FitMixin', () => {
 
     it('css positioned, scrolling element with margin is constrained to viewport height (top, left)', async () => {
       const el = await positionedXyFixture();
-      await aTimeout();
+      await aTimeout(0);
       el.classList.add('with-margin');
       makeScrolling(el);
       el.refit();
@@ -509,7 +505,7 @@ describe('FitMixin', () => {
 
     it('css positioned, scrolling element with margin is constrained to viewport height (bottom, right)', async () => {
       const el = await sizedXFixture();
-      await aTimeout();
+      await aTimeout(0);
       el.classList.add('positioned-bottom');
       el.classList.add('positioned-right');
       el.classList.add('with-margin');
@@ -521,8 +517,8 @@ describe('FitMixin', () => {
 
     it('scrolling sizingTarget is constrained to viewport height', async () => {
       const el = await sectionedFixture();
-      await aTimeout();
-      const internal = el.querySelector('.internal');
+      await aTimeout(0);
+      const internal = el.querySelector('.internal') as TestFit;
       el.sizingTarget = internal;
       makeScrolling(internal);
       el.refit();
@@ -547,7 +543,7 @@ describe('FitMixin', () => {
     it('element fits in another element', async () => {
       const constrainElement = await constrainTargetFixture();
       await nextFrame();
-      const el = constrainElement.querySelector('.el');
+      const el = constrainElement.querySelector('.el') as TestFit;
       makeScrolling(el);
       el.fitInto = constrainElement;
       el.refit();
@@ -562,7 +558,7 @@ describe('FitMixin', () => {
     it('element centers in another element', async () => {
       const constrainElement = await constrainTargetFixture();
       await nextFrame();
-      const el = constrainElement.querySelector('.el');
+      const el = constrainElement.querySelector('.el') as TestFit;
       makeScrolling(el);
       el.fitInto = constrainElement;
       el.refit();
@@ -575,7 +571,7 @@ describe('FitMixin', () => {
     });
 
     it('element with max-width centers in another element', async () => {
-      const constrainElement = document.querySelector('.constrain');
+      const constrainElement = document.querySelector('.constrain') as HTMLElement;
       const el = await sizedXyFixture();
       await nextFrame();
       el.classList.add('with-max-width');
@@ -590,7 +586,7 @@ describe('FitMixin', () => {
     });
 
     it('positioned element fits in another element', async () => {
-      const constrainElement = document.querySelector('.constrain');
+      const constrainElement = document.querySelector('.constrain') as TestFit;
       const el = await sizedXyFixture();
       await nextFrame();
       // element's positionTarget is `body`, and fitInto is `constrain`.
@@ -606,10 +602,10 @@ describe('FitMixin', () => {
   });
 
   describe('horizontal/vertical align', () => {
-    let parent;
-    let parentRect;
-    let el;
-    let elRect;
+    let parent: HTMLDivElement;
+    let parentRect: DOMRect;
+    let el: TestFit;
+    let elRect: DOMRect;
     const fitRect = {
       left: 0,
       top: 0,
@@ -621,9 +617,9 @@ describe('FitMixin', () => {
 
     beforeEach(async () => {
       parent = await constrainTargetFixture();
-      await aTimeout();
+      await aTimeout(0);
       parentRect = parent.getBoundingClientRect();
-      el = parent.querySelector('.el');
+      el = parent.querySelector('.el') as TestFit;
       elRect = el.getBoundingClientRect();
     });
 
@@ -642,7 +638,8 @@ describe('FitMixin', () => {
           left: 0,
           right: 1
         }),
-        'no intersect on edge');
+        'no intersect on edge'
+);
       assert.isFalse(
         intersects(base, {
           top: -2,
@@ -650,7 +647,8 @@ describe('FitMixin', () => {
           left: 0,
           right: 1
         }),
-        'no intersect on edge (negative values)');
+        'no intersect on edge (negative values)'
+);
       assert.isFalse(
         intersects(base, {
           top: 2,
@@ -658,7 +656,8 @@ describe('FitMixin', () => {
           left: 0,
           right: 1
         }),
-        'no intersect');
+        'no intersect'
+);
     });
 
     describe('when verticalAlign is top', () => {
@@ -718,7 +717,7 @@ describe('FitMixin', () => {
 
       it('negative verticalOffset does not crop element', () => {
         // Push to the bottom of the screen.
-        parent.style.top = `${window.innerHeight - 50  }px`;
+        parent.style.top = `${window.innerHeight - 50}px`;
         el.verticalAlign = 'top';
         el.verticalOffset = -10;
         el.refit();
@@ -738,7 +737,7 @@ describe('FitMixin', () => {
       it('min-height is preserved: element is displayed even if partially', () => {
         parent.style.top = '-10px';
         el.verticalAlign = 'top';
-        el.style.minHeight = `${elRect.height  }px`;
+        el.style.minHeight = `${elRect.height}px`;
         el.refit();
         const rect = el.getBoundingClientRect();
         assert.equal(rect.top, 0, 'top ok');
@@ -826,7 +825,7 @@ describe('FitMixin', () => {
       });
 
       it('element max-height is updated', () => {
-        parent.style.top = `${100 - parentRect.height  }px`;
+        parent.style.top = `${100 - parentRect.height}px`;
         el.verticalAlign = 'bottom';
         el.refit();
         const rect = el.getBoundingClientRect();
@@ -835,9 +834,9 @@ describe('FitMixin', () => {
       });
 
       it('min-height is preserved: element is displayed even if partially', () => {
-        parent.style.top = `${elRect.height - 10 - parentRect.height  }px`;
+        parent.style.top = `${elRect.height - 10 - parentRect.height}px`;
         el.verticalAlign = 'bottom';
-        el.style.minHeight = `${elRect.height  }px`;
+        el.style.minHeight = `${elRect.height}px`;
         el.refit();
         const rect = el.getBoundingClientRect();
         assert.equal(rect.top, 0, 'top ok');
@@ -846,7 +845,7 @@ describe('FitMixin', () => {
       });
 
       it('dynamicAlign will prefer top align if it minimizes the cropping', () => {
-        parent.style.top = `${window.innerHeight - elRect.height  }px`;
+        parent.style.top = `${window.innerHeight - elRect.height}px`;
         parentRect = parent.getBoundingClientRect();
         el.verticalAlign = 'bottom';
         el.dynamicAlign = true;
@@ -865,7 +864,8 @@ describe('FitMixin', () => {
         assert.equal(
           rect.top,
           parentRect.top + (parentRect.height - rect.height) / 2,
-          'top ok');
+          'top ok'
+);
         assert.equal(rect.height, elRect.height, 'no cropping');
       });
 
@@ -887,7 +887,8 @@ describe('FitMixin', () => {
         assert.equal(
           rect.top,
           parentRect.top + (parentRect.height - rect.height) / 2 + 10,
-          'top ok');
+          'top ok'
+);
         assert.equal(rect.height, elRect.height, 'no cropping');
         el.style.marginTop = '-10px';
         el.refit();
@@ -895,7 +896,8 @@ describe('FitMixin', () => {
         assert.equal(
           rect.top,
           parentRect.top + (parentRect.height - rect.height) / 2 - 10,
-          'top ok');
+          'top ok'
+);
         assert.equal(rect.height, elRect.height, 'no cropping');
       });
 
@@ -907,7 +909,8 @@ describe('FitMixin', () => {
         assert.equal(
           rect.top,
           parentRect.top + (parentRect.height - rect.height) / 2 + 10,
-          'top ok');
+          'top ok'
+);
         assert.equal(rect.height, elRect.height, 'no cropping');
       });
 
@@ -923,7 +926,7 @@ describe('FitMixin', () => {
 
       it('negative verticalOffset does not crop element', () => {
         // Push to the bottom of the screen.
-        parent.style.top = `${window.innerHeight - 50  }px`;
+        parent.style.top = `${window.innerHeight - 50}px`;
         el.verticalAlign = 'middle';
         el.verticalOffset = -10;
         el.refit();
@@ -944,7 +947,7 @@ describe('FitMixin', () => {
       it('min-height is preserved: element is displayed even if partially', () => {
         parent.style.top = '-50px';
         el.verticalAlign = 'middle';
-        el.style.minHeight = `${elRect.height  }px`;
+        el.style.minHeight = `${elRect.height}px`;
         el.refit();
         const rect = el.getBoundingClientRect();
         assert.equal(rect.top, 0, 'top ok');
@@ -995,7 +998,8 @@ describe('FitMixin', () => {
         el.refit();
         const rect = el.getBoundingClientRect();
         assert.equal(
-          rect.bottom, parentRect.bottom, 'auto aligned to bottom');
+          rect.bottom, parentRect.bottom, 'auto aligned to bottom'
+);
         assert.equal(rect.height, elRect.height, 'no cropping');
       });
 
@@ -1070,7 +1074,7 @@ describe('FitMixin', () => {
 
       it('negative horizontalOffset does not crop element', () => {
         // Push to the bottom of the screen.
-        parent.style.left = `${window.innerWidth - 50  }px`;
+        parent.style.left = `${window.innerWidth - 50}px`;
         el.horizontalAlign = 'left';
         el.horizontalOffset = -10;
         el.refit();
@@ -1090,7 +1094,7 @@ describe('FitMixin', () => {
 
       it('min-width is preserved: element is displayed even if partially', () => {
         parent.style.left = '-10px';
-        el.style.minWidth = `${elRect.width  }px`;
+        el.style.minWidth = `${elRect.width}px`;
         el.horizontalAlign = 'left';
         el.refit();
         const rect = el.getBoundingClientRect();
@@ -1122,7 +1126,7 @@ describe('FitMixin', () => {
 
       it('element is aligned to the positionTarget right without overlapping it', () => {
         // Make space at the parent's left.
-        parent.style.left = `${elRect.width  }px`;
+        parent.style.left = `${elRect.width}px`;
         parentRect = parent.getBoundingClientRect();
         el.horizontalAlign = 'right';
         el.noOverlap = true;
@@ -1166,7 +1170,7 @@ describe('FitMixin', () => {
       });
 
       it('element max-width is updated', () => {
-        parent.style.left = `${100 - parentRect.width  }px`;
+        parent.style.left = `${100 - parentRect.width}px`;
         el.horizontalAlign = 'right';
         el.refit();
         const rect = el.getBoundingClientRect();
@@ -1175,9 +1179,9 @@ describe('FitMixin', () => {
       });
 
       it('min-width is preserved: element is displayed even if partially', () => {
-        parent.style.left = `${elRect.width - 10 - parentRect.width  }px`;
+        parent.style.left = `${elRect.width - 10 - parentRect.width}px`;
         el.horizontalAlign = 'right';
-        el.style.minWidth = `${elRect.width  }px`;
+        el.style.minWidth = `${elRect.width}px`;
         el.refit();
         const rect = el.getBoundingClientRect();
         assert.equal(rect.left, 0, 'left ok');
@@ -1186,7 +1190,7 @@ describe('FitMixin', () => {
       });
 
       it('dynamicAlign will prefer left align if it minimizes the cropping', () => {
-        parent.style.left = `${window.innerWidth - elRect.width  }px`;
+        parent.style.left = `${window.innerWidth - elRect.width}px`;
         parentRect = parent.getBoundingClientRect();
         el.horizontalAlign = 'right';
         el.dynamicAlign = true;
@@ -1205,7 +1209,8 @@ describe('FitMixin', () => {
         assert.equal(
           rect.left,
           parentRect.left + (parentRect.width - rect.width) / 2,
-          'left ok');
+          'left ok'
+);
         assert.equal(rect.width, elRect.width, 'no cropping');
       });
 
@@ -1226,7 +1231,8 @@ describe('FitMixin', () => {
         assert.equal(
           rect.left,
           parentRect.left + (parentRect.width - rect.width) / 2 + 10,
-          'left ok');
+          'left ok'
+);
         assert.equal(rect.width, elRect.width, 'no cropping');
         el.style.marginLeft = '-10px';
         el.refit();
@@ -1234,7 +1240,8 @@ describe('FitMixin', () => {
         assert.equal(
           rect.left,
           parentRect.left + (parentRect.width - rect.width) / 2 - 10,
-          'left ok');
+          'left ok'
+);
         assert.equal(rect.width, elRect.width, 'no cropping');
       });
 
@@ -1246,7 +1253,8 @@ describe('FitMixin', () => {
         assert.equal(
           rect.left,
           parentRect.left + (parentRect.width - rect.width) / 2 + 10,
-          'left ok');
+          'left ok'
+);
         assert.equal(rect.width, elRect.width, 'no cropping');
       });
 
@@ -1262,7 +1270,7 @@ describe('FitMixin', () => {
 
       it('negative horizontalOffset does not crop element', () => {
         // Push to the bottom of the screen.
-        parent.style.left = `${window.innerWidth - 50  }px`;
+        parent.style.left = `${window.innerWidth - 50}px`;
         el.horizontalAlign = 'center';
         el.horizontalOffset = -10;
         el.refit();
@@ -1282,7 +1290,7 @@ describe('FitMixin', () => {
 
       it('min-width is preserved: element is displayed even if partially', () => {
         parent.style.left = '-50px';
-        el.style.minWidth = `${elRect.width  }px`;
+        el.style.minWidth = `${elRect.width}px`;
         el.horizontalAlign = 'center';
         el.refit();
         const rect = el.getBoundingClientRect();
@@ -1314,7 +1322,7 @@ describe('FitMixin', () => {
 
       it('element is aligned to the positionTarget left without overlapping positionTarget', () => {
         // Make space at the parent's left.
-        parent.style.left = `${elRect.width  }px`;
+        parent.style.left = `${elRect.width}px`;
         parentRect = parent.getBoundingClientRect();
         el.horizontalAlign = 'auto';
         el.noOverlap = true;
@@ -1358,11 +1366,13 @@ describe('FitMixin', () => {
         assert.equal(
             rect.left,
             parentRect.left + (parentRect.width - rect.width) / 2,
-            'left ok');
+            'left ok'
+);
         assert.equal(
             rect.top,
             parentRect.top + (parentRect.height - rect.height) / 2,
-            'top ok');
+            'top ok'
+);
         assert.equal(rect.width, elRect.width, 'no cropping');
       });
     });
@@ -1372,8 +1382,8 @@ describe('FitMixin', () => {
         el.noOverlap = true;
         el.dynamicAlign = true;
         // Make space around the positionTarget.
-        parent.style.top = `${elRect.height  }px`;
-        parent.style.left = `${elRect.width  }px`;
+        parent.style.top = `${elRect.height}px`;
+        parent.style.left = `${elRect.width}px`;
         parent.style.width = '10px';
         parent.style.height = '10px';
         parentRect = parent.getBoundingClientRect();

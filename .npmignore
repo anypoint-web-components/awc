@@ -4,3 +4,12 @@ demo/
 CONTRIBUTING.md
 polymer.json
 .*
+.github
+dist/demo
+dist/test
+dist/tsconfig.tsbuildinfo
+docs/
+commitlint.config.cjs
+tsconfig.json 
+web-dev-server.config.mjs
+web-test-runner.config.mjs

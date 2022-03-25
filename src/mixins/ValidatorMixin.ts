@@ -52,7 +52,7 @@ export interface ValidatorMixinInterface {
  *
  * @mixin
  */
-export const ValidatorMixin = dedupeMixin(<T extends Constructor<HTMLElement>>(superClass: T): Constructor<ValidatorMixinInterface> & T => {
+export const ValidatorMixin = dedupeMixin(<T extends Constructor<LitElement>>(superClass: T): Constructor<ValidatorMixinInterface> & T => {
   class MyMixinClass extends superClass {
     private _message?: string;
 

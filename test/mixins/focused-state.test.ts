@@ -2,21 +2,22 @@ import { fixture, expect, assert, nextFrame } from '@open-wc/testing';
 import sinon from 'sinon';
 import * as MockInteractions from '@polymer/iron-test-helpers/mock-interactions.js';
 import './test-elements.js';
+import { TestControl, TestButton, NestedFocusable, TestLightDom } from './test-elements.js';
 
 describe('Focused state tests', () => {
-  async function trivialFocusedState() {
+  async function trivialFocusedState(): Promise<TestControl> {
     return fixture(`<test-control tabindex="-1"></test-control>`);
   }
 
-  async function trivialButtonFixture() {
+  async function trivialButtonFixture(): Promise<TestButton> {
     return fixture(`<test-button></test-button>`);
   }
 
-  async function nestedFocusedState() {
+  async function nestedFocusedState(): Promise<NestedFocusable> {
     return fixture(`<nested-focusable></nested-focusable>`);
   }
 
-  async function lightDOMFixture() {
+  async function lightDOMFixture(): Promise<TestLightDom> {
     return fixture(`<test-light-dom>
         <input id="input">
         <nested-focusable></nested-focusable>
@@ -24,7 +25,7 @@ describe('Focused state tests', () => {
   }
 
   describe('focused-state', () => {
-    let focusTarget;
+    let focusTarget: TestControl;
     beforeEach(async () => {
       focusTarget = await trivialFocusedState();
     });
@@ -78,7 +79,7 @@ describe('Focused state tests', () => {
   });
 
   describe('nested focusable', () => {
-    let focusable;
+    let focusable: NestedFocusable;
     beforeEach(async () => {
       focusable = await nestedFocusedState();
       await nextFrame();
@@ -89,7 +90,7 @@ describe('Focused state tests', () => {
     it('focus/blur events fired on host element', () => {
       let nFocusEvents = 0;
       let nBlurEvents = 0;
-      const input = focusable.shadowRoot.querySelector('#input');
+      const input = focusable.shadowRoot!.querySelector('#input')!;
       focusable.addEventListener('focus', () => {
         nFocusEvents += 1;
         expect(focusable.focused).to.be.equal(true);
@@ -107,16 +108,14 @@ describe('Focused state tests', () => {
   });
 
   describe('elements in the light dom', () => {
-    let lightDOM;
-    let input;
-    let lightDescendantShadowInput;
+    let lightDOM: TestLightDom;
+    let input: HTMLInputElement;
+    let lightDescendantShadowInput: HTMLInputElement;
 
     beforeEach(async () => {
       lightDOM = await lightDOMFixture();
-      input = lightDOM.querySelector('#input');
-      lightDescendantShadowInput = lightDOM
-        .querySelector('nested-focusable')
-        .shadowRoot.querySelector('#input');
+      input = lightDOM.querySelector('#input') as HTMLInputElement;
+      lightDescendantShadowInput = lightDOM!.querySelector('nested-focusable')!.shadowRoot!.querySelector('#input') as HTMLInputElement;
     });
 
     it('should not fire the focus event', () => {
@@ -138,7 +137,7 @@ describe('Focused state tests', () => {
   });
 
   describe('receivedFocusFromKeyboard', () => {
-    let focusTarget;
+    let focusTarget: TestButton;
     beforeEach(async () => {
       focusTarget = await trivialButtonFixture();
     });

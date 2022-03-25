@@ -69,6 +69,16 @@ export interface CheckedElementMixinInterface extends ValidatableMixinInterface 
   _checkedChanged(value?: boolean): void;
 
   _disabledChanged(disabled?: boolean): void;
+
+  /**
+   * Updates the `aria-required` label when `required` is changed.
+   */
+  _requiredChanged(required: boolean): void;
+
+  /**
+   * Reset value to 'on' if it is set to `undefined`.
+   */
+  _valueChanged(value: any): void;
 }
 
 /**
@@ -220,7 +230,6 @@ export const CheckedElementMixin = dedupeMixin(<T extends Constructor<LitElement
 
     /**
      * Updates the `aria-required` label when `required` is changed.
-     * @param {boolean} required
      */
     _requiredChanged(required: boolean): void {
       if (required) {

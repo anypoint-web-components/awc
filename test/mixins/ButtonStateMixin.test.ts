@@ -1,48 +1,20 @@
 import { fixture, assert } from '@open-wc/testing';
 import sinon from 'sinon';
+import { LitElement } from 'lit'
 import { ButtonStateMixin } from '../../index.js';
 
-class TestButtonElement extends ButtonStateMixin(HTMLElement) {}
+class TestButtonElement extends ButtonStateMixin(LitElement) {
+
+}
 window.customElements.define('test-button-element', TestButtonElement);
 
 describe('ButtonStateMixin', () => {
-  async function basicFixture() {
+  async function basicFixture(): Promise<TestButtonElement> {
     return fixture(`<test-button-element></test-button-element>`);
   }
 
-  describe('_setChanged()', () => {
-    let element;
-    beforeEach(async () => {
-      element = await basicFixture();
-    });
-
-    it('sets private property', () => {
-      element._setChanged('a', 'b');
-      assert.equal(element._a, 'b');
-    });
-
-    it('calls requestUpdate when available', () => {
-      let called = false;
-      element.requestUpdate = () => {
-        called = true;
-      };
-      element._setChanged('a', 'b');
-      assert.isTrue(called);
-    });
-
-    it('ignores requestUpdate property is already set', () => {
-      let called = false;
-      element.requestUpdate = () => {
-        called = true;
-      };
-      element._a = 'b';
-      element._setChanged('a', 'b');
-      assert.isFalse(called);
-    });
-  });
-
   describe('#pressed', () => {
-    let element;
+    let element: TestButtonElement;
     beforeEach(async () => {
       element = await basicFixture();
     });
@@ -79,7 +51,7 @@ describe('ButtonStateMixin', () => {
   });
 
   describe('#active', () => {
-    let element;
+    let element: TestButtonElement;
     beforeEach(async () => {
       element = await basicFixture();
     });

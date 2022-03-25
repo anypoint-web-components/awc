@@ -15,6 +15,8 @@ export const resizeEventType = 'resize';
 type Constructor<T = {}> = new (...args: any[]) => T;
 
 export declare interface ResizableMixinInterface {
+  _interestedResizables: EventTarget[];
+  _parentResizable: HTMLElement | undefined;
   /**
    * Can be called to manually notify a resizable and its descendant
    * resizables of a resize change.

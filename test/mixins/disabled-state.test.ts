@@ -1,22 +1,23 @@
 import { fixture, expect, nextFrame } from '@open-wc/testing';
 import './test-elements.js';
+import { TestControl } from './test-elements.js';
 
 describe('Disabled state tests', () => {
-  async function trivialDisabledState() {
+  async function trivialDisabledState(): Promise<TestControl> {
     return fixture(`<test-control></test-control>`);
   }
-  async function initiallyDisabledState() {
+  async function initiallyDisabledState(): Promise<TestControl> {
     return fixture(`<test-control disabled></test-control>`);
   }
-  async function initiallyWithoutTabIndex() {
+  async function initiallyWithoutTabIndex(): Promise<TestControl> {
     return fixture(`<test-control></test-control>`);
   }
-  async function initiallyWithTabIndex() {
+  async function initiallyWithTabIndex(): Promise<TestControl> {
     return fixture(`<test-control tabindex="0"></test-control>`);
   }
 
   describe('disabled-state', () => {
-    let disableTarget;
+    let disableTarget: TestControl;
 
     describe('a trivial disabled state', () => {
       beforeEach(async () => {

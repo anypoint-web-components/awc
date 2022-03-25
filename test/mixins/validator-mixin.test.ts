@@ -1,30 +1,14 @@
 import { fixture, assert } from '@open-wc/testing';
-import { ValidatorMixin, ValidatorStore } from '../../index.js';
+import { ValidatorStore } from '../../index.js';
+import { SimpleValidator } from './simple-validator.js';
 import './simple-validator.js';
 
-/* eslint-disable no-new */
-
-/** @typedef {import('./simple-validator').SimpleValidator} SimpleValidator */
-
-// @ts-ignore
-class TestClass extends ValidatorMixin(Object) {
-  static get is() {
-    return 'test-class';
-  }
-}
-
 describe('ValidatorMixin', () => {
-  /**
-   * @return {Promise<SimpleValidator>}
-   */
-  async function basicFixture() {
+  async function basicFixture(): Promise<SimpleValidator> {
     return fixture('<simple-validator></simple-validator>');
   }
 
-  /**
-   * @return {Promise<SimpleValidator>}
-   */
-  async function messageFixture() {
+  async function messageFixture(): Promise<SimpleValidator> {
     return fixture('<simple-validator message="test"></simple-validator>');
   }
 
@@ -69,13 +53,5 @@ describe('ValidatorMixin', () => {
     const element = await messageFixture();
     element.message = 'test';
     // it's for coverage
-  });
-
-  it('uses `is` getter to register the validator', () => {
-    new TestClass();
-    assert.ok(
-      ValidatorStore.get('test-class'),
-      'test-class found in ValidatorStore'
-    );
   });
 });

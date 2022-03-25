@@ -6,8 +6,6 @@ Copyright 2017 MuleSoft.
 
 All rights reserved.
 */
-
-import { LitElement } from 'lit';
 import { property } from 'lit/decorators.js';
 import { dedupeMixin } from '@open-wc/dedupe-mixin';
 
@@ -25,6 +23,11 @@ export interface ButtonStateMixinInterface {
    * the user is holding down the button on the element.
    */
   pressed: boolean | undefined;
+  _pressed: boolean | undefined;
+
+  _pointerDown?: boolean;
+
+  _receivedFocusFromKeyboard?: boolean;
 
   /**
    * If true, the button is a toggle and is currently in the active state.
@@ -81,6 +84,10 @@ export interface ButtonStateMixinInterface {
   _blurHandler(): void;
 
   _focusHandler(): void;
+
+  _pressedChanged(): void;
+
+  _activeChanged(): void;
 }
 
 /**
@@ -88,7 +95,7 @@ export interface ButtonStateMixinInterface {
  *
  * @mixin
  */
-export const ButtonStateMixin = dedupeMixin(<T extends Constructor<LitElement>>(superClass: T): Constructor<ButtonStateMixinInterface> & T => {
+export const ButtonStateMixin = dedupeMixin(<T extends Constructor<HTMLElement>>(superClass: T): Constructor<ButtonStateMixinInterface> & T => {
   class MyMixinClass extends superClass {
     /**
      * If true, the button toggles the active state with each click or press
@@ -125,7 +132,9 @@ export const ButtonStateMixin = dedupeMixin(<T extends Constructor<LitElement>>(
       this.__pressed = value;
       this.dispatchEvent(new Event('pressedchange'));
       this._pressedChanged();
+      // @ts-ignore
       if (this.requestUpdate) {
+        // @ts-ignore
         this.requestUpdate('_pressed', old);
       }
     }
@@ -149,7 +158,9 @@ export const ButtonStateMixin = dedupeMixin(<T extends Constructor<LitElement>>(
       this._active = value;
       this.dispatchEvent(new Event('activechange'));
       this._activeChanged();
+      // @ts-ignore
       if (this.requestUpdate) {
+        // @ts-ignore
         this.requestUpdate('active', old);
       }
     }
@@ -211,7 +222,11 @@ export const ButtonStateMixin = dedupeMixin(<T extends Constructor<LitElement>>(
      * Registers hover listeners
      */
     connectedCallback(): void {
-      super.connectedCallback();
+      // @ts-ignore
+      if (super.connectedCallback) {
+        // @ts-ignore
+        super.connectedCallback();
+      }
       this.addEventListener('mousedown', this._downHandler);
       this.addEventListener('mouseup', this._upHandler);
       this.addEventListener('click', this._clickHandler);
@@ -228,7 +243,11 @@ export const ButtonStateMixin = dedupeMixin(<T extends Constructor<LitElement>>(
      * Removes hover listeners
      */
     disconnectedCallback(): void {
-      super.disconnectedCallback();
+      // @ts-ignore
+      if (super.disconnectedCallback) {
+        // @ts-ignore
+        super.disconnectedCallback();
+      }
       this.removeEventListener('mousedown', this._downHandler);
       this.removeEventListener('mouseup', this._upHandler);
       this.removeEventListener('click', this._clickHandler);

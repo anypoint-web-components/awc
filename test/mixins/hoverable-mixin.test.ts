@@ -1,31 +1,15 @@
 import { fixture, assert, nextFrame } from '@open-wc/testing';
 import sinon from 'sinon';
 import './hoverable-test-element.js';
-import './hoverable-test-native.js';
-
-/** @typedef {import('./hoverable-test-element').HoverableTestElement} HoverableTestElement */
-/** @typedef {import('./hoverable-test-native').HoverableTestNative} HoverableTestNative */
+import { HoverableTestElement } from './hoverable-test-element.js';
 
 describe('HoverableMixin', () => {
-  /**
-   * @returns {Promise<HoverableTestElement>}
-   */
-  async function hoverableFixture() {
+  async function hoverableFixture(): Promise<HoverableTestElement> {
     return fixture(`<hoverable-test-element></hoverable-test-element>`);
   }
 
-  /**
-   * @returns {Promise<HoverableTestElement>}
-   */
-  async function hoverableChildFixture() {
+  async function hoverableChildFixture(): Promise<HoverableTestElement> {
     return fixture(`<hoverable-test-element><input/></hoverable-test-element>`);
-  }
-
-  /**
-   * @returns {Promise<HoverableTestNative>}
-   */
-  async function nativeFixture() {
-    return fixture(`<hoverable-test-native></hoverable-test-native>`);
   }
 
   describe('Setters and getters', () => {
@@ -34,7 +18,7 @@ describe('HoverableMixin', () => {
       assert.isFalse(element.hovered);
     });
 
-    it('_hovered if false by default', async () => {
+    it('_hovered is false by default', async () => {
       const element = await hoverableFixture();
       assert.isFalse(element._hovered);
     });
@@ -44,12 +28,6 @@ describe('HoverableMixin', () => {
       const spy = sinon.spy(element, 'requestUpdate');
       element._hovered = true;
       assert.isTrue(spy.called);
-    });
-
-    it('Ignores requestUpdate() on native element', async () => {
-      const element = await nativeFixture();
-      element._hovered = true;
-      // no error
     });
 
     it('Ignores _hoverable setter when no change', async () => {
@@ -76,12 +54,6 @@ describe('HoverableMixin', () => {
       assert.isTrue(element.hovered);
     });
 
-    it('Adds hover state when mouseover event detected - Native element', async () => {
-      const element = await nativeFixture();
-      element.dispatchEvent(new CustomEvent('mouseover'));
-      assert.isTrue(element.hovered);
-    });
-
     it('Adds hovered attribute', async () => {
       const element = await hoverableFixture();
       element.dispatchEvent(new CustomEvent('mouseover'));
@@ -91,7 +63,7 @@ describe('HoverableMixin', () => {
 
     it('Handles light DOM hover', async () => {
       const element = await hoverableChildFixture();
-      const input = element.querySelector('input');
+      const input = element.querySelector('input')!;
       input.dispatchEvent(
         new CustomEvent('mouseover', {
           // mouseover event bubbles per spec
@@ -110,13 +82,6 @@ describe('HoverableMixin', () => {
       assert.isFalse(element.hovered);
     });
 
-    it('Removes hover state when mouseleave event detected - Native element', async () => {
-      const element = await nativeFixture();
-      element._hovered = true;
-      element.dispatchEvent(new CustomEvent('mouseleave'));
-      assert.isFalse(element.hovered);
-    });
-
     it('Adds hovered attribute', async () => {
       const element = await hoverableFixture();
       element._hovered = true;
@@ -128,7 +93,7 @@ describe('HoverableMixin', () => {
     it('Handles light DOM mouseleave', async () => {
       const element = await hoverableChildFixture();
       element._hovered = true;
-      const input = element.querySelector('input');
+      const input = element.querySelector('input')!;
       input.dispatchEvent(
         new CustomEvent('mouseleave', {
           // mouseover event bubbles per spec

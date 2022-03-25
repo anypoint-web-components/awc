@@ -4,7 +4,7 @@ Copyright 2017 MuleSoft.
 
 All rights reserved.
 */
-
+import { LitElement } from 'lit';
 import { dedupeMixin } from '@open-wc/dedupe-mixin';
 import { property } from 'lit/decorators.js';
 
@@ -15,6 +15,8 @@ export interface HoverableMixinInterface {
    * @return True when the element is currently hovered by a pointing device.
    */
   get hovered(): boolean | undefined;
+
+  _hovered: boolean | undefined;
 }
 
 /**
@@ -27,7 +29,7 @@ export interface HoverableMixinInterface {
  * @fires hoverchange
  * @mixin
  */
-export const HoverableMixin = dedupeMixin(<T extends Constructor<HTMLElement>>(superClass: T): Constructor<HoverableMixinInterface> & T => {
+export const HoverableMixin = dedupeMixin(<T extends Constructor<LitElement>>(superClass: T): Constructor<HoverableMixinInterface> & T => {
   class MyMixinClass extends superClass {
     /**
      * @return True when the element is currently hovered by a pointing device.

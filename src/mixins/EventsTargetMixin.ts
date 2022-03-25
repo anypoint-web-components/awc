@@ -89,7 +89,7 @@ export const EventsTargetMixin = dedupeMixin(<T extends Constructor<Object>>(sup
     /**
      * By default the element listens on the `window` object. If this value is set,
      * then all events listeners will be attached to this object instead of `window`.
-     * @param {EventTarget} value Events handlers target.
+     * @param value Events handlers target.
      */
     set eventsTarget(value: EventTarget | undefined) {
       const old = this._eventsTarget;
