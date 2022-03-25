@@ -1,16 +1,23 @@
 {
   "compilerOptions": {
-    "target": "esnext",
+    "target": "ES2021",
     "module": "esnext",
     "moduleResolution": "node",
-    "lib": ["es2017", "dom"],
-    "allowJs": true,
-    "checkJs": true,
-    "noEmit": true,
-    "strict": false,
+    "noEmitOnError": true,
+    "lib": ["es2021", "dom"],
+    "strict": true,
+    "esModuleInterop": false,
+    "allowSyntheticDefaultImports": true,
+    "experimentalDecorators": true,
+    "importHelpers": true,
+    "outDir": "dist",
+    "sourceMap": true,
+    "inlineSources": true,
+    "rootDir": "./",
+    "declaration": true,
+    "incremental": true,
     "noImplicitThis": true,
     "alwaysStrict": true,
-    "esModuleInterop": true,
     "plugins": [
       {
         "name": "typescript-lit-html-plugin",
@@ -22,9 +29,6 @@
     ]
   },
   "include": [
-    "!test/**/*",
-    "**/*.js",
-    "node_modules/@open-wc/**/*.js"
-  ],
-  "exclude": ["node_modules/!(@open-wc)", "test/**/*", "test/*"]
+    "**/*.ts"
+  ]
 }
