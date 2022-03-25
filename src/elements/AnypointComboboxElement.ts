@@ -1,5 +1,5 @@
 import { html, css, CSSResult, TemplateResult, PropertyValueMap } from 'lit';
-import { property } from 'lit/decorators';
+import { property } from 'lit/decorators.js';
 import AnypointInputElement from './AnypointInputElement.js';
 import '../../define/anypoint-autocomplete.js';
 import { Suggestion } from '../types';
@@ -8,9 +8,9 @@ import { Suggestion } from '../types';
  * `anypoint-combobox`
  */
 export default class AnypointComboboxElement extends AnypointInputElement {
-  get styles(): CSSResult[] {
+  static get styles(): CSSResult[] {
     return [
-      ...super.styles,
+      ...AnypointInputElement.styles,
       css`
       .ac-wrapper {
         position: relative;
@@ -41,7 +41,6 @@ export default class AnypointComboboxElement extends AnypointInputElement {
 
   render(): TemplateResult {
     return html`
-    <style>${this.styles}</style>
     <div class="ac-wrapper">
       ${super.render()}
       <anypoint-autocomplete
@@ -50,6 +49,7 @@ export default class AnypointComboboxElement extends AnypointInputElement {
         .anypoint="${this.anypoint}"
         noTargetControls
         openOnFocus
+        noOverlap
       ></anypoint-autocomplete>
     </div>
     `;

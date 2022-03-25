@@ -14,7 +14,7 @@ License for the specific language governing permissions and limitations under
 the License.
 */
 import { html, css, CSSResult, TemplateResult } from 'lit';
-import { property, state } from 'lit/decorators';
+import { property, state } from 'lit/decorators.js';
 import { Suggestion } from '../types';
 import { HorizontalAlign, VerticalAlign } from '../mixins/FitMixin.js';
 import AnypointListboxElement from './AnypointListboxElement.js';
@@ -25,7 +25,7 @@ import '../../define/anypoint-item.js';
 import '../../define/anypoint-item-body.js';
 import '../../define/anypoint-listbox.js';
 
-interface InternalSuggestion extends Suggestion {
+export interface InternalSuggestion extends Suggestion {
   /**
    * The index of the suggestion on the source list.
    */
@@ -58,7 +58,7 @@ export const autocompleteFocus = Symbol('autocompleteFocus');
 export const ignoreNextFocus = Symbol('ignoreNextFocus');
 
 export default class AnypointAutocompleteElement extends AnypointElement {
-  get styles(): CSSResult {
+  static get styles(): CSSResult {
     return css`.highlight {
       font-weight: bold;
     }`;
@@ -360,6 +360,12 @@ export default class AnypointAutocompleteElement extends AnypointElement {
    */
   @property({ type: Boolean })
   ignoreDropdownStyling?: boolean;
+
+  /**
+   * Will position the list around the input without overlapping it.
+   */
+  @property({ type: Boolean, reflect: true })
+  noOverlap?: boolean;
 
   __listbox?: AnypointListboxElement;
 
@@ -730,13 +736,14 @@ export default class AnypointAutocompleteElement extends AnypointElement {
     });
     this._suggestions = filtered;
     const suggestionsAfter = filtered.length;
-    await this.requestUpdate();
+    if (!this.opened) {
+      this[openedValue] = true;
+    }
+    this.requestUpdate();
+    await this.updateComplete;
     if (suggestionsAfter !== suggestionsBefore) {
       this._setComboboxWidth();
       this.notifyResize();
-    }
-    if (!this.opened) {
-      this[openedValue] = true;
     }
   }
 
@@ -974,7 +981,6 @@ export default class AnypointAutocompleteElement extends AnypointElement {
       horizontalOffset,
       verticalOffset,
       noAnimations,
-      styles,
       anypoint,
       fitPositionTarget,
       positionTarget,
@@ -982,7 +988,6 @@ export default class AnypointAutocompleteElement extends AnypointElement {
     const offset = anypoint ? -2 : 0;
     const finalVerticalOffset = (verticalOffset || 0) + offset;
     return html`
-    <style>${styles}</style>
     <anypoint-dropdown
       .positionTarget="${positionTarget || _oldTarget}"
       .verticalAlign="${verticalAlign}"
@@ -994,6 +999,7 @@ export default class AnypointAutocompleteElement extends AnypointElement {
       .noAnimations="${noAnimations}"
       ?fitPositionTarget="${fitPositionTarget}"
       noautofocus
+      ?noOverlap=${this.noOverlap}
       @closed="${this._closeHandler}"
       @resize="${this._dropdownResizedHandler}"
       noCancelOnOutsideClick

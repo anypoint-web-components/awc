@@ -1,5 +1,5 @@
 import { html, LitElement, CSSResult, TemplateResult } from 'lit';
-import { property } from 'lit/decorators';
+import { property } from 'lit/decorators.js';
 import { styleMap } from 'lit/directives/style-map.js';
 import elementStyles from '../styles/ColorSelectorElement.styles.js';
 
@@ -23,7 +23,6 @@ export default class ColorSelectorElement extends LitElement {
   @property({ type: String, reflect: true })
   value?: string;
   
-
   constructor() {
     super();
     this[colorTriggerHandler] = this[colorTriggerHandler].bind(this);

@@ -1,5 +1,5 @@
 import { html, CSSResult, TemplateResult } from 'lit';
-import { property, state } from 'lit/decorators';
+import { property, state } from 'lit/decorators.js';
 import AnypointElement from './AnypointElement.js';
 import { ResizableMixin } from '../mixins/ResizableMixin.js';
 import { MenubarMixin } from '../mixins/MenubarMixin.js';
@@ -24,7 +24,7 @@ export function calcPercent(w: number, w0: number): number {
  * Tabs for anypoint web components
  */
 export default class AnypointTabsElement extends MenubarMixin(ResizableMixin(AnypointElement)) {
-  get styles(): CSSResult | CSSResult[] {
+  static get styles(): CSSResult | CSSResult[] {
     return styles;
   }
 
@@ -619,9 +619,7 @@ export default class AnypointTabsElement extends MenubarMixin(ResizableMixin(Any
     const startEvent = scrollable ? _touchstartConfig : undefined;
     const moveEvent = scrollable ? _touchmoveConfig : undefined;
     const endEvent = scrollable ? _touchendConfig : undefined;
-    return html`<style>
-        ${this.styles}
-      </style>
+    return html`
       ${this._leftButtonTemplate(scrollable)}
       <div
         id="tabsContainer"

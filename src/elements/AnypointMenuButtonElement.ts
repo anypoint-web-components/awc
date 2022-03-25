@@ -1,6 +1,6 @@
 /* eslint-disable lit-a11y/click-events-have-key-events */
 import { CSSResult, TemplateResult, html } from 'lit';
-import { property, state } from 'lit/decorators';
+import { property, state } from 'lit/decorators.js';
 import { ifDefined } from 'lit/directives/if-defined.js';
 import AnypointElement from './AnypointElement.js';
 import AnypointDropdownElement from './AnypointDropdownElement.js';
@@ -9,12 +9,13 @@ import { HorizontalAlign, VerticalAlign } from '../mixins/FitMixin.js';
 import { addListener, getListener } from '../lib/ElementEventsRegistry.js';
 import buttonStyles from '../styles/MenuButton.js';
 import '../../define/anypoint-dropdown.js';
+import { DefaultListOpenAnimation, DefaultListCloseAnimation } from '../lib/Animations.js';
 
 /* eslint-disable no-plusplus */
 
 export default class AnypointMenuButtonElement extends ControlStateMixin(AnypointElement) {
   // eslint-disable-next-line class-methods-use-this
-  get styles(): CSSResult {
+  static get styles(): CSSResult {
     return buttonStyles;
   }
 
@@ -101,12 +102,6 @@ export default class AnypointMenuButtonElement extends ControlStateMixin(Anypoin
    */
   @property({ type: Boolean })
   allowOutsideScroll?: boolean;
-  
-  /**
-   * Whether focus should be restored to the button when the menu closes.
-   */
-  @property({ type: Boolean })
-  restoreFocusOnClose?: boolean;
 
   /**
    * Set to true to disable automatically closing the dropdown after
@@ -127,7 +122,7 @@ export default class AnypointMenuButtonElement extends ControlStateMixin(Anypoin
    * for the `iron-dropdown` contained by `paper-menu-button`.
    */
   @state()
-  _dropdownContent?: HTMLElement | null;
+  _dropdownContent?: HTMLElement;
   
   get dropdown(): AnypointDropdownElement {
     return this.shadowRoot!.querySelector('#dropdown') as AnypointDropdownElement;
@@ -187,7 +182,8 @@ export default class AnypointMenuButtonElement extends ControlStateMixin(Anypoin
 
   _openedHandler(e: Event): void {
     const dd = e.target as AnypointDropdownElement;
-    this.opened = dd.opened;
+    const { opened } = dd;
+    this.opened = opened;
   }
 
   /**
@@ -241,7 +237,7 @@ export default class AnypointMenuButtonElement extends ControlStateMixin(Anypoin
   _openedChanged(opened?: boolean): void {
     let type;
     if (opened) {
-      this._dropdownContent = this.contentElement;
+      this._dropdownContent = this.contentElement || undefined;
       type = 'dropdownopen';
     } else {
       type = 'dropdownclose';
@@ -257,6 +253,17 @@ export default class AnypointMenuButtonElement extends ControlStateMixin(Anypoin
     }
   }
 
+  _closedHandler(): void {
+    const slot = this.shadowRoot!.querySelector('slot[name=dropdown-trigger]') as HTMLSlotElement;
+    const triggers = slot.assignedElements() as HTMLElement[];
+    for (const trigger of triggers) {
+      if (typeof trigger.focus === 'function') {
+        trigger.focus();
+        break;
+      }
+    }
+  }
+
   render(): TemplateResult {
     const {
       opened,
@@ -268,11 +275,9 @@ export default class AnypointMenuButtonElement extends ControlStateMixin(Anypoin
       noOverlap,
       noAnimations,
       allowOutsideScroll,
-      restoreFocusOnClose,
       _dropdownContent
     } = this;
     return html`
-    <style>${this.styles}</style>
     <div id="trigger" @click="${this.toggle}">
       <slot name="dropdown-trigger"></slot>
     </div>
@@ -290,8 +295,10 @@ export default class AnypointMenuButtonElement extends ControlStateMixin(Anypoin
       ?noAnimations="${noAnimations}"
       .focusTarget="${_dropdownContent}"
       ?allowOutsideScroll="${allowOutsideScroll}"
-      ?restoreFocusOnClose="${restoreFocusOnClose}"
+      .openAnimationConfig="${DefaultListOpenAnimation}"
+      .closeAnimationConfig="${DefaultListCloseAnimation}"
       @cancel="${this.__overlayCanceledHandler}"
+      @closed="${this._closedHandler}"
     >
       <div slot="dropdown-content" class="dropdown-content">
         <slot id="content" name="dropdown-content"></slot>

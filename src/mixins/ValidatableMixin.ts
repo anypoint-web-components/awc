@@ -13,7 +13,7 @@ the License.
 */
 import { dedupeMixin } from '@open-wc/dedupe-mixin';
 import { LitElement } from 'lit';
-import { property } from 'lit/decorators';
+import { property } from 'lit/decorators.js';
 import * as ValidatorStore from './ValidatorStore.js';
 import { ValidatorMixinInterface } from './ValidatorMixin.js';
 import { addListener, getListener } from '../lib/ElementEventsRegistry.js';
@@ -94,7 +94,7 @@ export interface ValidatableMixinInterface {
    * to the validator's `validate()` function, if a validator is set.
    * @return True if `value` is valid.
    */
-  validate(value: any): boolean;
+  validate(value?: any): boolean;
   /**
    * Returns true if `value` is valid.  By default, it is passed
    * to the validator's `validate()` function, if a validator is set. You
@@ -287,7 +287,7 @@ export interface ValidatableMixinInterface {
      * to the validator's `validate()` function, if a validator is set.
      * @return True if `value` is valid.
      */
-    validate(value: any): boolean {
+    validate(value?: any): boolean {
       const state = this._getValidity(value);
       this.invalid = !state;
       return state;

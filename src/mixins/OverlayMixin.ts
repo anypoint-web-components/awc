@@ -1,5 +1,5 @@
 import { LitElement } from 'lit';
-import { property } from 'lit/decorators';
+import { property } from 'lit/decorators.js';
 import { dedupeMixin } from '@open-wc/dedupe-mixin';
 import { FitMixin, FitMixinInterface } from './FitMixin.js';
 import { ResizableMixin, ResizableMixinInterface } from './ResizableMixin.js';

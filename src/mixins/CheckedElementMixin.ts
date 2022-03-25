@@ -8,7 +8,7 @@ All rights reserved.
 */
 
 import { LitElement } from 'lit';
-import { property } from 'lit/decorators';
+import { property } from 'lit/decorators.js';
 import { dedupeMixin } from '@open-wc/dedupe-mixin';
 import { ValidatableMixin, ValidatableMixinInterface } from './ValidatableMixin.js';
 import { addListener, getListener } from '../lib/ElementEventsRegistry.js';

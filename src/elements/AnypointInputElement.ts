@@ -17,7 +17,7 @@ const floatTypes = [
 ];
 
 export default class AnypointInputElement extends AnypointInputMixin(LitElement) {
-  get styles(): CSSResult[] {
+  static get styles(): CSSResult[] {
     return [
       commonStyles,
       css`
@@ -110,7 +110,6 @@ export default class AnypointInputElement extends AnypointInputMixin(LitElement)
 
   render(): TemplateResult {
     return html`
-    <style>${this.styles}</style>
     <div class="input-container">
       ${this._prefixTemplate()}
       <div class="input-label">

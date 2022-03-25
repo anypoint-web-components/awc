@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1.0, user-scalable=yes">
   <title>anypoint-styles demo</title>
-  <script type="module" src="../default-theme.js"></script>
+  <script type="module" src="../default-theme.ts"></script>
 </head>
 <style>
   body {
@@ -351,118 +351,119 @@
 
   <script>
   const names = [{
-    'name': 'primary',
-    'color': '#00A2DF'
+    name: 'primary',
+    color: '#00A2DF'
   }, {
-    'name': 'secondary',
-    'color': '#506773'
+    name: 'secondary',
+    color: '#506773'
   }, {
-    'name': 'danger',
-    'color': '#D1344E'
+    name: 'danger',
+    color: '#D1344E'
   }, {
-    'name': 'success',
-    'color': '#17BC65'
+    name: 'success',
+    color: '#17BC65'
   }, {
-    'name': 'tertiary',
-    'color': '#ffffff'
+    name: 'tertiary',
+    color: '#ffffff'
   }, {
-    'name': 'coreBlue3',
-    'color': '#00A2DF'
+    name: 'coreBlue3',
+    color: '#00A2DF'
   }, {
-    'name': 'coreBlue1',
-    'color': '#ABE2F5'
+    name: 'coreBlue1',
+    color: '#ABE2F5'
   }, {
-    'name': 'coreBlue2',
-    'color': '#48C1ED'
+    name: 'coreBlue2',
+    color: '#48C1ED'
   }, {
-    'name': 'coreBlue4',
-    'color': '#087299'
+    name: 'coreBlue4',
+    color: '#087299'
   }, {
-    'name': 'coreBlue5',
-    'color': '#114459'
+    name: 'coreBlue5',
+    color: '#114459'
   }, {
-    'name': 'robustBlue3',
-    'color': '#506773'
+    name: 'robustBlue3',
+    color: '#506773'
   }, {
-    'name': 'robustBlue1',
-    'color': '#A1B1B8'
+    name: 'robustBlue1',
+    color: '#A1B1B8'
   }, {
-    'name': 'robustBlue2',
-    'color': '#6B8A99'
+    name: 'robustBlue2',
+    color: '#6B8A99'
   }, {
-    'name': 'robustBlue4',
-    'color': '#32444D'
+    name: 'robustBlue4',
+    color: '#32444D'
   }, {
-    'name': 'robustBlue5',
-    'color': '#272F33'
+    name: 'robustBlue5',
+    color: '#272F33'
   }, {
-    'name': 'futureGreen3',
-    'color': '#17BC65'
+    name: 'futureGreen3',
+    color: '#17BC65'
   }, {
-    'name': 'futureGreen1',
-    'color': '#AAF2CB'
+    name: 'futureGreen1',
+    color: '#AAF2CB'
   }, {
-    'name': 'futureGreen2',
-    'color': '#33CC7A'
+    name: 'futureGreen2',
+    color: '#33CC7A'
   }, {
-    'name': 'futureGreen4',
-    'color': '#0E8C48'
+    name: 'futureGreen4',
+    color: '#0E8C48'
   }, {
-    'name': 'futureGreen5',
-    'color': '#174D30'
+    name: 'futureGreen5',
+    color: '#174D30'
   }, {
-    'name': 'aluminum1',
-    'color': '#F9FAFB'
+    name: 'aluminum1',
+    color: '#F9FAFB'
   }, {
-    'name': 'aluminum2',
-    'color': '#F4F5F6'
+    name: 'aluminum2',
+    color: '#F4F5F6'
   }, {
-    'name': 'aluminum3',
-    'color': '#E8E9EA'
+    name: 'aluminum3',
+    color: '#E8E9EA'
   }, {
-    'name': 'aluminum4',
-    'color': '#CACBCC'
+    name: 'aluminum4',
+    color: '#CACBCC'
   }, {
-    'name': 'aluminum5',
-    'color': '#989A9B'
+    name: 'aluminum5',
+    color: '#989A9B'
   }, {
-    'name': 'steel1',
-    'color': '#6B6C6D'
+    name: 'steel1',
+    color: '#6B6C6D'
   }, {
-    'name': 'steel2',
-    'color': '#58595A'
+    name: 'steel2',
+    color: '#58595A'
   }, {
-    'name': 'steel3',
-    'color': '#3A3B3C'
+    name: 'steel3',
+    color: '#3A3B3C'
   }, {
-    'name': 'steel4',
-    'color': '#262728'
+    name: 'steel4',
+    color: '#262728'
   }, {
-    'name': 'steel5',
-    'color': '#121314'
+    name: 'steel5',
+    color: '#121314'
   }, {
-    'name': 'yellow3',
-    'color': '#F2BE24'
+    name: 'yellow3',
+    color: '#F2BE24'
   }, {
-    'name': 'viridian3',
-    'color': '#00B49D'
+    name: 'viridian3',
+    color: '#00B49D'
   }, {
-    'name': 'teal3',
-    'color': '#00B5D1'
+    name: 'teal3',
+    color: '#00B5D1'
   }, {
-    'name': 'navy3',
-    'color': '#178BEA'
+    name: 'navy3',
+    color: '#178BEA'
   }, {
-    'name': 'indigo3',
-    'color': '#5E66F9'
+    name: 'indigo3',
+    color: '#5E66F9'
   }, {
-    'name': 'violet3',
-    'color': '#9A63F9'
+    name: 'violet3',
+    color: '#9A63F9'
   }, {
-    'name': 'red3',
-    'color': '#D1344E'
+    name: 'red3',
+    color: '#D1344E'
   }];
 
+  // eslint-disable-next-line @typescript-eslint/explicit-function-return-type
   function createColors() {
     const tpl = document.querySelector('#colorTpl');
     const meta = tpl.content.querySelectorAll('.meta > span');

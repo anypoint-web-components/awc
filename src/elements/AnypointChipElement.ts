@@ -1,7 +1,7 @@
 /* eslint-disable lit-a11y/click-events-have-key-events */
 /* eslint-disable class-methods-use-this */
 import { SVGTemplateResult, TemplateResult, CSSResult, html } from 'lit';
-import { property } from 'lit/decorators';
+import { property } from 'lit/decorators.js';
 import { classMap, ClassInfo } from 'lit/directives/class-map.js';
 import AnypointElement from './AnypointElement.js';
 import { clear } from '../resources/Icons.js';
@@ -135,9 +135,6 @@ export default class AnypointChipElement extends AnypointElement {
    * ```
    */
   set removeIcon(value: SVGTemplateResult) {
-    if (value && (!value.constructor || value.constructor.name !== 'SVGTemplateResult')) {
-      return;
-    }
     const old = this._removeIcon;
     this._removeIcon = value;
     this.requestUpdate('removeIcon', old);
@@ -356,7 +353,7 @@ export default class AnypointChipElement extends AnypointElement {
 
   render(): TemplateResult {
     const result: ClassInfo = {
-      'container': true,
+      container: true,
       'with-icon': this[hasIconNodeValue],
       'with-remove': !!this.removable,
     };

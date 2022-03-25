@@ -1,6 +1,6 @@
 /* eslint-disable class-methods-use-this */
 import { LitElement } from 'lit';
-import { property } from 'lit/decorators';
+import { property } from 'lit/decorators.js';
 import { dedupeMixin } from '@open-wc/dedupe-mixin';
 
 export const ratioValue = Symbol('rationValue');
@@ -83,7 +83,7 @@ export const RangeMixin = dedupeMixin(<T extends Constructor<LitElement>>(superC
     /**
      * The number that represents the current value.
      */
-    @property({reflect: true, type: Number})
+    @property({ reflect: true, type: Number })
     get value(): number {
       return this[valueValue];
     }
@@ -103,7 +103,7 @@ export const RangeMixin = dedupeMixin(<T extends Constructor<LitElement>>(superC
     /**
      * The number that indicates the minimum value of the range.
      */
-    @property({reflect: true, type: Number})
+    @property({ reflect: true, type: Number })
     get min(): number {
       return this[minValue];
     }
@@ -123,7 +123,7 @@ export const RangeMixin = dedupeMixin(<T extends Constructor<LitElement>>(superC
     /**
      * The number that indicates the maximum value of the range.
      */
-    @property({reflect: true, type: Number})
+    @property({ reflect: true, type: Number })
     get max(): number {
       return this[maxValue];
     }
@@ -143,7 +143,7 @@ export const RangeMixin = dedupeMixin(<T extends Constructor<LitElement>>(superC
     /**
      * Specifies the value granularity of the range's value.
      */
-    @property({reflect: true, type: Number})
+    @property({ reflect: true, type: Number })
     get step(): number {
       return this[stepValue];
     }

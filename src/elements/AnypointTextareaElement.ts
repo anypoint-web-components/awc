@@ -1,13 +1,13 @@
 import { html, css, LitElement, CSSResult, TemplateResult } from 'lit';
 import { ifDefined } from 'lit/directives/if-defined.js';
-import { property } from 'lit/decorators';
+import { property } from 'lit/decorators.js';
 import { AnypointInputMixin } from '../mixins/AnypointInputMixin.js';
 import commonStyles from '../styles/anypoint-input-styles.js';
 
 /* eslint-disable class-methods-use-this */
 
 export default class AnypointTextareaElement extends AnypointInputMixin(LitElement) {
-  get styles(): CSSResult[] {
+  static get styles(): CSSResult[] {
     return [
       commonStyles,
       css`
@@ -169,9 +169,7 @@ export default class AnypointTextareaElement extends AnypointInputMixin(LitEleme
     } = this;
     const bindValue = value || '';
 
-    return html`<style>
-        ${this.styles}
-      </style>
+    return html`
       <div class="input-container">
         <div class="textarea input-label">
           <div class="${_labelClass}" id="${ifDefined(_ariaLabelledBy)}">

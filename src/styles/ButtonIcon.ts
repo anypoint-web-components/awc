@@ -59,6 +59,7 @@ material-ripple {
   background-color: var(--anypoint-icon-button-emphasis-low-hover-background-color, rgba(0, 162, 223, .08));
 }
 
+:host([emphasis="low"]:focus) .icon,
 :host([emphasis="low"][focused]) .icon {
   background-color: var(--anypoint-icon-button-emphasis-low-focus-background-color, rgba(0, 162, 223, .12));
 }
@@ -89,6 +90,7 @@ material-ripple {
   background-color: var(--anypoint-icon-button-emphasis-medium-hover-background-color, rgba(0, 162, 223, .06));
 }
 
+:host([emphasis="medium"]:focus) .icon,
 :host([emphasis="medium"][focused]) .icon {
   background-color: var(--anypoint-icon-button-emphasis-medium-focus-background-color, rgba(0, 162, 223, .08));
   border-color: var(--anypoint-icon-button-emphasis-medium-focus-border-color, var(--anypoint-color-robustBlue2));
@@ -138,6 +140,7 @@ material-ripple {
 }
 
 :host([elevation="2"]) .icon,
+:host([emphasis="high"]:focus) .icon,
 :host([elevation][emphasis="high"][focused]) > .icon {
   box-shadow: 0 4px 5px 0 rgba(0, 0, 0, 0.14),
               0 1px 10px 0 rgba(0, 0, 0, 0.12),

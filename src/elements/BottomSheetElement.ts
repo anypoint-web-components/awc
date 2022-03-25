@@ -13,7 +13,7 @@ License for the specific language governing permissions and limitations under
 the License.
 */
 import { LitElement, html, TemplateResult, CSSResult } from 'lit';
-import { property } from 'lit/decorators';
+import { property } from 'lit/decorators.js';
 import { OverlayMixin } from '../mixins/OverlayMixin.js';
 import sheetStyles from '../styles/BottomSheet.js';
 

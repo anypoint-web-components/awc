@@ -1,5 +1,5 @@
 import { LitElement } from 'lit';
-import { property, state } from 'lit/decorators';
+import { property, state } from 'lit/decorators.js';
 import { dedupeMixin } from '@open-wc/dedupe-mixin';
 import { ValidatableMixin, ValidatableMixinInterface } from './ValidatableMixin.js';
 import { ControlStateMixin, ControlStateMixinInterface } from './ControlStateMixin.js';
@@ -522,8 +522,11 @@ export const AnypointInputMixin = dedupeMixin(<T extends Constructor<LitElement>
     /**
      * @return Returns a reference to the input element.
      */
-    get inputElement(): HTMLInputElement | HTMLTextAreaElement {
-      return this.shadowRoot!.querySelector('input,textarea') as HTMLInputElement | HTMLTextAreaElement;
+    get inputElement(): HTMLInputElement | HTMLTextAreaElement | undefined {
+      if (!this.shadowRoot) {
+        return undefined;
+      }
+      return this.shadowRoot.querySelector('input,textarea') as HTMLInputElement | HTMLTextAreaElement;
     }
 
     /**
@@ -675,7 +678,7 @@ export const AnypointInputMixin = dedupeMixin(<T extends Constructor<LitElement>
      * Binds this to the `<input>`'s `spellcheck` property.
      * @attribute
      */
-    @property({ type: String })
+    @property({ type: Boolean })
     spellcheck = false;
 
     /**
@@ -843,7 +846,11 @@ export const AnypointInputMixin = dedupeMixin(<T extends Constructor<LitElement>
       if (!this.invalidMessage) {
         return;
       }
-      const node = this.shadowRoot!.querySelector('p.invalid');
+      const root = this.shadowRoot;
+      if (!root) {
+        return;
+      }
+      const node = root.querySelector('p.invalid');
       if (!node) {
         return;
       }
@@ -953,6 +960,9 @@ export const AnypointInputMixin = dedupeMixin(<T extends Constructor<LitElement>
       // right properties, accessing them might throw an exception (like for
       // <input type=number>)
       const input = this.inputElement;
+      if (!input) {
+        return;
+      }
       try {
         const start = input.selectionStart;
         this.value = newValue;
@@ -1150,7 +1160,11 @@ export const AnypointInputMixin = dedupeMixin(<T extends Constructor<LitElement>
       if (type === 'file') {
         return true;
       }
-      valid = this.inputElement.checkValidity();
+      const input = this.inputElement;
+      if (!input) {
+        return true;
+      }
+      valid = input.checkValidity();
       if (!valid) {
         return valid;
       }

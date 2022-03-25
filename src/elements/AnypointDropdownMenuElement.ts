@@ -1,6 +1,7 @@
 import { html, CSSResult, TemplateResult } from 'lit';
-import { property, state } from 'lit/decorators';
+import { property, state } from 'lit/decorators.js';
 import { ifDefined } from 'lit/directives/if-defined.js';
+import { classMap } from 'lit/directives/class-map.js';
 import { ControlStateMixin } from '../mixins/ControlStateMixin.js';
 import { ValidatableMixin, ValidationResult } from '../mixins/ValidatableMixin.js';
 import { HorizontalAlign, VerticalAlign } from '../mixins/FitMixin.js';
@@ -8,7 +9,7 @@ import { arrowDown } from '../resources/Icons.js';
 import AnypointElement from './AnypointElement.js';
 import AnypointListboxElement from './AnypointListboxElement.js';
 import DropdownStyles from '../styles/DropdownMenu.js';
-import { IAnimationConfig } from '../lib/Animations.js';
+import { IAnimationConfig, DefaultListOpenAnimation, DefaultListCloseAnimation } from '../lib/Animations.js';
 import '../../define/anypoint-dropdown.js';
 import '../../define/anypoint-icon-button.js';
 
@@ -26,7 +27,7 @@ import '../../define/anypoint-icon-button.js';
  * See README.md file for detailed documentation.
  */
 export default class AnypointDropdownMenuElement extends ValidatableMixin(ControlStateMixin(AnypointElement)) {
-  get styles(): CSSResult {
+  static get styles(): CSSResult {
     return DropdownStyles;
   }
 
@@ -58,14 +59,15 @@ export default class AnypointDropdownMenuElement extends ValidatableMixin(Contro
     } = this;
 
     const renderValue = value || '';
-    return html`<style>
-        ${this.styles}
-      </style>
+    const iconClasses = {
+      'trigger-icon': true,
+      opened,
+    };
+    return html`
       <div class="${_inputContainerClass}">
         <div class="${_labelClass}" id="${ifDefined(name)}">
           <slot name="label"></slot>
         </div>
-
         <div class="input-wrapper">
           <div class="input">
             ${renderValue}
@@ -78,9 +80,7 @@ export default class AnypointDropdownMenuElement extends ValidatableMixin(Contro
             class="${_triggerClass}"
             ?anypoint="${anypoint}"
           >
-            <span class="trigger-icon ${opened ? 'opened' : ''}"
-              >${arrowDown}</span
-            >
+            <span class="${classMap(iconClasses)}">${arrowDown}</span>
           </anypoint-icon-button>
         </div>
 
@@ -93,8 +93,8 @@ export default class AnypointDropdownMenuElement extends ValidatableMixin(Contro
           .horizontalOffset="${horizontalOffset}"
           .verticalOffset="${verticalOffset}"
           .noOverlap="${noOverlap}"
-          .openAnimationConfig="${openAnimationConfig}"
-          .closeAnimationConfig="${closeAnimationConfig}"
+          .openAnimationConfig="${openAnimationConfig || DefaultListOpenAnimation}"
+          .closeAnimationConfig="${closeAnimationConfig || DefaultListCloseAnimation}"
           .noAnimations="${noAnimations}"
           .allowOutsideScroll="${allowOutsideScroll}"
           .restoreFocusOnClose="${restoreFocusOnClose}"
@@ -714,7 +714,7 @@ export default class AnypointDropdownMenuElement extends ValidatableMixin(Contro
    *
    * @param e When set it cancels the event
    */
-  toggle(e: MouseEvent): void {
+  toggle(e?: MouseEvent): void {
     if (this.disabled || this._formDisabled) {
       return;
     }
@@ -855,7 +855,11 @@ export default class AnypointDropdownMenuElement extends ValidatableMixin(Contro
     if (!this.invalidMessage) {
       return;
     }
-    const node = this.shadowRoot!.querySelector('p.invalid');
+    const root = this.shadowRoot;
+    if (!root) {
+      return;
+    }
+    const node = root.querySelector('p.invalid');
     if (!node) {
       return;
     }

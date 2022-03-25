@@ -8,7 +8,7 @@ All rights reserved.
 */
 
 import { LitElement } from 'lit';
-import { property } from 'lit/decorators';
+import { property } from 'lit/decorators.js';
 import { dedupeMixin } from '@open-wc/dedupe-mixin';
 
 type Constructor<T = {}> = new (...args: any[]) => T;
@@ -204,7 +204,7 @@ export const ButtonStateMixin = dedupeMixin(<T extends Constructor<LitElement>>(
       this._blurHandler = this._blurHandler.bind(this);
       this._focusHandler = this._focusHandler.bind(this);
 
-      this.toggles = false;
+      this.toggles = true;
     }
 
     /**

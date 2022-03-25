@@ -14,7 +14,7 @@ License for the specific language governing permissions and limitations under
 the License.
 */
 import { LitElement } from 'lit';
-import { property } from 'lit/decorators';
+import { property } from 'lit/decorators.js';
 
 /**
  * The base class for Anypoint elements.

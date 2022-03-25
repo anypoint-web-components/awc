@@ -1,13 +1,12 @@
 import { html, css, CSSResult, TemplateResult } from 'lit';
-import { property } from 'lit/decorators';
+import { property } from 'lit/decorators.js';
 import AnypointButtonElement from './AnypointButtonElement.js';
 import '../../define/material-ripple.js';
 
 export default class AnypointTabElement extends AnypointButtonElement {
-  get styles(): CSSResult[] {
+  static get styles(): CSSResult[] {
     return [
-      // @ts-ignore
-      super.styles,
+      AnypointButtonElement.styles as CSSResult,
       css`
         :host {
           overflow: hidden;
@@ -98,12 +97,7 @@ export default class AnypointTabElement extends AnypointButtonElement {
   render(): TemplateResult {
     const { noink, anypoint } = this;
     const stopRipple = !!noink || !!anypoint;
-    return html`<style>
-        ${this.styles}
-      </style>
-      <div class="tab-content">
-        <slot></slot>
-      </div>
+    return html`<div class="tab-content"><slot></slot></div>
       <material-ripple .noink="${stopRipple}"></material-ripple>`;
   }
 }

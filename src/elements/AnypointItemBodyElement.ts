@@ -1,5 +1,5 @@
 import { html, css, CSSResult, TemplateResult } from 'lit';
-import { property } from 'lit/decorators';
+import { property } from 'lit/decorators.js';
 import AnypointElement from './AnypointElement.js';
 
 /* eslint-disable class-methods-use-this */
@@ -9,7 +9,7 @@ import AnypointElement from './AnypointElement.js';
  * An Anypoint list item with 2 or 3 lines.
  */
 export default class AnypointItemBodyElement extends AnypointElement {
-  get styles(): CSSResult {
+  static get styles(): CSSResult {
     return css`
       :host {
         overflow: hidden; /* needed for text-overflow: ellipsis to work on ff */
@@ -70,17 +70,17 @@ export default class AnypointItemBodyElement extends AnypointElement {
    * Renders the item in a 2-line layout
    * @attribute
    */
-  @property({type: Boolean, reflect: true})
+  @property({ type: Boolean, reflect: true })
   twoLine?: boolean;
 
   /**
    * Renders the item in a 3-line layout
    * @attribute
    */
-  @property({type: Boolean, reflect: true})
+  @property({ type: Boolean, reflect: true })
   threeLine?: boolean;
   
   render(): TemplateResult {
-    return html`<style>${this.styles}</style><slot></slot>`;
+    return html`<slot></slot>`;
   }
 }

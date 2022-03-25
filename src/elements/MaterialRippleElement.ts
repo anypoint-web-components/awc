@@ -1,6 +1,6 @@
 /* eslint-disable class-methods-use-this */
 import { html, LitElement, TemplateResult, CSSResult } from 'lit';
-import { property } from 'lit/decorators';
+import { property } from 'lit/decorators.js';
 // eslint-disable-next-line import/no-cycle
 import { Ripple } from '../lib/Ripple.js';
 import elementStyles from '../styles/ripple.styles.js';
@@ -18,7 +18,7 @@ export const addRipple = Symbol('addRipple');
 export const removeRipple = Symbol('removeRipple');
 
 export default class MaterialRippleElement extends LitElement {
-  get styles(): CSSResult {
+  static get styles(): CSSResult {
     return elementStyles;
   }
 
@@ -263,6 +263,6 @@ export default class MaterialRippleElement extends LitElement {
   }
 
   render(): TemplateResult {
-    return html`<style>${this.styles}</style><div id="background"></div><div id="waves"></div>`;
+    return html`<div id="background"></div><div id="waves"></div>`;
   }
 }

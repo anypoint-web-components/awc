@@ -1,4 +1,4 @@
-import Element from '../src/elements/ScrollThreshold.js';
+import Element from '../src/elements/ScrollThresholdElement.js';
 
 window.customElements.define('scroll-threshold', Element);
 

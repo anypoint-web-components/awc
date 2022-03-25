@@ -50,14 +50,14 @@
 </head>
 <body class="styled">
   <div id="demo"></div>
-  <script type="module" src="./anypoint-button.js"></script>
+  <script type="module" src="./anypoint-button.ts"></script>
 
   <script>
   document.addEventListener('WebComponentsReady', () => {
     function shouldAddDocumentStyle(n) {
       return n.nodeType === Node.ELEMENT_NODE && n.localName === 'style' && !n.hasAttribute('scope');
     }
-    const {CustomStyleInterface} = window.ShadyCSS;
+    const { CustomStyleInterface } = window.ShadyCSS;
 
     const candidates = document.querySelectorAll('style');
     for (let i = 0; i < candidates.length; i++) {

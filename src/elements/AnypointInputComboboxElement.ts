@@ -1,13 +1,13 @@
 /* eslint-disable lit-a11y/click-events-have-key-events */
 import { html, TemplateResult, CSSResult, PropertyValueMap } from 'lit';
-import { property } from 'lit/decorators';
+import { property } from 'lit/decorators.js';
 import { classMap } from 'lit/directives/class-map.js';
 import AnypointInputElement from './AnypointInputElement.js';
 import { arrowDown } from '../resources/Icons.js';
 import elementStyles from '../styles/InputComboboxStyles.js';
 import { VerticalAlign, HorizontalAlign } from '../mixins/FitMixin.js';
 import '../../define/anypoint-dropdown.js';
-import { IAnimationConfig } from '../lib/Animations.js';
+import { IAnimationConfig, DefaultListOpenAnimation, DefaultListCloseAnimation } from '../lib/Animations.js';
 
 export const dropdownTemplate = Symbol('dropdownTemplate');
 export const openedChanged = Symbol('openedChanged');
@@ -28,9 +28,9 @@ export const onEsc = Symbol('onEsc');
  * `anypoint-input-combobox`
  */
 export default class AnypointInputComboboxElement extends AnypointInputElement {
-  get styles(): CSSResult[] {
+  static get styles(): CSSResult[] {
     return [
-      ...super.styles,
+      ...AnypointInputElement.styles,
       elementStyles,
     ];
   }
@@ -92,13 +92,6 @@ export default class AnypointInputComboboxElement extends AnypointInputElement {
    */
   @property({ type: Boolean, reflect: true })
   dynamicAlign?: boolean;
-
-  /**
-   * Will position the list around the button without overlapping
-   * it.
-   */
-  @property({ type: Boolean })
-  noOverlap?: boolean;
 
   /**
    * An animation config. If provided, this will be used to animate the
@@ -309,7 +302,6 @@ export default class AnypointInputComboboxElement extends AnypointInputElement {
 
   render(): TemplateResult {
     return html`
-    <style>${this.styles}</style>
     ${super.render()}
     ${this[dropdownTemplate]()}
     `;
@@ -338,7 +330,6 @@ export default class AnypointInputComboboxElement extends AnypointInputElement {
       dynamicAlign,
       horizontalOffset,
       verticalOffset,
-      noOverlap,
       openAnimationConfig,
       closeAnimationConfig,
       noAnimations,
@@ -354,9 +345,9 @@ export default class AnypointInputComboboxElement extends AnypointInputElement {
       ?dynamicAlign="${dynamicAlign}"
       .horizontalOffset="${horizontalOffset}"
       .verticalOffset="${verticalOffset}"
-      ?noOverlap="${noOverlap}"
-      .openAnimationConfig="${openAnimationConfig}"
-      .closeAnimationConfig="${closeAnimationConfig}"
+      noOverlap
+      .openAnimationConfig="${openAnimationConfig || DefaultListOpenAnimation}"
+      .closeAnimationConfig="${closeAnimationConfig || DefaultListCloseAnimation}"
       ?noAnimations="${noAnimations}"
       ?allowOutsideScroll="${allowOutsideScroll}"
       @overlay-closed="${this[dropdownClosed]}"

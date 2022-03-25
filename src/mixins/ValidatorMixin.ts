@@ -14,7 +14,7 @@ the License.
 */
 import { dedupeMixin } from '@open-wc/dedupe-mixin';
 import { LitElement } from 'lit';
-import { property } from 'lit/decorators';
+import { property } from 'lit/decorators.js';
 import { register, unregister } from './ValidatorStore.js';
 
 /* eslint-disable class-methods-use-this */
@@ -52,7 +52,7 @@ export interface ValidatorMixinInterface {
  *
  * @mixin
  */
-export const ValidatorMixin = dedupeMixin(<T extends Constructor<LitElement>>(superClass: T): Constructor<ValidatorMixinInterface> & T => {
+export const ValidatorMixin = dedupeMixin(<T extends Constructor<HTMLElement>>(superClass: T): Constructor<ValidatorMixinInterface> & T => {
   class MyMixinClass extends superClass {
     private _message?: string;
 
@@ -73,8 +73,9 @@ export const ValidatorMixin = dedupeMixin(<T extends Constructor<LitElement>>(su
         return;
       }
       this._message = value;
-      if (this.requestUpdate) {
-        this.requestUpdate('message', old);
+      const litSelf = (this as unknown) as LitElement;
+      if (litSelf.requestUpdate) {
+        litSelf.requestUpdate('message', old);
       }
     }
 

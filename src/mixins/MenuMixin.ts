@@ -1,5 +1,5 @@
 import { dedupeMixin } from '@open-wc/dedupe-mixin';
-import { property, state } from 'lit/decorators';
+import { property, state } from 'lit/decorators.js';
 import { MultiSelectableMixin, MultiSelectableMixinInterface } from './MultiSelectableMixin.js';
 
 /* eslint-disable no-plusplus */

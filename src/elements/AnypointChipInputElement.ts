@@ -11,7 +11,7 @@ License for the specific language governing permissions and limitations under
 the License.
 */
 import { html, SVGTemplateResult, TemplateResult, CSSResult } from 'lit';
-import { property } from 'lit/decorators';
+import { property } from 'lit/decorators.js';
 import AnypointInputElement from './AnypointInputElement.js';
 import elementStyles from '../styles/AnypointChipInput.js';
 import '../../define/anypoint-autocomplete.js';
@@ -24,15 +24,10 @@ import { addListener, getListener } from '../lib/ElementEventsRegistry.js';
 /* eslint-disable no-param-reassign */
 /* eslint-disable class-methods-use-this */
 
-/** @typedef {import('./types').ChipSuggestion} ChipSuggestion */
-/** @typedef {import('./types').ChipItem} ChipItem */
-/** @typedef {import('lit-element').SVGTemplateResult} SVGTemplateResult */
-/** @typedef {import('lit-element').TemplateResult} TemplateResult */
-
 export default class AnypointChipInputElement extends AnypointInputElement {
-  get styles(): CSSResult[] {
+  static get styles(): CSSResult[] {
     return [
-      ...super.styles,
+      ...AnypointInputElement.styles,
       elementStyles,
     ];
   }
@@ -41,7 +36,7 @@ export default class AnypointChipInputElement extends AnypointInputElement {
    * List of allowed chips labels. Character case does not matter.
    */
   @property({ type: Array })
-  allowed: string[] = [];
+  allowed?: string[] = [];
 
   _chips?: ChipItem[];
   
@@ -499,11 +494,15 @@ export default class AnypointChipInputElement extends AnypointInputElement {
     </div>`;
   }
 
-  _autocompleteTemplate(): TemplateResult {
+  _autocompleteTemplate(): TemplateResult | string {
+    if (!Array.isArray(this.source) || !this.source.length) {
+      return '';
+    }
     return html`<anypoint-autocomplete
       .target="${this.inputElement}"
       .source="${this.source}"
       ?anypoint="${this.anypoint}"
+      noOverlap
       @selected="${this._selectedHandler}"></anypoint-autocomplete>`;
   }
 
@@ -538,7 +537,6 @@ export default class AnypointChipInputElement extends AnypointInputElement {
 
   render(): TemplateResult {
     return html`
-    <style>${this.styles}</style>
     <div class="input-container">
       ${this._prefixTemplate()}
       <div class="input-label">

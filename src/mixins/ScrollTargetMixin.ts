@@ -1,7 +1,7 @@
 /* eslint-disable no-param-reassign */
 /* eslint-disable class-methods-use-this */
 import { dedupeMixin } from '@open-wc/dedupe-mixin';
-import { property } from 'lit/decorators';
+import { property } from 'lit/decorators.js';
 
 type Constructor<T = {}> = new (...args: any[]) => T;
 
@@ -65,6 +65,8 @@ export interface ScrollTargetMixinInterface {
    */
   _scrollLeft: number;
 
+  get _scrollTargetWidth(): number
+
   /**
    * Runs on every scroll event. Consumer of this mixin may override this method.
    */
@@ -84,6 +86,10 @@ export interface ScrollTargetMixinInterface {
    * @param yes True to add the event, False to remove it.
    */
   toggleScrollListener(yes: boolean): void;
+
+  _scrollTargetChanged(scrollTarget: HTMLElement | string): void;
+
+  get _scrollTargetHeight(): number;
 }
 
 /**
@@ -134,7 +140,7 @@ export const ScrollTargetMixin = dedupeMixin(<T extends Constructor<HTMLElement>
      * appHeader.scrollTarget = document.querySelector('#scrollable-element');
      *```
      */
-    @property({ type: Object })
+    @property()
     get scrollTarget(): HTMLElement | string {
       return this._scrollTarget;
     }

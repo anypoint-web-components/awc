@@ -459,7 +459,7 @@ export default class DateTimeElement extends HTMLElement {
     return date;
   }
 
-  protected _getIntlOptions(): Intl.DateTimeFormatOptions {
+  _getIntlOptions(): Intl.DateTimeFormatOptions {
     const options: Intl.DateTimeFormatOptions = {};
     if (this.year) {
       options.year = this.year;
@@ -500,7 +500,7 @@ export default class DateTimeElement extends HTMLElement {
   /**
    * @returns A reference to a `<time>` element that is in the shadow DOM of this element.
    */
-  protected _getTimeNode(): HTMLTimeElement {
+  _getTimeNode(): HTMLTimeElement {
     let node = this.shadowRoot!.querySelector('time');
     if (!node) {
       node = document.createElement('time');
@@ -509,7 +509,7 @@ export default class DateTimeElement extends HTMLElement {
     return node;
   }
 
-  protected _updateLabel(): void {
+  _updateLabel(): void {
     if (!this.parentElement) {
       return;
     }

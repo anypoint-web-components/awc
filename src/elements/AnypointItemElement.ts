@@ -25,7 +25,7 @@ import styles from '../styles/ItemStyles.js';
  * An Anypoint list item.
  */
 export default class AnypointItemElement extends HoverableMixin(ControlStateMixin(ButtonStateMixin(AnypointElement))) {
-  get styles(): CSSResult[] {
+  static get styles(): CSSResult[] {
     return [
       styles,
       css`
@@ -39,9 +39,7 @@ export default class AnypointItemElement extends HoverableMixin(ControlStateMixi
   }
 
   render(): TemplateResult {
-    return html`<style>${this.styles}</style>
-      <slot></slot>
-    `;
+    return html`<slot></slot>`;
   }
 
   connectedCallback(): void {

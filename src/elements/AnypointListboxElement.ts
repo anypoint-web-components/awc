@@ -21,7 +21,7 @@ export const ensureNodeId = (node: HTMLElement): void => {
 };
 
 export default class AnypointListboxElement extends MenuMixin(AnypointElement) {
-  get styles(): CSSResult {
+  static get styles(): CSSResult {
     return css`
       :host {
         display: block;
@@ -40,7 +40,7 @@ export default class AnypointListboxElement extends MenuMixin(AnypointElement) {
   }
 
   render(): TemplateResult {
-    return html`<style>${this.styles}</style><slot></slot>`;
+    return html`<slot></slot>`;
   }
 
   constructor() {
@@ -75,6 +75,7 @@ export default class AnypointListboxElement extends MenuMixin(AnypointElement) {
   }
 
   protected anypointChanged(value?: boolean): void {
+    super.anypointChanged(value);
     this._updateChildrenAnypoint(value);
   }
 
@@ -120,7 +121,7 @@ export default class AnypointListboxElement extends MenuMixin(AnypointElement) {
    * @param anypoint Current state of `anypoint` property
    */
   _updateChildrenAnypoint(anypoint?: boolean): void {
-    const slot = this.shadowRoot!.querySelector('slot');
+    const slot = this.shadowRoot?.querySelector('slot');
     if (!slot) {
       return;
     }

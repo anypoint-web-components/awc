@@ -12,14 +12,14 @@ import '../../define/material-ripple.js';
  */
 export default class AnypointButtonElement extends AnypointButtonBase {
   /* eslint-disable class-methods-use-this */
-  get styles(): CSSResult | CSSResult[] {
+  static get styles(): CSSResult | CSSResult[] {
     return elementStyles;
   }
 
   render(): TemplateResult {
-    const { noink, anypoint, styles } = this;
+    const { noink, anypoint } = this;
     const stopRipple = !!noink || !!anypoint;
-    return html`<style>${styles}</style><slot></slot><material-ripple .noink="${stopRipple}" @transitionend="${this._transitionEndHandler}"></material-ripple>`;
+    return html`<slot></slot><material-ripple .noink="${stopRipple}" @transitionend="${this._transitionEndHandler}"></material-ripple>`;
   }
 
   /**

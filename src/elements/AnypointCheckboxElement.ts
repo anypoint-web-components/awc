@@ -1,5 +1,5 @@
 import { CSSResult, TemplateResult, html } from 'lit';
-import { property } from 'lit/decorators';
+import { property } from 'lit/decorators.js';
 import AnypointElement from './AnypointElement.js';
 import checkboxStyles from '../styles/Checkbox.js';
 import { CheckedElementMixin } from '../mixins/CheckedElementMixin.js';
@@ -19,13 +19,13 @@ import { addListener, getListener } from '../lib/ElementEventsRegistry.js';
  * Avoid using a single checkbox as an option selector and use toggle button instead.
  */
 export default class AnypointCheckboxElement extends ButtonStateMixin(ControlStateMixin(CheckedElementMixin(AnypointElement))) {
-  get styles(): CSSResult {
+  static get styles(): CSSResult {
     return checkboxStyles;
   }
 
   render(): TemplateResult {
     const { checked, invalid, indeterminate } = this;
-    return html`<style>${this.styles}</style>
+    return html`
       <div class="checkboxContainer">
         <div class="checkbox ${this._computeCheckboxClass(checked, invalid)}">
           <div class="checkmark ${this._computeCheckmarkClass(checked, indeterminate)}"></div>

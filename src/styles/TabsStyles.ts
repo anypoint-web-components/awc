@@ -71,7 +71,7 @@ export default css`
   #selectionBar {
     position: absolute;
     height: 0;
-    bottom: 0;
+    bottom: 0px;
     left: 0;
     right: 0;
     border-bottom: 2px solid
@@ -81,6 +81,10 @@ export default css`
     transform-origin: left center;
     transition: transform 0.15s cubic-bezier(0.4, 0, 1, 1);
     z-index: var(--anypoint-tabs-selection-bar-zindex);
+  }
+
+  #tabsContent.fit-container #selectionBar {
+    bottom: 1px;
   }
 
   :host([noslide]) #selectionBar {

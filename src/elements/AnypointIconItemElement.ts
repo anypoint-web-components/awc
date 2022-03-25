@@ -29,7 +29,7 @@ import styles from '../styles/ItemStyles.js';
  * name `item-icon` is placed in the icon area.
  */
 export default class AnypointIconItemElement extends HoverableMixin(ControlStateMixin(ButtonStateMixin(AnypointElement))) {
-  get styles(): CSSResult[] {
+  static get styles(): CSSResult[] {
     return [
       styles,
       css`
@@ -50,7 +50,7 @@ export default class AnypointIconItemElement extends HoverableMixin(ControlState
   }
 
   render(): TemplateResult {
-    return html`<style>${this.styles}</style>
+    return html`
       <div class="content-icon">
         <slot name="item-icon"></slot>
       </div>

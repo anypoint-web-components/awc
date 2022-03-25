@@ -1,10 +1,10 @@
 import { html, css, CSSResult, TemplateResult } from 'lit';
-import { property } from 'lit/decorators';
+import { property } from 'lit/decorators.js';
 import AnypointElement from './AnypointElement.js';
 import { OverlayMixin } from '../mixins/OverlayMixin.js';
 import { ControlStateMixin } from '../mixins/ControlStateMixin.js';
 import { VerticalAlign, HorizontalAlign } from '../mixins/FitMixin.js';
-import { IAnimationConfig } from '../lib/Animations.js';
+import { IAnimationConfig, DefaultListCloseAnimation, DefaultListOpenAnimation } from '../lib/Animations.js';
 
 /* eslint-disable class-methods-use-this */
 /* eslint-disable no-plusplus */
@@ -19,7 +19,7 @@ import { IAnimationConfig } from '../lib/Animations.js';
  * @fires select
  */
 export default class AnypointDropdownElement extends OverlayMixin(ControlStateMixin(AnypointElement)) {
-  get styles(): CSSResult {
+  static get styles(): CSSResult {
     return css`
     :host {
       position: fixed;
@@ -39,8 +39,6 @@ export default class AnypointDropdownElement extends OverlayMixin(ControlStateMi
   /**
    * An animation config. If provided, this will be used to animate the
    * opening of the dropdown. Pass an Array for multiple animations.
-   * See `neon-animation` documentation for more animation configuration
-   * details.
    */
   @property({ type: Array })
   openAnimationConfig?: IAnimationConfig[];
@@ -48,8 +46,6 @@ export default class AnypointDropdownElement extends OverlayMixin(ControlStateMi
   /**
    * An animation config. If provided, this will be used to animate the
    * closing of the dropdown. Pass an Array for multiple animations.
-   * See `neon-animation` documentation for more animation configuration
-   * details.
    */
   @property({ type: Array })
   closeAnimationConfig?: IAnimationConfig[];
@@ -207,7 +203,6 @@ export default class AnypointDropdownElement extends OverlayMixin(ControlStateMi
     super();
     this.horizontalAlign = 'left';
     this.verticalAlign = 'top';
-    this.noAnimations = false;
     this.allowOutsideScroll = false;
   }
 
@@ -317,7 +312,7 @@ export default class AnypointDropdownElement extends OverlayMixin(ControlStateMi
     }
   }
 
-  playAnimation(name: string): void {
+  playAnimation(name: 'open' | 'close'): void {
     if (window.KeyframeEffect === undefined) {
       this._onAnimationFinish();
       return;
@@ -336,14 +331,8 @@ export default class AnypointDropdownElement extends OverlayMixin(ControlStateMi
     this._setPrefixedProperty(node, 'transformOrigin', `0% ${origin}`);
     let results;
     if (name === 'open') {
-      if (!this.openAnimationConfig) {
-        return;
-      }
       results = this._configureStartAnimation(node, this.openAnimationConfig);
-    } else {
-      if (!this.closeAnimationConfig) {
-        return;
-      }
+    } else if (name === 'close') {
       results = this._configureEndAnimation(node, this.closeAnimationConfig);
     }
     if (!results || !results.length) {
@@ -391,44 +380,16 @@ export default class AnypointDropdownElement extends OverlayMixin(ControlStateMi
     };
   }
 
-  _configureStartAnimation(node: HTMLElement, config: IAnimationConfig[]): Animation[] | null {
-    if (window.KeyframeEffect === undefined) {
+  _configureStartAnimation(node: HTMLElement, config: IAnimationConfig[] = DefaultListOpenAnimation): Animation[] | null {
+    if (window.KeyframeEffect === undefined || !config) {
       return null;
-    }
-    if (!config) {
-      config = [{
-        keyframes: [
-          { transform: 'scale(1, 0)' },
-          { transform: 'scale(1, 1)' }
-        ],
-        timing: {
-          delay: 0,
-          duration: 200,
-          easing: 'cubic-bezier(0.4, 0, 0.2, 1)',
-          fill: 'both'
-        }
-      }];
     }
     return this._runEffects(node, config);
   }
 
-  _configureEndAnimation(node: HTMLElement, config: IAnimationConfig[]): Animation[] | null {
-    if (window.KeyframeEffect === undefined) {
+  _configureEndAnimation(node: HTMLElement, config: IAnimationConfig[] = DefaultListCloseAnimation): Animation[] | null {
+    if (window.KeyframeEffect === undefined || !config) {
       return null;
-    }
-    if (!config) {
-      config = [{
-        keyframes: [
-          { transform: 'scale(1, 1)' },
-          { transform: 'scale(1, 0)' }
-        ],
-        timing: {
-          delay: 0,
-          duration: 200,
-          easing: 'cubic-bezier(0.4, 0, 0.2, 1)',
-          fill: 'both'
-        },
-      }];
     }
     return this._runEffects(node, config);
   }
@@ -449,7 +410,7 @@ export default class AnypointDropdownElement extends OverlayMixin(ControlStateMi
   }
 
   render(): TemplateResult {
-    return html`<style>${this.styles}</style>
+    return html`
     <div class="contentWrapper">
       <slot name="dropdown-content"></slot>
     </div>

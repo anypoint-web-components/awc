@@ -17,7 +17,7 @@ the License.
 import { LitElement, html, CSSResult, TemplateResult } from 'lit';
 import { classMap } from 'lit/directives/class-map.js';
 import { styleMap } from 'lit/directives/style-map.js';
-import { property } from 'lit/decorators';
+import { property } from 'lit/decorators.js';
 import { RangeMixin, rangeChanged, clampValue, computeRatio } from '../mixins/RangeMixin.js';
 import elementStyles from '../styles/Progress.js';
 
@@ -33,7 +33,7 @@ export const secondaryRatioValue = Symbol('secondaryRatioValue');
  * will take.
  */
 export default class AnypointProgressElement extends RangeMixin(LitElement) {
-  get styles(): CSSResult {
+  static get styles(): CSSResult {
     return elementStyles;
   }
 
@@ -126,18 +126,17 @@ export default class AnypointProgressElement extends RangeMixin(LitElement) {
   }
 
   render(): TemplateResult {
-    const { secondaryRatio = 0, indeterminate, ratio = 0, styles } = this;
+    const { secondaryRatio = 0, indeterminate, ratio = 0 } = this;
     const primaryClasses = {
       indeterminate: !!indeterminate,
     };
     const primaryStyle = {
       transform: `scaleX(${(ratio / 100)})`,
-    }
+    };
     const secondaryStyle = {
       transform: `scaleX(${(secondaryRatio / 100)})`,
-    }
+    };
     return html`
-    <style>${styles}</style>
     <div id="progressContainer">
       <div id="secondaryProgress" ?hidden="${secondaryRatio === 0}" style="${styleMap(secondaryStyle)}"></div>
       <div id="primaryProgress" class="${classMap(primaryClasses)}" style="${styleMap(primaryStyle)}"></div>

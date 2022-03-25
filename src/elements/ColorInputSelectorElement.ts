@@ -1,5 +1,5 @@
 import { html, LitElement, TemplateResult, CSSResult } from 'lit';
-import { property } from 'lit/decorators';
+import { property } from 'lit/decorators.js';
 import elementStyles from '../styles/ColorInputSelectorElement.styles.js';
 import AnypointCheckboxElement from './AnypointCheckboxElement.js';
 import ColorSelectorElement from './ColorSelectorElement.js';

@@ -1,4 +1,4 @@
-import { property, state } from 'lit/decorators';
+import { property, state } from 'lit/decorators.js';
 import { dedupeMixin } from '@open-wc/dedupe-mixin';
 import { AnypointSelection } from './AnypointSelection.js';
 import { addListener, getListener } from '../lib/ElementEventsRegistry.js';
@@ -217,6 +217,13 @@ export interface SelectableMixinInterface {
    * @param mutationsList List of mutations.
    */
   _mutationHandler(mutationsList: MutationRecord[]): void;
+  /**
+   * Dispatches `activate` item and selects the item.
+   *
+   * @param value Selected value
+   * @param item The selected item.
+   */
+  _itemActivate(value: number | string | undefined, item: HTMLElement): void;
 }
 
 /**

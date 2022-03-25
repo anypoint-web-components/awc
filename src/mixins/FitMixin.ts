@@ -1,6 +1,6 @@
 /* eslint-disable max-classes-per-file */
 import { LitElement } from 'lit';
-import { property } from 'lit/decorators';
+import { property } from 'lit/decorators.js';
 import { dedupeMixin } from '@open-wc/dedupe-mixin';
 
 /* eslint-disable class-methods-use-this */
@@ -58,7 +58,23 @@ interface SizeInfo {
 type Constructor<T = {}> = new (...args: any[]) => T;
 
 export declare interface FitMixinInterface {
+  /**
+   * The element to fit `this` into.
+   */
+  fitInto: HTMLElement | Window;
+
+  /**
+   * The element that will receive a `max-height`/`width`. By default it is
+   * the same as `this`, but it can be set to a child element. This is useful,
+   * for example, for implementing a scrolling region inside the element.
+   */
   sizingTarget: HTMLElement;
+
+  /**
+   * Will position the element around the positionTarget without overlapping
+   * it.
+   */
+  noOverlap?: boolean;
 
   /**
    * The element that should be used to position the element. If not set, it
@@ -129,10 +145,41 @@ export declare interface FitMixinInterface {
   */
   fitPositionTarget?: boolean;
 
+  get _fitWidth(): number;
+
+  get _fitHeight(): number;
+
+  get _fitLeft(): number;
+
+  get _fitTop(): number;
+
+  /**
+   * The element that should be used to position the element,
+   * if no position target is configured.
+   */
+  get _defaultPositionTarget(): HTMLElement;
+
+  _isRTL?: boolean;
+
+  /**
+   * The horizontal align value, accounting for the RTL/LTR text direction.
+   */
+  get _localeHorizontalAlign(): HorizontalAlign;
+
+  /**
+   * True if the element should be positioned instead of centered.
+   */
+  get __shouldPosition(): boolean;
+
   /**
    * Positions and fits the element into the `fitInto` element.
    */
   fit(): void;
+
+  /**
+   * Memoize information needed to position and size the target element.
+   */
+  _discoverInfo(): void;
   
   /**
    * Resets the target element's position and size constraints, and clear

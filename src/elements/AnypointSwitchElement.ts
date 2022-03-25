@@ -1,6 +1,6 @@
 /* eslint-disable class-methods-use-this */
 import { html, CSSResult, TemplateResult } from 'lit';
-import { property } from 'lit/decorators';
+import { property } from 'lit/decorators.js';
 import AnypointElement from './AnypointElement.js';
 import { CheckedElementMixin } from '../mixins/CheckedElementMixin.js';
 import { ButtonStateMixin } from '../mixins/ButtonStateMixin.js';
@@ -13,7 +13,7 @@ import { addListener, getListener } from '../lib/ElementEventsRegistry.js';
  * `anypoint-switch`
  */
 export default class AnypointSwitchElement extends ButtonStateMixin(ControlStateMixin(CheckedElementMixin(AnypointElement))) {
-  get styles(): CSSResult {
+  static get styles(): CSSResult {
     return styles;
   }
 
@@ -158,7 +158,6 @@ export default class AnypointSwitchElement extends ButtonStateMixin(ControlState
   render(): TemplateResult {
     const { anypoint } = this;
     return html`
-    <style>${this.styles}</style>
     ${anypoint
       ? this._compatibleContent()
       : this._mdContent()}

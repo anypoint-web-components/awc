@@ -41,12 +41,12 @@ import radioStyles from '../styles/RadioButton.js';
  * ```
  */
 export default class AnypointRadioButtonElement extends CheckedElementMixin(LitElement) {
-  get styles(): CSSResult {
+  static get styles(): CSSResult {
     return radioStyles;
   }
 
   render(): TemplateResult {
-    return html`<style>${this.styles}</style>
+    return html`
       <div class="radio-container">
         <div class="state-container">
           <div id="offRadio"></div>

@@ -19,8 +19,19 @@ import { dedupeMixin } from '@open-wc/dedupe-mixin';
 
 type Constructor<T = {}> = new (...args: any[]) => T;
 
-declare interface EventsTargetMixinInterface {
+export interface EventsTargetMixinInterface {
+  eventsTarget: EventTarget | undefined;
+  /**
+   * To be implement by the element to set event listeners from the target.
+   * @param node A node to which attach event listeners to
+   */
+  _attachListeners(node: EventTarget): void;
 
+  /**
+   * To be implement by the element to remove event listeners from the target.
+   * @param node A node to which remove event listeners to
+   */
+  _detachListeners(node: EventTarget): void;
 }
 
 /**

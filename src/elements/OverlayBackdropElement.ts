@@ -9,7 +9,7 @@ part of the polymer project is also subject to an additional IP rights grant
 found at http://polymer.github.io/PATENTS.txt
 */
 import { LitElement, html, css, CSSResult, TemplateResult } from 'lit';
-import { property } from 'lit/decorators';
+import { property } from 'lit/decorators.js';
 
 /* eslint-disable class-methods-use-this */
 /* eslint-disable no-plusplus */
@@ -33,7 +33,7 @@ Custom property | Description | Default
 `--iron-overlay-backdrop-opened`           | Mixin applied to `iron-overlay-backdrop` when it is displayed | {}
 */
 export default class OverlayBackdropElement extends LitElement {
-  get styles(): CSSResult {
+  static get styles(): CSSResult {
     return css`
     :host {
       position: fixed;
@@ -160,7 +160,7 @@ export default class OverlayBackdropElement extends LitElement {
     const { scrollTop } = this;
     // @ts-ignore
     this.scrollTop = undefined;
-    this.scrollTop =  scrollTop;
+    this.scrollTop = scrollTop;
     this.__openedRaf = window.requestAnimationFrame(() => {
       this.__openedRaf = undefined;
       this.toggleClass('opened', this.opened);
@@ -183,6 +183,6 @@ export default class OverlayBackdropElement extends LitElement {
   }
 
   render(): TemplateResult {
-    return html`<style>${this.styles}</style><slot></slot>`;
+    return html`<slot></slot>`;
   }
 }

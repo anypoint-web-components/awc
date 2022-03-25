@@ -4,7 +4,6 @@
 <head>
   <meta charset="utf-8">
   <title>validator-mixin demo</title>
-  <script type="module" src="./cats-only.js"></script>
   <style>
     body {
       background: #fff !important;
@@ -91,83 +90,7 @@
     </form>
   </section>
 
-  <script type="module">
-    /* eslint-disable import/named */
-    // @ts-ignore
-    import { ValidatorStore } from '../index.js';
-
-    /* eslint-disable no-plusplus */
-
-    const validator = ValidatorStore.get('cats-only');
-
-    const Demo = {
-      init: () => {
-        document.getElementById('input1').addEventListener('input', Demo._onInput);
-        document.getElementById('input2').addEventListener('input', Demo._onInputMulti);
-        document.getElementById('form').addEventListener('submit', Demo._onSubmit);
-      },
-
-      _onInput: (e) => {
-        const valid = validator.validate(e.target.value);
-        Demo._singleResult(valid);
-        e.target.setCustomValidity(validator.message);
-      },
-
-      _singleResult: (valid) => {
-        Demo._setResult('singleinput', valid);
-      },
-
-      _onInputMulti: (e) => {
-        const values = [];
-        const nodes = e.target.parentNode.querySelectorAll('input');
-        let i;
-        let len;
-        for (i = 0, len = nodes.length; i < len; i++) {
-          values.push(nodes[i].value);
-        }
-        const valid = validator.validate(values);
-        Demo._multipleResult(valid);
-        for (i = 0, len = nodes.length; i < len; i++) {
-          nodes[i].setCustomValidity(valid ? '' : validator.message);
-        }
-      },
-
-      _multipleResult: (valid) => {
-        Demo._setResult('multipleinput', valid);
-      },
-
-      _onSubmit: (e) => {
-        e.preventDefault();
-        const data = {};
-        for (let el, i = 0, len = e.target.elements.length; i < len; i++) {
-          el = e.target.elements[i];
-          if (el.name) {
-            data[el.name] = el.value;
-          }
-        }
-        const valid = validator.validate(data);
-        Demo._formResult(valid);
-      },
-
-      _formResult: (valid) => {
-        Demo._setResult('forminput', valid);
-      },
-
-      _setResult: (id, valid) => {
-        const ve = document.querySelector(`#${id} .valid`);
-        const ie = document.querySelector(`#${id} .invalid`);
-        if (valid) {
-          ie.setAttribute('hidden', '');
-          ve.removeAttribute('hidden');
-        } else {
-          ve.setAttribute('hidden', '');
-          ie.removeAttribute('hidden');
-        }
-      }
-    };
-
-    Demo.init();
-  </script>
+  <script type="module" src="validator-mixin.ts"></script>
 </body>
 
 </html>

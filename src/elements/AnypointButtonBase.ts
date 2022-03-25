@@ -1,4 +1,4 @@
-import { property } from 'lit/decorators';
+import { property } from 'lit/decorators.js';
 import AnypointElement from './AnypointElement.js';
 import { ControlStateMixin } from '../mixins/ControlStateMixin.js';
 import { ButtonStateMixin } from '../mixins/ButtonStateMixin.js';
@@ -31,7 +31,7 @@ export class AnypointButtonBase extends ControlStateMixin(ButtonStateMixin(Anypo
   // @property({ type: Boolean, reflect: true })
   // autofocus?: boolean;
   
-  private _emphasis: EmphasisValue = 'low';
+  private _emphasis?: EmphasisValue = 'low';
 
   /**
    * Button emphasis in the UI.
@@ -42,13 +42,14 @@ export class AnypointButtonBase extends ControlStateMixin(ButtonStateMixin(Anypo
    * - `high` - Contained buttons have more emphasis, as they use use a color fill and shadow.
    *
    * Default is "low".
+   * @attribute
    */
   @property({ type: String, reflect: true })
-  get emphasis(): EmphasisValue {
+  get emphasis(): EmphasisValue | undefined {
     return this._emphasis;
   }
 
-  set emphasis(value) {
+  set emphasis(value: EmphasisValue | undefined) {
     const old = this._emphasis;
     if (old === value) {
       return;
@@ -76,6 +77,7 @@ export class AnypointButtonBase extends ControlStateMixin(ButtonStateMixin(Anypo
 
   constructor() {
     super();
+    this.requestUpdate('emphasis', '');
     this._calculateElevation();
   }
 

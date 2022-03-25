@@ -16,8 +16,7 @@ const isEnterKey = (e: KeyboardEvent): boolean => e.code === 'Enter' || e.code =
  * Anypoint styled button.
  */
 export default class AnypointIconButtonElement extends AnypointButtonBase {
-  /* eslint-disable class-methods-use-this */
-  get styles(): CSSResult {
+  static get styles(): CSSResult {
     return elementStyles;
   }
 
@@ -29,7 +28,7 @@ export default class AnypointIconButtonElement extends AnypointButtonBase {
   }
 
   render(): TemplateResult {
-    return html`<style>${this.styles}</style>
+    return html`
     <div class="icon">
       <slot></slot>
       <material-ripple class="circle" center .noink="${this.noink}" @transitionend="${this._transitionEndHandler}"></material-ripple>

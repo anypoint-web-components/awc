@@ -1,10 +1,8 @@
 import { html, LitElement, css, CSSResult, TemplateResult } from 'lit';
-import { property } from 'lit/decorators';
+import { property } from 'lit/decorators.js';
 
 export default class AnypointDialogScrollableElement extends LitElement {
-
-  // eslint-disable-next-line class-methods-use-this
-  get styles(): CSSResult[] {
+  static get styles(): CSSResult[] {
     return [
       css`
       :host {
@@ -85,7 +83,6 @@ export default class AnypointDialogScrollableElement extends LitElement {
 
   render(): TemplateResult {
     return html`
-      <style>${this.styles}</style>
       <div class="scrollable" @scroll="${this.updateScrollState}">
         <slot></slot>
       </div>

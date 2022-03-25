@@ -1,5 +1,5 @@
 import { dedupeMixin } from '@open-wc/dedupe-mixin';
-import { property, state } from 'lit/decorators';
+import { property, state } from 'lit/decorators.js';
 import { SelectableMixin, SelectableMixinInterface } from './SelectableMixin.js';
 import { addListener, getListener } from '../lib/ElementEventsRegistry.js';
 

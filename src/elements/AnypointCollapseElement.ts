@@ -1,5 +1,5 @@
 import { html, css, LitElement, TemplateResult, CSSResult } from 'lit';
-import { property } from 'lit/decorators';
+import { property } from 'lit/decorators.js';
 import { ResizableMixin } from '../mixins/ResizableMixin.js';
 
 const transitionEndHandler = Symbol('transitionEndHandler');
@@ -19,8 +19,7 @@ const horizontalChanged = Symbol('horizontalChanged');
 const toggleAttribute = Symbol('toggleAttribute');
 
 export default class AnypointCollapseElement extends ResizableMixin(LitElement) {
-  // eslint-disable-next-line class-methods-use-this
-  get styles(): CSSResult {
+  static get styles(): CSSResult {
     return css`
     :host {
       display: block;
@@ -301,6 +300,6 @@ export default class AnypointCollapseElement extends ResizableMixin(LitElement) 
   }
 
   render(): TemplateResult {
-    return html`<style>${this.styles}</style><slot></slot>`;
+    return html`<slot></slot>`;
   }
 }

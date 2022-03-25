@@ -7,7 +7,7 @@ All rights reserved.
 */
 
 import { LitElement } from 'lit';
-import { property } from 'lit/decorators';
+import { property } from 'lit/decorators.js';
 import { dedupeMixin } from '@open-wc/dedupe-mixin';
 
 type Constructor<T = {}> = new (...args: any[]) => T;
@@ -31,6 +31,9 @@ export interface ControlStateMixinInterface {
    */
   _changedControlState(): void;
 
+  /**
+   * @deprecated Use `_changedControlState()`
+   */
   _controlStateChanged(): void;
 
   /**

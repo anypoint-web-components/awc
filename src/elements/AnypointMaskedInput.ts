@@ -1,5 +1,5 @@
 import { html, css, CSSResult, TemplateResult, SVGTemplateResult } from 'lit';
-import { property } from 'lit/decorators';
+import { property } from 'lit/decorators.js';
 import { visibilityOff, visibility, } from '../resources/Icons.js';
 import AnypointInputElement from './AnypointInputElement.js';
 import '../../define/anypoint-icon-button.js';
@@ -8,9 +8,9 @@ import { SupportedInputTypes } from '../types';
 /* eslint-disable class-methods-use-this */
 
 export default class AnypointMaskedInputElement extends AnypointInputElement {
-  get styles(): CSSResult[] {
+  static get styles(): CSSResult[] {
     return [
-      ...super.styles,
+      ...AnypointInputElement.styles,
       css`
         .icon {
           display: inline-block;
@@ -76,9 +76,7 @@ export default class AnypointMaskedInputElement extends AnypointInputElement {
       _visibilityToggleTitle,
       _visibilityToggleLabel,
     } = this;
-    return html`<style>
-        ${this.styles}
-      </style>
+    return html`
       <div class="suffixes">
         <anypoint-icon-button
           @click="${this.toggleVisibility}"
