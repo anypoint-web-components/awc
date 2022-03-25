@@ -1,10 +1,16 @@
 /* eslint-disable wc/no-invalid-element-name */
-import { LitElement, html } from 'lit-element';
+import { LitElement, html, TemplateResult } from 'lit';
 import { ResizableMixin } from '../../index.js';
 
 export class Xresizable extends ResizableMixin(LitElement) {
-  render() {
+  render(): TemplateResult {
     return html`<p>x-resizable</p>`;
   }
 }
 window.customElements.define('x-resizable', Xresizable);
+
+declare global {
+  interface HTMLElementTagNameMap {
+    "x-resizable": Xresizable
+  }
+}

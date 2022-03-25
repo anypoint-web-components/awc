@@ -1,8 +1,8 @@
-import { LitElement, html, css } from 'lit-element';
+import { LitElement, html, css, TemplateResult, CSSResult } from 'lit';
 import './test-buttons.js';
 
-class TestButtonsWrapper extends LitElement {
-  get styles() {
+export class TestButtonsWrapper extends LitElement {
+  get styles(): CSSResult {
     return css`
     :host {
       display: block;
@@ -11,7 +11,7 @@ class TestButtonsWrapper extends LitElement {
     }`;
   }
 
-  render() {
+  render(): TemplateResult {
     return html`<style>${this.styles}</style>
     <select id="select">
       <option>1</option>
@@ -23,3 +23,9 @@ class TestButtonsWrapper extends LitElement {
   }
 }
 window.customElements.define('test-buttons-wrapper', TestButtonsWrapper);
+
+declare global {
+  interface HTMLElementTagNameMap {
+    "test-buttons-wrapper": TestButtonsWrapper;
+  }
+}

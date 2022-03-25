@@ -1,8 +1,9 @@
-import { LitElement, html, css } from 'lit-element';
+import { LitElement, html, css, TemplateResult, CSSResult } from 'lit';
+import { property } from 'lit/decorators.js';
 import { OverlayMixin } from '../../index.js';
 
 export class TestOverlay extends OverlayMixin(LitElement) {
-  get styles() {
+  get styles(): CSSResult {
     return css`
     :host {
         background: white;
@@ -23,17 +24,14 @@ export class TestOverlay extends OverlayMixin(LitElement) {
       }`;
   }
 
-  static get properties() {
-    return {
-      _animated: { type: Boolean, reflect: true, attribute: 'animated' }
-    };
-  }
-
-  get animated() {
+  @property({ type: Boolean, reflect: true, attribute: 'animated' })
+  _animated = false;
+  
+  get animated(): boolean {
     return this._animated;
   }
 
-  set animated(value) {
+  set animated(value: boolean) {
     this._animated = value;
   }
 
@@ -43,19 +41,20 @@ export class TestOverlay extends OverlayMixin(LitElement) {
     this.__onTransitionEnd = this.__onTransitionEnd.bind(this);
   }
 
-  connectedCallback() {
+  connectedCallback(): void {
     super.connectedCallback();
     this.addEventListener('transitionend', this.__onTransitionEnd);
   }
 
-  disconnectedCallback() {
+  disconnectedCallback(): void {
     super.disconnectedCallback();
     this.removeEventListener('transitionend', this.__onTransitionEnd);
   }
 
-  _renderOpened() {
+  _renderOpened(): void {
     if (this.animated) {
       if (this.withBackdrop) {
+        // @ts-ignore
         this.backdropElement.open();
       }
       this.classList.add('opened');
@@ -68,9 +67,10 @@ export class TestOverlay extends OverlayMixin(LitElement) {
     }
   }
 
-  _renderClosed() {
+  _renderClosed(): void {
     if (this.animated) {
       if (this.withBackdrop) {
+        // @ts-ignore
         this.backdropElement.close();
       }
       this.classList.remove('opened');
@@ -83,7 +83,7 @@ export class TestOverlay extends OverlayMixin(LitElement) {
     }
   }
 
-  __onTransitionEnd(e) {
+  __onTransitionEnd(e: Event): void {
     if (e && e.target === this) {
       if (this.opened) {
         this._finishRenderOpened();
@@ -93,9 +93,14 @@ export class TestOverlay extends OverlayMixin(LitElement) {
     }
   }
 
-  render() {
-    return html`<style>${this.styles}</style>
-<slot></slot>`;
+  render(): TemplateResult {
+    return html`<style>${this.styles}</style><slot></slot>`;
   }
 }
 customElements.define('test-overlay', TestOverlay);
+
+declare global {
+  interface HTMLElementTagNameMap {
+    "test-overlay": TestOverlay;
+  }
+}

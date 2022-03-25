@@ -1,8 +1,8 @@
 /* eslint-disable wc/no-invalid-element-name */
-import { LitElement, html, css } from 'lit-element';
+import { LitElement, html, css, TemplateResult, CSSResult } from 'lit';
 
-class XScrollableElement extends LitElement {
-  get styles() {
+export class XScrollableElement extends LitElement {
+  get styles(): CSSResult {
     return css`
     :host {
       display: block;
@@ -26,7 +26,7 @@ class XScrollableElement extends LitElement {
     }`;
   }
 
-  render() {
+  render(): TemplateResult {
     return html`<style>${this.styles}</style>
     <div id="ChildOne">
       <div id="GrandchildOne">
@@ -42,3 +42,9 @@ class XScrollableElement extends LitElement {
   }
 }
 window.customElements.define('x-scrollable-element', XScrollableElement);
+
+declare global {
+  interface HTMLElementTagNameMap {
+    "x-scrollable-element": XScrollableElement;
+  }
+}

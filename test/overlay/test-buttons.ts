@@ -1,7 +1,7 @@
-import { LitElement, html, css } from 'lit-element';
+import { LitElement, html, css, CSSResult, TemplateResult } from 'lit';
 
-class TestButtons extends LitElement {
-  get styles() {
+export class TestButtons extends LitElement {
+  get styles(): CSSResult {
     return css`
     :host {
       display: block;
@@ -10,7 +10,7 @@ class TestButtons extends LitElement {
     }`;
   }
 
-  render() {
+  render(): TemplateResult {
     return html`<style>${this.styles}</style>
     <button id="button0">button0</button>
     <button id="button1">button1</button>
@@ -19,3 +19,9 @@ class TestButtons extends LitElement {
   }
 }
 window.customElements.define('test-buttons', TestButtons);
+
+declare global {
+  interface HTMLElementTagNameMap {
+    "test-buttons": TestButtons;
+  }
+}

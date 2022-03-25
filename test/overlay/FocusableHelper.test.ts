@@ -1,8 +1,10 @@
 /* eslint-disable lit-a11y/tabindex-no-positive */
 import {fixture, assert, nextFrame, html} from '@open-wc/testing';
 import './test-buttons.js';
+import { TestButtons } from './test-buttons.js';
 import './test-buttons-wrapper.js';
-import { FocusableHelper } from '../../focusable-helper.js';
+import { TestButtonsWrapper } from './test-buttons-wrapper.js';
+import { FocusableHelper } from '../../define/focusable-helper.js';
 
 const s = document.createElement('style');
 s.type = 'text/css';
@@ -17,7 +19,7 @@ s.innerHTML = `
 document.getElementsByTagName('head')[0].appendChild(s);
 
 describe('FocusableHelper', () => {
-  async function basicFixture() {
+  async function basicFixture(): Promise<HTMLDivElement> {
     return (fixture(html`
       <div>
         <h2>Focusables (no tabindex)</h2>
@@ -32,7 +34,7 @@ describe('FocusableHelper', () => {
       </div>`));
   }
 
-  async function tabindexFixture() {
+  async function tabindexFixture(): Promise<HTMLDivElement> {
     return (fixture(html`
       <div>
         <h2>Focusables (with tabindex)</h2>
@@ -54,7 +56,7 @@ describe('FocusableHelper', () => {
       </div>`));
   }
 
-  async function shadowFixture() {
+  async function shadowFixture(): Promise<TestButtons> {
     return (fixture(html`
       <test-buttons>
         <h2>focusables in ShadowDOM</h2>
@@ -62,7 +64,7 @@ describe('FocusableHelper', () => {
       </test-buttons>`));
   }
 
-  async function composedFixture() {
+  async function composedFixture(): Promise<TestButtonsWrapper> {
     return (fixture(html`
       <test-buttons-wrapper>
         <input placeholder="type something..">
@@ -93,29 +95,21 @@ describe('FocusableHelper', () => {
     it('excludes visibility: hidden elements', async () => {
       const node = await basicFixture();
       await nextFrame();
-      const focusable = node.querySelector('.focusable1');
+      const focusable = node.querySelector('.focusable1') as HTMLElement;
       focusable.classList.add('hidden');
       const focusableNodes = FocusableHelper.getTabbableNodes(node);
       assert.equal(focusableNodes.length, 2, '2 focusable nodes');
-      assert.equal(
-          // @ts-ignore
-          focusableNodes.indexOf(focusable),
-          -1,
-          'hidden element is not included');
+      assert.equal(focusableNodes.indexOf(focusable), -1, 'hidden element is not included');
     });
 
     it('excludes display: none elements', async () => {
       const node = await basicFixture();
       await nextFrame();
-      const focusable = node.querySelector('.focusable1');
+      const focusable = node.querySelector('.focusable1') as HTMLElement;
       focusable.classList.add('no-display');
       const focusableNodes = FocusableHelper.getTabbableNodes(node);
       assert.equal(focusableNodes.length, 2, '2 focusable nodes');
-      assert.equal(
-          // @ts-ignore
-          focusableNodes.indexOf(focusable),
-          -1,
-          'hidden element is not included');
+      assert.equal(focusableNodes.indexOf(focusable), -1, 'hidden element is not included');
     });
 
     it('respects the tabindex order', async () => {
@@ -124,8 +118,7 @@ describe('FocusableHelper', () => {
       const focusableNodes = FocusableHelper.getTabbableNodes(node);
       assert.equal(focusableNodes.length, 12, '12 nodes are focusable');
       for (let i = 0; i < 12; i++) {
-        assert.equal(
-            focusableNodes[i], node.querySelector(`.focusable${i + 1}`));
+        assert.equal(focusableNodes[i], node.querySelector(`.focusable${i + 1}`));
       }
     });
 
@@ -134,10 +127,10 @@ describe('FocusableHelper', () => {
       await nextFrame();
       const focusableNodes = FocusableHelper.getTabbableNodes(node);
       assert.equal(focusableNodes.length, 4, '4 nodes are focusable');
-      assert.equal(focusableNodes[0], node.shadowRoot.querySelector('#button0'));
-      assert.equal(focusableNodes[1], node.shadowRoot.querySelector('#button1'));
+      assert.equal(focusableNodes[0], node.shadowRoot!.querySelector('#button0'));
+      assert.equal(focusableNodes[1], node.shadowRoot!.querySelector('#button1'));
       assert.equal(focusableNodes[2], node.querySelector('input'));
-      assert.equal(focusableNodes[3], node.shadowRoot.querySelector('#button2'));
+      assert.equal(focusableNodes[3], node.shadowRoot!.querySelector('#button2'));
     });
 
     it('handles composition', async () => {
@@ -145,25 +138,25 @@ describe('FocusableHelper', () => {
       await nextFrame();
       const focusableNodes = FocusableHelper.getTabbableNodes(node);
       assert.equal(focusableNodes.length, 6, '6 nodes are focusable');
-      const wrapped = node.shadowRoot.querySelector('#wrapped');
-      assert.equal(focusableNodes[0], node.shadowRoot.querySelector('#select'));
-      assert.equal(focusableNodes[1], wrapped.shadowRoot.querySelector('#button0'));
-      assert.equal(focusableNodes[2], wrapped.shadowRoot.querySelector('#button1'));
+      const wrapped = node.shadowRoot!.querySelector('#wrapped') as HTMLElement;
+      assert.equal(focusableNodes[0], node.shadowRoot!.querySelector('#select'));
+      assert.equal(focusableNodes[1], wrapped.shadowRoot!.querySelector('#button0'));
+      assert.equal(focusableNodes[2], wrapped.shadowRoot!.querySelector('#button1'));
       assert.equal(focusableNodes[3], node.querySelector('input'));
-      assert.equal(focusableNodes[4], wrapped.shadowRoot.querySelector('#button2'));
-      assert.equal(focusableNodes[5], node.shadowRoot.querySelector('#focusableDiv'));
+      assert.equal(focusableNodes[4], wrapped.shadowRoot!.querySelector('#button2'));
+      assert.equal(focusableNodes[5], node.shadowRoot!.querySelector('#focusableDiv'));
     });
 
     it('handles distributed nodes', async () => {
       const node = await composedFixture();
       await nextFrame();
-      const wrapped = node.shadowRoot.querySelector('#wrapped');
+      const wrapped = node.shadowRoot!.querySelector('#wrapped') as HTMLElement;
       const focusableNodes = FocusableHelper.getTabbableNodes(wrapped);
       assert.equal(focusableNodes.length, 4, '4 nodes are focusable');
-      assert.equal(focusableNodes[0], wrapped.shadowRoot.querySelector('#button0'));
-      assert.equal(focusableNodes[1], wrapped.shadowRoot.querySelector('#button1'));
+      assert.equal(focusableNodes[0], wrapped.shadowRoot!.querySelector('#button0'));
+      assert.equal(focusableNodes[1], wrapped.shadowRoot!.querySelector('#button1'));
       assert.equal(focusableNodes[2], node.querySelector('input'));
-      assert.equal(focusableNodes[3], wrapped.shadowRoot.querySelector('#button2'));
+      assert.equal(focusableNodes[3], wrapped.shadowRoot!.querySelector('#button2'));
     });
   });
 });

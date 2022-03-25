@@ -11,11 +11,11 @@ WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the
 License for the specific language governing permissions and limitations under
 the License.
 */
-import { LitElement, html } from 'lit-element';
+import { LitElement, html, TemplateResult } from 'lit';
 import { ValidatableMixin } from '../../index.js';
 
 export class TestValidatable extends ValidatableMixin(LitElement) {
-  render() {
+  render(): TemplateResult {
     return html`<slot></slot>`;
   }
 
@@ -24,10 +24,14 @@ export class TestValidatable extends ValidatableMixin(LitElement) {
     this.addEventListener('input', this._onInput.bind(this));
   }
 
-  /* istanbul ignore next */
-  _onInput(e) {
-    /* istanbul ignore next */
+  _onInput(e: any): void {
     this.validate(e.target.value);
   }
 }
 window.customElements.define('test-validatable', TestValidatable);
+
+declare global {
+  interface HTMLElementTagNameMap {
+    "test-validatable": TestValidatable
+  }
+}

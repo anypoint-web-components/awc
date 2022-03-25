@@ -1,8 +1,8 @@
-import { LitElement, html, css } from 'lit-element';
+import { LitElement, html, css, TemplateResult, CSSResult } from 'lit';
 import './test-overlay.js';
 
-class TestScrollable extends LitElement {
-  get styles() {
+export class TestScrollable extends LitElement {
+  get styles(): CSSResult {
     return css`
     #scrollable, #overlay {
       max-width: 200px;
@@ -11,7 +11,7 @@ class TestScrollable extends LitElement {
     }`;
   }
 
-  render() {
+  render(): TemplateResult {
     return html`<style>${this.styles}</style>
     <div id="scrollable">
       <slot name="scrollable-content"></slot>
@@ -22,3 +22,9 @@ class TestScrollable extends LitElement {
   }
 }
 window.customElements.define('test-scrollable', TestScrollable);
+
+declare global {
+  interface HTMLElementTagNameMap {
+    "test-scrollable": TestScrollable;
+  }
+}

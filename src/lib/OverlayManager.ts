@@ -24,18 +24,18 @@ export class OverlayManager {
   /**
    * Used to keep track of the opened overlays.
    */
-  private _overlays: Array<HTMLElement> = [];
+  _overlays: Array<HTMLElement> = [];
 
   /**
    * iframes have a default z-index of 100,
    * so this default should be at least that.
    */
-  private _minimumZ = 101;
+  _minimumZ = 101;
 
   /**
    * Memoized backdrop element.
    */
-  private _backdropElement: OverlayBackdrop | null = null;
+  _backdropElement: OverlayBackdrop | null = null;
 
   constructor() {
     // Enable document-wide tap recognizer.
@@ -316,7 +316,7 @@ export class OverlayManager {
     }
   }
 
-  private _clickIsInsideOverlay(clickEvent: MouseEvent, element: HTMLElement): boolean {
+  _clickIsInsideOverlay(clickEvent: MouseEvent, element: HTMLElement): boolean {
     const { clientX, clientY } = clickEvent;
     const { top, left, right, bottom } = element.getBoundingClientRect();
     if (clientX < left || clientX > right || clientY < top || clientY > bottom) {

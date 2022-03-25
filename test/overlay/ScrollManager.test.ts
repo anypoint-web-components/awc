@@ -1,11 +1,12 @@
 import {fixture, assert} from '@open-wc/testing';
-import './x-scrollable-element.js';
 import {keyboardEventFor} from '@polymer/iron-test-helpers/mock-interactions.js';
 // import {elementIsScrollLocked, pushScrollLock, removeScrollLock} from '../arc-scroll-manager.js';
 import { ScrollManager } from '../../index.js';
+import './x-scrollable-element.js';
+import { XScrollableElement } from './x-scrollable-element.js';
 
 describe('ScrollManager', () => {
-  async function basicFixture() {
+  async function basicFixture(): Promise<XScrollableElement> {
     return fixture(`
       <x-scrollable-element id="Parent">
         <div id="LightElement"></div>
@@ -22,21 +23,21 @@ describe('ScrollManager', () => {
   ];
 
   describe('IronScrollManager', () => {
-    let parent;
-    let childOne;
-    let childTwo;
-    let grandChildOne;
-    let grandChildTwo;
-    let ancestor;
-    let lightElement;
+    let parent: XScrollableElement;
+    let childOne: HTMLDivElement;
+    let childTwo: HTMLDivElement;
+    let grandChildOne: HTMLDivElement;
+    let grandChildTwo: HTMLDivElement;
+    let ancestor: HTMLElement;
+    let lightElement: HTMLDivElement;
 
     beforeEach(async () => {
       parent = await basicFixture();
-      childOne = parent.shadowRoot.querySelector('#ChildOne');
-      childTwo = parent.shadowRoot.querySelector('#ChildTwo');
-      grandChildOne = parent.shadowRoot.querySelector('#GrandchildOne');
-      grandChildTwo = parent.shadowRoot.querySelector('#GrandchildTwo');
-      lightElement = parent.querySelector('#LightElement');
+      childOne = parent.shadowRoot!.querySelector('#ChildOne') as HTMLDivElement;
+      childTwo = parent.shadowRoot!.querySelector('#ChildTwo') as HTMLDivElement;
+      grandChildOne = parent.shadowRoot!.querySelector('#GrandchildOne') as HTMLDivElement;
+      grandChildTwo = parent.shadowRoot!.querySelector('#GrandchildTwo') as HTMLDivElement;
+      lightElement = parent.querySelector('#LightElement') as HTMLDivElement;
       ancestor = document.body;
     });
 
@@ -83,13 +84,14 @@ describe('ScrollManager', () => {
       });
 
       describe('various scroll events', () => {
-        let events;
+        let events: CustomEvent[];
 
         beforeEach(() => {
           events = scrollEvents.map((scrollEvent) => {
-            const event = new CustomEvent(
-                scrollEvent, {bubbles: true, cancelable: true, composed: true});
+            const event = new CustomEvent(scrollEvent, {bubbles: true, cancelable: true, composed: true });
+            // @ts-ignore
             event.deltaX = 0;
+            // @ts-ignore
             event.deltaY = 10;
             return event;
           });
@@ -98,7 +100,7 @@ describe('ScrollManager', () => {
         it('prevents wheel events from locked elements', () => {
           events.forEach((event) => {
             childTwo.dispatchEvent(event);
-            assert.isTrue(event.defaultPrevented, `${event.type  } ok`);
+            assert.isTrue(event.defaultPrevented, `${event.type} ok`);
           });
         });
 
@@ -106,31 +108,27 @@ describe('ScrollManager', () => {
           ScrollManager.removeScrollLock(childOne);
           events.forEach((event) => {
             childTwo.dispatchEvent(event);
-            assert.isFalse(event.defaultPrevented, `${event.type  } ok`);
+            assert.isFalse(event.defaultPrevented, `${event.type} ok`);
           });
         });
 
         it('allows wheel events from unlocked elements', () => {
           events.forEach((event) => {
             childOne.dispatchEvent(event);
-            assert.isFalse(event.defaultPrevented, `${event.type  } ok`);
+            assert.isFalse(event.defaultPrevented, `${event.type} ok`);
           });
         });
 
         it('touchstart is prevented if dispatched by an element outside the locking element', () => {
-          const event = new CustomEvent(
-              'touchstart',
-              {bubbles: true, cancelable: true, composed: true});
+          const event = new CustomEvent('touchstart', { bubbles: true, cancelable: true, composed: true });
           childTwo.dispatchEvent(event);
-          assert.isTrue(event.defaultPrevented, `${event.type  } ok`);
+          assert.isTrue(event.defaultPrevented, `${event.type} ok`);
         });
 
         it('touchstart is not prevented if dispatched by an element inside the locking element', () => {
-          const event = new CustomEvent(
-              'touchstart',
-              {bubbles: true, cancelable: true, composed: true});
+          const event = new CustomEvent('touchstart', { bubbles: true, cancelable: true, composed: true });
           grandChildOne.dispatchEvent(event);
-          assert.isFalse(event.defaultPrevented, `${event.type  } ok`);
+          assert.isFalse(event.defaultPrevented, `${event.type} ok`);
         });
 
         it('arrow keyboard events not prevented by manager', () => {

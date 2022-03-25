@@ -1,7 +1,10 @@
+/* eslint-disable no-param-reassign */
 import {fixture, assert, nextFrame, html} from '@open-wc/testing';
 import sinon from 'sinon';
 import './test-overlay.js';
+import { TestOverlay } from './test-overlay.js';
 import './test-scrollable.js';
+import { TestScrollable } from './test-scrollable.js';
 import { ScrollManager } from '../../index.js';
 
 const s = document.createElement('style');
@@ -26,7 +29,7 @@ big.innerText = 'This element makes the page scrollable.';
 document.body.appendChild(big);
 
 describe('OverlayMixin - scroll actions', () => {
-  async function basicFixture() {
+  async function basicFixture(): Promise<TestOverlay> {
     return fixture(html`
       <test-overlay class="scrollable">
         <div class="big">
@@ -35,7 +38,7 @@ describe('OverlayMixin - scroll actions', () => {
       </test-overlay>`);
   }
 
-  async function scrollableFixture() {
+  async function scrollableFixture(): Promise<TestScrollable> {
     return fixture(html`
       <test-scrollable>
         <div slot="scrollable-content" class="big">
@@ -48,7 +51,7 @@ describe('OverlayMixin - scroll actions', () => {
 
   // Need to discover if html or body is scrollable.
   // Here we are sure the page is scrollable.
-  let scrollTarget;
+  let scrollTarget: HTMLElement;
   document.documentElement.scrollTop = 1;
   if (document.documentElement.scrollTop === 1) {
     document.documentElement.scrollTop = 0;
@@ -57,42 +60,43 @@ describe('OverlayMixin - scroll actions', () => {
     scrollTarget = document.body;
   }
 
-  async function runAfterOpen(overlay) {
+  async function runAfterOpen(overlay: TestOverlay): Promise<void> {
     return new Promise((resolve) => {
-      overlay.addEventListener('iron-overlay-opened', resolve);
+      overlay.addEventListener('iron-overlay-opened', () => resolve());
       overlay.open();
     });
   }
 
-  async function runAfterClose(overlay) {
+  async function runAfterClose(overlay: TestOverlay): Promise<void> {
     return new Promise((resolve) => {
-      overlay.addEventListener('iron-overlay-closed', resolve);
+      overlay.addEventListener('iron-overlay-closed', () => resolve());
       overlay.close();
     });
   }
 
-  function fireWheel(node, deltaX, deltaY) {
+  function fireWheel(node: EventTarget, deltaX: number, deltaY: number): Event {
     // IE 11 doesn't support WheelEvent, use CustomEvent.
     const event = new CustomEvent('wheel', {
       cancelable: true,
       bubbles: true,
       composed: true,
     });
+    // @ts-ignore
     event.deltaX = deltaX;
+    // @ts-ignore
     event.deltaY = deltaY;
     node.dispatchEvent(event);
     return event;
   }
 
-  function dispatchScroll(target, scrollLeft, scrollTop) {
+  function dispatchScroll(target: HTMLElement, scrollLeft: number, scrollTop: number): void {
     target.scrollLeft = scrollLeft;
     target.scrollTop = scrollTop;
-    target.dispatchEvent(
-        new CustomEvent('scroll', {bubbles: true, composed: false}));
+    target.dispatchEvent(new CustomEvent('scroll', {bubbles: true, composed: false}));
   }
 
   describe('scroll actions', () => {
-    let overlay;
+    let overlay: TestOverlay;
     beforeEach(async () => {
       // Ensure we always scroll to top.
       dispatchScroll(scrollTarget, 0, 0);
@@ -151,7 +155,9 @@ describe('OverlayMixin - scroll actions', () => {
       runAfterOpen(overlay)
       .then(() => {
         overlay.addEventListener('iron-overlay-canceled', (event) => {
+          // @ts-ignore
           assert.equal(event.detail.type, 'scroll', 'detail contains original event');
+          // @ts-ignore
           assert.equal(event.detail.target, scrollTarget, 'original scroll event target ok');
           overlay.addEventListener('iron-overlay-closed', () => {
             done();
@@ -160,7 +166,6 @@ describe('OverlayMixin - scroll actions', () => {
         dispatchScroll(scrollTarget, 0, 10);
       });
     });
-
 
     it('lock scrollAction locks scroll', async () => {
       overlay.scrollAction = 'lock';
@@ -195,13 +200,13 @@ describe('OverlayMixin - scroll actions', () => {
   });
 
   describe('scroll actions in shadow root', () => {
-    let scrollable;
-    let overlay;
+    let scrollable: TestScrollable;
+    let overlay: TestOverlay;
 
     beforeEach(async () => {
       const f = await scrollableFixture();
-      scrollable = f.shadowRoot.querySelector('#scrollable');
-      overlay = f.shadowRoot.querySelector('#overlay');
+      scrollable = f.shadowRoot!.querySelector('#scrollable')!;
+      overlay = f.shadowRoot!.querySelector('#overlay')!;
     });
 
     it('refit scrollAction does NOT refit the overlay on scroll inside', async () => {
@@ -235,12 +240,10 @@ describe('OverlayMixin - scroll actions', () => {
       runAfterOpen(overlay)
       .then(() => {
         overlay.addEventListener('iron-overlay-canceled', (event) => {
-          assert.equal(
-              event.detail.type, 'scroll', 'detail contains original event');
-          assert.equal(
-              event.detail.target,
-              scrollable,
-              'original scroll event target ok');
+          // @ts-ignore
+          assert.equal(event.detail.type, 'scroll', 'detail contains original event');
+          // @ts-ignore
+          assert.equal(event.detail.target, scrollable, 'original scroll event target ok');
           overlay.addEventListener('iron-overlay-closed', () => {
             done();
           });
@@ -251,13 +254,13 @@ describe('OverlayMixin - scroll actions', () => {
   });
 
   describe('scroll actions in shadow root, overlay distributed', () => {
-    let scrollable;
-    let overlay;
+    let scrollable: TestScrollable;
+    let overlay: TestOverlay;
 
     beforeEach(async () => {
       const f = await scrollableFixture();
-      scrollable = f.shadowRoot.querySelector('#scrollable');
-      overlay = f.querySelector('test-overlay');
+      scrollable = f.shadowRoot!.querySelector('#scrollable')!;
+      overlay = f.querySelector('test-overlay')!;
     });
 
     it('refit scrollAction does NOT refit the overlay on scroll inside', async () => {
@@ -291,12 +294,10 @@ describe('OverlayMixin - scroll actions', () => {
       runAfterOpen(overlay)
       .then(() => {
         overlay.addEventListener('iron-overlay-canceled', (event) => {
-          assert.equal(
-              event.detail.type, 'scroll', 'detail contains original event');
-          assert.equal(
-              event.detail.target,
-              scrollable,
-              'original scroll event target ok');
+          // @ts-ignore
+          assert.equal(event.detail.type, 'scroll', 'detail contains original event');
+          // @ts-ignore
+          assert.equal(event.detail.target, scrollable, 'original scroll event target ok');
           overlay.addEventListener('iron-overlay-closed', () => {
             done();
           });

@@ -18,3 +18,9 @@ export class HoverableTestNative extends HoverableMixin(HTMLElement) {
   }
 }
 window.customElements.define('hoverable-test-native', HoverableTestNative);
+
+declare global {
+  interface HTMLElementTagNameMap {
+    "hoverable-test-native": HoverableTestNative
+  }
+}

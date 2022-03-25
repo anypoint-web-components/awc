@@ -7,6 +7,7 @@ import { FocusableHelper } from '../../define/focusable-helper.js';
 import { OverlayManager } from '../../define/overlay-manager.js';
 import { pushScrollLock, removeScrollLock } from '../lib/ScrollManager.js';
 import { addListener, getListener } from '../lib/ElementEventsRegistry.js';
+import OverlayBackdropElement from '../elements/OverlayBackdropElement.js';
 
 /* eslint-disable class-methods-use-this */
 /* eslint-disable no-unused-vars */
@@ -60,6 +61,11 @@ export interface OverlayMixinInterface extends FitMixinInterface, ResizableMixin
   alwaysOnTop?: boolean;
 
   /**
+   * Shortcut to access to the overlay manager.
+   */
+  _manager: typeof OverlayManager;
+
+  /**
    * True if the overlay is currently displayed.
    */
   opened: boolean;
@@ -88,7 +94,9 @@ export interface OverlayMixinInterface extends FitMixinInterface, ResizableMixin
   /**
    * The backdrop element.
    */
-  get backdropElement(): Element;
+  get backdropElement(): OverlayBackdropElement;
+
+  get _focusableNodes(): Node[];
 
   /**
    * @return Previously registered handler for `opened-changed` event
@@ -300,7 +308,7 @@ export const OverlayMixin = dedupeMixin(<T extends Constructor<LitElement>>(supe
      * Shortcut to access to the overlay manager.
      * @private
      */
-    _manager?: any;
+    _manager: typeof OverlayManager;
 
     /**
      * The node being focused.
@@ -417,7 +425,7 @@ export const OverlayMixin = dedupeMixin(<T extends Constructor<LitElement>>(supe
     /**
      * The backdrop element.
      */
-    get backdropElement(): Element {
+    get backdropElement(): OverlayBackdropElement {
       return this._manager.backdropElement;
     }
 
@@ -821,7 +829,7 @@ export const OverlayMixin = dedupeMixin(<T extends Constructor<LitElement>>(supe
      */
     _prepareRenderOpened(): void {
       // Store focused node.
-      this.__restoreFocusNode = this._manager.deepActiveElement;
+      this.__restoreFocusNode = this._manager.deepActiveElement as HTMLElement;
 
       // Needed to calculate the size of the overlay so that transitions on its
       // size will have the correct starting points.

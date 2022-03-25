@@ -1,8 +1,9 @@
-import { LitElement, html, css } from 'lit-element';
+import { LitElement, html, css, TemplateResult, CSSResult } from 'lit';
 import './test-overlay.js';
+import { TestOverlay } from './test-overlay.js';
 
 export class TestMenuButton extends LitElement {
-  get styles() {
+  get styles(): CSSResult {
     return css`
     :host {
       display: block;
@@ -16,11 +17,11 @@ export class TestMenuButton extends LitElement {
     this.toggle = this.toggle.bind(this);
   }
 
-  toggle() {
-    this.shadowRoot.querySelector('#overlay').toggle();
+  toggle(): void {
+    (this.shadowRoot!.querySelector('#overlay') as TestOverlay).toggle();
   }
 
-  render() {
+  render(): TemplateResult {
     return html`<style>${this.styles}</style>
     <button id="trigger" @click="${this.toggle}">Open</button>
     <test-overlay id="overlay">
@@ -31,3 +32,9 @@ export class TestMenuButton extends LitElement {
   }
 }
 window.customElements.define('test-menu-button', TestMenuButton);
+
+declare global {
+  interface HTMLElementTagNameMap {
+    "test-menu-button": TestMenuButton;
+  }
+}
