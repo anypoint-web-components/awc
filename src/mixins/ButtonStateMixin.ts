@@ -215,7 +215,7 @@ export const ButtonStateMixin = dedupeMixin(<T extends Constructor<HTMLElement>>
       this._blurHandler = this._blurHandler.bind(this);
       this._focusHandler = this._focusHandler.bind(this);
 
-      this.toggles = true;
+      this.toggles = false;
     }
 
     /**

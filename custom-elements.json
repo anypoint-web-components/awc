@@ -1257,12 +1257,6 @@
     },
     {
       "kind": "javascript-module",
-      "path": "src/types.ts",
-      "declarations": [],
-      "exports": []
-    },
-    {
-      "kind": "javascript-module",
       "path": "demo/anypoint-autocomplete.ts",
       "declarations": [],
       "exports": []
@@ -3413,6 +3407,12 @@
     },
     {
       "kind": "javascript-module",
+      "path": "src/types.ts",
+      "declarations": [],
+      "exports": []
+    },
+    {
+      "kind": "javascript-module",
       "path": "coverage/lcov-report/block-navigation.js",
       "declarations": [],
       "exports": []
@@ -3428,6 +3428,1200 @@
       "path": "coverage/lcov-report/sorter.js",
       "declarations": [],
       "exports": []
+    },
+    {
+      "kind": "javascript-module",
+      "path": "demo/lib/DemoHelperElement.ts",
+      "declarations": [
+        {
+          "kind": "class",
+          "description": "",
+          "name": "DemoHelperElement",
+          "members": [
+            {
+              "kind": "field",
+              "name": "_markdown",
+              "type": {
+                "text": "string | undefined"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "markdown",
+              "type": {
+                "text": "string | undefined"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "_firstUpdated",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false"
+            },
+            {
+              "kind": "field",
+              "name": "ignoreSlotChange",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false"
+            },
+            {
+              "kind": "method",
+              "name": "_registerSlotListener",
+              "return": {
+                "type": {
+                  "text": "void"
+                }
+              }
+            },
+            {
+              "kind": "method",
+              "name": "_slotChangeHandler",
+              "return": {
+                "type": {
+                  "text": "void"
+                }
+              }
+            },
+            {
+              "kind": "method",
+              "name": "_updateContent",
+              "return": {
+                "type": {
+                  "text": "void"
+                }
+              }
+            },
+            {
+              "kind": "method",
+              "name": "unindent",
+              "return": {
+                "type": {
+                  "text": "string"
+                }
+              },
+              "parameters": [
+                {
+                  "name": "text",
+                  "type": {
+                    "text": "string"
+                  }
+                }
+              ]
+            },
+            {
+              "kind": "method",
+              "name": "_highlight",
+              "return": {
+                "type": {
+                  "text": "void"
+                }
+              },
+              "parameters": [
+                {
+                  "name": "code",
+                  "type": {
+                    "text": "string"
+                  }
+                }
+              ]
+            },
+            {
+              "kind": "method",
+              "name": "_copyToClipboard",
+              "return": {
+                "type": {
+                  "text": "boolean"
+                }
+              }
+            },
+            {
+              "kind": "method",
+              "name": "_resetCopyButtonState",
+              "return": {
+                "type": {
+                  "text": "void"
+                }
+              }
+            }
+          ],
+          "superclass": {
+            "name": "LitElement",
+            "package": "lit"
+          },
+          "customElement": true
+        }
+      ],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "default",
+          "declaration": {
+            "name": "DemoHelperElement",
+            "module": "demo/lib/DemoHelperElement.ts"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "demo/lib/DemoHelperStyles.ts",
+      "declarations": [
+        {
+          "kind": "variable",
+          "name": "styles",
+          "default": "css`\n:host {\n  display: block;\n  box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14),\n              0 1px 5px 0 rgba(0, 0, 0, 0.12),\n              0 3px 1px -2px rgba(0, 0, 0, 0.2);\n  margin-bottom: 40px;\n}\n\n.demo {\n  display: block;\n  border-bottom: 1px solid #e0e0e0;\n  background-color: var(--demo-helper-demo-background-color, white);\n  margin: 0;\n  padding: 20px;\n}\n\n.code-container {\n  margin: 0;\n  background-color: var(--demo-helper-code-container-background-color, #f5f5f5);\n  font-size: 13px;\n  overflow: auto;\n  position: relative;\n  padding: 0 20px;\n}\n\n.code {\n  padding: 20px;\n  margin: 0;\n  background-color: var(--demo-helper-code-container-background-color, var(--google-grey-100));\n  font-size: 13px;\n  overflow: auto;\n\n  display: block;\n  white-space: pre-wrap;\n}\n\n.code > pre {\n  margin: 0;\n  padding: 0 0 10px 0;\n}\n\n#copyButton {\n  position: absolute;\n  top: 0;\n  right: 0px;\n  text-transform: uppercase;\n  border: none;\n  cursor: pointer;\n  background: #e0e0e0;\n}\n`"
+        },
+        {
+          "kind": "variable",
+          "name": "prismStyles",
+          "default": "css`/**\n * prism.js default theme for JavaScript, CSS and HTML\n * Based on dabblet (http://dabblet.com)\n * @author Lea Verou\n */\ncode[class*=\"language-\"],\npre[class*=\"language-\"] {\n  white-space: pre-wrap;\n  word-spacing: normal;\n  word-break: break-all;\n  word-wrap: break-word;\n  line-height: 1.5;\n  -moz-tab-size: 4;\n  -o-tab-size: 4;\n  tab-size: 4;\n  hyphens: auto;\n  background-color: var(--prism-container-background-color);\n  display: block;\n  font-family: var(--arc-font-code-family, monospace);\n  font-size: var(--arc-font-code-font-size, 10pt);\n}\npre[class*=\"language-\"]::-moz-selection,\npre[class*=\"language-\"]::-moz-selection,\ncode[class*=\"language-\"]::-moz-selection,\ncode[class*=\"language-\"]::-moz-selection {\n  text-shadow: none;\n  background: var(--prism-container-selection-background-color, #b3d4fc);\n}\npre[class*=\"language-\"]::selection,\npre[class*=\"language-\"]::selection,\ncode[class*=\"language-\"]::selection,\ncode[class*=\"language-\"]::selection {\n  text-shadow: none;\n  background: var(--prism-container-selection-background-color, #b3d4fc);\n}\n@media print {\n  code[class*=\"language-\"],\n  pre[class*=\"language-\"] {\n    text-shadow: none;\n  }\n}\n/* Code blocks */\npre[class*=\"language-\"] {\n  padding: 1em;\n  margin: .5em 0;\n  overflow: auto;\n}\n:not(pre) > code[class*=\"language-\"],\npre[class*=\"language-\"] {\n  background: var(--prism-container-pre-background-color, #f5f2f0);\n}\n/* Inline code */\n:not(pre) > code[class*=\"language-\"] {\n  padding: .1em;\n  border-radius: .3em;\n  white-space: normal;\n}\n.token.comment,\n.token.prolog,\n.token.doctype,\n.token.cdata {\n  color: var(--code-token-comment-value-color, slategray);\n}\n.token.punctuation {\n  color: var(--code-punctuation-value-color, #999);\n}\n.namespace {\n  opacity: .7;\n}\n.token.property,\n.token.tag,\n.token.constant,\n.token.symbol,\n.token.deleted {\n  color: var(--code-property-value-color, #905);\n}\n.token.number {\n  color: var(--code-type-number-value-color, #905);\n}\n.token.boolean {\n  color: var(--code-type-boolean-value-color, #905);\n}\n.token.selector,\n.token.attr-name,\n.token.string,\n.token.char,\n.token.builtin,\n.token.inserted {\n  color: var(--code-type-text-value-color, #690);\n}\n.token.operator,\n.token.entity,\n.token.url,\n.language-css .token.string,\n.style .token.string {\n  color: var(--code-operator-value-color, #a67f59);\n  background: var(--code-operator-value-background-color, hsla(0, 0%, 100%, .5));\n}\n.token.atrule,\n.token.attr-value,\n.token.keyword {\n  color: var(--code-keyword-value-color, #07a);\n}\n.token.function {\n  color: var(--code-function-value-color, #DD4A68);\n}\n.token.regex,\n.token.important,\n.token.variable {\n  color: var(--code-variable-value-color, #e90);\n}\n.token.important,\n.token.bold {\n  font-weight: bold;\n}\n.token.italic {\n  font-style: italic;\n}\n.token.entity {\n  cursor: help;\n}`"
+        }
+      ],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "styles",
+          "declaration": {
+            "name": "styles",
+            "module": "demo/lib/DemoHelperStyles.ts"
+          }
+        },
+        {
+          "kind": "js",
+          "name": "prismStyles",
+          "declaration": {
+            "name": "prismStyles",
+            "module": "demo/lib/DemoHelperStyles.ts"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "demo/lib/DemoIconElement.ts",
+      "declarations": [
+        {
+          "kind": "class",
+          "description": "An element to render a 24x24 icon.\nBy default it inherits current color. The fill color can be changed by setting\nthe CSS' color property.",
+          "name": "DemoIconElement",
+          "members": [
+            {
+              "kind": "field",
+              "name": "_icon",
+              "type": {
+                "text": "string | undefined"
+              },
+              "privacy": "protected"
+            },
+            {
+              "kind": "field",
+              "name": "_hasIcon",
+              "type": {
+                "text": "boolean"
+              },
+              "privacy": "protected",
+              "default": "false"
+            },
+            {
+              "kind": "field",
+              "name": "_iconValue",
+              "type": {
+                "text": "SVGTemplateResult | undefined"
+              },
+              "privacy": "protected"
+            },
+            {
+              "kind": "field",
+              "name": "icon",
+              "type": {
+                "text": "string | undefined"
+              },
+              "description": "An icon to be rendered from the Icons library.\nWhen incorrect icon is referenced nothing is rendered.",
+              "attribute": "icon"
+            },
+            {
+              "kind": "field",
+              "name": "hasIcon",
+              "type": {
+                "text": "boolean"
+              },
+              "return": {
+                "type": {
+                  "text": ""
+                }
+              }
+            },
+            {
+              "kind": "method",
+              "name": "_updateIcon",
+              "return": {
+                "type": {
+                  "text": "void"
+                }
+              },
+              "parameters": [
+                {
+                  "name": "name",
+                  "optional": true,
+                  "type": {
+                    "text": "string"
+                  },
+                  "description": "Icon name"
+                }
+              ],
+              "description": "Maps icon name to it's definition and sets `hasIcon` value."
+            }
+          ],
+          "attributes": [
+            {
+              "name": "icon",
+              "type": {
+                "text": "string | undefined"
+              },
+              "description": "An icon to be rendered from the Icons library.\nWhen incorrect icon is referenced nothing is rendered.",
+              "fieldName": "icon"
+            }
+          ],
+          "superclass": {
+            "name": "LitElement",
+            "package": "lit"
+          },
+          "customElement": true
+        }
+      ],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "default",
+          "declaration": {
+            "name": "DemoIconElement",
+            "module": "demo/lib/DemoIconElement.ts"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "demo/lib/DemoPage.ts",
+      "declarations": [
+        {
+          "kind": "class",
+          "description": "Base class for AWC components demo page.",
+          "name": "DemoPage",
+          "members": [
+            {
+              "kind": "field",
+              "name": "demoStates",
+              "type": {
+                "text": "string[]"
+              },
+              "default": "['Filled', 'Outlined', 'Anypoint']",
+              "description": "A list of demo states to be passed to `interactive-demo` element"
+            },
+            {
+              "kind": "field",
+              "name": "componentName",
+              "type": {
+                "text": "string"
+              },
+              "default": "''",
+              "description": "Component name rendered in the header section."
+            },
+            {
+              "kind": "field",
+              "name": "narrow",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false"
+            },
+            {
+              "kind": "field",
+              "name": "firstRendered",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false",
+              "description": "Determines whether the initial render had run and the `firstRender()`\nfunction was called."
+            },
+            {
+              "kind": "field",
+              "name": "stylesActive",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "true",
+              "description": "Whether or not the styles should be applied to `body.styled` element."
+            },
+            {
+              "kind": "field",
+              "name": "_darkThemeActive",
+              "type": {
+                "text": "boolean"
+              },
+              "privacy": "protected",
+              "default": "false"
+            },
+            {
+              "kind": "field",
+              "name": "anypoint",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false",
+              "description": "Enables Anypoint platform styles."
+            },
+            {
+              "kind": "field",
+              "name": "outlined",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false",
+              "description": "Enables Material's outlined theme."
+            },
+            {
+              "kind": "field",
+              "name": "darkThemeActive",
+              "type": {
+                "text": "boolean"
+              },
+              "description": "Whether or not the dark theme is active"
+            },
+            {
+              "kind": "method",
+              "name": "firstRender",
+              "return": {
+                "type": {
+                  "text": "void"
+                }
+              },
+              "description": "Helper function to be overridden by child classes. It is called when the view\nis rendered for the first time."
+            },
+            {
+              "kind": "method",
+              "name": "initMediaQueries",
+              "return": {
+                "type": {
+                  "text": "void"
+                }
+              },
+              "description": "Initializes media queries for dark system theme."
+            },
+            {
+              "kind": "method",
+              "name": "_toggleMainOption",
+              "return": {
+                "type": {
+                  "text": "void"
+                }
+              },
+              "parameters": [
+                {
+                  "name": "e",
+                  "type": {
+                    "text": "CustomEvent"
+                  }
+                }
+              ],
+              "description": "A handler for the `change` event for an element that has `checked` and `name` properties.\nThis can be used with `anypoint-switch`, `anypoint-checkbox`, and `checkbox` elements.\n\nThe `name` should correspond to a variable name to be set. The set value is the value\nof `checked` property read from the event's target."
+            },
+            {
+              "kind": "method",
+              "name": "_demoStateHandler",
+              "return": {
+                "type": {
+                  "text": "void"
+                }
+              },
+              "parameters": [
+                {
+                  "name": "e",
+                  "type": {
+                    "text": "CustomEvent"
+                  }
+                }
+              ],
+              "description": "A handler for the `change` event for the demo state"
+            },
+            {
+              "kind": "method",
+              "name": "_updateAnypoint",
+              "return": {
+                "type": {
+                  "text": "void"
+                }
+              },
+              "description": "Depending on the `anypoint` flag state it adds or removes the `anypoint` styles from the body."
+            },
+            {
+              "kind": "method",
+              "name": "_mediaQueryHandler",
+              "return": {
+                "type": {
+                  "text": "void"
+                }
+              },
+              "parameters": [
+                {
+                  "name": "e",
+                  "type": {
+                    "text": "MediaQueryListEvent"
+                  }
+                }
+              ]
+            },
+            {
+              "kind": "method",
+              "name": "headerTemplate",
+              "return": {
+                "type": {
+                  "text": ""
+                }
+              },
+              "description": "Call this on the top of the `render()` method to render demo navigation"
+            },
+            {
+              "kind": "method",
+              "name": "_demoViewControlsTemplate",
+              "return": {
+                "type": {
+                  "text": ""
+                }
+              },
+              "description": "Override this function to add some custom custom controls to the\nview controls dropdown."
+            },
+            {
+              "kind": "method",
+              "name": "contentTemplate",
+              "return": {
+                "type": {
+                  "text": "TemplateResult"
+                }
+              },
+              "description": "Abstract method. When not overriding `render()` method you can use\nthis function to render content inside the standard API components layout.\n\n```\ncontentTemplate() {\n return html`<p>Demo content</p>`;\n}\n```"
+            },
+            {
+              "kind": "method",
+              "name": "pageTemplate",
+              "return": {
+                "type": {
+                  "text": "TemplateResult"
+                }
+              },
+              "description": "The page render function. Usually you don't need to use it.\nIt renders the header template, main section, and the content."
+            },
+            {
+              "kind": "field",
+              "name": "_rendering",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false"
+            },
+            {
+              "kind": "method",
+              "name": "_render",
+              "return": {
+                "type": {
+                  "text": "void"
+                }
+              }
+            }
+          ],
+          "superclass": {
+            "name": "EventTarget",
+            "module": "demo/lib/DemoPage.ts"
+          }
+        }
+      ],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "DemoPage",
+          "declaration": {
+            "name": "DemoPage",
+            "module": "demo/lib/DemoPage.ts"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "demo/lib/Icons.ts",
+      "declarations": [
+        {
+          "kind": "variable",
+          "name": "message"
+        },
+        {
+          "kind": "variable",
+          "name": "refresh"
+        },
+        {
+          "kind": "variable",
+          "name": "modeEdit"
+        },
+        {
+          "kind": "variable",
+          "name": "star"
+        },
+        {
+          "kind": "variable",
+          "name": "add"
+        },
+        {
+          "kind": "variable",
+          "name": "cancel"
+        },
+        {
+          "kind": "variable",
+          "name": "settings"
+        },
+        {
+          "kind": "variable",
+          "name": "toggleOff"
+        },
+        {
+          "kind": "variable",
+          "name": "toggleOn"
+        },
+        {
+          "kind": "variable",
+          "name": "warning"
+        },
+        {
+          "kind": "variable",
+          "name": "zoomIn"
+        },
+        {
+          "kind": "variable",
+          "name": "shortText"
+        },
+        {
+          "kind": "variable",
+          "name": "spellcheck"
+        },
+        {
+          "kind": "variable",
+          "name": "clear"
+        },
+        {
+          "kind": "variable",
+          "name": "clearAll"
+        },
+        {
+          "kind": "variable",
+          "name": "rateReview"
+        },
+        {
+          "kind": "variable",
+          "name": "search"
+        },
+        {
+          "kind": "variable",
+          "name": "addCircleOutline"
+        },
+        {
+          "kind": "variable",
+          "name": "desktopWindows"
+        },
+        {
+          "kind": "variable",
+          "name": "edit"
+        },
+        {
+          "kind": "variable",
+          "name": "expandLess"
+        },
+        {
+          "kind": "variable",
+          "name": "expandMore"
+        },
+        {
+          "kind": "variable",
+          "name": "infoOutline"
+        },
+        {
+          "kind": "variable",
+          "name": "menu"
+        },
+        {
+          "kind": "variable",
+          "name": "moreVert"
+        },
+        {
+          "kind": "variable",
+          "name": "remove"
+        },
+        {
+          "kind": "variable",
+          "name": "archive"
+        },
+        {
+          "kind": "variable",
+          "name": "close"
+        }
+      ],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "message",
+          "declaration": {
+            "name": "message",
+            "module": "demo/lib/Icons.ts"
+          }
+        },
+        {
+          "kind": "js",
+          "name": "refresh",
+          "declaration": {
+            "name": "refresh",
+            "module": "demo/lib/Icons.ts"
+          }
+        },
+        {
+          "kind": "js",
+          "name": "modeEdit",
+          "declaration": {
+            "name": "modeEdit",
+            "module": "demo/lib/Icons.ts"
+          }
+        },
+        {
+          "kind": "js",
+          "name": "star",
+          "declaration": {
+            "name": "star",
+            "module": "demo/lib/Icons.ts"
+          }
+        },
+        {
+          "kind": "js",
+          "name": "add",
+          "declaration": {
+            "name": "add",
+            "module": "demo/lib/Icons.ts"
+          }
+        },
+        {
+          "kind": "js",
+          "name": "cancel",
+          "declaration": {
+            "name": "cancel",
+            "module": "demo/lib/Icons.ts"
+          }
+        },
+        {
+          "kind": "js",
+          "name": "settings",
+          "declaration": {
+            "name": "settings",
+            "module": "demo/lib/Icons.ts"
+          }
+        },
+        {
+          "kind": "js",
+          "name": "toggleOff",
+          "declaration": {
+            "name": "toggleOff",
+            "module": "demo/lib/Icons.ts"
+          }
+        },
+        {
+          "kind": "js",
+          "name": "toggleOn",
+          "declaration": {
+            "name": "toggleOn",
+            "module": "demo/lib/Icons.ts"
+          }
+        },
+        {
+          "kind": "js",
+          "name": "warning",
+          "declaration": {
+            "name": "warning",
+            "module": "demo/lib/Icons.ts"
+          }
+        },
+        {
+          "kind": "js",
+          "name": "zoomIn",
+          "declaration": {
+            "name": "zoomIn",
+            "module": "demo/lib/Icons.ts"
+          }
+        },
+        {
+          "kind": "js",
+          "name": "shortText",
+          "declaration": {
+            "name": "shortText",
+            "module": "demo/lib/Icons.ts"
+          }
+        },
+        {
+          "kind": "js",
+          "name": "spellcheck",
+          "declaration": {
+            "name": "spellcheck",
+            "module": "demo/lib/Icons.ts"
+          }
+        },
+        {
+          "kind": "js",
+          "name": "clear",
+          "declaration": {
+            "name": "clear",
+            "module": "demo/lib/Icons.ts"
+          }
+        },
+        {
+          "kind": "js",
+          "name": "clearAll",
+          "declaration": {
+            "name": "clearAll",
+            "module": "demo/lib/Icons.ts"
+          }
+        },
+        {
+          "kind": "js",
+          "name": "rateReview",
+          "declaration": {
+            "name": "rateReview",
+            "module": "demo/lib/Icons.ts"
+          }
+        },
+        {
+          "kind": "js",
+          "name": "search",
+          "declaration": {
+            "name": "search",
+            "module": "demo/lib/Icons.ts"
+          }
+        },
+        {
+          "kind": "js",
+          "name": "addCircleOutline",
+          "declaration": {
+            "name": "addCircleOutline",
+            "module": "demo/lib/Icons.ts"
+          }
+        },
+        {
+          "kind": "js",
+          "name": "desktopWindows",
+          "declaration": {
+            "name": "desktopWindows",
+            "module": "demo/lib/Icons.ts"
+          }
+        },
+        {
+          "kind": "js",
+          "name": "edit",
+          "declaration": {
+            "name": "edit",
+            "module": "demo/lib/Icons.ts"
+          }
+        },
+        {
+          "kind": "js",
+          "name": "expandLess",
+          "declaration": {
+            "name": "expandLess",
+            "module": "demo/lib/Icons.ts"
+          }
+        },
+        {
+          "kind": "js",
+          "name": "expandMore",
+          "declaration": {
+            "name": "expandMore",
+            "module": "demo/lib/Icons.ts"
+          }
+        },
+        {
+          "kind": "js",
+          "name": "infoOutline",
+          "declaration": {
+            "name": "infoOutline",
+            "module": "demo/lib/Icons.ts"
+          }
+        },
+        {
+          "kind": "js",
+          "name": "menu",
+          "declaration": {
+            "name": "menu",
+            "module": "demo/lib/Icons.ts"
+          }
+        },
+        {
+          "kind": "js",
+          "name": "moreVert",
+          "declaration": {
+            "name": "moreVert",
+            "module": "demo/lib/Icons.ts"
+          }
+        },
+        {
+          "kind": "js",
+          "name": "remove",
+          "declaration": {
+            "name": "remove",
+            "module": "demo/lib/Icons.ts"
+          }
+        },
+        {
+          "kind": "js",
+          "name": "archive",
+          "declaration": {
+            "name": "archive",
+            "module": "demo/lib/Icons.ts"
+          }
+        },
+        {
+          "kind": "js",
+          "name": "close",
+          "declaration": {
+            "name": "close",
+            "module": "demo/lib/Icons.ts"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "demo/lib/InteractiveDemoElement.ts",
+      "declarations": [
+        {
+          "kind": "class",
+          "description": "",
+          "name": "InteractiveDemoElement",
+          "members": [
+            {
+              "kind": "field",
+              "name": "states",
+              "type": {
+                "text": "string[]"
+              },
+              "default": "[]",
+              "description": "The list of general style states for the element.\nIt renders list of tabs with labels from this array.",
+              "attribute": "states"
+            },
+            {
+              "kind": "field",
+              "name": "dark",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false",
+              "description": "When set it renders the component in dark theme.",
+              "attribute": "dark",
+              "reflects": true
+            },
+            {
+              "kind": "field",
+              "name": "tabs",
+              "type": {
+                "text": "AnypointTabsElement"
+              },
+              "return": {
+                "type": {
+                  "text": "AnypointTabsElement"
+                }
+              }
+            },
+            {
+              "kind": "field",
+              "name": "_selectedState",
+              "type": {
+                "text": "number"
+              },
+              "privacy": "protected",
+              "default": "0"
+            },
+            {
+              "kind": "field",
+              "name": "selectedState",
+              "type": {
+                "text": "number"
+              },
+              "description": "Currently selected state's index in the `states` array.\nChange dispatches `state-changed` custom event.",
+              "attribute": "selectedState"
+            },
+            {
+              "kind": "field",
+              "name": "_opened",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false"
+            },
+            {
+              "kind": "field",
+              "name": "opened",
+              "type": {
+                "text": "boolean"
+              },
+              "description": "True when the configuration panel is opened.",
+              "attribute": "opened"
+            },
+            {
+              "kind": "method",
+              "name": "_stateChangeHandler",
+              "return": {
+                "type": {
+                  "text": "void"
+                }
+              },
+              "parameters": [
+                {
+                  "name": "e",
+                  "type": {
+                    "text": "Event"
+                  }
+                }
+              ]
+            },
+            {
+              "kind": "method",
+              "name": "_toggleOptions",
+              "return": {
+                "type": {
+                  "text": "void"
+                }
+              }
+            },
+            {
+              "kind": "field",
+              "name": "_updateTabsTimer",
+              "type": {
+                "text": "any"
+              }
+            },
+            {
+              "kind": "method",
+              "name": "_updateTabsAnimation",
+              "return": {
+                "type": {
+                  "text": "void"
+                }
+              }
+            },
+            {
+              "kind": "method",
+              "name": "_updateOptionsTabindex",
+              "return": {
+                "type": {
+                  "text": "void"
+                }
+              }
+            },
+            {
+              "kind": "method",
+              "name": "_activateOptionNode",
+              "return": {
+                "type": {
+                  "text": "void"
+                }
+              },
+              "parameters": [
+                {
+                  "name": "node",
+                  "type": {
+                    "text": "HTMLElement"
+                  }
+                }
+              ]
+            },
+            {
+              "kind": "method",
+              "name": "_deactivateOptionNode",
+              "return": {
+                "type": {
+                  "text": "void"
+                }
+              },
+              "parameters": [
+                {
+                  "name": "node",
+                  "type": {
+                    "text": "HTMLElement"
+                  }
+                }
+              ]
+            },
+            {
+              "kind": "method",
+              "name": "_tabsTemplate",
+              "return": {
+                "type": {
+                  "text": "TemplateResult"
+                }
+              }
+            },
+            {
+              "kind": "method",
+              "name": "_triggerTemplate",
+              "return": {
+                "type": {
+                  "text": "TemplateResult"
+                }
+              }
+            },
+            {
+              "kind": "method",
+              "name": "_configTemplate",
+              "return": {
+                "type": {
+                  "text": "TemplateResult"
+                }
+              }
+            }
+          ],
+          "attributes": [
+            {
+              "name": "states",
+              "type": {
+                "text": "string[]"
+              },
+              "default": "[]",
+              "description": "The list of general style states for the element.\nIt renders list of tabs with labels from this array.",
+              "fieldName": "states"
+            },
+            {
+              "name": "dark",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false",
+              "description": "When set it renders the component in dark theme.",
+              "fieldName": "dark"
+            },
+            {
+              "name": "selectedState",
+              "type": {
+                "text": "number"
+              },
+              "description": "Currently selected state's index in the `states` array.\nChange dispatches `state-changed` custom event.",
+              "fieldName": "selectedState"
+            },
+            {
+              "name": "opened",
+              "type": {
+                "text": "boolean"
+              },
+              "description": "True when the configuration panel is opened.",
+              "fieldName": "opened"
+            }
+          ],
+          "superclass": {
+            "name": "LitElement",
+            "package": "lit"
+          },
+          "customElement": true
+        }
+      ],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "default",
+          "declaration": {
+            "name": "InteractiveDemoElement",
+            "module": "demo/lib/InteractiveDemoElement.ts"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "demo/lib/InteractiveStyles.ts",
+      "declarations": [],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "default",
+          "declaration": {
+            "module": "demo/lib/InteractiveStyles.ts"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "demo/lib/SharedStyles.ts",
+      "declarations": [],
+      "exports": []
+    },
+    {
+      "kind": "javascript-module",
+      "path": "demo/lib/decorators.ts",
+      "declarations": [
+        {
+          "kind": "function",
+          "name": "demoProperty"
+        }
+      ],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "demoProperty",
+          "declaration": {
+            "name": "demoProperty",
+            "module": "demo/lib/decorators.ts"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "demo/lib/demo-helper.ts",
+      "declarations": [],
+      "exports": [
+        {
+          "kind": "custom-element-definition",
+          "name": "demo-helper",
+          "declaration": {
+            "name": "Element",
+            "module": "/demo/lib/DemoHelperElement.js"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "demo/lib/demo-icon.ts",
+      "declarations": [],
+      "exports": [
+        {
+          "kind": "custom-element-definition",
+          "name": "demo-icon",
+          "declaration": {
+            "name": "Element",
+            "module": "/demo/lib/DemoIconElement.js"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "demo/lib/interactive-demo.ts",
+      "declarations": [],
+      "exports": [
+        {
+          "kind": "custom-element-definition",
+          "name": "interactive-demo",
+          "declaration": {
+            "name": "Element",
+            "module": "/demo/lib/InteractiveDemoElement.js"
+          }
+        }
+      ]
     },
     {
       "kind": "javascript-module",
@@ -6115,6 +7309,286 @@
           "declaration": {
             "name": "get",
             "module": "src/mixins/ValidatorStore.ts"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "src/styles/AnypointChipInput.ts",
+      "declarations": [],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "default",
+          "declaration": {
+            "module": "src/styles/AnypointChipInput.ts"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "src/styles/AnypointDialogInternalStyles.ts",
+      "declarations": [],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "default",
+          "declaration": {
+            "module": "src/styles/AnypointDialogInternalStyles.ts"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "src/styles/AnypointDialogStyles.ts",
+      "declarations": [],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "default",
+          "declaration": {
+            "module": "src/styles/AnypointDialogStyles.ts"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "src/styles/BottomSheet.ts",
+      "declarations": [],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "default",
+          "declaration": {
+            "module": "src/styles/BottomSheet.ts"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "src/styles/Button.ts",
+      "declarations": [],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "default",
+          "declaration": {
+            "module": "src/styles/Button.ts"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "src/styles/ButtonIcon.ts",
+      "declarations": [],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "default",
+          "declaration": {
+            "module": "src/styles/ButtonIcon.ts"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "src/styles/Checkbox.ts",
+      "declarations": [],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "default",
+          "declaration": {
+            "module": "src/styles/Checkbox.ts"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "src/styles/ChipStyles.ts",
+      "declarations": [],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "default",
+          "declaration": {
+            "module": "src/styles/ChipStyles.ts"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "src/styles/ColorInputSelectorElement.styles.ts",
+      "declarations": [],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "default",
+          "declaration": {
+            "module": "src/styles/ColorInputSelectorElement.styles.ts"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "src/styles/ColorSelectorElement.styles.ts",
+      "declarations": [],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "default",
+          "declaration": {
+            "module": "src/styles/ColorSelectorElement.styles.ts"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "src/styles/DropdownMenu.ts",
+      "declarations": [],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "default",
+          "declaration": {
+            "module": "src/styles/DropdownMenu.ts"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "src/styles/InputComboboxStyles.ts",
+      "declarations": [],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "default",
+          "declaration": {
+            "module": "src/styles/InputComboboxStyles.ts"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "src/styles/ItemStyles.ts",
+      "declarations": [],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "default",
+          "declaration": {
+            "module": "src/styles/ItemStyles.ts"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "src/styles/MenuButton.ts",
+      "declarations": [],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "default",
+          "declaration": {
+            "module": "src/styles/MenuButton.ts"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "src/styles/Progress.ts",
+      "declarations": [],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "default",
+          "declaration": {
+            "module": "src/styles/Progress.ts"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "src/styles/RadioButton.ts",
+      "declarations": [],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "default",
+          "declaration": {
+            "module": "src/styles/RadioButton.ts"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "src/styles/Switch.ts",
+      "declarations": [],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "default",
+          "declaration": {
+            "module": "src/styles/Switch.ts"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "src/styles/TabsStyles.ts",
+      "declarations": [],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "default",
+          "declaration": {
+            "module": "src/styles/TabsStyles.ts"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "src/styles/anypoint-input-styles.ts",
+      "declarations": [],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "default",
+          "declaration": {
+            "module": "src/styles/anypoint-input-styles.ts"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "src/styles/ripple.styles.ts",
+      "declarations": [],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "default",
+          "declaration": {
+            "module": "src/styles/ripple.styles.ts"
           }
         }
       ]
@@ -15997,6 +17471,14 @@
             },
             {
               "kind": "field",
+              "name": "toggles",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "true"
+            },
+            {
+              "kind": "field",
               "name": "ariaActiveAttribute",
               "type": {
                 "text": "string"
@@ -19724,286 +21206,6 @@
     },
     {
       "kind": "javascript-module",
-      "path": "src/styles/AnypointChipInput.ts",
-      "declarations": [],
-      "exports": [
-        {
-          "kind": "js",
-          "name": "default",
-          "declaration": {
-            "module": "src/styles/AnypointChipInput.ts"
-          }
-        }
-      ]
-    },
-    {
-      "kind": "javascript-module",
-      "path": "src/styles/AnypointDialogInternalStyles.ts",
-      "declarations": [],
-      "exports": [
-        {
-          "kind": "js",
-          "name": "default",
-          "declaration": {
-            "module": "src/styles/AnypointDialogInternalStyles.ts"
-          }
-        }
-      ]
-    },
-    {
-      "kind": "javascript-module",
-      "path": "src/styles/AnypointDialogStyles.ts",
-      "declarations": [],
-      "exports": [
-        {
-          "kind": "js",
-          "name": "default",
-          "declaration": {
-            "module": "src/styles/AnypointDialogStyles.ts"
-          }
-        }
-      ]
-    },
-    {
-      "kind": "javascript-module",
-      "path": "src/styles/BottomSheet.ts",
-      "declarations": [],
-      "exports": [
-        {
-          "kind": "js",
-          "name": "default",
-          "declaration": {
-            "module": "src/styles/BottomSheet.ts"
-          }
-        }
-      ]
-    },
-    {
-      "kind": "javascript-module",
-      "path": "src/styles/Button.ts",
-      "declarations": [],
-      "exports": [
-        {
-          "kind": "js",
-          "name": "default",
-          "declaration": {
-            "module": "src/styles/Button.ts"
-          }
-        }
-      ]
-    },
-    {
-      "kind": "javascript-module",
-      "path": "src/styles/ButtonIcon.ts",
-      "declarations": [],
-      "exports": [
-        {
-          "kind": "js",
-          "name": "default",
-          "declaration": {
-            "module": "src/styles/ButtonIcon.ts"
-          }
-        }
-      ]
-    },
-    {
-      "kind": "javascript-module",
-      "path": "src/styles/Checkbox.ts",
-      "declarations": [],
-      "exports": [
-        {
-          "kind": "js",
-          "name": "default",
-          "declaration": {
-            "module": "src/styles/Checkbox.ts"
-          }
-        }
-      ]
-    },
-    {
-      "kind": "javascript-module",
-      "path": "src/styles/ChipStyles.ts",
-      "declarations": [],
-      "exports": [
-        {
-          "kind": "js",
-          "name": "default",
-          "declaration": {
-            "module": "src/styles/ChipStyles.ts"
-          }
-        }
-      ]
-    },
-    {
-      "kind": "javascript-module",
-      "path": "src/styles/ColorInputSelectorElement.styles.ts",
-      "declarations": [],
-      "exports": [
-        {
-          "kind": "js",
-          "name": "default",
-          "declaration": {
-            "module": "src/styles/ColorInputSelectorElement.styles.ts"
-          }
-        }
-      ]
-    },
-    {
-      "kind": "javascript-module",
-      "path": "src/styles/ColorSelectorElement.styles.ts",
-      "declarations": [],
-      "exports": [
-        {
-          "kind": "js",
-          "name": "default",
-          "declaration": {
-            "module": "src/styles/ColorSelectorElement.styles.ts"
-          }
-        }
-      ]
-    },
-    {
-      "kind": "javascript-module",
-      "path": "src/styles/DropdownMenu.ts",
-      "declarations": [],
-      "exports": [
-        {
-          "kind": "js",
-          "name": "default",
-          "declaration": {
-            "module": "src/styles/DropdownMenu.ts"
-          }
-        }
-      ]
-    },
-    {
-      "kind": "javascript-module",
-      "path": "src/styles/InputComboboxStyles.ts",
-      "declarations": [],
-      "exports": [
-        {
-          "kind": "js",
-          "name": "default",
-          "declaration": {
-            "module": "src/styles/InputComboboxStyles.ts"
-          }
-        }
-      ]
-    },
-    {
-      "kind": "javascript-module",
-      "path": "src/styles/ItemStyles.ts",
-      "declarations": [],
-      "exports": [
-        {
-          "kind": "js",
-          "name": "default",
-          "declaration": {
-            "module": "src/styles/ItemStyles.ts"
-          }
-        }
-      ]
-    },
-    {
-      "kind": "javascript-module",
-      "path": "src/styles/MenuButton.ts",
-      "declarations": [],
-      "exports": [
-        {
-          "kind": "js",
-          "name": "default",
-          "declaration": {
-            "module": "src/styles/MenuButton.ts"
-          }
-        }
-      ]
-    },
-    {
-      "kind": "javascript-module",
-      "path": "src/styles/Progress.ts",
-      "declarations": [],
-      "exports": [
-        {
-          "kind": "js",
-          "name": "default",
-          "declaration": {
-            "module": "src/styles/Progress.ts"
-          }
-        }
-      ]
-    },
-    {
-      "kind": "javascript-module",
-      "path": "src/styles/RadioButton.ts",
-      "declarations": [],
-      "exports": [
-        {
-          "kind": "js",
-          "name": "default",
-          "declaration": {
-            "module": "src/styles/RadioButton.ts"
-          }
-        }
-      ]
-    },
-    {
-      "kind": "javascript-module",
-      "path": "src/styles/Switch.ts",
-      "declarations": [],
-      "exports": [
-        {
-          "kind": "js",
-          "name": "default",
-          "declaration": {
-            "module": "src/styles/Switch.ts"
-          }
-        }
-      ]
-    },
-    {
-      "kind": "javascript-module",
-      "path": "src/styles/TabsStyles.ts",
-      "declarations": [],
-      "exports": [
-        {
-          "kind": "js",
-          "name": "default",
-          "declaration": {
-            "module": "src/styles/TabsStyles.ts"
-          }
-        }
-      ]
-    },
-    {
-      "kind": "javascript-module",
-      "path": "src/styles/anypoint-input-styles.ts",
-      "declarations": [],
-      "exports": [
-        {
-          "kind": "js",
-          "name": "default",
-          "declaration": {
-            "module": "src/styles/anypoint-input-styles.ts"
-          }
-        }
-      ]
-    },
-    {
-      "kind": "javascript-module",
-      "path": "src/styles/ripple.styles.ts",
-      "declarations": [],
-      "exports": [
-        {
-          "kind": "js",
-          "name": "default",
-          "declaration": {
-            "module": "src/styles/ripple.styles.ts"
-          }
-        }
-      ]
-    },
-    {
-      "kind": "javascript-module",
       "path": "test/events-target-mixin/eventable-element.ts",
       "declarations": [
         {
@@ -21801,1200 +23003,6 @@
           "declaration": {
             "name": "XScrollableElement",
             "module": "test/scroll/scrollable-element.ts"
-          }
-        }
-      ]
-    },
-    {
-      "kind": "javascript-module",
-      "path": "demo/lib/DemoHelperElement.ts",
-      "declarations": [
-        {
-          "kind": "class",
-          "description": "",
-          "name": "DemoHelperElement",
-          "members": [
-            {
-              "kind": "field",
-              "name": "_markdown",
-              "type": {
-                "text": "string | undefined"
-              }
-            },
-            {
-              "kind": "field",
-              "name": "markdown",
-              "type": {
-                "text": "string | undefined"
-              }
-            },
-            {
-              "kind": "field",
-              "name": "_firstUpdated",
-              "type": {
-                "text": "boolean"
-              },
-              "default": "false"
-            },
-            {
-              "kind": "field",
-              "name": "ignoreSlotChange",
-              "type": {
-                "text": "boolean"
-              },
-              "default": "false"
-            },
-            {
-              "kind": "method",
-              "name": "_registerSlotListener",
-              "return": {
-                "type": {
-                  "text": "void"
-                }
-              }
-            },
-            {
-              "kind": "method",
-              "name": "_slotChangeHandler",
-              "return": {
-                "type": {
-                  "text": "void"
-                }
-              }
-            },
-            {
-              "kind": "method",
-              "name": "_updateContent",
-              "return": {
-                "type": {
-                  "text": "void"
-                }
-              }
-            },
-            {
-              "kind": "method",
-              "name": "unindent",
-              "return": {
-                "type": {
-                  "text": "string"
-                }
-              },
-              "parameters": [
-                {
-                  "name": "text",
-                  "type": {
-                    "text": "string"
-                  }
-                }
-              ]
-            },
-            {
-              "kind": "method",
-              "name": "_highlight",
-              "return": {
-                "type": {
-                  "text": "void"
-                }
-              },
-              "parameters": [
-                {
-                  "name": "code",
-                  "type": {
-                    "text": "string"
-                  }
-                }
-              ]
-            },
-            {
-              "kind": "method",
-              "name": "_copyToClipboard",
-              "return": {
-                "type": {
-                  "text": "boolean"
-                }
-              }
-            },
-            {
-              "kind": "method",
-              "name": "_resetCopyButtonState",
-              "return": {
-                "type": {
-                  "text": "void"
-                }
-              }
-            }
-          ],
-          "superclass": {
-            "name": "LitElement",
-            "package": "lit"
-          },
-          "customElement": true
-        }
-      ],
-      "exports": [
-        {
-          "kind": "js",
-          "name": "default",
-          "declaration": {
-            "name": "DemoHelperElement",
-            "module": "demo/lib/DemoHelperElement.ts"
-          }
-        }
-      ]
-    },
-    {
-      "kind": "javascript-module",
-      "path": "demo/lib/DemoHelperStyles.ts",
-      "declarations": [
-        {
-          "kind": "variable",
-          "name": "styles",
-          "default": "css`\n:host {\n  display: block;\n  box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14),\n              0 1px 5px 0 rgba(0, 0, 0, 0.12),\n              0 3px 1px -2px rgba(0, 0, 0, 0.2);\n  margin-bottom: 40px;\n}\n\n.demo {\n  display: block;\n  border-bottom: 1px solid #e0e0e0;\n  background-color: var(--demo-helper-demo-background-color, white);\n  margin: 0;\n  padding: 20px;\n}\n\n.code-container {\n  margin: 0;\n  background-color: var(--demo-helper-code-container-background-color, #f5f5f5);\n  font-size: 13px;\n  overflow: auto;\n  position: relative;\n  padding: 0 20px;\n}\n\n.code {\n  padding: 20px;\n  margin: 0;\n  background-color: var(--demo-helper-code-container-background-color, var(--google-grey-100));\n  font-size: 13px;\n  overflow: auto;\n\n  display: block;\n  white-space: pre-wrap;\n}\n\n.code > pre {\n  margin: 0;\n  padding: 0 0 10px 0;\n}\n\n#copyButton {\n  position: absolute;\n  top: 0;\n  right: 0px;\n  text-transform: uppercase;\n  border: none;\n  cursor: pointer;\n  background: #e0e0e0;\n}\n`"
-        },
-        {
-          "kind": "variable",
-          "name": "prismStyles",
-          "default": "css`/**\n * prism.js default theme for JavaScript, CSS and HTML\n * Based on dabblet (http://dabblet.com)\n * @author Lea Verou\n */\ncode[class*=\"language-\"],\npre[class*=\"language-\"] {\n  white-space: pre-wrap;\n  word-spacing: normal;\n  word-break: break-all;\n  word-wrap: break-word;\n  line-height: 1.5;\n  -moz-tab-size: 4;\n  -o-tab-size: 4;\n  tab-size: 4;\n  hyphens: auto;\n  background-color: var(--prism-container-background-color);\n  display: block;\n  font-family: var(--arc-font-code-family, monospace);\n  font-size: var(--arc-font-code-font-size, 10pt);\n}\npre[class*=\"language-\"]::-moz-selection,\npre[class*=\"language-\"]::-moz-selection,\ncode[class*=\"language-\"]::-moz-selection,\ncode[class*=\"language-\"]::-moz-selection {\n  text-shadow: none;\n  background: var(--prism-container-selection-background-color, #b3d4fc);\n}\npre[class*=\"language-\"]::selection,\npre[class*=\"language-\"]::selection,\ncode[class*=\"language-\"]::selection,\ncode[class*=\"language-\"]::selection {\n  text-shadow: none;\n  background: var(--prism-container-selection-background-color, #b3d4fc);\n}\n@media print {\n  code[class*=\"language-\"],\n  pre[class*=\"language-\"] {\n    text-shadow: none;\n  }\n}\n/* Code blocks */\npre[class*=\"language-\"] {\n  padding: 1em;\n  margin: .5em 0;\n  overflow: auto;\n}\n:not(pre) > code[class*=\"language-\"],\npre[class*=\"language-\"] {\n  background: var(--prism-container-pre-background-color, #f5f2f0);\n}\n/* Inline code */\n:not(pre) > code[class*=\"language-\"] {\n  padding: .1em;\n  border-radius: .3em;\n  white-space: normal;\n}\n.token.comment,\n.token.prolog,\n.token.doctype,\n.token.cdata {\n  color: var(--code-token-comment-value-color, slategray);\n}\n.token.punctuation {\n  color: var(--code-punctuation-value-color, #999);\n}\n.namespace {\n  opacity: .7;\n}\n.token.property,\n.token.tag,\n.token.constant,\n.token.symbol,\n.token.deleted {\n  color: var(--code-property-value-color, #905);\n}\n.token.number {\n  color: var(--code-type-number-value-color, #905);\n}\n.token.boolean {\n  color: var(--code-type-boolean-value-color, #905);\n}\n.token.selector,\n.token.attr-name,\n.token.string,\n.token.char,\n.token.builtin,\n.token.inserted {\n  color: var(--code-type-text-value-color, #690);\n}\n.token.operator,\n.token.entity,\n.token.url,\n.language-css .token.string,\n.style .token.string {\n  color: var(--code-operator-value-color, #a67f59);\n  background: var(--code-operator-value-background-color, hsla(0, 0%, 100%, .5));\n}\n.token.atrule,\n.token.attr-value,\n.token.keyword {\n  color: var(--code-keyword-value-color, #07a);\n}\n.token.function {\n  color: var(--code-function-value-color, #DD4A68);\n}\n.token.regex,\n.token.important,\n.token.variable {\n  color: var(--code-variable-value-color, #e90);\n}\n.token.important,\n.token.bold {\n  font-weight: bold;\n}\n.token.italic {\n  font-style: italic;\n}\n.token.entity {\n  cursor: help;\n}`"
-        }
-      ],
-      "exports": [
-        {
-          "kind": "js",
-          "name": "styles",
-          "declaration": {
-            "name": "styles",
-            "module": "demo/lib/DemoHelperStyles.ts"
-          }
-        },
-        {
-          "kind": "js",
-          "name": "prismStyles",
-          "declaration": {
-            "name": "prismStyles",
-            "module": "demo/lib/DemoHelperStyles.ts"
-          }
-        }
-      ]
-    },
-    {
-      "kind": "javascript-module",
-      "path": "demo/lib/DemoIconElement.ts",
-      "declarations": [
-        {
-          "kind": "class",
-          "description": "An element to render a 24x24 icon.\nBy default it inherits current color. The fill color can be changed by setting\nthe CSS' color property.",
-          "name": "DemoIconElement",
-          "members": [
-            {
-              "kind": "field",
-              "name": "_icon",
-              "type": {
-                "text": "string | undefined"
-              },
-              "privacy": "protected"
-            },
-            {
-              "kind": "field",
-              "name": "_hasIcon",
-              "type": {
-                "text": "boolean"
-              },
-              "privacy": "protected",
-              "default": "false"
-            },
-            {
-              "kind": "field",
-              "name": "_iconValue",
-              "type": {
-                "text": "SVGTemplateResult | undefined"
-              },
-              "privacy": "protected"
-            },
-            {
-              "kind": "field",
-              "name": "icon",
-              "type": {
-                "text": "string | undefined"
-              },
-              "description": "An icon to be rendered from the Icons library.\nWhen incorrect icon is referenced nothing is rendered.",
-              "attribute": "icon"
-            },
-            {
-              "kind": "field",
-              "name": "hasIcon",
-              "type": {
-                "text": "boolean"
-              },
-              "return": {
-                "type": {
-                  "text": ""
-                }
-              }
-            },
-            {
-              "kind": "method",
-              "name": "_updateIcon",
-              "return": {
-                "type": {
-                  "text": "void"
-                }
-              },
-              "parameters": [
-                {
-                  "name": "name",
-                  "optional": true,
-                  "type": {
-                    "text": "string"
-                  },
-                  "description": "Icon name"
-                }
-              ],
-              "description": "Maps icon name to it's definition and sets `hasIcon` value."
-            }
-          ],
-          "attributes": [
-            {
-              "name": "icon",
-              "type": {
-                "text": "string | undefined"
-              },
-              "description": "An icon to be rendered from the Icons library.\nWhen incorrect icon is referenced nothing is rendered.",
-              "fieldName": "icon"
-            }
-          ],
-          "superclass": {
-            "name": "LitElement",
-            "package": "lit"
-          },
-          "customElement": true
-        }
-      ],
-      "exports": [
-        {
-          "kind": "js",
-          "name": "default",
-          "declaration": {
-            "name": "DemoIconElement",
-            "module": "demo/lib/DemoIconElement.ts"
-          }
-        }
-      ]
-    },
-    {
-      "kind": "javascript-module",
-      "path": "demo/lib/DemoPage.ts",
-      "declarations": [
-        {
-          "kind": "class",
-          "description": "Base class for AWC components demo page.",
-          "name": "DemoPage",
-          "members": [
-            {
-              "kind": "field",
-              "name": "demoStates",
-              "type": {
-                "text": "string[]"
-              },
-              "default": "['Filled', 'Outlined', 'Anypoint']",
-              "description": "A list of demo states to be passed to `interactive-demo` element"
-            },
-            {
-              "kind": "field",
-              "name": "componentName",
-              "type": {
-                "text": "string"
-              },
-              "default": "''",
-              "description": "Component name rendered in the header section."
-            },
-            {
-              "kind": "field",
-              "name": "narrow",
-              "type": {
-                "text": "boolean"
-              },
-              "default": "false"
-            },
-            {
-              "kind": "field",
-              "name": "firstRendered",
-              "type": {
-                "text": "boolean"
-              },
-              "default": "false",
-              "description": "Determines whether the initial render had run and the `firstRender()`\nfunction was called."
-            },
-            {
-              "kind": "field",
-              "name": "stylesActive",
-              "type": {
-                "text": "boolean"
-              },
-              "default": "true",
-              "description": "Whether or not the styles should be applied to `body.styled` element."
-            },
-            {
-              "kind": "field",
-              "name": "_darkThemeActive",
-              "type": {
-                "text": "boolean"
-              },
-              "privacy": "protected",
-              "default": "false"
-            },
-            {
-              "kind": "field",
-              "name": "anypoint",
-              "type": {
-                "text": "boolean"
-              },
-              "default": "false",
-              "description": "Enables Anypoint platform styles."
-            },
-            {
-              "kind": "field",
-              "name": "outlined",
-              "type": {
-                "text": "boolean"
-              },
-              "default": "false",
-              "description": "Enables Material's outlined theme."
-            },
-            {
-              "kind": "field",
-              "name": "darkThemeActive",
-              "type": {
-                "text": "boolean"
-              },
-              "description": "Whether or not the dark theme is active"
-            },
-            {
-              "kind": "method",
-              "name": "firstRender",
-              "return": {
-                "type": {
-                  "text": "void"
-                }
-              },
-              "description": "Helper function to be overridden by child classes. It is called when the view\nis rendered for the first time."
-            },
-            {
-              "kind": "method",
-              "name": "initMediaQueries",
-              "return": {
-                "type": {
-                  "text": "void"
-                }
-              },
-              "description": "Initializes media queries for dark system theme."
-            },
-            {
-              "kind": "method",
-              "name": "_toggleMainOption",
-              "return": {
-                "type": {
-                  "text": "void"
-                }
-              },
-              "parameters": [
-                {
-                  "name": "e",
-                  "type": {
-                    "text": "CustomEvent"
-                  }
-                }
-              ],
-              "description": "A handler for the `change` event for an element that has `checked` and `name` properties.\nThis can be used with `anypoint-switch`, `anypoint-checkbox`, and `checkbox` elements.\n\nThe `name` should correspond to a variable name to be set. The set value is the value\nof `checked` property read from the event's target."
-            },
-            {
-              "kind": "method",
-              "name": "_demoStateHandler",
-              "return": {
-                "type": {
-                  "text": "void"
-                }
-              },
-              "parameters": [
-                {
-                  "name": "e",
-                  "type": {
-                    "text": "CustomEvent"
-                  }
-                }
-              ],
-              "description": "A handler for the `change` event for the demo state"
-            },
-            {
-              "kind": "method",
-              "name": "_updateAnypoint",
-              "return": {
-                "type": {
-                  "text": "void"
-                }
-              },
-              "description": "Depending on the `anypoint` flag state it adds or removes the `anypoint` styles from the body."
-            },
-            {
-              "kind": "method",
-              "name": "_mediaQueryHandler",
-              "return": {
-                "type": {
-                  "text": "void"
-                }
-              },
-              "parameters": [
-                {
-                  "name": "e",
-                  "type": {
-                    "text": "MediaQueryListEvent"
-                  }
-                }
-              ]
-            },
-            {
-              "kind": "method",
-              "name": "headerTemplate",
-              "return": {
-                "type": {
-                  "text": ""
-                }
-              },
-              "description": "Call this on the top of the `render()` method to render demo navigation"
-            },
-            {
-              "kind": "method",
-              "name": "_demoViewControlsTemplate",
-              "return": {
-                "type": {
-                  "text": ""
-                }
-              },
-              "description": "Override this function to add some custom custom controls to the\nview controls dropdown."
-            },
-            {
-              "kind": "method",
-              "name": "contentTemplate",
-              "return": {
-                "type": {
-                  "text": "TemplateResult"
-                }
-              },
-              "description": "Abstract method. When not overriding `render()` method you can use\nthis function to render content inside the standard API components layout.\n\n```\ncontentTemplate() {\n return html`<p>Demo content</p>`;\n}\n```"
-            },
-            {
-              "kind": "method",
-              "name": "pageTemplate",
-              "return": {
-                "type": {
-                  "text": "TemplateResult"
-                }
-              },
-              "description": "The page render function. Usually you don't need to use it.\nIt renders the header template, main section, and the content."
-            },
-            {
-              "kind": "field",
-              "name": "_rendering",
-              "type": {
-                "text": "boolean"
-              },
-              "default": "false"
-            },
-            {
-              "kind": "method",
-              "name": "_render",
-              "return": {
-                "type": {
-                  "text": "void"
-                }
-              }
-            }
-          ],
-          "superclass": {
-            "name": "EventTarget",
-            "module": "demo/lib/DemoPage.ts"
-          }
-        }
-      ],
-      "exports": [
-        {
-          "kind": "js",
-          "name": "DemoPage",
-          "declaration": {
-            "name": "DemoPage",
-            "module": "demo/lib/DemoPage.ts"
-          }
-        }
-      ]
-    },
-    {
-      "kind": "javascript-module",
-      "path": "demo/lib/Icons.ts",
-      "declarations": [
-        {
-          "kind": "variable",
-          "name": "message"
-        },
-        {
-          "kind": "variable",
-          "name": "refresh"
-        },
-        {
-          "kind": "variable",
-          "name": "modeEdit"
-        },
-        {
-          "kind": "variable",
-          "name": "star"
-        },
-        {
-          "kind": "variable",
-          "name": "add"
-        },
-        {
-          "kind": "variable",
-          "name": "cancel"
-        },
-        {
-          "kind": "variable",
-          "name": "settings"
-        },
-        {
-          "kind": "variable",
-          "name": "toggleOff"
-        },
-        {
-          "kind": "variable",
-          "name": "toggleOn"
-        },
-        {
-          "kind": "variable",
-          "name": "warning"
-        },
-        {
-          "kind": "variable",
-          "name": "zoomIn"
-        },
-        {
-          "kind": "variable",
-          "name": "shortText"
-        },
-        {
-          "kind": "variable",
-          "name": "spellcheck"
-        },
-        {
-          "kind": "variable",
-          "name": "clear"
-        },
-        {
-          "kind": "variable",
-          "name": "clearAll"
-        },
-        {
-          "kind": "variable",
-          "name": "rateReview"
-        },
-        {
-          "kind": "variable",
-          "name": "search"
-        },
-        {
-          "kind": "variable",
-          "name": "addCircleOutline"
-        },
-        {
-          "kind": "variable",
-          "name": "desktopWindows"
-        },
-        {
-          "kind": "variable",
-          "name": "edit"
-        },
-        {
-          "kind": "variable",
-          "name": "expandLess"
-        },
-        {
-          "kind": "variable",
-          "name": "expandMore"
-        },
-        {
-          "kind": "variable",
-          "name": "infoOutline"
-        },
-        {
-          "kind": "variable",
-          "name": "menu"
-        },
-        {
-          "kind": "variable",
-          "name": "moreVert"
-        },
-        {
-          "kind": "variable",
-          "name": "remove"
-        },
-        {
-          "kind": "variable",
-          "name": "archive"
-        },
-        {
-          "kind": "variable",
-          "name": "close"
-        }
-      ],
-      "exports": [
-        {
-          "kind": "js",
-          "name": "message",
-          "declaration": {
-            "name": "message",
-            "module": "demo/lib/Icons.ts"
-          }
-        },
-        {
-          "kind": "js",
-          "name": "refresh",
-          "declaration": {
-            "name": "refresh",
-            "module": "demo/lib/Icons.ts"
-          }
-        },
-        {
-          "kind": "js",
-          "name": "modeEdit",
-          "declaration": {
-            "name": "modeEdit",
-            "module": "demo/lib/Icons.ts"
-          }
-        },
-        {
-          "kind": "js",
-          "name": "star",
-          "declaration": {
-            "name": "star",
-            "module": "demo/lib/Icons.ts"
-          }
-        },
-        {
-          "kind": "js",
-          "name": "add",
-          "declaration": {
-            "name": "add",
-            "module": "demo/lib/Icons.ts"
-          }
-        },
-        {
-          "kind": "js",
-          "name": "cancel",
-          "declaration": {
-            "name": "cancel",
-            "module": "demo/lib/Icons.ts"
-          }
-        },
-        {
-          "kind": "js",
-          "name": "settings",
-          "declaration": {
-            "name": "settings",
-            "module": "demo/lib/Icons.ts"
-          }
-        },
-        {
-          "kind": "js",
-          "name": "toggleOff",
-          "declaration": {
-            "name": "toggleOff",
-            "module": "demo/lib/Icons.ts"
-          }
-        },
-        {
-          "kind": "js",
-          "name": "toggleOn",
-          "declaration": {
-            "name": "toggleOn",
-            "module": "demo/lib/Icons.ts"
-          }
-        },
-        {
-          "kind": "js",
-          "name": "warning",
-          "declaration": {
-            "name": "warning",
-            "module": "demo/lib/Icons.ts"
-          }
-        },
-        {
-          "kind": "js",
-          "name": "zoomIn",
-          "declaration": {
-            "name": "zoomIn",
-            "module": "demo/lib/Icons.ts"
-          }
-        },
-        {
-          "kind": "js",
-          "name": "shortText",
-          "declaration": {
-            "name": "shortText",
-            "module": "demo/lib/Icons.ts"
-          }
-        },
-        {
-          "kind": "js",
-          "name": "spellcheck",
-          "declaration": {
-            "name": "spellcheck",
-            "module": "demo/lib/Icons.ts"
-          }
-        },
-        {
-          "kind": "js",
-          "name": "clear",
-          "declaration": {
-            "name": "clear",
-            "module": "demo/lib/Icons.ts"
-          }
-        },
-        {
-          "kind": "js",
-          "name": "clearAll",
-          "declaration": {
-            "name": "clearAll",
-            "module": "demo/lib/Icons.ts"
-          }
-        },
-        {
-          "kind": "js",
-          "name": "rateReview",
-          "declaration": {
-            "name": "rateReview",
-            "module": "demo/lib/Icons.ts"
-          }
-        },
-        {
-          "kind": "js",
-          "name": "search",
-          "declaration": {
-            "name": "search",
-            "module": "demo/lib/Icons.ts"
-          }
-        },
-        {
-          "kind": "js",
-          "name": "addCircleOutline",
-          "declaration": {
-            "name": "addCircleOutline",
-            "module": "demo/lib/Icons.ts"
-          }
-        },
-        {
-          "kind": "js",
-          "name": "desktopWindows",
-          "declaration": {
-            "name": "desktopWindows",
-            "module": "demo/lib/Icons.ts"
-          }
-        },
-        {
-          "kind": "js",
-          "name": "edit",
-          "declaration": {
-            "name": "edit",
-            "module": "demo/lib/Icons.ts"
-          }
-        },
-        {
-          "kind": "js",
-          "name": "expandLess",
-          "declaration": {
-            "name": "expandLess",
-            "module": "demo/lib/Icons.ts"
-          }
-        },
-        {
-          "kind": "js",
-          "name": "expandMore",
-          "declaration": {
-            "name": "expandMore",
-            "module": "demo/lib/Icons.ts"
-          }
-        },
-        {
-          "kind": "js",
-          "name": "infoOutline",
-          "declaration": {
-            "name": "infoOutline",
-            "module": "demo/lib/Icons.ts"
-          }
-        },
-        {
-          "kind": "js",
-          "name": "menu",
-          "declaration": {
-            "name": "menu",
-            "module": "demo/lib/Icons.ts"
-          }
-        },
-        {
-          "kind": "js",
-          "name": "moreVert",
-          "declaration": {
-            "name": "moreVert",
-            "module": "demo/lib/Icons.ts"
-          }
-        },
-        {
-          "kind": "js",
-          "name": "remove",
-          "declaration": {
-            "name": "remove",
-            "module": "demo/lib/Icons.ts"
-          }
-        },
-        {
-          "kind": "js",
-          "name": "archive",
-          "declaration": {
-            "name": "archive",
-            "module": "demo/lib/Icons.ts"
-          }
-        },
-        {
-          "kind": "js",
-          "name": "close",
-          "declaration": {
-            "name": "close",
-            "module": "demo/lib/Icons.ts"
-          }
-        }
-      ]
-    },
-    {
-      "kind": "javascript-module",
-      "path": "demo/lib/InteractiveDemoElement.ts",
-      "declarations": [
-        {
-          "kind": "class",
-          "description": "",
-          "name": "InteractiveDemoElement",
-          "members": [
-            {
-              "kind": "field",
-              "name": "states",
-              "type": {
-                "text": "string[]"
-              },
-              "default": "[]",
-              "description": "The list of general style states for the element.\nIt renders list of tabs with labels from this array.",
-              "attribute": "states"
-            },
-            {
-              "kind": "field",
-              "name": "dark",
-              "type": {
-                "text": "boolean"
-              },
-              "default": "false",
-              "description": "When set it renders the component in dark theme.",
-              "attribute": "dark",
-              "reflects": true
-            },
-            {
-              "kind": "field",
-              "name": "tabs",
-              "type": {
-                "text": "AnypointTabsElement"
-              },
-              "return": {
-                "type": {
-                  "text": "AnypointTabsElement"
-                }
-              }
-            },
-            {
-              "kind": "field",
-              "name": "_selectedState",
-              "type": {
-                "text": "number"
-              },
-              "privacy": "protected",
-              "default": "0"
-            },
-            {
-              "kind": "field",
-              "name": "selectedState",
-              "type": {
-                "text": "number"
-              },
-              "description": "Currently selected state's index in the `states` array.\nChange dispatches `state-changed` custom event.",
-              "attribute": "selectedState"
-            },
-            {
-              "kind": "field",
-              "name": "_opened",
-              "type": {
-                "text": "boolean"
-              },
-              "default": "false"
-            },
-            {
-              "kind": "field",
-              "name": "opened",
-              "type": {
-                "text": "boolean"
-              },
-              "description": "True when the configuration panel is opened.",
-              "attribute": "opened"
-            },
-            {
-              "kind": "method",
-              "name": "_stateChangeHandler",
-              "return": {
-                "type": {
-                  "text": "void"
-                }
-              },
-              "parameters": [
-                {
-                  "name": "e",
-                  "type": {
-                    "text": "Event"
-                  }
-                }
-              ]
-            },
-            {
-              "kind": "method",
-              "name": "_toggleOptions",
-              "return": {
-                "type": {
-                  "text": "void"
-                }
-              }
-            },
-            {
-              "kind": "field",
-              "name": "_updateTabsTimer",
-              "type": {
-                "text": "any"
-              }
-            },
-            {
-              "kind": "method",
-              "name": "_updateTabsAnimation",
-              "return": {
-                "type": {
-                  "text": "void"
-                }
-              }
-            },
-            {
-              "kind": "method",
-              "name": "_updateOptionsTabindex",
-              "return": {
-                "type": {
-                  "text": "void"
-                }
-              }
-            },
-            {
-              "kind": "method",
-              "name": "_activateOptionNode",
-              "return": {
-                "type": {
-                  "text": "void"
-                }
-              },
-              "parameters": [
-                {
-                  "name": "node",
-                  "type": {
-                    "text": "HTMLElement"
-                  }
-                }
-              ]
-            },
-            {
-              "kind": "method",
-              "name": "_deactivateOptionNode",
-              "return": {
-                "type": {
-                  "text": "void"
-                }
-              },
-              "parameters": [
-                {
-                  "name": "node",
-                  "type": {
-                    "text": "HTMLElement"
-                  }
-                }
-              ]
-            },
-            {
-              "kind": "method",
-              "name": "_tabsTemplate",
-              "return": {
-                "type": {
-                  "text": "TemplateResult"
-                }
-              }
-            },
-            {
-              "kind": "method",
-              "name": "_triggerTemplate",
-              "return": {
-                "type": {
-                  "text": "TemplateResult"
-                }
-              }
-            },
-            {
-              "kind": "method",
-              "name": "_configTemplate",
-              "return": {
-                "type": {
-                  "text": "TemplateResult"
-                }
-              }
-            }
-          ],
-          "attributes": [
-            {
-              "name": "states",
-              "type": {
-                "text": "string[]"
-              },
-              "default": "[]",
-              "description": "The list of general style states for the element.\nIt renders list of tabs with labels from this array.",
-              "fieldName": "states"
-            },
-            {
-              "name": "dark",
-              "type": {
-                "text": "boolean"
-              },
-              "default": "false",
-              "description": "When set it renders the component in dark theme.",
-              "fieldName": "dark"
-            },
-            {
-              "name": "selectedState",
-              "type": {
-                "text": "number"
-              },
-              "description": "Currently selected state's index in the `states` array.\nChange dispatches `state-changed` custom event.",
-              "fieldName": "selectedState"
-            },
-            {
-              "name": "opened",
-              "type": {
-                "text": "boolean"
-              },
-              "description": "True when the configuration panel is opened.",
-              "fieldName": "opened"
-            }
-          ],
-          "superclass": {
-            "name": "LitElement",
-            "package": "lit"
-          },
-          "customElement": true
-        }
-      ],
-      "exports": [
-        {
-          "kind": "js",
-          "name": "default",
-          "declaration": {
-            "name": "InteractiveDemoElement",
-            "module": "demo/lib/InteractiveDemoElement.ts"
-          }
-        }
-      ]
-    },
-    {
-      "kind": "javascript-module",
-      "path": "demo/lib/InteractiveStyles.ts",
-      "declarations": [],
-      "exports": [
-        {
-          "kind": "js",
-          "name": "default",
-          "declaration": {
-            "module": "demo/lib/InteractiveStyles.ts"
-          }
-        }
-      ]
-    },
-    {
-      "kind": "javascript-module",
-      "path": "demo/lib/SharedStyles.ts",
-      "declarations": [],
-      "exports": []
-    },
-    {
-      "kind": "javascript-module",
-      "path": "demo/lib/decorators.ts",
-      "declarations": [
-        {
-          "kind": "function",
-          "name": "demoProperty"
-        }
-      ],
-      "exports": [
-        {
-          "kind": "js",
-          "name": "demoProperty",
-          "declaration": {
-            "name": "demoProperty",
-            "module": "demo/lib/decorators.ts"
-          }
-        }
-      ]
-    },
-    {
-      "kind": "javascript-module",
-      "path": "demo/lib/demo-helper.ts",
-      "declarations": [],
-      "exports": [
-        {
-          "kind": "custom-element-definition",
-          "name": "demo-helper",
-          "declaration": {
-            "name": "Element",
-            "module": "/demo/lib/DemoHelperElement.js"
-          }
-        }
-      ]
-    },
-    {
-      "kind": "javascript-module",
-      "path": "demo/lib/demo-icon.ts",
-      "declarations": [],
-      "exports": [
-        {
-          "kind": "custom-element-definition",
-          "name": "demo-icon",
-          "declaration": {
-            "name": "Element",
-            "module": "/demo/lib/DemoIconElement.js"
-          }
-        }
-      ]
-    },
-    {
-      "kind": "javascript-module",
-      "path": "demo/lib/interactive-demo.ts",
-      "declarations": [],
-      "exports": [
-        {
-          "kind": "custom-element-definition",
-          "name": "interactive-demo",
-          "declaration": {
-            "name": "Element",
-            "module": "/demo/lib/InteractiveDemoElement.js"
           }
         }
       ]

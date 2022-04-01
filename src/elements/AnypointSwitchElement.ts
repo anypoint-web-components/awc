@@ -47,6 +47,7 @@ export default class AnypointSwitchElement extends ButtonStateMixin(ControlState
 
   constructor() {
     super();
+    this.toggles = true;
     this.ariaActiveAttribute = 'aria-checked';
     if (this.attachInternals) {
       this._internals = this.attachInternals();
