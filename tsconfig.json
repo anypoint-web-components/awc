@@ -18,6 +18,7 @@
     "incremental": true,
     "noImplicitThis": true,
     "alwaysStrict": true,
+    "pretty": true,
     "plugins": [
       {
         "name": "typescript-lit-html-plugin",
