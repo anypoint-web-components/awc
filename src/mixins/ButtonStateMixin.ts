@@ -6,8 +6,8 @@ Copyright 2017 MuleSoft.
 
 All rights reserved.
 */
+import { LitElement } from 'lit';
 import { property } from 'lit/decorators.js';
-import { dedupeMixin } from '@open-wc/dedupe-mixin';
 
 type Constructor<T = {}> = new (...args: any[]) => T;
 
@@ -95,8 +95,8 @@ export interface ButtonStateMixinInterface {
  *
  * @mixin
  */
-export const ButtonStateMixin = dedupeMixin(<T extends Constructor<HTMLElement>>(superClass: T): Constructor<ButtonStateMixinInterface> & T => {
-  class MyMixinClass extends superClass {
+export function ButtonStateMixin<T extends Constructor<LitElement>>(superClass: T): Constructor<ButtonStateMixinInterface> & T {
+  class MyMixinClass extends superClass implements ButtonStateMixinInterface {
     /**
      * If true, the button toggles the active state with each click or press
      * of the space bar.
@@ -388,4 +388,4 @@ export const ButtonStateMixin = dedupeMixin(<T extends Constructor<HTMLElement>>
     }
   }
   return MyMixinClass as Constructor<ButtonStateMixinInterface> & T;
-});
+}

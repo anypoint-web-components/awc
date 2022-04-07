@@ -1,5 +1,5 @@
 /* eslint-disable lit-a11y/click-events-have-key-events */
-import { html, TemplateResult, CSSResult, PropertyValueMap } from 'lit';
+import { html, TemplateResult, CSSResult } from 'lit';
 import { property } from 'lit/decorators.js';
 import { classMap } from 'lit/directives/class-map.js';
 import AnypointInputElement from './AnypointInputElement.js';
@@ -196,8 +196,8 @@ export default class AnypointInputComboboxElement extends AnypointInputElement {
     this.removeEventListener('keydown', this[keydownHandler]);
   }
 
-  firstUpdated(_changedProperties: PropertyValueMap<any> | Map<PropertyKey, unknown>): void {
-    super.firstUpdated(_changedProperties);
+  firstUpdated(): void {
+    super.firstUpdated();
     // const ce = this.contentElement;
     // if (ce) {
     //   ce.setAttribute('aria-expanded', String(this.opened));
@@ -293,7 +293,7 @@ export default class AnypointInputComboboxElement extends AnypointInputElement {
 
   [dropdownClosed](): void {
     this.opened = false;
-    this.inputElement.focus();
+    this.inputElement?.focus();
   }
 
   [dropdownOpened](): void {

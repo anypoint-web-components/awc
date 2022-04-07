@@ -1,4 +1,3 @@
-import { dedupeMixin } from '@open-wc/dedupe-mixin';
 import { property, state } from 'lit/decorators.js';
 import { SelectableMixin, SelectableMixinInterface } from './SelectableMixin.js';
 import { addListener, getListener } from '../lib/ElementEventsRegistry.js';
@@ -51,7 +50,7 @@ export interface MultiSelectableMixinInterface extends SelectableMixinInterface 
  * make sure that attributes are reflected to properties correctly.
  * @mixin
  */
-export const MultiSelectableMixin = dedupeMixin(<T extends Constructor<HTMLElement>>(superClass: T): Constructor<MultiSelectableMixinInterface> & T => {
+export function MultiSelectableMixin<T extends Constructor<HTMLElement>>(superClass: T): Constructor<MultiSelectableMixinInterface> & T {
   class MyMixinClass extends SelectableMixin(superClass) {
     _multi = false;
 
@@ -258,4 +257,4 @@ export const MultiSelectableMixin = dedupeMixin(<T extends Constructor<HTMLEleme
     }
   }
   return MyMixinClass as Constructor<MultiSelectableMixinInterface> & T;
-});
+}

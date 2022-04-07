@@ -1,4 +1,4 @@
-import { html, css, CSSResult, TemplateResult, PropertyValueMap } from 'lit';
+import { html, css, CSSResult, TemplateResult } from 'lit';
 import { property } from 'lit/decorators.js';
 import AnypointInputElement from './AnypointInputElement.js';
 import '../define/anypoint-autocomplete.js';
@@ -32,8 +32,8 @@ export default class AnypointComboboxElement extends AnypointInputElement {
   @property({ type: Array })
   source?: Suggestion[] | string[];
 
-  firstUpdated(_changedProperties: PropertyValueMap<any> | Map<PropertyKey, unknown>): void {
-    super.firstUpdated(_changedProperties);
+  firstUpdated(): void {
+    super.firstUpdated();
     // this is required for autocomplete to set up the
     // target as `inputElement` is computed getter.
     this.requestUpdate();

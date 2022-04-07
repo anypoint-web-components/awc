@@ -12,7 +12,6 @@ WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the
 License for the specific language governing permissions and limitations under
 the License.
 */
-import { dedupeMixin } from '@open-wc/dedupe-mixin';
 
 /* eslint-disable no-unused-vars */
 /* eslint-disable class-methods-use-this */
@@ -73,7 +72,7 @@ export interface EventsTargetMixinInterface {
  *
  * @mixin
  */
-export const EventsTargetMixin = dedupeMixin(<T extends Constructor<Object>>(superClass: T): Constructor<EventsTargetMixinInterface> & T => {
+export function EventsTargetMixin<T extends Constructor<Object>>(superClass: T): Constructor<EventsTargetMixinInterface> & T {
   class MyMixinClass extends superClass {
     _eventsTarget?: EventTarget;
 
@@ -154,4 +153,4 @@ export const EventsTargetMixin = dedupeMixin(<T extends Constructor<Object>>(sup
   }
 
   return MyMixinClass as Constructor<EventsTargetMixinInterface> & T;
-});
+}

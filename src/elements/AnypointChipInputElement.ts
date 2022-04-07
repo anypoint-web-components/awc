@@ -447,7 +447,7 @@ export default class AnypointChipInputElement extends AnypointInputElement {
       value = value.value;
     }
     this._processAddInput(value);
-    this.inputElement.value = '';
+    this.inputElement!.value = '';
   }
 
   _processAddInput(value: string): void {

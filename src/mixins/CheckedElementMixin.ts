@@ -9,7 +9,6 @@ All rights reserved.
 
 import { LitElement } from 'lit';
 import { property } from 'lit/decorators.js';
-import { dedupeMixin } from '@open-wc/dedupe-mixin';
 import { ValidatableMixin, ValidatableMixinInterface } from './ValidatableMixin.js';
 import { addListener, getListener } from '../lib/ElementEventsRegistry.js';
 
@@ -86,7 +85,7 @@ export interface CheckedElementMixinInterface extends ValidatableMixinInterface 
  *
  * @mixin
  */
-export const CheckedElementMixin = dedupeMixin(<T extends Constructor<LitElement>>(superClass: T): Constructor<CheckedElementMixinInterface> & T => {
+export function CheckedElementMixin<T extends Constructor<LitElement>>(superClass: T): Constructor<CheckedElementMixinInterface> & T {
   class MyMixinClass extends ValidatableMixin(superClass) {
     /**
      * If true, the button toggles the active state with each click or press
@@ -263,4 +262,4 @@ export const CheckedElementMixin = dedupeMixin(<T extends Constructor<LitElement
     }
   }
   return MyMixinClass as Constructor<CheckedElementMixinInterface> & T;
-});
+}

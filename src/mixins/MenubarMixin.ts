@@ -1,4 +1,3 @@
-import { dedupeMixin } from '@open-wc/dedupe-mixin';
 import { MenuMixin, MenuMixinInterface } from './MenuMixin.js';
 
 type Constructor<T = {}> = new (...args: any[]) => T;
@@ -19,7 +18,7 @@ export interface MenubarMixinInterface extends MenuMixinInterface {
  *
  * @mixin
  */
-export const MenubarMixin = dedupeMixin(<T extends Constructor<HTMLElement>>(superClass: T): Constructor<MenubarMixinInterface> & T => {
+export function MenubarMixin<T extends Constructor<HTMLElement>>(superClass: T): Constructor<MenubarMixinInterface> & T {
   class MyMixinClass extends MenuMixin(superClass) {
     get _isRTL(): boolean {
       return window.getComputedStyle(this).direction === 'rtl';
@@ -76,4 +75,4 @@ export const MenubarMixin = dedupeMixin(<T extends Constructor<HTMLElement>>(sup
     }
   }
   return MyMixinClass as Constructor<MenubarMixinInterface> & T;
-});
+}

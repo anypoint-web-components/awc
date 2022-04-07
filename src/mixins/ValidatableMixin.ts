@@ -11,7 +11,6 @@ WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the
 License for the specific language governing permissions and limitations under
 the License.
 */
-import { dedupeMixin } from '@open-wc/dedupe-mixin';
 import { LitElement } from 'lit';
 import { property } from 'lit/decorators.js';
 import * as ValidatorStore from './ValidatorStore.js';
@@ -141,7 +140,7 @@ export interface ValidatableMixinInterface {
  *
  * @mixin
  */
- export const ValidatableMixin = dedupeMixin(<T extends Constructor<LitElement>>(superClass: T): Constructor<ValidatableMixinInterface> & T => {
+export function ValidatableMixin<T extends Constructor<LitElement>>(superClass: T): Constructor<ValidatableMixinInterface> & T {
   class MyMixinClass extends superClass {
     /**
      * Name of the validator or validators to use.
@@ -321,4 +320,4 @@ export interface ValidatableMixinInterface {
     }
   }
   return MyMixinClass as Constructor<ValidatableMixinInterface> & T;
-});
+}

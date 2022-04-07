@@ -8,7 +8,6 @@ All rights reserved.
 
 import { LitElement } from 'lit';
 import { property } from 'lit/decorators.js';
-import { dedupeMixin } from '@open-wc/dedupe-mixin';
 
 type Constructor<T = {}> = new (...args: any[]) => T;
 
@@ -59,7 +58,7 @@ export interface ControlStateMixinInterface {
  *
  * @mixin
  */
-export const ControlStateMixin = dedupeMixin(<T extends Constructor<LitElement>>(superClass: T): Constructor<ControlStateMixinInterface> & T => {
+export function ControlStateMixin<T extends Constructor<LitElement>>(superClass: T): Constructor<ControlStateMixinInterface> & T {
   class MyMixinClass extends superClass {
     _focused?: boolean;
 
@@ -195,4 +194,4 @@ export const ControlStateMixin = dedupeMixin(<T extends Constructor<LitElement>>
     }
   }
   return MyMixinClass as Constructor<ControlStateMixinInterface> & T;
-});
+}

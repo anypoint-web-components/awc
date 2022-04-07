@@ -1,5 +1,4 @@
 import { property, state } from 'lit/decorators.js';
-import { dedupeMixin } from '@open-wc/dedupe-mixin';
 import { AnypointSelection } from './AnypointSelection.js';
 import { addListener, getListener } from '../lib/ElementEventsRegistry.js';
 
@@ -236,7 +235,7 @@ export interface SelectableMixinInterface {
  * @mixin
  * @fires deselect
  */
-export const SelectableMixin = dedupeMixin(<T extends Constructor<HTMLElement>>(superClass: T): Constructor<SelectableMixinInterface> & T => {
+export function SelectableMixin<T extends Constructor<HTMLElement>>(superClass: T): Constructor<SelectableMixinInterface> & T {
   class MyMixinClass extends superClass {
     /**
      * This is a CSS selector string.  If this is set, only items that match the
@@ -943,4 +942,4 @@ export const SelectableMixin = dedupeMixin(<T extends Constructor<HTMLElement>>(
     }
   }
   return MyMixinClass as Constructor<SelectableMixinInterface> & T;
-});
+}

@@ -1,12 +1,12 @@
-import { html, css, LitElement, CSSResult, TemplateResult } from 'lit';
+import { html, css, CSSResult, TemplateResult } from 'lit';
 import { ifDefined } from 'lit/directives/if-defined.js';
 import { property } from 'lit/decorators.js';
-import { AnypointInputMixin } from '../mixins/AnypointInputMixin.js';
+import AnypointInputElement from './AnypointInputElement.js';
 import commonStyles from '../styles/anypoint-input-styles.js';
 
 /* eslint-disable class-methods-use-this */
 
-export default class AnypointTextareaElement extends AnypointInputMixin(LitElement) {
+export default class AnypointTextareaElement extends AnypointInputElement {
   static get styles(): CSSResult[] {
     return [
       commonStyles,

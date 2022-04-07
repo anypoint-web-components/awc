@@ -1,7 +1,6 @@
 /* eslint-disable class-methods-use-this */
 import { LitElement } from 'lit';
 import { property } from 'lit/decorators.js';
-import { dedupeMixin } from '@open-wc/dedupe-mixin';
 
 export const ratioValue = Symbol('rationValue');
 export const rangeChanged = Symbol('rangeChanged');
@@ -59,7 +58,7 @@ export interface RangeMixinInterface {
  *
  * @mixin
  */
-export const RangeMixin = dedupeMixin(<T extends Constructor<LitElement>>(superClass: T): Constructor<RangeMixinInterface> & T => {
+export function RangeMixin<T extends Constructor<LitElement>>(superClass: T): Constructor<RangeMixinInterface> & T {
   class MyMixinClass extends superClass {
     /**
      * @returns {number} the ratio of the value.
@@ -240,4 +239,4 @@ export const RangeMixin = dedupeMixin(<T extends Constructor<LitElement>>(superC
     }
   }
   return MyMixinClass as Constructor<RangeMixinInterface> & T;
-});
+}

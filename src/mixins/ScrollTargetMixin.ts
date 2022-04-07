@@ -1,6 +1,5 @@
 /* eslint-disable no-param-reassign */
 /* eslint-disable class-methods-use-this */
-import { dedupeMixin } from '@open-wc/dedupe-mixin';
 import { property } from 'lit/decorators.js';
 
 type Constructor<T = {}> = new (...args: any[]) => T;
@@ -104,7 +103,7 @@ export interface ScrollTargetMixinInterface {
  * 
  * @mixin
  */
-export const ScrollTargetMixin = dedupeMixin(<T extends Constructor<HTMLElement>>(superClass: T): Constructor<ScrollTargetMixinInterface> & T => {
+export function ScrollTargetMixin<T extends Constructor<HTMLElement>>(superClass: T): Constructor<ScrollTargetMixinInterface> & T {
   class MyMixinClass extends superClass {
     _scrollTarget: HTMLElement | string = this._defaultScrollTarget;
 
@@ -408,4 +407,4 @@ export const ScrollTargetMixin = dedupeMixin(<T extends Constructor<HTMLElement>
   }
 
   return MyMixinClass as Constructor<ScrollTargetMixinInterface> & T;
-});
+}

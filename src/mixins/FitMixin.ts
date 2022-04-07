@@ -1,7 +1,6 @@
 /* eslint-disable max-classes-per-file */
 import { LitElement } from 'lit';
 import { property } from 'lit/decorators.js';
-import { dedupeMixin } from '@open-wc/dedupe-mixin';
 
 /* eslint-disable class-methods-use-this */
 /* eslint-disable no-unused-vars */
@@ -272,7 +271,7 @@ export declare interface FitMixinInterface {
  *
  * @mixin
  */
-export const FitMixin = dedupeMixin(<T extends Constructor<LitElement>>(superClass: T): Constructor<FitMixinInterface> & T => {
+export function FitMixin<T extends Constructor<LitElement>>(superClass: T): Constructor<FitMixinInterface> & T {
   class MyMixinClass extends superClass {
     /**
      * The element to fit `this` into.
@@ -891,4 +890,4 @@ export const FitMixin = dedupeMixin(<T extends Constructor<LitElement>>(superCla
     }
   }
   return MyMixinClass as Constructor<FitMixinInterface> & T;
-});
+}

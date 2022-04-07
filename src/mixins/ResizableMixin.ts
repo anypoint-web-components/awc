@@ -1,7 +1,6 @@
 /* eslint-disable max-classes-per-file */
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import { LitElement } from 'lit';
-import { dedupeMixin } from '@open-wc/dedupe-mixin';
 
 // Contains all connected resizables that do not have a parent.
 const ORPHANS = new Set();
@@ -14,7 +13,7 @@ export const resizeEventType = 'resize';
 
 type Constructor<T = {}> = new (...args: any[]) => T;
 
-export declare interface ResizableMixinInterface {
+export interface ResizableMixinInterface {
   _interestedResizables: EventTarget[];
   _parentResizable: HTMLElement | undefined;
   /**
@@ -74,7 +73,7 @@ export declare interface ResizableMixinInterface {
  *
  * @mixin
  */
-export const ResizableMixin = dedupeMixin(<T extends Constructor<LitElement>>(superClass: T): Constructor<ResizableMixinInterface> & T => {
+export function ResizableMixin<T extends Constructor<LitElement>>(superClass: T): Constructor<ResizableMixinInterface> & T {
   class MyMixinClass extends superClass {
     __parentResizable?: HTMLElement;
 
@@ -331,4 +330,4 @@ export const ResizableMixin = dedupeMixin(<T extends Constructor<LitElement>>(su
     }
   }
   return MyMixinClass as Constructor<ResizableMixinInterface> & T;
-});
+}

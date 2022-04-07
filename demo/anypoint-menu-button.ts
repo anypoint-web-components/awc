@@ -83,12 +83,12 @@ class ComponentDemoPage extends DemoPage {
           <anypoint-checkbox
             aria-describedby="mainOptionsLabel"
             slot="options"
-            name="demoIgnoreSelect"
+            name="ignoreSelect"
             @change="${this._toggleMainOption}">Ignore select</anypoint-checkbox>
           <anypoint-checkbox
             aria-describedby="mainOptionsLabel"
             slot="options"
-            name="demoDisabled"
+            name="disabled"
             @change="${this._toggleMainOption}">Disabled</anypoint-checkbox>
           <anypoint-checkbox
             aria-describedby="mainOptionsLabel"

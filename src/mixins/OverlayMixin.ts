@@ -1,6 +1,5 @@
 import { LitElement } from 'lit';
 import { property } from 'lit/decorators.js';
-import { dedupeMixin } from '@open-wc/dedupe-mixin';
 import { FitMixin, FitMixinInterface } from './FitMixin.js';
 import { ResizableMixin, ResizableMixinInterface } from './ResizableMixin.js';
 import { FocusableHelper } from '../define/focusable-helper.js';
@@ -254,7 +253,7 @@ export interface OverlayMixinInterface extends FitMixinInterface, ResizableMixin
  *
  * @mixin
  */
-export const OverlayMixin = dedupeMixin(<T extends Constructor<LitElement>>(superClass: T): Constructor<OverlayMixinInterface> & T => {
+export function OverlayMixin<T extends Constructor<LitElement>>(superClass: T): Constructor<OverlayMixinInterface> & T {
   class MyMixinClass extends FitMixin(ResizableMixin(superClass)) {
     /**
      * Set to true to disable auto-focusing the overlay or child nodes with
@@ -1246,4 +1245,4 @@ export const OverlayMixin = dedupeMixin(<T extends Constructor<LitElement>>(supe
     }
   }
   return MyMixinClass as Constructor<OverlayMixinInterface> & T;
-});
+}
