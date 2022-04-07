@@ -1,7 +1,7 @@
 import { fixture, assert, nextFrame, html } from '@open-wc/testing';
-import { AnypointRadioButtonElement, AnypointRadioGroupElement } from '../../index.js'
-import '../../define/anypoint-radio-group.js';
-import '../../define/anypoint-radio-button.js';
+import { AnypointRadioButtonElement, AnypointRadioGroupElement } from '../../src/index.js'
+import '../../src/define/anypoint-radio-group.js';
+import '../../src/define/anypoint-radio-button.js';
 
 describe('<anypoint-radio-group>', () => {
   async function basicFixture(): Promise<AnypointRadioGroupElement> {

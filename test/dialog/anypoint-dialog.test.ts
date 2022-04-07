@@ -1,9 +1,9 @@
 import { fixture, aTimeout, assert, html } from '@open-wc/testing';
 import * as MockInteractions from '@polymer/iron-test-helpers/mock-interactions.js';
 import sinon from 'sinon';
-import '../../define/anypoint-button.js';
-import '../../define/anypoint-dialog.js';
-import { AnypointDialogElement } from '../../index.js';
+import '../../src/define/anypoint-button.js';
+import '../../src/define/anypoint-dialog.js';
+import { AnypointDialogElement } from '../../src/index.js';
 
 describe('<anypoint-dialog>', () => {
   async function basicFixture(): Promise<AnypointDialogElement> {

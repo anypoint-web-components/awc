@@ -1,7 +1,7 @@
 import { html, TemplateResult } from 'lit';
 import { demoProperty } from './lib/decorators.js';
 import { DemoPage } from './lib/DemoPage.js';
-import '../define/anypoint-selector.js';
+import '../src/define/anypoint-selector.js';
 import './lib/demo-helper.js';
 
 class ComponentDemo extends DemoPage {

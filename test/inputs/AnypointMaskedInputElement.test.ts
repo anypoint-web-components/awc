@@ -1,7 +1,7 @@
 import { fixture, assert, html } from '@open-wc/testing';
 import * as MockInteractions from '@polymer/iron-test-helpers/mock-interactions.js';
-import { AnypointMaskedInputElement } from '../../index.js'
-import '../../define/anypoint-masked-input.js';
+import { AnypointMaskedInputElement } from '../../src/index.js'
+import '../../src/define/anypoint-masked-input.js';
 
 describe('<anypoint-masked-input>', () => {
   async function maskedFixture(): Promise<AnypointMaskedInputElement> {

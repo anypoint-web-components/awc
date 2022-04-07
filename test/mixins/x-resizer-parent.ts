@@ -1,6 +1,6 @@
 /* eslint-disable wc/no-invalid-element-name */
 import { LitElement, html, TemplateResult } from 'lit';
-import { ResizableMixin } from '../../index.js';
+import { ResizableMixin } from '../../src/index.js';
 
 export class XResizerParent extends ResizableMixin(LitElement) {
   render(): TemplateResult {

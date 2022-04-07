@@ -1,6 +1,6 @@
 import { LitElement, html, css, TemplateResult, CSSResult } from 'lit';
 import { property } from 'lit/decorators.js';
-import { OverlayMixin } from '../../index.js';
+import { OverlayMixin } from '../../src/index.js';
 
 export class TestOverlay extends OverlayMixin(LitElement) {
   get styles(): CSSResult {

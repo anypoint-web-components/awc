@@ -4,7 +4,7 @@ import './test-buttons.js';
 import { TestButtons } from './test-buttons.js';
 import './test-buttons-wrapper.js';
 import { TestButtonsWrapper } from './test-buttons-wrapper.js';
-import { FocusableHelper } from '../../define/focusable-helper.js';
+import { FocusableHelper } from '../../src/define/focusable-helper.js';
 
 const s = document.createElement('style');
 s.type = 'text/css';

@@ -1,7 +1,7 @@
 import { fixture, assert, nextFrame, html } from '@open-wc/testing';
 import sinon from 'sinon';
-import '../../define/date-time.js';
-import { DateTimeElement } from '../../index.js';
+import '../../src/define/date-time.js';
+import { DateTimeElement } from '../../src/index.js';
 
 describe('<date-time>', () => {
   async function basicFixture(): Promise<DateTimeElement> {

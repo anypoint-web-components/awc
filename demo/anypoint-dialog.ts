@@ -3,11 +3,11 @@ import { html, TemplateResult } from 'lit';
 import { demoProperty } from './lib/decorators.js';
 import { DemoPage } from './lib/DemoPage.js';
 import './lib/interactive-demo.js';
-import '../define/anypoint-checkbox.js';
-import '../define/anypoint-button.js';
-import '../define/anypoint-dialog.js';
-import '../define/anypoint-dialog-scrollable.js';
-import '../colors.js';
+import '../src/define/anypoint-checkbox.js';
+import '../src/define/anypoint-button.js';
+import '../src/define/anypoint-dialog.js';
+import '../src/define/anypoint-dialog-scrollable.js';
+import '../src/colors.js';
 
 class ComponentDemoPage extends DemoPage {
   @demoProperty()

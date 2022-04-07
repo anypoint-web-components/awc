@@ -1,7 +1,7 @@
 import { fixture, assert, nextFrame, html } from '@open-wc/testing';
 import sinon from 'sinon';
-import '../../define/anypoint-collapse.js';
-import { AnypointCollapseElement } from '../../index.js';
+import '../../src/define/anypoint-collapse.js';
+import { AnypointCollapseElement } from '../../src/index.js';
 
 describe('AnypointCollapseElement', () => {
   async function basicFixture(): Promise<AnypointCollapseElement> {

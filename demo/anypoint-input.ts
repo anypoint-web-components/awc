@@ -4,19 +4,19 @@ import { html, TemplateResult } from 'lit';
 import { DemoPage } from './lib/DemoPage.js';
 import './lib/demo-icon.js';
 import './lib/interactive-demo.js';
-import '../define/anypoint-checkbox.js';
-import '../define/anypoint-radio-button.js';
-import '../define/anypoint-radio-group.js';
-import '../colors.js';
-import '../define/anypoint-button.js';
-import '../define/anypoint-input.js';
-import '../define/anypoint-textarea.js';
-import '../define/anypoint-masked-input.js';
+import '../src/define/anypoint-checkbox.js';
+import '../src/define/anypoint-radio-button.js';
+import '../src/define/anypoint-radio-group.js';
+import '../src/colors.js';
+import '../src/define/anypoint-button.js';
+import '../src/define/anypoint-input.js';
+import '../src/define/anypoint-textarea.js';
+import '../src/define/anypoint-masked-input.js';
 import './minimum-maximum-length.js';
 import './number-required.js';
 import './uppercase-required.js';
 import { demoProperty } from './lib/decorators.js';
-import { SupportedInputTypes } from '../index.js';
+import { SupportedInputTypes } from '../src/index.js';
 
 // const hasFormAssociatedElements = 'attachInternals' in document.createElement('span');
 

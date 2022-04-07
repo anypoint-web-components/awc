@@ -1,5 +1,5 @@
 import { LitElement } from 'lit';
-import { RangeMixin } from '../../index.js';
+import { RangeMixin } from '../../src/index.js';
 
 export class TestProgress extends RangeMixin(LitElement) {
   

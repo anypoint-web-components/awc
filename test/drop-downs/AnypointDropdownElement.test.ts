@@ -1,9 +1,9 @@
 import { fixture, assert, nextFrame } from '@open-wc/testing';
 import * as MockInteractions from '@polymer/iron-test-helpers/mock-interactions.js';
 import sinon from 'sinon';
-import '../../define/anypoint-dropdown.js';
+import '../../src/define/anypoint-dropdown.js';
 
-import { AnypointDropdownElement, IAnimationConfig } from '../../index.js';
+import { AnypointDropdownElement, IAnimationConfig } from '../../src/index.js';
 
 describe('AnypointDropdownElement', () => {
   async function basicFixture(): Promise<AnypointDropdownElement> {

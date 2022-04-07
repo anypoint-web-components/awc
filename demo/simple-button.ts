@@ -1,5 +1,5 @@
 import { LitElement, html, css, TemplateResult, CSSResult } from 'lit';
-import { ButtonStateMixin, ControlStateMixin } from '../index.js';
+import { ButtonStateMixin, ControlStateMixin } from '../src/index.js';
 
 class SimpleButton extends ControlStateMixin(ButtonStateMixin(LitElement)) {
   static get styles(): CSSResult {

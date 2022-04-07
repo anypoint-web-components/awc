@@ -1,6 +1,6 @@
 /* eslint-disable wc/no-invalid-element-name */
 import { LitElement, html, css, TemplateResult, CSSResult } from 'lit';
-import { ResizableMixin } from '../index.js';
+import { ResizableMixin } from '../src/index.js';
 import './x-puck.js';
 
 class XApp extends ResizableMixin(LitElement) {

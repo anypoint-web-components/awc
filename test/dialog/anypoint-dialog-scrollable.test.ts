@@ -1,8 +1,8 @@
 /* eslint-disable no-param-reassign */
 import { fixture, aTimeout, nextFrame, assert, html } from '@open-wc/testing';
-import '../../define/anypoint-dialog.js';
-import '../../define/anypoint-dialog-scrollable.js';
-import { AnypointDialogElement } from '../../index.js';
+import '../../src/define/anypoint-dialog.js';
+import '../../src/define/anypoint-dialog-scrollable.js';
+import { AnypointDialogElement } from '../../src/index.js';
 
 describe('<anypoint-dialog-scrollable>', () => {
   async function basicFixture(): Promise<AnypointDialogElement> {

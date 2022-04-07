@@ -1,7 +1,7 @@
 /* eslint-disable max-classes-per-file */
 
 import { LitElement, html, TemplateResult } from 'lit';
-import { ButtonStateMixin, ControlStateMixin } from '../../index.js';
+import { ButtonStateMixin, ControlStateMixin } from '../../src/index.js';
 
 export class TestControl extends ControlStateMixin(LitElement) {}
 window.customElements.define('test-control', TestControl);

@@ -48,6 +48,19 @@ $RECYCLE.BIN/
 # .nfs files are created when an open file is removed but is still being accessed
 .nfs*
 
-node_modules
-coverage
-dist
+/node_modules
+/coverage
+/dist
+# /define/
+# /elements/
+# /styles/
+# /lib/
+# /mixins/
+# /resources/
+# /colors.*
+# /default-theme.*
+# /din-pro.*
+# /index.*
+# /types.*
+# /typography.*
+tsconfig.tsbuildinfo

@@ -1,8 +1,8 @@
 import { aTimeout, fixture, expect, assert, nextFrame, html } from '@open-wc/testing';
 import sinon from 'sinon';
-import '../../define/anypoint-item.js';
-import '../../define/anypoint-icon-item.js';
-import { AnypointItemElement } from '../../index.js';
+import '../../src/define/anypoint-item.js';
+import '../../src/define/anypoint-icon-item.js';
+import { AnypointItemElement } from '../../src/index.js';
 
 describe('<anypoint-item>', () => {
   async function itemFixture(): Promise<HTMLDivElement> {

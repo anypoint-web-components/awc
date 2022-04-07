@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/explicit-function-return-type */
 import { fixture, assert, nextFrame } from '@open-wc/testing';
 import AnypointSelector from '../../src/elements/AnypointSelectorElement.js';
-import '../../define/anypoint-selector.js';
+import '../../src/define/anypoint-selector.js';
 
 describe('AnypointSelector', () => {
   /**

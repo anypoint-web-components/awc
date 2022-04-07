@@ -1,7 +1,7 @@
 import { html, css, CSSResult, TemplateResult, PropertyValueMap } from 'lit';
 import { property } from 'lit/decorators.js';
 import AnypointInputElement from './AnypointInputElement.js';
-import '../../define/anypoint-autocomplete.js';
+import '../define/anypoint-autocomplete.js';
 import { Suggestion } from '../types';
 
 /**

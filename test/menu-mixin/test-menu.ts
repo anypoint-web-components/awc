@@ -1,5 +1,5 @@
 import { LitElement, html, TemplateResult } from 'lit';
-import { MenuMixin } from '../../index.js';
+import { MenuMixin } from '../../src/index.js';
 
 export class TestMenu extends MenuMixin(LitElement) {
   get extraContent(): HTMLElement {

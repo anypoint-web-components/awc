@@ -1,5 +1,5 @@
 import { LitElement, html, css, TemplateResult, CSSResult } from 'lit';
-import { MenubarMixin } from '../index.js';
+import { MenubarMixin } from '../src/index.js';
 
 class SimpleMenubar extends MenubarMixin(LitElement) {
   static get styles(): CSSResult {

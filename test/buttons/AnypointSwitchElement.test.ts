@@ -3,9 +3,9 @@
 /* eslint-disable lit-a11y/tabindex-no-positive */
 import { fixture, assert, aTimeout, nextFrame, html } from '@open-wc/testing';
 import * as MockInteractions from '@polymer/iron-test-helpers/mock-interactions.js';
-import '../../colors.js';
-import '../../define/anypoint-switch.js';
-import { AnypointSwitchElement } from '../../index.js';
+import '../../src/colors.js';
+import '../../src/define/anypoint-switch.js';
+import { AnypointSwitchElement } from '../../src/index.js';
 
 describe('<anypoint-switch>', () => {
   async function basicFixture(): Promise<AnypointSwitchElement> {

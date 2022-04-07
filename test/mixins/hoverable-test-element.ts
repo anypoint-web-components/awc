@@ -1,5 +1,5 @@
 import { LitElement, html, css, TemplateResult, CSSResult } from 'lit';
-import { HoverableMixin } from '../../index.js';
+import { HoverableMixin } from '../../src/index.js';
 
 export class HoverableTestElement extends HoverableMixin(LitElement) {
   static get styles(): CSSResult {

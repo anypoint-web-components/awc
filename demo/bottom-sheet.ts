@@ -1,9 +1,9 @@
 import { html, render } from 'lit';
 import './lib/demo-helper.js';
-import '../define/anypoint-item.js';
-import '../define/anypoint-icon-item.js';
-import '../define/anypoint-button.js';
-import '../define/bottom-sheet.js';
+import '../src/define/anypoint-item.js';
+import '../src/define/anypoint-icon-item.js';
+import '../src/define/anypoint-button.js';
+import '../src/define/bottom-sheet.js';
 
 class DemoPage {
   constructor() {

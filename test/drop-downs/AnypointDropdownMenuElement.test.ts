@@ -1,9 +1,9 @@
 import { fixture, assert, nextFrame, aTimeout } from '@open-wc/testing';
 import sinon from 'sinon';
-import '../../define/anypoint-listbox.js';
-import '../../define/anypoint-dropdown-menu.js';
+import '../../src/define/anypoint-listbox.js';
+import '../../src/define/anypoint-dropdown-menu.js';
 import { keyDown } from '../lib/helpers.js';
-import { AnypointDropdownMenuElement, ValidationResult } from '../../index.js';
+import { AnypointDropdownMenuElement, ValidationResult } from '../../src/index.js';
 
 const hasFormAssociatedElements = 'attachInternals' in document.createElement('span');
 

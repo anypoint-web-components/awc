@@ -2,7 +2,7 @@ import { fixture, assert, defineCE, nextFrame } from '@open-wc/testing';
 import { LitElement, html, TemplateResult } from 'lit';
 import { property } from 'lit/decorators.js';
 import AnypointSelector from '../../src/elements/AnypointSelectorElement.js';
-import '../../define/anypoint-selector.js';
+import '../../src/define/anypoint-selector.js';
 
 class TestClass extends LitElement {
   @property({ type: String })

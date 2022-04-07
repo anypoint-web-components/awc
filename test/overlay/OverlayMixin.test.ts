@@ -5,7 +5,7 @@
 import { fixture, assert, nextFrame, aTimeout, oneEvent } from '@open-wc/testing';
 import sinon from 'sinon';
 import { pressAndReleaseKeyOn, tap, focus } from '@polymer/iron-test-helpers/mock-interactions.js';
-import { OverlayManager } from '../../define/overlay-manager.js';
+import { OverlayManager } from '../../src/define/overlay-manager.js';
 
 import './test-overlay.js';
 import { TestOverlay } from './test-overlay.js';

@@ -1,7 +1,7 @@
 import { fixture, assert } from '@open-wc/testing';
 import sinon from 'sinon';
 import { LitElement } from 'lit'
-import { ButtonStateMixin } from '../../index.js';
+import { ButtonStateMixin } from '../../src/index.js';
 
 class TestButtonElement extends ButtonStateMixin(LitElement) {
 

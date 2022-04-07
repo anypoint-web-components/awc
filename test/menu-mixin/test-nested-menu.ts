@@ -1,6 +1,6 @@
 /* eslint-disable import/no-duplicates */
 import { LitElement, html, TemplateResult, css, CSSResult } from 'lit';
-import { MenuMixin } from '../../index.js';
+import { MenuMixin } from '../../src/index.js';
 import './test-menu.js';
 import { TestMenu } from './test-menu.js';
 

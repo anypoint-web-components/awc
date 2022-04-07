@@ -2,7 +2,7 @@
 /* eslint-disable max-classes-per-file */
 import { LitElement, html, TemplateResult } from 'lit';
 import { property } from 'lit/decorators.js';
-import { ResizableMixin } from '../../index.js';
+import { ResizableMixin } from '../../src/index.js';
 import './x-resizable.js';
 import './x-resizer-parent.js';
 

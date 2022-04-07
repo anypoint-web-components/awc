@@ -2,11 +2,11 @@ import { html, TemplateResult } from 'lit';
 import { demoProperty } from './lib/decorators.js';
 import { DemoPage } from './lib/DemoPage.js';
 import './lib/interactive-demo.js';
-import '../colors.js';
-import '../define/anypoint-checkbox.js';
-import '../define/anypoint-item.js';
-import '../define/anypoint-listbox.js';
-import '../define/anypoint-input-combobox.js';
+import '../src/colors.js';
+import '../src/define/anypoint-checkbox.js';
+import '../src/define/anypoint-item.js';
+import '../src/define/anypoint-listbox.js';
+import '../src/define/anypoint-input-combobox.js';
 
 class ComponentDemoPage extends DemoPage {
   @demoProperty()

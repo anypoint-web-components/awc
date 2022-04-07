@@ -4,8 +4,8 @@ import { clearAll } from './lib/Icons.js';
 import { DemoPage } from './lib/DemoPage.js';
 import './lib/demo-icon.js';
 import './lib/interactive-demo.js';
-import '../define/anypoint-checkbox.js';
-import '../define/anypoint-chip.js';
+import '../src/define/anypoint-checkbox.js';
+import '../src/define/anypoint-chip.js';
 
 interface ChipInfo {
   label: string;

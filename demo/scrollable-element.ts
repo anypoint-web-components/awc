@@ -2,7 +2,7 @@
 /* eslint-disable no-param-reassign */
 import { LitElement, html, css, TemplateResult, CSSResult } from 'lit';
 import { property } from 'lit/decorators.js';
-import { ScrollTargetMixin } from '../index.js';
+import { ScrollTargetMixin } from '../src/index.js';
 
 export class XScrollableElement extends ScrollTargetMixin(LitElement) {
   static get styles(): CSSResult {

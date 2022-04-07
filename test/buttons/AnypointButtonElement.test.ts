@@ -1,9 +1,9 @@
 import { fixture, assert, aTimeout, nextFrame, html, oneEvent } from '@open-wc/testing';
 import sinon from 'sinon';
-import '../../define/anypoint-button.js';
+import '../../src/define/anypoint-button.js';
 import * as MockInteractions from '@polymer/iron-test-helpers/mock-interactions.js';
 import { keyDownUp } from '../lib/helpers.js';
-import { AnypointButtonElement } from '../../index.js';
+import { AnypointButtonElement } from '../../src/index.js';
 
 describe('<anypoint-button>', () => {
   async function basicFixture(): Promise<AnypointButtonElement> {

@@ -1,5 +1,5 @@
 import { LitElement } from 'lit';
-import { ValidatorMixin } from '../index.js';
+import { ValidatorMixin } from '../src/index.js';
 
 class CatsOnly extends ValidatorMixin(LitElement) {
   validateObject(obj: any): boolean {

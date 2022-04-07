@@ -3,9 +3,9 @@ import { fixture, assert, nextFrame, aTimeout, html } from '@open-wc/testing';
 import { clearAll } from '../../demo/lib/Icons.js';
 import { clear } from '../../src/resources/Icons.js';
 import { directionsBike, directionsBoat, directionsBus } from '../../demo/maps-icons.js';
-import '../../define/anypoint-chip-input.js';
+import '../../src/define/anypoint-chip-input.js';
 import { keyDown } from '../lib/helpers.js';
-import { AnypointChipInputElement } from '../../index.js';
+import { AnypointChipInputElement } from '../../src/index.js';
 
 describe('AnypointChipInputElement', () => {
   async function basicFixture(): Promise<AnypointChipInputElement> {

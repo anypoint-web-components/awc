@@ -6,7 +6,7 @@ import AnypointInputElement from './AnypointInputElement.js';
 import { arrowDown } from '../resources/Icons.js';
 import elementStyles from '../styles/InputComboboxStyles.js';
 import { VerticalAlign, HorizontalAlign } from '../mixins/FitMixin.js';
-import '../../define/anypoint-dropdown.js';
+import '../define/anypoint-dropdown.js';
 import { IAnimationConfig, DefaultListOpenAnimation, DefaultListCloseAnimation } from '../lib/Animations.js';
 
 export const dropdownTemplate = Symbol('dropdownTemplate');

@@ -3,17 +3,16 @@ import { html, TemplateResult } from 'lit';
 import { DemoPage } from './lib/DemoPage.js';
 import { demoProperty } from './lib/decorators.js';
 import './lib/interactive-demo.js';
-import '../define/anypoint-radio-button.js';
-import '../define/anypoint-radio-group.js';
-import '../define/anypoint-checkbox.js';
-import '../colors.js';
-import { AnypointCheckboxElement } from '../index.js';
+import '../src/define/anypoint-radio-button.js';
+import '../src/define/anypoint-radio-group.js';
+import '../src/define/anypoint-checkbox.js';
+import '../src/colors.js';
+import { AnypointCheckboxElement } from '../src/index.js';
 
 const hasFormAssociatedElements = 'attachInternals' in document.createElement('span');
 
 class ComponentDemo extends DemoPage {
-  @demoProperty()
-  demoDisabled = false;
+  @demoProperty() demoDisabled = false;
 
   __cancelCommunicationChange = false;
 

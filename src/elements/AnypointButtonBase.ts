@@ -2,7 +2,7 @@ import { property } from 'lit/decorators.js';
 import AnypointElement from './AnypointElement.js';
 import { ControlStateMixin } from '../mixins/ControlStateMixin.js';
 import { ButtonStateMixin } from '../mixins/ButtonStateMixin.js';
-import '../../define/material-ripple.js';
+import '../define/material-ripple.js';
 
 export type EmphasisValue = 'low'|'medium'|'high';
 

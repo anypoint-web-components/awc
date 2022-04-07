@@ -3,9 +3,9 @@ import { demoProperty } from './lib/decorators.js';
 import { DemoPage } from './lib/DemoPage.js';
 import './lib/interactive-demo.js';
 import * as mapIcons from './maps-icons.js';
-import '../define/anypoint-checkbox.js';
-import '../define/anypoint-chip-input.js';
-import { ChipSuggestion, ChipItem } from '../index.js';
+import '../src/define/anypoint-checkbox.js';
+import '../src/define/anypoint-chip-input.js';
+import { ChipSuggestion, ChipItem } from '../src/index.js';
 
 class ComponentDemoPage extends DemoPage {
   @demoProperty()

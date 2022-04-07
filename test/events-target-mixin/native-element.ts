@@ -14,7 +14,7 @@ the License.
 /*
 Example implementation.
 */
-import { EventsTargetMixin } from '../../index.js';
+import { EventsTargetMixin } from '../../src/index.js';
 
 export class EventableNativeElement extends EventsTargetMixin(HTMLElement) {
   _calledCount = 0;

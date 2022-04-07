@@ -2,8 +2,8 @@ import { html, TemplateResult } from 'lit';
 import { demoProperty } from './lib/decorators.js';
 import { DemoPage } from './lib/DemoPage.js';
 import './lib/interactive-demo.js';
-import '../define/color-selector.js';
-import '../define/color-input-selector.js';
+import '../src/define/color-selector.js';
+import '../src/define/color-input-selector.js';
 
 class ComponentPage extends DemoPage {
   @demoProperty()

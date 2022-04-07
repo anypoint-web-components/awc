@@ -1,6 +1,6 @@
 import { fixture, assert, html, aTimeout } from '@open-wc/testing';
-import '../../define/anypoint-combobox.js';
-import { AnypointComboboxElement } from '../../index.js'
+import '../../src/define/anypoint-combobox.js';
+import { AnypointComboboxElement } from '../../src/index.js'
 
 describe('<anypoint-combobox>', () => {
   async function sourceFixture(source: string[]): Promise<AnypointComboboxElement> {

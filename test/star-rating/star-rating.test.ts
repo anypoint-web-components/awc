@@ -4,9 +4,9 @@ import sinon from 'sinon';
 import {
   click,
 } from '@polymer/iron-test-helpers/mock-interactions.js';
-import '../../define/star-rating.js';
+import '../../src/define/star-rating.js';
 
-import { StarRatingElement } from '../../index.js';
+import { StarRatingElement } from '../../src/index.js';
 
 describe('<star-rating>', () => {
   async function basicFixture(): Promise<StarRatingElement> {

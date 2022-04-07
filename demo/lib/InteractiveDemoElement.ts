@@ -3,12 +3,12 @@
 import { html, LitElement, CSSResult, TemplateResult } from 'lit';
 import { property } from 'lit/decorators.js';
 import './demo-icon.js';
-import '../../define/anypoint-tabs.js';
-import '../../define/anypoint-tab.js';
-import '../../define/anypoint-button.js';
-import '../../define/anypoint-icon-button.js';
+import '../../src/define/anypoint-tabs.js';
+import '../../src/define/anypoint-tab.js';
+import '../../src/define/anypoint-button.js';
+import '../../src/define/anypoint-icon-button.js';
 import styles from './InteractiveStyles.js';
-import { AnypointTabsElement } from '../../index.js';
+import { AnypointTabsElement } from '../../src/index.js';
 
 export default class InteractiveDemoElement extends LitElement {
   static get styles(): CSSResult {

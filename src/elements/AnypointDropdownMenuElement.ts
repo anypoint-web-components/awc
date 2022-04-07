@@ -10,8 +10,8 @@ import AnypointElement from './AnypointElement.js';
 import AnypointListboxElement from './AnypointListboxElement.js';
 import DropdownStyles from '../styles/DropdownMenu.js';
 import { IAnimationConfig, DefaultListOpenAnimation, DefaultListCloseAnimation } from '../lib/Animations.js';
-import '../../define/anypoint-dropdown.js';
-import '../../define/anypoint-icon-button.js';
+import '../define/anypoint-dropdown.js';
+import '../define/anypoint-icon-button.js';
 
 /* eslint-disable class-methods-use-this */
 /* eslint-disable no-plusplus */

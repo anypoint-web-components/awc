@@ -8,7 +8,7 @@ import { ControlStateMixin } from '../mixins/ControlStateMixin.js';
 import { HorizontalAlign, VerticalAlign } from '../mixins/FitMixin.js';
 import { addListener, getListener } from '../lib/ElementEventsRegistry.js';
 import buttonStyles from '../styles/MenuButton.js';
-import '../../define/anypoint-dropdown.js';
+import '../define/anypoint-dropdown.js';
 import { DefaultListOpenAnimation, DefaultListCloseAnimation } from '../lib/Animations.js';
 
 /* eslint-disable no-plusplus */

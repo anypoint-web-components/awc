@@ -1,7 +1,7 @@
 import { html, fixture, assert } from '@open-wc/testing';
 import sinon from 'sinon';
-import '../../define/color-selector.js';
-import { ColorSelectorElement } from '../../index.js';
+import '../../src/define/color-selector.js';
+import { ColorSelectorElement } from '../../src/index.js';
 
 describe('ColorSelectorElement', () => {
   async function basicFixture(value?: string): Promise<ColorSelectorElement> {

@@ -3,13 +3,13 @@ import { html, TemplateResult } from 'lit';
 import { DemoPage } from './lib/DemoPage.js';
 import { demoProperty } from './lib/decorators.js';
 import './lib/interactive-demo.js';
-import '../define/anypoint-item.js';
-import '../define/anypoint-item-body.js';
-import '../define/anypoint-listbox.js';
-import '../define/anypoint-checkbox.js';
-import '../define/anypoint-radio-button.js';
-import '../define/anypoint-radio-group.js';
-import '../define/anypoint-dropdown-menu.js';
+import '../src/define/anypoint-item.js';
+import '../src/define/anypoint-item-body.js';
+import '../src/define/anypoint-listbox.js';
+import '../src/define/anypoint-checkbox.js';
+import '../src/define/anypoint-radio-button.js';
+import '../src/define/anypoint-radio-group.js';
+import '../src/define/anypoint-dropdown-menu.js';
 
 const hasFormAssociatedElements = 'attachInternals' in document.createElement('span');
 

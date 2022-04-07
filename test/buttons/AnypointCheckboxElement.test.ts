@@ -1,10 +1,10 @@
 /* eslint-disable @typescript-eslint/explicit-function-return-type */
 import { fixture, assert, aTimeout } from '@open-wc/testing';
 import * as MockInteractions from '@polymer/iron-test-helpers/mock-interactions.js';
-import '../../colors.js';
-import '../../define/anypoint-checkbox.js';
+import '../../src/colors.js';
+import '../../src/define/anypoint-checkbox.js';
 import { keyDownUp } from '../lib/helpers.js';
-import { AnypointCheckboxElement } from '../../index.js';
+import { AnypointCheckboxElement } from '../../src/index.js';
 
 describe('<anypoint-checkbox>', () => {
   async function basicFixture(): Promise<AnypointCheckboxElement> {

@@ -1,7 +1,7 @@
 import { html, fixture, assert } from '@open-wc/testing';
 import sinon from 'sinon';
-import '../../define/color-input-selector.js';
-import { ColorInputSelectorElement } from '../../index.js';
+import '../../src/define/color-input-selector.js';
+import { ColorInputSelectorElement } from '../../src/index.js';
 
 describe('ColorInputSelectorElement', () => {
   async function basicFixture(value?: string, enabled?: boolean): Promise<ColorInputSelectorElement> {

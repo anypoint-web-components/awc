@@ -2,12 +2,12 @@ import { html, TemplateResult } from 'lit';
 import { Word } from '@pawel-up/data-mock';
 import { DemoPage } from './lib/DemoPage.js';
 import './lib/interactive-demo.js';
-import '../colors.js';
-import '../define/anypoint-input.js';
-import '../define/anypoint-checkbox.js';
-import '../define/anypoint-autocomplete.js';
+import '../src/colors.js';
+import '../src/define/anypoint-input.js';
+import '../src/define/anypoint-checkbox.js';
+import '../src/define/anypoint-autocomplete.js';
 import { demoProperty } from './lib/decorators.js';
-import { AnypointAutocompleteElement, Suggestion } from '../index.js';
+import { AnypointAutocompleteElement, Suggestion } from '../src/index.js';
 
 /* eslint-disable no-plusplus */
 

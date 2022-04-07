@@ -1,8 +1,8 @@
 /* eslint-disable lit-a11y/click-events-have-key-events */
 import { html, css, LitElement, CSSResult, TemplateResult } from 'lit';
 import { property } from 'lit/decorators.js';
-import '../define/anypoint-dropdown.js';
-import { VerticalAlign, HorizontalAlign, IAnimationConfig } from '../index.js';
+import '../src/define/anypoint-dropdown.js';
+import { VerticalAlign, HorizontalAlign, IAnimationConfig } from '../src/index.js';
 
 export class SimpleDropdown extends LitElement {
   get styles(): CSSResult {

@@ -12,7 +12,7 @@ License for the specific language governing permissions and limitations under
 the License.
 */
 import { LitElement, html, TemplateResult } from 'lit';
-import { ValidatableMixin } from '../index.js';
+import { ValidatableMixin } from '../src/index.js';
 
 class ValidatableInput extends ValidatableMixin(LitElement) {
   render(): TemplateResult {

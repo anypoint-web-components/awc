@@ -1,7 +1,7 @@
 /* eslint-disable import/named */
 /* eslint-disable import/extensions */
 /* eslint-disable @typescript-eslint/explicit-function-return-type */
-import { ValidatorStore } from '../index.js';
+import { ValidatorStore } from '../src/index.js';
 import './cats-only.js';
 
 /* eslint-disable no-plusplus */

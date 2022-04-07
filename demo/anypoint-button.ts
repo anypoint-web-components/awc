@@ -5,10 +5,10 @@ import { ifDefined } from 'lit/directives/if-defined.js';
 import { DemoPage } from './lib/DemoPage.js';
 import './lib/demo-icon.js';
 import './lib/interactive-demo.js';
-import '../colors.js';
-import '../define/anypoint-checkbox.js';
-import '../define/anypoint-button.js';
-import '../define/anypoint-icon-button.js';
+import '../src/colors.js';
+import '../src/define/anypoint-checkbox.js';
+import '../src/define/anypoint-button.js';
+import '../src/define/anypoint-icon-button.js';
 import { demoProperty } from './lib/decorators.js';
 import { EmphasisValue } from '../src/elements/AnypointButtonBase.js';
 

@@ -1,10 +1,10 @@
 import { fixture, assert, html, nextFrame } from '@open-wc/testing';
 import sinon from 'sinon';
 import { keyDown } from '../lib/helpers.js';
-import { AnypointInputComboboxElement, AnypointListboxElement } from '../../index.js'
-import '../../define/anypoint-item.js';
-import '../../define/anypoint-listbox.js';
-import '../../define/anypoint-input-combobox.js';
+import { AnypointInputComboboxElement, AnypointListboxElement } from '../../src/index.js'
+import '../../src/define/anypoint-item.js';
+import '../../src/define/anypoint-listbox.js';
+import '../../src/define/anypoint-input-combobox.js';
 
 describe('AnypointInputComboboxElement', () => {
   async function listFixture(): Promise<AnypointInputComboboxElement> {

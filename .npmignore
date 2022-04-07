@@ -13,3 +13,4 @@ commitlint.config.cjs
 tsconfig.json 
 web-dev-server.config.mjs
 web-test-runner.config.mjs
+tsconfig.tsbuildinfo

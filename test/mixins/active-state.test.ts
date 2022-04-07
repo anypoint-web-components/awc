@@ -4,7 +4,7 @@ import * as MockInteractions from '@polymer/iron-test-helpers/mock-interactions.
 import { keyDown, keyUp, keyDownUp } from '../lib/helpers.js';
 import './test-elements.js';
 import { TestButton, TestLightDom } from './test-elements.js';
-import '../../define/anypoint-input.js';
+import '../../src/define/anypoint-input.js';
 
 describe('Active state tests', () => {
   async function trivialActiveState(): Promise<TestButton> {

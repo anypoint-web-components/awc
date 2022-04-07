@@ -1,7 +1,7 @@
 import { html, css, LitElement, TemplateResult, CSSResult } from 'lit';
 import { property } from 'lit/decorators.js';
-import '../define/anypoint-collapse.js';
-import { AnypointCollapseElement } from '../index.js';
+import '../src/define/anypoint-collapse.js';
+import { AnypointCollapseElement } from '../src/index.js';
 
 export class CustomDetail extends LitElement {
   static get styles(): CSSResult {

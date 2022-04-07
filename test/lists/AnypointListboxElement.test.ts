@@ -1,9 +1,9 @@
 /* eslint-disable lit-a11y/role-has-required-aria-attrs */
 import { fixture, assert, nextFrame, html } from '@open-wc/testing';
 import sinon from 'sinon';
-import '../../define/anypoint-listbox.js';
+import '../../src/define/anypoint-listbox.js';
 import { ensureNodeId } from '../../src/elements/AnypointListboxElement.js';
-import { AnypointListboxElement } from '../../index.js';
+import { AnypointListboxElement } from '../../src/index.js';
 
 describe('AnypointListbox', () => {
   async function basicFixture(): Promise<AnypointListboxElement> {

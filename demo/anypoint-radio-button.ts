@@ -2,9 +2,9 @@ import { html, TemplateResult } from 'lit';
 import { DemoPage } from './lib/DemoPage.js';
 import { demoProperty } from './lib/decorators.js';
 import './lib/interactive-demo.js';
-import '../define/anypoint-checkbox.js';
-import '../define/anypoint-radio-button.js';
-import '../define/anypoint-radio-group.js';
+import '../src/define/anypoint-checkbox.js';
+import '../src/define/anypoint-radio-button.js';
+import '../src/define/anypoint-radio-group.js';
 
 class ComponentDemo extends DemoPage {
   @demoProperty()

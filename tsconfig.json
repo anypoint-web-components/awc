@@ -10,26 +10,16 @@
     "allowSyntheticDefaultImports": true,
     "experimentalDecorators": true,
     "importHelpers": true,
-    "outDir": "dist",
     "sourceMap": true,
     "inlineSources": true,
-    "rootDir": "./",
+    "outDir": "./dist",
+    "rootDir": "./src",
     "declaration": true,
     "incremental": true,
     "noImplicitThis": true,
     "alwaysStrict": true,
-    "pretty": true,
-    "plugins": [
-      {
-        "name": "typescript-lit-html-plugin",
-        "tags": [
-          "html",
-          "template"
-        ]
-      }
-    ]
+    "pretty": true
   },
-  "include": [
-    "**/*.ts"
-  ]
+  "include": ["src/**/*.ts"],
+  "exclude": []
 }

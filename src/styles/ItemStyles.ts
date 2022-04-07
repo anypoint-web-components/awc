@@ -12,7 +12,7 @@ License for the specific language governing permissions and limitations under
 the License.
 */
 import { css } from 'lit';
-import '../../colors.js';
+import '../colors.js';
 
 export default css`
   :host,

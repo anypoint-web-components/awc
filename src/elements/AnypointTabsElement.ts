@@ -4,7 +4,7 @@ import AnypointElement from './AnypointElement.js';
 import { ResizableMixin } from '../mixins/ResizableMixin.js';
 import { MenubarMixin } from '../mixins/MenubarMixin.js';
 import AnypointTabElement from './AnypointTabElement.js';
-import '../../define/anypoint-icon-button.js';
+import '../define/anypoint-icon-button.js';
 import styles from '../styles/TabsStyles.js';
 
 /* eslint-disable no-param-reassign */

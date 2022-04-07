@@ -1,6 +1,6 @@
 import { fixture, assert, html, nextFrame } from '@open-wc/testing';
-import '../../define/anypoint-progress.js';
-import { AnypointProgressElement } from '../../index.js';
+import '../../src/define/anypoint-progress.js';
+import { AnypointProgressElement } from '../../src/index.js';
 
 describe('AnypointProgressElement', () => {
   async function basicFixture(): Promise<AnypointProgressElement> {

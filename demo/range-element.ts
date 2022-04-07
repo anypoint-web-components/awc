@@ -1,6 +1,6 @@
 import { LitElement, html, css, TemplateResult, CSSResult } from 'lit';
 import { styleMap } from 'lit/directives/style-map.js';
-import { RangeMixin } from '../index.js';
+import { RangeMixin } from '../src/index.js';
 
 export class RangeElement extends RangeMixin(LitElement) {
   static get styles(): CSSResult {

@@ -1,7 +1,7 @@
 /* eslint-disable lit-a11y/anchor-is-valid */
 import { html, TemplateResult } from 'lit';
 import { DemoPage } from './lib/DemoPage.js';
-import '../define/anypoint-item.js';
+import '../src/define/anypoint-item.js';
 import { SimpleMenu } from './simple-menu.js';
 import './simple-menubar.js';
 

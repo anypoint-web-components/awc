@@ -1,6 +1,6 @@
 import './lib/demo-helper.js';
-import '../define/anypoint-switch.js';
-import '../define/star-rating.js';
+import '../src/define/anypoint-switch.js';
+import '../src/define/star-rating.js';
 
 document.getElementById('theme')!.addEventListener('change', (e) => {
   // @ts-ignore

@@ -1,7 +1,7 @@
 import {fixture, assert} from '@open-wc/testing';
 import {keyboardEventFor} from '@polymer/iron-test-helpers/mock-interactions.js';
 // import {elementIsScrollLocked, pushScrollLock, removeScrollLock} from '../arc-scroll-manager.js';
-import { ScrollManager } from '../../index.js';
+import { ScrollManager } from '../../src/index.js';
 import './x-scrollable-element.js';
 import { XScrollableElement } from './x-scrollable-element.js';
 

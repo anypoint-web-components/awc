@@ -1,6 +1,6 @@
 import { LitElement, html, css, TemplateResult, CSSResult } from 'lit';
 import { property } from 'lit/decorators.js';
-import { FitMixin } from '../../index.js';
+import { FitMixin } from '../../src/index.js';
 
 export class TestFit extends FitMixin(LitElement) {
   static get styles(): CSSResult {

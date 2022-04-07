@@ -5,8 +5,8 @@ import {
 } from '@open-wc/testing';
 import sinon from 'sinon';
 import * as MockInteractions from '@polymer/iron-test-helpers/mock-interactions.js';
-import '../../define/anypoint-tab.js';
-import { AnypointTabElement } from '../../index.js';
+import '../../src/define/anypoint-tab.js';
+import { AnypointTabElement } from '../../src/index.js';
 
 describe('AnypointTabElement', () => {
   describe('Initialization', () => {

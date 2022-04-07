@@ -2,9 +2,9 @@ import { html, TemplateResult } from 'lit';
 import { DemoPage } from './lib/DemoPage.js';
 import { demoProperty } from './lib/decorators.js';
 import './lib/interactive-demo.js';
-import '../define/anypoint-checkbox.js';
-import '../define/anypoint-combobox.js';
-import '../colors.js';
+import '../src/define/anypoint-checkbox.js';
+import '../src/define/anypoint-combobox.js';
+import '../src/colors.js';
 
 const suggestions = ['Apple', 'Apricot', 'Avocado',
   'Banana', 'Bilberry', 'Blackberry', 'Blackcurrant', 'Blueberry',

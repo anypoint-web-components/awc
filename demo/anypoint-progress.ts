@@ -3,9 +3,9 @@ import { html, TemplateResult } from 'lit';
 import { demoProperty } from './lib/decorators.js';
 import { DemoPage } from './lib/DemoPage.js';
 import './lib/demo-helper.js';
-import '../define/anypoint-progress.js';
-import '../define/anypoint-button.js';
-import '../colors.js';
+import '../src/define/anypoint-progress.js';
+import '../src/define/anypoint-button.js';
+import '../src/colors.js';
 
 class ComponentDemoPage extends DemoPage {
   @demoProperty()

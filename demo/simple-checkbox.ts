@@ -1,7 +1,7 @@
 import { LitElement, html, css, TemplateResult, CSSResult } from 'lit';
 import { property } from 'lit/decorators.js';
 import { CheckedElementMixin } from '../src/mixins/CheckedElementMixin.js';
-import '../define/anypoint-button.js';
+import '../src/define/anypoint-button.js';
 
 class SimpleCheckbox extends CheckedElementMixin(LitElement) {
   static get styles(): CSSResult {

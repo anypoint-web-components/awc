@@ -1,8 +1,8 @@
 /* eslint-disable @typescript-eslint/explicit-function-return-type */
 /* eslint-disable prefer-destructuring */
 import { fixture, expect, nextFrame, assert, html } from '@open-wc/testing';
-import '../../define/anypoint-menu-button.js';
-import { AnypointMenuButtonElement } from '../../index.js';
+import '../../src/define/anypoint-menu-button.js';
+import { AnypointMenuButtonElement } from '../../src/index.js';
 
 describe('<anypoint-menu-button>', () => {
   async function basicFixture(): Promise<AnypointMenuButtonElement> {

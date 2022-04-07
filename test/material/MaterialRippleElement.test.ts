@@ -1,7 +1,7 @@
 /* eslint-disable no-plusplus */
 import { assert, fixture, html, nextFrame, oneEvent } from '@open-wc/testing';
-import '../../define/material-ripple.js';
-import { MaterialRippleElement } from '../../index.js';
+import '../../src/define/material-ripple.js';
+import { MaterialRippleElement } from '../../src/index.js';
 
 describe('MaterialRippleElement', () => {
   async function trivialRipple(): Promise<HTMLElement> {

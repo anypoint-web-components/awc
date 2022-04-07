@@ -3,7 +3,7 @@ import sinon from 'sinon';
 import * as MockInteractions from '@polymer/iron-test-helpers/mock-interactions.js';
 import { clearAll } from '../../demo/lib/Icons.js';
 import { clear } from '../../src/resources/Icons.js';
-import '../../define/anypoint-chip.js';
+import '../../src/define/anypoint-chip.js';
 import AnypointChip, { hasIconNodeValue } from '../../src/elements/AnypointChipElement.js';
 
 describe('AnypointChipElement', () => {

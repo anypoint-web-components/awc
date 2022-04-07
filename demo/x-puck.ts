@@ -1,7 +1,7 @@
 /* eslint-disable wc/no-invalid-element-name */
 import { LitElement, html, css, TemplateResult, CSSResult } from 'lit';
 import { property } from 'lit/decorators.js';
-import { ResizableMixin } from '../index.js';
+import { ResizableMixin } from '../src/index.js';
 
 class XPuck extends ResizableMixin(LitElement) {
   static get styles(): CSSResult {

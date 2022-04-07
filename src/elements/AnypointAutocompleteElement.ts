@@ -20,10 +20,10 @@ import { HorizontalAlign, VerticalAlign } from '../mixins/FitMixin.js';
 import AnypointListboxElement from './AnypointListboxElement.js';
 import { addListener, getListener } from '../lib/ElementEventsRegistry.js';
 import AnypointElement from './AnypointElement.js';
-import '../../define/anypoint-dropdown.js';
-import '../../define/anypoint-item.js';
-import '../../define/anypoint-item-body.js';
-import '../../define/anypoint-listbox.js';
+import '../define/anypoint-dropdown.js';
+import '../define/anypoint-item.js';
+import '../define/anypoint-item-body.js';
+import '../define/anypoint-listbox.js';
 
 export interface InternalSuggestion extends Suggestion {
   /**

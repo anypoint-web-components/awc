@@ -1,8 +1,8 @@
 import { fixture, assert, nextFrame, aTimeout, html } from '@open-wc/testing';
 import sinon from 'sinon';
 import * as MockInteractions from '@polymer/iron-test-helpers/mock-interactions.js';
-import { AnypointInputElement, ValidationResult } from '../../index.js'
-import '../../define/anypoint-input.js';
+import { AnypointInputElement, ValidationResult } from '../../src/index.js'
+import '../../src/define/anypoint-input.js';
 
 describe('<anypoint-input>', () => {
   async function basicFixture(): Promise<AnypointInputElement> {

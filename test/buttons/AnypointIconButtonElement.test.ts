@@ -1,10 +1,10 @@
 import { fixture, assert, html, oneEvent } from '@open-wc/testing';
 import sinon from 'sinon';
-import '../../define/anypoint-icon-button.js';
+import '../../src/define/anypoint-icon-button.js';
 import '../../demo/lib/demo-icon.js';
 import * as MockInteractions from '@polymer/iron-test-helpers/mock-interactions.js';
 import { keyDownUp } from '../lib/helpers.js';
-import { AnypointIconButtonElement } from '../../index.js';
+import { AnypointIconButtonElement } from '../../src/index.js';
 
 describe('<anypoint-icon-button>', () => {
   async function basicFixture(): Promise<AnypointIconButtonElement> {

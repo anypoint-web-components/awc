@@ -1,8 +1,8 @@
 /* eslint-disable lit-a11y/role-has-required-aria-attrs */
 import { fixture, assert, aTimeout, html } from '@open-wc/testing';
 import sinon from 'sinon';
-import { AnypointRadioButtonElement } from '../../index.js'
-import '../../define/anypoint-radio-button.js';
+import { AnypointRadioButtonElement } from '../../src/index.js'
+import '../../src/define/anypoint-radio-button.js';
 
 describe('<anypoint-radio-button>', () => {
   async function basicFixture(): Promise<AnypointRadioButtonElement> {

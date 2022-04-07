@@ -1,5 +1,5 @@
 import { LitElement } from 'lit';
-import { ValidatorMixin } from '../../index.js';
+import { ValidatorMixin } from '../../src/index.js';
 
 export class SimpleValidator extends ValidatorMixin(LitElement) {}
 window.customElements.define('simple-validator', SimpleValidator);

@@ -1,6 +1,6 @@
 import { LitElement, CSSResult, TemplateResult, html } from 'lit';
 import { CheckedElementMixin } from '../mixins/CheckedElementMixin.js';
-import '../../colors.js';
+import '../colors.js';
 import radioStyles from '../styles/RadioButton.js';
 
 /* eslint-disable class-methods-use-this */

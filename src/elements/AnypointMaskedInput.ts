@@ -2,7 +2,7 @@ import { html, css, CSSResult, TemplateResult, SVGTemplateResult } from 'lit';
 import { property } from 'lit/decorators.js';
 import { visibilityOff, visibility, } from '../resources/Icons.js';
 import AnypointInputElement from './AnypointInputElement.js';
-import '../../define/anypoint-icon-button.js';
+import '../define/anypoint-icon-button.js';
 import { SupportedInputTypes } from '../types';
 
 /* eslint-disable class-methods-use-this */

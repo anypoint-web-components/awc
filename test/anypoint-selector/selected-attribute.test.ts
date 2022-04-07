@@ -1,6 +1,6 @@
 import { fixture, assert } from '@open-wc/testing';
 import AnypointSelector from '../../src/elements/AnypointSelectorElement.js';
-import '../../define/anypoint-selector.js';
+import '../../src/define/anypoint-selector.js';
 
 const style = document.createElement('style');
 style.innerHTML = `.selected {

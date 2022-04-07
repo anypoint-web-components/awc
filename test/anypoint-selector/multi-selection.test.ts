@@ -2,7 +2,7 @@
 import { fixture, assert, nextFrame } from '@open-wc/testing';
 import * as MockInteractions from '@polymer/iron-test-helpers/mock-interactions.js';
 import AnypointSelector from '../../src/elements/AnypointSelectorElement.js';
-import '../../define/anypoint-selector.js';
+import '../../src/define/anypoint-selector.js';
 
 const style = document.createElement('style');
 style.innerHTML = `.selected {

@@ -14,8 +14,8 @@ import { html, SVGTemplateResult, TemplateResult, CSSResult } from 'lit';
 import { property } from 'lit/decorators.js';
 import AnypointInputElement from './AnypointInputElement.js';
 import elementStyles from '../styles/AnypointChipInput.js';
-import '../../define/anypoint-autocomplete.js';
-import '../../define/anypoint-chip.js';
+import '../define/anypoint-autocomplete.js';
+import '../define/anypoint-chip.js';
 import { ChipSuggestion, ChipItem } from '../types.js';
 import { addListener, getListener } from '../lib/ElementEventsRegistry.js';
 

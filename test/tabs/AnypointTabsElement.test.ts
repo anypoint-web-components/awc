@@ -6,10 +6,10 @@ import {
   nextFrame,
 } from '@open-wc/testing';
 import { TemplateResult } from 'lit';
-import '../../define/anypoint-tabs.js';
-import '../../define/anypoint-tab.js';
+import '../../src/define/anypoint-tabs.js';
+import '../../src/define/anypoint-tab.js';
 import { keyDown } from '../lib/helpers.js';
-import { AnypointTabElement, AnypointTabsElement } from '../../index.js';
+import { AnypointTabElement, AnypointTabsElement } from '../../src/index.js';
 
 describe('AnypointTabsElement', () => {
   function renderTabs(amount: number): TemplateResult[] {

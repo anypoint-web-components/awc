@@ -2,7 +2,7 @@ import { html, TemplateResult } from 'lit';
 import { DemoPage } from './lib/DemoPage.js';
 import './lib/demo-icon.js';
 import './lib/demo-helper.js';
-import '../define/material-ripple.js';
+import '../src/define/material-ripple.js';
 
 class ComponentDemo extends DemoPage {
   constructor() {

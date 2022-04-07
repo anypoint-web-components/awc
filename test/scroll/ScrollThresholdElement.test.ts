@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/explicit-function-return-type */
 import { fixture, assert, aTimeout } from '@open-wc/testing';
-import '../../define/scroll-threshold.js';
-import { ScrollThresholdElement } from '../../index.js';
+import '../../src/define/scroll-threshold.js';
+import { ScrollThresholdElement } from '../../src/index.js';
 
 const style = document.createElement('style');
 style.innerHTML = `#scrollingRegion {

@@ -1,6 +1,6 @@
 import { fixture, assert, aTimeout, oneEvent, html } from '@open-wc/testing';
-import { BottomSheetElement } from '../../index.js';
-import '../../define/bottom-sheet.js';
+import { BottomSheetElement } from '../../src/index.js';
+import '../../src/define/bottom-sheet.js';
 
 describe('<bottom-sheet>', () => {
   async function basicFixture(): Promise<BottomSheetElement> {

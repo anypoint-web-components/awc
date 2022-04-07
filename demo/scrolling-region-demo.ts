@@ -1,7 +1,7 @@
 import { html, css, LitElement, TemplateResult, CSSResult } from 'lit';
 import { property } from 'lit/decorators.js';
 import './sample-content.js';
-import '../define/scroll-threshold.js';
+import '../src/define/scroll-threshold.js';
 
 export class ScrollingRegionDemo extends LitElement {
   static get styles(): CSSResult {

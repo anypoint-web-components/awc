@@ -5,7 +5,7 @@ import './test-overlay.js';
 import { TestOverlay } from './test-overlay.js';
 import './test-scrollable.js';
 import { TestScrollable } from './test-scrollable.js';
-import { ScrollManager } from '../../index.js';
+import { ScrollManager } from '../../src/index.js';
 
 const s = document.createElement('style');
 s.type = 'text/css';

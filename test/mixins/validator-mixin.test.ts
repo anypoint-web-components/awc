@@ -1,5 +1,5 @@
 import { fixture, assert } from '@open-wc/testing';
-import { ValidatorStore } from '../../index.js';
+import { ValidatorStore } from '../../src/index.js';
 import { SimpleValidator } from './simple-validator.js';
 import './simple-validator.js';
 

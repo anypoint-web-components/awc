@@ -16,7 +16,7 @@ the License.
 /*
 Example implementation.
 */
-import { EventsTargetMixin } from '../../index.js';
+import { EventsTargetMixin } from '../../src/index.js';
 
 class TestClass {
   constructor(public value1: any, public value2: any) { }

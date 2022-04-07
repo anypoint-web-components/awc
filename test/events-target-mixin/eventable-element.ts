@@ -16,7 +16,7 @@ Example implementation.
 */
 import { LitElement } from 'lit';
 import { property } from 'lit/decorators.js';
-import { EventsTargetMixin } from '../../index.js';
+import { EventsTargetMixin } from '../../src/index.js';
 
 class EventableElement extends EventsTargetMixin(LitElement) {
 

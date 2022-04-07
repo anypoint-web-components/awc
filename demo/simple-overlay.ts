@@ -1,5 +1,5 @@
 import { LitElement, html, css, TemplateResult, CSSResult } from 'lit';
-import { OverlayMixin } from '../index.js';
+import { OverlayMixin } from '../src/index.js';
 
 class SimpleOverlay extends OverlayMixin(LitElement) {
   get styles(): CSSResult {

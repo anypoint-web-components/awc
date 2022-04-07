@@ -2,10 +2,10 @@ import { html, TemplateResult } from 'lit';
 import { DemoPage } from './lib/DemoPage.js';
 import './lib/demo-icon.js';
 import './lib/interactive-demo.js';
-import '../define/anypoint-icon-button.js';
-import '../define/anypoint-item.js';
-import '../define/anypoint-icon-item.js';
-import '../define/anypoint-item-body.js';
+import '../src/define/anypoint-icon-button.js';
+import '../src/define/anypoint-item.js';
+import '../src/define/anypoint-icon-item.js';
+import '../src/define/anypoint-item-body.js';
 
 class ComponentDemo extends DemoPage {
   constructor() {

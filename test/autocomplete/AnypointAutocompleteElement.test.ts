@@ -2,7 +2,7 @@
 import { fixture, assert, aTimeout, nextFrame, html } from '@open-wc/testing';
 import { html as LitHtml } from 'lit';
 import sinon from 'sinon';
-import '../../define/anypoint-autocomplete.js';
+import '../../src/define/anypoint-autocomplete.js';
 import AnypointAutocomplete, { openedValue, autocompleteFocus, ignoreNextFocus, InternalSuggestion } from '../../src/elements/AnypointAutocompleteElement.js';
 import AnypointDropdown from '../../src/elements/AnypointDropdownElement.js';
 import { Suggestion } from '../../src/types.js';

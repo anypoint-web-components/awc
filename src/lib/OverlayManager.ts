@@ -8,7 +8,7 @@ found at http://polymer.github.io/CONTRIBUTORS.txt Code distributed by Google as
 part of the polymer project is also subject to an additional IP rights grant
 found at http://polymer.github.io/PATENTS.txt
 */
-import '../../define/overlay-backdrop.js';
+import '../define/overlay-backdrop.js';
 import OverlayBackdrop from '../elements/OverlayBackdropElement.js';
 
 /* eslint-disable class-methods-use-this */

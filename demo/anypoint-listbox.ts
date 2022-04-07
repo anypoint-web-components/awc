@@ -1,7 +1,7 @@
 import { html, TemplateResult } from 'lit';
 import { DemoPage } from './lib/DemoPage.js';
-import '../define/anypoint-item.js';
-import '../define/anypoint-listbox.js';
+import '../src/define/anypoint-item.js';
+import '../src/define/anypoint-listbox.js';
 import './lib/interactive-demo.js';
 
 class ComponentDemo extends DemoPage {
