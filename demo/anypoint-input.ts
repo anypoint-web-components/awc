@@ -16,7 +16,7 @@ import './minimum-maximum-length.js';
 import './number-required.js';
 import './uppercase-required.js';
 import { demoProperty } from './lib/decorators.js';
-import { SupportedInputTypes } from '../src/index.js';
+import { SupportedInputTypes } from '../src/types.js';
 
 // const hasFormAssociatedElements = 'attachInternals' in document.createElement('span');
 

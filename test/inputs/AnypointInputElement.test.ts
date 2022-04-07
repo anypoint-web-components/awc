@@ -1,7 +1,7 @@
 import { fixture, assert, nextFrame, aTimeout, html } from '@open-wc/testing';
 import sinon from 'sinon';
 import * as MockInteractions from '@polymer/iron-test-helpers/mock-interactions.js';
-import { AnypointInputElement, ValidationResult } from '../../src/index.js'
+import { AnypointInputElement } from '../../src/index.js'
 import '../../src/define/anypoint-input.js';
 
 describe('<anypoint-input>', () => {
@@ -87,7 +87,7 @@ describe('<anypoint-input>', () => {
       assert.isFalse(spy.called);
     });
 
-    const states: ValidationResult[] = [
+    const states: any[] = [
       {
         valid: false,
         message: 'test',
@@ -828,7 +828,7 @@ describe('<anypoint-input>', () => {
 
   describe('_validationStatesHandler()', () => {
     let element: AnypointInputElement;
-    let states: ValidationResult[];
+    let states: any[];
     beforeEach(async () => {
       element = await basicFixture();
       states = [
@@ -850,7 +850,7 @@ describe('<anypoint-input>', () => {
       ];
     });
 
-    function fire(node: EventTarget, value?: ValidationResult[]): void {
+    function fire(node: EventTarget, value?: any[]): void {
       const e = new CustomEvent('validationstateschange', {
         detail: {
           value,

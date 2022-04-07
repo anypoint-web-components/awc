@@ -9,7 +9,7 @@ import '../src/define/anypoint-checkbox.js';
 import '../src/define/anypoint-radio-button.js';
 import '../src/define/anypoint-radio-group.js';
 import './simple-dropdown.js';
-import { VerticalAlign, HorizontalAlign } from '../src/index.js';
+import { VerticalAlign, HorizontalAlign } from '../src/types.js';
 
 class ComponentDemo extends DemoPage {
   @demoProperty()

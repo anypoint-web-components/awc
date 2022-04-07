@@ -18,7 +18,7 @@ import * as ValidatorStore from './ValidatorStore.js';
 import { ValidatorMixinInterface } from './ValidatorMixin.js';
 import { addListener, getListener } from '../lib/ElementEventsRegistry.js';
 
-export declare interface ValidationResult {
+export interface ValidationResult {
   /**
    * Name of the validator
    */

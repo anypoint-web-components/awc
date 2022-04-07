@@ -7,7 +7,8 @@ import '../src/define/anypoint-input.js';
 import '../src/define/anypoint-checkbox.js';
 import '../src/define/anypoint-autocomplete.js';
 import { demoProperty } from './lib/decorators.js';
-import { AnypointAutocompleteElement, Suggestion } from '../src/index.js';
+import { AnypointAutocompleteElement } from '../src/index.js';
+import { Suggestion } from '../src/types.js';
 
 /* eslint-disable no-plusplus */
 

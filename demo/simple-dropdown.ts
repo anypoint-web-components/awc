@@ -2,7 +2,7 @@
 import { html, css, LitElement, CSSResult, TemplateResult } from 'lit';
 import { property } from 'lit/decorators.js';
 import '../src/define/anypoint-dropdown.js';
-import { VerticalAlign, HorizontalAlign, IAnimationConfig } from '../src/index.js';
+import { VerticalAlign, HorizontalAlign, IAnimationConfig } from '../src/types.js';
 
 export class SimpleDropdown extends LitElement {
   get styles(): CSSResult {

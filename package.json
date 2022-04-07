@@ -25,7 +25,7 @@
   "scripts": {
     "analyze": "cem analyze --litelement",
     "build": "tsc",
-    "prepublish": "tsc && npm run analyze -- --exclude dist",
+    "prepublish": "tsc && tsc:add-runtime-types && npm run analyze -- --exclude dist",
     "start": "web-dev-server --app-index demo/index.html --node-resolve --open --watch --root-dir .",
     "start:ts": "concurrently --raw \"tsc --watch --preserveWatchOutput\" \"wds --app-index demo/index.html --node-resolve --open --watch --root-dir .\"",
     "lint:eslint": "eslint --ext .js,.html . --ignore-path .gitignore",
@@ -36,7 +36,8 @@
     "test": "tsc && wtr --coverage --playwright --browsers chromium firefox webkit",
     "test:watch": "tsc && concurrently -k -r \"tsc --watch --preserveWatchOutput\" \"wtr --watch --playwright --browsers chromium\"",
     "prepare": "husky install",
-    "tsc": "tsc --watch"
+    "tsc": "tsc --watch",
+    "tsc:add-runtime-types": "node scripts/prePublish.js"
   },
   "dependencies": {
     "@open-wc/dedupe-mixin": "^1.3.0",

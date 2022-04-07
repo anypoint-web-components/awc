@@ -3,7 +3,7 @@ import sinon from 'sinon';
 import '../../src/define/anypoint-listbox.js';
 import '../../src/define/anypoint-dropdown-menu.js';
 import { keyDown } from '../lib/helpers.js';
-import { AnypointDropdownMenuElement, ValidationResult } from '../../src/index.js';
+import { AnypointDropdownMenuElement } from '../../src/index.js';
 
 const hasFormAssociatedElements = 'attachInternals' in document.createElement('span');
 
@@ -311,7 +311,7 @@ describe('<anypoint-dropdown-menu>', () => {
   });
 
   describe('validationStates', () => {
-    const states: ValidationResult[] = [
+    const states: any[] = [
       {
         valid: false,
         message: 'test',
