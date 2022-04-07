@@ -25,7 +25,7 @@
   "scripts": {
     "analyze": "cem analyze --litelement",
     "build": "tsc",
-    "prepublish": "tsc && tsc:add-runtime-types && npm run analyze -- --exclude dist",
+    "prepublish": "tsc && npm run tsc:add-runtime-types && npm run analyze -- --exclude dist",
     "start": "web-dev-server --app-index demo/index.html --node-resolve --open --watch --root-dir .",
     "start:ts": "concurrently --raw \"tsc --watch --preserveWatchOutput\" \"wds --app-index demo/index.html --node-resolve --open --watch --root-dir .\"",
     "lint:eslint": "eslint --ext .js,.html . --ignore-path .gitignore",

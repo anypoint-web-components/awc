@@ -2154,6 +2154,12 @@
     },
     {
       "kind": "javascript-module",
+      "path": "scripts/prePublish.js",
+      "declarations": [],
+      "exports": []
+    },
+    {
+      "kind": "javascript-module",
       "path": "src/colors.ts",
       "declarations": [],
       "exports": []
@@ -2489,25 +2495,9 @@
         },
         {
           "kind": "js",
-          "name": "ButtonStateMixinInterface",
-          "declaration": {
-            "name": "ButtonStateMixinInterface",
-            "module": "\"./mixins/ButtonStateMixin.js\""
-          }
-        },
-        {
-          "kind": "js",
           "name": "ControlStateMixin",
           "declaration": {
             "name": "ControlStateMixin",
-            "module": "\"./mixins/ControlStateMixin.js\""
-          }
-        },
-        {
-          "kind": "js",
-          "name": "ControlStateMixinInterface",
-          "declaration": {
-            "name": "ControlStateMixinInterface",
             "module": "\"./mixins/ControlStateMixin.js\""
           }
         },
@@ -2521,14 +2511,6 @@
         },
         {
           "kind": "js",
-          "name": "HoverableMixinInterface",
-          "declaration": {
-            "name": "HoverableMixinInterface",
-            "module": "\"./mixins/HoverableMixin.js\""
-          }
-        },
-        {
-          "kind": "js",
           "name": "CheckedElementMixin",
           "declaration": {
             "name": "CheckedElementMixin",
@@ -2537,25 +2519,9 @@
         },
         {
           "kind": "js",
-          "name": "CheckedElementMixinInterface",
-          "declaration": {
-            "name": "CheckedElementMixinInterface",
-            "module": "\"./mixins/CheckedElementMixin.js\""
-          }
-        },
-        {
-          "kind": "js",
           "name": "ValidatorMixin",
           "declaration": {
             "name": "ValidatorMixin",
-            "module": "\"./mixins/ValidatorMixin.js\""
-          }
-        },
-        {
-          "kind": "js",
-          "name": "ValidatorMixinInterface",
-          "declaration": {
-            "name": "ValidatorMixinInterface",
             "module": "\"./mixins/ValidatorMixin.js\""
           }
         },
@@ -2577,22 +2543,6 @@
         },
         {
           "kind": "js",
-          "name": "ValidatableMixinInterface",
-          "declaration": {
-            "name": "ValidatableMixinInterface",
-            "module": "\"./mixins/ValidatableMixin.js\""
-          }
-        },
-        {
-          "kind": "js",
-          "name": "ValidationResult",
-          "declaration": {
-            "name": "ValidationResult",
-            "module": "\"./mixins/ValidatableMixin.js\""
-          }
-        },
-        {
-          "kind": "js",
           "name": "SelectableMixin",
           "declaration": {
             "name": "SelectableMixin",
@@ -2601,25 +2551,9 @@
         },
         {
           "kind": "js",
-          "name": "SelectableMixinInterface",
-          "declaration": {
-            "name": "SelectableMixinInterface",
-            "module": "./mixins/SelectableMixin.js"
-          }
-        },
-        {
-          "kind": "js",
           "name": "MultiSelectableMixin",
           "declaration": {
             "name": "MultiSelectableMixin",
-            "module": "./mixins/MultiSelectableMixin.js"
-          }
-        },
-        {
-          "kind": "js",
-          "name": "MultiSelectableMixinInterface",
-          "declaration": {
-            "name": "MultiSelectableMixinInterface",
             "module": "./mixins/MultiSelectableMixin.js"
           }
         },
@@ -2641,25 +2575,9 @@
         },
         {
           "kind": "js",
-          "name": "MenuMixinInterface",
-          "declaration": {
-            "name": "MenuMixinInterface",
-            "module": "./mixins/MenuMixin.js"
-          }
-        },
-        {
-          "kind": "js",
           "name": "MenubarMixin",
           "declaration": {
             "name": "MenubarMixin",
-            "module": "./mixins/MenubarMixin.js"
-          }
-        },
-        {
-          "kind": "js",
-          "name": "MenubarMixinInterface",
-          "declaration": {
-            "name": "MenubarMixinInterface",
             "module": "./mixins/MenubarMixin.js"
           }
         },
@@ -2673,18 +2591,65 @@
         },
         {
           "kind": "js",
-          "name": "ResizableMixinInterface",
-          "declaration": {
-            "name": "ResizableMixinInterface",
-            "module": "./mixins/ResizableMixin.js"
-          }
-        },
-        {
-          "kind": "js",
           "name": "FitMixin",
           "declaration": {
             "name": "FitMixin",
             "module": "./mixins/FitMixin.js"
+          }
+        },
+        {
+          "kind": "js",
+          "name": "OverlayMixin",
+          "declaration": {
+            "name": "OverlayMixin",
+            "module": "./mixins/OverlayMixin.js"
+          }
+        },
+        {
+          "kind": "js",
+          "name": "EventsTargetMixin",
+          "declaration": {
+            "name": "EventsTargetMixin",
+            "module": "./mixins/EventsTargetMixin.js"
+          }
+        },
+        {
+          "kind": "js",
+          "name": "ScrollTargetMixin",
+          "declaration": {
+            "name": "ScrollTargetMixin",
+            "module": "./mixins/ScrollTargetMixin.js"
+          }
+        },
+        {
+          "kind": "js",
+          "name": "*",
+          "declaration": {
+            "name": "*",
+            "package": "./lib/ScrollManager.js"
+          }
+        },
+        {
+          "kind": "js",
+          "name": "RangeMixin",
+          "declaration": {
+            "name": "RangeMixin",
+            "module": "./mixins/RangeMixin.js"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "src/types.ts",
+      "declarations": [],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "ValidationResult",
+          "declaration": {
+            "name": "ValidationResult",
+            "module": "\"./mixins/ValidatableMixin.js\""
           }
         },
         {
@@ -2705,94 +2670,6 @@
         },
         {
           "kind": "js",
-          "name": "FitMixinInterface",
-          "declaration": {
-            "name": "FitMixinInterface",
-            "module": "./mixins/FitMixin.js"
-          }
-        },
-        {
-          "kind": "js",
-          "name": "OverlayMixin",
-          "declaration": {
-            "name": "OverlayMixin",
-            "module": "./mixins/OverlayMixin.js"
-          }
-        },
-        {
-          "kind": "js",
-          "name": "OverlayMixinInterface",
-          "declaration": {
-            "name": "OverlayMixinInterface",
-            "module": "./mixins/OverlayMixin.js"
-          }
-        },
-        {
-          "kind": "js",
-          "name": "EventsTargetMixin",
-          "declaration": {
-            "name": "EventsTargetMixin",
-            "module": "./mixins/EventsTargetMixin.js"
-          }
-        },
-        {
-          "kind": "js",
-          "name": "EventsTargetMixinInterface",
-          "declaration": {
-            "name": "EventsTargetMixinInterface",
-            "module": "./mixins/EventsTargetMixin.js"
-          }
-        },
-        {
-          "kind": "js",
-          "name": "ScrollTargetMixin",
-          "declaration": {
-            "name": "ScrollTargetMixin",
-            "module": "./mixins/ScrollTargetMixin.js"
-          }
-        },
-        {
-          "kind": "js",
-          "name": "ScrollTargetMixinInterface",
-          "declaration": {
-            "name": "ScrollTargetMixinInterface",
-            "module": "./mixins/ScrollTargetMixin.js"
-          }
-        },
-        {
-          "kind": "js",
-          "name": "*",
-          "declaration": {
-            "name": "*",
-            "package": "./lib/ScrollManager.js"
-          }
-        },
-        {
-          "kind": "js",
-          "name": "RangeMixin",
-          "declaration": {
-            "name": "RangeMixin",
-            "module": "./mixins/RangeMixin.js"
-          }
-        },
-        {
-          "kind": "js",
-          "name": "RangeMixinInterface",
-          "declaration": {
-            "name": "RangeMixinInterface",
-            "module": "./mixins/RangeMixin.js"
-          }
-        },
-        {
-          "kind": "js",
-          "name": "*",
-          "declaration": {
-            "name": "*",
-            "package": "./types"
-          }
-        },
-        {
-          "kind": "js",
           "name": "IAnimationConfig",
           "declaration": {
             "name": "IAnimationConfig",
@@ -2800,12 +2677,6 @@
           }
         }
       ]
-    },
-    {
-      "kind": "javascript-module",
-      "path": "src/types.ts",
-      "declarations": [],
-      "exports": []
     },
     {
       "kind": "javascript-module",
@@ -4021,862 +3892,6 @@
           "declaration": {
             "name": "Element",
             "module": "/demo/lib/InteractiveDemoElement.js"
-          }
-        }
-      ]
-    },
-    {
-      "kind": "javascript-module",
-      "path": "src/mixins/AnypointInputMixin.ts",
-      "declarations": [
-        {
-          "kind": "variable",
-          "name": "AnypointInputMixin",
-          "description": "Use `AnypointInputMixin` to implement accessible inputs"
-        }
-      ],
-      "exports": [
-        {
-          "kind": "js",
-          "name": "AnypointInputMixin",
-          "declaration": {
-            "name": "AnypointInputMixin",
-            "module": "src/mixins/AnypointInputMixin.ts"
-          }
-        }
-      ]
-    },
-    {
-      "kind": "javascript-module",
-      "path": "src/mixins/AnypointSelection.ts",
-      "declarations": [
-        {
-          "kind": "class",
-          "description": "Port of `@polymer/iron-selector/iron-selection.js`.",
-          "name": "AnypointSelection",
-          "members": [
-            {
-              "kind": "field",
-              "name": "multi",
-              "type": {
-                "text": "boolean"
-              },
-              "default": "false"
-            },
-            {
-              "kind": "field",
-              "name": "selection",
-              "type": {
-                "text": "unknown[]"
-              },
-              "default": "[]"
-            },
-            {
-              "kind": "field",
-              "name": "selectCallback",
-              "type": {
-                "text": "Function"
-              },
-              "default": "selectCallback"
-            },
-            {
-              "kind": "method",
-              "name": "get",
-              "return": {
-                "type": {
-                  "text": ""
-                }
-              },
-              "description": "Retrieves the selected item(s)."
-            },
-            {
-              "kind": "method",
-              "name": "clear",
-              "return": {
-                "type": {
-                  "text": "void"
-                }
-              },
-              "parameters": [
-                {
-                  "name": "excludes",
-                  "optional": true,
-                  "type": {
-                    "text": "unknown[]"
-                  },
-                  "description": "items to be excluded."
-                }
-              ],
-              "description": "Clears all the selection except the ones indicated."
-            },
-            {
-              "kind": "method",
-              "name": "isSelected",
-              "return": {
-                "type": {
-                  "text": ""
-                }
-              },
-              "parameters": [
-                {
-                  "name": "item",
-                  "type": {
-                    "text": "unknown"
-                  },
-                  "description": "The item whose selection state should be checked."
-                }
-              ],
-              "description": "Indicates if a given item is selected."
-            },
-            {
-              "kind": "method",
-              "name": "setItemSelected",
-              "return": {
-                "type": {
-                  "text": "void"
-                }
-              },
-              "parameters": [
-                {
-                  "name": "item",
-                  "type": {
-                    "text": "unknown"
-                  },
-                  "description": "The item to select."
-                },
-                {
-                  "name": "isSelected",
-                  "optional": true,
-                  "type": {
-                    "text": "boolean"
-                  },
-                  "description": "True for selected, false for deselected."
-                }
-              ],
-              "description": "Sets the selection state for a given item to either selected or deselected."
-            },
-            {
-              "kind": "method",
-              "name": "select",
-              "return": {
-                "type": {
-                  "text": "void"
-                }
-              },
-              "parameters": [
-                {
-                  "name": "item",
-                  "type": {
-                    "text": "unknown"
-                  },
-                  "description": "The item to select."
-                }
-              ],
-              "description": "Sets the selection state for a given item. If the `multi` property\nis true, then the selected state of `item` will be toggled; otherwise\nthe `item` will be selected."
-            },
-            {
-              "kind": "method",
-              "name": "toggle",
-              "return": {
-                "type": {
-                  "text": "void"
-                }
-              },
-              "parameters": [
-                {
-                  "name": "item",
-                  "type": {
-                    "text": "unknown"
-                  },
-                  "description": "The item to toggle."
-                }
-              ],
-              "description": "Toggles the selection state for `item`."
-            }
-          ]
-        }
-      ],
-      "exports": [
-        {
-          "kind": "js",
-          "name": "AnypointSelection",
-          "declaration": {
-            "name": "AnypointSelection",
-            "module": "src/mixins/AnypointSelection.ts"
-          }
-        }
-      ]
-    },
-    {
-      "kind": "javascript-module",
-      "path": "src/mixins/ButtonStateMixin.ts",
-      "declarations": [
-        {
-          "kind": "variable",
-          "name": "ButtonStateMixin",
-          "description": "Use `ButtonStateMixin` to implement an element that can be pressed and active when toggles."
-        }
-      ],
-      "exports": [
-        {
-          "kind": "js",
-          "name": "ButtonStateMixin",
-          "declaration": {
-            "name": "ButtonStateMixin",
-            "module": "src/mixins/ButtonStateMixin.ts"
-          }
-        }
-      ]
-    },
-    {
-      "kind": "javascript-module",
-      "path": "src/mixins/CheckedElementMixin.ts",
-      "declarations": [
-        {
-          "kind": "variable",
-          "name": "CheckedElementMixin",
-          "description": "Use `CheckedElementMixin` to implement an element that can be pressed and active when toggles."
-        }
-      ],
-      "exports": [
-        {
-          "kind": "js",
-          "name": "CheckedElementMixin",
-          "declaration": {
-            "name": "CheckedElementMixin",
-            "module": "src/mixins/CheckedElementMixin.ts"
-          }
-        }
-      ]
-    },
-    {
-      "kind": "javascript-module",
-      "path": "src/mixins/ControlStateMixin.ts",
-      "declarations": [
-        {
-          "kind": "variable",
-          "name": "ControlStateMixin",
-          "description": "Use `ControlStateMixin` to implement an element that can be disabled or focused."
-        }
-      ],
-      "exports": [
-        {
-          "kind": "js",
-          "name": "ControlStateMixin",
-          "declaration": {
-            "name": "ControlStateMixin",
-            "module": "src/mixins/ControlStateMixin.ts"
-          }
-        }
-      ]
-    },
-    {
-      "kind": "javascript-module",
-      "path": "src/mixins/EventsTargetMixin.ts",
-      "declarations": [
-        {
-          "kind": "variable",
-          "name": "EventsTargetMixin",
-          "description": "`EventsTargetMixin` is a mixin that allows to set event listeners on a default or set node.\n\nBy default the element listens on the `window` element for events. By setting\n`eventsTarget` property on this element it removes all previously set\nlisteners and adds the same listeners to the node.\nIt also restores default state when the `eventsTarget` is removed.\n\nImplementations should implement two abstract methods:\n`_attachListeners(node)` and `_detachListeners(node)`. Both of them will be\ncalled with event target argument when it's required to either set or remove\nlisteners.\n\n```javascript\nclass EventableElement extends EventsTargetMixin(HTMLElement) {\n  _attachListeners: function(node) {\n   mode.addEventListener('event', this._callback);\n }\n\n _detachListeners: function(node) {\n   mode.removeEventListener('event', this._callback);\n }\n}\n```\n\nThe mixin handles connectedCallback / disconnectedCallback and calls the\nfunctions with required parameters."
-        }
-      ],
-      "exports": [
-        {
-          "kind": "js",
-          "name": "EventsTargetMixin",
-          "declaration": {
-            "name": "EventsTargetMixin",
-            "module": "src/mixins/EventsTargetMixin.ts"
-          }
-        }
-      ]
-    },
-    {
-      "kind": "javascript-module",
-      "path": "src/mixins/FitMixin.ts",
-      "declarations": [
-        {
-          "kind": "variable",
-          "name": "FitMixin",
-          "description": "This mixin is a port of https://github.com/PolymerElements/iron-fit-behavior\nthat works with LitElement.\n\n`FitMixin` fits an element in another element using `max-height`\nand `max-width`, and optionally centers it in the window or another element.\nThe element will only be sized and/or positioned if it has not already been\nsized and/or positioned by CSS.\n\nCSS properties            | Action\n--------------------------|-------------------------------------------\n`position` set            | Element is not centered horizontally or vertically\n`top` or `bottom` set     | Element is not vertically centered\n`left` or `right` set     | Element is not horizontally centered\n`max-height` set          | Element respects `max-height`\n`max-width` set           | Element respects `max-width`\n\n`FitMixin` can position an element into another element using\n`verticalAlign` and `horizontalAlign`. This will override the element's css\nposition.\n\n    <div class=\"container\">\n      <arc-fit-impl verticalalign=\"top\" horizontalAlign=\"auto\">\n        Positioned into the container\n      </arc-fit-impl>\n    </div>\n\nUse `noOverlap` to position the element around another element without\noverlapping it.\n\n    <div class=\"container\">\n      <arc-fit-impl noOverlap verticalalign=\"auto\" horizontalAlign=\"auto\">\n        Positioned around the container\n      </arc-fit-impl>\n    </div>\n\nUse `horizontalOffset, verticalOffset` to offset the element from its\n`positionTarget`; `FitMixin` will collapse these in order to\nkeep the element within `fitInto` boundaries, while preserving the element's\nCSS margin values.\n\n    <div class=\"container\">\n      <arc-fit-impl verticalalign=\"top\" verticalOffset=\"20\">\n        With vertical offset\n      </arc-fit-impl>\n    </div>\n\n## Usage\n\n```javascript\nimport { LitElement } from 'lit-element';\nimport { FitMixin } from 'anypoint-web-components/awc';\n\nclass ArcFitImpl extends FitMixin(LitElement) {\n ...\n}\n```"
-        }
-      ],
-      "exports": [
-        {
-          "kind": "js",
-          "name": "FitMixin",
-          "declaration": {
-            "name": "FitMixin",
-            "module": "src/mixins/FitMixin.ts"
-          }
-        }
-      ]
-    },
-    {
-      "kind": "javascript-module",
-      "path": "src/mixins/HoverableMixin.ts",
-      "declarations": [
-        {
-          "kind": "variable",
-          "name": "HoverableMixin",
-          "description": "Use `HoverableMixin` to implement an element that can be hovered.\nThe control gets a `hovered` attribute when it's hovered by the pointing device.\n\nBe aware that mobile devices will not support hovering as desktop devices and behavior\nmay vary depending on platform. You should use this as little as possible."
-        }
-      ],
-      "exports": [
-        {
-          "kind": "js",
-          "name": "HoverableMixin",
-          "declaration": {
-            "name": "HoverableMixin",
-            "module": "src/mixins/HoverableMixin.ts"
-          }
-        }
-      ]
-    },
-    {
-      "kind": "javascript-module",
-      "path": "src/mixins/MenuMixin.ts",
-      "declarations": [
-        {
-          "kind": "variable",
-          "name": "highlightedItem",
-          "type": {
-            "text": "string"
-          },
-          "default": "'__highlighteditem'"
-        },
-        {
-          "kind": "variable",
-          "name": "highlightedItemValue",
-          "type": {
-            "text": "string"
-          },
-          "default": "'__highlighteditemvalue'"
-        },
-        {
-          "kind": "variable",
-          "name": "MenuMixin",
-          "description": "Port of `@polymer/iron-selector/iron-multi-selectable.js`.\n\nA mixin to be applied to a class where child elements can be selected and selection\ncan be applied to more than one item.\n\nNote, by default the mixin works with LitElement. If used with different class\nmake sure that attributes are reflected to properties correctly."
-        }
-      ],
-      "exports": [
-        {
-          "kind": "js",
-          "name": "highlightedItem",
-          "declaration": {
-            "name": "highlightedItem",
-            "module": "src/mixins/MenuMixin.ts"
-          }
-        },
-        {
-          "kind": "js",
-          "name": "highlightedItemValue",
-          "declaration": {
-            "name": "highlightedItemValue",
-            "module": "src/mixins/MenuMixin.ts"
-          }
-        },
-        {
-          "kind": "js",
-          "name": "MenuMixin",
-          "declaration": {
-            "name": "MenuMixin",
-            "module": "src/mixins/MenuMixin.ts"
-          }
-        }
-      ]
-    },
-    {
-      "kind": "javascript-module",
-      "path": "src/mixins/MenubarMixin.ts",
-      "declarations": [
-        {
-          "kind": "variable",
-          "name": "MenubarMixin",
-          "description": "Port of `@polymer/iron-menubar-behavior`.\n\nA mixin that implement accessible menubar.\n\nNote, by default the mixin works with LitElement. If used with different class\nmake sure that attributes are reflected to properties correctly."
-        }
-      ],
-      "exports": [
-        {
-          "kind": "js",
-          "name": "MenubarMixin",
-          "declaration": {
-            "name": "MenubarMixin",
-            "module": "src/mixins/MenubarMixin.ts"
-          }
-        }
-      ]
-    },
-    {
-      "kind": "javascript-module",
-      "path": "src/mixins/MultiSelectableMixin.ts",
-      "declarations": [
-        {
-          "kind": "variable",
-          "name": "MultiSelectableMixin",
-          "description": "Port of `@polymer/iron-selector/iron-multi-selectable.js`.\n\nA mixin to be applied to a class where child elements can be selected and selection\ncan be applied to more than one item.\n\nNote, by default the mixin works with LitElement. If used with different class\nmake sure that attributes are reflected to properties correctly."
-        }
-      ],
-      "exports": [
-        {
-          "kind": "js",
-          "name": "MultiSelectableMixin",
-          "declaration": {
-            "name": "MultiSelectableMixin",
-            "module": "src/mixins/MultiSelectableMixin.ts"
-          }
-        }
-      ]
-    },
-    {
-      "kind": "javascript-module",
-      "path": "src/mixins/OverlayMixin.ts",
-      "declarations": [
-        {
-          "kind": "variable",
-          "name": "OverlayMixin",
-          "description": "This mixin is a port of [IronOverlayBehavior](https://github.com/PolymerElements/iron-overlay-behavior)\nthat works with LitElement.\n\nUse `OverlayMixin` to implement an element that can be hidden\nor shown, and displays on top of other content. It includes an optional\nbackdrop, and can be used to implement a variety of UI controls including\ndialogs and drop downs. Multiple overlays may be displayed at once.\nSee the [demo source\ncode](https://github.com/advanced-rest-client/arc-overlay-mixin/blob/master/demo/simple-overlay.html)\nfor an example.\n\n### Closing and canceling\n\nAn overlay may be hidden by closing or canceling. The difference between close\nand cancel is user intent. Closing generally implies that the user\nacknowledged the content on the overlay. By default, it will cancel whenever\nthe user taps outside it or presses the escape key. This behavior is\nconfigurable with the `noCancelOnEscKey` and the\n`noCancelOnOutsideClick` properties. `close()` should be called explicitly\nby the implementer when the user interacts with a control in the overlay\nelement. When the dialog is canceled, the overlay fires an\n'overlay-canceled' event. Call `preventDefault` on this event to prevent\nthe overlay from closing.\n\n### Positioning\n\nBy default the element is sized and positioned to fit and centered inside the\nwindow. You can position and size it manually using CSS. See `FitMixin`.\n\n### Backdrop\n\nSet the `withBackdrop` attribute to display a backdrop behind the overlay.\nThe backdrop is appended to `<body>` and is of type `<arc-overlay-backdrop>`.\nSee its doc page for styling options.\nIn addition, `withBackdrop` will wrap the focus within the content in the\nlight DOM. Override the [`_focusableNodes`\ngetter](#FitMixin:property-_focusableNodes) to achieve a\ndifferent behavior.\n\n### Limitations\n\nThe element is styled to appear on top of other content by setting its\n`z-index` property. You must ensure no element has a stacking context with a\nhigher `z-index` than its parent stacking context. You should place this\nelement as a child of `<body>` whenever possible.\n\n\n## Usage\n\n```javascript\nimport { LitElement } from 'lit-element';\nimport { OverlayMixin } from '@anypoint-web-components/awc';\n\nclass ArcOverlayImpl extends OverlayMixin(LitElement) {\n ...\n}\n```"
-        }
-      ],
-      "exports": [
-        {
-          "kind": "js",
-          "name": "OverlayMixin",
-          "declaration": {
-            "name": "OverlayMixin",
-            "module": "src/mixins/OverlayMixin.ts"
-          }
-        }
-      ]
-    },
-    {
-      "kind": "javascript-module",
-      "path": "src/mixins/RangeMixin.ts",
-      "declarations": [
-        {
-          "kind": "variable",
-          "name": "ratioValue"
-        },
-        {
-          "kind": "variable",
-          "name": "rangeChanged"
-        },
-        {
-          "kind": "variable",
-          "name": "computeStep"
-        },
-        {
-          "kind": "variable",
-          "name": "clampValue"
-        },
-        {
-          "kind": "variable",
-          "name": "computeRatio"
-        },
-        {
-          "kind": "variable",
-          "name": "validateValue"
-        },
-        {
-          "kind": "variable",
-          "name": "valueValue"
-        },
-        {
-          "kind": "variable",
-          "name": "minValue"
-        },
-        {
-          "kind": "variable",
-          "name": "maxValue"
-        },
-        {
-          "kind": "variable",
-          "name": "stepValue"
-        },
-        {
-          "kind": "variable",
-          "name": "computeDebounce"
-        },
-        {
-          "kind": "variable",
-          "name": "debounceValue"
-        },
-        {
-          "kind": "variable",
-          "name": "RangeMixin",
-          "description": "Use `RangeMixin` to implement an element that has a range of minimum and maximum.\n\nThis is inspired by Polymer's `iron-range-behavior`."
-        }
-      ],
-      "exports": [
-        {
-          "kind": "js",
-          "name": "ratioValue",
-          "declaration": {
-            "name": "ratioValue",
-            "module": "src/mixins/RangeMixin.ts"
-          }
-        },
-        {
-          "kind": "js",
-          "name": "rangeChanged",
-          "declaration": {
-            "name": "rangeChanged",
-            "module": "src/mixins/RangeMixin.ts"
-          }
-        },
-        {
-          "kind": "js",
-          "name": "computeStep",
-          "declaration": {
-            "name": "computeStep",
-            "module": "src/mixins/RangeMixin.ts"
-          }
-        },
-        {
-          "kind": "js",
-          "name": "clampValue",
-          "declaration": {
-            "name": "clampValue",
-            "module": "src/mixins/RangeMixin.ts"
-          }
-        },
-        {
-          "kind": "js",
-          "name": "computeRatio",
-          "declaration": {
-            "name": "computeRatio",
-            "module": "src/mixins/RangeMixin.ts"
-          }
-        },
-        {
-          "kind": "js",
-          "name": "validateValue",
-          "declaration": {
-            "name": "validateValue",
-            "module": "src/mixins/RangeMixin.ts"
-          }
-        },
-        {
-          "kind": "js",
-          "name": "valueValue",
-          "declaration": {
-            "name": "valueValue",
-            "module": "src/mixins/RangeMixin.ts"
-          }
-        },
-        {
-          "kind": "js",
-          "name": "minValue",
-          "declaration": {
-            "name": "minValue",
-            "module": "src/mixins/RangeMixin.ts"
-          }
-        },
-        {
-          "kind": "js",
-          "name": "maxValue",
-          "declaration": {
-            "name": "maxValue",
-            "module": "src/mixins/RangeMixin.ts"
-          }
-        },
-        {
-          "kind": "js",
-          "name": "stepValue",
-          "declaration": {
-            "name": "stepValue",
-            "module": "src/mixins/RangeMixin.ts"
-          }
-        },
-        {
-          "kind": "js",
-          "name": "computeDebounce",
-          "declaration": {
-            "name": "computeDebounce",
-            "module": "src/mixins/RangeMixin.ts"
-          }
-        },
-        {
-          "kind": "js",
-          "name": "debounceValue",
-          "declaration": {
-            "name": "debounceValue",
-            "module": "src/mixins/RangeMixin.ts"
-          }
-        },
-        {
-          "kind": "js",
-          "name": "RangeMixin",
-          "declaration": {
-            "name": "RangeMixin",
-            "module": "src/mixins/RangeMixin.ts"
-          }
-        }
-      ]
-    },
-    {
-      "kind": "javascript-module",
-      "path": "src/mixins/ResizableMixin.ts",
-      "declarations": [
-        {
-          "kind": "variable",
-          "name": "resizeNotificationEventType",
-          "type": {
-            "text": "string"
-          },
-          "default": "'requestresizenotifications'"
-        },
-        {
-          "kind": "variable",
-          "name": "resizeEventType",
-          "type": {
-            "text": "string"
-          },
-          "default": "'resize'"
-        },
-        {
-          "kind": "variable",
-          "name": "ResizableMixin",
-          "description": "This mixin is a port of [IronResizableBehavior]https://github.com/PolymerElements/iron-resizable-behavior\nthat works with LitElement.\n\n`ResizableMixin` is a behavior that can be used in web components to\ncoordinate the flow of resize events between \"resizers\" (elements that\ncontrol the size or hidden state of their children) and \"resizables\" (elements\nthat need to be notified when they are resized or un-hidden by their parents\nin order to take action on their new measurements).\n\nElements that perform measurement should add the `ResizableMixin` mixin to their element definition and listen for the `resize` event on themselves. \nThis event will be fired when they become showing after having been hidden, when they are resized explicitly by another resizable, or when the window has been resized.\n\nNote, the `resize` event is non-bubbling.\n\n## Usage\n\n```javascript\nimport { LitElement } from 'lit-element';\nimport { ResizableMixin } from 'anypoint-web-components/awc';\n\nclass ResizableImpl extends ResizableMixin(LitElement) {\n ...\n}\n```"
-        }
-      ],
-      "exports": [
-        {
-          "kind": "js",
-          "name": "resizeNotificationEventType",
-          "declaration": {
-            "name": "resizeNotificationEventType",
-            "module": "src/mixins/ResizableMixin.ts"
-          }
-        },
-        {
-          "kind": "js",
-          "name": "resizeEventType",
-          "declaration": {
-            "name": "resizeEventType",
-            "module": "src/mixins/ResizableMixin.ts"
-          }
-        },
-        {
-          "kind": "js",
-          "name": "ResizableMixin",
-          "declaration": {
-            "name": "ResizableMixin",
-            "module": "src/mixins/ResizableMixin.ts"
-          }
-        }
-      ]
-    },
-    {
-      "kind": "javascript-module",
-      "path": "src/mixins/ScrollTargetMixin.ts",
-      "declarations": [
-        {
-          "kind": "variable",
-          "name": "ScrollTargetMixin",
-          "description": "This mixin is a port of [IronScrollTargetBehavior](https://github.com/PolymerElements/iron-acroll-target-behavior)\nthat works with LitElements.\n\n`ScrollTargetMixin` allows an element to respond to scroll\nevents from a designated scroll target.\n\nElements that consume this mixin can override the `_scrollHandler`\nmethod to add logic on the scroll event."
-        }
-      ],
-      "exports": [
-        {
-          "kind": "js",
-          "name": "ScrollTargetMixin",
-          "declaration": {
-            "name": "ScrollTargetMixin",
-            "module": "src/mixins/ScrollTargetMixin.ts"
-          }
-        }
-      ]
-    },
-    {
-      "kind": "javascript-module",
-      "path": "src/mixins/SelectableMixin.ts",
-      "declarations": [
-        {
-          "kind": "function",
-          "name": "matchesSelector",
-          "return": {
-            "type": {
-              "text": ""
-            }
-          },
-          "parameters": [
-            {
-              "name": "node",
-              "type": {
-                "text": "Node"
-              },
-              "description": "Node to check selector against"
-            },
-            {
-              "name": "selector",
-              "type": {
-                "text": "string"
-              },
-              "description": "Selector to match"
-            }
-          ],
-          "description": "Cross-platform `element.matches` shim."
-        },
-        {
-          "kind": "variable",
-          "name": "SelectableMixin",
-          "description": "Port of `@polymer/iron-selector/iron-selectable.js`.\n\nA mixin to be applied to a class where child elements can be selected.\n\nNote, by default the mixin works with LitElement. If used with different class\nmake sure that attributes are reflected to properties correctly."
-        }
-      ],
-      "exports": [
-        {
-          "kind": "js",
-          "name": "matchesSelector",
-          "declaration": {
-            "name": "matchesSelector",
-            "module": "src/mixins/SelectableMixin.ts"
-          }
-        },
-        {
-          "kind": "js",
-          "name": "SelectableMixin",
-          "declaration": {
-            "name": "SelectableMixin",
-            "module": "src/mixins/SelectableMixin.ts"
-          }
-        }
-      ]
-    },
-    {
-      "kind": "javascript-module",
-      "path": "src/mixins/ValidatableMixin.ts",
-      "declarations": [
-        {
-          "kind": "variable",
-          "name": "ValidatableMixin",
-          "description": "This validatable supports multiple validators.\n\nUse `ValidatableMixin` to implement an element that validates user input.\nUse the related `ArcValidatorBehavior` to add custom validation logic\nto an iron-input or other wrappers around native inputs.\n\nBy default, an `<iron-form>` element validates its fields when the user presses the submit\nbutton.\nTo validate a form imperatively, call the form's `validate()` method, which in turn will\ncall `validate()` on all its children. By using `ValidatableMixin`, your\ncustom element will get a public `validate()`, which will return the validity\nof the element, and a corresponding `invalid` attribute, which can be used for styling.\n\nTo implement the custom validation logic of your element, you must override\nthe protected `_getValidity()` method of this behaviour, rather than `validate()`.\nSee [this](https://github.com/PolymerElements/iron-form/blob/master/demo/simple-element.html)\nfor an example.\n\n### Accessibility\n\nChanging the `invalid` property, either manually or by calling `validate()` will update the\n`aria-invalid` attribute."
-        }
-      ],
-      "exports": [
-        {
-          "kind": "js",
-          "name": "ValidatableMixin",
-          "declaration": {
-            "name": "ValidatableMixin",
-            "module": "src/mixins/ValidatableMixin.ts"
-          }
-        }
-      ]
-    },
-    {
-      "kind": "javascript-module",
-      "path": "src/mixins/ValidatorMixin.ts",
-      "declarations": [
-        {
-          "kind": "variable",
-          "name": "ValidatorMixin",
-          "description": "Use `ValidatorMixin` to implement a custom input/form validator.\nElement instances implementing this mixin will be registered for use\nin elements that implement `ValidatableMixin`."
-        }
-      ],
-      "exports": [
-        {
-          "kind": "js",
-          "name": "ValidatorMixin",
-          "declaration": {
-            "name": "ValidatorMixin",
-            "module": "src/mixins/ValidatorMixin.ts"
-          }
-        }
-      ]
-    },
-    {
-      "kind": "javascript-module",
-      "path": "src/mixins/ValidatorStore.ts",
-      "declarations": [
-        {
-          "kind": "function",
-          "name": "register",
-          "return": {
-            "type": {
-              "text": "void"
-            }
-          },
-          "parameters": [
-            {
-              "name": "validator",
-              "type": {
-                "text": "typeof HTMLElement|Object"
-              },
-              "description": "An instance of the validator. It expects to be a\ntype of an HTMLElement, LitElement etc but can also be an object."
-            },
-            {
-              "name": "name",
-              "type": {
-                "text": "string"
-              },
-              "description": "Validator name used in the global validators registry."
-            }
-          ],
-          "description": "Registers a new validator element in the store.\nThe validator can be accessed by the `get(validatorName)` function."
-        },
-        {
-          "kind": "function",
-          "name": "unregister",
-          "return": {
-            "type": {
-              "text": "void"
-            }
-          },
-          "parameters": [
-            {
-              "name": "validator",
-              "type": {
-                "text": "typeof HTMLElement|Object"
-              },
-              "description": "An instance of the validator. It expects to be a\ntype of an HTMLElement, LitElement etc but can also be an object."
-            }
-          ],
-          "description": "Removes the validator from the store.\nThis intentionally uses an instance of validator instead of the name to remove\nthe ref from the object when the instance of an element is being removed from\nthe DOM."
-        },
-        {
-          "kind": "function",
-          "name": "get",
-          "return": {
-            "type": {
-              "text": ""
-            }
-          },
-          "parameters": [
-            {
-              "name": "name",
-              "type": {
-                "text": "string"
-              },
-              "description": "Validator name used in the global validators registry."
-            }
-          ],
-          "description": "Registers a new validator element in the store.\nThe validator can be accessed by the `get(validatorName)` function."
-        }
-      ],
-      "exports": [
-        {
-          "kind": "js",
-          "name": "register",
-          "declaration": {
-            "name": "register",
-            "module": "src/mixins/ValidatorStore.ts"
-          }
-        },
-        {
-          "kind": "js",
-          "name": "unregister",
-          "declaration": {
-            "name": "unregister",
-            "module": "src/mixins/ValidatorStore.ts"
-          }
-        },
-        {
-          "kind": "js",
-          "name": "get",
-          "declaration": {
-            "name": "get",
-            "module": "src/mixins/ValidatorStore.ts"
           }
         }
       ]
@@ -6690,6 +5705,862 @@
           "declaration": {
             "name": "visibilityOff",
             "module": "src/resources/Icons.ts"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "src/mixins/AnypointInputMixin.ts",
+      "declarations": [
+        {
+          "kind": "variable",
+          "name": "AnypointInputMixin",
+          "description": "Use `AnypointInputMixin` to implement accessible inputs"
+        }
+      ],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "AnypointInputMixin",
+          "declaration": {
+            "name": "AnypointInputMixin",
+            "module": "src/mixins/AnypointInputMixin.ts"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "src/mixins/AnypointSelection.ts",
+      "declarations": [
+        {
+          "kind": "class",
+          "description": "Port of `@polymer/iron-selector/iron-selection.js`.",
+          "name": "AnypointSelection",
+          "members": [
+            {
+              "kind": "field",
+              "name": "multi",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false"
+            },
+            {
+              "kind": "field",
+              "name": "selection",
+              "type": {
+                "text": "unknown[]"
+              },
+              "default": "[]"
+            },
+            {
+              "kind": "field",
+              "name": "selectCallback",
+              "type": {
+                "text": "Function"
+              },
+              "default": "selectCallback"
+            },
+            {
+              "kind": "method",
+              "name": "get",
+              "return": {
+                "type": {
+                  "text": ""
+                }
+              },
+              "description": "Retrieves the selected item(s)."
+            },
+            {
+              "kind": "method",
+              "name": "clear",
+              "return": {
+                "type": {
+                  "text": "void"
+                }
+              },
+              "parameters": [
+                {
+                  "name": "excludes",
+                  "optional": true,
+                  "type": {
+                    "text": "unknown[]"
+                  },
+                  "description": "items to be excluded."
+                }
+              ],
+              "description": "Clears all the selection except the ones indicated."
+            },
+            {
+              "kind": "method",
+              "name": "isSelected",
+              "return": {
+                "type": {
+                  "text": ""
+                }
+              },
+              "parameters": [
+                {
+                  "name": "item",
+                  "type": {
+                    "text": "unknown"
+                  },
+                  "description": "The item whose selection state should be checked."
+                }
+              ],
+              "description": "Indicates if a given item is selected."
+            },
+            {
+              "kind": "method",
+              "name": "setItemSelected",
+              "return": {
+                "type": {
+                  "text": "void"
+                }
+              },
+              "parameters": [
+                {
+                  "name": "item",
+                  "type": {
+                    "text": "unknown"
+                  },
+                  "description": "The item to select."
+                },
+                {
+                  "name": "isSelected",
+                  "optional": true,
+                  "type": {
+                    "text": "boolean"
+                  },
+                  "description": "True for selected, false for deselected."
+                }
+              ],
+              "description": "Sets the selection state for a given item to either selected or deselected."
+            },
+            {
+              "kind": "method",
+              "name": "select",
+              "return": {
+                "type": {
+                  "text": "void"
+                }
+              },
+              "parameters": [
+                {
+                  "name": "item",
+                  "type": {
+                    "text": "unknown"
+                  },
+                  "description": "The item to select."
+                }
+              ],
+              "description": "Sets the selection state for a given item. If the `multi` property\nis true, then the selected state of `item` will be toggled; otherwise\nthe `item` will be selected."
+            },
+            {
+              "kind": "method",
+              "name": "toggle",
+              "return": {
+                "type": {
+                  "text": "void"
+                }
+              },
+              "parameters": [
+                {
+                  "name": "item",
+                  "type": {
+                    "text": "unknown"
+                  },
+                  "description": "The item to toggle."
+                }
+              ],
+              "description": "Toggles the selection state for `item`."
+            }
+          ]
+        }
+      ],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "AnypointSelection",
+          "declaration": {
+            "name": "AnypointSelection",
+            "module": "src/mixins/AnypointSelection.ts"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "src/mixins/ButtonStateMixin.ts",
+      "declarations": [
+        {
+          "kind": "variable",
+          "name": "ButtonStateMixin",
+          "description": "Use `ButtonStateMixin` to implement an element that can be pressed and active when toggles."
+        }
+      ],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "ButtonStateMixin",
+          "declaration": {
+            "name": "ButtonStateMixin",
+            "module": "src/mixins/ButtonStateMixin.ts"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "src/mixins/CheckedElementMixin.ts",
+      "declarations": [
+        {
+          "kind": "variable",
+          "name": "CheckedElementMixin",
+          "description": "Use `CheckedElementMixin` to implement an element that can be pressed and active when toggles."
+        }
+      ],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "CheckedElementMixin",
+          "declaration": {
+            "name": "CheckedElementMixin",
+            "module": "src/mixins/CheckedElementMixin.ts"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "src/mixins/ControlStateMixin.ts",
+      "declarations": [
+        {
+          "kind": "variable",
+          "name": "ControlStateMixin",
+          "description": "Use `ControlStateMixin` to implement an element that can be disabled or focused."
+        }
+      ],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "ControlStateMixin",
+          "declaration": {
+            "name": "ControlStateMixin",
+            "module": "src/mixins/ControlStateMixin.ts"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "src/mixins/EventsTargetMixin.ts",
+      "declarations": [
+        {
+          "kind": "variable",
+          "name": "EventsTargetMixin",
+          "description": "`EventsTargetMixin` is a mixin that allows to set event listeners on a default or set node.\n\nBy default the element listens on the `window` element for events. By setting\n`eventsTarget` property on this element it removes all previously set\nlisteners and adds the same listeners to the node.\nIt also restores default state when the `eventsTarget` is removed.\n\nImplementations should implement two abstract methods:\n`_attachListeners(node)` and `_detachListeners(node)`. Both of them will be\ncalled with event target argument when it's required to either set or remove\nlisteners.\n\n```javascript\nclass EventableElement extends EventsTargetMixin(HTMLElement) {\n  _attachListeners: function(node) {\n   mode.addEventListener('event', this._callback);\n }\n\n _detachListeners: function(node) {\n   mode.removeEventListener('event', this._callback);\n }\n}\n```\n\nThe mixin handles connectedCallback / disconnectedCallback and calls the\nfunctions with required parameters."
+        }
+      ],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "EventsTargetMixin",
+          "declaration": {
+            "name": "EventsTargetMixin",
+            "module": "src/mixins/EventsTargetMixin.ts"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "src/mixins/FitMixin.ts",
+      "declarations": [
+        {
+          "kind": "variable",
+          "name": "FitMixin",
+          "description": "This mixin is a port of https://github.com/PolymerElements/iron-fit-behavior\nthat works with LitElement.\n\n`FitMixin` fits an element in another element using `max-height`\nand `max-width`, and optionally centers it in the window or another element.\nThe element will only be sized and/or positioned if it has not already been\nsized and/or positioned by CSS.\n\nCSS properties            | Action\n--------------------------|-------------------------------------------\n`position` set            | Element is not centered horizontally or vertically\n`top` or `bottom` set     | Element is not vertically centered\n`left` or `right` set     | Element is not horizontally centered\n`max-height` set          | Element respects `max-height`\n`max-width` set           | Element respects `max-width`\n\n`FitMixin` can position an element into another element using\n`verticalAlign` and `horizontalAlign`. This will override the element's css\nposition.\n\n    <div class=\"container\">\n      <arc-fit-impl verticalalign=\"top\" horizontalAlign=\"auto\">\n        Positioned into the container\n      </arc-fit-impl>\n    </div>\n\nUse `noOverlap` to position the element around another element without\noverlapping it.\n\n    <div class=\"container\">\n      <arc-fit-impl noOverlap verticalalign=\"auto\" horizontalAlign=\"auto\">\n        Positioned around the container\n      </arc-fit-impl>\n    </div>\n\nUse `horizontalOffset, verticalOffset` to offset the element from its\n`positionTarget`; `FitMixin` will collapse these in order to\nkeep the element within `fitInto` boundaries, while preserving the element's\nCSS margin values.\n\n    <div class=\"container\">\n      <arc-fit-impl verticalalign=\"top\" verticalOffset=\"20\">\n        With vertical offset\n      </arc-fit-impl>\n    </div>\n\n## Usage\n\n```javascript\nimport { LitElement } from 'lit-element';\nimport { FitMixin } from 'anypoint-web-components/awc';\n\nclass ArcFitImpl extends FitMixin(LitElement) {\n ...\n}\n```"
+        }
+      ],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "FitMixin",
+          "declaration": {
+            "name": "FitMixin",
+            "module": "src/mixins/FitMixin.ts"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "src/mixins/HoverableMixin.ts",
+      "declarations": [
+        {
+          "kind": "variable",
+          "name": "HoverableMixin",
+          "description": "Use `HoverableMixin` to implement an element that can be hovered.\nThe control gets a `hovered` attribute when it's hovered by the pointing device.\n\nBe aware that mobile devices will not support hovering as desktop devices and behavior\nmay vary depending on platform. You should use this as little as possible."
+        }
+      ],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "HoverableMixin",
+          "declaration": {
+            "name": "HoverableMixin",
+            "module": "src/mixins/HoverableMixin.ts"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "src/mixins/MenuMixin.ts",
+      "declarations": [
+        {
+          "kind": "variable",
+          "name": "highlightedItem",
+          "type": {
+            "text": "string"
+          },
+          "default": "'__highlighteditem'"
+        },
+        {
+          "kind": "variable",
+          "name": "highlightedItemValue",
+          "type": {
+            "text": "string"
+          },
+          "default": "'__highlighteditemvalue'"
+        },
+        {
+          "kind": "variable",
+          "name": "MenuMixin",
+          "description": "Port of `@polymer/iron-selector/iron-multi-selectable.js`.\n\nA mixin to be applied to a class where child elements can be selected and selection\ncan be applied to more than one item.\n\nNote, by default the mixin works with LitElement. If used with different class\nmake sure that attributes are reflected to properties correctly."
+        }
+      ],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "highlightedItem",
+          "declaration": {
+            "name": "highlightedItem",
+            "module": "src/mixins/MenuMixin.ts"
+          }
+        },
+        {
+          "kind": "js",
+          "name": "highlightedItemValue",
+          "declaration": {
+            "name": "highlightedItemValue",
+            "module": "src/mixins/MenuMixin.ts"
+          }
+        },
+        {
+          "kind": "js",
+          "name": "MenuMixin",
+          "declaration": {
+            "name": "MenuMixin",
+            "module": "src/mixins/MenuMixin.ts"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "src/mixins/MenubarMixin.ts",
+      "declarations": [
+        {
+          "kind": "variable",
+          "name": "MenubarMixin",
+          "description": "Port of `@polymer/iron-menubar-behavior`.\n\nA mixin that implement accessible menubar.\n\nNote, by default the mixin works with LitElement. If used with different class\nmake sure that attributes are reflected to properties correctly."
+        }
+      ],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "MenubarMixin",
+          "declaration": {
+            "name": "MenubarMixin",
+            "module": "src/mixins/MenubarMixin.ts"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "src/mixins/MultiSelectableMixin.ts",
+      "declarations": [
+        {
+          "kind": "variable",
+          "name": "MultiSelectableMixin",
+          "description": "Port of `@polymer/iron-selector/iron-multi-selectable.js`.\n\nA mixin to be applied to a class where child elements can be selected and selection\ncan be applied to more than one item.\n\nNote, by default the mixin works with LitElement. If used with different class\nmake sure that attributes are reflected to properties correctly."
+        }
+      ],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "MultiSelectableMixin",
+          "declaration": {
+            "name": "MultiSelectableMixin",
+            "module": "src/mixins/MultiSelectableMixin.ts"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "src/mixins/OverlayMixin.ts",
+      "declarations": [
+        {
+          "kind": "variable",
+          "name": "OverlayMixin",
+          "description": "This mixin is a port of [IronOverlayBehavior](https://github.com/PolymerElements/iron-overlay-behavior)\nthat works with LitElement.\n\nUse `OverlayMixin` to implement an element that can be hidden\nor shown, and displays on top of other content. It includes an optional\nbackdrop, and can be used to implement a variety of UI controls including\ndialogs and drop downs. Multiple overlays may be displayed at once.\nSee the [demo source\ncode](https://github.com/advanced-rest-client/arc-overlay-mixin/blob/master/demo/simple-overlay.html)\nfor an example.\n\n### Closing and canceling\n\nAn overlay may be hidden by closing or canceling. The difference between close\nand cancel is user intent. Closing generally implies that the user\nacknowledged the content on the overlay. By default, it will cancel whenever\nthe user taps outside it or presses the escape key. This behavior is\nconfigurable with the `noCancelOnEscKey` and the\n`noCancelOnOutsideClick` properties. `close()` should be called explicitly\nby the implementer when the user interacts with a control in the overlay\nelement. When the dialog is canceled, the overlay fires an\n'overlay-canceled' event. Call `preventDefault` on this event to prevent\nthe overlay from closing.\n\n### Positioning\n\nBy default the element is sized and positioned to fit and centered inside the\nwindow. You can position and size it manually using CSS. See `FitMixin`.\n\n### Backdrop\n\nSet the `withBackdrop` attribute to display a backdrop behind the overlay.\nThe backdrop is appended to `<body>` and is of type `<arc-overlay-backdrop>`.\nSee its doc page for styling options.\nIn addition, `withBackdrop` will wrap the focus within the content in the\nlight DOM. Override the [`_focusableNodes`\ngetter](#FitMixin:property-_focusableNodes) to achieve a\ndifferent behavior.\n\n### Limitations\n\nThe element is styled to appear on top of other content by setting its\n`z-index` property. You must ensure no element has a stacking context with a\nhigher `z-index` than its parent stacking context. You should place this\nelement as a child of `<body>` whenever possible.\n\n\n## Usage\n\n```javascript\nimport { LitElement } from 'lit-element';\nimport { OverlayMixin } from '@anypoint-web-components/awc';\n\nclass ArcOverlayImpl extends OverlayMixin(LitElement) {\n ...\n}\n```"
+        }
+      ],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "OverlayMixin",
+          "declaration": {
+            "name": "OverlayMixin",
+            "module": "src/mixins/OverlayMixin.ts"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "src/mixins/RangeMixin.ts",
+      "declarations": [
+        {
+          "kind": "variable",
+          "name": "ratioValue"
+        },
+        {
+          "kind": "variable",
+          "name": "rangeChanged"
+        },
+        {
+          "kind": "variable",
+          "name": "computeStep"
+        },
+        {
+          "kind": "variable",
+          "name": "clampValue"
+        },
+        {
+          "kind": "variable",
+          "name": "computeRatio"
+        },
+        {
+          "kind": "variable",
+          "name": "validateValue"
+        },
+        {
+          "kind": "variable",
+          "name": "valueValue"
+        },
+        {
+          "kind": "variable",
+          "name": "minValue"
+        },
+        {
+          "kind": "variable",
+          "name": "maxValue"
+        },
+        {
+          "kind": "variable",
+          "name": "stepValue"
+        },
+        {
+          "kind": "variable",
+          "name": "computeDebounce"
+        },
+        {
+          "kind": "variable",
+          "name": "debounceValue"
+        },
+        {
+          "kind": "variable",
+          "name": "RangeMixin",
+          "description": "Use `RangeMixin` to implement an element that has a range of minimum and maximum.\n\nThis is inspired by Polymer's `iron-range-behavior`."
+        }
+      ],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "ratioValue",
+          "declaration": {
+            "name": "ratioValue",
+            "module": "src/mixins/RangeMixin.ts"
+          }
+        },
+        {
+          "kind": "js",
+          "name": "rangeChanged",
+          "declaration": {
+            "name": "rangeChanged",
+            "module": "src/mixins/RangeMixin.ts"
+          }
+        },
+        {
+          "kind": "js",
+          "name": "computeStep",
+          "declaration": {
+            "name": "computeStep",
+            "module": "src/mixins/RangeMixin.ts"
+          }
+        },
+        {
+          "kind": "js",
+          "name": "clampValue",
+          "declaration": {
+            "name": "clampValue",
+            "module": "src/mixins/RangeMixin.ts"
+          }
+        },
+        {
+          "kind": "js",
+          "name": "computeRatio",
+          "declaration": {
+            "name": "computeRatio",
+            "module": "src/mixins/RangeMixin.ts"
+          }
+        },
+        {
+          "kind": "js",
+          "name": "validateValue",
+          "declaration": {
+            "name": "validateValue",
+            "module": "src/mixins/RangeMixin.ts"
+          }
+        },
+        {
+          "kind": "js",
+          "name": "valueValue",
+          "declaration": {
+            "name": "valueValue",
+            "module": "src/mixins/RangeMixin.ts"
+          }
+        },
+        {
+          "kind": "js",
+          "name": "minValue",
+          "declaration": {
+            "name": "minValue",
+            "module": "src/mixins/RangeMixin.ts"
+          }
+        },
+        {
+          "kind": "js",
+          "name": "maxValue",
+          "declaration": {
+            "name": "maxValue",
+            "module": "src/mixins/RangeMixin.ts"
+          }
+        },
+        {
+          "kind": "js",
+          "name": "stepValue",
+          "declaration": {
+            "name": "stepValue",
+            "module": "src/mixins/RangeMixin.ts"
+          }
+        },
+        {
+          "kind": "js",
+          "name": "computeDebounce",
+          "declaration": {
+            "name": "computeDebounce",
+            "module": "src/mixins/RangeMixin.ts"
+          }
+        },
+        {
+          "kind": "js",
+          "name": "debounceValue",
+          "declaration": {
+            "name": "debounceValue",
+            "module": "src/mixins/RangeMixin.ts"
+          }
+        },
+        {
+          "kind": "js",
+          "name": "RangeMixin",
+          "declaration": {
+            "name": "RangeMixin",
+            "module": "src/mixins/RangeMixin.ts"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "src/mixins/ResizableMixin.ts",
+      "declarations": [
+        {
+          "kind": "variable",
+          "name": "resizeNotificationEventType",
+          "type": {
+            "text": "string"
+          },
+          "default": "'requestresizenotifications'"
+        },
+        {
+          "kind": "variable",
+          "name": "resizeEventType",
+          "type": {
+            "text": "string"
+          },
+          "default": "'resize'"
+        },
+        {
+          "kind": "variable",
+          "name": "ResizableMixin",
+          "description": "This mixin is a port of [IronResizableBehavior]https://github.com/PolymerElements/iron-resizable-behavior\nthat works with LitElement.\n\n`ResizableMixin` is a behavior that can be used in web components to\ncoordinate the flow of resize events between \"resizers\" (elements that\ncontrol the size or hidden state of their children) and \"resizables\" (elements\nthat need to be notified when they are resized or un-hidden by their parents\nin order to take action on their new measurements).\n\nElements that perform measurement should add the `ResizableMixin` mixin to their element definition and listen for the `resize` event on themselves. \nThis event will be fired when they become showing after having been hidden, when they are resized explicitly by another resizable, or when the window has been resized.\n\nNote, the `resize` event is non-bubbling.\n\n## Usage\n\n```javascript\nimport { LitElement } from 'lit-element';\nimport { ResizableMixin } from 'anypoint-web-components/awc';\n\nclass ResizableImpl extends ResizableMixin(LitElement) {\n ...\n}\n```"
+        }
+      ],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "resizeNotificationEventType",
+          "declaration": {
+            "name": "resizeNotificationEventType",
+            "module": "src/mixins/ResizableMixin.ts"
+          }
+        },
+        {
+          "kind": "js",
+          "name": "resizeEventType",
+          "declaration": {
+            "name": "resizeEventType",
+            "module": "src/mixins/ResizableMixin.ts"
+          }
+        },
+        {
+          "kind": "js",
+          "name": "ResizableMixin",
+          "declaration": {
+            "name": "ResizableMixin",
+            "module": "src/mixins/ResizableMixin.ts"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "src/mixins/ScrollTargetMixin.ts",
+      "declarations": [
+        {
+          "kind": "variable",
+          "name": "ScrollTargetMixin",
+          "description": "This mixin is a port of [IronScrollTargetBehavior](https://github.com/PolymerElements/iron-acroll-target-behavior)\nthat works with LitElements.\n\n`ScrollTargetMixin` allows an element to respond to scroll\nevents from a designated scroll target.\n\nElements that consume this mixin can override the `_scrollHandler`\nmethod to add logic on the scroll event."
+        }
+      ],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "ScrollTargetMixin",
+          "declaration": {
+            "name": "ScrollTargetMixin",
+            "module": "src/mixins/ScrollTargetMixin.ts"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "src/mixins/SelectableMixin.ts",
+      "declarations": [
+        {
+          "kind": "function",
+          "name": "matchesSelector",
+          "return": {
+            "type": {
+              "text": ""
+            }
+          },
+          "parameters": [
+            {
+              "name": "node",
+              "type": {
+                "text": "Node"
+              },
+              "description": "Node to check selector against"
+            },
+            {
+              "name": "selector",
+              "type": {
+                "text": "string"
+              },
+              "description": "Selector to match"
+            }
+          ],
+          "description": "Cross-platform `element.matches` shim."
+        },
+        {
+          "kind": "variable",
+          "name": "SelectableMixin",
+          "description": "Port of `@polymer/iron-selector/iron-selectable.js`.\n\nA mixin to be applied to a class where child elements can be selected.\n\nNote, by default the mixin works with LitElement. If used with different class\nmake sure that attributes are reflected to properties correctly."
+        }
+      ],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "matchesSelector",
+          "declaration": {
+            "name": "matchesSelector",
+            "module": "src/mixins/SelectableMixin.ts"
+          }
+        },
+        {
+          "kind": "js",
+          "name": "SelectableMixin",
+          "declaration": {
+            "name": "SelectableMixin",
+            "module": "src/mixins/SelectableMixin.ts"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "src/mixins/ValidatableMixin.ts",
+      "declarations": [
+        {
+          "kind": "variable",
+          "name": "ValidatableMixin",
+          "description": "This validatable supports multiple validators.\n\nUse `ValidatableMixin` to implement an element that validates user input.\nUse the related `ArcValidatorBehavior` to add custom validation logic\nto an iron-input or other wrappers around native inputs.\n\nBy default, an `<iron-form>` element validates its fields when the user presses the submit\nbutton.\nTo validate a form imperatively, call the form's `validate()` method, which in turn will\ncall `validate()` on all its children. By using `ValidatableMixin`, your\ncustom element will get a public `validate()`, which will return the validity\nof the element, and a corresponding `invalid` attribute, which can be used for styling.\n\nTo implement the custom validation logic of your element, you must override\nthe protected `_getValidity()` method of this behaviour, rather than `validate()`.\nSee [this](https://github.com/PolymerElements/iron-form/blob/master/demo/simple-element.html)\nfor an example.\n\n### Accessibility\n\nChanging the `invalid` property, either manually or by calling `validate()` will update the\n`aria-invalid` attribute."
+        }
+      ],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "ValidatableMixin",
+          "declaration": {
+            "name": "ValidatableMixin",
+            "module": "src/mixins/ValidatableMixin.ts"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "src/mixins/ValidatorMixin.ts",
+      "declarations": [
+        {
+          "kind": "variable",
+          "name": "ValidatorMixin",
+          "description": "Use `ValidatorMixin` to implement a custom input/form validator.\nElement instances implementing this mixin will be registered for use\nin elements that implement `ValidatableMixin`."
+        }
+      ],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "ValidatorMixin",
+          "declaration": {
+            "name": "ValidatorMixin",
+            "module": "src/mixins/ValidatorMixin.ts"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "src/mixins/ValidatorStore.ts",
+      "declarations": [
+        {
+          "kind": "function",
+          "name": "register",
+          "return": {
+            "type": {
+              "text": "void"
+            }
+          },
+          "parameters": [
+            {
+              "name": "validator",
+              "type": {
+                "text": "typeof HTMLElement|Object"
+              },
+              "description": "An instance of the validator. It expects to be a\ntype of an HTMLElement, LitElement etc but can also be an object."
+            },
+            {
+              "name": "name",
+              "type": {
+                "text": "string"
+              },
+              "description": "Validator name used in the global validators registry."
+            }
+          ],
+          "description": "Registers a new validator element in the store.\nThe validator can be accessed by the `get(validatorName)` function."
+        },
+        {
+          "kind": "function",
+          "name": "unregister",
+          "return": {
+            "type": {
+              "text": "void"
+            }
+          },
+          "parameters": [
+            {
+              "name": "validator",
+              "type": {
+                "text": "typeof HTMLElement|Object"
+              },
+              "description": "An instance of the validator. It expects to be a\ntype of an HTMLElement, LitElement etc but can also be an object."
+            }
+          ],
+          "description": "Removes the validator from the store.\nThis intentionally uses an instance of validator instead of the name to remove\nthe ref from the object when the instance of an element is being removed from\nthe DOM."
+        },
+        {
+          "kind": "function",
+          "name": "get",
+          "return": {
+            "type": {
+              "text": ""
+            }
+          },
+          "parameters": [
+            {
+              "name": "name",
+              "type": {
+                "text": "string"
+              },
+              "description": "Validator name used in the global validators registry."
+            }
+          ],
+          "description": "Registers a new validator element in the store.\nThe validator can be accessed by the `get(validatorName)` function."
+        }
+      ],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "register",
+          "declaration": {
+            "name": "register",
+            "module": "src/mixins/ValidatorStore.ts"
+          }
+        },
+        {
+          "kind": "js",
+          "name": "unregister",
+          "declaration": {
+            "name": "unregister",
+            "module": "src/mixins/ValidatorStore.ts"
+          }
+        },
+        {
+          "kind": "js",
+          "name": "get",
+          "declaration": {
+            "name": "get",
+            "module": "src/mixins/ValidatorStore.ts"
           }
         }
       ]
