@@ -11,9 +11,6 @@ import '../src/colors.js';
 
 class ComponentDemoPage extends DemoPage {
   @demoProperty()
-  demoDisabled = false;
-
-  @demoProperty()
   hasTitle = true;
 
   @demoProperty()
