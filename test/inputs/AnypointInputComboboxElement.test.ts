@@ -243,21 +243,25 @@ describe('AnypointInputComboboxElement', () => {
 
     it('sets the role on the element', async () => {
       const element = await listFixture();
+      await nextFrame();
       assert.equal(element.getAttribute('role'), 'combobox');
     });
 
     it('sets aria-haspopup on the element', async () => {
       const element = await listFixture();
+      await nextFrame();
       assert.equal(element.getAttribute('aria-haspopup'), 'true');
     });
 
     it('respects set aria-haspopup', async () => {
       const element = await haspopupFixture();
+      await nextFrame();
       assert.equal(element.getAttribute('aria-haspopup'), 'false');
     });
 
     it('sets aria-expanded on the element when not opened', async () => {
       const element = await listFixture();
+      await nextFrame();
       assert.equal(element.getAttribute('aria-expanded'), 'false');
     });
 
@@ -269,6 +273,7 @@ describe('AnypointInputComboboxElement', () => {
 
     it('sets aria-expanded on the element when opened', async () => {
       const element = await listFixture();
+      await nextFrame();
       element.opened = true;
       assert.equal(element.getAttribute('aria-expanded'), 'true');
     });
@@ -282,6 +287,7 @@ describe('AnypointInputComboboxElement', () => {
 
     it('is accessible in a default state', async () => {
       const element = await listFixture();
+      await nextFrame();
       await assert.isAccessible(element);
     });
   });

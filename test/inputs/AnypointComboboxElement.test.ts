@@ -1,4 +1,4 @@
-import { fixture, assert, html, aTimeout } from '@open-wc/testing';
+import { fixture, assert, html, aTimeout, nextFrame } from '@open-wc/testing';
 import '../../src/define/anypoint-combobox.js';
 import { AnypointComboboxElement } from '../../src/index.js'
 
@@ -39,6 +39,7 @@ describe('<anypoint-combobox>', () => {
 
     it('is accessible with value', async () => {
       const element = await a11yFixture();
+      await nextFrame();
       await assert.isAccessible(element);
     });
   });
