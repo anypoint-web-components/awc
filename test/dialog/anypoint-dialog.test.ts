@@ -94,7 +94,7 @@ describe('<anypoint-dialog>', () => {
     it('does not close the overlay when clicking on a dialog', async () => {
       const element = await openedFixture();
       const spy = sinon.spy();
-      element.addEventListener('overlay-closed', spy);
+      element.addEventListener('closed', spy);
       MockInteractions.tap(element);
       await aTimeout(100);
       assert.isFalse(spy.called);
@@ -104,7 +104,7 @@ describe('<anypoint-dialog>', () => {
       const element = await openedFixture();
       element.noAnimations = true;
       const spy = sinon.spy();
-      element.addEventListener('overlay-closed', spy);
+      element.addEventListener('closed', spy);
       const button = element.querySelector('[dialog-dismiss]')!;
       MockInteractions.tap(button);
       await aTimeout(100);
@@ -118,7 +118,7 @@ describe('<anypoint-dialog>', () => {
       const element = await openedCustomButtonFixture();
       element.noAnimations = true;
       const spy = sinon.spy();
-      element.addEventListener('overlay-closed', spy);
+      element.addEventListener('closed', spy);
       const button = element.querySelector('[dialog-dismiss]')!;
       MockInteractions.tap(button);
       await aTimeout(100);
@@ -132,7 +132,7 @@ describe('<anypoint-dialog>', () => {
       const element = await openedDataAttributeFixture();
       element.noAnimations = true;
       const spy = sinon.spy();
-      element.addEventListener('overlay-closed', spy);
+      element.addEventListener('closed', spy);
       const button = element.querySelector('[data-dialog-dismiss]')!;
       MockInteractions.tap(button);
       await aTimeout(100);
@@ -146,7 +146,7 @@ describe('<anypoint-dialog>', () => {
       const element = await openedFixture();
       element.noAnimations = true;
       const spy = sinon.spy();
-      element.addEventListener('overlay-closed', spy);
+      element.addEventListener('closed', spy);
       const button = element.querySelector('[dialog-confirm]')!;
       MockInteractions.tap(button);
       await aTimeout(100);
@@ -160,7 +160,7 @@ describe('<anypoint-dialog>', () => {
       const element = await openedCustomButtonFixture();
       element.noAnimations = true;
       const spy = sinon.spy();
-      element.addEventListener('overlay-closed', spy);
+      element.addEventListener('closed', spy);
       const button = element.querySelector('[dialog-confirm]')!;
       MockInteractions.tap(button);
       await aTimeout(100);
@@ -174,7 +174,7 @@ describe('<anypoint-dialog>', () => {
       const element = await openedDataAttributeFixture();
       element.noAnimations = true;
       const spy = sinon.spy();
-      element.addEventListener('overlay-closed', spy);
+      element.addEventListener('closed', spy);
       const button = element.querySelector('[data-dialog-confirm]')!;
       MockInteractions.tap(button);
       await aTimeout(100);

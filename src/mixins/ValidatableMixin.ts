@@ -192,9 +192,7 @@ export function ValidatableMixin<T extends Constructor<LitElement>>(superClass: 
       this._invalid = value;
       this._invalidChanged(value);
       this.dispatchEvent(new Event('invalidchange'));
-      // @ts-ignore
       if (this.requestUpdate) {
-        // @ts-ignore
         this.requestUpdate('invalid', old);
       }
     }
@@ -233,10 +231,7 @@ export function ValidatableMixin<T extends Constructor<LitElement>>(superClass: 
           },
         })
       );
-
-      // @ts-ignore
       if (this.requestUpdate) {
-        // @ts-ignore
         this.requestUpdate('validationStates', old);
       }
     }

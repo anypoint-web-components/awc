@@ -3,7 +3,8 @@ import * as MockInteractions from '@polymer/iron-test-helpers/mock-interactions.
 import sinon from 'sinon';
 import '../../src/define/anypoint-dropdown.js';
 
-import { AnypointDropdownElement, IAnimationConfig } from '../../src/index.js';
+import { AnypointDropdownElement } from '../../src/index.js';
+import { IAnimationConfig } from '../../src/types';
 
 describe('AnypointDropdownElement', () => {
   async function basicFixture(): Promise<AnypointDropdownElement> {
@@ -90,12 +91,14 @@ describe('AnypointDropdownElement', () => {
 
     it('sets sizingTarget to the content', async () => {
       const element = await basicFixture();
+      await nextFrame();
       const content = element.querySelector('[slot="dropdown-content"]');
       assert.equal(element.sizingTarget, content);
     });
 
     it('sets sizingTarget to self when no content', async () => {
       const element = await noContentFixture();
+      await nextFrame();
       assert.equal(element.sizingTarget, element);
     });
 

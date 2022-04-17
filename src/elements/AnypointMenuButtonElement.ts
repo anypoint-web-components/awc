@@ -10,6 +10,7 @@ import { addListener, getListener } from '../lib/ElementEventsRegistry.js';
 import buttonStyles from '../styles/MenuButton.js';
 import '../define/anypoint-dropdown.js';
 import { DefaultListOpenAnimation, DefaultListCloseAnimation } from '../lib/Animations.js';
+import { retarget, retargetHandler } from '../lib/Events.js';
 
 /* eslint-disable no-plusplus */
 
@@ -119,7 +120,7 @@ export default class AnypointMenuButtonElement extends ControlStateMixin(Anypoin
 
   /**
    * This is the element intended to be bound as the focus target
-   * for the `iron-dropdown` contained by `paper-menu-button`.
+   * for the `anypoint-dropdown` contained by `anypoint-menu-button`.
    */
   @state()
   _dropdownContent?: HTMLElement;
@@ -250,10 +251,13 @@ export default class AnypointMenuButtonElement extends ControlStateMixin(Anypoin
     const path = e.composedPath();
     if (path.indexOf(trigger) > -1) {
       e.preventDefault();
+    } else {
+      retarget(e, this);
     }
   }
 
-  _closedHandler(): void {
+  _closedHandler(e: Event): void {
+    retarget(e, this);
     const slot = this.shadowRoot!.querySelector('slot[name=dropdown-trigger]') as HTMLSlotElement;
     const triggers = slot.assignedElements() as HTMLElement[];
     for (const trigger of triggers) {
@@ -299,6 +303,7 @@ export default class AnypointMenuButtonElement extends ControlStateMixin(Anypoin
       .closeAnimationConfig="${DefaultListCloseAnimation}"
       @cancel="${this.__overlayCanceledHandler}"
       @closed="${this._closedHandler}"
+      @opened="${retargetHandler}"
     >
       <div slot="dropdown-content" class="dropdown-content">
         <slot id="content" name="dropdown-content"></slot>

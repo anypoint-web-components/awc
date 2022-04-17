@@ -210,12 +210,12 @@ class ComponentDemoPage extends DemoPage {
 
         <p>
           Button with "data-dialog-dismiss" attribute will dismiss the dialog with
-          "confirmed" property on a detail object of "overlay-closed" event set to false.
+          "confirmed" property on a detail object of "closed" event set to false.
         </p>
 
         <p>
           Button with "data-dialog-confirm" attribute will close the dialog with
-          "confirmed" property on a detail object of "overlay-closed" event set to true.
+          "confirmed" property on a detail object of "closed" event set to true.
         </p>
 
         <details>

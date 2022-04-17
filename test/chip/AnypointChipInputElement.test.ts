@@ -560,6 +560,7 @@ describe('AnypointChipInputElement', () => {
         name="i1">
         <label slot="label">x</label>
       </anypoint-chip-input>`);
+      await nextFrame();
       await assert.isAccessible(element, {
         ignoredRules: ['aria-hidden-focus'],
       });
@@ -571,6 +572,7 @@ describe('AnypointChipInputElement', () => {
         required>
         <label slot="label">x</label>
       </anypoint-chip-input>`);
+      await nextFrame();
       await assert.isAccessible(element, {
         ignoredRules: ['aria-hidden-focus'],
       });
@@ -582,6 +584,7 @@ describe('AnypointChipInputElement', () => {
         disabled>
         <label slot="label">x</label>
       </anypoint-chip-input>`);
+      await nextFrame();
       await assert.isAccessible(element, {
         ignoredRules: ['aria-hidden-focus'],
       });
@@ -593,6 +596,7 @@ describe('AnypointChipInputElement', () => {
         readOnly>
         <label slot="label">x</label>
       </anypoint-chip-input>`);
+      await nextFrame();
       await assert.isAccessible(element, {
         ignoredRules: ['aria-hidden-focus'],
       });
@@ -600,6 +604,7 @@ describe('AnypointChipInputElement', () => {
 
     it('passes tests when suggestions', async () => {
       const element = await suggestionsWithIconsFixture();
+      await nextFrame();
       await assert.isAccessible(element, {
         ignoredRules: ['aria-hidden-focus'],
       });

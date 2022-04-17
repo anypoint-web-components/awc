@@ -20,6 +20,7 @@ import { HorizontalAlign, VerticalAlign } from '../mixins/FitMixin.js';
 import AnypointListboxElement from './AnypointListboxElement.js';
 import { addListener, getListener } from '../lib/ElementEventsRegistry.js';
 import AnypointElement from './AnypointElement.js';
+import { retarget, retargetHandler } from '../lib/Events.js';
 import '../define/anypoint-dropdown.js';
 import '../define/anypoint-item.js';
 import '../define/anypoint-item-body.js';
@@ -454,7 +455,7 @@ export default class AnypointAutocompleteElement extends AnypointElement {
       }
     }
     if (shouldClose) {
-      this._closeHandler();
+      this._close();
     }
   }
 
@@ -765,7 +766,12 @@ export default class AnypointAutocompleteElement extends AnypointElement {
     return source.filter(filterFn);
   }
 
-  _closeHandler(): void {
+  _closeHandler(e: Event): void {
+    retarget(e, this);
+    this._close();
+  }
+
+  protected _close(): void {
     if (this[openedValue]) {
       this[openedValue] = false;
     }
@@ -1002,6 +1008,8 @@ export default class AnypointAutocompleteElement extends AnypointElement {
       ?noOverlap=${this.noOverlap}
       @closed="${this._closeHandler}"
       @resize="${this._dropdownResizedHandler}"
+      @opened="${retargetHandler}"
+      @cancel="${retargetHandler}"
       noCancelOnOutsideClick
     >
       ${this._listboxTemplate()}

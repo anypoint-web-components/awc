@@ -8,6 +8,7 @@ import elementStyles from '../styles/InputComboboxStyles.js';
 import { VerticalAlign, HorizontalAlign } from '../mixins/FitMixin.js';
 import '../define/anypoint-dropdown.js';
 import { IAnimationConfig, DefaultListOpenAnimation, DefaultListCloseAnimation } from '../lib/Animations.js';
+import { retarget, retargetHandler } from '../lib/Events.js';
 
 export const dropdownTemplate = Symbol('dropdownTemplate');
 export const openedChanged = Symbol('openedChanged');
@@ -291,12 +292,14 @@ export default class AnypointInputComboboxElement extends AnypointInputElement {
     this.dispatchEvent(new Event('change'));
   }
 
-  [dropdownClosed](): void {
+  [dropdownClosed](e: Event): void {
+    retarget(e, this);
     this.opened = false;
     this.inputElement?.focus();
   }
 
-  [dropdownOpened](): void {
+  [dropdownOpened](e: Event): void {
+    retarget(e, this);
     this.opened = true;
   }
 
@@ -350,9 +353,10 @@ export default class AnypointInputComboboxElement extends AnypointInputElement {
       .closeAnimationConfig="${closeAnimationConfig || DefaultListCloseAnimation}"
       ?noAnimations="${noAnimations}"
       ?allowOutsideScroll="${allowOutsideScroll}"
-      @overlay-closed="${this[dropdownClosed]}"
-      @overlay-opened="${this[dropdownOpened]}"
+      @closed="${this[dropdownClosed]}"
+      @opened="${this[dropdownOpened]}"
       @select="${this[selectHandler]}"
+      @cancel="${retargetHandler}"
     >
       <div slot="dropdown-content" class="dropdown-content">
         <slot id="content" name="dropdown-content"></slot>

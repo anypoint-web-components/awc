@@ -32,18 +32,16 @@ function isPrintable(event: KeyboardEvent): boolean {
   // None of this makes any sense.
 
   // For these keys, ASCII code == browser keycode.
-  const anyNonPrintable = event.keyCode === 8 // backspace
-    || event.keyCode === 9 // tab
-    || event.keyCode === 13 // enter
-    || event.keyCode === 27; // escape
+  const anyNonPrintable = event.key === 'Backspace' || event.key === 'Tab' || event.key === 'Enter' || event.key === 'Escape';
 
   // For these keys, make sure it's a browser keycode and not an ASCII code.
   const mozNonPrintable = event.keyCode === 19 // pause
-    || event.keyCode === 20 // caps lock
-    || event.keyCode === 45 // insert
-    || event.keyCode === 46 // delete
-    || event.keyCode === 144 // num lock
-    || event.keyCode === 145 // scroll lock
+    || event.key === 'CapsLock'
+    || event.key === 'Insert'
+    || event.key === 'Delete'
+    || event.key === 'NumLock'
+    || event.key === 'ContextMenu'
+    || event.key === 'ScrollLock' // scroll lock
     || (event.keyCode > 32 && event.keyCode < 41) // page up/down, end, home, arrows
     || (event.keyCode > 111 && event.keyCode < 124); // fn keys
 
@@ -158,12 +156,7 @@ export default class AnypointInputElement extends ValidatableMixin(AnypointEleme
       return;
     }
     this._value = value;
-    /* istanbul ignore else */
-    // @ts-ignore
-    if (this.requestUpdate) {
-      // @ts-ignore
-      this.requestUpdate('value', old);
-    }
+    this.requestUpdate('value', old);
     /* istanbul ignore else */
     // @ts-ignore
     if (this._internals && typeof this._internals.setFormValue === 'function') {
@@ -208,12 +201,7 @@ export default class AnypointInputElement extends ValidatableMixin(AnypointEleme
       return;
     }
     this._autofocus = value;
-    /* istanbul ignore else */
-    // @ts-ignore
-    if (this.requestUpdate) {
-      // @ts-ignore
-      this.requestUpdate('autofocus', old);
-    }
+    this.requestUpdate('autofocus', old);
     this._autofocusChanged(value);
   }
 
@@ -257,7 +245,7 @@ export default class AnypointInputElement extends ValidatableMixin(AnypointEleme
     }
     this._invalidMessage = value;
     this._hasValidationMessage = this.invalid && !!value;
-    this.requestUpdate();
+    this.requestUpdate('invalidMessage', old);
   }
 
   get _patternRegExp(): RegExp | undefined {
@@ -625,7 +613,9 @@ export default class AnypointInputElement extends ValidatableMixin(AnypointEleme
   }
 
   firstUpdated(): void {
-    this._updateAriaLabelledBy();
+    requestAnimationFrame(() => {
+      this._updateAriaLabelledBy();
+    });
   }
 
   checkValidity(): boolean {
@@ -890,7 +880,7 @@ export default class AnypointInputElement extends ValidatableMixin(AnypointEleme
 
   _announceInvalidCharacter(message: string): void {
     this.dispatchEvent(
-      new CustomEvent('iron-announce', {
+      new CustomEvent('announce', {
         detail: {
           text: message,
         },

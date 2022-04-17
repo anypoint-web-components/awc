@@ -104,7 +104,7 @@ describe('OverlayMixin', () => {
   }
   
   function runAfterOpen(overlay: TestOverlay, callback: () => void | Promise<void>): void {
-    overlay.addEventListener('overlay-opened', callback);
+    overlay.addEventListener('opened', callback);
     overlay.open();
   }
 
@@ -119,7 +119,7 @@ describe('OverlayMixin', () => {
   }
 
   function runAfterClose(overlay: TestOverlay, callback: () => void | Promise<void>): void {
-    overlay.addEventListener('overlay-closed', callback);
+    overlay.addEventListener('closed', callback);
     overlay.close();
   }
 
@@ -177,11 +177,11 @@ describe('OverlayMixin', () => {
 
     it('overlay open/close events', (done) => {
       let nevents = 0;
-      overlay.addEventListener('overlay-opened', () => {
+      overlay.addEventListener('opened', () => {
         nevents += 1;
         overlay.opened = false;
       });
-      overlay.addEventListener('overlay-closed', () => {
+      overlay.addEventListener('closed', () => {
         nevents += 1;
         assert.equal(nevents, 2, 'opened and closed events fired');
         done();
@@ -189,22 +189,8 @@ describe('OverlayMixin', () => {
       overlay.opened = true;
     });
 
-    it('overlay legacy iron- open/close events', (done) => {
-      let nevents = 0;
-      overlay.addEventListener('iron-overlay-opened', () => {
-        nevents += 1;
-        overlay.opened = false;
-      });
-      overlay.addEventListener('iron-overlay-closed', () => {
-        nevents += 1;
-        assert.equal(nevents, 2, 'opened and closed events fired');
-        done();
-      });
-      overlay.opened = true;
-    });
-
-    it('overlay opened-changed event', (done) => {
-      overlay.addEventListener('opened-changed', () => {
+    it('overlay openedchange event', (done) => {
+      overlay.addEventListener('openedchange', () => {
         done();
       });
       overlay.opened = true;
@@ -218,10 +204,10 @@ describe('OverlayMixin', () => {
       });
     });
 
-    it('open overlay refits on iron-resize', (done) => {
+    it('open overlay refits on resize', (done) => {
       runAfterOpen(overlay, () => {
         const spy = sinon.spy(overlay, 'refit');
-        overlay.dispatchEvent(new CustomEvent('iron-resize', {
+        overlay.dispatchEvent(new CustomEvent('resize', {
           composed: true,
           bubbles: true
         }));
@@ -289,10 +275,10 @@ describe('OverlayMixin', () => {
       assert.equal(spy.callCount, 1, 'overlay did refit only once');
     });
 
-    it('open overlay refits on iron-resize', async () => {
+    it('open overlay refits on resize', async () => {
       await untilOpen(overlay);
       const spy = sinon.spy(overlay, 'refit');
-      overlay.dispatchEvent(new CustomEvent('iron-resize', {
+      overlay.dispatchEvent(new CustomEvent('resize', {
         composed: true,
         bubbles: true
       }));
@@ -300,7 +286,7 @@ describe('OverlayMixin', () => {
       assert.isTrue(spy.called, 'overlay did refit');
     });
 
-    it('closed overlay does not refit on iron-resize', async () => {
+    it('closed overlay does not refit on resize', async () => {
       const spy = sinon.spy(overlay, 'refit');
       overlay.dispatchEvent(new CustomEvent('resize', {
         composed: true,
@@ -328,7 +314,7 @@ describe('OverlayMixin', () => {
     });
 
     it('closed overlay does not trigger resize when its content changes', async () => {
-      // Ignore iron-resize triggered by window resize.
+      // Ignore resize triggered by window resize.
       let callCount = 0;
       window.addEventListener('resize', () => {
         callCount--;
@@ -397,15 +383,6 @@ describe('OverlayMixin', () => {
       await oneEvent(overlay, 'cancel');
     });
 
-    it('clicking outside fires legacy overlay-canceled', async () => {
-      await untilOpen(overlay);
-      setTimeout(() => {
-        document.body.click();
-      });
-      const event = await oneEvent(overlay, 'overlay-canceled');
-      assert.equal(event.detail.target, document.body, 'detail contains original click event');
-    });
-
     it('clicking outside closes the overlay', async () => {
       await untilOpen(overlay);
       setTimeout(() => {
@@ -424,29 +401,9 @@ describe('OverlayMixin', () => {
       assert.isFalse(spy.called, 'closed not fired');
     });
 
-    it('canceled legacy overlay-canceled event can be prevented', async () => {
-      await untilOpen(overlay);
-      const spy = sinon.stub();
-      overlay.addEventListener('closed', spy);
-      await untilCancel(overlay, 'overlay-canceled');
-      assert.isTrue(overlay.opened, 'overlay is still open');
-      assert.isFalse(spy.called, 'closed not fired');
-    });
-
-    it('canceled legacy iron-overlay-canceled event can be prevented', async () => {
-      await untilOpen(overlay);
-      const spy = sinon.stub();
-      overlay.addEventListener('closed', spy);
-      await untilCancel(overlay, 'iron-overlay-canceled');
-      assert.isTrue(overlay.opened, 'overlay is still open');
-      assert.isFalse(spy.called, 'closed not fired');
-    });
-
     it('cancels an overlay with esc key', (done) => {
       runAfterOpen(overlay, () => {
-        overlay.addEventListener('overlay-canceled', (event) => {
-          // @ts-ignore
-          assert.equal(event.detail.type, 'keydown');
+        overlay.addEventListener('cancel', () => {
           done();
         });
         // @ts-ignore
@@ -528,7 +485,7 @@ describe('OverlayMixin', () => {
 
     it('cancel an overlay with esc key even if event is prevented by other listeners', (done) => {
       runAfterOpen(overlay, () => {
-        overlay.addEventListener('overlay-canceled', () => {
+        overlay.addEventListener('cancel', () => {
           done();
         });
         // @ts-ignore
@@ -561,7 +518,7 @@ describe('OverlayMixin', () => {
 
     it('cancel an overlay with tap outside even if event is prevented by other listeners', (done) => {
       runAfterOpen(overlay, () => {
-        overlay.addEventListener('overlay-canceled', () => {
+        overlay.addEventListener('cancel', () => {
           done();
         });
         tap(document.body);
@@ -1050,9 +1007,7 @@ describe('OverlayMixin', () => {
     it('withBackdrop = false does not prevent click outside event', (done) => {
       overlay.withBackdrop = false;
       runAfterOpen(overlay, () => {
-        overlay.addEventListener('overlay-canceled', (event) => {
-          // @ts-ignore
-          assert.isFalse(event.detail.defaultPrevented, 'click event not prevented');
+        overlay.addEventListener('cancel', () => {
           done();
         });
         tap(document.body);
@@ -1350,7 +1305,7 @@ describe('OverlayMixin', () => {
         overlay = composed.shadowRoot!.querySelector('#overlay') as TestOverlay;
         trigger = composed.shadowRoot!.querySelector('#trigger') as HTMLButtonElement;
         overlay.withBackdrop = true;
-        overlay.addEventListener('overlay-opened', () => {
+        overlay.addEventListener('opened', () => {
           done();
         });
         tap(trigger);
@@ -1510,17 +1465,17 @@ describe('OverlayMixin', () => {
     });
   });
 
-  describe('onopenedchanged', () => {
+  describe('oncancel', () => {
     let element: TestOverlay;
     beforeEach(async () => {
       element = await basicFixture();
     });
 
     it('Getter returns previously registered handler', () => {
-      assert.isUndefined(element.onopenedchanged);
+      assert.isUndefined(element.oncancel);
       const f = () => {};
-      element.onopenedchanged = f;
-      assert.isTrue(element.onopenedchanged === f);
+      element.oncancel = f;
+      assert.isTrue(element.oncancel === f);
     });
 
     it('Calls registered function', () => {
@@ -1528,51 +1483,9 @@ describe('OverlayMixin', () => {
       const f = () => {
         called = true;
       };
-      element.onopenedchanged = f;
-      element.opened = true;
-      element.onopenedchanged = undefined;
-      assert.isTrue(called);
-    });
-
-    it('Unregisteres old function', () => {
-      let called1 = false;
-      let called2 = false;
-      const f1 = () => {
-        called1 = true;
-      };
-      const f2 = () => {
-        called2 = true;
-      };
-      element.onopenedchanged = f1;
-      element.onopenedchanged = f2;
-      element.opened = true;
-      element.onopenedchanged = undefined;
-      assert.isFalse(called1);
-      assert.isTrue(called2);
-    });
-  });
-
-  describe('onoverlaycanceled', () => {
-    let element: TestOverlay;
-    beforeEach(async () => {
-      element = await basicFixture();
-    });
-
-    it('Getter returns previously registered handler', () => {
-      assert.isUndefined(element.onoverlaycanceled);
-      const f = () => {};
-      element.onoverlaycanceled = f;
-      assert.isTrue(element.onoverlaycanceled === f);
-    });
-
-    it('Calls registered function', () => {
-      let called = false;
-      const f = () => {
-        called = true;
-      };
-      element.onoverlaycanceled = f;
+      element.oncancel = f;
       element.cancel();
-      element.onoverlaycanceled = undefined;
+      element.oncancel = undefined;
       assert.isTrue(called);
     });
 
@@ -1585,52 +1498,10 @@ describe('OverlayMixin', () => {
       const f2 = () => {
         called2 = true;
       };
-      element.onoverlaycanceled = f1;
-      element.onoverlaycanceled = f2;
+      element.oncancel = f1;
+      element.oncancel = f2;
       element.cancel();
-      element.onoverlaycanceled = undefined;
-      assert.isFalse(called1);
-      assert.isTrue(called2);
-    });
-  });
-
-  describe('onoverlayopened', () => {
-    let element: TestOverlay;
-    beforeEach(async () => {
-      element = await basicFixture();
-    });
-
-    it('Getter returns previously registered handler', () => {
-      assert.isUndefined(element.onoverlayopened);
-      const f = () => {};
-      element.onoverlayopened = f;
-      assert.isTrue(element.onoverlayopened === f);
-    });
-
-    it('Calls registered function', () => {
-      let called = false;
-      const f = () => {
-        called = true;
-      };
-      element.onoverlayopened = f;
-      element._finishRenderOpened();
-      element.onoverlayopened = undefined;
-      assert.isTrue(called);
-    });
-
-    it('Unregisteres old function', () => {
-      let called1 = false;
-      let called2 = false;
-      const f1 = () => {
-        called1 = true;
-      };
-      const f2 = () => {
-        called2 = true;
-      };
-      element.onoverlayopened = f1;
-      element.onoverlayopened = f2;
-      element._finishRenderOpened();
-      element.onoverlayopened = undefined;
+      element.oncancel = undefined;
       assert.isFalse(called1);
       assert.isTrue(called2);
     });
@@ -1673,48 +1544,6 @@ describe('OverlayMixin', () => {
       element.onopened = f2;
       element._finishRenderOpened();
       element.onopened = undefined;
-      assert.isFalse(called1);
-      assert.isTrue(called2);
-    });
-  });
-
-  describe('onoverlayclosed', () => {
-    let element: TestOverlay;
-    beforeEach(async () => {
-      element = await basicFixture();
-    });
-
-    it('Getter returns previously registered handler', () => {
-      assert.isUndefined(element.onoverlayclosed);
-      const f = () => {};
-      element.onoverlayclosed = f;
-      assert.isTrue(element.onoverlayclosed === f);
-    });
-
-    it('Calls registered function', () => {
-      let called = false;
-      const f = () => {
-        called = true;
-      };
-      element.onoverlayclosed = f;
-      element._finishRenderClosed();
-      element.onoverlayclosed = undefined;
-      assert.isTrue(called);
-    });
-
-    it('Unregisteres old function', () => {
-      let called1 = false;
-      let called2 = false;
-      const f1 = () => {
-        called1 = true;
-      };
-      const f2 = () => {
-        called2 = true;
-      };
-      element.onoverlayclosed = f1;
-      element.onoverlayclosed = f2;
-      element._finishRenderClosed();
-      element.onoverlayclosed = undefined;
       assert.isFalse(called1);
       assert.isTrue(called2);
     });

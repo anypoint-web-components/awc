@@ -32,7 +32,7 @@ Dialogs inform users about a task and can contain critical information, require 
     </anypoint-dialog>
     <script>
     {
-      document.querySelector('anypoint-dialog').addEventListener('overlay-closed', (e) => {
+      document.querySelector('anypoint-dialog').addEventListener('closed', (e) => {
         console.log(e.detail.canceled); // only when outside click or ESC key press
         console.log(e.detail.confirmed); // true when "dialog-confirm" was pressed
       });
@@ -53,7 +53,7 @@ import '@anypoint-web-components/awc/anypoint-button.js';
 class SampleElement extends LitElement {
   render() {
     return html`
-    <anypoint-dialog @overlay-closed="${this._dialogCloseHandler}">
+    <anypoint-dialog @closed="${this._dialogCloseHandler}">
       <h2>Dialog title</h2>
       <anypoint-dialog-scrollable>
         <p>Long content...</p>
@@ -77,9 +77,9 @@ customElements.define('sample-element', SampleElement);
 
 ### Action buttons
 
-Button with "dialog-dismiss" attribute will dismiss the dialog with "confirmed" property on a detail object of "overlay-closed" event set to false.
+Button with "dialog-dismiss" attribute will dismiss the dialog with "confirmed" property on a detail object of "closed" event set to false.
 
-Button with "dialog-confirm" attribute will close the dialog with "confirmed" property on a detail object of "overlay-closed" event set to true.
+Button with "dialog-confirm" attribute will close the dialog with "confirmed" property on a detail object of "closed" event set to true.
 
 ### Scrollable content
 

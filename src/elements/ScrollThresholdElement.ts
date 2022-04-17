@@ -4,7 +4,7 @@ import { ScrollTargetMixin } from '../mixins/ScrollTargetMixin.js';
 import { addListener, getListener } from '../lib/ElementEventsRegistry.js';
 
 /**
- * A port of `iron-scroll-threshold` element.
+ * A port of `scroll-threshold` element.
  */
 export default class ScrollThresholdElement extends ScrollTargetMixin(LitElement) {
   static get styles(): CSSResult {
@@ -164,7 +164,7 @@ export default class ScrollThresholdElement extends ScrollTargetMixin(LitElement
 
   /**
    * Checks the scroll thresholds.
-   * This method is automatically called by iron-scroll-threshold.
+   * This method is automatically called by -scroll-threshold.
    *
    * @method checkScrollThresholds
    */

@@ -109,7 +109,6 @@ export default class AnypointRadioGroupElement extends MenuMixin(LitElement) {
       if (typed !== selected) {
         if (typed.checked) {
           typed.checked = false;
-          typed.dispatchEvent(new Event('change'));
         }
       }
     });

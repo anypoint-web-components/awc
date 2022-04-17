@@ -420,6 +420,7 @@ describe('<anypoint-dropdown-menu>', () => {
   describe('firstUpdated()', () => {
     it('sets selectedItem when initializing', async () => {
       const element = await selectedFixture();
+      await nextFrame();
       assert.ok(element.selectedItem);
     });
 

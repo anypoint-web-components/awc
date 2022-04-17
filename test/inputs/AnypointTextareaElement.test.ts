@@ -224,16 +224,19 @@ describe('<anypoint-textarea>', () => {
 
     it('is accessible with label', async () => {
       const element = await a11yBasicFixture();
+      await nextFrame();
       await assert.isAccessible(element);
     });
 
     it('is not accessible without label', async () => {
       const element = await a11yNoLabelFixture();
+      await nextFrame();
       await assert.isNotAccessible(element);
     });
 
     it('is accessible in a form', async () => {
       const element = await formFixture();
+      await nextFrame();
       await assert.isAccessible(element);
     });
   });

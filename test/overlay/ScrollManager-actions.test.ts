@@ -62,14 +62,14 @@ describe('OverlayMixin - scroll actions', () => {
 
   async function runAfterOpen(overlay: TestOverlay): Promise<void> {
     return new Promise((resolve) => {
-      overlay.addEventListener('iron-overlay-opened', () => resolve());
+      overlay.addEventListener('opened', () => resolve());
       overlay.open();
     });
   }
 
   async function runAfterClose(overlay: TestOverlay): Promise<void> {
     return new Promise((resolve) => {
-      overlay.addEventListener('iron-overlay-closed', () => resolve());
+      overlay.addEventListener('closed', () => resolve());
       overlay.close();
     });
   }
@@ -154,12 +154,8 @@ describe('OverlayMixin - scroll actions', () => {
       overlay.scrollAction = 'cancel';
       runAfterOpen(overlay)
       .then(() => {
-        overlay.addEventListener('iron-overlay-canceled', (event) => {
-          // @ts-ignore
-          assert.equal(event.detail.type, 'scroll', 'detail contains original event');
-          // @ts-ignore
-          assert.equal(event.detail.target, scrollTarget, 'original scroll event target ok');
-          overlay.addEventListener('iron-overlay-closed', () => {
+        overlay.addEventListener('cancel', () => {
+          overlay.addEventListener('closed', () => {
             done();
           });
         });
@@ -239,12 +235,8 @@ describe('OverlayMixin - scroll actions', () => {
       overlay.scrollAction = 'cancel';
       runAfterOpen(overlay)
       .then(() => {
-        overlay.addEventListener('iron-overlay-canceled', (event) => {
-          // @ts-ignore
-          assert.equal(event.detail.type, 'scroll', 'detail contains original event');
-          // @ts-ignore
-          assert.equal(event.detail.target, scrollable, 'original scroll event target ok');
-          overlay.addEventListener('iron-overlay-closed', () => {
+        overlay.addEventListener('cancel', () => {
+          overlay.addEventListener('closed', () => {
             done();
           });
         });
@@ -293,12 +285,8 @@ describe('OverlayMixin - scroll actions', () => {
       overlay.scrollAction = 'cancel';
       runAfterOpen(overlay)
       .then(() => {
-        overlay.addEventListener('iron-overlay-canceled', (event) => {
-          // @ts-ignore
-          assert.equal(event.detail.type, 'scroll', 'detail contains original event');
-          // @ts-ignore
-          assert.equal(event.detail.target, scrollable, 'original scroll event target ok');
-          overlay.addEventListener('iron-overlay-closed', () => {
+        overlay.addEventListener('cancel', () => {
+          overlay.addEventListener('closed', () => {
             done();
           });
         });

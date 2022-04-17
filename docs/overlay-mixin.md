@@ -33,18 +33,18 @@ configurable with the `nocancelonesckey` and the
 `nocancelonoutsideclick` properties. `close()` should be called explicitly
 by the implementer when the user interacts with a control in the overlay
 element. When the dialog is canceled, the overlay fires an
-'iron-overlay-canceled' event. Call `preventDefault` on this event to prevent
+'canceled' event. Call `preventDefault` on this event to prevent
 the overlay from closing.
 
 ### Positioning
 
 By default the element is sized and positioned to fit and centered inside the
-window. You can position and size it manually using CSS. See `ArcFitMixin`.
+window. You can position and size it manually using CSS. See `FitMixin`.
 
 ### Backdrop
 
 Set the `withbackdrop` attribute to display a backdrop behind the overlay.
-The backdrop is appended to `<body>` and is of type `<iron-overlay-backdrop>`.
+The backdrop is appended to `<body>` and is of type `<overlay-backdrop>`.
 See its doc page for styling options.
 In addition, `with-backdrop` will wrap the focus within the content in the
 light DOM. Override the `_focusableNodes` getter to achieve a different behavior.

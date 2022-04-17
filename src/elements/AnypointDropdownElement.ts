@@ -216,14 +216,20 @@ export default class AnypointDropdownElement extends OverlayMixin(ControlStateMi
   }
 
   firstUpdated(): void {
-    if (!this.sizingTarget || this.sizingTarget === this) {
-      this.sizingTarget = this.containedElement || this;
-    }
+    requestAnimationFrame(() => {
+      this._setupSizingTarget();
+    });
   }
 
   disconnectedCallback(): void {
     super.disconnectedCallback();
     this.cancelAnimation();
+  }
+
+  _setupSizingTarget(): void {
+    if (!this.sizingTarget || this.sizingTarget === this) {
+      this.sizingTarget = this.containedElement || this;
+    }
   }
 
   _updateOverlayPosition(): void {

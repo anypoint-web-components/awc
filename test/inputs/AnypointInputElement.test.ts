@@ -561,6 +561,7 @@ describe('<anypoint-input>', () => {
   describe('_updateAriaLabelledBy()', () => {
     it('sets id the label when missing', async () => {
       const element = await labeledFixture();
+      await nextFrame();
       const slot = element.shadowRoot!.querySelector('slot[name="label"]') as HTMLSlotElement;
       const label = slot.assignedNodes()[0] as HTMLElement;
       assert.match(label.id, /anypoint-input-label-\d+/);
@@ -568,6 +569,7 @@ describe('<anypoint-input>', () => {
 
     it('respects existing id', async () => {
       const element = await labeledIdFixture();
+      await nextFrame();
       const slot = element.shadowRoot!.querySelector('slot[name="label"]') as HTMLSlotElement;
       const label = slot.assignedNodes()[0] as HTMLElement;
       assert.equal(label.id, 'testLabel');
@@ -575,16 +577,19 @@ describe('<anypoint-input>', () => {
 
     it('sets _ariaLabelledBy', async () => {
       const element = await labeledIdFixture();
+      await nextFrame();
       assert.equal(element._ariaLabelledBy, 'testLabel');
     });
 
     it('sets _ariaLabelledBy when no label', async () => {
       const element = await basicFixture();
+      await nextFrame();
       assert.equal(element._ariaLabelledBy, '');
     });
 
     it('sets aria-labelledby on the input', async () => {
       const element = await labeledIdFixture();
+      await nextFrame();
       const input = element.inputElement;
       assert.equal(input.getAttribute('aria-labelledby'), 'testLabel');
     });
@@ -706,9 +711,9 @@ describe('<anypoint-input>', () => {
       element = await basicFixture();
     });
 
-    it('dispatches iron-announce event', () => {
+    it('dispatches announce event', () => {
       const spy = sinon.spy();
-      element.addEventListener('iron-announce', spy);
+      element.addEventListener('announce', spy);
       element._announceInvalidCharacter('test');
       const e = spy.args[0][0];
       assert.equal(e.detail.text, 'test');
@@ -789,7 +794,7 @@ describe('<anypoint-input>', () => {
     it('returns false when step mismatch', async () => {
       element.type = 'number';
       element.value = 10.123;
-      element.step = 1;
+      element.step = '1';
       await nextFrame();
       const result = element._checkInputValidity();
       assert.isFalse(result);
@@ -798,7 +803,7 @@ describe('<anypoint-input>', () => {
     it('returns true for number', async () => {
       element.type = 'number';
       element.value = 10;
-      element.step = 1;
+      element.step = '1';
       element.min = 1;
       element.max = 100;
       await nextFrame();
@@ -1150,27 +1155,35 @@ describe('<anypoint-input>', () => {
 
   describe('a11y', () => {
     async function a11yBasicFixture(): Promise<AnypointInputElement> {
-      return fixture(html`<anypoint-input value="test value">
+      const element = await fixture(html`<anypoint-input value="test value">
       <label slot="label">test label</label>
       </anypoint-input>`);
+      await aTimeout(1);
+      return element as AnypointInputElement;
     }
 
     async function a11yNoLabelFixture(): Promise<AnypointInputElement> {
-      return fixture(html`<anypoint-input value="test value"></anypoint-input>`);
+      const element = await fixture(html`<anypoint-input value="test value"></anypoint-input>`);
+      await aTimeout(1);
+      return element as AnypointInputElement;
     }
 
     async function a11yPrefixFixture(): Promise<AnypointInputElement> {
-      return fixture(html`<anypoint-input name="amount-usd">
+      const element = await fixture(html`<anypoint-input name="amount-usd">
         <label slot="label">Amount to transfer</label>
         <span slot="prefix" aria-label="Value in US dollars">$</span>
       </anypoint-input>`);
+      await aTimeout(1);
+      return element as AnypointInputElement;
     }
 
     async function a11ySuffixFixture(): Promise<AnypointInputElement> {
-      return fixture(html`<anypoint-input type="email" name="email-suffix">
+      const element = await fixture(html`<anypoint-input type="email" name="email-suffix">
         <label slot="label">Email</label>
         <div slot="suffix">@mulesoft.com</div>
       </anypoint-input>`);
+      await aTimeout(1);
+      return element as AnypointInputElement;
     }
 
     async function formFixture(): Promise<HTMLFormElement> {
@@ -1200,6 +1213,7 @@ describe('<anypoint-input>', () => {
 
     it('sets tabindex on the element', async () => {
       const element = await basicFixture();
+      await nextFrame();
       assert.equal(element.getAttribute('tabindex'), '0');
     });
 
@@ -1207,41 +1221,49 @@ describe('<anypoint-input>', () => {
       const element = await fixture(
         `<anypoint-input tabindex="1"></anypoint-input>`
       );
+      await nextFrame();
       assert.equal(element.getAttribute('tabindex'), '1');
     });
 
     it('is accessible with label', async () => {
       const element = await a11yBasicFixture();
+      await nextFrame();
       await assert.isAccessible(element);
     });
 
     it('is not accessible without label', async () => {
       const element = await a11yNoLabelFixture();
+      await nextFrame();
       await assert.isNotAccessible(element);
     });
 
     it('is accessible with a prefix', async () => {
       const element = await a11yPrefixFixture();
+      await nextFrame();
       await assert.isAccessible(element);
     });
 
     it('is accessible with a suffix', async () => {
       const element = await a11ySuffixFixture();
+      await nextFrame();
       await assert.isAccessible(element);
     });
 
     it('is accessible in a form', async () => {
       const element = await formFixture();
+      await nextFrame();
       await assert.isAccessible(element);
     });
 
     it('is accessible when outlined', async () => {
       const element = await a11yOutlinedFixture();
+      await nextFrame();
       await assert.isAccessible(element);
     });
 
     it('is accessible when anypoint mode', async () => {
       const element = await a11yAnypointFixture();
+      await nextFrame();
       await assert.isAccessible(element);
     });
   });

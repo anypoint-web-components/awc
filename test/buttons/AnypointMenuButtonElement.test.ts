@@ -143,7 +143,7 @@ describe('<anypoint-menu-button>', () => {
     it('closes current and opens other', (done) => {
       expect(element.opened).to.be.equal(undefined);
       expect(other.opened).to.be.equal(undefined);
-      element.addEventListener('iron-overlay-opened', () => {
+      element.addEventListener('opened', () => {
         expect(element.opened).to.be.equal(true);
         expect(other.opened).to.be.equal(undefined);
 

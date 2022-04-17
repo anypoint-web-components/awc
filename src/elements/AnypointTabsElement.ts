@@ -181,9 +181,6 @@ export default class AnypointTabsElement extends MenubarMixin(ResizableMixin(Any
     this._selectHandler = this._selectHandler.bind(this);
     this._deselectHandler = this._deselectHandler.bind(this);
     this._blurHandler = this._blurHandler.bind(this);
-    this._touchStart = this._touchStart.bind(this);
-    this._touchEnd = this._touchEnd.bind(this);
-    this._touchMove = this._touchMove.bind(this);
 
     this._holdJob = null;
     this._pendingActivationItem = undefined;
@@ -515,6 +512,9 @@ export default class AnypointTabsElement extends MenubarMixin(ResizableMixin(Any
 
   @eventOptions({passive: true})
   _touchMove(e: TouchEvent): void {
+    if (!this.scrollable) {
+      return;
+    }
     const touches = e.changedTouches;
     const touch = touches && touches[0];
     if (!touch) {
@@ -527,6 +527,9 @@ export default class AnypointTabsElement extends MenubarMixin(ResizableMixin(Any
 
   @eventOptions({passive: true})
   _touchStart(e: TouchEvent): void {
+    if (!this.scrollable) {
+      return;
+    }
     const { touches } = e;
     const touch = touches && touches[0];
     if (!touch) {
@@ -537,6 +540,9 @@ export default class AnypointTabsElement extends MenubarMixin(ResizableMixin(Any
 
   @eventOptions({passive: true})
   _touchEnd(): void {
+    if (!this.scrollable) {
+      return;
+    }
     this.__lastTouchX = 0;
   }
 
@@ -598,16 +604,13 @@ export default class AnypointTabsElement extends MenubarMixin(ResizableMixin(Any
 
   render(): TemplateResult {
     const { _contentClass, scrollable, } = this;
-    const startEvent = scrollable ? this._touchStart : undefined;
-    const moveEvent = scrollable ? this._touchMove : undefined;
-    const endEvent = scrollable ? this._touchEnd : undefined;
     return html`
       ${this._leftButtonTemplate(scrollable)}
       <div
         id="tabsContainer"
-        @touchstart="${startEvent}"
-        @touchmove="${moveEvent}"
-        @touchend="${endEvent}"
+        @touchstart="${this._touchStart}"
+        @touchmove="${this._touchMove}"
+        @touchend="${this._touchEnd}"
       >
         <div id="tabsContent" class="${_contentClass}">
           ${this._selectionTemplate()}

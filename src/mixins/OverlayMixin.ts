@@ -35,8 +35,7 @@ export interface OverlayMixinInterface extends FitMixinInterface, ResizableMixin
   noCancelOnOutsideClick?: boolean;
 
   /**
-   * Contains the reason(s) this overlay was last closed (see
-   * `overlay-closed`). `OverlayMixin` provides the `canceled`
+   * Contains the reason(s) this overlay was last closed (see `closed`). `OverlayMixin` provides the `canceled`
    * reason; implementers of the behavior can provide other reasons in
    * addition to `canceled`.
    */
@@ -98,24 +97,9 @@ export interface OverlayMixinInterface extends FitMixinInterface, ResizableMixin
   get _focusableNodes(): Node[];
 
   /**
-   * @return Previously registered handler for `opened-changed` event
+   * @return Previously registered handler for `cancel` event
    */
-  onopenedchanged: EventListener | undefined;
-
-  /**
-   * @return Previously registered handler for `overlay-canceled` event
-   */
-  onoverlaycanceled: EventListener | undefined;
-
-  /**
-   * @return Previously registered handler for `overlay-opened` event
-   */
-  onoverlayopened: EventListener | undefined;
-
-  /**
-   * @return Previously registered handler for `overlay-closed` event
-   */
-  onoverlayclosed: EventListener | undefined;
+  oncancel: EventListener | undefined;
 
   /**
    * @return Previously registered handler for `opened` event
@@ -174,15 +158,13 @@ export interface OverlayMixinInterface extends FitMixinInterface, ResizableMixin
   _renderClosed(): void;
 
   /**
-   * Tasks to be performed at the end of open action. Will fire
-   * `overlay-opened`.
+   * Tasks to be performed at the end of open action. Will fire`opened`.
    * @protected
    */
   _finishRenderOpened(): void;
 
   /**
-   * Tasks to be performed at the end of close action. Will fire
-   * `overlay-closed`.
+   * Tasks to be performed at the end of close action. Will fire `closed`.
    * @protected
    */
   _finishRenderClosed(): void;
@@ -214,7 +196,7 @@ export interface OverlayMixinInterface extends FitMixinInterface, ResizableMixin
  * `noCancelOnOutsideClick` properties. `close()` should be called explicitly
  * by the implementer when the user interacts with a control in the overlay
  * element. When the dialog is canceled, the overlay fires an
- * 'overlay-canceled' event. Call `preventDefault` on this event to prevent
+ * 'cancel' event. Call `preventDefault` on this event to prevent
  * the overlay from closing.
  *
  * ### Positioning
@@ -251,6 +233,10 @@ export interface OverlayMixinInterface extends FitMixinInterface, ResizableMixin
  * }
  * ```
  *
+ * @fires cancel
+ * @fires opened
+ * @fires closed
+ * @fires openedchange
  * @mixin
  */
 export function OverlayMixin<T extends Constructor<LitElement>>(superClass: T): Constructor<OverlayMixinInterface> & T {
@@ -275,8 +261,7 @@ export function OverlayMixin<T extends Constructor<LitElement>>(superClass: T): 
     noCancelOnOutsideClick?: boolean;
 
     /**
-     * Contains the reason(s) this overlay was last closed (see
-     * `overlay-closed`). `OverlayMixin` provides the `canceled`
+     * Contains the reason(s) this overlay was last closed (see `closed`). `OverlayMixin` provides the `canceled`
      * reason; implementers of the behavior can provide other reasons in
      * addition to `canceled`.
      */
@@ -333,12 +318,7 @@ export function OverlayMixin<T extends Constructor<LitElement>>(superClass: T): 
       this.requestUpdate('opened', old);
       this._openedChanged(value);
       this.__updateScrollObservers(this._isAttached, !!value, this.scrollAction);
-      this.dispatchEvent(new CustomEvent('openedchange'));
-      this.dispatchEvent(new CustomEvent('opened-changed', {
-        detail: {
-          value
-        }
-      }));
+      this.dispatchEvent(new Event('openedchange'));
     }
 
     /**
@@ -449,67 +429,19 @@ export function OverlayMixin<T extends Constructor<LitElement>>(superClass: T): 
     }
 
     /**
-     * @return Previously registered handler for `opened-changed` event
+     * @return Previously registered handler for `cancel` event
      */
-    get onopenedchanged(): EventListener | undefined {
-      return getListener('opened-changed', this);
+    get oncancel(): EventListener | undefined {
+      return getListener('cancel', this);
     }
 
     /**
-     * Registers a callback function for `opened-changed` event
+     * Registers a callback function for `cancel` event
      * @param value A callback to register. Pass `null` or `undefined`
      * to clear the listener.
      */
-    set onopenedchanged(value: EventListener | undefined) {
-      addListener('opened-changed', value, this);
-    }
-
-    /**
-     * @return Previously registered handler for `overlay-canceled` event
-     */
-    get onoverlaycanceled(): EventListener | undefined {
-      return getListener('overlay-canceled', this);
-    }
-
-    /**
-     * Registers a callback function for `overlay-canceled` event
-     * @param value A callback to register. Pass `null` or `undefined`
-     * to clear the listener.
-     */
-    set onoverlaycanceled(value: EventListener | undefined) {
-      addListener('overlay-canceled', value, this);
-    }
-
-    /**
-     * @return Previously registered handler for `overlay-opened` event
-     */
-    get onoverlayopened(): EventListener | undefined {
-      return getListener('overlay-opened', this);
-    }
-
-    /**
-     * Registers a callback function for `overlay-opened` event
-     * @param value A callback to register. Pass `null` or `undefined`
-     * to clear the listener.
-     */
-    set onoverlayopened(value: EventListener | undefined) {
-      addListener('overlay-opened', value, this);
-    }
-
-    /**
-     * @return Previously registered handler for `overlay-closed` event
-     */
-    get onoverlayclosed(): EventListener | undefined {
-      return getListener('overlay-closed', this);
-    }
-
-    /**
-     * Registers a callback function for `overlay-closed` event
-     * @param value A callback to register. Pass `null` or `undefined`
-     * to clear the listener.
-     */
-    set onoverlayclosed(value: EventListener | undefined) {
-      addListener('overlay-closed', value, this);
+    set oncancel(value: EventListener | undefined) {
+      addListener('cancel', value, this);
     }
 
     /**
@@ -590,7 +522,7 @@ export function OverlayMixin<T extends Constructor<LitElement>>(superClass: T): 
 
     connectedCallback(): void {
       super.connectedCallback();
-      this.addEventListener('iron-resize', this._onIronResize);
+      this.addEventListener('resize', this._onIronResize);
 
       if (!this._elementReady) {
         this._elementReady = true;
@@ -615,7 +547,7 @@ export function OverlayMixin<T extends Constructor<LitElement>>(superClass: T): 
 
     disconnectedCallback(): void {
       super.disconnectedCallback();
-      this.removeEventListener('iron-resize', this._onIronResize);
+      this.removeEventListener('resize', this._onIronResize);
       this._removeSlotListeners();
 
       Object.keys(this.__rafs).forEach((cb) => {
@@ -626,7 +558,7 @@ export function OverlayMixin<T extends Constructor<LitElement>>(superClass: T): 
       this.__rafs = {};
       this._manager.removeOverlay(this);
       // We got detached while animating, ensure we show/hide the overlay
-      // and fire overlay-opened/closed event!
+      // and fire opened/closed event!
       if (this.__isAnimating) {
         if (this.opened) {
           this._finishRenderOpened();
@@ -725,29 +657,11 @@ export function OverlayMixin<T extends Constructor<LitElement>>(superClass: T): 
 
     /**
      * Cancels the overlay.
-     * @param {Event=} event The original event
      */
-    cancel(event?: Event): void {
-      const detail = {
-        cancelable: true,
-        bubbles: true,
-        composed: true,
-        detail: event
-      };
+    cancel(): void {
       // This is consistent with the web platform and the `cancel` event
       // Note, don't set `oncancel` event registration as this is a standard property
-      let cancelEvent = new Event('cancel', { cancelable: true, bubbles: true });
-      this.dispatchEvent(cancelEvent);
-      if (cancelEvent.defaultPrevented) {
-        return;
-      }
-      // Deprecate the two
-      cancelEvent = new CustomEvent('overlay-canceled', detail);
-      this.dispatchEvent(cancelEvent);
-      if (cancelEvent.defaultPrevented) {
-        return;
-      }
-      cancelEvent = new CustomEvent('iron-overlay-canceled', detail);
+      const cancelEvent = new Event('cancel', { cancelable: true });
       this.dispatchEvent(cancelEvent);
       if (cancelEvent.defaultPrevented) {
         return;
@@ -863,26 +777,17 @@ export function OverlayMixin<T extends Constructor<LitElement>>(superClass: T): 
     }
 
     /**
-     * Tasks to be performed at the end of open action. Will fire
-     * `overlay-opened`.
+     * Tasks to be performed at the end of open action. Will fire `opened`.
      * @protected
      */
     _finishRenderOpened(): void {
       this.notifyResize();
       this.__isAnimating = false;
-      const detail = {
-        bubbles: true,
-        composed: true
-      };
-      this.dispatchEvent(new CustomEvent('opened', detail));
-      // Deprecate the two
-      this.dispatchEvent(new CustomEvent('overlay-opened', detail));
-      this.dispatchEvent(new CustomEvent('iron-overlay-opened', detail));
+      this.dispatchEvent(new Event('opened'));
     }
 
     /**
-     * Tasks to be performed at the end of close action. Will fire
-     * `overlay-closed`.
+     * Tasks to be performed at the end of close action. Will fire `closed`.
      * @protected
      */
     _finishRenderClosed(): void {
@@ -893,19 +798,14 @@ export function OverlayMixin<T extends Constructor<LitElement>>(superClass: T): 
       this.notifyResize();
       this.__isAnimating = false;
       const detail = {
-        bubbles: true,
-        composed: true,
         detail: this.closingReason
       };
       this.dispatchEvent(new CustomEvent('closed', detail));
-      // Deprecate the two
-      this.dispatchEvent(new CustomEvent('overlay-closed', detail));
-      this.dispatchEvent(new CustomEvent('iron-overlay-closed', detail));
     }
 
     _preparePositioning(): void {
-      this.style.transition = this.style.webkitTransition = 'none';
-      this.style.transform = this.style.webkitTransform = 'none';
+      this.style.transition = 'none';
+      this.style.transform = 'none';
       this.style.display = '';
     }
 
@@ -918,8 +818,8 @@ export function OverlayMixin<T extends Constructor<LitElement>>(superClass: T): 
       // @ts-ignore
       this.scrollTop = undefined;
       this.scrollTop = scrollTop;
-      this.style.transition = this.style.webkitTransition = '';
-      this.style.transform = this.style.webkitTransform = '';
+      this.style.transition = '';
+      this.style.transform = '';
       // Now that animations are enabled, make it visible again
       this.style.display = '';
       // Force reflow, so that following animations are properly started.
@@ -960,12 +860,11 @@ export function OverlayMixin<T extends Constructor<LitElement>>(superClass: T): 
 
     /**
      * Cancels (closes) the overlay. Call when click happens outside the overlay.
-     * @param {!Event} event
      * @protected
      */
-    _onCaptureClick(event: Event): void {
+    _onCaptureClick(): void {
       if (!this.noCancelOnOutsideClick) {
-        this.cancel(event);
+        this.cancel();
       }
     }
 
@@ -991,12 +890,12 @@ export function OverlayMixin<T extends Constructor<LitElement>>(superClass: T): 
 
     /**
      * Handles the ESC key event and cancels (closes) the overlay.
-     * @param {!Event} event
+     * 
      * @protected
      */
-    _onCaptureEsc(event: Event): void {
+    _onCaptureEsc(): void {
       if (!this.noCancelOnEscKey) {
-        this.cancel(event);
+        this.cancel();
       }
     }
 
@@ -1208,7 +1107,7 @@ export function OverlayMixin<T extends Constructor<LitElement>>(superClass: T): 
           this.__deraf('refit', this.refit);
           break;
         case 'cancel':
-          this.cancel(event);
+          this.cancel();
           break;
         default:
       }

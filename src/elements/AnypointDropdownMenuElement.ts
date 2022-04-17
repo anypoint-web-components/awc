@@ -10,6 +10,7 @@ import AnypointElement from './AnypointElement.js';
 import AnypointListboxElement from './AnypointListboxElement.js';
 import DropdownStyles from '../styles/DropdownMenu.js';
 import { IAnimationConfig, DefaultListOpenAnimation, DefaultListCloseAnimation } from '../lib/Animations.js';
+import { retarget, retargetHandler } from '../lib/Events.js';
 import '../define/anypoint-dropdown.js';
 import '../define/anypoint-icon-button.js';
 
@@ -102,6 +103,7 @@ export default class AnypointDropdownMenuElement extends ValidatableMixin(Contro
           @opened="${this._dropdownOpened}"
           @select="${this._selectHandler}"
           @deselect="${this._deselectHandler}"
+          @cancel="${retargetHandler}"
           aria-labelledby="${ifDefined(name)}"
         >
           <div slot="dropdown-content" class="dropdown-content">
@@ -297,7 +299,11 @@ export default class AnypointDropdownMenuElement extends ValidatableMixin(Contro
    * @return {HTMLElement|null} The content element that is contained by the dropdown menu, if any.
    */
   get contentElement(): HTMLElement | null {
-    const slot = this.shadowRoot!.querySelector('slot[name="dropdown-content"]') as HTMLSlotElement;
+    const { shadowRoot } = this;
+    if (!shadowRoot) {
+      return null
+    }
+    const slot = shadowRoot.querySelector('slot[name="dropdown-content"]') as HTMLSlotElement;
     if (!slot) {
       return null;
     }
@@ -589,6 +595,12 @@ export default class AnypointDropdownMenuElement extends ValidatableMixin(Contro
   }
 
   firstUpdated(): void {
+    requestAnimationFrame(() => {
+      this._assignContentElement();
+    });
+  }
+
+  _assignContentElement(): void {
     const { contentElement } = this;
     // @ts-ignore
     const item = contentElement && contentElement.selectedItem;
@@ -745,7 +757,8 @@ export default class AnypointDropdownMenuElement extends ValidatableMixin(Contro
     this.opened = false;
   }
 
-  _dropdownClosed(): void {
+  _dropdownClosed(e: Event): void {
+    retarget(e, this);
     this.opened = false;
     if (this.autoValidate) {
       this.validate(this.value);
@@ -773,17 +786,20 @@ export default class AnypointDropdownMenuElement extends ValidatableMixin(Contro
     }
   }
 
-  _dropdownOpened(): void {
+  _dropdownOpened(e: Event): void {
+    retarget(e, this);
     this._focusContent();
   }
 
   _selectHandler(e: Event): void {
+    retarget(e, this);
     this.opened = false;
     const node = e.target as AnypointListboxElement;
     this._selectedItem = node.selectedItem;
   }
 
-  _deselectHandler(): void {
+  _deselectHandler(e: Event): void {
+    retarget(e, this);
     this._selectedItem = null;
   }
 

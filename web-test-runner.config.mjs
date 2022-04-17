@@ -48,5 +48,5 @@ export default /** @type {import("@web/test-runner").TestRunnerConfig} */ ({
     }
   },
 
-  testsFinishTimeout: 60000,
+  // testsFinishTimeout: 60000,
 });

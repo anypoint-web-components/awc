@@ -1,4 +1,4 @@
-import { fixture, assert, html } from '@open-wc/testing';
+import { fixture, assert, html, nextFrame } from '@open-wc/testing';
 import * as MockInteractions from '@polymer/iron-test-helpers/mock-interactions.js';
 import { AnypointMaskedInputElement } from '../../src/index.js'
 import '../../src/define/anypoint-masked-input.js';
@@ -110,11 +110,13 @@ describe('<anypoint-masked-input>', () => {
   describe('a11y', () => {
     it('is accessible when masked', async () => {
       const element = await maskedFixture();
+      await nextFrame();
       await assert.isAccessible(element);
     });
 
     it('is accessible when not masked', async () => {
       const element = await visibleFixture();
+      await nextFrame();
       await assert.isAccessible(element);
     });
   });

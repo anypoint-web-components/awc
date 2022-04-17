@@ -24,13 +24,6 @@ Originally designed by the Polymer team, ported to LitElement by ARC team.
 ### Styling
 
 The following custom properties and mixins are available for styling.
-
-Custom property | Description | Default
--------------------------------------------|------------------------|---------
-`--iron-overlay-backdrop-background-color` | Backdrop background color | #000
-`--iron-overlay-backdrop-opacity`          | Backdrop opacity | 0.6
-`--iron-overlay-backdrop`                  | Mixin applied to `iron-overlay-backdrop`.                      | {}
-`--iron-overlay-backdrop-opened`           | Mixin applied to `iron-overlay-backdrop` when it is displayed | {}
 */
 export default class OverlayBackdropElement extends LitElement {
   static get styles(): CSSResult {
@@ -41,15 +34,14 @@ export default class OverlayBackdropElement extends LitElement {
       left: 0;
       width: 100%;
       height: 100%;
-      background-color: var(--arc-overlay-backdrop-background-color,
-        var(--iron-overlay-backdrop-background-color, #000));
+      background-color: var(--arc-overlay-backdrop-background-color, var(--overlay-backdrop-background-color, #000));
       opacity: 0;
       transition: var(--arc-overlay-backdrop-transition, opacity 0.2s);
       pointer-events: none;
     }
 
     :host(.opened) {
-      opacity: var(--arc-overlay-backdrop-opacity, var(--iron-overlay-backdrop-opacity, 0.6));
+      opacity: var(--arc-overlay-backdrop-opacity, var(--overlay-backdrop-opacity, 0.6));
       pointer-events: auto;
     }`;
   }

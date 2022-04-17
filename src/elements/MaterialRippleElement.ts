@@ -55,7 +55,29 @@ export default class MaterialRippleElement extends LitElement {
    */
   @property({ type: Boolean, reflect: true })
   noink?: boolean = false;
-  
+
+  protected _disabled?: boolean;
+
+  /**
+   * Disables the ripple.
+   * When currently animating it cancels and removes all ripple effects.
+   */
+  @property({ type: Boolean, reflect: true })
+  get disabled(): boolean | undefined {
+    return this._disabled;
+  }
+
+  set disabled(value: boolean | undefined) {
+    const old = this._disabled;
+    if (old === value) {
+      return;
+    }
+    this._disabled = value;
+    if (value) {
+      this.cancel();
+    }
+  }
+
   [animatingValue] = false;
 
   /**
@@ -133,6 +155,14 @@ export default class MaterialRippleElement extends LitElement {
     target.removeEventListener('touchstart', this[uiDownAction] as EventListener, eventConfig);
     target.removeEventListener('keydown', this[keyDownHandler] as EventListener, eventConfig);
     target.removeEventListener('keyup', this[keyUpHandler] as EventListener, eventConfig);
+  }
+
+  cancel(): void {
+    this.ripples.forEach(ripple => {
+      ripple.remove();
+    });
+    this.ripples = [];
+    this[animating] = false;
   }
 
   /**

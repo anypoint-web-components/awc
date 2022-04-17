@@ -32,15 +32,15 @@ let currentSheet: BottomSheetElement | null;
  * ```html
  * <bottom-sheet>
  *    <paper-icon-item>
- *      <iron-icon src="inbox.png" item-icon></iron-icon>
+ *      <anypoint-icon src="inbox.png" item-icon></anypoint-icon>
  *      Inbox
  *    </paper-icon-item>
  *    <paper-icon-item>
- *      <iron-icon src="keep.png" item-icon></iron-icon>
+ *      <anypoint-icon src="keep.png" item-icon></anypoint-icon>
  *      Keep
  *    </paper-icon-item>
  *    <paper-icon-item>
- *      <iron-icon src="hangouts.png" item-icon></iron-icon>
+ *      <anypoint-icon src="hangouts.png" item-icon></anypoint-icon>
  *      Hangouts
  *    </paper-icon-item>
  *  </bottom-sheet>

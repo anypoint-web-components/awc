@@ -1,6 +1,3 @@
-/**
- * Port of `@polymer/iron-selector/iron-selection.js`.
- */
 export class AnypointSelection {
   multi = false;
 

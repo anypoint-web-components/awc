@@ -31,7 +31,7 @@ export default class AnypointIconButtonElement extends AnypointButtonBase {
     return html`
     <div class="icon">
       <slot></slot>
-      <material-ripple class="circle" center .noink="${this.noink}" @transitionend="${this._transitionEndHandler}"></material-ripple>
+      <material-ripple class="circle" center .noink="${this.noink}" ?disabled="${this.disabled}" @transitionend="${this._transitionEndHandler}"></material-ripple>
     </div> `;
   }
 

@@ -59,6 +59,7 @@ export default css`
     width: 40px;
     height: 40px;
     margin: 0 4px;
+    min-width: 40px;
   }
 
   .icon {
