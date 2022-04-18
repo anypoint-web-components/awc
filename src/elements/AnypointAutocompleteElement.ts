@@ -975,7 +975,7 @@ export default class AnypointAutocompleteElement extends AnypointElement {
       return;
     }
     await this.updateComplete;
-    setTimeout(() => this.dispatchEvent(new CustomEvent('resize')));
+    setTimeout(() => this.dispatchEvent(new Event('resize')));
   }
 
   render(): TemplateResult {

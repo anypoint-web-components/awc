@@ -1248,9 +1248,9 @@ describe('AnypointAutocompleteElement', () => {
     it('dispatches resize event when dropdown resizes', async () => {
       const spy = sinon.spy();
       element.addEventListener('resize', spy);
-      dropDown.dispatchEvent(new CustomEvent('resize'));
+      dropDown.dispatchEvent(new Event('resize'));
       await element.updateComplete;
-      await aTimeout(0);
+      await aTimeout(2);
       assert.isTrue(spy.calledOnce);
     });
 
@@ -1258,7 +1258,7 @@ describe('AnypointAutocompleteElement', () => {
       element[openedValue] = false;
       const spy = sinon.spy();
       element.addEventListener('resize', spy);
-      dropDown.dispatchEvent(new CustomEvent('resize'));
+      dropDown.dispatchEvent(new Event('resize'));
       await element.updateComplete;
       await aTimeout(0);
       assert.isFalse(spy.calledOnce);
