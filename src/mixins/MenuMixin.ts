@@ -1,3 +1,4 @@
+import { LitElement } from 'lit';
 import { property, state } from 'lit/decorators.js';
 import { MultiSelectableMixin, MultiSelectableMixinInterface } from './MultiSelectableMixin.js';
 
@@ -196,7 +197,7 @@ export interface MenuMixinInterface extends MultiSelectableMixinInterface {
  * make sure that attributes are reflected to properties correctly.
  * @mixin
  */
-export function MenuMixin<T extends Constructor<HTMLElement>>(superClass: T): Constructor<MenuMixinInterface> & T {
+export function MenuMixin<T extends Constructor<LitElement>>(superClass: T): Constructor<MenuMixinInterface> & T {
   class MyMixinClass extends MultiSelectableMixin(superClass) {
     /**
      * The attribute to use on menu items to look up the item title. Typing the

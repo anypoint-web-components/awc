@@ -94,13 +94,11 @@ export default class AnypointAutocompleteElement extends AnypointElement {
   /**
     * List of suggestion that are rendered.
     */
-  @state()
-  _suggestions: string[] | InternalSuggestion[] = [];
+  @state() _suggestions: string[] | InternalSuggestion[] = [];
 
   /**
    * @return List of suggestion that are rendered.
    */
-  @property({ type: Array })
   get suggestions(): string[] | InternalSuggestion[] | undefined {
     return this._suggestions;
   }
@@ -342,16 +340,14 @@ export default class AnypointAutocompleteElement extends AnypointElement {
   /** 
    * When set it fits the positioning target width.
    */
-  @property({ type: Boolean })
-  fitPositionTarget?: boolean;
+  @property({ type: Boolean }) fitPositionTarget?: boolean;
 
   /** 
    * When set to an element it will be used to position the dropdown 
    * instead of the input element
    * @attribute
    */
-  @property({ type: Object })
-  positionTarget?: HTMLElement;
+  @property({ type: Object }) positionTarget?: HTMLElement;
 
   /** 
    * The component sets CSS variables on the dropdown element by default.
