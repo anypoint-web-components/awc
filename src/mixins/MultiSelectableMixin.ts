@@ -1,3 +1,4 @@
+import { LitElement } from 'lit';
 import { property, state } from 'lit/decorators.js';
 import { SelectableMixin, SelectableMixinInterface } from './SelectableMixin.js';
 import { addListener, getListener } from '../lib/ElementEventsRegistry.js';
@@ -7,6 +8,10 @@ import { addListener, getListener } from '../lib/ElementEventsRegistry.js';
 type Constructor<T = {}> = new (...args: any[]) => T;
 
 export interface MultiSelectableMixinInterface extends SelectableMixinInterface {
+  _multi: boolean;
+
+  _selectedValues: unknown[];
+
   /**
    * If true, multiple selections are allowed.
    * @attribute
@@ -36,8 +41,23 @@ export interface MultiSelectableMixinInterface extends SelectableMixinInterface 
    *
    * @param value the value to select.
    */
-  select(value: string|number): void;
+  select(value: string | number): void;
+ 
   _multiChanged(multi: boolean): void;
+
+  _multiChanged(multi: boolean): void;
+
+  _updateAttrForSelected(): void;
+
+  _updateSelected(): void;
+
+  _selectMulti(values?: unknown[]): void;
+
+  _selectionChange(): void;
+
+  _toggleSelected(value: string | number | undefined): void;
+
+  _valuesToItems(values: unknown[]): HTMLElement[] | undefined;
 }
 
 /**
@@ -50,7 +70,7 @@ export interface MultiSelectableMixinInterface extends SelectableMixinInterface 
  * make sure that attributes are reflected to properties correctly.
  * @mixin
  */
-export function MultiSelectableMixin<T extends Constructor<HTMLElement>>(superClass: T): Constructor<MultiSelectableMixinInterface> & T {
+export function MultiSelectableMixin<T extends Constructor<LitElement>>(superClass: T): Constructor<MultiSelectableMixinInterface> & T {
   class MyMixinClass extends SelectableMixin(superClass) {
     _multi = false;
 
@@ -163,7 +183,7 @@ export function MultiSelectableMixin<T extends Constructor<HTMLElement>>(superCl
      *
      * @param value the value to select.
      */
-    select(value: string|number): void {
+    select(value: string | number | undefined): void {
       if (this.multi) {
         this._toggleSelected(value);
       } else {
@@ -239,7 +259,11 @@ export function MultiSelectableMixin<T extends Constructor<HTMLElement>>(superCl
       }
     }
 
-    _toggleSelected(value: string|number): void {
+    _toggleSelected(value: string | number | undefined): void {
+      if (value === undefined) {
+        this.selectedValues = [];
+        return;
+      }
       const i = this.selectedValues.indexOf(value);
       const unselected = i < 0;
       const items = this.selectedValues;
