@@ -22,9 +22,6 @@ export const onArrowUp = Symbol('onArrowUp');
 export const onArrowDown = Symbol('onArrowDown');
 export const onEsc = Symbol('onEsc');
 
-/** @typedef {import('./mixins/FitMixin').HorizontalAlign} HorizontalAlign */
-/** @typedef {import('./mixins/FitMixin').VerticalAlign} VerticalAlign */
-
 /**
  * `anypoint-input-combobox`
  */

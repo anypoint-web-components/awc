@@ -18,6 +18,38 @@ the License.
 
 type Constructor<T = {}> = new (...args: any[]) => T;
 
+/**
+ * `EventsTargetMixin` is a mixin that allows to set event listeners on a default or set node.
+ *
+ * By default the element listens on the `window` element for events. By setting
+ * `eventsTarget` property on this element it removes all previously set
+ * listeners and adds the same listeners to the node.
+ * It also restores default state when the `eventsTarget` is removed.
+ *
+ * Implementations should implement two abstract methods:
+ * `_attachListeners(node)` and `_detachListeners(node)`. Both of them will be
+ * called with event target argument when it's required to either set or remove
+ * listeners.
+ *
+ * ```javascript
+ * class EventableElement extends EventsTargetMixin(HTMLElement) {
+ *   _attachListeners: function(node) {
+ *    mode.addEventListener('event', this._callback);
+ *  }
+ *
+ *  _detachListeners: function(node) {
+ *    mode.removeEventListener('event', this._callback);
+ *  }
+ * }
+ * ```
+ *
+ * The mixin handles connectedCallback / disconnectedCallback and calls the
+ * functions with required parameters.
+ *
+ * @mixin
+ * 
+ * @prop {EventTarget | undefined} eventsTarget
+ */
 export interface EventsTargetMixinInterface {
   eventsTarget: EventTarget | undefined;
   /**
@@ -71,6 +103,8 @@ export interface EventsTargetMixinInterface {
  * functions with required parameters.
  *
  * @mixin
+ * 
+ * @prop {EventTarget | undefined} eventsTarget
  */
 export function EventsTargetMixin<T extends Constructor<Object>>(superClass: T): Constructor<EventsTargetMixinInterface> & T {
   class MyMixinClass extends superClass {

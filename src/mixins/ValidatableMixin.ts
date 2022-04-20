@@ -135,10 +135,16 @@ export interface ValidatableMixinInterface {
  * Changing the `invalid` property, either manually or by calling `validate()` will update the
  * `aria-invalid` attribute.
  * 
+ * @mixin
+ * 
  * @fires invalidchange
  * @fires validationstateschange
  *
- * @mixin
+ * @attr {string} validator
+ * @prop {string | undefined} validator
+ *
+ * @attr {boolean} invalid
+ * @prop {boolean | undefined} invalid
  */
 export function ValidatableMixin<T extends Constructor<LitElement>>(superClass: T): Constructor<ValidatableMixinInterface> & T {
   class MyMixinClass extends superClass {
@@ -148,7 +154,7 @@ export function ValidatableMixin<T extends Constructor<LitElement>>(superClass: 
      * space. See docs for `ValidatorMixin` for description of how to define a
      * validator.
      */
-    @property()
+    @property({ type: String, reflect: true })
     validator?: string;
 
     /**

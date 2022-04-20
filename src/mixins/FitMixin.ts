@@ -56,6 +56,94 @@ interface SizeInfo {
 
 type Constructor<T = {}> = new (...args: any[]) => T;
 
+/**
+ * This mixin is a port of https://github.com/PolymerElements/iron-fit-behavior
+ * that works with LitElement.
+ *
+ * `FitMixin` fits an element in another element using `max-height`
+ * and `max-width`, and optionally centers it in the window or another element.
+ * The element will only be sized and/or positioned if it has not already been
+ * sized and/or positioned by CSS.
+ *
+ * CSS properties            | Action
+ * --------------------------|-------------------------------------------
+ * `position` set            | Element is not centered horizontally or vertically
+ * `top` or `bottom` set     | Element is not vertically centered
+ * `left` or `right` set     | Element is not horizontally centered
+ * `max-height` set          | Element respects `max-height`
+ * `max-width` set           | Element respects `max-width`
+ *
+ * `FitMixin` can position an element into another element using
+ * `verticalAlign` and `horizontalAlign`. This will override the element's css
+ * position.
+ *
+ *     <div class="container">
+ *       <arc-fit-impl verticalalign="top" horizontalAlign="auto">
+ *         Positioned into the container
+ *       </arc-fit-impl>
+ *     </div>
+ *
+ * Use `noOverlap` to position the element around another element without
+ * overlapping it.
+ *
+ *     <div class="container">
+ *       <arc-fit-impl noOverlap verticalalign="auto" horizontalAlign="auto">
+ *         Positioned around the container
+ *       </arc-fit-impl>
+ *     </div>
+ *
+ * Use `horizontalOffset, verticalOffset` to offset the element from its
+ * `positionTarget`; `FitMixin` will collapse these in order to
+ * keep the element within `fitInto` boundaries, while preserving the element's
+ * CSS margin values.
+ *
+ *     <div class="container">
+ *       <arc-fit-impl verticalalign="top" verticalOffset="20">
+ *         With vertical offset
+ *       </arc-fit-impl>
+ *     </div>
+ *
+ * ## Usage
+ *
+ * ```javascript
+ * import { LitElement } from 'lit-element';
+ * import { FitMixin } from 'anypoint-web-components/awc';
+ *
+ * class ArcFitImpl extends FitMixin(LitElement) {
+ *  ...
+ * }
+ * ```
+ *
+ * @mixin
+ * 
+ * @prop {HTMLElement | Window} fitInto
+ * @prop {HTMLElement | Window} positionTarget
+ * @prop {HTMLElement} sizingTarget
+ * 
+ * @attr {HorizontalAlign} horizontalAlign
+ * @prop {HorizontalAlign | undefined} horizontalAlign
+ * 
+ * @attr {VerticalAlign} horizontalAlign
+ * @prop {VerticalAlign | undefined} verticalAlign
+ * 
+ * @attr {boolean} noOverlap
+ * @prop {boolean | undefined} noOverlap
+ * 
+ * @attr {boolean} dynamicAlign
+ * @prop {boolean | undefined} dynamicAlign
+ * 
+ * @attr {boolean} autoFitOnAttach
+ * @prop {boolean | undefined} autoFitOnAttach
+ * 
+ * @attr {boolean} fitPositionTarget
+ * @prop {boolean | undefined} fitPositionTarget
+ * 
+ * @attr {number} horizontalOffset
+ * @prop {number | undefined} horizontalOffset
+ * 
+ * @attr {number} verticalOffset
+ * @prop {number | undefined} verticalOffset
+ */
 export declare interface FitMixinInterface {
   /**
    * The element to fit `this` into.
@@ -270,6 +358,34 @@ export declare interface FitMixinInterface {
  * ```
  *
  * @mixin
+ * 
+ * @prop {HTMLElement | Window} fitInto
+ * @prop {HTMLElement | Window} positionTarget
+ * @prop {HTMLElement} sizingTarget
+ * 
+ * @attr {HorizontalAlign} horizontalAlign
+ * @prop {HorizontalAlign | undefined} horizontalAlign
+ * 
+ * @attr {VerticalAlign} horizontalAlign
+ * @prop {VerticalAlign | undefined} verticalAlign
+ * 
+ * @attr {boolean} noOverlap
+ * @prop {boolean | undefined} noOverlap
+ * 
+ * @attr {boolean} dynamicAlign
+ * @prop {boolean | undefined} dynamicAlign
+ * 
+ * @attr {boolean} autoFitOnAttach
+ * @prop {boolean | undefined} autoFitOnAttach
+ * 
+ * @attr {boolean} fitPositionTarget
+ * @prop {boolean | undefined} fitPositionTarget
+ * 
+ * @attr {number} horizontalOffset
+ * @prop {number | undefined} horizontalOffset
+ * 
+ * @attr {number} verticalOffset
+ * @prop {number | undefined} verticalOffset
  */
 export function FitMixin<T extends Constructor<LitElement>>(superClass: T): Constructor<FitMixinInterface> & T {
   class MyMixinClass extends superClass {
@@ -289,7 +405,7 @@ export function FitMixin<T extends Constructor<LitElement>>(superClass: T): Cons
      * Will position the element around the positionTarget without overlapping
      * it.
      */
-    @property({ type: Boolean }) noOverlap?: boolean;
+    @property({ type: Boolean, reflect: true }) noOverlap?: boolean;
 
     /**
      * The element that should be used to position the element. If not set, it
@@ -302,21 +418,21 @@ export function FitMixin<T extends Constructor<LitElement>>(superClass: T): Cons
     * relative to the `positionTarget`. Possible values are "left", "right",
     * "center", "auto".
     */
-    @property({ type: String }) horizontalAlign?: HorizontalAlign;
+    @property({ type: String, reflect: true }) horizontalAlign?: HorizontalAlign;
 
     /**
     * The orientation against which to align the element vertically
     * relative to the `positionTarget`. Possible values are "top", "bottom",
     * "middle", "auto".
     */
-    @property({ type: String }) verticalAlign?: VerticalAlign;
+    @property({ type: String, reflect: true }) verticalAlign?: VerticalAlign;
 
     /**
     * If true, it will use `horizontalAlign` and `verticalAlign` values as
     * preferred alignment and if there's not enough space, it will pick the
     * values which minimize the cropping.
     */
-    @property({ type: Boolean }) dynamicAlign?: boolean;
+    @property({ type: Boolean, reflect: true }) dynamicAlign?: boolean;
 
     /**
     * A pixel value that will be added to the position calculated for the
@@ -363,7 +479,7 @@ export function FitMixin<T extends Constructor<LitElement>>(superClass: T): Cons
     /** 
     * When set it fits the positioning target width.
     */
-    @property({ type: Boolean }) fitPositionTarget?: boolean;
+    @property({ type: Boolean, reflect: true }) fitPositionTarget?: boolean;
 
     get _fitWidth(): number {
       let fitWidth;

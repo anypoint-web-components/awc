@@ -14,6 +14,13 @@ import { retarget, retargetHandler } from '../lib/Events.js';
 
 /* eslint-disable no-plusplus */
 
+/**
+ * @attr {boolean} focused
+ * @prop {boolean | undefined} focused
+ * 
+ * @attr {boolean} disabled
+ * @prop {boolean | undefined} disabled
+ */
 export default class AnypointMenuButtonElement extends ControlStateMixin(AnypointElement) {
   // eslint-disable-next-line class-methods-use-this
   static get styles(): CSSResult {

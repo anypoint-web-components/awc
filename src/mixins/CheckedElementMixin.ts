@@ -14,6 +14,38 @@ import { addListener, getListener } from '../lib/ElementEventsRegistry.js';
 
 type Constructor<T = {}> = new (...args: any[]) => T;
 
+/**
+ * Use `CheckedElementMixin` to implement an element that can be pressed and active when toggles.
+ *
+ * @mixin
+ * 
+ * @attr {boolean} toggles
+ * @prop {boolean | undefined} toggles
+ * 
+ * @attr {boolean} disabled
+ * @prop {boolean | undefined} disabled
+ * 
+ * @attr {boolean} required
+ * @prop {boolean | undefined} required
+ * 
+ * @attr {boolean} checked
+ * @prop {boolean | undefined} checked
+ * 
+ * @attr {string} name
+ * @prop {string | undefined} name
+ * 
+ * @attr {string} value
+ * @prop {string | undefined} value
+ * 
+ * @fires invalidchange
+ * @fires validationstateschange
+ *
+ * @attr {string} validator
+ * @prop {string | undefined} validator
+ *
+ * @attr {boolean} invalid
+ * @prop {boolean | undefined} invalid
+ */
 export interface CheckedElementMixinInterface extends ValidatableMixinInterface {
   /**
    * If true, the button toggles the active state with each click or press
@@ -84,6 +116,33 @@ export interface CheckedElementMixinInterface extends ValidatableMixinInterface 
  * Use `CheckedElementMixin` to implement an element that can be pressed and active when toggles.
  *
  * @mixin
+ * 
+ * @attr {boolean} toggles
+ * @prop {boolean | undefined} toggles
+ * 
+ * @attr {boolean} disabled
+ * @prop {boolean | undefined} disabled
+ * 
+ * @attr {boolean} required
+ * @prop {boolean | undefined} required
+ * 
+ * @attr {boolean} checked
+ * @prop {boolean | undefined} checked
+ * 
+ * @attr {string} name
+ * @prop {string | undefined} name
+ * 
+ * @attr {string} value
+ * @prop {string | undefined} value
+ * 
+ * @fires invalidchange
+ * @fires validationstateschange
+ *
+ * @attr {string} validator
+ * @prop {string | undefined} validator
+ *
+ * @attr {boolean} invalid
+ * @prop {boolean | undefined} invalid
  */
 export function CheckedElementMixin<T extends Constructor<LitElement>>(superClass: T): Constructor<CheckedElementMixinInterface> & T {
   class MyMixinClass extends ValidatableMixin(superClass) {
@@ -92,7 +151,7 @@ export function CheckedElementMixin<T extends Constructor<LitElement>>(superClas
      * of the space bar.
      * @attribute
      */
-    @property({ type: Boolean })
+    @property({ type: Boolean, reflect: true })
     toggles?: boolean;
 
     /**

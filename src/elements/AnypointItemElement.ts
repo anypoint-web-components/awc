@@ -23,6 +23,25 @@ import styles from '../styles/ItemStyles.js';
 /**
  * `anypoint-item`
  * An Anypoint list item.
+ * 
+ * @attr {boolean} focused
+ * @prop {boolean | undefined} focused
+ * 
+ * @attr {boolean} disabled
+ * @prop {boolean | undefined} disabled
+ * 
+ * @attr {boolean} toggles
+ * @prop {boolean | undefined} toggles
+ * 
+ * @attr {boolean} active
+ * @prop {boolean | undefined} active
+ * 
+ * @attr {string} ariaActiveAttribute
+ * @prop {string | undefined} ariaActiveAttribute
+ * 
+ * @prop {readonly boolean | undefined} pressed
+ * @prop {readonly boolean | undefined} pointerDown
+ * @prop {readonly boolean | undefined} receivedFocusFromKeyboard
  */
 export default class AnypointItemElement extends HoverableMixin(ControlStateMixin(ButtonStateMixin(AnypointElement))) {
   static get styles(): CSSResult[] {

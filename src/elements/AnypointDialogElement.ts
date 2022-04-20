@@ -13,7 +13,71 @@ interface IModelPreviousConfiguration {
   noCancelOnEscKey?: boolean;
   withBackdrop?: boolean;
 }
-
+/**
+ * @fires cancel
+ * @fires opened
+ * @fires closed
+ * @fires openedchange
+ * 
+ * @prop {HTMLElement | Window} fitInto
+ * @prop {HTMLElement | Window} positionTarget
+ * @prop {HTMLElement} sizingTarget
+ * 
+ * @attr {HorizontalAlign} horizontalAlign
+ * @prop {HorizontalAlign | string | undefined} horizontalAlign
+ * 
+ * @attr {VerticalAlign} horizontalAlign
+ * @prop {VerticalAlign | string | undefined} verticalAlign
+ * 
+ * @attr {boolean} noOverlap
+ * @prop {boolean | undefined} noOverlap
+ * 
+ * @attr {boolean} dynamicAlign
+ * @prop {boolean | undefined} dynamicAlign
+ * 
+ * @attr {boolean} autoFitOnAttach
+ * @prop {boolean | undefined} autoFitOnAttach
+ * 
+ * @attr {boolean} fitPositionTarget
+ * @prop {boolean | undefined} fitPositionTarget
+ * 
+ * @attr {number} horizontalOffset
+ * @prop {number | undefined} horizontalOffset
+ * 
+ * @attr {number} verticalOffset
+ * @prop {number | undefined} verticalOffset
+ * 
+ * @attr {boolean} noAutoFocus
+ * @prop {boolean | undefined} noAutoFocus
+ * 
+ * @attr {boolean} noCancelOnEscKey
+ * @prop {boolean | undefined} noCancelOnEscKey
+ * 
+ * @attr {boolean} noCancelOnOutsideClick
+ * @prop {boolean | undefined} noCancelOnOutsideClick
+ * 
+ * @attr {boolean} restoreFocusOnClose
+ * @prop {boolean | undefined} restoreFocusOnClose
+ * 
+ * @attr {boolean} allowClickThrough
+ * @prop {boolean | undefined} allowClickThrough
+ * 
+ * @attr {boolean} alwaysOnTop
+ * @prop {boolean | undefined} alwaysOnTop
+ * 
+ * @attr {boolean} opened
+ * @prop {boolean | undefined} opened
+ * 
+ * @attr {boolean} withBackdrop
+ * @prop {boolean | undefined} withBackdrop
+ * 
+ * @attr {string} scrollAction
+ * @prop {string | undefined} scrollAction
+ * 
+ * @prop {boolean | undefined} canceled
+ * 
+ * @prop {any} closingReason
+ */
 export default class AnypointDialogElement extends OverlayMixin(AnypointElement) {
   static get styles(): CSSResult[] {
     return [
@@ -28,7 +92,7 @@ export default class AnypointDialogElement extends OverlayMixin(AnypointElement)
    * `noCancelOnEscKey` and `withBackdrop`.
    * @attribute
    */
-  @property({ type: Boolean })
+  @property({ type: Boolean, reflect: true })
   get modal(): boolean | undefined {
     return this._modal;
   }
@@ -67,7 +131,7 @@ export default class AnypointDialogElement extends OverlayMixin(AnypointElement)
    * dialog.
    * @attribute
    */
-  @property({ type: Boolean })
+  @property({ type: Boolean, reflect: true })
   noAnimations?: boolean;
 
   constructor() {

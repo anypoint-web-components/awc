@@ -7,6 +7,57 @@ import { addListener, getListener } from '../lib/ElementEventsRegistry.js';
 
 type Constructor<T = {}> = new (...args: any[]) => T;
 
+/**
+ * Port of `@polymer/iron-selector/iron-multi-selectable.js`.
+ *
+ * A mixin to be applied to a class where child elements can be selected and selection
+ * can be applied to more than one item.
+ *
+ * Note, by default the mixin works with LitElement. If used with different class
+ * make sure that attributes are reflected to properties correctly.
+ * @mixin
+ * 
+ * @fires deselect
+ * @fires selected
+ * @fires activate
+ * @fires selectedchange
+ * @fires itemschange
+ * @fires selecteditemchange
+ * @fires childrenchange
+ * @fires selectedvalueschange
+ * @fires selecteditemschange
+ * 
+ * @attr {string} selected The selected element. The default is to use the index of the item.
+ * @prop {string | number | undefined} selected - The selected element. The default is to use the index of the item.
+ * 
+ * @attr {string} fallbackSelection
+ * @prop {string | number | undefined} fallbackSelection
+ * 
+ * @attr {string} attrForSelected
+ * @prop {string | undefined} attrForSelected
+ * 
+ * @attr {string} selectable
+ * @prop {string | undefined} selectable
+ * 
+ * @attr {string} selectedClass
+ * @prop {string | undefined} selectedClass
+ * 
+ * @attr {string} selectedAttribute
+ * @prop {string | undefined} selectedAttribute
+ * 
+ * @attr {string} activateEvent
+ * @prop {string | undefined} activateEvent
+ * 
+ * @prop {readonly HTMLElement[]} items
+ * 
+ * @attr {boolean} multi
+ * @prop {boolean | undefined} multi
+ * 
+ * @attr {unknown[]} selectedValues
+ * @prop {unknown[] | undefined} selectedValues
+ * 
+ * @prop {readonly HTMLElement[]} selectedItems
+ */
 export interface MultiSelectableMixinInterface extends SelectableMixinInterface {
   _multi: boolean;
 
@@ -69,6 +120,47 @@ export interface MultiSelectableMixinInterface extends SelectableMixinInterface 
  * Note, by default the mixin works with LitElement. If used with different class
  * make sure that attributes are reflected to properties correctly.
  * @mixin
+ * 
+ * @fires deselect
+ * @fires selected
+ * @fires activate
+ * @fires selectedchange
+ * @fires itemschange
+ * @fires selecteditemchange
+ * @fires childrenchange
+ * @fires selectedvalueschange
+ * @fires selecteditemschange
+ * 
+ * @attr {string} selected The selected element. The default is to use the index of the item.
+ * @prop {string | number | undefined} selected - The selected element. The default is to use the index of the item.
+ * 
+ * @attr {string} fallbackSelection
+ * @prop {string | number | undefined} fallbackSelection
+ * 
+ * @attr {string} attrForSelected
+ * @prop {string | undefined} attrForSelected
+ * 
+ * @attr {string} selectable
+ * @prop {string | undefined} selectable
+ * 
+ * @attr {string} selectedClass
+ * @prop {string | undefined} selectedClass
+ * 
+ * @attr {string} selectedAttribute
+ * @prop {string | undefined} selectedAttribute
+ * 
+ * @attr {string} activateEvent
+ * @prop {string | undefined} activateEvent
+ * 
+ * @prop {readonly HTMLElement[]} items
+ * 
+ * @attr {boolean} multi
+ * @prop {boolean | undefined} multi
+ * 
+ * @attr {unknown[]} selectedValues
+ * @prop {unknown[] | undefined} selectedValues
+ * 
+ * @prop {readonly HTMLElement[]} selectedItems
  */
 export function MultiSelectableMixin<T extends Constructor<LitElement>>(superClass: T): Constructor<MultiSelectableMixinInterface> & T {
   class MyMixinClass extends SelectableMixin(superClass) {
@@ -78,7 +170,7 @@ export function MultiSelectableMixin<T extends Constructor<LitElement>>(superCla
      * If true, multiple selections are allowed.
      * @attribute
      */
-    @property({ type: Boolean })
+    @property({ type: Boolean, reflect: true })
     get multi(): boolean {
       return this._multi;
     }

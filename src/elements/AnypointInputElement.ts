@@ -48,6 +48,16 @@ function isPrintable(event: KeyboardEvent): boolean {
   return !anyNonPrintable && !(event.charCode === 0 && mozNonPrintable);
 }
 
+/**
+ * @fires invalidchange
+ * @fires validationstateschange
+ *
+ * @attr {string} validator
+ * @prop {string | undefined} validator
+ *
+ * @attr {boolean} invalid
+ * @prop {boolean | undefined} invalid
+ */
 export default class AnypointInputElement extends ValidatableMixin(AnypointElement) {
   static get styles(): CSSResult[] {
     return [

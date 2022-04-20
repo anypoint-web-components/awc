@@ -4,6 +4,21 @@ import { property } from 'lit/decorators.js';
 
 type Constructor<T = {}> = new (...args: any[]) => T;
 
+/**
+ * This mixin is a port of [IronScrollTargetBehavior](https://github.com/PolymerElements/iron-acroll-target-behavior)
+ * that works with LitElements.
+ *
+ * `ScrollTargetMixin` allows an element to respond to scroll
+ * events from a designated scroll target.
+ *
+ * Elements that consume this mixin can override the `_scrollHandler`
+ * method to add logic on the scroll event.
+ * 
+ * @mixin
+ * 
+ * @attr {string} scrollTarget
+ * @prop {HTMLElement | string} scrollTarget
+ */
 export interface ScrollTargetMixinInterface {
   /**
    * Specifies the element that will handle the scroll event
@@ -102,6 +117,9 @@ export interface ScrollTargetMixinInterface {
  * method to add logic on the scroll event.
  * 
  * @mixin
+ * 
+ * @attr {string} scrollTarget
+ * @prop {HTMLElement | string} scrollTarget
  */
 export function ScrollTargetMixin<T extends Constructor<HTMLElement>>(superClass: T): Constructor<ScrollTargetMixinInterface> & T {
   class MyMixinClass extends superClass {
@@ -139,7 +157,7 @@ export function ScrollTargetMixin<T extends Constructor<HTMLElement>>(superClass
      * appHeader.scrollTarget = document.querySelector('#scrollable-element');
      *```
      */
-    @property()
+    @property({ type: String })
     get scrollTarget(): HTMLElement | string {
       return this._scrollTarget;
     }

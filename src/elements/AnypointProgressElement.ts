@@ -31,6 +31,16 @@ export const secondaryRatioValue = Symbol('secondaryRatioValue');
  * The progress bars are for situations where the percentage completed can be
  * determined. They give users a quick sense of how much longer an operation
  * will take.
+ * 
+ * @attr {number} value
+ * @prop {number | undefined} value
+ * @attr {number} min
+ * @prop {number | undefined} min
+ * @attr {number} max
+ * @prop {number | undefined} max
+ * @attr {number} step
+ * @prop {number | undefined} step
+ * @fires ratiochange
  */
 export default class AnypointProgressElement extends RangeMixin(LitElement) {
   static get styles(): CSSResult {

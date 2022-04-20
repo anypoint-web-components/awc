@@ -11,6 +11,17 @@ import { property } from 'lit/decorators.js';
 
 type Constructor<T = {}> = new (...args: any[]) => T;
 
+/**
+ * Use `ControlStateMixin` to implement an element that can be disabled or focused.
+ *
+ * @mixin
+ * 
+ * @attr {boolean} focused
+ * @prop {boolean | undefined} focused
+ * 
+ * @attr {boolean} disabled
+ * @prop {boolean | undefined} disabled
+ */
 export interface ControlStateMixinInterface {
   /**
    * If true, the element currently has focus.
@@ -57,6 +68,12 @@ export interface ControlStateMixinInterface {
  * Use `ControlStateMixin` to implement an element that can be disabled or focused.
  *
  * @mixin
+ * 
+ * @attr {boolean} focused
+ * @prop {boolean | undefined} focused
+ * 
+ * @attr {boolean} disabled
+ * @prop {boolean | undefined} disabled
  */
 export function ControlStateMixin<T extends Constructor<LitElement>>(superClass: T): Constructor<ControlStateMixinInterface> & T {
   class MyMixinClass extends superClass {

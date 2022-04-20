@@ -11,6 +11,24 @@ import { property } from 'lit/decorators.js';
 
 type Constructor<T = {}> = new (...args: any[]) => T;
 
+/**
+ * Use `ButtonStateMixin` to implement an element that can be pressed and active when toggles.
+ *
+ * @mixin
+ * 
+ * @attr {boolean} toggles
+ * @prop {boolean | undefined} toggles
+ * 
+ * @attr {boolean} active
+ * @prop {boolean | undefined} active
+ * 
+ * @attr {string} ariaActiveAttribute
+ * @prop {string | undefined} ariaActiveAttribute
+ * 
+ * @prop {readonly boolean | undefined} pressed
+ * @prop {readonly boolean | undefined} pointerDown
+ * @prop {readonly boolean | undefined} receivedFocusFromKeyboard
+ */
 export interface ButtonStateMixinInterface {
   /**
    * If true, the button toggles the active state with each click or press
@@ -94,6 +112,19 @@ export interface ButtonStateMixinInterface {
  * Use `ButtonStateMixin` to implement an element that can be pressed and active when toggles.
  *
  * @mixin
+ * 
+ * @attr {boolean} toggles
+ * @prop {boolean | undefined} toggles
+ * 
+ * @attr {boolean} active
+ * @prop {boolean | undefined} active
+ * 
+ * @attr {string} ariaActiveAttribute
+ * @prop {string | undefined} ariaActiveAttribute
+ * 
+ * @prop {readonly boolean | undefined} pressed
+ * @prop {readonly boolean | undefined} pointerDown
+ * @prop {readonly boolean | undefined} receivedFocusFromKeyboard
  */
 export function ButtonStateMixin<T extends Constructor<LitElement>>(superClass: T): Constructor<ButtonStateMixinInterface> & T {
   class MyMixinClass extends superClass implements ButtonStateMixinInterface {

@@ -49,13 +49,51 @@ const toggleClass = (css: string, selected: boolean, node: Element): void => {
 type Constructor<T = {}> = new (...args: any[]) => T;
 
 /**
+ * Port of `@polymer/iron-selector/iron-selectable.js`.
+ *
+ * A mixin to be applied to a class where child elements can be selected.
+ *
+ * Note, by default the mixin works with LitElement. If used with different class
+ * make sure that attributes are reflected to properties correctly.
+ * @mixin
+ * 
  * @fires deselect
+ * @fires selected
+ * @fires activate
+ * @fires selectedchange
+ * @fires itemschange
+ * @fires selecteditemchange
+ * @fires childrenchange
+ * 
+ * @attr {string} selected The selected element. The default is to use the index of the item.
+ * @prop {string | number | undefined} selected - The selected element. The default is to use the index of the item.
+ * 
+ * @attr {string} fallbackSelection
+ * @prop {string | number | undefined} fallbackSelection
+ * 
+ * @attr {string} attrForSelected
+ * @prop {string | undefined} attrForSelected
+ * 
+ * @attr {string} selectable
+ * @prop {string | undefined} selectable
+ * 
+ * @attr {string} selectedClass
+ * @prop {string | undefined} selectedClass
+ * 
+ * @attr {string} selectedAttribute
+ * @prop {string | undefined} selectedAttribute
+ * 
+ * @attr {string} activateEvent
+ * @prop {string | undefined} activateEvent
+ * 
+ * @prop {readonly HTMLElement[]} items
  */
 export interface SelectableMixinInterface {
 
   /**
    * This is a CSS selector string.  If this is set, only items that match the
    * CSS selector are selectable.
+   * @attr
    */
   selectable?: string;
 
@@ -63,11 +101,13 @@ export interface SelectableMixinInterface {
    * The class to set on elements when selected.
    *
    * @default selected
+   * @attr
    */
   selectedClass?: string;
 
   /**
    * The attribute to set on elements when selected.
+   * @attr
    */
   selectedAttribute?: string;
 
@@ -80,13 +120,14 @@ export interface SelectableMixinInterface {
    * recommended that you provide the hyphenated form of the name so that
    * selection works in both cases. (Use `attr-or-property-name` instead of
    * `attrOrPropertyName`.)
+   * @attr
    */
   attrForSelected: string | undefined;
 
   /**
    * Gets or sets the selected element. The default is to use the index of the
    * item.
-   * @attribute
+   * @attr
    */
   selected: string | number | undefined;
 
@@ -103,11 +144,13 @@ export interface SelectableMixinInterface {
    * Set to empty string to listen to no events.
    *
    * @default click
+   * @attr
    */
   activateEvent: string;
 
   /**
    * Default fallback if the selection based on selected with `attrForSelected` is not found.
+   * @attr
    */
   fallbackSelection: string | number | undefined;
 
@@ -234,6 +277,35 @@ export interface SelectableMixinInterface {
  * make sure that attributes are reflected to properties correctly.
  * @mixin
  * @fires deselect
+ * @fires selected
+ * @fires activate
+ * @fires selectedchange
+ * @fires itemschange
+ * @fires selecteditemchange
+ * @fires childrenchange
+ * 
+ * @attr {string} selected The selected element. The default is to use the index of the item.
+ * @prop {string | number | undefined} selected - The selected element. The default is to use the index of the item.
+ * 
+ * @attr {string} fallbackSelection
+ * @prop {string | number | undefined} fallbackSelection
+ * 
+ * @attr {string} attrForSelected
+ * @prop {string | undefined} attrForSelected
+ * 
+ * @attr {string} selectable
+ * @prop {string | undefined} selectable
+ * 
+ * @attr {string} selectedClass
+ * @prop {string | undefined} selectedClass
+ * 
+ * @attr {string} selectedAttribute
+ * @prop {string | undefined} selectedAttribute
+ * 
+ * @attr {string} activateEvent
+ * @prop {string | undefined} activateEvent
+ * 
+ * @prop {readonly HTMLElement[]} items
  */
 export function SelectableMixin<T extends Constructor<HTMLElement>>(superClass: T): Constructor<SelectableMixinInterface> & T {
   class MyMixinClass extends superClass {
@@ -241,7 +313,7 @@ export function SelectableMixin<T extends Constructor<HTMLElement>>(superClass: 
      * This is a CSS selector string.  If this is set, only items that match the
      * CSS selector are selectable.
      */
-    @property()
+    @property({ type: String, reflect: true })
     selectable?: string;
 
     /**
@@ -249,11 +321,13 @@ export function SelectableMixin<T extends Constructor<HTMLElement>>(superClass: 
      *
      * @default selected
      */
+    @property({ type: String, reflect: true })
     selectedClass?: string;
 
     /**
      * The attribute to set on elements when selected.
      */
+    @property({ type: String, reflect: true })
     selectedAttribute?: string;
 
     /**
@@ -266,7 +340,7 @@ export function SelectableMixin<T extends Constructor<HTMLElement>>(superClass: 
      * selection works in both cases. (Use `attr-or-property-name` instead of
      * `attrOrPropertyName`.)
      */
-    @property()
+    @property({ type: String, reflect: true })
     get attrForSelected(): string | undefined {
       return this._attrForSelected;
     }
@@ -284,8 +358,7 @@ export function SelectableMixin<T extends Constructor<HTMLElement>>(superClass: 
     _attrForSelected?: string;
 
     /**
-     * Gets or sets the selected element. The default is to use the index of the
-     * item.
+     * The selected element. The default is to use the index of the item.
      * @attribute
      */
     @property()
@@ -380,7 +453,7 @@ export function SelectableMixin<T extends Constructor<HTMLElement>>(superClass: 
      *
      * @default click
      */
-    @property()
+    @property({ type: String, reflect: true })
     get activateEvent(): string {
       return this._activateEvent;
     }

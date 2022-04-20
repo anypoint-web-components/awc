@@ -34,6 +34,73 @@ export const highlightedItemValue = '__highlighteditemvalue';
 
 type Constructor<T = {}> = new (...args: any[]) => T;
 
+/**
+ * Port of `@polymer/iron-selector/iron-multi-selectable.js`.
+ *
+ * A mixin to be applied to a class where child elements can be selected and selection
+ * can be applied to more than one item.
+ *
+ * Note, by default the mixin works with LitElement. If used with different class
+ * make sure that attributes are reflected to properties correctly.
+ * @mixin
+ * 
+ * @fires deselect
+ * @fires selected
+ * @fires activate
+ * @fires selectedchange
+ * @fires itemschange
+ * @fires selecteditemchange
+ * @fires childrenchange
+ * @fires selectedvalueschange
+ * @fires selecteditemschange
+ * 
+ * @attr {string} selected The selected element. The default is to use the index of the item.
+ * @prop {string | number | undefined} selected - The selected element. The default is to use the index of the item.
+ * 
+ * @attr {string} fallbackSelection
+ * @prop {string | number | undefined} fallbackSelection
+ * 
+ * @attr {string} attrForSelected
+ * @prop {string | undefined} attrForSelected
+ * 
+ * @attr {string} selectable
+ * @prop {string | undefined} selectable
+ * 
+ * @attr {string} selectedClass
+ * @prop {string | undefined} selectedClass
+ * 
+ * @attr {string} selectedAttribute
+ * @prop {string | undefined} selectedAttribute
+ * 
+ * @attr {string} activateEvent
+ * @prop {string | undefined} activateEvent
+ * 
+ * @prop {readonly HTMLElement[]} items
+ * 
+ * @attr {boolean} multi
+ * @prop {boolean | undefined} multi
+ * 
+ * @attr {unknown[]} selectedValues
+ * @prop {unknown[] | undefined} selectedValues
+ * 
+ * @prop {readonly HTMLElement[]} selectedItems
+ * 
+ * @attr {string} attrForItemTitle
+ * @prop {string | undefined} attrForItemTitle
+ * 
+ * @attr {boolean} useAriaSelected
+ * @prop {boolean | undefined} useAriaSelected
+ * 
+ * @attr {boolean} highlightAriaSelected
+ * @prop {boolean | undefined} highlightAriaSelected
+ * 
+ * @attr {boolean} disabled
+ * @prop {boolean | undefined} disabled
+ * 
+ * @prop {readonly HTMLElement | undefined} focusedItem
+ * 
+ * @prop {readonly HTMLElement | undefined} highlightedItem
+ */
 export interface MenuMixinInterface extends MultiSelectableMixinInterface {
   /**
      * The attribute to use on menu items to look up the item title. Typing the
@@ -196,6 +263,63 @@ export interface MenuMixinInterface extends MultiSelectableMixinInterface {
  * Note, by default the mixin works with LitElement. If used with different class
  * make sure that attributes are reflected to properties correctly.
  * @mixin
+ * 
+ * @fires deselect
+ * @fires selected
+ * @fires activate
+ * @fires selectedchange
+ * @fires itemschange
+ * @fires selecteditemchange
+ * @fires childrenchange
+ * @fires selectedvalueschange
+ * @fires selecteditemschange
+ * 
+ * @attr {string} selected The selected element. The default is to use the index of the item.
+ * @prop {string | number | undefined} selected - The selected element. The default is to use the index of the item.
+ * 
+ * @attr {string} fallbackSelection
+ * @prop {string | number | undefined} fallbackSelection
+ * 
+ * @attr {string} attrForSelected
+ * @prop {string | undefined} attrForSelected
+ * 
+ * @attr {string} selectable
+ * @prop {string | undefined} selectable
+ * 
+ * @attr {string} selectedClass
+ * @prop {string | undefined} selectedClass
+ * 
+ * @attr {string} selectedAttribute
+ * @prop {string | undefined} selectedAttribute
+ * 
+ * @attr {string} activateEvent
+ * @prop {string | undefined} activateEvent
+ * 
+ * @prop {readonly HTMLElement[]} items
+ * 
+ * @attr {boolean} multi
+ * @prop {boolean | undefined} multi
+ * 
+ * @attr {unknown[]} selectedValues
+ * @prop {unknown[] | undefined} selectedValues
+ * 
+ * @prop {readonly HTMLElement[]} selectedItems
+ * 
+ * @attr {string} attrForItemTitle
+ * @prop {string | undefined} attrForItemTitle
+ * 
+ * @attr {boolean} useAriaSelected
+ * @prop {boolean | undefined} useAriaSelected
+ * 
+ * @attr {boolean} highlightAriaSelected
+ * @prop {boolean | undefined} highlightAriaSelected
+ * 
+ * @attr {boolean} disabled
+ * @prop {boolean | undefined} disabled
+ * 
+ * @prop {readonly HTMLElement | undefined} focusedItem
+ * 
+ * @prop {readonly HTMLElement | undefined} highlightedItem
  */
 export function MenuMixin<T extends Constructor<LitElement>>(superClass: T): Constructor<MenuMixinInterface> & T {
   class MyMixinClass extends MultiSelectableMixin(superClass) {
@@ -204,7 +328,7 @@ export function MenuMixin<T extends Constructor<LitElement>>(superClass: T): Con
      * first letter of an item when the menu is open focuses that item. If
      * unset, `textContent` will be used.
      */
-    @property()
+    @property({ type: String, reflect: true })
     attrForItemTitle?: string;
 
     @state()
@@ -217,7 +341,7 @@ export function MenuMixin<T extends Constructor<LitElement>>(superClass: T): Con
      * element ("menu"). If you manually change the role to some other that
      * accepts `aria-selected` attribute on children then set this property.
      */
-    @property({ type: Boolean })
+    @property({ type: Boolean, reflect: true })
     useAriaSelected?: boolean;
 
     /**
@@ -225,7 +349,7 @@ export function MenuMixin<T extends Constructor<LitElement>>(superClass: T): Con
      * will be setting `aria-selected` attribute. For proper accessibility use
      * with the combination with `useAriaSelected` attribute.
      */
-    @property({ type: Boolean })
+    @property({ type: Boolean, reflect: true })
     highlightAriaSelected?: boolean;
 
     @state()
@@ -260,7 +384,7 @@ export function MenuMixin<T extends Constructor<LitElement>>(superClass: T): Con
     /**
      * Whether or not this menu is disabled.
      */
-    @property({ type: Boolean })
+    @property({ type: Boolean, reflect: true })
     get disabled(): boolean | undefined {
       return this._disabled;
     }

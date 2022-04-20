@@ -17,20 +17,148 @@ import OverlayBackdropElement from '../elements/OverlayBackdropElement.js';
 
 type Constructor<T = {}> = new (...args: any[]) => T;
 
+/**
+ * This mixin is a port of [IronOverlayBehavior](https://github.com/PolymerElements/iron-overlay-behavior)
+ * that works with LitElement.
+ *
+ * Use `OverlayMixin` to implement an element that can be hidden
+ * or shown, and displays on top of other content. It includes an optional
+ * backdrop, and can be used to implement a variety of UI controls including
+ * dialogs and drop downs. Multiple overlays may be displayed at once.
+ * See the [demo source
+ * code](https://github.com/advanced-rest-client/arc-overlay-mixin/blob/master/demo/simple-overlay.html)
+ * for an example.
+ *
+ * ### Closing and canceling
+ *
+ * An overlay may be hidden by closing or canceling. The difference between close
+ * and cancel is user intent. Closing generally implies that the user
+ * acknowledged the content on the overlay. By default, it will cancel whenever
+ * the user taps outside it or presses the escape key. This behavior is
+ * configurable with the `noCancelOnEscKey` and the
+ * `noCancelOnOutsideClick` properties. `close()` should be called explicitly
+ * by the implementer when the user interacts with a control in the overlay
+ * element. When the dialog is canceled, the overlay fires an
+ * 'cancel' event. Call `preventDefault` on this event to prevent
+ * the overlay from closing.
+ *
+ * ### Positioning
+ *
+ * By default the element is sized and positioned to fit and centered inside the
+ * window. You can position and size it manually using CSS. See `FitMixin`.
+ *
+ * ### Backdrop
+ *
+ * Set the `withBackdrop` attribute to display a backdrop behind the overlay.
+ * The backdrop is appended to `<body>` and is of type `<arc-overlay-backdrop>`.
+ * See its doc page for styling options.
+ * In addition, `withBackdrop` will wrap the focus within the content in the
+ * light DOM. Override the [`_focusableNodes`
+ * getter](#FitMixin:property-_focusableNodes) to achieve a
+ * different behavior.
+ *
+ * ### Limitations
+ *
+ * The element is styled to appear on top of other content by setting its
+ * `z-index` property. You must ensure no element has a stacking context with a
+ * higher `z-index` than its parent stacking context. You should place this
+ * element as a child of `<body>` whenever possible.
+ *
+ *
+ * ## Usage
+ *
+ * ```javascript
+ * import { LitElement } from 'lit-element';
+ * import { OverlayMixin } from '@anypoint-web-components/awc';
+ *
+ * class ArcOverlayImpl extends OverlayMixin(LitElement) {
+ *  ...
+ * }
+ * ```
+ *
+ * @fires cancel
+ * @fires opened
+ * @fires closed
+ * @fires openedchange
+ * @mixin
+ * 
+ * 
+ * @prop {HTMLElement | Window} fitInto
+ * @prop {HTMLElement | Window} positionTarget
+ * @prop {HTMLElement} sizingTarget
+ * 
+ * @attr {HorizontalAlign} horizontalAlign
+ * @prop {HorizontalAlign | string | undefined} horizontalAlign
+ * 
+ * @attr {VerticalAlign} horizontalAlign
+ * @prop {VerticalAlign | string | undefined} verticalAlign
+ * 
+ * @attr {boolean} noOverlap
+ * @prop {boolean | undefined} noOverlap
+ * 
+ * @attr {boolean} dynamicAlign
+ * @prop {boolean | undefined} dynamicAlign
+ * 
+ * @attr {boolean} autoFitOnAttach
+ * @prop {boolean | undefined} autoFitOnAttach
+ * 
+ * @attr {boolean} fitPositionTarget
+ * @prop {boolean | undefined} fitPositionTarget
+ * 
+ * @attr {number} horizontalOffset
+ * @prop {number | undefined} horizontalOffset
+ * 
+ * @attr {number} verticalOffset
+ * @prop {number | undefined} verticalOffset
+ * 
+ * @attr {boolean} noAutoFocus
+ * @prop {boolean | undefined} noAutoFocus
+ * 
+ * @attr {boolean} noCancelOnEscKey
+ * @prop {boolean | undefined} noCancelOnEscKey
+ * 
+ * @attr {boolean} noCancelOnOutsideClick
+ * @prop {boolean | undefined} noCancelOnOutsideClick
+ * 
+ * @attr {boolean} restoreFocusOnClose
+ * @prop {boolean | undefined} restoreFocusOnClose
+ * 
+ * @attr {boolean} allowClickThrough
+ * @prop {boolean | undefined} allowClickThrough
+ * 
+ * @attr {boolean} alwaysOnTop
+ * @prop {boolean | undefined} alwaysOnTop
+ * 
+ * @attr {boolean} opened
+ * @prop {boolean | undefined} opened
+ * 
+ * @attr {boolean} withBackdrop
+ * @prop {boolean | undefined} withBackdrop
+ * 
+ * @attr {string} scrollAction
+ * @prop {string | undefined} scrollAction
+ * 
+ * @prop {boolean | undefined} canceled
+ * 
+ * @prop {any} closingReason
+ */
 export interface OverlayMixinInterface extends FitMixinInterface, ResizableMixinInterface {
   /**
    * Set to true to disable auto-focusing the overlay or child nodes with
    * the `autofocus` attribute` when the overlay is opened.
+   * @attr
    */
   noAutoFocus?: boolean;
 
   /**
    * Set to true to disable canceling the overlay with the ESC key.
+   * @attr
    */
   noCancelOnEscKey?: boolean;
 
   /**
    * Set to true to disable canceling the overlay by clicking outside it.
+   * @attr
    */
   noCancelOnOutsideClick?: boolean;
 
@@ -38,11 +166,13 @@ export interface OverlayMixinInterface extends FitMixinInterface, ResizableMixin
    * Contains the reason(s) this overlay was last closed (see `closed`). `OverlayMixin` provides the `canceled`
    * reason; implementers of the behavior can provide other reasons in
    * addition to `canceled`.
+   * @attr
    */
   closingReason: any;
 
   /**
    * Set to true to enable restoring of focus when overlay is closed.
+   * @attr
    */
   restoreFocusOnClose?: boolean;
 
@@ -50,11 +180,13 @@ export interface OverlayMixinInterface extends FitMixinInterface, ResizableMixin
    * Set to true to allow clicks to go through overlays.
    * When the user clicks outside this overlay, the click may
    * close the overlay below.
+   * @attr
    */
   allowClickThrough?: boolean;
 
   /**
    * Set to true to keep overlay always on top.
+   * @attr
    */
   alwaysOnTop?: boolean;
 
@@ -64,7 +196,8 @@ export interface OverlayMixinInterface extends FitMixinInterface, ResizableMixin
   _manager: typeof OverlayManager;
 
   /**
-   * True if the overlay is currently displayed.
+   * True if the overlay is currently displayed
+   * @attr.
    */
   opened: boolean;
 
@@ -76,6 +209,7 @@ export interface OverlayMixinInterface extends FitMixinInterface, ResizableMixin
   /**
    * Set to true to display a backdrop behind the overlay. It traps the focus
    * within the light DOM of the overlay.
+   * @attr
    */
   withBackdrop: boolean | undefined;
 
@@ -86,6 +220,7 @@ export interface OverlayMixinInterface extends FitMixinInterface, ResizableMixin
    * happens. Possible values: lock - blocks scrolling from happening, refit -
    * computes the new position on the overlay cancel - causes the overlay to
    * close
+   * @attr
    */
 
   scrollAction: string | undefined;
@@ -233,29 +368,92 @@ export interface OverlayMixinInterface extends FitMixinInterface, ResizableMixin
  * }
  * ```
  *
+ * @mixin
+ * 
  * @fires cancel
  * @fires opened
  * @fires closed
  * @fires openedchange
- * @mixin
+ * 
+ * @prop {HTMLElement | Window} fitInto
+ * @prop {HTMLElement | Window} positionTarget
+ * @prop {HTMLElement} sizingTarget
+ * 
+ * @attr {HorizontalAlign} horizontalAlign
+ * @prop {HorizontalAlign | string | undefined} horizontalAlign
+ * 
+ * @attr {VerticalAlign} horizontalAlign
+ * @prop {VerticalAlign | string | undefined} verticalAlign
+ * 
+ * @attr {boolean} noOverlap
+ * @prop {boolean | undefined} noOverlap
+ * 
+ * @attr {boolean} dynamicAlign
+ * @prop {boolean | undefined} dynamicAlign
+ * 
+ * @attr {boolean} autoFitOnAttach
+ * @prop {boolean | undefined} autoFitOnAttach
+ * 
+ * @attr {boolean} fitPositionTarget
+ * @prop {boolean | undefined} fitPositionTarget
+ * 
+ * @attr {number} horizontalOffset
+ * @prop {number | undefined} horizontalOffset
+ * 
+ * @attr {number} verticalOffset
+ * @prop {number | undefined} verticalOffset
+ * 
+ * @attr {boolean} noAutoFocus
+ * @prop {boolean | undefined} noAutoFocus
+ * 
+ * @attr {boolean} noCancelOnEscKey
+ * @prop {boolean | undefined} noCancelOnEscKey
+ * 
+ * @attr {boolean} noCancelOnOutsideClick
+ * @prop {boolean | undefined} noCancelOnOutsideClick
+ * 
+ * @attr {boolean} restoreFocusOnClose
+ * @prop {boolean | undefined} restoreFocusOnClose
+ * 
+ * @attr {boolean} allowClickThrough
+ * @prop {boolean | undefined} allowClickThrough
+ * 
+ * @attr {boolean} alwaysOnTop
+ * @prop {boolean | undefined} alwaysOnTop
+ * 
+ * @attr {boolean} opened
+ * @prop {boolean | undefined} opened
+ * 
+ * @attr {boolean} withBackdrop
+ * @prop {boolean | undefined} withBackdrop
+ * 
+ * @attr {string} scrollAction
+ * @prop {string | undefined} scrollAction
+ * 
+ * @prop {boolean | undefined} canceled
+ * 
+ * @prop {any} closingReason
  */
 export function OverlayMixin<T extends Constructor<LitElement>>(superClass: T): Constructor<OverlayMixinInterface> & T {
   class MyMixinClass extends FitMixin(ResizableMixin(superClass)) {
     /**
      * Set to true to disable auto-focusing the overlay or child nodes with
      * the `autofocus` attribute` when the overlay is opened.
+     * @attr
      */
     @property({ reflect: true, type: Boolean })
     noAutoFocus?: boolean;
 
     /**
      * Set to true to disable canceling the overlay with the ESC key.
+     * @attr
      */
     @property({ reflect: true, type: Boolean })
     noCancelOnEscKey?: boolean;
 
     /**
      * Set to true to disable canceling the overlay by clicking outside it.
+     * @attr
      */
     @property({ reflect: true, type: Boolean })
     noCancelOnOutsideClick?: boolean;
@@ -264,12 +462,14 @@ export function OverlayMixin<T extends Constructor<LitElement>>(superClass: T): 
      * Contains the reason(s) this overlay was last closed (see `closed`). `OverlayMixin` provides the `canceled`
      * reason; implementers of the behavior can provide other reasons in
      * addition to `canceled`.
+     * @attr
      */
     @property()
     closingReason: any;
 
     /**
      * Set to true to enable restoring of focus when overlay is closed.
+     * @attr
      */
     @property({ reflect: true, type: Boolean })
     restoreFocusOnClose?: boolean;
@@ -278,12 +478,14 @@ export function OverlayMixin<T extends Constructor<LitElement>>(superClass: T): 
      * Set to true to allow clicks to go through overlays.
      * When the user clicks outside this overlay, the click may
      * close the overlay below.
+     * @attr
      */
     @property({ reflect: true, type: Boolean })
     allowClickThrough?: boolean;
 
     /**
      * Set to true to keep overlay always on top.
+     * @attr
      */
     @property({ reflect: true, type: Boolean })
     alwaysOnTop?: boolean;
@@ -303,8 +505,9 @@ export function OverlayMixin<T extends Constructor<LitElement>>(superClass: T): 
 
     /**
      * True if the overlay is currently displayed.
+     * @attr
      */
-    @property({ type: Boolean })
+    @property({ type: Boolean, reflect: true })
     get opened(): boolean | undefined {
       return this._opened;
     }
@@ -350,6 +553,7 @@ export function OverlayMixin<T extends Constructor<LitElement>>(superClass: T): 
     /**
      * Set to true to display a backdrop behind the overlay. It traps the focus
      * within the light DOM of the overlay.
+     * @attr
      */
     @property({ type: Boolean })
     get withBackdrop(): boolean | undefined {
@@ -387,8 +591,9 @@ export function OverlayMixin<T extends Constructor<LitElement>>(superClass: T): 
      * happens. Possible values: lock - blocks scrolling from happening, refit -
      * computes the new position on the overlay cancel - causes the overlay to
      * close
+     * @attr
      */
-    @property({ reflect: true, attribute: 'scrollAction' })
+    @property({ type: String, reflect: true, attribute: 'scrollAction' })
     _scrollAction?: string;
 
     @property({ type: String })

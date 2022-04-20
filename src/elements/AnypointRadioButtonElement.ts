@@ -39,6 +39,33 @@ import radioStyles from '../styles/RadioButton.js';
  *  <anypoint-radio-button name="c">Orange</anypoint-radio-button>
  * </paper-radio-group>
  * ```
+ * 
+ * @attr {boolean} toggles
+ * @prop {boolean | undefined} toggles
+ * 
+ * @attr {boolean} disabled
+ * @prop {boolean | undefined} disabled
+ * 
+ * @attr {boolean} required
+ * @prop {boolean | undefined} required
+ * 
+ * @attr {boolean} checked
+ * @prop {boolean | undefined} checked
+ * 
+ * @attr {string} name
+ * @prop {string | undefined} name
+ * 
+ * @attr {string} value
+ * @prop {string | undefined} value
+ * 
+ * @fires invalidchange
+ * @fires validationstateschange
+ *
+ * @attr {string} validator
+ * @prop {string | undefined} validator
+ *
+ * @attr {boolean} invalid
+ * @prop {boolean | undefined} invalid
  */
 export default class AnypointRadioButtonElement extends CheckedElementMixin(LitElement) {
   static get styles(): CSSResult {

@@ -17,6 +17,23 @@ export const debounceValue = Symbol('debounceValue');
 
 type Constructor<T = {}> = new (...args: any[]) => T;
 
+/**
+ * Use `RangeMixin` to implement an element that has a range of minimum and maximum.
+ * 
+ * This is inspired by Polymer's `iron-range-behavior`.
+ *
+ * @mixin
+ * 
+ * @attr {number} value
+ * @prop {number | undefined} value
+ * @attr {number} min
+ * @prop {number | undefined} min
+ * @attr {number} max
+ * @prop {number | undefined} max
+ * @attr {number} step
+ * @prop {number | undefined} step
+ * @fires ratiochange
+ */
 export interface RangeMixinInterface {
   /**
    * the ratio of the value.
@@ -57,11 +74,21 @@ export interface RangeMixinInterface {
  * This is inspired by Polymer's `iron-range-behavior`.
  *
  * @mixin
+ * 
+ * @attr {number} value
+ * @prop {number | undefined} value
+ * @attr {number} min
+ * @prop {number | undefined} min
+ * @attr {number} max
+ * @prop {number | undefined} max
+ * @attr {number} step
+ * @prop {number | undefined} step
+ * @fires ratiochange
  */
 export function RangeMixin<T extends Constructor<LitElement>>(superClass: T): Constructor<RangeMixinInterface> & T {
   class MyMixinClass extends superClass {
     /**
-     * @returns {number} the ratio of the value.
+     * @returns the ratio of the value.
      */
     get ratio(): number {
       return this[ratioValue];

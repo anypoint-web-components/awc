@@ -26,6 +26,30 @@ import '../define/anypoint-icon-button.js';
  * support.
  *
  * See README.md file for detailed documentation.
+ * 
+ * @attr {boolean} focused
+ * @prop {boolean | undefined} focused
+ * 
+ * @attr {boolean} disabled
+ * @prop {boolean | undefined} disabled
+ * 
+ * @fires invalidchange
+ * @fires validationstateschange
+ *
+ * @attr {string} validator
+ * @prop {string | undefined} validator
+ *
+ * @attr {boolean} invalid
+ * @prop {boolean | undefined} invalid
+ * 
+ * @fires invalidchange
+ * @fires validationstateschange
+ *
+ * @attr {string} validator
+ * @prop {string | undefined} validator
+ *
+ * @attr {boolean} invalid
+ * @prop {boolean | undefined} invalid
  */
 export default class AnypointDropdownMenuElement extends ValidatableMixin(ControlStateMixin(AnypointElement)) {
   static get styles(): CSSResult {

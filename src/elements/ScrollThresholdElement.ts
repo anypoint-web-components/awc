@@ -5,6 +5,9 @@ import { addListener, getListener } from '../lib/ElementEventsRegistry.js';
 
 /**
  * A port of `scroll-threshold` element.
+ * 
+ * @attr {string} scrollTarget
+ * @prop {HTMLElement | string} scrollTarget
  */
 export default class ScrollThresholdElement extends ScrollTargetMixin(LitElement) {
   static get styles(): CSSResult {
@@ -15,14 +18,14 @@ export default class ScrollThresholdElement extends ScrollTargetMixin(LitElement
    * Distance from the top (or left, for horizontal) bound of the scroller
    * where the "upper trigger" will fire.
    */
-  @property({ type: Number })
+  @property({ type: Number, reflect: true })
   upperThreshold = 100;
 
   /**
    * Distance from the bottom (or right, for horizontal) bound of the scroller
    * where the "lower trigger" will fire.
    */
-  @property({ type: Number })
+  @property({ type: Number, reflect: true })
   lowerThreshold = 100;
 
   _horizontal?: boolean;
@@ -50,7 +53,7 @@ export default class ScrollThresholdElement extends ScrollTargetMixin(LitElement
   /**
    * True if the orientation of the scroller is horizontal.
    */
-   @property({ type: Boolean })
+  @property({ type: Boolean, reflect: true })
   get horizontal(): boolean | undefined {
     return this._horizontal;
   }
