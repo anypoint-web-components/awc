@@ -368,7 +368,7 @@ describe('AnypointChipElement', () => {
       const element = await basicFixture();
       const spy = sinon.spy(element, 'click');
       element._asyncClick();
-      await aTimeout(0);
+      await aTimeout(1);
       assert.isTrue(spy.called);
     });
   });

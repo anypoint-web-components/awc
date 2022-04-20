@@ -16363,123 +16363,6 @@
     },
     {
       "kind": "javascript-module",
-      "path": "src/resources/AnypointSwitchIcons.ts",
-      "declarations": [
-        {
-          "kind": "variable",
-          "name": "onIcon",
-          "default": "html`<svg viewBox=\"0 0 16 16\">\n  <path d=\"M11.605 3.086L6.898 9.803 4.311 7.991 3.164 9.629l4.225 2.959 5.657-8.073c-.396-.554-.884-1.037-1.441-1.429z\"></path>\n</svg>`"
-        },
-        {
-          "kind": "variable",
-          "name": "offIcon",
-          "default": "html`<svg viewBox=\"0 0 16 16\">\n  <path d=\"M13.289 3.418c-.218-.252-.455-.489-.707-.707L8 7.293 3.418 2.711c-.252.218-.489.455-.707.707L7.293 8l-4.582 4.582c.218.252.455.489.707.707L8 8.707l4.582 4.582c.252-.218.489-.455.707-.707L8.707 8l4.582-4.582z\"></path>\n</svg>`"
-        }
-      ],
-      "exports": [
-        {
-          "kind": "js",
-          "name": "onIcon",
-          "declaration": {
-            "name": "onIcon",
-            "module": "src/resources/AnypointSwitchIcons.ts"
-          }
-        },
-        {
-          "kind": "js",
-          "name": "offIcon",
-          "declaration": {
-            "name": "offIcon",
-            "module": "src/resources/AnypointSwitchIcons.ts"
-          }
-        }
-      ]
-    },
-    {
-      "kind": "javascript-module",
-      "path": "src/resources/Icons.ts",
-      "declarations": [
-        {
-          "kind": "function",
-          "name": "iconWrapper",
-          "return": {
-            "type": {
-              "text": ""
-            }
-          },
-          "parameters": [
-            {
-              "name": "tpl",
-              "type": {
-                "text": "SVGTemplateResult"
-              },
-              "description": "Icon definition"
-            }
-          ],
-          "description": "Wraps icon into an SVG container."
-        },
-        {
-          "kind": "variable",
-          "name": "arrowDown"
-        },
-        {
-          "kind": "variable",
-          "name": "clear"
-        },
-        {
-          "kind": "variable",
-          "name": "visibility"
-        },
-        {
-          "kind": "variable",
-          "name": "visibilityOff"
-        }
-      ],
-      "exports": [
-        {
-          "kind": "js",
-          "name": "iconWrapper",
-          "declaration": {
-            "name": "iconWrapper",
-            "module": "src/resources/Icons.ts"
-          }
-        },
-        {
-          "kind": "js",
-          "name": "arrowDown",
-          "declaration": {
-            "name": "arrowDown",
-            "module": "src/resources/Icons.ts"
-          }
-        },
-        {
-          "kind": "js",
-          "name": "clear",
-          "declaration": {
-            "name": "clear",
-            "module": "src/resources/Icons.ts"
-          }
-        },
-        {
-          "kind": "js",
-          "name": "visibility",
-          "declaration": {
-            "name": "visibility",
-            "module": "src/resources/Icons.ts"
-          }
-        },
-        {
-          "kind": "js",
-          "name": "visibilityOff",
-          "declaration": {
-            "name": "visibilityOff",
-            "module": "src/resources/Icons.ts"
-          }
-        }
-      ]
-    },
-    {
-      "kind": "javascript-module",
       "path": "src/elements/AnypointAutocompleteElement.ts",
       "declarations": [
         {
@@ -63720,286 +63603,6 @@
     },
     {
       "kind": "javascript-module",
-      "path": "src/styles/AnypointChipInput.ts",
-      "declarations": [],
-      "exports": [
-        {
-          "kind": "js",
-          "name": "default",
-          "declaration": {
-            "module": "src/styles/AnypointChipInput.ts"
-          }
-        }
-      ]
-    },
-    {
-      "kind": "javascript-module",
-      "path": "src/styles/AnypointDialogInternalStyles.ts",
-      "declarations": [],
-      "exports": [
-        {
-          "kind": "js",
-          "name": "default",
-          "declaration": {
-            "module": "src/styles/AnypointDialogInternalStyles.ts"
-          }
-        }
-      ]
-    },
-    {
-      "kind": "javascript-module",
-      "path": "src/styles/AnypointDialogStyles.ts",
-      "declarations": [],
-      "exports": [
-        {
-          "kind": "js",
-          "name": "default",
-          "declaration": {
-            "module": "src/styles/AnypointDialogStyles.ts"
-          }
-        }
-      ]
-    },
-    {
-      "kind": "javascript-module",
-      "path": "src/styles/BottomSheet.ts",
-      "declarations": [],
-      "exports": [
-        {
-          "kind": "js",
-          "name": "default",
-          "declaration": {
-            "module": "src/styles/BottomSheet.ts"
-          }
-        }
-      ]
-    },
-    {
-      "kind": "javascript-module",
-      "path": "src/styles/Button.ts",
-      "declarations": [],
-      "exports": [
-        {
-          "kind": "js",
-          "name": "default",
-          "declaration": {
-            "module": "src/styles/Button.ts"
-          }
-        }
-      ]
-    },
-    {
-      "kind": "javascript-module",
-      "path": "src/styles/ButtonIcon.ts",
-      "declarations": [],
-      "exports": [
-        {
-          "kind": "js",
-          "name": "default",
-          "declaration": {
-            "module": "src/styles/ButtonIcon.ts"
-          }
-        }
-      ]
-    },
-    {
-      "kind": "javascript-module",
-      "path": "src/styles/Checkbox.ts",
-      "declarations": [],
-      "exports": [
-        {
-          "kind": "js",
-          "name": "default",
-          "declaration": {
-            "module": "src/styles/Checkbox.ts"
-          }
-        }
-      ]
-    },
-    {
-      "kind": "javascript-module",
-      "path": "src/styles/ChipStyles.ts",
-      "declarations": [],
-      "exports": [
-        {
-          "kind": "js",
-          "name": "default",
-          "declaration": {
-            "module": "src/styles/ChipStyles.ts"
-          }
-        }
-      ]
-    },
-    {
-      "kind": "javascript-module",
-      "path": "src/styles/ColorInputSelectorElement.styles.ts",
-      "declarations": [],
-      "exports": [
-        {
-          "kind": "js",
-          "name": "default",
-          "declaration": {
-            "module": "src/styles/ColorInputSelectorElement.styles.ts"
-          }
-        }
-      ]
-    },
-    {
-      "kind": "javascript-module",
-      "path": "src/styles/ColorSelectorElement.styles.ts",
-      "declarations": [],
-      "exports": [
-        {
-          "kind": "js",
-          "name": "default",
-          "declaration": {
-            "module": "src/styles/ColorSelectorElement.styles.ts"
-          }
-        }
-      ]
-    },
-    {
-      "kind": "javascript-module",
-      "path": "src/styles/DropdownMenu.ts",
-      "declarations": [],
-      "exports": [
-        {
-          "kind": "js",
-          "name": "default",
-          "declaration": {
-            "module": "src/styles/DropdownMenu.ts"
-          }
-        }
-      ]
-    },
-    {
-      "kind": "javascript-module",
-      "path": "src/styles/InputComboboxStyles.ts",
-      "declarations": [],
-      "exports": [
-        {
-          "kind": "js",
-          "name": "default",
-          "declaration": {
-            "module": "src/styles/InputComboboxStyles.ts"
-          }
-        }
-      ]
-    },
-    {
-      "kind": "javascript-module",
-      "path": "src/styles/ItemStyles.ts",
-      "declarations": [],
-      "exports": [
-        {
-          "kind": "js",
-          "name": "default",
-          "declaration": {
-            "module": "src/styles/ItemStyles.ts"
-          }
-        }
-      ]
-    },
-    {
-      "kind": "javascript-module",
-      "path": "src/styles/MenuButton.ts",
-      "declarations": [],
-      "exports": [
-        {
-          "kind": "js",
-          "name": "default",
-          "declaration": {
-            "module": "src/styles/MenuButton.ts"
-          }
-        }
-      ]
-    },
-    {
-      "kind": "javascript-module",
-      "path": "src/styles/Progress.ts",
-      "declarations": [],
-      "exports": [
-        {
-          "kind": "js",
-          "name": "default",
-          "declaration": {
-            "module": "src/styles/Progress.ts"
-          }
-        }
-      ]
-    },
-    {
-      "kind": "javascript-module",
-      "path": "src/styles/RadioButton.ts",
-      "declarations": [],
-      "exports": [
-        {
-          "kind": "js",
-          "name": "default",
-          "declaration": {
-            "module": "src/styles/RadioButton.ts"
-          }
-        }
-      ]
-    },
-    {
-      "kind": "javascript-module",
-      "path": "src/styles/Switch.ts",
-      "declarations": [],
-      "exports": [
-        {
-          "kind": "js",
-          "name": "default",
-          "declaration": {
-            "module": "src/styles/Switch.ts"
-          }
-        }
-      ]
-    },
-    {
-      "kind": "javascript-module",
-      "path": "src/styles/TabsStyles.ts",
-      "declarations": [],
-      "exports": [
-        {
-          "kind": "js",
-          "name": "default",
-          "declaration": {
-            "module": "src/styles/TabsStyles.ts"
-          }
-        }
-      ]
-    },
-    {
-      "kind": "javascript-module",
-      "path": "src/styles/anypoint-input-styles.ts",
-      "declarations": [],
-      "exports": [
-        {
-          "kind": "js",
-          "name": "default",
-          "declaration": {
-            "module": "src/styles/anypoint-input-styles.ts"
-          }
-        }
-      ]
-    },
-    {
-      "kind": "javascript-module",
-      "path": "src/styles/ripple.styles.ts",
-      "declarations": [],
-      "exports": [
-        {
-          "kind": "js",
-          "name": "default",
-          "declaration": {
-            "module": "src/styles/ripple.styles.ts"
-          }
-        }
-      ]
-    },
-    {
-      "kind": "javascript-module",
       "path": "src/mixins/AnypointSelection.ts",
       "declarations": [
         {
@@ -75343,6 +74946,403 @@
           "declaration": {
             "name": "get",
             "module": "src/mixins/ValidatorStore.ts"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "src/resources/AnypointSwitchIcons.ts",
+      "declarations": [
+        {
+          "kind": "variable",
+          "name": "onIcon",
+          "default": "html`<svg viewBox=\"0 0 16 16\">\n  <path d=\"M11.605 3.086L6.898 9.803 4.311 7.991 3.164 9.629l4.225 2.959 5.657-8.073c-.396-.554-.884-1.037-1.441-1.429z\"></path>\n</svg>`"
+        },
+        {
+          "kind": "variable",
+          "name": "offIcon",
+          "default": "html`<svg viewBox=\"0 0 16 16\">\n  <path d=\"M13.289 3.418c-.218-.252-.455-.489-.707-.707L8 7.293 3.418 2.711c-.252.218-.489.455-.707.707L7.293 8l-4.582 4.582c.218.252.455.489.707.707L8 8.707l4.582 4.582c.252-.218.489-.455.707-.707L8.707 8l4.582-4.582z\"></path>\n</svg>`"
+        }
+      ],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "onIcon",
+          "declaration": {
+            "name": "onIcon",
+            "module": "src/resources/AnypointSwitchIcons.ts"
+          }
+        },
+        {
+          "kind": "js",
+          "name": "offIcon",
+          "declaration": {
+            "name": "offIcon",
+            "module": "src/resources/AnypointSwitchIcons.ts"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "src/resources/Icons.ts",
+      "declarations": [
+        {
+          "kind": "function",
+          "name": "iconWrapper",
+          "return": {
+            "type": {
+              "text": ""
+            }
+          },
+          "parameters": [
+            {
+              "name": "tpl",
+              "type": {
+                "text": "SVGTemplateResult"
+              },
+              "description": "Icon definition"
+            }
+          ],
+          "description": "Wraps icon into an SVG container."
+        },
+        {
+          "kind": "variable",
+          "name": "arrowDown"
+        },
+        {
+          "kind": "variable",
+          "name": "clear"
+        },
+        {
+          "kind": "variable",
+          "name": "visibility"
+        },
+        {
+          "kind": "variable",
+          "name": "visibilityOff"
+        }
+      ],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "iconWrapper",
+          "declaration": {
+            "name": "iconWrapper",
+            "module": "src/resources/Icons.ts"
+          }
+        },
+        {
+          "kind": "js",
+          "name": "arrowDown",
+          "declaration": {
+            "name": "arrowDown",
+            "module": "src/resources/Icons.ts"
+          }
+        },
+        {
+          "kind": "js",
+          "name": "clear",
+          "declaration": {
+            "name": "clear",
+            "module": "src/resources/Icons.ts"
+          }
+        },
+        {
+          "kind": "js",
+          "name": "visibility",
+          "declaration": {
+            "name": "visibility",
+            "module": "src/resources/Icons.ts"
+          }
+        },
+        {
+          "kind": "js",
+          "name": "visibilityOff",
+          "declaration": {
+            "name": "visibilityOff",
+            "module": "src/resources/Icons.ts"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "src/styles/AnypointChipInput.ts",
+      "declarations": [],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "default",
+          "declaration": {
+            "module": "src/styles/AnypointChipInput.ts"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "src/styles/AnypointDialogInternalStyles.ts",
+      "declarations": [],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "default",
+          "declaration": {
+            "module": "src/styles/AnypointDialogInternalStyles.ts"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "src/styles/AnypointDialogStyles.ts",
+      "declarations": [],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "default",
+          "declaration": {
+            "module": "src/styles/AnypointDialogStyles.ts"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "src/styles/BottomSheet.ts",
+      "declarations": [],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "default",
+          "declaration": {
+            "module": "src/styles/BottomSheet.ts"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "src/styles/Button.ts",
+      "declarations": [],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "default",
+          "declaration": {
+            "module": "src/styles/Button.ts"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "src/styles/ButtonIcon.ts",
+      "declarations": [],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "default",
+          "declaration": {
+            "module": "src/styles/ButtonIcon.ts"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "src/styles/Checkbox.ts",
+      "declarations": [],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "default",
+          "declaration": {
+            "module": "src/styles/Checkbox.ts"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "src/styles/ChipStyles.ts",
+      "declarations": [],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "default",
+          "declaration": {
+            "module": "src/styles/ChipStyles.ts"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "src/styles/ColorInputSelectorElement.styles.ts",
+      "declarations": [],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "default",
+          "declaration": {
+            "module": "src/styles/ColorInputSelectorElement.styles.ts"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "src/styles/ColorSelectorElement.styles.ts",
+      "declarations": [],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "default",
+          "declaration": {
+            "module": "src/styles/ColorSelectorElement.styles.ts"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "src/styles/DropdownMenu.ts",
+      "declarations": [],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "default",
+          "declaration": {
+            "module": "src/styles/DropdownMenu.ts"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "src/styles/InputComboboxStyles.ts",
+      "declarations": [],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "default",
+          "declaration": {
+            "module": "src/styles/InputComboboxStyles.ts"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "src/styles/ItemStyles.ts",
+      "declarations": [],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "default",
+          "declaration": {
+            "module": "src/styles/ItemStyles.ts"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "src/styles/MenuButton.ts",
+      "declarations": [],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "default",
+          "declaration": {
+            "module": "src/styles/MenuButton.ts"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "src/styles/Progress.ts",
+      "declarations": [],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "default",
+          "declaration": {
+            "module": "src/styles/Progress.ts"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "src/styles/RadioButton.ts",
+      "declarations": [],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "default",
+          "declaration": {
+            "module": "src/styles/RadioButton.ts"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "src/styles/Switch.ts",
+      "declarations": [],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "default",
+          "declaration": {
+            "module": "src/styles/Switch.ts"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "src/styles/TabsStyles.ts",
+      "declarations": [],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "default",
+          "declaration": {
+            "module": "src/styles/TabsStyles.ts"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "src/styles/anypoint-input-styles.ts",
+      "declarations": [],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "default",
+          "declaration": {
+            "module": "src/styles/anypoint-input-styles.ts"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "src/styles/ripple.styles.ts",
+      "declarations": [],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "default",
+          "declaration": {
+            "module": "src/styles/ripple.styles.ts"
           }
         }
       ]
