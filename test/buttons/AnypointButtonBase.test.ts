@@ -1,4 +1,4 @@
-import { assert, fixture, html, nextFrame, aTimeout } from '@open-wc/testing';
+import { assert, fixture, html } from '@open-wc/testing';
 import sinon from 'sinon';
 import { AnypointButtonBase } from '../../src/elements/AnypointButtonBase.js';
 
@@ -8,6 +8,7 @@ class TestButton extends AnypointButtonBase {
   }
 }
 window.customElements.define('anypoint-button-base', TestButton);
+
 declare global {
   interface HTMLElementTagNameMap {
     "anypoint-button-base": TestButton
@@ -15,112 +16,106 @@ declare global {
 }
 
 describe('AnypointButtonBase', () => {
+  async function basicFixture(): Promise<TestButton> {
+    return fixture(html`<anypoint-button-base>Button</anypoint-button-base>`);
+  }
+
+  async function mediumFixture(): Promise<TestButton> {
+    return fixture(html`<anypoint-button-base emphasis="medium">Button</anypoint-button-base>`);
+  }
+
+  async function highFixture(): Promise<TestButton> {
+    return fixture(html`<anypoint-button-base emphasis="high">Button</anypoint-button-base>`);
+  }
+
+  async function activeHighFixture(): Promise<TestButton> {
+    return fixture(html`<anypoint-button-base emphasis="high" toggles active>Button</anypoint-button-base>`);
+  }
+
+  async function anypointFixture(): Promise<TestButton> {
+    return fixture(html`<anypoint-button-base emphasis="high" anypoint>Button</anypoint-button-base>`);
+  }
+
+  async function flatFixture(): Promise<TestButton> {
+    return fixture(html`<anypoint-button-base emphasis="high" flat>Button</anypoint-button-base>`);
+  }
+
+  async function disabledFixture(): Promise<TestButton> {
+    return fixture(html`<anypoint-button-base emphasis="high" disabled>Button</anypoint-button-base>`);
+  }
+
   describe('constructor()', () => {
-    it('Sets emphasis value', () => {
+    it('sets the default emphasis value', () => {
       const base = new TestButton();
       assert.equal(base.emphasis, 'low');
     });
   });
 
-  describe('emphasis setter and getter', () => {
-    let base: TestButton;
-    beforeEach(() => {
-      base = new TestButton();
+  describe('emphasis computation', () => {
+    it('computes the elevation for a low emphasis', async () => {
+      const element = await basicFixture();
+      assert.equal(element.elevation, 0);
     });
 
-    it('Sets other values', async () => {
-      base.emphasis = 'medium';
-      await nextFrame();
-      assert.equal(base.emphasis, 'medium');
+    it('computes the elevation for a medium emphasis', async () => {
+      const element = await mediumFixture();
+      assert.equal(element.elevation, 0);
     });
 
-    it('Calls _calculateElevation() when changing value', async () => {
-      const spy = sinon.spy(base, '_calculateElevation');
-      base.emphasis = 'medium';
-      await aTimeout(100);
-      assert.isTrue(spy.calledOnce, 'Function called');
+    it('computes the elevation for a high emphasis', async () => {
+      const element = await highFixture();
+      assert.equal(element.elevation, 1);
     });
 
-    it('Ignores _calculateElevation() when not changing value', async () => {
-      const spy = sinon.spy(base, '_calculateElevation');
-      base.emphasis = 'low';
-      await nextFrame();
+    it('changes the elevation when setting the emphasis property', async () => {
+      const element = await basicFixture();
+      element.emphasis = 'high';
+      await element.updateComplete;
+      assert.equal(element.elevation, 1);
+    });
+
+    it('does not compute emphasis when setting the same value', async () => {
+      const element = await highFixture();
+      const spy = sinon.spy(element, '_calculateElevation');
+      element.emphasis = 'high';
+      await element.updateComplete;
       assert.isFalse(spy.called);
     });
-  });
 
-  describe('toggles setter and getter', () => {
-    let base: TestButton;
-    beforeEach(() => {
-      base = new TestButton();
-      base.toggles = false;
+    it('sets elevation when toggles and active and high emphasis', async () => {
+      const element = await activeHighFixture();
+      assert.equal(element.elevation, 2);
     });
 
-    it('Sets other values', () => {
-      base.toggles = true;
-      assert.isTrue(base._toggles);
+    it('restores elevation when not active anymore', async () => {
+      const element = await activeHighFixture();
+      element.active = false;
+      await element.updateComplete;
+      assert.equal(element.elevation, 1);
     });
 
-    it('Calls _calculateElevation() when changing value', () => {
-      const spy = sinon.spy(base, '_calculateElevation');
-      base.toggles = true;
-      assert.isTrue(spy.calledOnce, 'Function called');
+    it('sets elevation when pressed', async () => {
+      const element = await highFixture();
+      element.dispatchEvent(new Event('mousedown'));
+      await element.updateComplete;
+      assert.equal(element.elevation, 3);
     });
 
-    it('Ignores _calculateElevation() when not changing value', () => {
-      const spy = sinon.spy(base, '_calculateElevation');
-      base.toggles = false;
-      assert.isFalse(spy.called);
-    });
-  });
-
-  describe('_calculateElevation()', () => {
-    let base: TestButton;
-    beforeEach(async () => {
-      base = await fixture(html` <anypoint-button-base emphasis="high"></anypoint-button-base>`);
+    it('sets elevation when anypoint', async () => {
+      const element = await anypointFixture();
+      assert.equal(element.elevation, 0);
     });
 
-    it('Sets elevation to 0 when not high', async () => {
-      base.emphasis = 'low';
-      await base._calculateElevation();
-      assert.equal(base.elevation, 0);
+    it('sets elevation when flat', async () => {
+      const element = await flatFixture();
+      assert.equal(element.elevation, 0);
     });
 
-    it('Sets elevation to 2 when toggles and active', async () => {
-      base.toggles = true;
-      base.active = true;
-      await base._calculateElevation();
-      assert.equal(base.elevation, 2);
-    });
-
-    it('Sets elevation to 3 when pressed', async () => {
-      // @ts-ignore
-      base._pressed = true;
-      await base._calculateElevation();
-      assert.equal(base.elevation, 3);
-    });
-
-    it('Sets elevation to 1 otherwise', async () => {
-      await base._calculateElevation();
-      assert.equal(base.elevation, 1);
-    });
-  });
-
-  describe('_changedControlState()', () => {
-    it('Calls _calculateElevation()', () => {
-      const base = new TestButton();
-      const spy = sinon.spy(base, '_calculateElevation');
-      base._changedControlState();
-      assert.isTrue(spy.called, 'Function called');
-    });
-  });
-
-  describe('_buttonStateChanged()', () => {
-    it('Calls _calculateElevation()', () => {
-      const base = new TestButton();
-      const spy = sinon.spy(base, '_calculateElevation');
-      base._buttonStateChanged();
-      assert.isTrue(spy.called, 'Function called');
+    it('does not render a shadow when disabled', async () => {
+      const element = await disabledFixture();
+      assert.equal(element.elevation, 1, 'elevation is still set');
+      const shadow = getComputedStyle(element).boxShadow;
+      assert.equal(shadow, 'none');
     });
   });
 });

@@ -245,8 +245,6 @@ export function ButtonStateMixin<T extends Constructor<LitElement>>(superClass: 
       this._keyUpHandler = this._keyUpHandler.bind(this);
       this._blurHandler = this._blurHandler.bind(this);
       this._focusHandler = this._focusHandler.bind(this);
-
-      this.toggles = false;
     }
 
     /**

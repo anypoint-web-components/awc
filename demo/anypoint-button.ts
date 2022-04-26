@@ -29,6 +29,9 @@ class ComponentDemo extends DemoPage {
   iconDisabled = false;
 
   @demoProperty()
+  demoFlat = false;
+
+  @demoProperty()
   demoNoink = false;
 
   @demoProperty()
@@ -49,6 +52,7 @@ class ComponentDemo extends DemoPage {
     this.buttonTransitionHandler = this.buttonTransitionHandler.bind(this);
 
     this.componentName = 'anypoint-button';
+    this.demoStates = ['Low', 'Medium', 'High'];
   }
 
   _demoEmphasisHandler(e: CustomEvent): void {
@@ -129,6 +133,7 @@ class ComponentDemo extends DemoPage {
             ?noink="${demoNoink}"
             ?toggles="${demoToggles}"
             ?disabled="${demoDisabled}"
+            ?flat="${this.demoFlat}"
             @transitionend="${this.mainTransitionHandler}"
           >
             ${demoLeadingIcon ? html`<demo-icon icon="message"></demo-icon>` : undefined}
@@ -160,6 +165,12 @@ class ComponentDemo extends DemoPage {
             name="demoDisabled"
             @change="${this._toggleMainOption}"
             >Disabled</anypoint-checkbox>
+          <anypoint-checkbox
+            aria-describedby="mainOptionsLabel"
+            slot="options"
+            name="demoFlat"
+            @change="${this._toggleMainOption}"
+            >Flat</anypoint-checkbox>
         </interactive-demo>
       </section>
     `;

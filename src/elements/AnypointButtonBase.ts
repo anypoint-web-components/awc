@@ -1,3 +1,4 @@
+import { PropertyValueMap } from 'lit';
 import { property } from 'lit/decorators.js';
 import AnypointElement from './AnypointElement.js';
 import { ControlStateMixin } from '../mixins/ControlStateMixin.js';
@@ -27,6 +28,12 @@ export type EmphasisValue = 'low'|'medium'|'high';
  * @prop {readonly boolean | undefined} pressed
  * @prop {readonly boolean | undefined} pointerDown
  * @prop {readonly boolean | undefined} receivedFocusFromKeyboard
+ * 
+ * @attr {boolean} anypoint
+ * @prop {boolean | undefined} anypoint
+ * 
+ * @attr {boolean} outlined
+ * @prop {boolean | undefined} outlined
  */
 export class AnypointButtonBase extends ControlStateMixin(ButtonStateMixin(AnypointElement)) {
   /**
@@ -44,13 +51,11 @@ export class AnypointButtonBase extends ControlStateMixin(ButtonStateMixin(Anypo
   @property({ type: Boolean, reflect: true })
   noink?: boolean;
 
-  // /** 
-  //  * In some cases, this support auto focus on the button.
-  //  */
-  // @property({ type: Boolean, reflect: true })
-  // autofocus?: boolean;
-  
-  private _emphasis?: EmphasisValue = 'low';
+  /**
+   * When set it won't elevate the element, even when high emphasis.
+   */
+  @property({ type: Boolean, reflect: true })
+  flat?: boolean;
 
   /**
    * Button emphasis in the UI.
@@ -63,50 +68,22 @@ export class AnypointButtonBase extends ControlStateMixin(ButtonStateMixin(Anypo
    * Default is "low".
    * @attribute
    */
-  @property({ type: String, reflect: true })
-  get emphasis(): EmphasisValue | undefined {
-    return this._emphasis;
-  }
+  @property({ type: String, reflect: true }) emphasis: EmphasisValue = 'low';
 
-  set emphasis(value: EmphasisValue | undefined) {
-    const old = this._emphasis;
-    if (old === value) {
-      return;
+  protected updated(cp: PropertyValueMap<any> | Map<PropertyKey, unknown>): void {
+    if (cp.has('emphasis') || cp.has('active') || cp.has('toggles') || cp.has('flat') || cp.has('anypoint') || cp.has('_pressed')) {
+      this._calculateElevation();
     }
-    this._emphasis = value;
-    this._calculateElevation();
-    this.requestUpdate('emphasis', old);
-  }
-
-  _toggles?: boolean;
-
-  get toggles(): boolean | undefined {
-    return this._toggles;
-  }
-
-  set toggles(value: boolean | undefined) {
-    const old = this._toggles;
-    if (old === value) {
-      return;
-    }
-    this._toggles = value;
-    this._calculateElevation();
-    this.requestUpdate('toggles', old);
-  }
-
-  constructor() {
-    super();
-    this.requestUpdate('emphasis', '');
-    this._calculateElevation();
+    super.updated(cp);
   }
 
   /**
    * Computes current elevation for the material design.
    * The `emphasis` property is set when the updates are committed.
    */
-  async _calculateElevation(): Promise<void> {
+  _calculateElevation(): void {
     let e = 0;
-    if (this.emphasis === 'high' && !this.anypoint) {
+    if (this.emphasis === 'high' && !this.anypoint && !this.flat) {
       if (this.toggles && this.active) {
         e = 2;
       } else if (this.pressed) {
@@ -115,17 +92,7 @@ export class AnypointButtonBase extends ControlStateMixin(ButtonStateMixin(Anypo
         e = 1;
       }
     }
-    await this.updateComplete;
     this.elevation = e;
-  }
-
-  _changedControlState(): void {
-    super._changedControlState();
-    this._calculateElevation();
-  }
-
-  _buttonStateChanged(): void {
-    this._calculateElevation();
   }
 
   /**
@@ -141,9 +108,5 @@ export class AnypointButtonBase extends ControlStateMixin(ButtonStateMixin(Anypo
       return;
     }
     this.dispatchEvent(new Event('transitionend'));
-  }
-
-  protected anypointChanged(): void {
-    this._calculateElevation();
   }
 }
