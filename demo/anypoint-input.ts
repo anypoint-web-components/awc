@@ -335,8 +335,8 @@ class ComponentDemo extends DemoPage {
         </p>
 
         <anypoint-input name="ex1">
-          <label slot="label">Amount to transfer</label>
-          <span slot="prefix" aria-label="Value in US dollars">$</span>
+          <label slot="label" aria-label="Amount to transfer in US dollars">Amount to transfer</label>
+          <div slot="prefix" aria-hidden="true">$</div>
         </anypoint-input>
 
         <p>
@@ -346,8 +346,8 @@ class ComponentDemo extends DemoPage {
         </p>
 
         <anypoint-input name="ex2">
-          <label slot="label">Amount to transfer</label>
-          <span slot="suffix" aria-label="Use integers">.00</span>
+          <label slot="label" aria-label="Amount to transfer as whole number">Amount to transfer</label>
+          <span slot="suffix" aria-hidden="true">.00</span>
         </anypoint-input>
 
         <p>
@@ -358,9 +358,8 @@ class ComponentDemo extends DemoPage {
         </p>
 
         <anypoint-input type="password" name="ex3">
-          <label slot="label">Password</label>
+          <label slot="label" aria-label="Activate the button to show the password">Password</label>
           <anypoint-button slot="suffix"
-            aria-label="Activate the button to show the password"
             onclick="this.parentNode.type='text'"
             >Show</anypoint-button
           >

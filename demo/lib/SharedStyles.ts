@@ -83,6 +83,7 @@ body.styled.dark {
   --primary-background-color: #424242;
   --secondary-text-color: #616161;
   --interactive-demo-options-color: #F5F5F5;
+  --interactive-demo-options-background-color: var(--primary-background-color);
   --error-color: #FF5722;
 }
 

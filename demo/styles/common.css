@@ -2,7 +2,7 @@ body {
   color: var(--primary-text-color);
   background-color: var(--secondary-background-color);
   color: #000;
-  --error-color: red;
+  --error-color: #c62828;
   --primary-text-color: #000;
   --primary-color: #e91e63;
   --primary-background-color: #ffffff;

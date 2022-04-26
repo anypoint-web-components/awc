@@ -480,7 +480,6 @@ export default class AnypointInputElement extends ValidatableMixin(AnypointEleme
   @property({ type: Boolean })
   multiple?: boolean;
 
-  @state()
   _ariaLabelledBy = '';
 
   /**
@@ -604,11 +603,19 @@ export default class AnypointInputElement extends ValidatableMixin(AnypointEleme
     this.removeEventListener('blur', this._focusBlurHandler);
   }
 
+  protected update(cp: PropertyValueMap<any> | Map<PropertyKey, unknown>): void {
+    if (cp.has('infoMessage') || cp.has('invalidMessage') || cp.has('invalid')) {
+      this._updateAriaLabelledBy();
+    }
+    
+    super.update(cp);
+  }
+
   protected updated(cp: PropertyValueMap<any> | Map<PropertyKey, unknown>): void {
-    super.updated(cp);
     if (cp.has('focused')) {
       this._notifyFocus(!!this.focused);
     }
+    super.updated(cp);
   }
 
   /**
@@ -641,6 +648,7 @@ export default class AnypointInputElement extends ValidatableMixin(AnypointEleme
   firstUpdated(): void {
     requestAnimationFrame(() => {
       this._updateAriaLabelledBy();
+      this.requestUpdate();
     });
   }
 
@@ -806,29 +814,37 @@ export default class AnypointInputElement extends ValidatableMixin(AnypointEleme
   }
 
   _updateAriaLabelledBy(): void {
-    const slot = this.shadowRoot!.querySelector('slot[name="label"]') as HTMLSlotElement;
-    const nodes = slot.assignedNodes();
-    if (!nodes.length) {
+    const { infoMessage, invalidMessage, invalid } = this;
+    if (invalidMessage && invalid) {
+      this._ariaLabelledBy = 'errorDescription';
       return;
     }
-    let label;
-    for (let i = 0; i < nodes.length; i++) {
-      if (nodes[i].nodeType === Node.ELEMENT_NODE) {
-        label = nodes[i] as Element;
-        break;
-      }
+    if (infoMessage) {
+      this._ariaLabelledBy = 'infoDescription';
+      return;
     }
-    if (!label) {
+    const slot = this.shadowRoot?.querySelector('slot[name="label"]') as HTMLSlotElement | null;
+    if (!slot) {
+      this._ariaLabelledBy = '';
+      return;
+    }
+    const nodes = slot.assignedNodes();
+    if (!nodes.length) {
+      this._ariaLabelledBy = '';
+      return;
+    }
+    const node = nodes.find(i => i.nodeType === Node.ELEMENT_NODE) as Element;
+    if (!node) {
       this._ariaLabelledBy = '';
       return;
     }
     let labelledBy;
-    if (label.id) {
-      labelledBy = label.id;
+    if (node.id) {
+      labelledBy = node.id;
     } else {
       const nextId = nextLabelID++;
       labelledBy = `anypoint-input-label-${nextId}`;
-      label.id = labelledBy;
+      node.id = labelledBy;
     }
     this._ariaLabelledBy = labelledBy;
   }
@@ -1103,20 +1119,27 @@ export default class AnypointInputElement extends ValidatableMixin(AnypointEleme
   }
 
   _assistiveTemplate(): TemplateResult {
-    const {
-      invalidMessage,
-      infoMessage,
-      _errorAddonClass,
-      _infoAddonClass,
-    } = this;
-    return html`<div class="assistive-info">
-      ${infoMessage
-        ? html`<p class="${_infoAddonClass}">${this.infoMessage}</p>`
-        : ''}
-      ${invalidMessage
-        ? html`<p class="${_errorAddonClass}">${invalidMessage}</p>`
-        : ''}
+    return html`
+    <div class="assistive-info">
+      ${this._infoMessageTemplate()}
+      ${this._errorMessageTemplate()}
     </div>`;
+  }
+
+  protected _infoMessageTemplate(): TemplateResult | string {
+    const { infoMessage } = this;
+    if (!infoMessage) {
+      return '';
+    }
+    return html`<p class="${this._infoAddonClass}" aria-hidden="${this.invalid ? 'true' : 'false'}" id="infoDescription">${infoMessage}</p>`;
+  }
+
+  protected _errorMessageTemplate(): TemplateResult | string {
+    const { invalidMessage } = this;
+    if (!invalidMessage) {
+      return '';
+    }
+    return html`<p class="${this._errorAddonClass}" aria-hidden="${this.invalid ? 'false' : 'true'}" id="errorDescription">${invalidMessage}</p>`;
   }
 
   _labelTemplate(): TemplateResult {
@@ -1128,7 +1151,6 @@ export default class AnypointInputElement extends ValidatableMixin(AnypointEleme
 
   _inputTemplate(): TemplateResult {
     const {
-      _ariaLabelledBy,
       disabled,
       pattern,
       required,
@@ -1153,10 +1175,12 @@ export default class AnypointInputElement extends ValidatableMixin(AnypointEleme
       bindValue,
       _inputType,
     } = this;
+    const ariaLabelledBy = this.getAttribute('ariaLabelledBy') || this._ariaLabelledBy;
     const step = typeof this.step === 'undefined' ? undefined : Number(this.step);
     return html`<input
       class="input-element"
-      aria-labelledby="${ifDefined(_ariaLabelledBy)}"
+      aria-labelledby="${ifDefined(ariaLabelledBy)}"
+      aria-invalid="${this.invalid ? 'true' : 'false'}"
       ?disabled="${disabled}"
       type="${ifDefined(_inputType)}"
       pattern="${ifDefined(pattern)}"

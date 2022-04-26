@@ -63,7 +63,8 @@ anypoint-tabs {
 
 anypoint-tab {
   flex: none;
-  color: var(--interactive-demo-options-color, #757575);
+  color: var(--interactive-demo-options-color, #424242);
+  background-color: var(--interactive-demo-options-background-color, #fff);
 }
 
 .config-title {
@@ -72,7 +73,8 @@ anypoint-tab {
   flex-direction: row;
   border-bottom: 1px var(--interactive-demo-border-color, #e5e5e5) solid;
   padding-left: 12px;
-  color: var(--interactive-demo-options-color, #757575);
+  color: var(--interactive-demo-options-color, #424242);
+  background-color: var(--interactive-demo-options-background-color, #fff);
   height: 48px;
 }
 
@@ -91,7 +93,8 @@ anypoint-tab {
   font-size: .875rem;
   line-height: 1.25rem;
   font-weight: 400;
-  color: var(--interactive-demo-options-color, #757575);
+  color: var(--interactive-demo-options-color, #424242);
+  background-color: var(--interactive-demo-options-background-color, #fff);
   display: block;
   padding: 12px 8px 4px 0px;
 }
