@@ -1,4 +1,4 @@
-import { html, css, CSSResult, TemplateResult } from 'lit';
+import { html, css, CSSResult, TemplateResult, PropertyValueMap } from 'lit';
 import { ifDefined } from 'lit/directives/if-defined.js';
 import { property, state } from 'lit/decorators.js';
 import AnypointElement from './AnypointElement.js';
@@ -57,6 +57,12 @@ function isPrintable(event: KeyboardEvent): boolean {
  *
  * @attr {boolean} invalid
  * @prop {boolean | undefined} invalid
+ * 
+ * @attr {boolean} anypoint
+ * @prop {boolean | undefined} anypoint
+ * 
+ * @attr {boolean} outlined
+ * @prop {boolean | undefined} outlined
  */
 export default class AnypointInputElement extends ValidatableMixin(AnypointElement) {
   static get styles(): CSSResult[] {
@@ -85,8 +91,6 @@ export default class AnypointInputElement extends ValidatableMixin(AnypointEleme
     ];
   }
 
-  _focused?: boolean;
-
   _disabled?: boolean;
 
   _oldTabIndex?: string | null;
@@ -95,20 +99,7 @@ export default class AnypointInputElement extends ValidatableMixin(AnypointEleme
    * If true, the element currently has focus.
    * @attribute
    */
-  @property({ reflect: true, type: Boolean })
-  get focused(): boolean | undefined {
-    return this._focused || false;
-  }
-
-  set focused(value: boolean | undefined) {
-    const old = this._focused;
-    if (old === value) {
-      return;
-    }
-    this._focused = value;
-    this._notifyFocus(!!value);
-    this.requestUpdate('focused', old);
-  }
+  @property({ reflect: true, type: Boolean }) focused: boolean | undefined;
 
   /**
    * If true, the button is a toggle and is currently in the active state.
@@ -155,6 +146,7 @@ export default class AnypointInputElement extends ValidatableMixin(AnypointEleme
    * The value for this input.
    * @attribute
    */
+  @property()
   get value(): any {
     return this._value;
   }
@@ -508,15 +500,23 @@ export default class AnypointInputElement extends ValidatableMixin(AnypointEleme
 
   _shiftTabPressed = false;
 
-  get _prefixed(): HTMLSlotElement {
-    return this.querySelector('[slot=prefix]')!;
+  get _prefixed(): HTMLSlotElement | null {
+    return this.querySelector('[slot=prefix]');
+  }
+
+  get _isFloating(): boolean {
+    const { value } = this;
+    if (!!value || value === 0) {
+      return true;
+    }
+    if (floatTypes.includes(this.type)) {
+      return true;
+    }
+    return !!this.placeholder || !!this.focused;
   }
 
   get _labelClass(): string {
-    const labelFloating = !!this.value
-      || floatTypes.indexOf(this.type) !== -1
-      || !!this.placeholder
-      || this.focused;
+    const labelFloating = this._isFloating;
     let result = 'label';
     if (this._prefixed) {
       result += ' with-prefix';
@@ -560,8 +560,17 @@ export default class AnypointInputElement extends ValidatableMixin(AnypointEleme
   }
 
   get bindValue(): string {
-    const { value } = this;
-    return value === undefined || value === null ? '' : value;
+    const { value, type } = this;
+    if (value === undefined || value === null) {
+      return '';
+    }
+    if (type === 'number') {
+      const parsed = parseInt(value, 10);
+      if (Number.isNaN(parsed)) {
+        return '';
+      }
+    }
+    return value;
   }
 
   constructor() {
@@ -593,6 +602,13 @@ export default class AnypointInputElement extends ValidatableMixin(AnypointEleme
     this.removeEventListener('validationstateschange', this._validationStatesHandler);
     this.removeEventListener('focus', this._focusBlurHandler);
     this.removeEventListener('blur', this._focusBlurHandler);
+  }
+
+  protected updated(cp: PropertyValueMap<any> | Map<PropertyKey, unknown>): void {
+    super.updated(cp);
+    if (cp.has('focused')) {
+      this._notifyFocus(!!this.focused);
+    }
   }
 
   /**

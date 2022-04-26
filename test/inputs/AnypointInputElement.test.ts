@@ -52,6 +52,18 @@ describe('<anypoint-input>', () => {
     </anypoint-input>`);
   }
 
+  async function zeroFixture(): Promise<AnypointInputElement> {
+    return fixture(html`<anypoint-input type="number" value="0">
+      <label slot="label">Label</label>
+    </anypoint-input>`);
+  }
+
+  async function numberFixture(): Promise<AnypointInputElement> {
+    return fixture(html`<anypoint-input type="number" value="10">
+      <label slot="label">Label</label>
+    </anypoint-input>`);
+  }
+
   const hasFormAssociatedElements = 'attachInternals' in document.createElement('span');
 
   describe('setters and getters', () => {
@@ -1287,6 +1299,21 @@ describe('<anypoint-input>', () => {
       const input = element.shadowRoot!.querySelector('.input-element') as HTMLInputElement;
       // @ts-ignore
       assert.equal(input.value, 0);
+    });
+  });
+
+  describe('number type', () => {
+    it('has a number value as string', async () => {
+      const element = await numberFixture();
+      const input = element.inputElement as HTMLInputElement;
+      assert.strictEqual(input.value, '10');
+      assert.strictEqual(element.value, '10');
+    });
+
+    it('floats the label for a zero value', async () => {
+      const element = await zeroFixture();
+      assert.isTrue(element._isFloating);
+      assert.include(element._labelClass, 'floating');
     });
   });
 });
