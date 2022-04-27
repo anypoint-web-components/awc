@@ -1175,7 +1175,9 @@ export default class AnypointInputElement extends ValidatableMixin(AnypointEleme
       bindValue,
       _inputType,
     } = this;
-    const ariaLabelledBy = this.getAttribute('ariaLabelledBy') || this._ariaLabelledBy;
+    // pass the `aria-labelledby` from this element first so the authors can manipulate
+    // this value.
+    const ariaLabelledBy = this.getAttribute('aria-labelledBy') || this._ariaLabelledBy;
     const step = typeof this.step === 'undefined' ? undefined : Number(this.step);
     return html`<input
       class="input-element"
