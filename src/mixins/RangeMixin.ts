@@ -66,6 +66,11 @@ export interface RangeMixinInterface {
   [computeRatio](value: number): number;
   [rangeChanged](): void;
   [clampValue](value: number): number;
+  /**
+   * Performs the computations in a RAF.
+   * This is to make sure all attributes are set before computation occur.
+   */
+  [computeDebounce](): void;
 }
 
 /**
@@ -188,10 +193,10 @@ export function RangeMixin<T extends Constructor<LitElement>>(superClass: T): Co
 
     oldValue?: number;
 
-    constructor(...args: any[]) {
-      super(...args);
-      this[rangeChanged]();
-    }
+    // constructor(...args: any[]) {
+    //   super(...args);
+    //   this[rangeChanged]();
+    // }
 
     /**
      * Performs the update when values change.

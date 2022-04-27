@@ -18,7 +18,7 @@ import { LitElement, html, CSSResult, TemplateResult } from 'lit';
 import { classMap } from 'lit/directives/class-map.js';
 import { styleMap } from 'lit/directives/style-map.js';
 import { property } from 'lit/decorators.js';
-import { RangeMixin, rangeChanged, clampValue, computeRatio } from '../mixins/RangeMixin.js';
+import { RangeMixin, rangeChanged, clampValue, computeRatio, computeDebounce } from '../mixins/RangeMixin.js';
 import elementStyles from '../styles/Progress.js';
 
 export const secondaryProgressValue = Symbol('secondaryProgressValue');
@@ -72,14 +72,14 @@ export default class AnypointProgressElement extends RangeMixin(LitElement) {
     if (typeof parsed === 'string') {
       parsed = parseFloat(parsed);
     }
-    const v = this[clampValue](parsed);
+    // const v = this[clampValue](parsed);
     const old = this[secondaryProgressValue];
-    if (v === old) {
+    if (parsed === old) {
       return;
     }
-    this[secondaryProgressValue] = v;
+    this[secondaryProgressValue] = parsed;
     this.requestUpdate('secondaryProgress', old);
-    this[rangeChanged]();
+    this[computeDebounce]();
   }
 
   /**
@@ -97,7 +97,7 @@ export default class AnypointProgressElement extends RangeMixin(LitElement) {
     }
     this[indeterminateValue] = value;
     this.requestUpdate('indeterminate', old);
-    this[rangeChanged]();
+    this[computeDebounce]();
   }
 
   /**
@@ -121,7 +121,8 @@ export default class AnypointProgressElement extends RangeMixin(LitElement) {
 
   [rangeChanged](): void {
     super[rangeChanged]();
-    const { secondaryProgress, value, min, max, indeterminate } = this;
+    const { value, min, max, indeterminate } = this;
+    const secondaryProgress = this[clampValue](this.secondaryProgress);
     const secondaryRatio = this[computeRatio](secondaryProgress) * 100;
     this[secondaryRatioValue] = secondaryRatio;
 

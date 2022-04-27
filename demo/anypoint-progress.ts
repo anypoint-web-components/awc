@@ -57,6 +57,7 @@ class ComponentDemoPage extends DemoPage {
     ${this.indeterminateTemplate()}
     ${this.styledTemplate()}
     ${this.disabledTemplate()}
+    ${this.secondaryTemplate()}
     `;
   }
 
@@ -99,6 +100,26 @@ class ComponentDemoPage extends DemoPage {
     <div class="card">
       <h3>Disabled state</h3>
       <anypoint-progress value="40" secondaryProgress="80" disabled></anypoint-progress>
+    </div>
+    `;
+  }
+
+  secondaryTemplate(): TemplateResult {
+    return html`
+    <div class="card secondary">
+      <h3>Timeline</h3>
+      <p>0 - 12 (Δ 12)</p>
+      <anypoint-progress value="0" secondaryProgress="12" max="328"></anypoint-progress>
+      <p>12 - 15 (Δ 3)</p>
+      <anypoint-progress value="12" secondaryProgress="15" max="328"></anypoint-progress>
+      <p>15 - 204 (Δ ${204 - 15})</p>
+      <anypoint-progress value="15" secondaryProgress="204" max="328"></anypoint-progress>
+      <p>204 - 254 (Δ ${254 - 204})</p>
+      <anypoint-progress value="204" secondaryProgress="254" max="328"></anypoint-progress>
+      <p>254 - 254 (Δ 0)</p>
+      <anypoint-progress value="254" secondaryProgress="254" max="328"></anypoint-progress>
+      <p>254 - 328 (Δ ${328 - 254})</p>
+      <anypoint-progress value="254" secondaryProgress="328" max="328"></anypoint-progress>
     </div>
     `;
   }

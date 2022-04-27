@@ -77,16 +77,19 @@ describe('AnypointProgressElement', () => {
       assert.equal(progress.value, 5.1);
     });
 
-    it('has a "aria-valuenow" attribute when `indeterminate` is true.', () => {
+    it('has a "aria-valuenow" attribute when `indeterminate` is true.', async () => {
       progress.min = 0;
       progress.max = 10;
       progress.value = 5.1;
+      await nextFrame();
       assert(progress.hasAttribute('aria-valuenow'));
 
       progress.indeterminate = true;
+      await nextFrame();
       assert(!progress.hasAttribute('aria-valuenow'));
 
       progress.indeterminate = false;
+      await nextFrame();
       assert(progress.hasAttribute('aria-valuenow'));
     });
   });
