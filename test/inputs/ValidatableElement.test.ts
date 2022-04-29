@@ -1,10 +1,10 @@
 import { fixture, assert, html, nextFrame } from '@open-wc/testing';
 import { customElement, property } from 'lit/decorators.js';
 import sinon from 'sinon';
-import { AnypointValidatableElement } from '../../src/index.js';
+import { ValidatableElement } from '../../src/index.js';
 
 @customElement('anypoint-validatable-element')
-class TestElement extends AnypointValidatableElement {
+class TestElement extends ValidatableElement {
   @property({ type: Number }) value?: number;
 
   protected _getValidity(): boolean {

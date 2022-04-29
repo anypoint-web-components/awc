@@ -1,9 +1,9 @@
 import { fixture, assert, html, nextFrame } from '@open-wc/testing';
 import { customElement } from 'lit/decorators.js';
-import { AnypointRangeElement } from '../../src/index.js';
+import { RangeElement } from '../../src/index.js';
 
 @customElement('anypoint-range-element')
-class TestElement extends AnypointRangeElement {}
+class TestElement extends RangeElement {}
 
 declare global {
   interface HTMLElementTagNameMap {
@@ -11,7 +11,7 @@ declare global {
   }
 }
 
-describe('AnypointRangeElement', () => {
+describe('RangeElement', () => {
   describe('property setters', () => {
     async function basicFixture(): Promise<TestElement> {
       return fixture(html`<anypoint-range-element></anypoint-range-element>`);
