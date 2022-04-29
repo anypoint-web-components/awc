@@ -58,6 +58,7 @@ export default class AnypointMaskedInputElement extends AnypointInputElement {
   /**
    * When set the input renders the value visible and restores
    * original input type.
+   * @attr
    */
   @property({ type: Boolean, reflect: true }) visible?: boolean;
 

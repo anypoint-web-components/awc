@@ -31,6 +31,7 @@ export default class AnypointDropdownElement extends OverlayElement {
 
   /**
    * If true, the button is a toggle and is currently in the active state.
+   * @attr
    */
   @property({ reflect: true, type: Boolean }) disabled?: boolean;
 
@@ -55,6 +56,7 @@ export default class AnypointDropdownElement extends OverlayElement {
   /**
    * Set to true to disable animations when opening and closing the
    * dropdown.
+   * @attr
    */
   @property({ type: Boolean, reflect: true }) noAnimations?: boolean;
 
@@ -65,6 +67,7 @@ export default class AnypointDropdownElement extends OverlayElement {
    * to the dropdown when it opens.
    * This property is a shortcut to set `scrollAction` to lock or refit.
    * Prefer directly setting the `scrollAction` property.
+   * @attr
    */
   @property({ type: Boolean, reflect: true }) allowOutsideScroll?: boolean;
 

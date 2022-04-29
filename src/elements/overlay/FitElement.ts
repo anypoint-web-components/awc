@@ -63,6 +63,7 @@ export default class FitElement extends ResizableElement {
   /**
    * Will position the element around the positionTarget without overlapping
    * it.
+   * @attr
    */
   @property({ type: Boolean, reflect: true }) noOverlap?: boolean;
 
@@ -76,6 +77,7 @@ export default class FitElement extends ResizableElement {
   * The orientation against which to align the element horizontally
   * relative to the `positionTarget`. Possible values are "left", "right",
   * "center", "auto".
+  * @attr
   */
   @property({ type: String, reflect: true }) horizontalAlign?: HorizontalAlign;
 
@@ -83,6 +85,7 @@ export default class FitElement extends ResizableElement {
   * The orientation against which to align the element vertically
   * relative to the `positionTarget`. Possible values are "top", "bottom",
   * "middle", "auto".
+  * @attr
   */
   @property({ type: String, reflect: true }) verticalAlign?: VerticalAlign;
 
@@ -90,6 +93,7 @@ export default class FitElement extends ResizableElement {
   * If true, it will use `horizontalAlign` and `verticalAlign` values as
   * preferred alignment and if there's not enough space, it will pick the
   * values which minimize the cropping.
+  * @attr
   */
   @property({ type: Boolean, reflect: true }) dynamicAlign?: boolean;
 
@@ -106,6 +110,7 @@ export default class FitElement extends ResizableElement {
   * Conversely if `horizontalAlign` is "right", this offset will increase
   * or decrease the distance to the right side of the screen: a negative
   * offset will move the dropdown to the right; a positive one, to the left.
+  * @attr
   */
   @property({ reflect: true, type: Number }) horizontalOffset: number = 0;
 
@@ -122,11 +127,13 @@ export default class FitElement extends ResizableElement {
   * Conversely if `verticalAlign` is "bottom", this offset will increase
   * or decrease the distance to the bottom side of the screen: a negative
   * offset will move the dropdown downwards; a positive one, upwards.
+  * @attr
   */
   @property({ reflect: true, type: Number }) verticalOffset: number = 0;
 
   /**
   * Set to true to auto-fit on attach.
+  * @attr
   */
   @property({ reflect: true, type: Boolean }) autoFitOnAttach?: boolean;
 
@@ -134,6 +141,7 @@ export default class FitElement extends ResizableElement {
 
   /** 
   * When set it fits the positioning target width.
+  * @attr
   */
   @property({ type: Boolean, reflect: true }) fitPositionTarget?: boolean;
 

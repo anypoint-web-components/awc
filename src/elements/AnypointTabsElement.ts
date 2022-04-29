@@ -30,46 +30,54 @@ export default class AnypointTabsElement extends MenubarElement {
 
   /**
    * If true, the bottom bar to indicate the selected tab will not be shown.
+   * @attr
    */
   @property({ type: Boolean }) noBar?: boolean;
 
   /**
    * If true, the slide effect for the bottom bar is disabled.
+   * @attr
    */
   @property({ type: Boolean, reflect: true }) noSlide?: boolean;
 
   /**
    * If true, tabs are scrollable and the tab width is based on the label
    * width.
+   * @attr
    */
   @property({ type: Boolean }) scrollable?: boolean;
 
   /**
    * If true, tabs expand to fit their container. This currently only applies
    * when scrollable is true.
+   * @attr
    */
   @property({ type: Boolean }) fitContainer?: boolean;
 
   /**
    * If true, dragging on the tabs to scroll is disabled.
+   * @attr
    */
   @property({ type: Boolean }) disableDrag?: boolean;
 
   /**
    * If true, scroll buttons (left/right arrow) will be hidden for scrollable
    * tabs.
+   * @attr
    */
   @property({ type: Boolean, reflect: true }) hideScrollButtons?: boolean;
 
   /**
    * If true, the tabs are aligned to bottom (the selection bar appears at the
    * top).
+   * @attr
    */
   @property({ type: Boolean }) alignBottom?: boolean;
 
   /**
    * If true, tabs are automatically selected when focused using the
    * keyboard.
+   * @attr
    */
   @property({ type: Boolean }) autoselect?: boolean;
 
@@ -77,6 +85,7 @@ export default class AnypointTabsElement extends MenubarElement {
    * The delay (in milliseconds) between when the user stops interacting
    * with the tabs through the keyboard and when the focused item is
    * automatically selected (if `autoselect` is true).
+   * @attr
    */
   @property({ type: Number }) autoselectDelay = 0;
 

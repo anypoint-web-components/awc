@@ -141,6 +141,9 @@ export default class StarRatingElement extends HTMLElement {
     this._render();
   }
 
+  /**
+   * @attr
+   */
   get value(): number|undefined {
     return this.__data__.value;
   }
@@ -162,6 +165,9 @@ export default class StarRatingElement extends HTMLElement {
     this._render();
   }
 
+  /**
+   * @attr
+   */
   get readOnly(): boolean {
     return this.__data__.readOnly || false;
   }

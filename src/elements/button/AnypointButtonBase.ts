@@ -15,18 +15,21 @@ export class AnypointButtonBase extends ButtonElement {
    * shadow, and each increasing number greater than 0 will be "deeper"
    * than the last.
    * This is for MD implementation.
+   * @attr
    */
   @property({ type: Number, reflect: true })
   elevation?: number;
 
   /**
    * When set ripple effect is not rendered.
+   * @attr
    */
   @property({ type: Boolean, reflect: true })
   noink?: boolean;
 
   /**
    * When set it won't elevate the element, even when high emphasis.
+   * @attr
    */
   @property({ type: Boolean, reflect: true })
   flat?: boolean;
@@ -40,6 +43,7 @@ export class AnypointButtonBase extends ButtonElement {
    * - `high` - Contained buttons have more emphasis, as they use use a color fill and shadow.
    *
    * Default is "low".
+   * @attr
    */
   @property({ type: String, reflect: true }) emphasis: EmphasisValue = 'low';
 

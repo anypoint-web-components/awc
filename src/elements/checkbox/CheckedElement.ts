@@ -11,6 +11,7 @@ export default class CheckedElement extends ButtonElement {
 
   /**
    * Set to true to mark the input as required. 
+   * @attr
    */
   @property({ reflect: true, type: Boolean }) required?: boolean;
 

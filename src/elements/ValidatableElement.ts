@@ -12,6 +12,7 @@ import AnypointElement from "./AnypointElement.js";
 export default class ValidatableElement extends AnypointElement {
   /**
    * True if the last call to `validate` is invalid.
+   * @attr
    */
   @property({ reflect: true, type: Boolean }) invalid?: boolean;
 

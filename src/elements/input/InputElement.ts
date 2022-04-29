@@ -40,21 +40,25 @@ export default class InputElement extends ValidatableElement {
 
   /**
    * If true, the element currently has focus.
+   * @attr
    */
   @property({ reflect: true, type: Boolean }) focused?: boolean;
 
   /**
    * If true, the button is a toggle and is currently in the active state.
+   * @attr
    */
   @property({ reflect: true, type: Boolean }) disabled?: boolean;
 
   /**
    * The value for this input.
+   * @attr
    */
   @property({ type: String, converter: stringAndNumberConverter }) value?: string;
 
   /**
    * The type of the input. The supported types are `text`, `number` and `password`.
+   * @attr
    */
   @property({ type: String, reflect: true }) type?: SupportedInputTypes = 'text';
 
@@ -64,6 +68,7 @@ export default class InputElement extends ValidatableElement {
    * Note, for compatibility with the old version of the component,
    * the element will search for a `[slot='label']` child and will update this 
    * value if defined.
+   * @attr
    */
   @property({ type: String }) label?: string;
 
@@ -79,36 +84,43 @@ export default class InputElement extends ValidatableElement {
 
   /**
    * Automatically calls `checkValidity()` function when input changes.
+   * @attr
    */
   @property({ reflect: true, type: Boolean }) autoValidate?: boolean;
 
   /**
    * The error message to display when the input is invalid.
+   * @attr
    */
   @property({ type: String }) invalidMessage?: string;
 
   /**
    * Assistive text value. Rendered below the input.
+   * @attr
    */
   @property({ type: String }) infoMessage?: string;
 
   /**
    * Set to true to prevent the user from entering invalid input.
+   * @attr
    */
   @property({ reflect: true, type: Boolean }) preventInvalidInput?: boolean;
 
   /**
    * Set this to specify the pattern allowed by `preventInvalidInput`.
+   * @attr
    */
   @property({ type: String }) allowedPattern?: string;
 
   /**
    * A pattern to validate the `input` with.
+   * @attr
    */
   @property({ type: String }) pattern?: string;
 
   /**
    * Sets the input as required.
+   * @attr
    */
   @property({ type: Boolean }) required?: boolean;
 
@@ -208,6 +220,7 @@ export default class InputElement extends ValidatableElement {
    * - `characters`: All letters should default to uppercase
    *
    * @default off
+   * @attr
    */
   autocapitalize: SupportedAutocapitalize = 'off';
 

@@ -27,12 +27,14 @@ export default class MaterialRippleElement extends LitElement {
 
   /**
    * The initial opacity set on the wave.
+   * @attr
    */
   @property({ type: Number })
   initialOpacity = 0.25;
 
   /**
    * How fast (opacity per second) the wave fades out.
+   * @attr
    */
   @property({ type: Number })
   opacityDecayVelocity = 0.8;
@@ -40,12 +42,14 @@ export default class MaterialRippleElement extends LitElement {
   /**
    * If true, ripples will exhibit a gravitational pull towards
    * the center of their container as they fade away.
+   * @attr
    */
   @property({ type: Boolean })
   recenters?: boolean = false;
   
   /**
    * If true, ripples will center inside its container
+   * @attr
    */
   @property({ type: Boolean })
   center?: boolean = false;
@@ -55,6 +59,7 @@ export default class MaterialRippleElement extends LitElement {
    * via pointer interaction.
    * Calling ripple's imperative api like `simulatedRipple` will
    * still generate the ripple effect.
+   * @attr
    */
   @property({ type: Boolean, reflect: true })
   noink?: boolean = false;
@@ -64,6 +69,7 @@ export default class MaterialRippleElement extends LitElement {
   /**
    * Disables the ripple.
    * When currently animating it cancels and removes all ripple effects.
+   * @attr
    */
   @property({ type: Boolean, reflect: true })
   get disabled(): boolean | undefined {

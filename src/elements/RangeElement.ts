@@ -24,21 +24,25 @@ export default class AnypointRangeElement extends AnypointElement {
 
   /**
    * The number that represents the current value.
+   * @attr
    */
   @property({ reflect: true, type: Number, converter: floatConverter }) value: number = 0;
 
   /**
    * The number that indicates the minimum value of the range.
+   * @attr
    */
   @property({ reflect: true, type: Number, converter: floatConverter }) min: number = 0;
 
   /**
    * The number that indicates the maximum value of the range.
+   * @attr
    */
   @property({ reflect: true, type: Number, converter: floatConverter }) max: number = 100;
 
   /**
    * Specifies the value granularity of the range's value.
+   * @attr
    */
   @property({ reflect: true, type: Number, converter: floatConverter }) step: number = 1;
 

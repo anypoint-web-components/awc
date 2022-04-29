@@ -24,6 +24,7 @@ export default class ScrollThresholdElement extends ScrollTargetMixin(LitElement
   /**
    * Distance from the top (or left, for horizontal) bound of the scroller
    * where the "upper trigger" will fire.
+   * @attr
    */
   @property({ type: Number, reflect: true })
   upperThreshold = 100;
@@ -31,6 +32,7 @@ export default class ScrollThresholdElement extends ScrollTargetMixin(LitElement
   /**
    * Distance from the bottom (or right, for horizontal) bound of the scroller
    * where the "lower trigger" will fire.
+   * @attr
    */
   @property({ type: Number, reflect: true })
   lowerThreshold = 100;
@@ -59,6 +61,7 @@ export default class ScrollThresholdElement extends ScrollTargetMixin(LitElement
 
   /**
    * True if the orientation of the scroller is horizontal.
+   * @attr
    */
   @property({ type: Boolean, reflect: true })
   get horizontal(): boolean | undefined {

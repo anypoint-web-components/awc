@@ -34,6 +34,7 @@ export default class MenuElement extends MultiSelectableElement {
    * The attribute to use on menu items to look up the item title. Typing the
    * first letter of an item when the menu is open focuses that item. If
    * unset, `textContent` will be used.
+   * @attr
    */
   @property({ type: String, reflect: true }) attrForItemTitle?: string;
 
@@ -45,6 +46,7 @@ export default class MenuElement extends MultiSelectableElement {
    * The `aria-selected` attribute is invalid with default role of this
    * element ("menu"). If you manually change the role to some other that
    * accepts `aria-selected` attribute on children then set this property.
+   * @attr
    */
   @property({ type: Boolean, reflect: true }) useAriaSelected?: boolean;
 
@@ -52,6 +54,7 @@ export default class MenuElement extends MultiSelectableElement {
    * When set the effect of calling `highlightNext()` or `highlightPrevious()`
    * will be setting `aria-selected` attribute. For proper accessibility use
    * with the combination with `useAriaSelected` attribute.
+   * @attr
    */
   @property({ type: Boolean, reflect: true }) highlightAriaSelected?: boolean;
 
@@ -85,6 +88,7 @@ export default class MenuElement extends MultiSelectableElement {
 
   /**
    * Whether or not this menu is disabled.
+   * @attr
    */
   @property({ type: Boolean, reflect: true })
   get disabled(): boolean | undefined {

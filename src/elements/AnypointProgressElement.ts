@@ -38,16 +38,19 @@ export default class AnypointProgressElement extends AnypointRangeElement {
 
   /**
    * True if the progress is disabled.
+   * @attr
    */
   @property({ reflect: true, type: Boolean }) disabled?: boolean;
 
   /**
    * The number that represents the current secondary progress.
+   * @attr
    */
   @property({ type: Number, converter: floatConverter }) secondaryProgress?: number;
 
   /**
    * Use an indeterminate progress indicator.
+   * @attr
    */
   @property({ reflect: true, type: Boolean }) indeterminate?: boolean;
 

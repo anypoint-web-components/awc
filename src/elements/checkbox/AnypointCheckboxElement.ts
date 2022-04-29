@@ -69,8 +69,14 @@ export default class AnypointCheckboxElement extends CheckedElement {
     addListener('change', value, this);
   }
 
+  /**
+   * @attr
+   */
   @property({ type: Boolean, reflect: true }) indeterminate?: boolean;
 
+  /**
+   * @attr
+   */
   @property({ type: Boolean, reflect: true }) formDisabled?: boolean;
 
   constructor() {

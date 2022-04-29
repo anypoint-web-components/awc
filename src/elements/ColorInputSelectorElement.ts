@@ -26,12 +26,14 @@ export default class ColorInputSelectorElement extends LitElement {
   
   /**
    * Selected color
+   * @attr
    */
   @property({ type: String, reflect: true })
   value?: string;
 
   /**
    * Whether the color is enabled or not
+   * @attr
    */
   @property({ type: Boolean, reflect: true })
   enabled?: boolean;

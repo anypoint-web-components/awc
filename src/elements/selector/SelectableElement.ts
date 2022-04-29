@@ -61,6 +61,7 @@ export default class SelectableElement extends ResizableElement {
   /**
    * This is a CSS selector string.  If this is set, only items that match the
    * CSS selector are selectable.
+   * @attr
    */
   @property({ type: String, reflect: true }) selectable?: string;
 
@@ -68,11 +69,13 @@ export default class SelectableElement extends ResizableElement {
    * The class to set on elements when selected.
    *
    * @default selected
+   * @attr
    */
   @property({ type: String, reflect: true }) selectedClass: string = 'selected';
 
   /**
    * The attribute to set on elements when selected.
+   * @attr
    */
   @property({ type: String, reflect: true }) selectedAttribute?: string;
 
@@ -85,6 +88,7 @@ export default class SelectableElement extends ResizableElement {
    * recommended that you provide the hyphenated form of the name so that
    * selection works in both cases. (Use `attr-or-property-name` instead of
    * `attrOrPropertyName`.)
+   * @attr
    */
   @property({ type: String, reflect: true }) attrForSelected?: string
 
@@ -118,11 +122,13 @@ export default class SelectableElement extends ResizableElement {
    * Set to empty string to listen to no events.
    *
    * @default click
+   * @attr
    */
   @property({ type: String, reflect: true }) activateEvent: string = 'click';
 
   /**
    * Default fallback if the selection based on selected with `attrForSelected` is not found.
+   * @attr
    */
   @property() fallbackSelection?: string | number;
 

@@ -54,6 +54,7 @@ export default class AnypointTabElement extends AnypointButtonElement {
   /**
    * If true, the tab will forward keyboard clicks (enter/space) to
    * the first anchor element found in its descendants
+   * @attr
    */
   @property({ type: Boolean, reflect: true })
   link?: boolean;

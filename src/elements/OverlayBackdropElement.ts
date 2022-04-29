@@ -50,6 +50,9 @@ export default class OverlayBackdropElement extends LitElement {
 
   private isAttached = false;
 
+  /**
+   * @attr
+   */
   @property({ type: Boolean, reflect: true })
   get opened(): boolean {
     return this.__opened;

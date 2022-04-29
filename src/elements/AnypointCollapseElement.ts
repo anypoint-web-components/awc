@@ -45,8 +45,9 @@ export default class AnypointCollapseElement extends ResizableElement {
 
   /**
    * Set noAnimation to true to disable animations.
+   * @attr
    */
-  @property({ type: Boolean }) noAnimation?: boolean;
+  @property({ type: Boolean, reflect: true }) noAnimation?: boolean;
 
   _horizontal?: boolean;
 

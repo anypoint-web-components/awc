@@ -91,18 +91,21 @@ export default class AnypointTextareaElement extends AnypointInputElement {
 
   /**
    * Binds this to the `<textarea>`'s `cols` property.
+   * @attr
    */
   @property({ type: Number })
   cols?: number;
 
   /**
    * Binds this to the `<textarea>`'s `rows` property.
+   * @attr
    */
   @property({ type: Number })
   rows?: number;
 
   /**
    * Binds this to the `<textarea>`'s `wrap` property.
+   * @attr
    */
   @property({ type: String })
   wrap?: "soft" | "hard";

@@ -40,6 +40,7 @@ export default class AnypointInputComboboxElement extends AnypointInputElement {
    * The orientation against which to align the element vertically
    * relative to the `positionTarget`. Possible values are "top", "bottom",
    * "middle", "auto".
+   * @attr
    */
   @property({ type: String })
   verticalAlign?: VerticalAlign = 'top';
@@ -48,6 +49,7 @@ export default class AnypointInputComboboxElement extends AnypointInputElement {
    * The orientation against which to align the element horizontally
    * relative to the `positionTarget`. Possible values are "left", "right",
    * "center", "auto".
+   * @attr
    */
   @property({ type: String })
   horizontalAlign: HorizontalAlign = 'left';
@@ -65,6 +67,7 @@ export default class AnypointInputComboboxElement extends AnypointInputElement {
    * Conversely if `verticalAlign` is "bottom", this offset will increase
    * or decrease the distance to the bottom side of the screen: a negative
    * offset will move the dropdown downwards; a positive one, upwards.
+   * @attr
    */
   @property({ type: Number })
   verticalOffset = 0;
@@ -82,6 +85,7 @@ export default class AnypointInputComboboxElement extends AnypointInputElement {
    * Conversely if `horizontalAlign` is "right", this offset will increase
    * or decrease the distance to the right side of the screen: a negative
    * offset will move the dropdown to the right; a positive one, to the left.
+   * @attr
    */
   @property({ type: Number })
   horizontalOffset = 0;
@@ -90,6 +94,7 @@ export default class AnypointInputComboboxElement extends AnypointInputElement {
    * If true, it will use `horizontalAlign` and `verticalAlign` values as
    * preferred alignment and if there's not enough space, it will pick the
    * values which minimize the cropping.
+   * @attr
    */
   @property({ type: Boolean, reflect: true })
   dynamicAlign?: boolean;
@@ -115,6 +120,7 @@ export default class AnypointInputComboboxElement extends AnypointInputElement {
   /**
    * Set to true to disable animations when opening and closing the
    * dropdown.
+   * @attr
    */
   @property({ type: Boolean, reflect: true })
   noAnimations?: boolean;
@@ -126,6 +132,7 @@ export default class AnypointInputComboboxElement extends AnypointInputElement {
    * to the dropdown when it opens.
    * This property is a shortcut to set `scrollAction` to lock or refit.
    * Prefer directly setting the `scrollAction` property.
+   * @attr
    */
   @property({ type: Boolean, reflect: true })
   allowOutsideScroll?: boolean;
@@ -133,6 +140,7 @@ export default class AnypointInputComboboxElement extends AnypointInputElement {
   /**
    * Dropdown fits the content width.
    * Default value is false.
+   * @attr
    */
   @property({ type: Boolean })
   fitPositionTarget?: boolean;

@@ -27,23 +27,27 @@ export default class AnypointMenuButtonElement extends AnypointElement {
 
   /**
    * If true, the button is a toggle and is currently in the active state.
+   * @attr
    */
   @property({ reflect: true, type: Boolean }) disabled?: boolean;
   
   /**
    * True if the content is currently displayed.
+   * @attr
    */
   @property({ type: Boolean, reflect: true }) opened?: boolean;
   
   /**
    * The orientation against which to align the menu dropdown
    * horizontally relative to the dropdown trigger.
+   * @attr
    */
   @property({ type: String, reflect: true }) horizontalAlign: HorizontalAlign = 'left';
   
   /**
    * The orientation against which to align the menu dropdown
    * vertically relative to the dropdown trigger.
+   * @attr
    */
   @property({ type: String, reflect: true }) verticalAlign: VerticalAlign = 'top';
 
@@ -52,6 +56,7 @@ export default class AnypointMenuButtonElement extends AnypointElement {
    * be considered preferences instead of strict requirements when
    * positioning the dropdown and may be changed if doing so reduces
    * the area of the dropdown falling outside of `fitInto`.
+   * @attr
    */
   @property({ type: Boolean, reflect: true }) dynamicAlign?: boolean;
 
@@ -59,6 +64,7 @@ export default class AnypointMenuButtonElement extends AnypointElement {
    * A pixel value that will be added to the position calculated for the
    * given `horizontalAlign`. Use a negative value to offset to the
    * left, or a positive value to offset to the right.
+   * @attr
    */
   @property({ type: Number, reflect: true }) horizontalOffset?: number;
 
@@ -66,18 +72,21 @@ export default class AnypointMenuButtonElement extends AnypointElement {
    * A pixel value that will be added to the position calculated for the
    * given `verticalAlign`. Use a negative value to offset towards the
    * top, or a positive value to offset towards the bottom.
+   * @attr
    */
   @property({ type: Number, reflect: true }) verticalOffset?: number;
 
   /**
    * If true, the dropdown will be positioned so that it doesn't overlap
    * the button.
+   * @attr
    */
   @property({ type: Boolean, reflect: true }) noOverlap?: boolean;
   
   /**
    * Set to true to disable animations when opening and closing the
    * dropdown.
+   * @attr
    */
   @property({ type: Boolean, reflect: true }) noAnimations?: boolean;
 
@@ -86,12 +95,14 @@ export default class AnypointMenuButtonElement extends AnypointElement {
    * to itself when opened.
    * Set to true in order to prevent scroll from being constrained
    * to the dropdown when it opens.
+   * @attr
    */
   @property({ type: Boolean, reflect: true }) allowOutsideScroll?: boolean;
 
   /**
    * Set to true to disable automatically closing the dropdown after
    * a selection has been made.
+   * @attr
    */
   @property({ type: Boolean, reflect: true }) ignoreSelect?: boolean;
 

@@ -26,22 +26,26 @@ export default class ButtonElement extends ValidatableElement {
 
   /**
    * If true, the button is a toggle and is currently in the active state.
+   * @attr
    */
   @property({ reflect: true, type: Boolean }) active?: boolean;
 
   /**
    * The aria attribute to be set if the button is a toggle and in the
    * active state.
+   * @attr
    */
   @property({ reflect: true, type: String }) ariaActiveAttribute: string = 'aria-pressed';
 
   /**
    * If true, the element currently has focus.
+   * @attr
    */
   @property({ reflect: true, type: Boolean }) focused?: boolean;
   
   /**
    * If true, the button is a toggle and is currently in the active state.
+   * @attr
    */
   @property({ reflect: true, type: Boolean }) disabled?: boolean;
 

@@ -158,6 +158,7 @@ export default class AnypointDropdownMenuElement extends ValidatableElement {
 
   /**
    * Automatically calls `validate()` function when dropdown closes.
+   * @attr
    */
   @property({ type: Boolean, reflect: true })
   get autoValidate(): boolean | undefined {
@@ -179,6 +180,7 @@ export default class AnypointDropdownMenuElement extends ValidatableElement {
 
   /**
    * The error message to display when the input is invalid.
+   * @attr
    */
   @property({ type: String })
   get invalidMessage(): string | undefined {
@@ -273,6 +275,7 @@ export default class AnypointDropdownMenuElement extends ValidatableElement {
 
   /**
    * True if the list is currently displayed.
+   * @attr
    */
   @property({ type: Boolean, reflect: true })
   get opened(): boolean {
@@ -324,6 +327,7 @@ export default class AnypointDropdownMenuElement extends ValidatableElement {
   /**
     * Selected item value calculated as it's (in order) label property, label
     * attribute, and `innerText` value.
+    * @attr
     */
   @property({ type: String })
   get value(): string {
@@ -347,6 +351,7 @@ export default class AnypointDropdownMenuElement extends ValidatableElement {
 
   /**
    * When set the control is rendered as disabled form control.
+   * @attr
    */
   @property({ reflect: true, type: Boolean }) disabled?: boolean;
 
@@ -371,8 +376,9 @@ export default class AnypointDropdownMenuElement extends ValidatableElement {
   /**
    * Set to true to disable animations when opening and closing the
    * dropdown.
+   * @attr
    */
-  @property({ type: Boolean })
+  @property({ type: Boolean, reflect: true })
   noAnimations?: boolean;
 
   /**
@@ -382,6 +388,7 @@ export default class AnypointDropdownMenuElement extends ValidatableElement {
    * to the dropdown when it opens.
    * This property is a shortcut to set `scrollAction` to lock or refit.
    * Prefer directly setting the `scrollAction` property.
+   * @attr
    */
   @property({ type: Boolean, reflect: true })
   allowOutsideScroll?: boolean;
@@ -390,6 +397,7 @@ export default class AnypointDropdownMenuElement extends ValidatableElement {
    * The orientation against which to align the element vertically
    * relative to the `positionTarget`. Possible values are "top", "bottom",
    * "middle", "auto".
+   * @attr
    */
   @property({ type: String, reflect: true })
   verticalAlign: VerticalAlign = 'top';
@@ -398,6 +406,7 @@ export default class AnypointDropdownMenuElement extends ValidatableElement {
    * The orientation against which to align the element horizontally
    * relative to the `positionTarget`. Possible values are "left", "right",
    * "center", "auto".
+   * @attr
    */
   @property({ type: String, reflect: true })
   horizontalAlign: HorizontalAlign = 'left';
@@ -415,6 +424,7 @@ export default class AnypointDropdownMenuElement extends ValidatableElement {
    * Conversely if `verticalAlign` is "bottom", this offset will increase
    * or decrease the distance to the bottom side of the screen: a negative
    * offset will move the dropdown downwards; a positive one, upwards.
+   * @attr
    */
   @property({ type: Number, reflect: true })
   verticalOffset = 0;
@@ -432,6 +442,7 @@ export default class AnypointDropdownMenuElement extends ValidatableElement {
    * Conversely if `horizontalAlign` is "right", this offset will increase
    * or decrease the distance to the right side of the screen: a negative
    * offset will move the dropdown to the right; a positive one, to the left.
+   * @attr
    */
   @property({ type: Number, reflect: true })
   horizontalOffset = 0;
@@ -440,6 +451,7 @@ export default class AnypointDropdownMenuElement extends ValidatableElement {
    * If true, it will use `horizontalAlign` and `verticalAlign` values as
    * preferred alignment and if there's not enough space, it will pick the
    * values which minimize the cropping.
+   * @attr
    */
   @property({ type: Boolean, reflect: true })
   dynamicAlign?: boolean;
@@ -449,6 +461,7 @@ export default class AnypointDropdownMenuElement extends ValidatableElement {
    * Note, form-associated custom elements may not be supported as first
    * implementation was released in Chrome M77 in July 2019. It may require
    * using custom form element to gather form data.
+   * @attr
    */
   @property({ type: String })
   name?: string;
@@ -456,6 +469,7 @@ export default class AnypointDropdownMenuElement extends ValidatableElement {
   /**
    * When set it marks the element as required. Calling the `validate`
    * function will mark this control as invalid when no value is selected.
+   * @attr
    */
   @property({ type: Boolean, reflect: true })
   required?: boolean;
@@ -463,12 +477,14 @@ export default class AnypointDropdownMenuElement extends ValidatableElement {
   /**
    * Assistive text value.
    * Rendered below the input.
+   * @attr
    */
   @property({ type: String })
   infoMessage?: string;
 
   /**
    * Will position the list around the button without overlapping it.
+   * @attr
    */
   @property({ type: Boolean, reflect: true })
   noOverlap?: boolean;
@@ -476,16 +492,21 @@ export default class AnypointDropdownMenuElement extends ValidatableElement {
   /**
    * When set the label is rendered only when not selected state.
    * It is useful when using the dropdown in an application menu bar.
+   * @attr
    */
   @property({ type: Boolean, reflect: true })
   noLabelFloat?: boolean;
 
   /**
    * Fits the dropdown content width to the dropdown selector. Default to `false`.
+   * @attr
    */
   @property({ type: Boolean })
   fitPositionTarget?: boolean;
 
+  /**
+   * @attr
+   */
   @property({ type: Boolean })
   restoreFocusOnClose?: boolean;
 

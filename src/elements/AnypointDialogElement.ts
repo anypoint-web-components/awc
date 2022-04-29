@@ -25,6 +25,7 @@ export default class AnypointDialogElement extends OverlayElement {
   /**
    * If `modal` is true, this implies `noCancelOnOutsideClick`,
    * `noCancelOnEscKey` and `withBackdrop`.
+   * @attr
    */
   @property({ type: Boolean, reflect: true }) modal?: boolean;
 
