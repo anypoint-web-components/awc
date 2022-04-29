@@ -7,6 +7,8 @@ import AnypointElement from './AnypointElement.js';
 /**
  * `anypoint-item`
  * An Anypoint list item with 2 or 3 lines.
+ * 
+ * @slot - The list body
  */
 export default class AnypointItemBodyElement extends AnypointElement {
   static get styles(): CSSResult {

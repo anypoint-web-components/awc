@@ -46,6 +46,17 @@ const toggleClass = (css: string, selected: boolean, node: Element): void => {
   }
 };
 
+/**
+ * @fires activate This event can be canceled to stop the selection.
+ * @fires selected When an item is selected.
+ * @fires childrenchange This event is dispatched when an attribute or a child list of the element change. This fires often when interacting with the control
+ * @fires selectedchange
+ * @fires itemschange
+ * @fires select
+ * @fires deselect
+ * 
+ * @slot - Any children to make selectable
+ */
 export default class SelectableElement extends ResizableElement {
   /**
    * This is a CSS selector string.  If this is set, only items that match the

@@ -15,6 +15,10 @@ export const checkboxTemplate = Symbol('checkboxTemplate');
 export const selectorTemplate = Symbol('selectorTemplate');
 export const labelTemplate = Symbol('labelTemplate');
 
+/**
+ * @fires change
+ * @slot - The label to render
+ */
 export default class ColorInputSelectorElement extends LitElement {
   static get styles(): CSSResult {
     return elementStyles;
@@ -33,7 +37,7 @@ export default class ColorInputSelectorElement extends LitElement {
   enabled?: boolean;
 
   [notify](): void {
-    this.dispatchEvent(new CustomEvent('change'));
+    this.dispatchEvent(new Event('change'));
   }
 
   [checkedHandler](e: CustomEvent): void {

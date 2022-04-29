@@ -6,6 +6,10 @@ import InputElement from "./InputElement.js";
 import styles from './CommonStyles.js';
 import { SupportedInputTypes } from "../../types.js";
 
+/**
+ * @slot prefix - The content rendered before the input. It is centered in the input.
+ * @slot suffix - The content rendered after the input. It is centered in the input.
+ */
 export default class AnypointInputElement extends InputElement {
   static get styles(): CSSResult[] {
     return [

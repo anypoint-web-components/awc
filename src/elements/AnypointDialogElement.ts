@@ -13,6 +13,7 @@ interface IModelPreviousConfiguration {
   withBackdrop?: boolean;
 }
 /**
+ * @slot - The dialog content
  */
 export default class AnypointDialogElement extends OverlayElement {
   static get styles(): CSSResult[] {

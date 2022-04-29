@@ -51,6 +51,9 @@ let currentSheet: BottomSheetElement | null;
  * Use the `fit-bottom` class to position the bar at the bottom of the app and with full width;
  *
  * Use `center-bottom` class to display the bar at the bottom centered on a page.
+ * 
+ * @fires announce
+ * @slot - The main content
  */
 export default class BottomSheetElement extends OverlayElement {
   static get styles(): CSSResult {

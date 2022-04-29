@@ -66,6 +66,13 @@ function svgFromEvent(e: Event): SVGElement | undefined {
  * `--star-rating-unselected-color` | Icon color when not selected | `#eeeeee`
  * `--star-rating-selected-color` | Icon color when selected | `#fdd835`
  * `--star-rating-active-color` | Icon color when active (focus, hover) | `#e0be25`
+ * 
+ * @fires change
+ * @cssprop [--star-rating-width=24px]
+ * @cssprop [--star-rating-height=24px]
+ * @cssprop [--star-rating-unselected-color=#eeeeee]
+ * @cssprop [--star-rating-selected-color=#fdd835]
+ * @cssprop [--star-rating-active-color=#e0be25]
  */
 export default class StarRatingElement extends HTMLElement {
   static get template(): HTMLTemplateElement {

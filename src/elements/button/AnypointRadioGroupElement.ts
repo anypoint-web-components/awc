@@ -37,6 +37,8 @@ import MenuElement from '../selector/MenuElement.js';
  *  <other-control role="button" name="option" checked></other-control>
  * </anypoint-radio-group>
  * ```
+ * 
+ * @fires change
  */
 export default class AnypointRadioGroupElement extends MenuElement {
   createRenderRoot(): HTMLElement {

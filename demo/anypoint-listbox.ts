@@ -3,6 +3,7 @@ import { DemoPage } from './lib/DemoPage.js';
 import '../src/define/anypoint-item.js';
 import '../src/define/anypoint-listbox.js';
 import './lib/interactive-demo.js';
+import { demoProperty } from './lib/decorators.js';
 
 class ComponentDemo extends DemoPage {
   fruits: string[] = ['Apple', 'Apricot', 'Avocado',
@@ -16,9 +17,41 @@ class ComponentDemo extends DemoPage {
     'Mulberry', 'Nectarine', 'Olive', 'Orange'
   ];
 
+  @demoProperty()
+  eventsLog: string[] = [];
+
   constructor() {
     super();
     this.componentName = 'anypoint-listbox';
+  }
+
+  logEvent(e: Event): void {
+    const typed = e as CustomEvent;
+    const { type } = e;
+    let log = `Event: ${type}\n`;
+    if (typed.detail) {
+      log += `Detail: ${typeof typed.detail} ${JSON.stringify(typed.detail, this.stringifyDetail, 2)}\n\n`;
+    }
+    this.eventsLog.push(log);
+    this.render();
+  }
+
+  stringifyDetail(key: string, value: any): any {
+    if (!key) {
+      if (Array.isArray(value)) {
+        return value;
+      }
+      
+      return value;
+    }
+    if (value instanceof Node) {
+      const node = value as Node;
+      return `<${node.nodeName.toLowerCase()}>`;
+    }
+    if (value instanceof MutationRecord) {
+      return `[MutationRecord]`;
+    }
+    return value;
   }
 
   _demoTemplate(): TemplateResult {
@@ -39,13 +72,18 @@ class ComponentDemo extends DemoPage {
         @state-changed="${this._demoStateHandler}"
         ?dark="${darkThemeActive}"
       >
-        <anypoint-listbox slot="content" ?anypoint="${anypoint}">
+        <anypoint-listbox 
+          slot="content" 
+          ?anypoint="${anypoint}"
+        >
           <anypoint-item>API project 1</anypoint-item>
           <anypoint-item>API project 2</anypoint-item>
           <anypoint-item>API project 3</anypoint-item>
           <anypoint-item>API project 4</anypoint-item>
         </anypoint-listbox>
       </interactive-demo>
+
+      ${this._eventsHandlingTemplate()}
     </section>`;
   }
 
@@ -84,7 +122,6 @@ class ComponentDemo extends DemoPage {
             <b>Anypoint</b> - To enable Anypoint theme
           </li>
         </ul>
-
         <p>
           Even though the element has no particular styling options for Anypoint style,
           it sets <code>anypoint</code> attribute on children. This way you can
@@ -209,6 +246,34 @@ class ComponentDemo extends DemoPage {
     <anypoint-listbox class="scrolled">
     ${this.fruits.map((item) => html`<anypoint-item role="option" aria-selected="false">${item}</anypoint-item>`)}
     </anypoint-listbox>
+
+    
+    `;
+  }
+
+  _eventsHandlingTemplate(): TemplateResult {
+    return html`
+    <h3>Events handling</h3>
+
+    <anypoint-listbox selectable=".allowed" 
+      @activate="${this.logEvent}" 
+      @childrenchange="${this.logEvent}" 
+      @deselect="${this.logEvent}" 
+      @select="${this.logEvent}" 
+      @itemschange="${this.logEvent}" 
+      @selected="${this.logEvent}"
+      @selectedchange="${this.logEvent}"
+      @selecteditemschange="${this.logEvent}"
+      @selectedvalueschange="${this.logEvent}"
+    >
+      <anypoint-item class="allowed">API project 1</anypoint-item>
+      <anypoint-item class="allowed">API project 2</anypoint-item>
+      <hr>
+      <anypoint-item class="allowed">API project 3</anypoint-item>
+      <anypoint-item class="allowed">API project 4</anypoint-item>
+    </anypoint-listbox>
+
+    <pre class="log"><code>${this.eventsLog.join('\n')}</code></pre>
     `;
   }
 

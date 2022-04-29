@@ -7,6 +7,7 @@ export type EmphasisValue = 'low'|'medium'|'high';
 
 /**
  * A base class for Anypoint buttons.
+ * @fires transitionend
  */
 export class AnypointButtonBase extends ButtonElement {
   /**

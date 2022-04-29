@@ -24,6 +24,9 @@ export const onEsc = Symbol('onEsc');
 
 /**
  * `anypoint-input-combobox`
+ * 
+ * @slot suffix - The suffix to render behind the input
+ * @slot dropdown-content - The dropdown content
  */
 export default class AnypointInputComboboxElement extends AnypointInputElement {
   static get styles(): CSSResult[] {
@@ -341,7 +344,7 @@ export default class AnypointInputComboboxElement extends AnypointInputElement {
       ?fitPositionTarget="${fitPositionTarget}"
       ?opened="${opened}"
       .horizontalAlign="${horizontalAlign}"
-      .verticalAlign="${verticalAlign}"
+      .verticalAlign="${verticalAlign || ''}"
       ?dynamicAlign="${dynamicAlign}"
       .horizontalOffset="${horizontalOffset}"
       .verticalOffset="${verticalOffset}"

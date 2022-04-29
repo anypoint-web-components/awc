@@ -9,6 +9,7 @@ import { IAnimationConfig, DefaultListCloseAnimation, DefaultListOpenAnimation }
 /* eslint-disable no-param-reassign */
 
 /**
+ * @slot dropdown-content - The content for the drop down
  */
 export default class AnypointDropdownElement extends OverlayElement {
   static get styles(): CSSResult {

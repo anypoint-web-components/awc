@@ -9,6 +9,8 @@ import '../../define/material-ripple.js';
  * Anypoint styled button.
  *
  * @demo demo/index.html
+ * 
+ * @slot - The content of the button
  */
 export default class AnypointButtonElement extends AnypointButtonBase {
   /* eslint-disable class-methods-use-this */

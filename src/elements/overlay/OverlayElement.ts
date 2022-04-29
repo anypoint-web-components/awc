@@ -8,6 +8,12 @@ import { addListener, getListener } from '../../lib/ElementEventsRegistry.js';
 import OverlayBackdropElement from '../OverlayBackdropElement.js';
 import FitElement from "./FitElement.js";
 
+/**
+ * @fires openedchange
+ * @fires cancel
+ * @fires opened
+ * @fires closed
+ */
 export default class OverlayElement extends FitElement {
   /**
    * Set to true to disable auto-focusing the overlay or child nodes with
@@ -181,7 +187,7 @@ export default class OverlayElement extends FitElement {
   protected _isAnimating = false;
 
   // with-backdrop needs tabindex to be set in order to trap the focus.
-  // If it is not set, IronOverlayBehavior will set it, and remove it if
+  // If it is not set, OverlayElement will set it, and remove it if
   // with-backdrop = false.
   __shouldRemoveTabIndex = false;
 
@@ -214,7 +220,7 @@ export default class OverlayElement extends FitElement {
     super();
     this._canceled = false;
     this._manager = OverlayManager;
-    this.addEventListener('resize', this._onIronResize.bind(this));
+    this.addEventListener('resize', this._onResize.bind(this));
     this.__onCaptureScroll = this.__onCaptureScroll.bind(this);
     this._boundSchedule = this._boundSchedule.bind(this);
   }
@@ -665,7 +671,7 @@ export default class OverlayElement extends FitElement {
    * Refits if the overlay is opened and not animating.
    * @protected
    */
-  _onIronResize(): void {
+  _onResize(): void {
     if (this.opened && !this._isAnimating) {
       this._queue('refit', this.refit);
     }

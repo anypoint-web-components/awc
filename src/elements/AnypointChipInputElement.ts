@@ -24,6 +24,10 @@ import { addListener, getListener } from '../lib/ElementEventsRegistry.js';
 /* eslint-disable no-param-reassign */
 /* eslint-disable class-methods-use-this */
 
+/**
+ * @fires chipschange
+ * @slot prefix The prefix rendering slot
+ */
 export default class AnypointChipInputElement extends AnypointInputElement {
   static get styles(): CSSResult[] {
     return [

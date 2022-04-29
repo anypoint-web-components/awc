@@ -13,7 +13,10 @@ const isEnterKey = (e: KeyboardEvent): boolean => e.code === 'Enter' || e.code =
 
 /**
  * `anypoint-button`
+ * 
  * Anypoint styled button.
+ * 
+ * @slot - The content of the button
  */
 export default class AnypointIconButtonElement extends AnypointButtonBase {
   static get styles(): CSSResult {

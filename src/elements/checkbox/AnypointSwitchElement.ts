@@ -5,6 +5,8 @@ import AnypointCheckboxElement from './AnypointCheckboxElement.js';
 
 /**
  * `anypoint-switch`
+ * 
+ * @slot - The label of the control
  */
 export default class AnypointSwitchElement extends AnypointCheckboxElement {
   static get styles(): CSSResult {

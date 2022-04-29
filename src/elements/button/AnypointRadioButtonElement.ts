@@ -39,6 +39,9 @@ import CheckedElement from '../checkbox/CheckedElement.js';
  *  <anypoint-radio-button name="c">Orange</anypoint-radio-button>
  * </paper-radio-group>
  * ```
+ * 
+ * @fires change
+ * @slot - The label to render
  */
 export default class AnypointRadioButtonElement extends CheckedElement {
   static get styles(): CSSResult {

@@ -58,6 +58,14 @@ export const openedValuePrivate = Symbol('openedValuePrivate');
 export const autocompleteFocus = Symbol('autocompleteFocus');
 export const ignoreNextFocus = Symbol('ignoreNextFocus');
 
+/**
+ * @fires loadingchange
+ * @fires openedchange
+ * @fires query
+ * @fires input
+ * @fires selected
+ * @fires resize
+ */
 export default class AnypointAutocompleteElement extends AnypointElement {
   static get styles(): CSSResult {
     return css`.highlight {
@@ -1023,7 +1031,7 @@ export default class AnypointAutocompleteElement extends AnypointElement {
   _listboxTemplate(): TemplateResult {
     return html`
       <anypoint-listbox aria-label="Use arrows and enter to select list item. Escape to close the list."
-        slot="dropdown-content" selectable="anypoint-item,anypoint-item-body" useariaselected
+        slot="dropdown-content" selectable="anypoint-item,anypoint-item-body" useAriaSelected
         @select="${this._selectionHandler}" ?anypoint="${this.anypoint}">
         ${this._loaderTemplate()}
         ${this._listTemplate()}

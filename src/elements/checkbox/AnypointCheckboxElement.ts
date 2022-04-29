@@ -15,6 +15,9 @@ import CheckedElement from './CheckedElement.js';
  * User can tap the checkbox to check or uncheck it.  Usually you use checkboxes
  * to allow user to select multiple options from a set.
  * Avoid using a single checkbox as an option selector and use toggle button instead.
+ * 
+ * @fires change
+ * @slot - The label slot
  */
 export default class AnypointCheckboxElement extends CheckedElement {
   static get styles(): CSSResult {

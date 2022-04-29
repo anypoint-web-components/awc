@@ -14,7 +14,6 @@ found at http://polymer.github.io/PATENTS.txt
 /* eslint-disable no-plusplus */
 /* eslint-disable no-continue */
 
-
 /**
  * Used to calculate the scroll direction during touch events.
  */
@@ -45,7 +44,7 @@ export let _lockedElementCache: HTMLElement[] | null = null;
 export let _unlockedElementCache: HTMLElement[] | null = null;
 
 /**
- * The IronScrollManager is intended to provide a central source
+ * The ScrollManager is intended to provide a central source
  * of authority and control over which elements in a document are currently
  * allowed to scroll.
  *
@@ -280,8 +279,7 @@ export function elementIsScrollLocked(element: HTMLElement): boolean {
     return false;
   }
 
-  const scrollLocked =
-    !!lockingElement && lockingElement !== element && !_composedTreeContains(lockingElement, element);
+  const scrollLocked = !!lockingElement && lockingElement !== element && !_composedTreeContains(lockingElement, element);
 
   if (scrollLocked) {
     if (!_lockedElementCache) {

@@ -18,6 +18,11 @@ const openedChanged = Symbol('openedChanged');
 const horizontalChanged = Symbol('horizontalChanged');
 const toggleAttribute = Symbol('toggleAttribute');
 
+/**
+ * @fires transitioningchange
+ * @fires openedchange
+ * @slot - Main slot for the content
+ */
 export default class AnypointCollapseElement extends ResizableElement {
   static get styles(): CSSResult {
     return css`

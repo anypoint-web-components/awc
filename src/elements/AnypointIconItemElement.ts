@@ -24,6 +24,9 @@ import ButtonElement from './button/ButtonElement.js';
  * This is useful if the icons are of varying widths, but you want the item
  * bodies to line up. Use this like a `<anypoint-item>`. The child node with the slot
  * name `item-icon` is placed in the icon area.
+ * 
+ * @slot item-icon - The list icon
+ * @slot - The list content
  */
 export default class AnypointIconItemElement extends ButtonElement {
   static get styles(): CSSResult[] {

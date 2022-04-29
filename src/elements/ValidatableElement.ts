@@ -6,6 +6,8 @@ import AnypointElement from "./AnypointElement.js";
  * A base class for elements that can be validated.
  * Do not overwrite the `checkValidity()` method. Instead, implement the validator
  * in the `_getValidity()` method.
+ * 
+ * @fires invalid
  */
 export default class ValidatableElement extends AnypointElement {
   /**

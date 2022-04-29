@@ -24,6 +24,11 @@ import ValidatableElement from './ValidatableElement.js';
  * support.
  *
  * See README.md file for detailed documentation.
+ * 
+ * @fires openedchange
+ * 
+ * @slot label - The label slot
+ * @slot dropdown-content - The slot for the content
  */
 export default class AnypointDropdownMenuElement extends ValidatableElement {
   static get styles(): CSSResult {

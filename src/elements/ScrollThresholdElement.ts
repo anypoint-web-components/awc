@@ -8,6 +8,13 @@ import { addListener, getListener } from '../lib/ElementEventsRegistry.js';
  * 
  * @attr {string} scrollTarget
  * @prop {HTMLElement | string} scrollTarget
+ * 
+ * @fires upperchange
+ * @fires upperthreshold
+ * @fires lowerchange
+ * @fires lowerthreshold
+ * 
+ * @slot - The content to render
  */
 export default class ScrollThresholdElement extends ScrollTargetMixin(LitElement) {
   static get styles(): CSSResult {

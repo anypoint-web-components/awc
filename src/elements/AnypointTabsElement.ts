@@ -20,6 +20,8 @@ export function calcPercent(w: number, w0: number): number {
 
 /**
  * Tabs for anypoint web components
+ * 
+ * @slot - The tabs content
  */
 export default class AnypointTabsElement extends MenubarElement {
   static get styles(): CSSResult | CSSResult[] {

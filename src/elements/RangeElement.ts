@@ -5,6 +5,8 @@ import AnypointElement from "./AnypointElement.js";
 
 /**
  * A base class for elements that computes a range.
+ * 
+ * @fires ratiochange
  */
 export default class AnypointRangeElement extends AnypointElement {
   protected _ratio = 0;

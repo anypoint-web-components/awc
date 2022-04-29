@@ -3,6 +3,9 @@ import { property } from 'lit/decorators.js';
 import AnypointButtonElement from './button/AnypointButtonElement.js';
 import '../define/material-ripple.js';
 
+/**
+ * @slot - The content rendered in the tab
+ */
 export default class AnypointTabElement extends AnypointButtonElement {
   static get styles(): CSSResult[] {
     return [

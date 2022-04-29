@@ -13,6 +13,12 @@ import { retarget, retargetHandler } from '../../lib/Events.js';
 
 /* eslint-disable no-plusplus */
 
+/**
+ * @fires dropdownopen
+ * @fires dropdownclose
+ * @slot dropdown-trigger - The child that is a trigger image for the menu
+ * @slot dropdown-content - The child that is the content to render after opening
+ */
 export default class AnypointMenuButtonElement extends AnypointElement {
   // eslint-disable-next-line class-methods-use-this
   static get styles(): CSSResult {

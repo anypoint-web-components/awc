@@ -32,6 +32,10 @@ export const hasIconNodeValue = Symbol('hasIconNodeValue');
  * custom event only. It does not remove the chip from the document as the
  * application logic might use different ways of removing elements from dom
  * than web platform APIs.
+ * 
+ * @fires chipremoved
+ * @slot icon Icons slot
+ * @slot - This element renders any child
  */
 export default class AnypointChipElement extends AnypointElement {
   static get styles(): CSSResult {

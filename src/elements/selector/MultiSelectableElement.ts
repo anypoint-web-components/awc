@@ -3,6 +3,10 @@ import { property, state } from 'lit/decorators.js';
 import SelectableElement from "./SelectableElement.js";
 import { addListener, getListener } from '../../lib/ElementEventsRegistry.js';
 
+/**
+ * @fires selectedvalueschange
+ * @fires selecteditemschange
+ */
 export default class MultiSelectableElement extends SelectableElement {
   /**
    * If true, multiple selections are allowed.
@@ -136,13 +140,10 @@ export default class MultiSelectableElement extends SelectableElement {
 
   _selectionChange(): void {
     const s = this._selection.get() as any;
-    if (this.multi && Array.isArray(s)) {
+    if (this.multi) {
       this._selectedItems = s;
       this._selectedItem = s.length ? s[0] : undefined;
-    } else if (this.multi && s !== undefined) {
-      this._selectedItems.push(s);
-      this._selectedItem = s;
-    } else if (s !== undefined) {
+    } else if (s !== null && s !== undefined) {
       this._selectedItems = [s];
       this._selectedItem = s;
     } else {

@@ -7,6 +7,9 @@ export const colorValue = Symbol('colorValue');
 export const colorTriggerHandler = Symbol('colorTriggerHandler');
 export const inputHandler = Symbol('inputHandler');
 
+/**
+ * @fires change
+ */
 export default class ColorSelectorElement extends LitElement {
   static get styles(): CSSResult {
     return elementStyles;
@@ -48,7 +51,7 @@ export default class ColorSelectorElement extends LitElement {
 
   [inputHandler](e: Event): void {
     this.value = (e.target as HTMLInputElement).value;
-    this.dispatchEvent(new CustomEvent('change'));
+    this.dispatchEvent(new Event('change'));
   }
 
   render(): TemplateResult {

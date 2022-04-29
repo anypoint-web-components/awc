@@ -17,6 +17,9 @@ export const onAnimationComplete = Symbol('onAnimationComplete');
 export const addRipple = Symbol('addRipple');
 export const removeRipple = Symbol('removeRipple');
 
+/**
+ * @fires transitionend
+ */
 export default class MaterialRippleElement extends LitElement {
   static get styles(): CSSResult {
     return elementStyles;

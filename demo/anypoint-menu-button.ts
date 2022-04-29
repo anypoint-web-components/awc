@@ -20,9 +20,6 @@ class ComponentDemoPage extends DemoPage {
   noOverlap = false;
 
   @demoProperty()
-  closeOnActivate = false;
-
-  @demoProperty()
   noAnimations = false;
 
   constructor() {
@@ -38,7 +35,6 @@ class ComponentDemoPage extends DemoPage {
       disabled,
       ignoreSelect,
       noOverlap,
-      closeOnActivate,
       noAnimations,
     } = this;
     return html`
@@ -59,7 +55,6 @@ class ComponentDemoPage extends DemoPage {
             ?disabled="${disabled}"
             ?ignoreSelect="${ignoreSelect}"
             ?noOverlap="${noOverlap}"
-            ?closeOnActivate="${closeOnActivate}"
             ?noAnimations="${noAnimations}"
           >
             <anypoint-icon-button
@@ -96,11 +91,6 @@ class ComponentDemoPage extends DemoPage {
             slot="options"
             name="noOverlap"
             @change="${this._toggleMainOption}">No overlap</anypoint-checkbox>
-          <anypoint-checkbox
-            aria-describedby="mainOptionsLabel"
-            slot="options"
-            name="closeOnActivate"
-            @change="${this._toggleMainOption}">Close on activate</anypoint-checkbox>
           <anypoint-checkbox
             aria-describedby="mainOptionsLabel"
             slot="options"

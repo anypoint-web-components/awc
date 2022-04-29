@@ -15,13 +15,13 @@ import { property } from 'lit/decorators.js';
 /* eslint-disable no-plusplus */
 /* eslint-disable no-continue */
 
-/*
-`arc-overlay-backdrop` is a backdrop used by `OverlayElement`. It
-should be a singleton.
-
-Originally designed by the Polymer team, ported to LitElement by ARC team.
-
-*/
+/**
+ * `overlay-backdrop` is a backdrop used by `OverlayElement`. It should be a singleton.
+ * 
+ * Originally designed by the Polymer team, ported to LitElement by ARC team.
+ * 
+ * @slot - Overlay content
+ */
 export default class OverlayBackdropElement extends LitElement {
   static get styles(): CSSResult {
     return css`

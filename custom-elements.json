@@ -1804,6 +1804,13 @@
                 "name": "ResizableElement",
                 "module": "src/elements/overlay/ResizableElement.ts"
               }
+            },
+            {
+              "name": "resize",
+              "inheritedFrom": {
+                "name": "ResizableElement",
+                "module": "src/elements/overlay/ResizableElement.ts"
+              }
             }
           ],
           "attributes": [
@@ -2370,6 +2377,13 @@
             },
             {
               "name": "requestresizenotifications",
+              "inheritedFrom": {
+                "name": "ResizableElement",
+                "module": "src/elements/overlay/ResizableElement.ts"
+              }
+            },
+            {
+              "name": "resize",
               "inheritedFrom": {
                 "name": "ResizableElement",
                 "module": "src/elements/overlay/ResizableElement.ts"
@@ -4479,123 +4493,6 @@
           "declaration": {
             "name": "ScrollTargetMixin",
             "module": "src/mixins/ScrollTargetMixin.ts"
-          }
-        }
-      ]
-    },
-    {
-      "kind": "javascript-module",
-      "path": "src/resources/AnypointSwitchIcons.ts",
-      "declarations": [
-        {
-          "kind": "variable",
-          "name": "onIcon",
-          "default": "html`<svg viewBox=\"0 0 16 16\">\n  <path d=\"M11.605 3.086L6.898 9.803 4.311 7.991 3.164 9.629l4.225 2.959 5.657-8.073c-.396-.554-.884-1.037-1.441-1.429z\"></path>\n</svg>`"
-        },
-        {
-          "kind": "variable",
-          "name": "offIcon",
-          "default": "html`<svg viewBox=\"0 0 16 16\">\n  <path d=\"M13.289 3.418c-.218-.252-.455-.489-.707-.707L8 7.293 3.418 2.711c-.252.218-.489.455-.707.707L7.293 8l-4.582 4.582c.218.252.455.489.707.707L8 8.707l4.582 4.582c.252-.218.489-.455.707-.707L8.707 8l4.582-4.582z\"></path>\n</svg>`"
-        }
-      ],
-      "exports": [
-        {
-          "kind": "js",
-          "name": "onIcon",
-          "declaration": {
-            "name": "onIcon",
-            "module": "src/resources/AnypointSwitchIcons.ts"
-          }
-        },
-        {
-          "kind": "js",
-          "name": "offIcon",
-          "declaration": {
-            "name": "offIcon",
-            "module": "src/resources/AnypointSwitchIcons.ts"
-          }
-        }
-      ]
-    },
-    {
-      "kind": "javascript-module",
-      "path": "src/resources/Icons.ts",
-      "declarations": [
-        {
-          "kind": "function",
-          "name": "iconWrapper",
-          "return": {
-            "type": {
-              "text": ""
-            }
-          },
-          "parameters": [
-            {
-              "name": "tpl",
-              "type": {
-                "text": "SVGTemplateResult"
-              },
-              "description": "Icon definition"
-            }
-          ],
-          "description": "Wraps icon into an SVG container."
-        },
-        {
-          "kind": "variable",
-          "name": "arrowDown"
-        },
-        {
-          "kind": "variable",
-          "name": "clear"
-        },
-        {
-          "kind": "variable",
-          "name": "visibility"
-        },
-        {
-          "kind": "variable",
-          "name": "visibilityOff"
-        }
-      ],
-      "exports": [
-        {
-          "kind": "js",
-          "name": "iconWrapper",
-          "declaration": {
-            "name": "iconWrapper",
-            "module": "src/resources/Icons.ts"
-          }
-        },
-        {
-          "kind": "js",
-          "name": "arrowDown",
-          "declaration": {
-            "name": "arrowDown",
-            "module": "src/resources/Icons.ts"
-          }
-        },
-        {
-          "kind": "js",
-          "name": "clear",
-          "declaration": {
-            "name": "clear",
-            "module": "src/resources/Icons.ts"
-          }
-        },
-        {
-          "kind": "js",
-          "name": "visibility",
-          "declaration": {
-            "name": "visibility",
-            "module": "src/resources/Icons.ts"
-          }
-        },
-        {
-          "kind": "js",
-          "name": "visibilityOff",
-          "declaration": {
-            "name": "visibilityOff",
-            "module": "src/resources/Icons.ts"
           }
         }
       ]
@@ -7044,280 +6941,117 @@
     },
     {
       "kind": "javascript-module",
-      "path": "src/styles/AnypointChipInput.ts",
-      "declarations": [],
+      "path": "src/resources/AnypointSwitchIcons.ts",
+      "declarations": [
+        {
+          "kind": "variable",
+          "name": "onIcon",
+          "default": "html`<svg viewBox=\"0 0 16 16\">\n  <path d=\"M11.605 3.086L6.898 9.803 4.311 7.991 3.164 9.629l4.225 2.959 5.657-8.073c-.396-.554-.884-1.037-1.441-1.429z\"></path>\n</svg>`"
+        },
+        {
+          "kind": "variable",
+          "name": "offIcon",
+          "default": "html`<svg viewBox=\"0 0 16 16\">\n  <path d=\"M13.289 3.418c-.218-.252-.455-.489-.707-.707L8 7.293 3.418 2.711c-.252.218-.489.455-.707.707L7.293 8l-4.582 4.582c.218.252.455.489.707.707L8 8.707l4.582 4.582c.252-.218.489-.455.707-.707L8.707 8l4.582-4.582z\"></path>\n</svg>`"
+        }
+      ],
       "exports": [
         {
           "kind": "js",
-          "name": "default",
+          "name": "onIcon",
           "declaration": {
-            "module": "src/styles/AnypointChipInput.ts"
+            "name": "onIcon",
+            "module": "src/resources/AnypointSwitchIcons.ts"
+          }
+        },
+        {
+          "kind": "js",
+          "name": "offIcon",
+          "declaration": {
+            "name": "offIcon",
+            "module": "src/resources/AnypointSwitchIcons.ts"
           }
         }
       ]
     },
     {
       "kind": "javascript-module",
-      "path": "src/styles/AnypointDialogInternalStyles.ts",
-      "declarations": [],
-      "exports": [
+      "path": "src/resources/Icons.ts",
+      "declarations": [
         {
-          "kind": "js",
-          "name": "default",
-          "declaration": {
-            "module": "src/styles/AnypointDialogInternalStyles.ts"
-          }
+          "kind": "function",
+          "name": "iconWrapper",
+          "return": {
+            "type": {
+              "text": ""
+            }
+          },
+          "parameters": [
+            {
+              "name": "tpl",
+              "type": {
+                "text": "SVGTemplateResult"
+              },
+              "description": "Icon definition"
+            }
+          ],
+          "description": "Wraps icon into an SVG container."
+        },
+        {
+          "kind": "variable",
+          "name": "arrowDown"
+        },
+        {
+          "kind": "variable",
+          "name": "clear"
+        },
+        {
+          "kind": "variable",
+          "name": "visibility"
+        },
+        {
+          "kind": "variable",
+          "name": "visibilityOff"
         }
-      ]
-    },
-    {
-      "kind": "javascript-module",
-      "path": "src/styles/AnypointDialogStyles.ts",
-      "declarations": [],
+      ],
       "exports": [
         {
           "kind": "js",
-          "name": "default",
+          "name": "iconWrapper",
           "declaration": {
-            "module": "src/styles/AnypointDialogStyles.ts"
+            "name": "iconWrapper",
+            "module": "src/resources/Icons.ts"
           }
-        }
-      ]
-    },
-    {
-      "kind": "javascript-module",
-      "path": "src/styles/BottomSheet.ts",
-      "declarations": [],
-      "exports": [
+        },
         {
           "kind": "js",
-          "name": "default",
+          "name": "arrowDown",
           "declaration": {
-            "module": "src/styles/BottomSheet.ts"
+            "name": "arrowDown",
+            "module": "src/resources/Icons.ts"
           }
-        }
-      ]
-    },
-    {
-      "kind": "javascript-module",
-      "path": "src/styles/Button.ts",
-      "declarations": [],
-      "exports": [
+        },
         {
           "kind": "js",
-          "name": "default",
+          "name": "clear",
           "declaration": {
-            "module": "src/styles/Button.ts"
+            "name": "clear",
+            "module": "src/resources/Icons.ts"
           }
-        }
-      ]
-    },
-    {
-      "kind": "javascript-module",
-      "path": "src/styles/ButtonIcon.ts",
-      "declarations": [],
-      "exports": [
+        },
         {
           "kind": "js",
-          "name": "default",
+          "name": "visibility",
           "declaration": {
-            "module": "src/styles/ButtonIcon.ts"
+            "name": "visibility",
+            "module": "src/resources/Icons.ts"
           }
-        }
-      ]
-    },
-    {
-      "kind": "javascript-module",
-      "path": "src/styles/Checkbox.ts",
-      "declarations": [],
-      "exports": [
+        },
         {
           "kind": "js",
-          "name": "default",
+          "name": "visibilityOff",
           "declaration": {
-            "module": "src/styles/Checkbox.ts"
-          }
-        }
-      ]
-    },
-    {
-      "kind": "javascript-module",
-      "path": "src/styles/ChipStyles.ts",
-      "declarations": [],
-      "exports": [
-        {
-          "kind": "js",
-          "name": "default",
-          "declaration": {
-            "module": "src/styles/ChipStyles.ts"
-          }
-        }
-      ]
-    },
-    {
-      "kind": "javascript-module",
-      "path": "src/styles/ColorInputSelectorElement.styles.ts",
-      "declarations": [],
-      "exports": [
-        {
-          "kind": "js",
-          "name": "default",
-          "declaration": {
-            "module": "src/styles/ColorInputSelectorElement.styles.ts"
-          }
-        }
-      ]
-    },
-    {
-      "kind": "javascript-module",
-      "path": "src/styles/ColorSelectorElement.styles.ts",
-      "declarations": [],
-      "exports": [
-        {
-          "kind": "js",
-          "name": "default",
-          "declaration": {
-            "module": "src/styles/ColorSelectorElement.styles.ts"
-          }
-        }
-      ]
-    },
-    {
-      "kind": "javascript-module",
-      "path": "src/styles/DropdownMenu.ts",
-      "declarations": [],
-      "exports": [
-        {
-          "kind": "js",
-          "name": "default",
-          "declaration": {
-            "module": "src/styles/DropdownMenu.ts"
-          }
-        }
-      ]
-    },
-    {
-      "kind": "javascript-module",
-      "path": "src/styles/InputComboboxStyles.ts",
-      "declarations": [],
-      "exports": [
-        {
-          "kind": "js",
-          "name": "default",
-          "declaration": {
-            "module": "src/styles/InputComboboxStyles.ts"
-          }
-        }
-      ]
-    },
-    {
-      "kind": "javascript-module",
-      "path": "src/styles/ItemStyles.ts",
-      "declarations": [],
-      "exports": [
-        {
-          "kind": "js",
-          "name": "default",
-          "declaration": {
-            "module": "src/styles/ItemStyles.ts"
-          }
-        }
-      ]
-    },
-    {
-      "kind": "javascript-module",
-      "path": "src/styles/MenuButton.ts",
-      "declarations": [],
-      "exports": [
-        {
-          "kind": "js",
-          "name": "default",
-          "declaration": {
-            "module": "src/styles/MenuButton.ts"
-          }
-        }
-      ]
-    },
-    {
-      "kind": "javascript-module",
-      "path": "src/styles/Progress.ts",
-      "declarations": [],
-      "exports": [
-        {
-          "kind": "js",
-          "name": "default",
-          "declaration": {
-            "module": "src/styles/Progress.ts"
-          }
-        }
-      ]
-    },
-    {
-      "kind": "javascript-module",
-      "path": "src/styles/RadioButton.ts",
-      "declarations": [],
-      "exports": [
-        {
-          "kind": "js",
-          "name": "default",
-          "declaration": {
-            "module": "src/styles/RadioButton.ts"
-          }
-        }
-      ]
-    },
-    {
-      "kind": "javascript-module",
-      "path": "src/styles/Switch.ts",
-      "declarations": [],
-      "exports": [
-        {
-          "kind": "js",
-          "name": "default",
-          "declaration": {
-            "module": "src/styles/Switch.ts"
-          }
-        }
-      ]
-    },
-    {
-      "kind": "javascript-module",
-      "path": "src/styles/TabsStyles.ts",
-      "declarations": [],
-      "exports": [
-        {
-          "kind": "js",
-          "name": "default",
-          "declaration": {
-            "module": "src/styles/TabsStyles.ts"
-          }
-        }
-      ]
-    },
-    {
-      "kind": "javascript-module",
-      "path": "src/styles/anypoint-input-styles.ts",
-      "declarations": [],
-      "exports": [
-        {
-          "kind": "js",
-          "name": "default",
-          "declaration": {
-            "module": "src/styles/anypoint-input-styles.ts"
-          }
-        }
-      ]
-    },
-    {
-      "kind": "javascript-module",
-      "path": "src/styles/ripple.styles.ts",
-      "declarations": [],
-      "exports": [
-        {
-          "kind": "js",
-          "name": "default",
-          "declaration": {
-            "module": "src/styles/ripple.styles.ts"
+            "name": "visibilityOff",
+            "module": "src/resources/Icons.ts"
           }
         }
       ]
@@ -8318,6 +8052,21 @@
               "type": {
                 "text": "Event"
               }
+            },
+            {
+              "name": "loadingchange"
+            },
+            {
+              "name": "openedchange"
+            },
+            {
+              "name": "query"
+            },
+            {
+              "name": "input"
+            },
+            {
+              "name": "selected"
             }
           ],
           "attributes": [
@@ -8588,6 +8337,16 @@
           "kind": "class",
           "description": "`anypoint-chip`\n\nA compact material design element that represent and input, attribute, or action.\n\nA chip contains a label and optionally an icon and remove icon.\n\nRemove icon is predefined. However icon can be any HTML element with\n`slot=\"icon\"` attribute. Per material design guidelines the icon is rounded.\n\n## Example\n\n```html\n<anypoint-chip removable>\n <img src=\"...\" slot=\"icon\"/>\n Biking\n</anypoint-chip>\n```\n\nThe \"Biking\" is the label rendered next to the icon. The chip also renders\nbuilt-in remove icon. Clicking on the icon dispatches `chipremoved`\ncustom event only. It does not remove the chip from the document as the\napplication logic might use different ways of removing elements from dom\nthan web platform APIs.",
           "name": "AnypointChipElement",
+          "slots": [
+            {
+              "description": "Icons slot",
+              "name": "icon"
+            },
+            {
+              "description": "This element renders any child",
+              "name": ""
+            }
+          ],
           "members": [
             {
               "kind": "field",
@@ -9117,6 +8876,12 @@
           "kind": "class",
           "description": "",
           "name": "AnypointChipInputElement",
+          "slots": [
+            {
+              "description": "The prefix rendering slot",
+              "name": "prefix"
+            }
+          ],
           "members": [
             {
               "kind": "field",
@@ -10540,6 +10305,21 @@
               }
             }
           ],
+          "events": [
+            {
+              "name": "chipschange"
+            },
+            {
+              "name": "invalid",
+              "type": {
+                "text": "Event"
+              },
+              "inheritedFrom": {
+                "name": "ValidatableElement",
+                "module": "src/elements/ValidatableElement.ts"
+              }
+            }
+          ],
           "attributes": [
             {
               "name": "allowed",
@@ -10965,19 +10745,7 @@
           "superclass": {
             "name": "AnypointInputElement",
             "module": "/src/elements/input/AnypointInputElement.js"
-          },
-          "events": [
-            {
-              "name": "invalid",
-              "type": {
-                "text": "Event"
-              },
-              "inheritedFrom": {
-                "name": "ValidatableElement",
-                "module": "src/elements/ValidatableElement.ts"
-              }
-            }
-          ]
+          }
         }
       ],
       "exports": [
@@ -10999,6 +10767,12 @@
           "kind": "class",
           "description": "",
           "name": "AnypointCollapseElement",
+          "slots": [
+            {
+              "description": "Main slot for the content",
+              "name": ""
+            }
+          ],
           "members": [
             {
               "kind": "field",
@@ -11690,6 +11464,9 @@
               }
             },
             {
+              "name": "transitioningchange"
+            },
+            {
               "name": "resizeEventType",
               "type": {
                 "text": "CustomEvent"
@@ -11711,6 +11488,13 @@
             },
             {
               "name": "requestresizenotifications",
+              "inheritedFrom": {
+                "name": "ResizableElement",
+                "module": "src/elements/overlay/ResizableElement.ts"
+              }
+            },
+            {
+              "name": "resize",
               "inheritedFrom": {
                 "name": "ResizableElement",
                 "module": "src/elements/overlay/ResizableElement.ts"
@@ -13254,6 +13038,12 @@
           "kind": "class",
           "description": "",
           "name": "AnypointDialogElement",
+          "slots": [
+            {
+              "description": "The dialog content",
+              "name": ""
+            }
+          ],
           "members": [
             {
               "kind": "field",
@@ -15876,6 +15666,13 @@
               }
             },
             {
+              "name": "cancel",
+              "inheritedFrom": {
+                "name": "OverlayElement",
+                "module": "src/elements/overlay/OverlayElement.ts"
+              }
+            },
+            {
               "name": "resizeEventType",
               "type": {
                 "text": "CustomEvent"
@@ -15897,6 +15694,13 @@
             },
             {
               "name": "requestresizenotifications",
+              "inheritedFrom": {
+                "name": "ResizableElement",
+                "module": "src/elements/overlay/ResizableElement.ts"
+              }
+            },
+            {
+              "name": "resize",
               "inheritedFrom": {
                 "name": "ResizableElement",
                 "module": "src/elements/overlay/ResizableElement.ts"
@@ -15924,6 +15728,12 @@
           "kind": "class",
           "description": "",
           "name": "AnypointDialogScrollableElement",
+          "slots": [
+            {
+              "description": "The scrollable content",
+              "name": ""
+            }
+          ],
           "members": [
             {
               "kind": "field",
@@ -16021,6 +15831,12 @@
           "kind": "class",
           "description": "",
           "name": "AnypointDropdownElement",
+          "slots": [
+            {
+              "description": "The content for the drop down",
+              "name": "dropdown-content"
+            }
+          ],
           "members": [
             {
               "kind": "field",
@@ -18677,6 +18493,13 @@
               }
             },
             {
+              "name": "cancel",
+              "inheritedFrom": {
+                "name": "OverlayElement",
+                "module": "src/elements/overlay/OverlayElement.ts"
+              }
+            },
+            {
               "name": "resizeEventType",
               "type": {
                 "text": "CustomEvent"
@@ -18698,6 +18521,13 @@
             },
             {
               "name": "requestresizenotifications",
+              "inheritedFrom": {
+                "name": "ResizableElement",
+                "module": "src/elements/overlay/ResizableElement.ts"
+              }
+            },
+            {
+              "name": "resize",
               "inheritedFrom": {
                 "name": "ResizableElement",
                 "module": "src/elements/overlay/ResizableElement.ts"
@@ -18725,6 +18555,16 @@
           "kind": "class",
           "description": "Accessible dropdown menu for Anypoint platform.\n\nThe element works perfectly with `anypoint-listbox` which together creates an\naccessible list of options. The listbox can be replaced by any other element\nthat support similar functionality but make sure it has an appropriate aria\nsupport.\n\nSee README.md file for detailed documentation.",
           "name": "AnypointDropdownMenuElement",
+          "slots": [
+            {
+              "description": "The label slot",
+              "name": "label"
+            },
+            {
+              "description": "The slot for the content",
+              "name": "dropdown-content"
+            }
+          ],
           "members": [
             {
               "kind": "field",
@@ -19576,6 +19416,21 @@
               }
             }
           ],
+          "events": [
+            {
+              "name": "openedchange"
+            },
+            {
+              "name": "invalid",
+              "type": {
+                "text": "Event"
+              },
+              "inheritedFrom": {
+                "name": "ValidatableElement",
+                "module": "src/elements/ValidatableElement.ts"
+              }
+            }
+          ],
           "attributes": [
             {
               "name": "autoValidate",
@@ -19789,19 +19644,7 @@
           "superclass": {
             "name": "ValidatableElement",
             "module": "/src/elements/ValidatableElement.js"
-          },
-          "events": [
-            {
-              "name": "invalid",
-              "type": {
-                "text": "Event"
-              },
-              "inheritedFrom": {
-                "name": "ValidatableElement",
-                "module": "src/elements/ValidatableElement.ts"
-              }
-            }
-          ]
+          }
         }
       ],
       "exports": [
@@ -19945,6 +19788,16 @@
           "kind": "class",
           "description": "`anypoint-icon-item`\nAn Anypoint icon list item is a convenience element to make an item with icon. It is an\ninteractive list item with a fixed-width icon area.\nThis is useful if the icons are of varying widths, but you want the item\nbodies to line up. Use this like a `<anypoint-item>`. The child node with the slot\nname `item-icon` is placed in the icon area.",
           "name": "AnypointIconItemElement",
+          "slots": [
+            {
+              "description": "The list icon",
+              "name": "item-icon"
+            },
+            {
+              "description": "The list content",
+              "name": ""
+            }
+          ],
           "members": [
             {
               "kind": "field",
@@ -20723,6 +20576,16 @@
           "kind": "class",
           "description": "`anypoint-input-combobox`",
           "name": "AnypointInputComboboxElement",
+          "slots": [
+            {
+              "description": "The suffix to render behind the input",
+              "name": "suffix"
+            },
+            {
+              "description": "The dropdown content",
+              "name": "dropdown-content"
+            }
+          ],
           "members": [
             {
               "kind": "field",
@@ -22629,6 +22492,12 @@
           "kind": "class",
           "description": "`anypoint-item`\nAn Anypoint list item with 2 or 3 lines.",
           "name": "AnypointItemBodyElement",
+          "slots": [
+            {
+              "description": "The list body",
+              "name": ""
+            }
+          ],
           "members": [
             {
               "kind": "field",
@@ -22818,6 +22687,12 @@
           "kind": "class",
           "description": "`anypoint-item`\nAn Anypoint list item.",
           "name": "AnypointItemElement",
+          "slots": [
+            {
+              "description": "The item's body.",
+              "name": ""
+            }
+          ],
           "members": [
             {
               "kind": "field",
@@ -23570,6 +23445,12 @@
           "kind": "class",
           "description": "",
           "name": "AnypointListboxElement",
+          "slots": [
+            {
+              "description": "The content of the list box",
+              "name": ""
+            }
+          ],
           "members": [
             {
               "kind": "method",
@@ -25876,6 +25757,7 @@
               "type": {
                 "text": "CustomEvent"
               },
+              "description": "This event is dispatched when an attribute or a child list of the element change. This fires often when interacting with the control",
               "inheritedFrom": {
                 "name": "SelectableElement",
                 "module": "src/elements/selector/SelectableElement.ts"
@@ -25916,6 +25798,29 @@
               "type": {
                 "text": "Event"
               },
+              "description": "When an item is selected.",
+              "inheritedFrom": {
+                "name": "SelectableElement",
+                "module": "src/elements/selector/SelectableElement.ts"
+              }
+            },
+            {
+              "description": "This event can be canceled to stop the selection.",
+              "name": "activate",
+              "inheritedFrom": {
+                "name": "SelectableElement",
+                "module": "src/elements/selector/SelectableElement.ts"
+              }
+            },
+            {
+              "name": "select",
+              "inheritedFrom": {
+                "name": "SelectableElement",
+                "module": "src/elements/selector/SelectableElement.ts"
+              }
+            },
+            {
+              "name": "deselect",
               "inheritedFrom": {
                 "name": "SelectableElement",
                 "module": "src/elements/selector/SelectableElement.ts"
@@ -25943,6 +25848,13 @@
             },
             {
               "name": "requestresizenotifications",
+              "inheritedFrom": {
+                "name": "ResizableElement",
+                "module": "src/elements/overlay/ResizableElement.ts"
+              }
+            },
+            {
+              "name": "resize",
               "inheritedFrom": {
                 "name": "ResizableElement",
                 "module": "src/elements/overlay/ResizableElement.ts"
@@ -28169,6 +28081,7 @@
               "type": {
                 "text": "CustomEvent"
               },
+              "description": "This event is dispatched when an attribute or a child list of the element change. This fires often when interacting with the control",
               "inheritedFrom": {
                 "name": "SelectableElement",
                 "module": "src/elements/selector/SelectableElement.ts"
@@ -28209,6 +28122,29 @@
               "type": {
                 "text": "Event"
               },
+              "description": "When an item is selected.",
+              "inheritedFrom": {
+                "name": "SelectableElement",
+                "module": "src/elements/selector/SelectableElement.ts"
+              }
+            },
+            {
+              "description": "This event can be canceled to stop the selection.",
+              "name": "activate",
+              "inheritedFrom": {
+                "name": "SelectableElement",
+                "module": "src/elements/selector/SelectableElement.ts"
+              }
+            },
+            {
+              "name": "select",
+              "inheritedFrom": {
+                "name": "SelectableElement",
+                "module": "src/elements/selector/SelectableElement.ts"
+              }
+            },
+            {
+              "name": "deselect",
               "inheritedFrom": {
                 "name": "SelectableElement",
                 "module": "src/elements/selector/SelectableElement.ts"
@@ -28240,6 +28176,13 @@
                 "name": "ResizableElement",
                 "module": "src/elements/overlay/ResizableElement.ts"
               }
+            },
+            {
+              "name": "resize",
+              "inheritedFrom": {
+                "name": "ResizableElement",
+                "module": "src/elements/overlay/ResizableElement.ts"
+              }
             }
           ]
         }
@@ -28263,6 +28206,12 @@
           "kind": "class",
           "description": "",
           "name": "AnypointTabElement",
+          "slots": [
+            {
+              "description": "The content rendered in the tab",
+              "name": ""
+            }
+          ],
           "members": [
             {
               "kind": "field",
@@ -29208,6 +29157,12 @@
           "kind": "class",
           "description": "Tabs for anypoint web components",
           "name": "AnypointTabsElement",
+          "slots": [
+            {
+              "description": "The tabs content",
+              "name": ""
+            }
+          ],
           "members": [
             {
               "kind": "field",
@@ -32226,6 +32181,7 @@
               "type": {
                 "text": "CustomEvent"
               },
+              "description": "This event is dispatched when an attribute or a child list of the element change. This fires often when interacting with the control",
               "inheritedFrom": {
                 "name": "SelectableElement",
                 "module": "src/elements/selector/SelectableElement.ts"
@@ -32266,6 +32222,29 @@
               "type": {
                 "text": "Event"
               },
+              "description": "When an item is selected.",
+              "inheritedFrom": {
+                "name": "SelectableElement",
+                "module": "src/elements/selector/SelectableElement.ts"
+              }
+            },
+            {
+              "description": "This event can be canceled to stop the selection.",
+              "name": "activate",
+              "inheritedFrom": {
+                "name": "SelectableElement",
+                "module": "src/elements/selector/SelectableElement.ts"
+              }
+            },
+            {
+              "name": "select",
+              "inheritedFrom": {
+                "name": "SelectableElement",
+                "module": "src/elements/selector/SelectableElement.ts"
+              }
+            },
+            {
+              "name": "deselect",
               "inheritedFrom": {
                 "name": "SelectableElement",
                 "module": "src/elements/selector/SelectableElement.ts"
@@ -32293,6 +32272,13 @@
             },
             {
               "name": "requestresizenotifications",
+              "inheritedFrom": {
+                "name": "ResizableElement",
+                "module": "src/elements/overlay/ResizableElement.ts"
+              }
+            },
+            {
+              "name": "resize",
               "inheritedFrom": {
                 "name": "ResizableElement",
                 "module": "src/elements/overlay/ResizableElement.ts"
@@ -32328,6 +32314,12 @@
           "kind": "class",
           "description": "Material design: [Bottom sheets](https://material.google.com/components/bottom-sheets.html#)\n\n# `<bottom-sheet>`\n\nBottom sheets slide up from the bottom of the screen to reveal more content.\n\n### Example\n\n```html\n<bottom-sheet>\n   <paper-icon-item>\n     <anypoint-icon src=\"inbox.png\" item-icon></anypoint-icon>\n     Inbox\n   </paper-icon-item>\n   <paper-icon-item>\n     <anypoint-icon src=\"keep.png\" item-icon></anypoint-icon>\n     Keep\n   </paper-icon-item>\n   <paper-icon-item>\n     <anypoint-icon src=\"hangouts.png\" item-icon></anypoint-icon>\n     Hangouts\n   </paper-icon-item>\n </bottom-sheet>\n```\n\n### Positioning\n\nUse the `fit-bottom` class to position the bar at the bottom of the app and with full width;\n\nUse `center-bottom` class to display the bar at the bottom centered on a page.",
           "name": "BottomSheetElement",
+          "slots": [
+            {
+              "description": "The main content",
+              "name": ""
+            }
+          ],
           "members": [
             {
               "kind": "field",
@@ -34429,6 +34421,13 @@
               }
             },
             {
+              "name": "cancel",
+              "inheritedFrom": {
+                "name": "OverlayElement",
+                "module": "src/elements/overlay/OverlayElement.ts"
+              }
+            },
+            {
               "name": "resizeEventType",
               "type": {
                 "text": "CustomEvent"
@@ -34450,6 +34449,13 @@
             },
             {
               "name": "requestresizenotifications",
+              "inheritedFrom": {
+                "name": "ResizableElement",
+                "module": "src/elements/overlay/ResizableElement.ts"
+              }
+            },
+            {
+              "name": "resize",
               "inheritedFrom": {
                 "name": "ResizableElement",
                 "module": "src/elements/overlay/ResizableElement.ts"
@@ -34824,6 +34830,12 @@
           "kind": "class",
           "description": "",
           "name": "ColorInputSelectorElement",
+          "slots": [
+            {
+              "description": "The label to render",
+              "name": ""
+            }
+          ],
           "members": [
             {
               "kind": "field",
@@ -34948,7 +34960,7 @@
             {
               "name": "change",
               "type": {
-                "text": "CustomEvent"
+                "text": "Event"
               }
             }
           ],
@@ -35125,7 +35137,7 @@
             {
               "name": "change",
               "type": {
-                "text": "CustomEvent"
+                "text": "Event"
               }
             }
           ],
@@ -36017,8 +36029,14 @@
       "declarations": [
         {
           "kind": "class",
-          "description": "",
+          "description": "`overlay-backdrop` is a backdrop used by `OverlayElement`. It should be a singleton.\n\nOriginally designed by the Polymer team, ported to LitElement by ARC team.",
           "name": "OverlayBackdropElement",
+          "slots": [
+            {
+              "description": "Overlay content",
+              "name": ""
+            }
+          ],
           "members": [
             {
               "kind": "field",
@@ -36545,6 +36563,12 @@
           "kind": "class",
           "description": "A port of `scroll-threshold` element.",
           "name": "ScrollThresholdElement",
+          "slots": [
+            {
+              "description": "The content to render",
+              "name": ""
+            }
+          ],
           "members": [
             {
               "kind": "field",
@@ -37123,6 +37147,28 @@
           "kind": "class",
           "description": "A web component written in plain JavaScript to render a 5 star rating.\n\nBy default it is an interactive element where the user can change the selection.\nAdd `readOnly` attribute/JS property to disable this behavior.\n\n## Example\n\n```html\n<star-rating value=\"3\"></star-rating>\n```\n### Styling\n\n`<exchange-search-list-item>` provides the following custom properties and mixins for styling:\n\nCustom property | Description | Default\n----------------|-------------|----------\n`--star-rating-width` | Icon width | `24px`\n`--star-rating-height` | Icon width | `24px`\n`--star-rating-unselected-color` | Icon color when not selected | `#eeeeee`\n`--star-rating-selected-color` | Icon color when selected | `#fdd835`\n`--star-rating-active-color` | Icon color when active (focus, hover) | `#e0be25`",
           "name": "StarRatingElement",
+          "cssProperties": [
+            {
+              "name": "--star-rating-width",
+              "default": "24px"
+            },
+            {
+              "name": "--star-rating-height",
+              "default": "24px"
+            },
+            {
+              "name": "--star-rating-unselected-color",
+              "default": "#eeeeee"
+            },
+            {
+              "name": "--star-rating-selected-color",
+              "default": "#fdd835"
+            },
+            {
+              "name": "--star-rating-active-color",
+              "default": "#e0be25"
+            }
+          ],
           "members": [
             {
               "kind": "field",
@@ -37497,6 +37543,286 @@
           "declaration": {
             "name": "ValidatableElement",
             "module": "src/elements/ValidatableElement.ts"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "src/styles/AnypointChipInput.ts",
+      "declarations": [],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "default",
+          "declaration": {
+            "module": "src/styles/AnypointChipInput.ts"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "src/styles/AnypointDialogInternalStyles.ts",
+      "declarations": [],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "default",
+          "declaration": {
+            "module": "src/styles/AnypointDialogInternalStyles.ts"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "src/styles/AnypointDialogStyles.ts",
+      "declarations": [],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "default",
+          "declaration": {
+            "module": "src/styles/AnypointDialogStyles.ts"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "src/styles/BottomSheet.ts",
+      "declarations": [],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "default",
+          "declaration": {
+            "module": "src/styles/BottomSheet.ts"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "src/styles/Button.ts",
+      "declarations": [],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "default",
+          "declaration": {
+            "module": "src/styles/Button.ts"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "src/styles/ButtonIcon.ts",
+      "declarations": [],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "default",
+          "declaration": {
+            "module": "src/styles/ButtonIcon.ts"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "src/styles/Checkbox.ts",
+      "declarations": [],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "default",
+          "declaration": {
+            "module": "src/styles/Checkbox.ts"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "src/styles/ChipStyles.ts",
+      "declarations": [],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "default",
+          "declaration": {
+            "module": "src/styles/ChipStyles.ts"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "src/styles/ColorInputSelectorElement.styles.ts",
+      "declarations": [],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "default",
+          "declaration": {
+            "module": "src/styles/ColorInputSelectorElement.styles.ts"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "src/styles/ColorSelectorElement.styles.ts",
+      "declarations": [],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "default",
+          "declaration": {
+            "module": "src/styles/ColorSelectorElement.styles.ts"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "src/styles/DropdownMenu.ts",
+      "declarations": [],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "default",
+          "declaration": {
+            "module": "src/styles/DropdownMenu.ts"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "src/styles/InputComboboxStyles.ts",
+      "declarations": [],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "default",
+          "declaration": {
+            "module": "src/styles/InputComboboxStyles.ts"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "src/styles/ItemStyles.ts",
+      "declarations": [],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "default",
+          "declaration": {
+            "module": "src/styles/ItemStyles.ts"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "src/styles/MenuButton.ts",
+      "declarations": [],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "default",
+          "declaration": {
+            "module": "src/styles/MenuButton.ts"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "src/styles/Progress.ts",
+      "declarations": [],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "default",
+          "declaration": {
+            "module": "src/styles/Progress.ts"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "src/styles/RadioButton.ts",
+      "declarations": [],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "default",
+          "declaration": {
+            "module": "src/styles/RadioButton.ts"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "src/styles/Switch.ts",
+      "declarations": [],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "default",
+          "declaration": {
+            "module": "src/styles/Switch.ts"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "src/styles/TabsStyles.ts",
+      "declarations": [],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "default",
+          "declaration": {
+            "module": "src/styles/TabsStyles.ts"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "src/styles/anypoint-input-styles.ts",
+      "declarations": [],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "default",
+          "declaration": {
+            "module": "src/styles/anypoint-input-styles.ts"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "src/styles/ripple.styles.ts",
+      "declarations": [],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "default",
+          "declaration": {
+            "module": "src/styles/ripple.styles.ts"
           }
         }
       ]
@@ -40381,6 +40707,7 @@
               "type": {
                 "text": "CustomEvent"
               },
+              "description": "This event is dispatched when an attribute or a child list of the element change. This fires often when interacting with the control",
               "inheritedFrom": {
                 "name": "SelectableElement",
                 "module": "src/elements/selector/SelectableElement.ts"
@@ -40421,6 +40748,29 @@
               "type": {
                 "text": "Event"
               },
+              "description": "When an item is selected.",
+              "inheritedFrom": {
+                "name": "SelectableElement",
+                "module": "src/elements/selector/SelectableElement.ts"
+              }
+            },
+            {
+              "description": "This event can be canceled to stop the selection.",
+              "name": "activate",
+              "inheritedFrom": {
+                "name": "SelectableElement",
+                "module": "src/elements/selector/SelectableElement.ts"
+              }
+            },
+            {
+              "name": "select",
+              "inheritedFrom": {
+                "name": "SelectableElement",
+                "module": "src/elements/selector/SelectableElement.ts"
+              }
+            },
+            {
+              "name": "deselect",
               "inheritedFrom": {
                 "name": "SelectableElement",
                 "module": "src/elements/selector/SelectableElement.ts"
@@ -40448,6 +40798,13 @@
             },
             {
               "name": "requestresizenotifications",
+              "inheritedFrom": {
+                "name": "ResizableElement",
+                "module": "src/elements/overlay/ResizableElement.ts"
+              }
+            },
+            {
+              "name": "resize",
               "inheritedFrom": {
                 "name": "ResizableElement",
                 "module": "src/elements/overlay/ResizableElement.ts"
@@ -42773,6 +43130,7 @@
               "type": {
                 "text": "CustomEvent"
               },
+              "description": "This event is dispatched when an attribute or a child list of the element change. This fires often when interacting with the control",
               "inheritedFrom": {
                 "name": "SelectableElement",
                 "module": "src/elements/selector/SelectableElement.ts"
@@ -42813,6 +43171,29 @@
               "type": {
                 "text": "Event"
               },
+              "description": "When an item is selected.",
+              "inheritedFrom": {
+                "name": "SelectableElement",
+                "module": "src/elements/selector/SelectableElement.ts"
+              }
+            },
+            {
+              "description": "This event can be canceled to stop the selection.",
+              "name": "activate",
+              "inheritedFrom": {
+                "name": "SelectableElement",
+                "module": "src/elements/selector/SelectableElement.ts"
+              }
+            },
+            {
+              "name": "select",
+              "inheritedFrom": {
+                "name": "SelectableElement",
+                "module": "src/elements/selector/SelectableElement.ts"
+              }
+            },
+            {
+              "name": "deselect",
               "inheritedFrom": {
                 "name": "SelectableElement",
                 "module": "src/elements/selector/SelectableElement.ts"
@@ -42840,6 +43221,13 @@
             },
             {
               "name": "requestresizenotifications",
+              "inheritedFrom": {
+                "name": "ResizableElement",
+                "module": "src/elements/overlay/ResizableElement.ts"
+              }
+            },
+            {
+              "name": "resize",
               "inheritedFrom": {
                 "name": "ResizableElement",
                 "module": "src/elements/overlay/ResizableElement.ts"
@@ -45114,6 +45502,7 @@
               "type": {
                 "text": "CustomEvent"
               },
+              "description": "This event is dispatched when an attribute or a child list of the element change. This fires often when interacting with the control",
               "inheritedFrom": {
                 "name": "SelectableElement",
                 "module": "src/elements/selector/SelectableElement.ts"
@@ -45154,6 +45543,29 @@
               "type": {
                 "text": "Event"
               },
+              "description": "When an item is selected.",
+              "inheritedFrom": {
+                "name": "SelectableElement",
+                "module": "src/elements/selector/SelectableElement.ts"
+              }
+            },
+            {
+              "description": "This event can be canceled to stop the selection.",
+              "name": "activate",
+              "inheritedFrom": {
+                "name": "SelectableElement",
+                "module": "src/elements/selector/SelectableElement.ts"
+              }
+            },
+            {
+              "name": "select",
+              "inheritedFrom": {
+                "name": "SelectableElement",
+                "module": "src/elements/selector/SelectableElement.ts"
+              }
+            },
+            {
+              "name": "deselect",
               "inheritedFrom": {
                 "name": "SelectableElement",
                 "module": "src/elements/selector/SelectableElement.ts"
@@ -45181,6 +45593,13 @@
             },
             {
               "name": "requestresizenotifications",
+              "inheritedFrom": {
+                "name": "ResizableElement",
+                "module": "src/elements/overlay/ResizableElement.ts"
+              }
+            },
+            {
+              "name": "resize",
               "inheritedFrom": {
                 "name": "ResizableElement",
                 "module": "src/elements/overlay/ResizableElement.ts"
@@ -46353,6 +46772,13 @@
                 "name": "ResizableElement",
                 "module": "src/elements/overlay/ResizableElement.ts"
               }
+            },
+            {
+              "name": "resize",
+              "inheritedFrom": {
+                "name": "ResizableElement",
+                "module": "src/elements/overlay/ResizableElement.ts"
+              }
             }
           ]
         }
@@ -46865,6 +47291,13 @@
             },
             {
               "name": "requestresizenotifications",
+              "inheritedFrom": {
+                "name": "ResizableElement",
+                "module": "src/elements/overlay/ResizableElement.ts"
+              }
+            },
+            {
+              "name": "resize",
               "inheritedFrom": {
                 "name": "ResizableElement",
                 "module": "src/elements/overlay/ResizableElement.ts"
@@ -47415,6 +47848,13 @@
                 "name": "ResizableElement",
                 "module": "src/elements/overlay/ResizableElement.ts"
               }
+            },
+            {
+              "name": "resize",
+              "inheritedFrom": {
+                "name": "ResizableElement",
+                "module": "src/elements/overlay/ResizableElement.ts"
+              }
             }
           ]
         },
@@ -47933,6 +48373,13 @@
             },
             {
               "name": "requestresizenotifications",
+              "inheritedFrom": {
+                "name": "ResizableElement",
+                "module": "src/elements/overlay/ResizableElement.ts"
+              }
+            },
+            {
+              "name": "resize",
               "inheritedFrom": {
                 "name": "ResizableElement",
                 "module": "src/elements/overlay/ResizableElement.ts"
@@ -50229,6 +50676,13 @@
               }
             },
             {
+              "name": "cancel",
+              "inheritedFrom": {
+                "name": "OverlayElement",
+                "module": "src/elements/overlay/OverlayElement.ts"
+              }
+            },
+            {
               "name": "resizeEventType",
               "type": {
                 "text": "CustomEvent"
@@ -50250,6 +50704,13 @@
             },
             {
               "name": "requestresizenotifications",
+              "inheritedFrom": {
+                "name": "ResizableElement",
+                "module": "src/elements/overlay/ResizableElement.ts"
+              }
+            },
+            {
+              "name": "resize",
               "inheritedFrom": {
                 "name": "ResizableElement",
                 "module": "src/elements/overlay/ResizableElement.ts"
@@ -52928,6 +53389,13 @@
               }
             },
             {
+              "name": "cancel",
+              "inheritedFrom": {
+                "name": "OverlayElement",
+                "module": "src/elements/overlay/OverlayElement.ts"
+              }
+            },
+            {
               "name": "resizeEventType",
               "type": {
                 "text": "CustomEvent"
@@ -52949,6 +53417,13 @@
             },
             {
               "name": "requestresizenotifications",
+              "inheritedFrom": {
+                "name": "ResizableElement",
+                "module": "src/elements/overlay/ResizableElement.ts"
+              }
+            },
+            {
+              "name": "resize",
               "inheritedFrom": {
                 "name": "ResizableElement",
                 "module": "src/elements/overlay/ResizableElement.ts"
@@ -53465,6 +53940,13 @@
                 "name": "ResizableElement",
                 "module": "src/elements/overlay/ResizableElement.ts"
               }
+            },
+            {
+              "name": "resize",
+              "inheritedFrom": {
+                "name": "ResizableElement",
+                "module": "src/elements/overlay/ResizableElement.ts"
+              }
             }
           ],
           "attributes": [
@@ -53963,6 +54445,13 @@
             },
             {
               "name": "requestresizenotifications",
+              "inheritedFrom": {
+                "name": "ResizableElement",
+                "module": "src/elements/overlay/ResizableElement.ts"
+              }
+            },
+            {
+              "name": "resize",
               "inheritedFrom": {
                 "name": "ResizableElement",
                 "module": "src/elements/overlay/ResizableElement.ts"
@@ -55642,6 +56131,12 @@
           "kind": "class",
           "description": "`anypoint-button`\nAnypoint styled button.",
           "name": "AnypointButtonElement",
+          "slots": [
+            {
+              "description": "The content of the button",
+              "name": ""
+            }
+          ],
           "members": [
             {
               "kind": "field",
@@ -56538,8 +57033,14 @@
       "declarations": [
         {
           "kind": "class",
-          "description": "`anypoint-button`\nAnypoint styled button.",
+          "description": "`anypoint-button`\n\nAnypoint styled button.",
           "name": "AnypointIconButtonElement",
+          "slots": [
+            {
+              "description": "The content of the button",
+              "name": ""
+            }
+          ],
           "members": [
             {
               "kind": "field",
@@ -57458,6 +57959,16 @@
           "kind": "class",
           "description": "",
           "name": "AnypointMenuButtonElement",
+          "slots": [
+            {
+              "description": "The child that is a trigger image for the menu",
+              "name": "dropdown-trigger"
+            },
+            {
+              "description": "The child that is the content to render after opening",
+              "name": "dropdown-content"
+            }
+          ],
           "members": [
             {
               "kind": "field",
@@ -57840,6 +58351,12 @@
               "type": {
                 "text": "Event"
               }
+            },
+            {
+              "name": "dropdownopen"
+            },
+            {
+              "name": "dropdownclose"
             }
           ],
           "attributes": [
@@ -57983,6 +58500,12 @@
           "kind": "class",
           "description": "`anypoint-radio-button`\n\nAnypoint styled radio button.\n\n## Usage\n\nInstall element:\n\n```\nnpm i --save @anypoint-components/anypoint-radio-button\n```\n\nImport into your app:\n\n```html\n<script type=\"module\" src=\"node_modules/@anypoint-components/anypoint-radio-button.js\"></script>\n```\n\nOr into another component\n\n```javascript\nimport '@anypoint-components/anypoint-radio-button.js';\n```\n\nUse it:\n\n```html\n<paper-radio-group selectable=\"anypoint-radio-button\">\n <anypoint-radio-button name=\"a\">Apple</anypoint-radio-button>\n <anypoint-radio-button name=\"b\">Banana</anypoint-radio-button>\n <anypoint-radio-button name=\"c\">Orange</anypoint-radio-button>\n</paper-radio-group>\n```",
           "name": "AnypointRadioButtonElement",
+          "slots": [
+            {
+              "description": "The label to render",
+              "name": ""
+            }
+          ],
           "members": [
             {
               "kind": "method",
@@ -61015,6 +61538,139 @@
               }
             }
           ],
+          "events": [
+            {
+              "name": "change"
+            },
+            {
+              "name": "selectedvalueschange",
+              "type": {
+                "text": "Event"
+              },
+              "inheritedFrom": {
+                "name": "MultiSelectableElement",
+                "module": "src/elements/selector/MultiSelectableElement.ts"
+              }
+            },
+            {
+              "name": "selecteditemschange",
+              "type": {
+                "text": "Event"
+              },
+              "inheritedFrom": {
+                "name": "MultiSelectableElement",
+                "module": "src/elements/selector/MultiSelectableElement.ts"
+              }
+            },
+            {
+              "name": "childrenchange",
+              "type": {
+                "text": "CustomEvent"
+              },
+              "description": "This event is dispatched when an attribute or a child list of the element change. This fires often when interacting with the control",
+              "inheritedFrom": {
+                "name": "SelectableElement",
+                "module": "src/elements/selector/SelectableElement.ts"
+              }
+            },
+            {
+              "name": "selectedchange",
+              "type": {
+                "text": "Event"
+              },
+              "inheritedFrom": {
+                "name": "SelectableElement",
+                "module": "src/elements/selector/SelectableElement.ts"
+              }
+            },
+            {
+              "name": "itemschange",
+              "type": {
+                "text": "Event"
+              },
+              "inheritedFrom": {
+                "name": "SelectableElement",
+                "module": "src/elements/selector/SelectableElement.ts"
+              }
+            },
+            {
+              "name": "name",
+              "type": {
+                "text": "CustomEvent"
+              },
+              "inheritedFrom": {
+                "name": "SelectableElement",
+                "module": "src/elements/selector/SelectableElement.ts"
+              }
+            },
+            {
+              "name": "selected",
+              "type": {
+                "text": "Event"
+              },
+              "description": "When an item is selected.",
+              "inheritedFrom": {
+                "name": "SelectableElement",
+                "module": "src/elements/selector/SelectableElement.ts"
+              }
+            },
+            {
+              "description": "This event can be canceled to stop the selection.",
+              "name": "activate",
+              "inheritedFrom": {
+                "name": "SelectableElement",
+                "module": "src/elements/selector/SelectableElement.ts"
+              }
+            },
+            {
+              "name": "select",
+              "inheritedFrom": {
+                "name": "SelectableElement",
+                "module": "src/elements/selector/SelectableElement.ts"
+              }
+            },
+            {
+              "name": "deselect",
+              "inheritedFrom": {
+                "name": "SelectableElement",
+                "module": "src/elements/selector/SelectableElement.ts"
+              }
+            },
+            {
+              "name": "resizeEventType",
+              "type": {
+                "text": "CustomEvent"
+              },
+              "inheritedFrom": {
+                "name": "ResizableElement",
+                "module": "src/elements/overlay/ResizableElement.ts"
+              }
+            },
+            {
+              "name": "resizeNotificationEventType",
+              "type": {
+                "text": "CustomEvent"
+              },
+              "inheritedFrom": {
+                "name": "ResizableElement",
+                "module": "src/elements/overlay/ResizableElement.ts"
+              }
+            },
+            {
+              "name": "requestresizenotifications",
+              "inheritedFrom": {
+                "name": "ResizableElement",
+                "module": "src/elements/overlay/ResizableElement.ts"
+              }
+            },
+            {
+              "name": "resize",
+              "inheritedFrom": {
+                "name": "ResizableElement",
+                "module": "src/elements/overlay/ResizableElement.ts"
+              }
+            }
+          ],
           "superclass": {
             "name": "MenuElement",
             "module": "/src/elements/selector/MenuElement.js"
@@ -61202,105 +61858,6 @@
               "inheritedFrom": {
                 "name": "AnypointElement",
                 "module": "src/elements/AnypointElement.ts"
-              }
-            }
-          ],
-          "events": [
-            {
-              "name": "selectedvalueschange",
-              "type": {
-                "text": "Event"
-              },
-              "inheritedFrom": {
-                "name": "MultiSelectableElement",
-                "module": "src/elements/selector/MultiSelectableElement.ts"
-              }
-            },
-            {
-              "name": "selecteditemschange",
-              "type": {
-                "text": "Event"
-              },
-              "inheritedFrom": {
-                "name": "MultiSelectableElement",
-                "module": "src/elements/selector/MultiSelectableElement.ts"
-              }
-            },
-            {
-              "name": "childrenchange",
-              "type": {
-                "text": "CustomEvent"
-              },
-              "inheritedFrom": {
-                "name": "SelectableElement",
-                "module": "src/elements/selector/SelectableElement.ts"
-              }
-            },
-            {
-              "name": "selectedchange",
-              "type": {
-                "text": "Event"
-              },
-              "inheritedFrom": {
-                "name": "SelectableElement",
-                "module": "src/elements/selector/SelectableElement.ts"
-              }
-            },
-            {
-              "name": "itemschange",
-              "type": {
-                "text": "Event"
-              },
-              "inheritedFrom": {
-                "name": "SelectableElement",
-                "module": "src/elements/selector/SelectableElement.ts"
-              }
-            },
-            {
-              "name": "name",
-              "type": {
-                "text": "CustomEvent"
-              },
-              "inheritedFrom": {
-                "name": "SelectableElement",
-                "module": "src/elements/selector/SelectableElement.ts"
-              }
-            },
-            {
-              "name": "selected",
-              "type": {
-                "text": "Event"
-              },
-              "inheritedFrom": {
-                "name": "SelectableElement",
-                "module": "src/elements/selector/SelectableElement.ts"
-              }
-            },
-            {
-              "name": "resizeEventType",
-              "type": {
-                "text": "CustomEvent"
-              },
-              "inheritedFrom": {
-                "name": "ResizableElement",
-                "module": "src/elements/overlay/ResizableElement.ts"
-              }
-            },
-            {
-              "name": "resizeNotificationEventType",
-              "type": {
-                "text": "CustomEvent"
-              },
-              "inheritedFrom": {
-                "name": "ResizableElement",
-                "module": "src/elements/overlay/ResizableElement.ts"
-              }
-            },
-            {
-              "name": "requestresizenotifications",
-              "inheritedFrom": {
-                "name": "ResizableElement",
-                "module": "src/elements/overlay/ResizableElement.ts"
               }
             }
           ]
@@ -61931,6 +62488,12 @@
           "kind": "class",
           "description": "`anypoint-checkbox`\nAnypoint styled checkbox\n\n`<anypoint-checkbox>` is a button that can be either checked or unchecked.\nUser can tap the checkbox to check or uncheck it.  Usually you use checkboxes\nto allow user to select multiple options from a set.\nAvoid using a single checkbox as an option selector and use toggle button instead.",
           "name": "AnypointCheckboxElement",
+          "slots": [
+            {
+              "description": "The label slot",
+              "name": ""
+            }
+          ],
           "members": [
             {
               "kind": "field",
@@ -62950,6 +63513,12 @@
           "kind": "class",
           "description": "`anypoint-switch`",
           "name": "AnypointSwitchElement",
+          "slots": [
+            {
+              "description": "The label of the control",
+              "name": ""
+            }
+          ],
           "members": [
             {
               "kind": "method",
@@ -64880,6 +65449,16 @@
           "kind": "class",
           "description": "",
           "name": "AnypointInputElement",
+          "slots": [
+            {
+              "description": "The content rendered before the input. It is centered in the input.",
+              "name": "prefix"
+            },
+            {
+              "description": "The content rendered after the input. It is centered in the input.",
+              "name": "suffix"
+            }
+          ],
           "members": [
             {
               "kind": "field",
@@ -71258,6 +71837,13 @@
                 "name": "ResizableElement",
                 "module": "src/elements/overlay/ResizableElement.ts"
               }
+            },
+            {
+              "name": "resize",
+              "inheritedFrom": {
+                "name": "ResizableElement",
+                "module": "src/elements/overlay/ResizableElement.ts"
+              }
             }
           ]
         }
@@ -73018,6 +73604,9 @@
               }
             },
             {
+              "name": "cancel"
+            },
+            {
               "name": "resizeEventType",
               "type": {
                 "text": "CustomEvent"
@@ -73039,6 +73628,13 @@
             },
             {
               "name": "requestresizenotifications",
+              "inheritedFrom": {
+                "name": "ResizableElement",
+                "module": "src/elements/overlay/ResizableElement.ts"
+              }
+            },
+            {
+              "name": "resize",
               "inheritedFrom": {
                 "name": "ResizableElement",
                 "module": "src/elements/overlay/ResizableElement.ts"
@@ -73696,6 +74292,9 @@
             },
             {
               "name": "requestresizenotifications"
+            },
+            {
+              "name": "resize"
             }
           ],
           "superclass": {
@@ -76032,6 +76631,7 @@
               "type": {
                 "text": "CustomEvent"
               },
+              "description": "This event is dispatched when an attribute or a child list of the element change. This fires often when interacting with the control",
               "inheritedFrom": {
                 "name": "SelectableElement",
                 "module": "src/elements/selector/SelectableElement.ts"
@@ -76072,6 +76672,29 @@
               "type": {
                 "text": "Event"
               },
+              "description": "When an item is selected.",
+              "inheritedFrom": {
+                "name": "SelectableElement",
+                "module": "src/elements/selector/SelectableElement.ts"
+              }
+            },
+            {
+              "description": "This event can be canceled to stop the selection.",
+              "name": "activate",
+              "inheritedFrom": {
+                "name": "SelectableElement",
+                "module": "src/elements/selector/SelectableElement.ts"
+              }
+            },
+            {
+              "name": "select",
+              "inheritedFrom": {
+                "name": "SelectableElement",
+                "module": "src/elements/selector/SelectableElement.ts"
+              }
+            },
+            {
+              "name": "deselect",
               "inheritedFrom": {
                 "name": "SelectableElement",
                 "module": "src/elements/selector/SelectableElement.ts"
@@ -76099,6 +76722,13 @@
             },
             {
               "name": "requestresizenotifications",
+              "inheritedFrom": {
+                "name": "ResizableElement",
+                "module": "src/elements/overlay/ResizableElement.ts"
+              }
+            },
+            {
+              "name": "resize",
               "inheritedFrom": {
                 "name": "ResizableElement",
                 "module": "src/elements/overlay/ResizableElement.ts"
@@ -78411,6 +79041,7 @@
               "type": {
                 "text": "CustomEvent"
               },
+              "description": "This event is dispatched when an attribute or a child list of the element change. This fires often when interacting with the control",
               "inheritedFrom": {
                 "name": "SelectableElement",
                 "module": "src/elements/selector/SelectableElement.ts"
@@ -78451,6 +79082,29 @@
               "type": {
                 "text": "Event"
               },
+              "description": "When an item is selected.",
+              "inheritedFrom": {
+                "name": "SelectableElement",
+                "module": "src/elements/selector/SelectableElement.ts"
+              }
+            },
+            {
+              "description": "This event can be canceled to stop the selection.",
+              "name": "activate",
+              "inheritedFrom": {
+                "name": "SelectableElement",
+                "module": "src/elements/selector/SelectableElement.ts"
+              }
+            },
+            {
+              "name": "select",
+              "inheritedFrom": {
+                "name": "SelectableElement",
+                "module": "src/elements/selector/SelectableElement.ts"
+              }
+            },
+            {
+              "name": "deselect",
               "inheritedFrom": {
                 "name": "SelectableElement",
                 "module": "src/elements/selector/SelectableElement.ts"
@@ -78478,6 +79132,13 @@
             },
             {
               "name": "requestresizenotifications",
+              "inheritedFrom": {
+                "name": "ResizableElement",
+                "module": "src/elements/overlay/ResizableElement.ts"
+              }
+            },
+            {
+              "name": "resize",
               "inheritedFrom": {
                 "name": "ResizableElement",
                 "module": "src/elements/overlay/ResizableElement.ts"
@@ -79991,6 +80652,7 @@
               "type": {
                 "text": "CustomEvent"
               },
+              "description": "This event is dispatched when an attribute or a child list of the element change. This fires often when interacting with the control",
               "inheritedFrom": {
                 "name": "SelectableElement",
                 "module": "src/elements/selector/SelectableElement.ts"
@@ -80031,6 +80693,29 @@
               "type": {
                 "text": "Event"
               },
+              "description": "When an item is selected.",
+              "inheritedFrom": {
+                "name": "SelectableElement",
+                "module": "src/elements/selector/SelectableElement.ts"
+              }
+            },
+            {
+              "description": "This event can be canceled to stop the selection.",
+              "name": "activate",
+              "inheritedFrom": {
+                "name": "SelectableElement",
+                "module": "src/elements/selector/SelectableElement.ts"
+              }
+            },
+            {
+              "name": "select",
+              "inheritedFrom": {
+                "name": "SelectableElement",
+                "module": "src/elements/selector/SelectableElement.ts"
+              }
+            },
+            {
+              "name": "deselect",
               "inheritedFrom": {
                 "name": "SelectableElement",
                 "module": "src/elements/selector/SelectableElement.ts"
@@ -80058,6 +80743,13 @@
             },
             {
               "name": "requestresizenotifications",
+              "inheritedFrom": {
+                "name": "ResizableElement",
+                "module": "src/elements/overlay/ResizableElement.ts"
+              }
+            },
+            {
+              "name": "resize",
               "inheritedFrom": {
                 "name": "ResizableElement",
                 "module": "src/elements/overlay/ResizableElement.ts"
@@ -80245,6 +80937,12 @@
           "kind": "class",
           "description": "",
           "name": "SelectableElement",
+          "slots": [
+            {
+              "description": "Any children to make selectable",
+              "name": ""
+            }
+          ],
           "members": [
             {
               "kind": "field",
@@ -81356,7 +82054,8 @@
               "name": "childrenchange",
               "type": {
                 "text": "CustomEvent"
-              }
+              },
+              "description": "This event is dispatched when an attribute or a child list of the element change. This fires often when interacting with the control"
             },
             {
               "name": "selectedchange",
@@ -81380,7 +82079,18 @@
               "name": "selected",
               "type": {
                 "text": "Event"
-              }
+              },
+              "description": "When an item is selected."
+            },
+            {
+              "description": "This event can be canceled to stop the selection.",
+              "name": "activate"
+            },
+            {
+              "name": "select"
+            },
+            {
+              "name": "deselect"
             },
             {
               "name": "resizeEventType",
@@ -81404,6 +82114,13 @@
             },
             {
               "name": "requestresizenotifications",
+              "inheritedFrom": {
+                "name": "ResizableElement",
+                "module": "src/elements/overlay/ResizableElement.ts"
+              }
+            },
+            {
+              "name": "resize",
               "inheritedFrom": {
                 "name": "ResizableElement",
                 "module": "src/elements/overlay/ResizableElement.ts"

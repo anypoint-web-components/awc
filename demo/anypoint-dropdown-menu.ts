@@ -150,7 +150,7 @@ class ComponentDemo extends DemoPage {
       ?dark="${darkThemeActive}"
     >
       <anypoint-dropdown-menu
-        slot="content"
+        slot="contents"
         name="mainDemo"
         title="Dropdown menu"
         ?outlined="${outlined}"

@@ -1,6 +1,9 @@
 import { html, LitElement, css, CSSResult, TemplateResult } from 'lit';
 import { property } from 'lit/decorators.js';
 
+/**
+ * @slot - The scrollable content
+ */
 export default class AnypointDialogScrollableElement extends LitElement {
   static get styles(): CSSResult[] {
     return [

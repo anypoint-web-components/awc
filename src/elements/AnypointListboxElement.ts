@@ -20,6 +20,7 @@ export const ensureNodeId = (node: HTMLElement): void => {
 };
 
 /**
+ * @slot - The content of the list box
  */
 export default class AnypointListboxElement extends MenuElement {
   static get styles(): CSSResult {

@@ -1,3 +1,4 @@
+/* eslint-disable no-use-before-define */
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import { state } from "lit/decorators.js";
 import AnypointElement from "../AnypointElement.js";
@@ -14,15 +15,16 @@ export const resizeEventType = 'resize';
  * in order to take action on their new measurements).
  * 
  * @fires requestresizenotifications
+ * @fires resize
  */
 export default class ResizableElement extends AnypointElement {
-  __parentResizable?: HTMLElement;
+  __parentResizable?: ResizableElement;
 
-  get _parentResizable(): HTMLElement | undefined {
+  get _parentResizable(): ResizableElement | undefined {
     return this.__parentResizable;
   }
 
-  set _parentResizable(value: HTMLElement | undefined) {
+  set _parentResizable(value: ResizableElement | undefined) {
     const old = this.__parentResizable;
     this.__parentResizable = value;
     if (old !== value) {
@@ -32,15 +34,15 @@ export default class ResizableElement extends AnypointElement {
 
   protected _notifyingDescendant?: boolean;
 
-  _interestedResizables: EventTarget[] = [];
+  _interestedResizables: ResizableElement[] = [];
 
   @state() protected _isAttached?: boolean;
 
   constructor() {
     super();
     this.notifyResize = this.notifyResize.bind(this);
-    this._onDescendantIronResize = this._onDescendantIronResize.bind(this);
-    this.addEventListener(resizeNotificationEventType, this._onIronRequestResizeNotifications.bind(this), true);
+    this._onDescendantResize = this._onDescendantResize.bind(this);
+    this.addEventListener(resizeNotificationEventType, this._onRequestResizeNotifications.bind(this), true);
   }
 
   connectedCallback(): void {
@@ -85,18 +87,14 @@ export default class ResizableElement extends AnypointElement {
    * Used to assign the closest resizable ancestor to this resizable
    * if the ancestor detects a request for notifications.
    */
-  assignParentResizable(parentResizable?: HTMLElement): void {
+  assignParentResizable(parentResizable?: ResizableElement): void {
     if (this._parentResizable) {
-      // @ts-ignore
       this._parentResizable.stopResizeNotificationsFor(this);
     }
 
     this._parentResizable = parentResizable;
-    // @ts-ignore
     if (parentResizable && parentResizable._interestedResizables.indexOf(this) === -1) {
-      // @ts-ignore
       parentResizable._interestedResizables.push(this);
-      // @ts-ignore
       parentResizable._subscribeIronResize(this);
     }
   }
@@ -105,7 +103,7 @@ export default class ResizableElement extends AnypointElement {
    * Used to remove a resizable descendant from the list of descendants
    * that should be notified of a resize change.
    */
-  stopResizeNotificationsFor(target: EventTarget): void {
+  stopResizeNotificationsFor(target: ResizableElement): void {
     const index = this._interestedResizables.indexOf(target);
     if (index > -1) {
       this._interestedResizables.splice(index, 1);
@@ -134,7 +132,7 @@ export default class ResizableElement extends AnypointElement {
    * @param target Element to listen to for `resize` events.
    */
   _subscribeIronResize(target: EventTarget): void {
-    target.addEventListener(resizeEventType, this._onDescendantIronResize);
+    target.addEventListener(resizeEventType, this._onDescendantResize);
   }
 
   /**
@@ -147,10 +145,10 @@ export default class ResizableElement extends AnypointElement {
    * @param target Element to listen to for `resize` events.
    */
   _unsubscribeIronResize(target: EventTarget): void {
-    target.removeEventListener(resizeEventType, this._onDescendantIronResize);
+    target.removeEventListener(resizeEventType, this._onDescendantResize);
   }
 
-  _onDescendantIronResize(e: Event): void {
+  _onDescendantResize(e: Event): void {
     if (this._notifyingDescendant) {
       e.stopPropagation();
       return;
@@ -162,7 +160,7 @@ export default class ResizableElement extends AnypointElement {
     this.dispatchEvent(new CustomEvent(resizeEventType));
   }
 
-  _onIronRequestResizeNotifications(e: Event): void {
+  _onRequestResizeNotifications(e: Event): void {
     const cp = e.composedPath && e.composedPath();
     let path;
     if (cp) {

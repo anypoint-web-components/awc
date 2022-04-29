@@ -176,8 +176,8 @@ class ComponentDemo extends DemoPage {
             ?nolabelfloat="${textFiledNoLabelFloat}"
             ?readOnly="${mainFiledReadOnly}"
             ?disabled="${mainFiledDisabled}"
+            label="label"
           >
-            <label slot="label">Label</label>
             ${textFiledLeading ? html`
                   <demo-icon icon="infoOutline" slot="prefix"></demo-icon>
                 `
@@ -331,8 +331,7 @@ class ComponentDemo extends DemoPage {
           dollars.
         </p>
 
-        <anypoint-input name="ex1">
-          <label slot="label" aria-label="Amount to transfer in US dollars">Amount to transfer</label>
+        <anypoint-input name="ex1" label="Amount to transfer" aria-label="Amount to transfer in US dollars">
           <div slot="prefix" aria-hidden="true">$</div>
         </anypoint-input>
 
@@ -342,8 +341,7 @@ class ComponentDemo extends DemoPage {
           <code>.00</code> to suggest that the input is an integer.
         </p>
 
-        <anypoint-input name="ex2">
-          <label slot="label" aria-label="Amount to transfer as whole number">Amount to transfer</label>
+        <anypoint-input name="ex2" label="Amount to transfer" aria-label="Amount to transfer as whole number">
           <span slot="suffix" aria-hidden="true">.00</span>
         </anypoint-input>
 
@@ -354,16 +352,14 @@ class ComponentDemo extends DemoPage {
           has to have clear meaning to the user.
         </p>
 
-        <anypoint-input type="password" name="ex3">
-          <label slot="label" aria-label="Activate the button to show the password">Password</label>
+        <anypoint-input type="password" name="ex3" aria-label="Activate the button to show the password" label="Password">
           <anypoint-button slot="suffix"
             onclick="this.parentNode.type='text'"
             >Show</anypoint-button
           >
         </anypoint-input>
 
-        <anypoint-input type="email" name="ex4">
-          <label slot="label">Email</label>
+        <anypoint-input type="email" name="ex4" label="Email">
           <div slot="suffix">@mulesoft.com</div>
         </anypoint-input>
 
@@ -382,9 +378,7 @@ class ComponentDemo extends DemoPage {
           the user about the reason of collecting the input.
         </p>
 
-        <anypoint-input infoMessage="Used to confirm your order." type="email" name="ex5">
-          <label slot="label">Email</label>
-        </anypoint-input>
+        <anypoint-input infoMessage="Used to confirm your order." type="email" name="ex5" slot="Email"></anypoint-input>
 
         <p>
           Do not try to put too detailed information. The user should be able to
@@ -404,9 +398,8 @@ class ComponentDemo extends DemoPage {
           type="text"
           name="ex6"
           invalid
-        >
-          <label slot="label">Username</label>
-        </anypoint-input>
+          label="Username"
+        ></anypoint-input>
 
         <p>
           Note, consider using <code>preventInvalidInput</code> and
@@ -454,9 +447,8 @@ class ComponentDemo extends DemoPage {
             ?anypoint="${anypoint}"
             .type="${typeSelector}"
             name="ex7"
-          >
-            <label slot="label">Text field</label>
-          </anypoint-input>
+            label="Text field"
+          ></anypoint-input>
 
           <label slot="options" id="typesLabel">Input type</label>
           <anypoint-radio-group
@@ -563,9 +555,8 @@ class ComponentDemo extends DemoPage {
         autoValidate
         required
         invalidMessage="The value is required"
-      >
-        <label slot="label">Required input</label>
-      </anypoint-input>
+        label="Required input"
+      ></anypoint-input>
 
       <anypoint-input
         title="Min and max length"
@@ -574,9 +565,8 @@ class ComponentDemo extends DemoPage {
         minlength="5"
         maxLength="10"
         invalidMessage="Use 5 to 10 characters"
-      >
-        <label slot="label">Min and max length</label>
-      </anypoint-input>
+        label="Min and max length"
+      ></anypoint-input>
 
       <anypoint-input
         title="Min and max number"
@@ -585,8 +575,8 @@ class ComponentDemo extends DemoPage {
         min="10"
         max="20"
         invalidMessage="Only number in range 10 - 20"
+        label="Min and max number"
       >
-        <label slot="label">Min and max number</label>
       </anypoint-input>
 
       <anypoint-input
@@ -595,8 +585,8 @@ class ComponentDemo extends DemoPage {
         autoValidate
         pattern="[a-zA-Z]*"
         invalidMessage="Only letters are allowed"
+        label="Pattern"
       >
-        <label slot="label">Pattern</label>
       </anypoint-input>
 
       <anypoint-input
@@ -605,9 +595,8 @@ class ComponentDemo extends DemoPage {
         allowedPattern="[a-zA-Z]"
         preventInvalidInput
         infoMessage="Prevents non-letter characters"
-      >
-        <label slot="label">Prevent invalid input</label>
-      </anypoint-input>
+        label="Prevent invalid input"
+      ></anypoint-input>
     </section>`;
   }
 
@@ -648,8 +637,8 @@ class ComponentDemo extends DemoPage {
             invalidMessage="This value is invalid"
             ?invalid="${textAreaError}"
             ?nolabelfloat="${textAreaNoLabelFloat}"
+            label="Label"
           >
-            <label slot="label">Label</label>
           </anypoint-textarea>
         </section>
 
@@ -729,9 +718,8 @@ class ComponentDemo extends DemoPage {
             ?nolabelfloat="${maskedNoLabelFloat}"
             ?disabled="${maskedDisabled}"
             ?readOnly="${maskedReadOnly}"
-          >
-            <label slot="label">Label</label>
-          </anypoint-masked-input>
+            label="Label"
+          ></anypoint-masked-input>
         </section>
 
         <label slot="options" id="maskedOptionsLabel">Options</label>

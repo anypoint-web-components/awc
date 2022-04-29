@@ -20,6 +20,8 @@ import ButtonElement from './button/ButtonElement.js';
 /**
  * `anypoint-item`
  * An Anypoint list item.
+ * 
+ * @slot - The item's body.
  */
 export default class AnypointItemElement extends ButtonElement {
   static get styles(): CSSResult[] {
