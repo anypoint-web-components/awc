@@ -19,7 +19,8 @@
     "noImplicitThis": true,
     "alwaysStrict": true,
     "declarationMap": true,
-    "pretty": true
+    "pretty": true,
+    "useDefineForClassFields": true
   },
   "include": ["src/**/*.ts"],
   "exclude": []

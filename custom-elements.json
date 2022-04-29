@@ -4103,6 +4103,505 @@
     },
     {
       "kind": "javascript-module",
+      "path": "src/mixins/EventsTargetMixin.ts",
+      "declarations": [
+        {
+          "kind": "mixin",
+          "description": "`EventsTargetMixin` is a mixin that allows to set event listeners on a default or set node.\n\nBy default the element listens on the `window` element for events. By setting\n`eventsTarget` property on this element it removes all previously set\nlisteners and adds the same listeners to the node.\nIt also restores default state when the `eventsTarget` is removed.\n\nImplementations should implement two abstract methods:\n`_attachListeners(node)` and `_detachListeners(node)`. Both of them will be\ncalled with event target argument when it's required to either set or remove\nlisteners.\n\n```javascript\nclass EventableElement extends EventsTargetMixin(HTMLElement) {\n  _attachListeners: function(node) {\n   mode.addEventListener('event', this._callback);\n }\n\n _detachListeners: function(node) {\n   mode.removeEventListener('event', this._callback);\n }\n}\n```\n\nThe mixin handles connectedCallback / disconnectedCallback and calls the\nfunctions with required parameters.",
+          "name": "EventsTargetMixin",
+          "members": [
+            {
+              "kind": "field",
+              "name": "_eventsTarget",
+              "type": {
+                "text": "EventTarget | undefined"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "_oldEventsTarget",
+              "type": {
+                "text": "EventTarget | undefined"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "eventsTarget",
+              "type": {
+                "text": "EventTarget | undefined"
+              },
+              "return": {
+                "type": {
+                  "text": ""
+                }
+              },
+              "description": "By default the element listens on the `window` object. If this value is set,\nthen all events listeners will be attached to this object instead of `window`.",
+              "parameters": [
+                {
+                  "description": "Events handlers target.",
+                  "name": "value"
+                }
+              ]
+            },
+            {
+              "kind": "method",
+              "name": "_eventsTargetChanged",
+              "return": {
+                "type": {
+                  "text": "void"
+                }
+              },
+              "parameters": [
+                {
+                  "name": "eventsTarget",
+                  "default": "window",
+                  "type": {
+                    "text": "EventTarget"
+                  },
+                  "description": "Event target to set handlers on. If not set it\nwill set handlers on the `window` object."
+                }
+              ],
+              "description": "Removes old handlers (if any) and attaches listeners on new event\nevent target."
+            },
+            {
+              "kind": "method",
+              "name": "_attachListeners",
+              "return": {
+                "type": {
+                  "text": "void"
+                }
+              },
+              "parameters": [
+                {
+                  "name": "node",
+                  "type": {
+                    "text": "EventTarget"
+                  },
+                  "description": "A node to which attach event listeners to"
+                }
+              ],
+              "description": "To be implement by the element to set event listeners from the target."
+            },
+            {
+              "kind": "method",
+              "name": "_detachListeners",
+              "return": {
+                "type": {
+                  "text": "void"
+                }
+              },
+              "parameters": [
+                {
+                  "name": "node",
+                  "type": {
+                    "text": "EventTarget"
+                  },
+                  "description": "A node to which remove event listeners to"
+                }
+              ],
+              "description": "To be implement by the element to remove event listeners from the target."
+            }
+          ],
+          "parameters": [
+            {
+              "name": "superClass",
+              "type": {
+                "text": "T"
+              }
+            }
+          ]
+        }
+      ],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "EventsTargetMixin",
+          "declaration": {
+            "name": "EventsTargetMixin",
+            "module": "src/mixins/EventsTargetMixin.ts"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "src/mixins/ScrollTargetMixin.ts",
+      "declarations": [
+        {
+          "kind": "mixin",
+          "description": "This mixin is a port of [IronScrollTargetBehavior](https://github.com/PolymerElements/iron-acroll-target-behavior)\nthat works with LitElements.\n\n`ScrollTargetMixin` allows an element to respond to scroll\nevents from a designated scroll target.\n\nElements that consume this mixin can override the `_scrollHandler`\nmethod to add logic on the scroll event.",
+          "name": "ScrollTargetMixin",
+          "members": [
+            {
+              "kind": "field",
+              "name": "_scrollTarget",
+              "type": {
+                "text": "HTMLElement | string"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "scrollTarget",
+              "type": {
+                "text": "HTMLElement | string"
+              },
+              "description": "Specifies the element that will handle the scroll event\non the behalf of the current element. This is typically a reference to an\nelement, but there are a few more possibilities:\n\n### Elements id\n\n```html\n<div id=\"scrollable-element\" style=\"overflow: auto;\">\n <x-element scroll-target=\"scrollable-element\">\n   <!-- Content-->\n </x-element>\n</div>\n```\nIn this case, the `scrollTarget` will point to the outer div element.\n\n### Document scrolling\n\nFor document scrolling, you can use the reserved word `document`:\n\n```html\n<x-element scroll-target=\"document\">\n  <!-- Content -->\n</x-element>\n```\n\n### Elements reference\n\n```js\nappHeader.scrollTarget = document.querySelector('#scrollable-element');\n```",
+              "attribute": "scrollTarget"
+            },
+            {
+              "kind": "field",
+              "name": "scrollTargetElement",
+              "type": {
+                "text": "HTMLElement"
+              },
+              "privacy": "protected",
+              "description": "A convenient getter that casts the scroll target to an element.\nNote, when a string is set on the target it is always translated to an element."
+            },
+            {
+              "kind": "field",
+              "name": "_isAttached",
+              "type": {
+                "text": "boolean"
+              },
+              "privacy": "private",
+              "default": "false"
+            },
+            {
+              "kind": "field",
+              "name": "isAttached",
+              "type": {
+                "text": "boolean"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "_defaultScrollTarget",
+              "type": {
+                "text": "HTMLElement"
+              },
+              "description": "The default scroll target. Consumers of this behavior may want to customize\nthe default scroll target."
+            },
+            {
+              "kind": "field",
+              "name": "_doc",
+              "type": {
+                "text": "HTMLElement"
+              },
+              "description": "Shortcut for the document element"
+            },
+            {
+              "kind": "field",
+              "name": "_scrollTop",
+              "type": {
+                "text": "number"
+              },
+              "description": "Sets the number of pixels that the content of an element is scrolled\nupward."
+            },
+            {
+              "kind": "field",
+              "name": "_scrollLeft",
+              "type": {
+                "text": "number"
+              },
+              "description": "Sets the number of pixels that the content of an element is scrolled to the\nleft."
+            },
+            {
+              "kind": "field",
+              "name": "_shouldHaveListener",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "true",
+              "description": "True if the event listener should be installed."
+            },
+            {
+              "kind": "method",
+              "name": "_scrollHandler",
+              "return": {
+                "type": {
+                  "text": "void"
+                }
+              },
+              "description": "Runs on every scroll event. Consumer of this mixin may override this method."
+            },
+            {
+              "kind": "field",
+              "name": "_oldScrollTarget",
+              "type": {
+                "text": "HTMLElement | undefined"
+              }
+            },
+            {
+              "kind": "method",
+              "name": "_scrollTargetChanged",
+              "return": {
+                "type": {
+                  "text": "void"
+                }
+              },
+              "parameters": [
+                {
+                  "name": "scrollTarget",
+                  "type": {
+                    "text": "HTMLElement | string"
+                  }
+                }
+              ]
+            },
+            {
+              "kind": "method",
+              "name": "scroll",
+              "return": {
+                "type": {
+                  "text": "void"
+                }
+              },
+              "parameters": [
+                {
+                  "name": "leftOrOptions",
+                  "optional": true,
+                  "type": {
+                    "text": "number | ScrollToOptions"
+                  },
+                  "description": "The left position or scroll options"
+                },
+                {
+                  "name": "top",
+                  "optional": true,
+                  "type": {
+                    "text": "number"
+                  },
+                  "description": "The top position"
+                }
+              ],
+              "description": "Scrolls the content to a particular place."
+            },
+            {
+              "kind": "field",
+              "name": "_scrollTargetWidth",
+              "type": {
+                "text": "number"
+              },
+              "description": "Gets the width of the scroll target."
+            },
+            {
+              "kind": "field",
+              "name": "_scrollTargetHeight",
+              "type": {
+                "text": "number"
+              },
+              "description": "Gets the height of the scroll target."
+            },
+            {
+              "kind": "method",
+              "name": "_isValidScrollTarget",
+              "return": {
+                "type": {
+                  "text": "boolean"
+                }
+              },
+              "description": "Returns true if the scroll target is a valid HTMLElement."
+            },
+            {
+              "kind": "field",
+              "name": "_boundScrollHandler",
+              "type": {
+                "text": "any | undefined"
+              }
+            },
+            {
+              "kind": "method",
+              "name": "_toggleScrollListener",
+              "return": {
+                "type": {
+                  "text": "void"
+                }
+              },
+              "parameters": [
+                {
+                  "name": "yes",
+                  "type": {
+                    "text": "boolean"
+                  }
+                },
+                {
+                  "name": "scrollTarget",
+                  "type": {
+                    "text": "HTMLElement"
+                  }
+                }
+              ]
+            },
+            {
+              "kind": "method",
+              "name": "toggleScrollListener",
+              "return": {
+                "type": {
+                  "text": "void"
+                }
+              },
+              "parameters": [
+                {
+                  "name": "yes",
+                  "type": {
+                    "text": "boolean"
+                  },
+                  "description": "True to add the event, False to remove it."
+                }
+              ],
+              "description": "Enables or disables the scroll event listener."
+            }
+          ],
+          "attributes": [
+            {
+              "name": "scrollTarget",
+              "type": {
+                "text": "HTMLElement | string"
+              },
+              "description": "Specifies the element that will handle the scroll event\non the behalf of the current element. This is typically a reference to an\nelement, but there are a few more possibilities:\n\n### Elements id\n\n```html\n<div id=\"scrollable-element\" style=\"overflow: auto;\">\n <x-element scroll-target=\"scrollable-element\">\n   <!-- Content-->\n </x-element>\n</div>\n```\nIn this case, the `scrollTarget` will point to the outer div element.\n\n### Document scrolling\n\nFor document scrolling, you can use the reserved word `document`:\n\n```html\n<x-element scroll-target=\"document\">\n  <!-- Content -->\n</x-element>\n```\n\n### Elements reference\n\n```js\nappHeader.scrollTarget = document.querySelector('#scrollable-element');\n```",
+              "fieldName": "scrollTarget"
+            }
+          ],
+          "parameters": [
+            {
+              "name": "superClass",
+              "type": {
+                "text": "T"
+              }
+            }
+          ]
+        }
+      ],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "ScrollTargetMixin",
+          "declaration": {
+            "name": "ScrollTargetMixin",
+            "module": "src/mixins/ScrollTargetMixin.ts"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "src/resources/AnypointSwitchIcons.ts",
+      "declarations": [
+        {
+          "kind": "variable",
+          "name": "onIcon",
+          "default": "html`<svg viewBox=\"0 0 16 16\">\n  <path d=\"M11.605 3.086L6.898 9.803 4.311 7.991 3.164 9.629l4.225 2.959 5.657-8.073c-.396-.554-.884-1.037-1.441-1.429z\"></path>\n</svg>`"
+        },
+        {
+          "kind": "variable",
+          "name": "offIcon",
+          "default": "html`<svg viewBox=\"0 0 16 16\">\n  <path d=\"M13.289 3.418c-.218-.252-.455-.489-.707-.707L8 7.293 3.418 2.711c-.252.218-.489.455-.707.707L7.293 8l-4.582 4.582c.218.252.455.489.707.707L8 8.707l4.582 4.582c.252-.218.489-.455.707-.707L8.707 8l4.582-4.582z\"></path>\n</svg>`"
+        }
+      ],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "onIcon",
+          "declaration": {
+            "name": "onIcon",
+            "module": "src/resources/AnypointSwitchIcons.ts"
+          }
+        },
+        {
+          "kind": "js",
+          "name": "offIcon",
+          "declaration": {
+            "name": "offIcon",
+            "module": "src/resources/AnypointSwitchIcons.ts"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "src/resources/Icons.ts",
+      "declarations": [
+        {
+          "kind": "function",
+          "name": "iconWrapper",
+          "return": {
+            "type": {
+              "text": ""
+            }
+          },
+          "parameters": [
+            {
+              "name": "tpl",
+              "type": {
+                "text": "SVGTemplateResult"
+              },
+              "description": "Icon definition"
+            }
+          ],
+          "description": "Wraps icon into an SVG container."
+        },
+        {
+          "kind": "variable",
+          "name": "arrowDown"
+        },
+        {
+          "kind": "variable",
+          "name": "clear"
+        },
+        {
+          "kind": "variable",
+          "name": "visibility"
+        },
+        {
+          "kind": "variable",
+          "name": "visibilityOff"
+        }
+      ],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "iconWrapper",
+          "declaration": {
+            "name": "iconWrapper",
+            "module": "src/resources/Icons.ts"
+          }
+        },
+        {
+          "kind": "js",
+          "name": "arrowDown",
+          "declaration": {
+            "name": "arrowDown",
+            "module": "src/resources/Icons.ts"
+          }
+        },
+        {
+          "kind": "js",
+          "name": "clear",
+          "declaration": {
+            "name": "clear",
+            "module": "src/resources/Icons.ts"
+          }
+        },
+        {
+          "kind": "js",
+          "name": "visibility",
+          "declaration": {
+            "name": "visibility",
+            "module": "src/resources/Icons.ts"
+          }
+        },
+        {
+          "kind": "js",
+          "name": "visibilityOff",
+          "declaration": {
+            "name": "visibilityOff",
+            "module": "src/resources/Icons.ts"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
       "path": "src/define/anypoint-autocomplete.ts",
       "declarations": [],
       "exports": [
@@ -6545,499 +7044,280 @@
     },
     {
       "kind": "javascript-module",
-      "path": "src/resources/AnypointSwitchIcons.ts",
-      "declarations": [
-        {
-          "kind": "variable",
-          "name": "onIcon",
-          "default": "html`<svg viewBox=\"0 0 16 16\">\n  <path d=\"M11.605 3.086L6.898 9.803 4.311 7.991 3.164 9.629l4.225 2.959 5.657-8.073c-.396-.554-.884-1.037-1.441-1.429z\"></path>\n</svg>`"
-        },
-        {
-          "kind": "variable",
-          "name": "offIcon",
-          "default": "html`<svg viewBox=\"0 0 16 16\">\n  <path d=\"M13.289 3.418c-.218-.252-.455-.489-.707-.707L8 7.293 3.418 2.711c-.252.218-.489.455-.707.707L7.293 8l-4.582 4.582c.218.252.455.489.707.707L8 8.707l4.582 4.582c.252-.218.489-.455.707-.707L8.707 8l4.582-4.582z\"></path>\n</svg>`"
-        }
-      ],
+      "path": "src/styles/AnypointChipInput.ts",
+      "declarations": [],
       "exports": [
         {
           "kind": "js",
-          "name": "onIcon",
+          "name": "default",
           "declaration": {
-            "name": "onIcon",
-            "module": "src/resources/AnypointSwitchIcons.ts"
-          }
-        },
-        {
-          "kind": "js",
-          "name": "offIcon",
-          "declaration": {
-            "name": "offIcon",
-            "module": "src/resources/AnypointSwitchIcons.ts"
+            "module": "src/styles/AnypointChipInput.ts"
           }
         }
       ]
     },
     {
       "kind": "javascript-module",
-      "path": "src/resources/Icons.ts",
-      "declarations": [
-        {
-          "kind": "function",
-          "name": "iconWrapper",
-          "return": {
-            "type": {
-              "text": ""
-            }
-          },
-          "parameters": [
-            {
-              "name": "tpl",
-              "type": {
-                "text": "SVGTemplateResult"
-              },
-              "description": "Icon definition"
-            }
-          ],
-          "description": "Wraps icon into an SVG container."
-        },
-        {
-          "kind": "variable",
-          "name": "arrowDown"
-        },
-        {
-          "kind": "variable",
-          "name": "clear"
-        },
-        {
-          "kind": "variable",
-          "name": "visibility"
-        },
-        {
-          "kind": "variable",
-          "name": "visibilityOff"
-        }
-      ],
+      "path": "src/styles/AnypointDialogInternalStyles.ts",
+      "declarations": [],
       "exports": [
         {
           "kind": "js",
-          "name": "iconWrapper",
+          "name": "default",
           "declaration": {
-            "name": "iconWrapper",
-            "module": "src/resources/Icons.ts"
-          }
-        },
-        {
-          "kind": "js",
-          "name": "arrowDown",
-          "declaration": {
-            "name": "arrowDown",
-            "module": "src/resources/Icons.ts"
-          }
-        },
-        {
-          "kind": "js",
-          "name": "clear",
-          "declaration": {
-            "name": "clear",
-            "module": "src/resources/Icons.ts"
-          }
-        },
-        {
-          "kind": "js",
-          "name": "visibility",
-          "declaration": {
-            "name": "visibility",
-            "module": "src/resources/Icons.ts"
-          }
-        },
-        {
-          "kind": "js",
-          "name": "visibilityOff",
-          "declaration": {
-            "name": "visibilityOff",
-            "module": "src/resources/Icons.ts"
+            "module": "src/styles/AnypointDialogInternalStyles.ts"
           }
         }
       ]
     },
     {
       "kind": "javascript-module",
-      "path": "src/mixins/EventsTargetMixin.ts",
-      "declarations": [
-        {
-          "kind": "mixin",
-          "description": "`EventsTargetMixin` is a mixin that allows to set event listeners on a default or set node.\n\nBy default the element listens on the `window` element for events. By setting\n`eventsTarget` property on this element it removes all previously set\nlisteners and adds the same listeners to the node.\nIt also restores default state when the `eventsTarget` is removed.\n\nImplementations should implement two abstract methods:\n`_attachListeners(node)` and `_detachListeners(node)`. Both of them will be\ncalled with event target argument when it's required to either set or remove\nlisteners.\n\n```javascript\nclass EventableElement extends EventsTargetMixin(HTMLElement) {\n  _attachListeners: function(node) {\n   mode.addEventListener('event', this._callback);\n }\n\n _detachListeners: function(node) {\n   mode.removeEventListener('event', this._callback);\n }\n}\n```\n\nThe mixin handles connectedCallback / disconnectedCallback and calls the\nfunctions with required parameters.",
-          "name": "EventsTargetMixin",
-          "members": [
-            {
-              "kind": "field",
-              "name": "_eventsTarget",
-              "type": {
-                "text": "EventTarget | undefined"
-              }
-            },
-            {
-              "kind": "field",
-              "name": "_oldEventsTarget",
-              "type": {
-                "text": "EventTarget | undefined"
-              }
-            },
-            {
-              "kind": "field",
-              "name": "eventsTarget",
-              "type": {
-                "text": "EventTarget | undefined"
-              },
-              "return": {
-                "type": {
-                  "text": ""
-                }
-              },
-              "description": "By default the element listens on the `window` object. If this value is set,\nthen all events listeners will be attached to this object instead of `window`.",
-              "parameters": [
-                {
-                  "description": "Events handlers target.",
-                  "name": "value"
-                }
-              ]
-            },
-            {
-              "kind": "method",
-              "name": "_eventsTargetChanged",
-              "return": {
-                "type": {
-                  "text": "void"
-                }
-              },
-              "parameters": [
-                {
-                  "name": "eventsTarget",
-                  "default": "window",
-                  "type": {
-                    "text": "EventTarget"
-                  },
-                  "description": "Event target to set handlers on. If not set it\nwill set handlers on the `window` object."
-                }
-              ],
-              "description": "Removes old handlers (if any) and attaches listeners on new event\nevent target."
-            },
-            {
-              "kind": "method",
-              "name": "_attachListeners",
-              "return": {
-                "type": {
-                  "text": "void"
-                }
-              },
-              "parameters": [
-                {
-                  "name": "node",
-                  "type": {
-                    "text": "EventTarget"
-                  },
-                  "description": "A node to which attach event listeners to"
-                }
-              ],
-              "description": "To be implement by the element to set event listeners from the target."
-            },
-            {
-              "kind": "method",
-              "name": "_detachListeners",
-              "return": {
-                "type": {
-                  "text": "void"
-                }
-              },
-              "parameters": [
-                {
-                  "name": "node",
-                  "type": {
-                    "text": "EventTarget"
-                  },
-                  "description": "A node to which remove event listeners to"
-                }
-              ],
-              "description": "To be implement by the element to remove event listeners from the target."
-            }
-          ],
-          "parameters": [
-            {
-              "name": "superClass",
-              "type": {
-                "text": "T"
-              }
-            }
-          ]
-        }
-      ],
+      "path": "src/styles/AnypointDialogStyles.ts",
+      "declarations": [],
       "exports": [
         {
           "kind": "js",
-          "name": "EventsTargetMixin",
+          "name": "default",
           "declaration": {
-            "name": "EventsTargetMixin",
-            "module": "src/mixins/EventsTargetMixin.ts"
+            "module": "src/styles/AnypointDialogStyles.ts"
           }
         }
       ]
     },
     {
       "kind": "javascript-module",
-      "path": "src/mixins/ScrollTargetMixin.ts",
-      "declarations": [
-        {
-          "kind": "mixin",
-          "description": "This mixin is a port of [IronScrollTargetBehavior](https://github.com/PolymerElements/iron-acroll-target-behavior)\nthat works with LitElements.\n\n`ScrollTargetMixin` allows an element to respond to scroll\nevents from a designated scroll target.\n\nElements that consume this mixin can override the `_scrollHandler`\nmethod to add logic on the scroll event.",
-          "name": "ScrollTargetMixin",
-          "members": [
-            {
-              "kind": "field",
-              "name": "_scrollTarget",
-              "type": {
-                "text": "HTMLElement | string"
-              }
-            },
-            {
-              "kind": "field",
-              "name": "scrollTarget",
-              "type": {
-                "text": "HTMLElement | string"
-              },
-              "description": "Specifies the element that will handle the scroll event\non the behalf of the current element. This is typically a reference to an\nelement, but there are a few more possibilities:\n\n### Elements id\n\n```html\n<div id=\"scrollable-element\" style=\"overflow: auto;\">\n <x-element scroll-target=\"scrollable-element\">\n   <!-- Content-->\n </x-element>\n</div>\n```\nIn this case, the `scrollTarget` will point to the outer div element.\n\n### Document scrolling\n\nFor document scrolling, you can use the reserved word `document`:\n\n```html\n<x-element scroll-target=\"document\">\n  <!-- Content -->\n</x-element>\n```\n\n### Elements reference\n\n```js\nappHeader.scrollTarget = document.querySelector('#scrollable-element');\n```",
-              "attribute": "scrollTarget"
-            },
-            {
-              "kind": "field",
-              "name": "scrollTargetElement",
-              "type": {
-                "text": "HTMLElement"
-              },
-              "privacy": "protected",
-              "description": "A convenient getter that casts the scroll target to an element.\nNote, when a string is set on the target it is always translated to an element."
-            },
-            {
-              "kind": "field",
-              "name": "_isAttached",
-              "type": {
-                "text": "boolean"
-              },
-              "privacy": "private",
-              "default": "false"
-            },
-            {
-              "kind": "field",
-              "name": "isAttached",
-              "type": {
-                "text": "boolean"
-              }
-            },
-            {
-              "kind": "field",
-              "name": "_defaultScrollTarget",
-              "type": {
-                "text": "HTMLElement"
-              },
-              "description": "The default scroll target. Consumers of this behavior may want to customize\nthe default scroll target."
-            },
-            {
-              "kind": "field",
-              "name": "_doc",
-              "type": {
-                "text": "HTMLElement"
-              },
-              "description": "Shortcut for the document element"
-            },
-            {
-              "kind": "field",
-              "name": "_scrollTop",
-              "type": {
-                "text": "number"
-              },
-              "description": "Sets the number of pixels that the content of an element is scrolled\nupward."
-            },
-            {
-              "kind": "field",
-              "name": "_scrollLeft",
-              "type": {
-                "text": "number"
-              },
-              "description": "Sets the number of pixels that the content of an element is scrolled to the\nleft."
-            },
-            {
-              "kind": "field",
-              "name": "_shouldHaveListener",
-              "type": {
-                "text": "boolean"
-              },
-              "default": "true",
-              "description": "True if the event listener should be installed."
-            },
-            {
-              "kind": "method",
-              "name": "_scrollHandler",
-              "return": {
-                "type": {
-                  "text": "void"
-                }
-              },
-              "description": "Runs on every scroll event. Consumer of this mixin may override this method."
-            },
-            {
-              "kind": "field",
-              "name": "_oldScrollTarget",
-              "type": {
-                "text": "HTMLElement | undefined"
-              }
-            },
-            {
-              "kind": "method",
-              "name": "_scrollTargetChanged",
-              "return": {
-                "type": {
-                  "text": "void"
-                }
-              },
-              "parameters": [
-                {
-                  "name": "scrollTarget",
-                  "type": {
-                    "text": "HTMLElement | string"
-                  }
-                }
-              ]
-            },
-            {
-              "kind": "method",
-              "name": "scroll",
-              "return": {
-                "type": {
-                  "text": "void"
-                }
-              },
-              "parameters": [
-                {
-                  "name": "leftOrOptions",
-                  "optional": true,
-                  "type": {
-                    "text": "number | ScrollToOptions"
-                  },
-                  "description": "The left position or scroll options"
-                },
-                {
-                  "name": "top",
-                  "optional": true,
-                  "type": {
-                    "text": "number"
-                  },
-                  "description": "The top position"
-                }
-              ],
-              "description": "Scrolls the content to a particular place."
-            },
-            {
-              "kind": "field",
-              "name": "_scrollTargetWidth",
-              "type": {
-                "text": "number"
-              },
-              "description": "Gets the width of the scroll target."
-            },
-            {
-              "kind": "field",
-              "name": "_scrollTargetHeight",
-              "type": {
-                "text": "number"
-              },
-              "description": "Gets the height of the scroll target."
-            },
-            {
-              "kind": "method",
-              "name": "_isValidScrollTarget",
-              "return": {
-                "type": {
-                  "text": "boolean"
-                }
-              },
-              "description": "Returns true if the scroll target is a valid HTMLElement."
-            },
-            {
-              "kind": "field",
-              "name": "_boundScrollHandler",
-              "type": {
-                "text": "any | undefined"
-              }
-            },
-            {
-              "kind": "method",
-              "name": "_toggleScrollListener",
-              "return": {
-                "type": {
-                  "text": "void"
-                }
-              },
-              "parameters": [
-                {
-                  "name": "yes",
-                  "type": {
-                    "text": "boolean"
-                  }
-                },
-                {
-                  "name": "scrollTarget",
-                  "type": {
-                    "text": "HTMLElement"
-                  }
-                }
-              ]
-            },
-            {
-              "kind": "method",
-              "name": "toggleScrollListener",
-              "return": {
-                "type": {
-                  "text": "void"
-                }
-              },
-              "parameters": [
-                {
-                  "name": "yes",
-                  "type": {
-                    "text": "boolean"
-                  },
-                  "description": "True to add the event, False to remove it."
-                }
-              ],
-              "description": "Enables or disables the scroll event listener."
-            }
-          ],
-          "attributes": [
-            {
-              "name": "scrollTarget",
-              "type": {
-                "text": "HTMLElement | string"
-              },
-              "description": "Specifies the element that will handle the scroll event\non the behalf of the current element. This is typically a reference to an\nelement, but there are a few more possibilities:\n\n### Elements id\n\n```html\n<div id=\"scrollable-element\" style=\"overflow: auto;\">\n <x-element scroll-target=\"scrollable-element\">\n   <!-- Content-->\n </x-element>\n</div>\n```\nIn this case, the `scrollTarget` will point to the outer div element.\n\n### Document scrolling\n\nFor document scrolling, you can use the reserved word `document`:\n\n```html\n<x-element scroll-target=\"document\">\n  <!-- Content -->\n</x-element>\n```\n\n### Elements reference\n\n```js\nappHeader.scrollTarget = document.querySelector('#scrollable-element');\n```",
-              "fieldName": "scrollTarget"
-            }
-          ],
-          "parameters": [
-            {
-              "name": "superClass",
-              "type": {
-                "text": "T"
-              }
-            }
-          ]
-        }
-      ],
+      "path": "src/styles/BottomSheet.ts",
+      "declarations": [],
       "exports": [
         {
           "kind": "js",
-          "name": "ScrollTargetMixin",
+          "name": "default",
           "declaration": {
-            "name": "ScrollTargetMixin",
-            "module": "src/mixins/ScrollTargetMixin.ts"
+            "module": "src/styles/BottomSheet.ts"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "src/styles/Button.ts",
+      "declarations": [],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "default",
+          "declaration": {
+            "module": "src/styles/Button.ts"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "src/styles/ButtonIcon.ts",
+      "declarations": [],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "default",
+          "declaration": {
+            "module": "src/styles/ButtonIcon.ts"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "src/styles/Checkbox.ts",
+      "declarations": [],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "default",
+          "declaration": {
+            "module": "src/styles/Checkbox.ts"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "src/styles/ChipStyles.ts",
+      "declarations": [],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "default",
+          "declaration": {
+            "module": "src/styles/ChipStyles.ts"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "src/styles/ColorInputSelectorElement.styles.ts",
+      "declarations": [],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "default",
+          "declaration": {
+            "module": "src/styles/ColorInputSelectorElement.styles.ts"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "src/styles/ColorSelectorElement.styles.ts",
+      "declarations": [],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "default",
+          "declaration": {
+            "module": "src/styles/ColorSelectorElement.styles.ts"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "src/styles/DropdownMenu.ts",
+      "declarations": [],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "default",
+          "declaration": {
+            "module": "src/styles/DropdownMenu.ts"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "src/styles/InputComboboxStyles.ts",
+      "declarations": [],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "default",
+          "declaration": {
+            "module": "src/styles/InputComboboxStyles.ts"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "src/styles/ItemStyles.ts",
+      "declarations": [],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "default",
+          "declaration": {
+            "module": "src/styles/ItemStyles.ts"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "src/styles/MenuButton.ts",
+      "declarations": [],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "default",
+          "declaration": {
+            "module": "src/styles/MenuButton.ts"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "src/styles/Progress.ts",
+      "declarations": [],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "default",
+          "declaration": {
+            "module": "src/styles/Progress.ts"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "src/styles/RadioButton.ts",
+      "declarations": [],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "default",
+          "declaration": {
+            "module": "src/styles/RadioButton.ts"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "src/styles/Switch.ts",
+      "declarations": [],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "default",
+          "declaration": {
+            "module": "src/styles/Switch.ts"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "src/styles/TabsStyles.ts",
+      "declarations": [],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "default",
+          "declaration": {
+            "module": "src/styles/TabsStyles.ts"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "src/styles/anypoint-input-styles.ts",
+      "declarations": [],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "default",
+          "declaration": {
+            "module": "src/styles/anypoint-input-styles.ts"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "src/styles/ripple.styles.ts",
+      "declarations": [],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "default",
+          "declaration": {
+            "module": "src/styles/ripple.styles.ts"
           }
         }
       ]
@@ -37217,286 +37497,6 @@
           "declaration": {
             "name": "ValidatableElement",
             "module": "src/elements/ValidatableElement.ts"
-          }
-        }
-      ]
-    },
-    {
-      "kind": "javascript-module",
-      "path": "src/styles/AnypointChipInput.ts",
-      "declarations": [],
-      "exports": [
-        {
-          "kind": "js",
-          "name": "default",
-          "declaration": {
-            "module": "src/styles/AnypointChipInput.ts"
-          }
-        }
-      ]
-    },
-    {
-      "kind": "javascript-module",
-      "path": "src/styles/AnypointDialogInternalStyles.ts",
-      "declarations": [],
-      "exports": [
-        {
-          "kind": "js",
-          "name": "default",
-          "declaration": {
-            "module": "src/styles/AnypointDialogInternalStyles.ts"
-          }
-        }
-      ]
-    },
-    {
-      "kind": "javascript-module",
-      "path": "src/styles/AnypointDialogStyles.ts",
-      "declarations": [],
-      "exports": [
-        {
-          "kind": "js",
-          "name": "default",
-          "declaration": {
-            "module": "src/styles/AnypointDialogStyles.ts"
-          }
-        }
-      ]
-    },
-    {
-      "kind": "javascript-module",
-      "path": "src/styles/BottomSheet.ts",
-      "declarations": [],
-      "exports": [
-        {
-          "kind": "js",
-          "name": "default",
-          "declaration": {
-            "module": "src/styles/BottomSheet.ts"
-          }
-        }
-      ]
-    },
-    {
-      "kind": "javascript-module",
-      "path": "src/styles/Button.ts",
-      "declarations": [],
-      "exports": [
-        {
-          "kind": "js",
-          "name": "default",
-          "declaration": {
-            "module": "src/styles/Button.ts"
-          }
-        }
-      ]
-    },
-    {
-      "kind": "javascript-module",
-      "path": "src/styles/ButtonIcon.ts",
-      "declarations": [],
-      "exports": [
-        {
-          "kind": "js",
-          "name": "default",
-          "declaration": {
-            "module": "src/styles/ButtonIcon.ts"
-          }
-        }
-      ]
-    },
-    {
-      "kind": "javascript-module",
-      "path": "src/styles/Checkbox.ts",
-      "declarations": [],
-      "exports": [
-        {
-          "kind": "js",
-          "name": "default",
-          "declaration": {
-            "module": "src/styles/Checkbox.ts"
-          }
-        }
-      ]
-    },
-    {
-      "kind": "javascript-module",
-      "path": "src/styles/ChipStyles.ts",
-      "declarations": [],
-      "exports": [
-        {
-          "kind": "js",
-          "name": "default",
-          "declaration": {
-            "module": "src/styles/ChipStyles.ts"
-          }
-        }
-      ]
-    },
-    {
-      "kind": "javascript-module",
-      "path": "src/styles/ColorInputSelectorElement.styles.ts",
-      "declarations": [],
-      "exports": [
-        {
-          "kind": "js",
-          "name": "default",
-          "declaration": {
-            "module": "src/styles/ColorInputSelectorElement.styles.ts"
-          }
-        }
-      ]
-    },
-    {
-      "kind": "javascript-module",
-      "path": "src/styles/ColorSelectorElement.styles.ts",
-      "declarations": [],
-      "exports": [
-        {
-          "kind": "js",
-          "name": "default",
-          "declaration": {
-            "module": "src/styles/ColorSelectorElement.styles.ts"
-          }
-        }
-      ]
-    },
-    {
-      "kind": "javascript-module",
-      "path": "src/styles/DropdownMenu.ts",
-      "declarations": [],
-      "exports": [
-        {
-          "kind": "js",
-          "name": "default",
-          "declaration": {
-            "module": "src/styles/DropdownMenu.ts"
-          }
-        }
-      ]
-    },
-    {
-      "kind": "javascript-module",
-      "path": "src/styles/InputComboboxStyles.ts",
-      "declarations": [],
-      "exports": [
-        {
-          "kind": "js",
-          "name": "default",
-          "declaration": {
-            "module": "src/styles/InputComboboxStyles.ts"
-          }
-        }
-      ]
-    },
-    {
-      "kind": "javascript-module",
-      "path": "src/styles/ItemStyles.ts",
-      "declarations": [],
-      "exports": [
-        {
-          "kind": "js",
-          "name": "default",
-          "declaration": {
-            "module": "src/styles/ItemStyles.ts"
-          }
-        }
-      ]
-    },
-    {
-      "kind": "javascript-module",
-      "path": "src/styles/MenuButton.ts",
-      "declarations": [],
-      "exports": [
-        {
-          "kind": "js",
-          "name": "default",
-          "declaration": {
-            "module": "src/styles/MenuButton.ts"
-          }
-        }
-      ]
-    },
-    {
-      "kind": "javascript-module",
-      "path": "src/styles/Progress.ts",
-      "declarations": [],
-      "exports": [
-        {
-          "kind": "js",
-          "name": "default",
-          "declaration": {
-            "module": "src/styles/Progress.ts"
-          }
-        }
-      ]
-    },
-    {
-      "kind": "javascript-module",
-      "path": "src/styles/RadioButton.ts",
-      "declarations": [],
-      "exports": [
-        {
-          "kind": "js",
-          "name": "default",
-          "declaration": {
-            "module": "src/styles/RadioButton.ts"
-          }
-        }
-      ]
-    },
-    {
-      "kind": "javascript-module",
-      "path": "src/styles/Switch.ts",
-      "declarations": [],
-      "exports": [
-        {
-          "kind": "js",
-          "name": "default",
-          "declaration": {
-            "module": "src/styles/Switch.ts"
-          }
-        }
-      ]
-    },
-    {
-      "kind": "javascript-module",
-      "path": "src/styles/TabsStyles.ts",
-      "declarations": [],
-      "exports": [
-        {
-          "kind": "js",
-          "name": "default",
-          "declaration": {
-            "module": "src/styles/TabsStyles.ts"
-          }
-        }
-      ]
-    },
-    {
-      "kind": "javascript-module",
-      "path": "src/styles/anypoint-input-styles.ts",
-      "declarations": [],
-      "exports": [
-        {
-          "kind": "js",
-          "name": "default",
-          "declaration": {
-            "module": "src/styles/anypoint-input-styles.ts"
-          }
-        }
-      ]
-    },
-    {
-      "kind": "javascript-module",
-      "path": "src/styles/ripple.styles.ts",
-      "declarations": [],
-      "exports": [
-        {
-          "kind": "js",
-          "name": "default",
-          "declaration": {
-            "module": "src/styles/ripple.styles.ts"
           }
         }
       ]
