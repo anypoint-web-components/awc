@@ -1,12 +1,16 @@
 import { css } from 'lit';
 
 export default css`
-:host {
+/* :host {
   position: relative;
   width: auto;
   min-width: 170px;
   min-height: 56px;
   height: auto;
+} */
+
+:host {
+  width: auto;
 }
 
 .chips {
@@ -20,14 +24,14 @@ export default css`
   max-width: 60%;
 }
 
-.input-container {
+/* .input-container {
   min-height: inherit;
-}
+} */
 
-:host([anypoint]) {
+/* :host([anypoint]) {
   min-height: 40px;
   height: 40px;
-}
+} */
 
 .icon {
   fill: currentColor;

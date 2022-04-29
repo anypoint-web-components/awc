@@ -106,9 +106,9 @@ describe('AnypointSelector', () => {
         called = true;
       };
       element.onselected = f;
+      element.onselected = undefined;
       element.selected = 1;
       await nextFrame();
-      element.onselected = undefined;
       assert.isFalse(called);
     });
 

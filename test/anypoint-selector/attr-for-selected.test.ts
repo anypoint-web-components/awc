@@ -213,7 +213,7 @@ describe('AnypointSelector', () => {
       assert.deepEqual(selector.selectedItems, []);
       selector.fallbackSelection = 'default';
       await nextFrame();
-      assert.deepEqual(selector.selectedItems, [items[2]]);
+      assert.deepEqual(selector.selectedItems, [items[2]], 'has the default selection');
     });
 
     it('selection is updated after fallback is set', async () => {

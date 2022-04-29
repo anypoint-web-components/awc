@@ -4,6 +4,7 @@ import '../src/define/anypoint-item.js';
 import '../src/define/anypoint-listbox.js';
 import './lib/interactive-demo.js';
 import { demoProperty } from './lib/decorators.js';
+import { AnypointListboxElement } from '../src/index.js';
 
 class ComponentDemo extends DemoPage {
   fruits: string[] = ['Apple', 'Apricot', 'Avocado',
@@ -34,6 +35,16 @@ class ComponentDemo extends DemoPage {
     }
     this.eventsLog.push(log);
     this.render();
+
+    if (e.type === 'selected') {
+      this.selectedHandler(e);
+    }
+  }
+
+  selectedHandler(e: Event): void {
+    const list = e.target as AnypointListboxElement;
+    const { selectedItem } = list;
+    console.log('selectedItem', selectedItem);
   }
 
   stringifyDetail(key: string, value: any): any {
@@ -75,6 +86,7 @@ class ComponentDemo extends DemoPage {
         <anypoint-listbox 
           slot="content" 
           ?anypoint="${anypoint}"
+          @selected="${this.selectedHandler}"
         >
           <anypoint-item>API project 1</anypoint-item>
           <anypoint-item>API project 2</anypoint-item>
@@ -82,8 +94,6 @@ class ComponentDemo extends DemoPage {
           <anypoint-item>API project 4</anypoint-item>
         </anypoint-listbox>
       </interactive-demo>
-
-      ${this._eventsHandlingTemplate()}
     </section>`;
   }
 
@@ -134,7 +144,7 @@ class ComponentDemo extends DemoPage {
           item is used to make the selection.
         </p>
 
-        <anypoint-listbox selected="1">
+        <anypoint-listbox selected="1" @selected="${this.selectedHandler}">
           <anypoint-item>API project 1</anypoint-item>
           <anypoint-item>API project 2</anypoint-item>
           <anypoint-item>API project 3</anypoint-item>
@@ -159,7 +169,7 @@ class ComponentDemo extends DemoPage {
           Use <code>attrforselected</code> attribute to make a selection based on the attribute value.
         </p>
 
-        <anypoint-listbox attrforselected="data-project-id" selected="p2">
+        <anypoint-listbox attrforselected="data-project-id" selected="p2" @selected="${this.selectedHandler}">
           <anypoint-item data-project-id="p1">API project 1</anypoint-item>
           <anypoint-item data-project-id="p2">API project 2</anypoint-item>
           <anypoint-item data-project-id="p3">API project 3</anypoint-item>
@@ -185,7 +195,7 @@ class ComponentDemo extends DemoPage {
           Use <code>multi</code> attribute to enable multi selection of list items.
         </p>
 
-        <anypoint-listbox multi>
+        <anypoint-listbox multi @selected="${this.selectedHandler}">
           <anypoint-item>API project 1</anypoint-item>
           <anypoint-item>API project 2</anypoint-item>
           <anypoint-item>API project 3</anypoint-item>
@@ -213,7 +223,7 @@ class ComponentDemo extends DemoPage {
         on the list. It is helpful if the list contain non-selctable items like horizontal lines.
       </p>
 
-      <anypoint-listbox selectable=".allowed">
+      <anypoint-listbox selectable=".allowed" @selected="${this.selectedHandler}">
       <anypoint-item class="allowed">API project 1</anypoint-item>
       <anypoint-item class="allowed">API project 2</anypoint-item>
       <hr>
@@ -247,7 +257,7 @@ class ComponentDemo extends DemoPage {
     ${this.fruits.map((item) => html`<anypoint-item role="option" aria-selected="false">${item}</anypoint-item>`)}
     </anypoint-listbox>
 
-    
+    ${this._eventsHandlingTemplate()}
     `;
   }
 

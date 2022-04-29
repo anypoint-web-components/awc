@@ -63,7 +63,7 @@ export const ignoreNextFocus = Symbol('ignoreNextFocus');
  * @fires openedchange
  * @fires query
  * @fires input
- * @fires selected
+ * @fires pick - When an item is selected. Do not confuse this event with the `selected` event dispatched by the SelectableElement.
  * @fires resize
  */
 export default class AnypointAutocompleteElement extends AnypointElement {
@@ -400,19 +400,19 @@ export default class AnypointAutocompleteElement extends AnypointElement {
   }
 
   /**
-   * @return {EventListener} Previously registered handler for `selected` event
+   * @return {EventListener} Previously registered handler for `pick` event
    */
-  get onselected(): EventListener | undefined {
-    return getListener('selected', this);
+  get onpick(): EventListener | undefined {
+    return getListener('pick', this);
   }
 
   /**
-   * Registers a callback function for `selected` event
+   * Registers a callback function for `pick` event
    * @param {EventListener} value A callback to register. Pass `null` or `undefined`
    * to clear the listener.
    */
-  set onselected(value: EventListener | undefined) {
-    addListener('selected', value, this);
+  set onpick(value: EventListener | undefined) {
+    addListener('pick', value, this);
   }
 
   _oldTarget?: HTMLInputElement;
@@ -964,15 +964,13 @@ export default class AnypointAutocompleteElement extends AnypointElement {
   }
 
   /**
-   * Dispatches `selected` event with new value.
+   * Dispatches the `pick` event with new value.
    *
-   * @param value Selected value.
+   * @param value The selected value.
    */
   _inform(value: string | Suggestion): void {
-    const ev = new CustomEvent('selected', {
-      detail: {
-        value
-      },
+    const ev = new CustomEvent('pick', {
+      detail: { value },
       cancelable: true
     });
     this.dispatchEvent(ev);

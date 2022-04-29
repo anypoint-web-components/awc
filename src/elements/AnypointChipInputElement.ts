@@ -12,6 +12,7 @@ the License.
 */
 import { html, SVGTemplateResult, TemplateResult, CSSResult, PropertyValueMap } from 'lit';
 import { property } from 'lit/decorators.js';
+import {map} from 'lit/directives/map.js';
 import AnypointInputElement from './input/AnypointInputElement.js';
 import elementStyles from '../styles/AnypointChipInput.js';
 import '../define/anypoint-autocomplete.js';
@@ -333,7 +334,7 @@ export default class AnypointChipInputElement extends AnypointInputElement {
       return;
     }
     chips.splice(index, 1);
-    this.chips = Array.from(chips);
+    this.requestUpdate();
     if (chips.length === 0) {
       this.checkValidity();
     }
@@ -368,12 +369,12 @@ export default class AnypointChipInputElement extends AnypointInputElement {
   }
 
   _keydownHandler(e: KeyboardEvent): void {
-    super._keydownHandler(e);
-    if (e.code === 'Enter') {
+    if (e.code === 'Enter' || e.code === 'NumpadEnter') {
       this._enterDown(e);
     } else if (e.code === 'Backspace') {
       this._backspaceDown(e);
     }
+    super._keydownHandler(e);
   }
 
   _enterDown(e: KeyboardEvent): void {
@@ -462,10 +463,9 @@ export default class AnypointChipInputElement extends AnypointInputElement {
   }
 
   _prefixTemplate(): TemplateResult {
-    return html`<div class="prefixes">
-      <div class="chips">
+    return html`
+    <div class="prefixes">
       ${this._renderChipsTemplate()}
-      </div>
       <slot name="prefix"></slot>
     </div>`;
   }
@@ -479,26 +479,25 @@ export default class AnypointChipInputElement extends AnypointInputElement {
       .source="${this.source}"
       ?anypoint="${this.anypoint}"
       noOverlap
-      @selected="${this._selectedHandler}"></anypoint-autocomplete>`;
+      @pick="${this._selectedHandler}"></anypoint-autocomplete>`;
   }
 
-  _renderChipsTemplate(): TemplateResult[] | string {
-    const { chips } = this;
-    if (!chips || !chips.length) {
-      return '';
-    }
-    return chips.map((item, index) => html`
-    <anypoint-chip
-      .removable="${this._computeChipRemovable(item)}"
-      @chipremoved="${this._chipRemovedHandler}"
-      tabindex="-1"
-      .removeIcon="${this.chipRemoveIcon}"
-      ?anypoint="${this.anypoint}"
-      data-index="${index}">
-      ${this._itemIconTemplate(item)}
-      ${item.label}
-    </anypoint-chip>
-    `);
+  _renderChipsTemplate(): TemplateResult {
+    const { chips = [] } = this;
+    return html`
+    <div class="chips">
+      ${map(chips, (item, index) => html`<anypoint-chip
+        .removable="${this._computeChipRemovable(item)}"
+        @chipremoved="${this._chipRemovedHandler}"
+        tabindex="-1"
+        .removeIcon="${this.chipRemoveIcon}"
+        ?anypoint="${this.anypoint}"
+        data-index="${index}">
+        ${this._itemIconTemplate(item)}
+        ${item.label}
+      </anypoint-chip>`)}
+    </div>
+    `;
   }
 
   _itemIconTemplate(item: ChipItem): TemplateResult | string {
@@ -513,15 +512,7 @@ export default class AnypointChipInputElement extends AnypointInputElement {
 
   render(): TemplateResult {
     return html`
-    <div class="input-container">
-      ${this._prefixTemplate()}
-      <div class="input-label">
-        ${this._labelTemplate()}
-        ${this._inputTemplate()}
-      </div>
-      ${this._suffixTemplate()}
-    </div>
-    ${this._assistiveTemplate()}
+    ${super.render()}
     ${this._autocompleteTemplate()}
     `;
   }

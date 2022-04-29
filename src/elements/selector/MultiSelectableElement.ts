@@ -62,13 +62,13 @@ export default class MultiSelectableElement extends SelectableElement {
   }
 
   protected willUpdate(cp: PropertyValueMap<any> | Map<PropertyKey, unknown>): void {
-    super.willUpdate(cp);
     if (cp.has('multi')) {
       this._multiChanged(this.multi);
     }
     if (cp.has('selectedValues')) {
       this._updateSelected();
     }
+    super.willUpdate(cp);
   }
 
   /**
@@ -168,6 +168,7 @@ export default class MultiSelectableElement extends SelectableElement {
       items.splice(i, 1);
     }
     this.selectedValues = [...items];
+    this._updateSelected();
     this._notifyValuesChanged();
   }
 

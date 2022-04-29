@@ -266,6 +266,7 @@ export default class SelectableElement extends ResizableElement {
     }
     if (cp.has('selected')) {
       this._updateSelected();
+      this.dispatchEvent(new Event('selected', { bubbles: true, composed: true, }));
     }
   }
 
@@ -643,6 +644,5 @@ export default class SelectableElement extends ResizableElement {
       return;
     }
     this.select(value);
-    this.dispatchEvent(new Event('selected', { bubbles: true, composed: true, }));
   }
 }

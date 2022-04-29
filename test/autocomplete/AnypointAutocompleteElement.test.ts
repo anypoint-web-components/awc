@@ -436,18 +436,18 @@ describe('AnypointAutocompleteElement', () => {
       assert.equal(element.suggestions!.length, 0);
     });
 
-    it('dispatches "selected" event', async () => {
+    it('dispatches "pick" event', async () => {
       input.value = 'a';
       notifyInput(input);
       await nextFrame();
       const spy = sinon.spy();
-      element.addEventListener('selected', spy);
+      element.addEventListener('pick', spy);
       element._listbox!.selectNext();
       await nextFrame();
       assert.equal(spy.args[0][0].detail.value, 'Apple');
     });
 
-    it('sets value on target when "selected" event not cancelled', async () => {
+    it('sets value on target when "pick" event not cancelled', async () => {
       input.value = 'a';
       notifyInput(input);
       await nextFrame();
@@ -473,13 +473,13 @@ describe('AnypointAutocompleteElement', () => {
       assert.isFalse(element.opened);
     });
 
-    it('sets selected suggestion object on selected event', async () => {
+    it('sets selected suggestion object on pick event', async () => {
       element.source = objectSuggestions;
       input.value = 'apr';
       notifyInput(input);
       await aTimeout(10);
       const spy = sinon.spy();
-      element.addEventListener('selected', spy);
+      element.addEventListener('pick', spy);
       element._listbox!.selectNext();
       await nextFrame();
       assert.deepEqual(spy.args[0][0].detail.value, objectSuggestions[1]);
@@ -491,7 +491,7 @@ describe('AnypointAutocompleteElement', () => {
       notifyInput(input);
       await aTimeout(10);
       const spy = sinon.spy();
-      element.addEventListener('selected', spy);
+      element.addEventListener('pick', spy);
       element._listbox!.selectNext();
       await nextFrame();
       assert.deepEqual(spy.args[0][0].detail.value.id, 2);
@@ -947,7 +947,7 @@ describe('AnypointAutocompleteElement', () => {
     });
   });
 
-  describe('onselected', () => {
+  describe('onpick', () => {
     let element: AnypointAutocomplete;
     beforeEach(async () => {
       const region = await stringTargetFixture();
@@ -955,10 +955,10 @@ describe('AnypointAutocompleteElement', () => {
     });
 
     it('Getter returns previously registered handler', () => {
-      assert.isUndefined(element.onselected);
+      assert.isUndefined(element.onpick);
       const f = () => {};
-      element.onselected = f;
-      assert.isTrue(element.onselected === f);
+      element.onpick = f;
+      assert.isTrue(element.onpick === f);
     });
 
     it('Calls registered function', () => {
@@ -966,9 +966,9 @@ describe('AnypointAutocompleteElement', () => {
       const f = () => {
         called = true;
       };
-      element.onselected = f;
+      element.onpick = f;
       element._inform('test');
-      element.onselected = undefined;
+      element.onpick = undefined;
       assert.isTrue(called);
     });
 
@@ -981,10 +981,10 @@ describe('AnypointAutocompleteElement', () => {
       const f2 = () => {
         called2 = true;
       };
-      element.onselected = f1;
-      element.onselected = f2;
+      element.onpick = f1;
+      element.onpick = f2;
       element._inform('test');
-      element.onselected = undefined;
+      element.onpick = undefined;
       assert.isFalse(called1);
       assert.isTrue(called2);
     });

@@ -10,6 +10,7 @@ import '../src/define/anypoint-checkbox.js';
 import '../src/define/anypoint-radio-button.js';
 import '../src/define/anypoint-radio-group.js';
 import '../src/define/anypoint-dropdown-menu.js';
+import { AnypointListboxElement } from '../src/index.js';
 
 const hasFormAssociatedElements = 'attachInternals' in document.createElement('span');
 
@@ -125,6 +126,12 @@ class ComponentDemo extends DemoPage {
     }
   }
 
+  selectedHandler(e: Event): void {
+    const list = e.target as AnypointListboxElement;
+    const { selectedItem } = list;
+    console.log('selectedItem', selectedItem);
+  }
+
   _demoTemplate(): TemplateResult {
     const {
       demoStates,
@@ -150,7 +157,7 @@ class ComponentDemo extends DemoPage {
       ?dark="${darkThemeActive}"
     >
       <anypoint-dropdown-menu
-        slot="contents"
+        slot="content"
         name="mainDemo"
         title="Dropdown menu"
         ?outlined="${outlined}"
@@ -163,7 +170,7 @@ class ComponentDemo extends DemoPage {
         ?fitPositionTarget="${fitPositionTarget}"
       >
         <label slot="label">Select a dinosaur</label>
-        <anypoint-listbox slot="dropdown-content" tabindex="-1" ?anypoint="${anypoint}">
+        <anypoint-listbox slot="dropdown-content" tabindex="-1" ?anypoint="${anypoint}" @selected="${this.selectedHandler}">
         ${this.items.map((item) => html`<anypoint-item>${item}</anypoint-item>`)}
         </anypoint-listbox>
       </anypoint-dropdown-menu>

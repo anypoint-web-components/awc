@@ -84,8 +84,7 @@ describe('AnypointChipInputElement', () => {
     return fixture(html`
       <anypoint-chip-input
         name="test"
-        .source="${source}">
-        <label slot="label">x</label>
+        .source="${source}" label="x">
       </anypoint-chip-input>
     `);
   }
@@ -269,7 +268,7 @@ describe('AnypointChipInputElement', () => {
       element = await suggestionsFixture();
     });
 
-    it('0pens suggestions dropdown', async () => {
+    it('opens suggestions dropdown', async () => {
       element.value = 'c';
       await nextFrame();
       element.inputElement.dispatchEvent(new CustomEvent('input'));
@@ -278,7 +277,7 @@ describe('AnypointChipInputElement', () => {
       assert.isTrue(node.opened);
     });
 
-    it('Does no open suggestions when filtered empty', async () => {
+    it('does no open suggestions when filtered empty', async () => {
       element.value = 'cz';
       await nextFrame();
       element.inputElement.dispatchEvent(new CustomEvent('input'));
@@ -287,13 +286,13 @@ describe('AnypointChipInputElement', () => {
       assert.isFalse(node.opened);
     });
 
-    it('Accepts suggestion', async () => {
+    it('accepts a suggestion', async () => {
       element.value = 'c';
       await nextFrame();
       element.inputElement.dispatchEvent(new CustomEvent('input'));
       await nextFrame();
       const node = element.shadowRoot!.querySelector('anypoint-autocomplete')!;
-      node.dispatchEvent(new CustomEvent('selected', {
+      node.dispatchEvent(new CustomEvent('pick', {
         composed: true,
         detail: {
           value: {

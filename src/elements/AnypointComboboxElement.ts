@@ -45,7 +45,7 @@ export default class AnypointComboboxElement extends AnypointInputElement {
     <div class="ac-wrapper">
       ${super.render()}
       <anypoint-autocomplete
-        .target="${this.inputElement}"
+        .target="${this.inputElement as HTMLInputElement}"
         .source="${this.source}"
         .anypoint="${this.anypoint}"
         noTargetControls
