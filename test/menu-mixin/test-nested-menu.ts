@@ -1,10 +1,10 @@
 /* eslint-disable import/no-duplicates */
-import { LitElement, html, TemplateResult, css, CSSResult } from 'lit';
-import { MenuMixin } from '../../src/index.js';
+import { html, TemplateResult, css, CSSResult } from 'lit';
+import MenuElement from '../../src/elements/selector/MenuElement.js';
 import './test-menu.js';
 import { TestMenu } from './test-menu.js';
 
-export class TestNestedMenu extends MenuMixin(LitElement) {
+export class TestNestedMenu extends MenuElement {
   static get styles(): CSSResult {
     return css`
       div {

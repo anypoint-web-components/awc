@@ -70,7 +70,8 @@ class ComponentDemoPage extends DemoPage {
             </anypoint-icon-button>
             <anypoint-listbox
               slot="dropdown-content"
-              ?anypoint="${anypoint}">
+              ?anypoint="${anypoint}"
+            >
               <anypoint-item>alpha</anypoint-item>
               <anypoint-item>beta</anypoint-item>
               <anypoint-item>gamma</anypoint-item>

@@ -1,12 +1,12 @@
 /* eslint-disable @typescript-eslint/explicit-function-return-type */
 /* eslint-disable prefer-destructuring */
-import { fixture, expect, nextFrame, assert, html } from '@open-wc/testing';
+import { fixture, expect, nextFrame, assert, html, oneEvent } from '@open-wc/testing';
 import '../../src/define/anypoint-menu-button.js';
 import { AnypointMenuButtonElement } from '../../src/index.js';
 
 describe('<anypoint-menu-button>', () => {
   async function basicFixture(): Promise<AnypointMenuButtonElement> {
-    return (fixture(html`<anypoint-menu-button noAnimations>
+    return (fixture(html`<anypoint-menu-button>
         <span slot="dropdown-trigger">trigger</span>
         <span slot="dropdown-content">content</span>
       </anypoint-menu-button>`));
@@ -61,9 +61,10 @@ describe('<anypoint-menu-button>', () => {
       trigger.click();
     });
 
-    it('closes when disabled while open', () => {
+    it('closes when disabled while open', async () => {
       element.opened = true;
       element.disabled = true;
+      await nextFrame();
       expect(element.opened).to.be.equal(false);
       const contentRect = content.getBoundingClientRect();
       expect(contentRect.width).to.be.equal(0);
@@ -82,37 +83,23 @@ describe('<anypoint-menu-button>', () => {
       expect(element.opened).not.to.be.equal(true);
     });
 
-    it('closes on activate if closeOnActivate is true', (done) => {
-      element.closeOnActivate = true;
-      element.addEventListener('dropdownopen', () => {
-        element.addEventListener('dropdownclose', () => {
-          done();
-        });
-        content.dispatchEvent(new CustomEvent('activate', { bubbles: true, cancelable: true }));
-      });
+    it('closes on selected', async () => {
+      const p1 = oneEvent(element, 'dropdownopen');
       trigger.click();
+      await p1;
+      await nextFrame();
+      const p2 = oneEvent(element, 'dropdownclose');
+      content.dispatchEvent(new Event('selected', { bubbles: true, cancelable: true }));
+      await p2;
     });
 
-    it('closes on selected', (done) => {
-      element.addEventListener('dropdownopen', () => {
-        element.addEventListener('dropdownclose', () => {
-          done();
-        });
-        content.dispatchEvent(new CustomEvent('selected', { bubbles: true, cancelable: true }));
-      });
-      trigger.click();
-    });
-
-    it('does not close on select when ignoreSelect is set', (done) => {
+    it('does not close on select when ignoreSelect is set', async () => {
       element.ignoreSelect = true;
-      element.addEventListener('dropdownopen', () => {
-        setTimeout(() => {
-          expect(element.opened).to.be.equal(true);
-          done();
-        });
-        content.dispatchEvent(new CustomEvent('select', { bubbles: true, cancelable: true }));
-      });
+      const p1 = oneEvent(element, 'dropdownopen');
       trigger.click();
+      await p1;
+      content.dispatchEvent(new CustomEvent('select', { bubbles: true, cancelable: true }));
+      expect(element.opened).to.be.equal(true);
     });
 
     it('allowOutsideScroll propagates to <anypoint-dropdown>', async () => {

@@ -105,7 +105,8 @@ describe('AnypointDropdownElement', () => {
     it('ignores open action when disabled', async () => {
       const element = await disabledFixture();
       element.opened = true;
-      assert.isFalse(element.opened);
+      await nextFrame();
+      assert.isFalse(element.opened, 'opened is false');
     });
 
     it('sets "lock" scroll action', async () => {
@@ -119,6 +120,7 @@ describe('AnypointDropdownElement', () => {
       const element = await basicFixture();
       element.scrollAction = 'lock';
       element.allowOutsideScroll = true;
+      await nextFrame();
       assert.equal(element.scrollAction, 'refit');
     });
 

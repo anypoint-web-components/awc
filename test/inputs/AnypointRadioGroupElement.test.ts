@@ -105,6 +105,7 @@ describe('<anypoint-radio-group>', () => {
       assert.isTrue(oldSelected.checked, 'old selected is initially selected');
       const node = element.querySelector('anypoint-radio-button[name="c"]') as AnypointRadioButtonElement;
       node.click();
+      await nextFrame();
       assert.isFalse(oldSelected.checked, 'removes selection');
     });
 
@@ -112,6 +113,7 @@ describe('<anypoint-radio-group>', () => {
       const element = await selectedFixture();
       const node = element.querySelector('anypoint-radio-button[name="c"]') as AnypointRadioButtonElement;
       node.click();
+      await nextFrame();
       assert.isTrue(node.checked);
     });
 
@@ -119,6 +121,7 @@ describe('<anypoint-radio-group>', () => {
       const element = await selectedFixture();
       const node = element.querySelector('anypoint-radio-button[name="c"]') as AnypointRadioButtonElement;
       node.click();
+      await nextFrame();
       assert.equal(element.selected, 2);
     });
 
@@ -130,6 +133,7 @@ describe('<anypoint-radio-group>', () => {
       element.appendChild(node);
       await nextFrame();
       node.click();
+      await nextFrame();
       assert.equal(element.selected, 3);
     });
 
@@ -137,6 +141,7 @@ describe('<anypoint-radio-group>', () => {
       const element = await ignoredFixture();
       const node = element.querySelector('div[name="d"]') as HTMLDivElement;
       node.click();
+      await nextFrame();
       assert.equal(element.selected, 0);
     });
 
@@ -146,6 +151,7 @@ describe('<anypoint-radio-group>', () => {
       element.removeChild(node);
       await nextFrame();
       node.click();
+      await nextFrame();
       assert.isUndefined(element.selected);
     });
 
@@ -155,7 +161,8 @@ describe('<anypoint-radio-group>', () => {
       node.setAttribute('role', 'input');
       await nextFrame();
       node.click();
-      assert.isUndefined(element.selected);
+      await nextFrame();
+      assert.equal(element.selected, -1);
       assert.equal(element.selectedItem, null);
     });
 
@@ -172,6 +179,7 @@ describe('<anypoint-radio-group>', () => {
       const element = await mixedFixture();
       const node = element.querySelector('input[name="d"]') as HTMLInputElement;
       node.click();
+      await nextFrame();
       assert.equal(element.selected, 3);
       assert.equal(element.selectedItem, node);
     });
@@ -179,6 +187,7 @@ describe('<anypoint-radio-group>', () => {
     it('focuses on first item when no selection', async () => {
       const element = await basicFixture();
       element.focus();
+      await nextFrame();
       const node = element.querySelector('anypoint-radio-button[name="a"]') as AnypointRadioButtonElement;
       assert.equal(document.activeElement, node);
     });
@@ -186,6 +195,7 @@ describe('<anypoint-radio-group>', () => {
     it('focuses on selected item when selection', async () => {
       const element = await selected2Fixture();
       element.focus();
+      await nextFrame();
       const node = element.querySelector('anypoint-radio-button[name="b"]') as AnypointRadioButtonElement;
       assert.equal(document.activeElement, node);
     });

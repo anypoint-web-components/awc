@@ -128,8 +128,8 @@ The element supports this API in browser that has this API implemented. This mea
 
 ### Validation
 
-The element support `required` and `autoValidate` properties. When the element is `required` then it renders invalid state when `validate()` or `checkValidity()` function is called.
-The `validate()` function is provided by [ValidatableMixin](https://github.com/anypoint-web-components/validatable-mixin) for custom elements. `checkValidity()` function calls `validate()` function, and, if available, internal `checkValidity()` function provided by form-associated custom elements API.
+The element support `required` and `autoValidate` properties. When the element is `required` then it renders invalid state when `checkValidity()` function is called.
+The `validate()` function is provided by `ValidatableElement` for custom elements. `checkValidity()` function calls, if available, internal `checkValidity()` function provided by form-associated custom elements API.
 
 The `autoValidate` option allows to automatically call validate function when value change. It can be used with custom validators implementing [ValidatorMixin](https://github.com/anypoint-web-components/validator-mixin).
 

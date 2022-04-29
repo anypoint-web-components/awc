@@ -275,6 +275,7 @@ describe('<anypoint-dropdown-menu>', () => {
     it('opens the element on click', async () => {
       const element = await basicFixture();
       element.click();
+      await nextFrame();
       assert.isTrue(element.opened);
     });
 
@@ -283,6 +284,7 @@ describe('<anypoint-dropdown-menu>', () => {
       await untilOpened(element);
       const node = element.querySelector('div') as HTMLElement;
       node.click();
+      await nextFrame();
       assert.equal(element.value, 'item 1');
     });
 
@@ -291,6 +293,7 @@ describe('<anypoint-dropdown-menu>', () => {
       await untilOpened(element);
       const node = element.querySelector('div[label="item2-label"]') as HTMLElement;
       node.click();
+      await nextFrame();
       assert.equal(element.value, 'item2-label');
     });
 
@@ -299,6 +302,7 @@ describe('<anypoint-dropdown-menu>', () => {
       await untilOpened(element);
       const node = element.querySelector('div[data-label="item4-label"]') as HTMLElement;
       node.click();
+      await nextFrame();
       assert.equal(element.value, 'item4-label');
     });
 
@@ -310,53 +314,6 @@ describe('<anypoint-dropdown-menu>', () => {
     });
   });
 
-  describe('validationStates', () => {
-    const states: any[] = [
-      {
-        valid: false,
-        message: 'test',
-        validator: 'test-validator',
-      },
-    ];
-
-    let element: AnypointDropdownMenuElement;
-    beforeEach(async () => {
-      element = await basicFixture();
-    });
-
-    it('sets validationStates on element', () => {
-      element.validationStates = states;
-      assert.deepEqual(element.validationStates, states);
-    });
-
-    it('value change dispatches value-change event', async () => {
-      const spy = sinon.spy();
-      element.addEventListener('validationstateschange', spy);
-      element.validationStates = states;
-      assert.deepEqual(spy.args[0][0].detail.value, states);
-    });
-
-    it('setting the same value ignores setter', async () => {
-      element.validationStates = states;
-      const spy = sinon.spy();
-      element.addEventListener('validationstateschange', spy);
-      element.validationStates = states;
-      assert.isFalse(spy.called);
-    });
-
-    it('calls _validationStatesChanged()', async () => {
-      const spy = sinon.spy(element, '_validationStatesChanged');
-      element.validationStates = states;
-      assert.deepEqual(spy.args[0][0], states);
-    });
-
-    it('sets hasValidationMessage when validationStates changes', () => {
-      element.invalid = true;
-      element.validationStates = states;
-      assert.isTrue(element.hasValidationMessage);
-    });
-  });
-
   describe('autoValidate', () => {
     let element: AnypointDropdownMenuElement;
     beforeEach(async () => {
@@ -364,7 +321,7 @@ describe('<anypoint-dropdown-menu>', () => {
     });
 
     it('calls validate() when autoValidate is on', async () => {
-      const spy = sinon.spy(element, 'validate');
+      const spy = sinon.spy(element, 'checkValidity');
       element.autoValidate = true;
       assert.isTrue(spy.called);
     });
@@ -500,7 +457,7 @@ describe('<anypoint-dropdown-menu>', () => {
   describe('validation', () => {
     it('sets invalid flag when required', async () => {
       const element = await requiredFixture();
-      const result = element.validate();
+      const result = element.checkValidity();
       assert.isTrue(element.invalid, 'invalid is set');
       assert.isFalse(result, 'call result is false');
     });
@@ -608,26 +565,30 @@ describe('<anypoint-dropdown-menu>', () => {
       element = await basicFixture();
     });
 
-    it('sets invalid state', () => {
-      element._invalidChanged(true);
+    it('sets invalid state', async () => {
+      element.invalid = true;
+      await nextFrame();
       // This is done in parent class.
       assert.equal(element.getAttribute('aria-invalid'), 'true');
     });
 
-    it('sets _hasValidationMessage when invalidMessage', () => {
+    it('sets _hasValidationMessage when invalidMessage', async () => {
       element.invalidMessage = 'test';
-      element._invalidChanged(true);
+      element.invalid = true;
+      await nextFrame();
       assert.isTrue(element.hasValidationMessage);
     });
 
-    it('sets _hasValidationMessage when no invalidMessage', () => {
-      element._invalidChanged(true);
+    it('sets _hasValidationMessage when no invalidMessage', async () => {
+      element.invalid = true;
+      await nextFrame();
       assert.isFalse(element.hasValidationMessage);
     });
 
-    it('calls _ensureInvalidAlertSate()', () => {
+    it('calls _ensureInvalidAlertSate()', async () => {
       const spy = sinon.spy(element, '_ensureInvalidAlertSate');
-      element._invalidChanged(true);
+      element.invalid = true;
+      await nextFrame();
       assert.isTrue(spy.args[0][0]);
     });
   });
@@ -691,6 +652,7 @@ describe('<anypoint-dropdown-menu>', () => {
         const element = await basicFixture();
         await untilOpened(element);
         element.disabled = true;
+        await nextFrame();
         assert.isFalse(element.opened);
       });
     });
@@ -720,12 +682,6 @@ describe('<anypoint-dropdown-menu>', () => {
           assert.isTrue(label.classList.contains('form-disabled'), 'label has disabled class');
           const button = element.shadowRoot!.querySelector('.trigger-button')!;
           assert.isTrue(button.classList.contains('form-disabled'), 'button has disabled class');
-        });
-
-        it('dropdown has no disabled property set', async () => {
-          fieldset.disabled = true;
-          await nextFrame();
-          assert.isFalse(element.disabled);
         });
 
         it('disabled cannot be opened via open()', async () => {

@@ -10,9 +10,9 @@ WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the
 License for the specific language governing permissions and limitations under
 the License.
 */
-import { html, SVGTemplateResult, TemplateResult, CSSResult } from 'lit';
+import { html, SVGTemplateResult, TemplateResult, CSSResult, PropertyValueMap } from 'lit';
 import { property } from 'lit/decorators.js';
-import AnypointInputElement from './AnypointInputElement.js';
+import AnypointInputElement from './input/AnypointInputElement.js';
 import elementStyles from '../styles/AnypointChipInput.js';
 import '../define/anypoint-autocomplete.js';
 import '../define/anypoint-chip.js';
@@ -35,8 +35,7 @@ export default class AnypointChipInputElement extends AnypointInputElement {
   /**
    * List of allowed chips labels. Character case does not matter.
    */
-  @property({ type: Array })
-  allowed?: string[] = [];
+  @property({ type: Array }) allowed?: string[] = [];
 
   _chips?: ChipItem[];
   
@@ -72,33 +71,6 @@ export default class AnypointChipInputElement extends AnypointInputElement {
         value: this.chipsValue
       }
     }));
-  }
-
-  _value: any;
-
-  get value(): any {
-    return this._value;
-  }
-
-  set value(value: any) {
-    const oldValue = this._value;
-    if (oldValue === value) {
-      return;
-    }
-    // just in case if someone mixed chipsValue with value.
-    // Web standards suggest that the elements should not throw errors in
-    // such situation but rather handle it quietly.
-    if (Array.isArray(value)) {
-      value = '';
-    }
-    this._value = value;
-    this.dispatchEvent(new CustomEvent('valuechange', {
-      composed: true,
-      detail: {
-        value
-      }
-    }));
-    this.requestUpdate('value', oldValue);
   }
 
   _source?: ChipSuggestion[] | string[];
@@ -200,19 +172,17 @@ export default class AnypointChipInputElement extends AnypointInputElement {
     this.requestUpdate('chipRemoveIcon', old);
   }
 
-  constructor() {
-    super();
-    this._keydownHandler = this._keydownHandler.bind(this);
+  protected willUpdate(cp: PropertyValueMap<any> | Map<PropertyKey, unknown>): void {
+    super.willUpdate(cp);
+    if (cp.has('value')) {
+      this._ensureStringValue();
+    }
   }
 
-  connectedCallback(): void {
-    super.connectedCallback();
-    this.addEventListener('keydown', this._keydownHandler);
-  }
-
-  disconnectedCallback(): void {
-    super.disconnectedCallback();
-    this.removeEventListener('keydown', this._keydownHandler);
+  protected _ensureStringValue(): void {
+    if (Array.isArray(this.value)) {
+      this.value = '';
+    }
   }
 
   /**
@@ -361,7 +331,7 @@ export default class AnypointChipInputElement extends AnypointInputElement {
     chips.splice(index, 1);
     this.chips = Array.from(chips);
     if (chips.length === 0) {
-      this.validate();
+      this.checkValidity();
     }
   }
 
@@ -373,11 +343,12 @@ export default class AnypointChipInputElement extends AnypointInputElement {
       return true;
     }
     const hasChips = this.chips && this.chips.length;
+    
     if (this.required && !hasChips) {
       this.invalid = true;
       return false;
     }
-    return this.validate();
+    return super._getValidity();
   }
 
   /**
@@ -393,6 +364,7 @@ export default class AnypointChipInputElement extends AnypointInputElement {
   }
 
   _keydownHandler(e: KeyboardEvent): void {
+    super._keydownHandler(e);
     if (e.code === 'Enter') {
       this._enterDown(e);
     } else if (e.code === 'Backspace') {
@@ -403,7 +375,7 @@ export default class AnypointChipInputElement extends AnypointInputElement {
   _enterDown(e: KeyboardEvent): void {
     e.preventDefault();
     e.stopPropagation();
-    if (!this.validate()) {
+    if (!this.checkValidity()) {
       return;
     }
     const { value } = this;
@@ -463,9 +435,9 @@ export default class AnypointChipInputElement extends AnypointInputElement {
     this.value = '';
   }
 
-  _focusBlurHandler(e: FocusEvent): void {
-    super._focusBlurHandler(e);
-    if (e.type === 'blur' && this.validate()) {
+  protected _blurHandler(): void {
+    super._blurHandler();
+    if (this.checkValidity()) {
       this._tryBlurHandler();
     }
   }
@@ -499,7 +471,7 @@ export default class AnypointChipInputElement extends AnypointInputElement {
       return '';
     }
     return html`<anypoint-autocomplete
-      .target="${this.inputElement}"
+      .target="${this.inputElement as HTMLInputElement | null}"
       .source="${this.source}"
       ?anypoint="${this.anypoint}"
       noOverlap

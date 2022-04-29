@@ -12,9 +12,6 @@ import '../src/define/anypoint-button.js';
 import '../src/define/anypoint-input.js';
 import '../src/define/anypoint-textarea.js';
 import '../src/define/anypoint-masked-input.js';
-import './minimum-maximum-length.js';
-import './number-required.js';
-import './uppercase-required.js';
 import { demoProperty } from './lib/decorators.js';
 import { SupportedInputTypes } from '../src/types.js';
 
@@ -610,27 +607,6 @@ class ComponentDemo extends DemoPage {
         infoMessage="Prevents non-letter characters"
       >
         <label slot="label">Prevent invalid input</label>
-      </anypoint-input>
-
-      <h3>Custom validators</h3>
-      <p>
-        Anypoint web components offers <code>ValidatorMixin</code> that allows to define
-        a custom element that validates an input field. This allows to reuse validation
-        logic across different parts of the application.
-      </p>
-
-      <minimum-maximum-length></minimum-maximum-length>
-      <number-required></number-required>
-      <uppercase-required></uppercase-required>
-
-      <anypoint-input
-        title="Custom validation is enabled"
-        type="text"
-        autoValidate
-        validator="minimum-maximum-length number-required uppercase-required"
-        infoMessage="Try to create a password"
-      >
-        <label slot="label">Custom validation</label>
       </anypoint-input>
     </section>`;
   }

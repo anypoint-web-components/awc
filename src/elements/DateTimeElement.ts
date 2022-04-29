@@ -43,14 +43,6 @@ export type DateTimeTextNumberOptions = DateTimeTextOptions | DateTimeNumberOpti
  *
  * The element provides accessibility by using the `time` element and setting
  * the `datetime` attribute on it.
- *
- * ### Styling
- *
- * `<date-time>` provides the following custom properties and mixins for styling:
- *
- * Custom property | Description | Default
- * ----------------|-------------|----------
- * `--date-time` | Mixin applied to the element | `{}`
  */
 export default class DateTimeElement extends HTMLElement {
   static get observedAttributes(): string[] {

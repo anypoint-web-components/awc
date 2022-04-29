@@ -10,7 +10,7 @@ import '../src/define/anypoint-checkbox.js';
 import '../src/define/anypoint-button.js';
 import '../src/define/anypoint-icon-button.js';
 import { demoProperty } from './lib/decorators.js';
-import { EmphasisValue } from '../src/elements/AnypointButtonBase.js';
+import { EmphasisValue } from '../src/elements/button/AnypointButtonBase.js';
 
 class ComponentDemo extends DemoPage {
   @demoProperty()

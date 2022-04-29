@@ -1,11 +1,11 @@
 /* eslint-disable lit-a11y/click-events-have-key-events */
-import { html, TemplateResult, CSSResult } from 'lit';
+import { html, TemplateResult, CSSResult, PropertyValueMap } from 'lit';
 import { property } from 'lit/decorators.js';
 import { classMap } from 'lit/directives/class-map.js';
-import AnypointInputElement from './AnypointInputElement.js';
+import AnypointInputElement from './input/AnypointInputElement.js';
 import { arrowDown } from '../resources/Icons.js';
 import elementStyles from '../styles/InputComboboxStyles.js';
-import { VerticalAlign, HorizontalAlign } from '../mixins/FitMixin.js';
+import { VerticalAlign, HorizontalAlign } from './overlay/FitElement.js';
 import '../define/anypoint-dropdown.js';
 import { IAnimationConfig, DefaultListOpenAnimation, DefaultListCloseAnimation } from '../lib/Animations.js';
 import { retarget, retargetHandler } from '../lib/Events.js';
@@ -194,8 +194,8 @@ export default class AnypointInputComboboxElement extends AnypointInputElement {
     this.removeEventListener('keydown', this[keydownHandler]);
   }
 
-  firstUpdated(): void {
-    super.firstUpdated();
+  protected firstUpdated(cp: PropertyValueMap<any> | Map<PropertyKey, unknown>): void {
+    super.firstUpdated(cp);
     // const ce = this.contentElement;
     // if (ce) {
     //   ce.setAttribute('aria-expanded', String(this.opened));

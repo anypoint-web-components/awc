@@ -93,9 +93,10 @@ describe('AnypointSelector', () => {
       assert.equal(s1.selector.items.length, 4);
     });
 
-    it('activate event', () => {
+    it('activate event', async () => {
       const item = s1.querySelector('#item2') as HTMLElement;
       item.dispatchEvent(new CustomEvent('click', { bubbles: true }));
+      await nextFrame();
       // check selected class
       assert.isTrue(item.classList.contains('selected'));
     });
@@ -139,9 +140,10 @@ describe('AnypointSelector', () => {
       assert.equal(s2.selector.items.length, 4);
     });
 
-    it('activate event', () => {
+    it('activate event', async () => {
       const item = s2.querySelector('#item2') as HTMLElement;
       item.dispatchEvent(new CustomEvent('click', { bubbles: true }));
+      await nextFrame();
       // check selected class
       assert.isTrue(item.classList.contains('selected'));
     });

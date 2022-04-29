@@ -61,6 +61,7 @@ describe('AnypointListbox', () => {
     it('has selection class name when selected', async () => {
       const element = await basicFixture();
       element.select(1);
+      await nextFrame();
       const node = element.selectedItem!;
       assert.ok(node, 'has selected node');
       assert.isTrue(node.classList.contains('selected'), 'has selected class');
@@ -78,10 +79,11 @@ describe('AnypointListbox', () => {
       element = await basicFixture();
     });
 
-    it('calls _setActiveDescendant() when has selection', () => {
+    it('calls _setActiveDescendant() when has selection', async () => {
       element.selected = 1;
       const spy = sinon.spy(element, '_setActiveDescendant');
       element._initSelection();
+      await nextFrame();
       const node = element.querySelectorAll('div')[1];
       assert.equal(spy.args[0][0], node);
     });
@@ -171,6 +173,7 @@ describe('AnypointListbox', () => {
     it('sets aria-activedescendant when selecting an item', async () => {
       const element = await basicFixture();
       element.select(2);
+      await nextFrame();
       const node = element.selectedItem!;
       const des = element.getAttribute('aria-activedescendant');
       assert.ok(des, 'aria-activedescendant is set');
@@ -182,6 +185,7 @@ describe('AnypointListbox', () => {
       element.select(2);
       await nextFrame();
       element.selected = -1;
+      await nextFrame();
       const des = element.getAttribute('aria-activedescendant');
       assert.equal(des, '');
     });

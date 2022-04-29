@@ -14,6 +14,7 @@ describe('<anypoint-combobox>', () => {
 
     beforeEach(async () => {
       element = await sourceFixture(suggestions);
+      await aTimeout(1);
     });
 
     it('closes the autocomplete on activate event', async () => {
@@ -22,6 +23,7 @@ describe('<anypoint-combobox>', () => {
       await aTimeout(0);
       const item = node.querySelector('anypoint-item') as HTMLElement;
       item.click();
+      await nextFrame();
       assert.isFalse(node.opened);
     });
   });

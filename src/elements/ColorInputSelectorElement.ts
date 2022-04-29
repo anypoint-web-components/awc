@@ -1,7 +1,7 @@
 import { html, LitElement, TemplateResult, CSSResult } from 'lit';
 import { property } from 'lit/decorators.js';
 import elementStyles from '../styles/ColorInputSelectorElement.styles.js';
-import AnypointCheckboxElement from './AnypointCheckboxElement.js';
+import AnypointCheckboxElement from './checkbox/AnypointCheckboxElement.js';
 import ColorSelectorElement from './ColorSelectorElement.js';
 import '../define/anypoint-checkbox.js';
 import '../define/color-selector.js';

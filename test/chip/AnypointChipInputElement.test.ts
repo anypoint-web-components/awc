@@ -401,28 +401,28 @@ describe('AnypointChipInputElement', () => {
   });
 
   describe('validate()', () => {
-    it('Returns true when no chips', async () => {
+    it('returns true when no chips', async () => {
       const element = await basicFixture();
       await nextFrame();
-      const result = element.validate();
+      const result = element.checkValidity();
       assert.isTrue(result);
     });
 
-    it('Returns false when no chips and required', async () => {
+    it('returns false when no chips and required', async () => {
       const element = await basicRequiredFixture();
-      element.value = ['test'];
+      element.chipsValue = ['test'];
       await nextFrame();
       element._removeChip(0);
-      const result = element.validate();
+      const result = element.checkValidity();
       assert.isFalse(result);
     });
 
-    it('Returns false when pattern do not match', async () => {
+    it('returns false when pattern do not match', async () => {
       const element = await patternFixture();
       element.chipsValue = ['test'];
       element.value = 'test value';
       await nextFrame();
-      const result = element.validate();
+      const result = element.checkValidity();
       assert.isFalse(result);
     });
   });

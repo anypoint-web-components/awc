@@ -1,9 +1,9 @@
 /* eslint-disable wc/no-invalid-element-name */
-import { LitElement, html, css, TemplateResult, CSSResult } from 'lit';
-import { ResizableMixin } from '../src/index.js';
+import { html, css, TemplateResult, CSSResult } from 'lit';
+import ResizableElement from '../src/elements/overlay/ResizableElement.js';
 import './x-puck.js';
 
-class XApp extends ResizableMixin(LitElement) {
+class XApp extends ResizableElement {
   static get styles(): CSSResult {
     return css`
     :host {

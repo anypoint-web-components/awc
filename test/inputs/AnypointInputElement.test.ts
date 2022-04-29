@@ -8,59 +8,37 @@ describe('<anypoint-input>', () => {
   async function basicFixture(): Promise<AnypointInputElement> {
     return fixture(html`<anypoint-input></anypoint-input>`);
   }
-  async function invalidMessageFixture(): Promise<AnypointInputElement> {
-    return fixture(html`<anypoint-input invalidMessage="test"></anypoint-input>`);
-  }
+  
   async function autoValidateFixture(): Promise<AnypointInputElement> {
     return fixture(html`<anypoint-input
       autoValidate
       required
       invalidMessage="test"></anypoint-input>`);
   }
-  async function labeledFixture(): Promise<AnypointInputElement> {
-    return fixture(html`<anypoint-input>
-      <label slot="label">Hello!</label>
-      </anypoint-input>`);
-  }
-  async function labeledIdFixture(): Promise<AnypointInputElement> {
-    return fixture(html`<anypoint-input>
-      <label slot="label" id="testLabel">Hello!</label>
-      </anypoint-input>`);
-  }
+  
   async function patternFixture(): Promise<AnypointInputElement> {
-    return fixture(html`<anypoint-input pattern="[a-z]*">
-      </anypoint-input>`);
+    return fixture(html`<anypoint-input pattern="[a-z]*"></anypoint-input>`);
   }
-  async function prefixFixture(): Promise<AnypointInputElement> {
-    return fixture(html`<anypoint-input>
-      <span slot="prefix">$</span>
-    </anypoint-input>`);
-  }
+
   async function noLabelFloatFixture(): Promise<AnypointInputElement> {
-    return fixture(html`<anypoint-input nolabelfloat>
-      <label slot="label">Label</label>
-    </anypoint-input>`);
+    return fixture(html`<anypoint-input nolabelfloat label="Label"></anypoint-input>`);
   }
+
   async function readOnlyFixture(): Promise<AnypointInputElement> {
-    return fixture(html`<anypoint-input readonly>
-      <label slot="label">Label</label>
-    </anypoint-input>`);
-  }
-  async function searchFixture(): Promise<AnypointInputElement> {
-    return fixture(html`<anypoint-input type="search">
-      <label slot="label">Label</label>
-    </anypoint-input>`);
+    return fixture(html`<anypoint-input readonly label="Label"></anypoint-input>`);
   }
 
   async function zeroFixture(): Promise<AnypointInputElement> {
-    return fixture(html`<anypoint-input type="number" value="0">
-      <label slot="label">Label</label>
-    </anypoint-input>`);
+    return fixture(html`<anypoint-input type="number" value="0" label="Label"></anypoint-input>`);
   }
 
   async function numberFixture(): Promise<AnypointInputElement> {
-    return fixture(html`<anypoint-input type="number" value="10">
-      <label slot="label">Label</label>
+    return fixture(html`<anypoint-input type="number" value="10" label="Label"></anypoint-input>`);
+  }
+
+  async function legacyLabelFixture(): Promise<AnypointInputElement> {
+    return fixture(html`<anypoint-input>
+      <label slot="label">Legacy label </label>>
     </anypoint-input>`);
   }
 
@@ -84,48 +62,12 @@ describe('<anypoint-input>', () => {
       assert.equal(input.value, 'test');
     });
 
-    it('value change dispatches value-change event', async () => {
-      const spy = sinon.spy();
-      element.addEventListener('valuechange', spy);
-      element.value = 'test';
-      assert.equal(spy.args[0][0].detail.value, 'test');
-    });
-
     it('setting the same value ignores setter', async () => {
       element.value = 'test';
       const spy = sinon.spy();
       element.addEventListener('valuechange', spy);
       element.value = 'test';
       assert.isFalse(spy.called);
-    });
-
-    const states: any[] = [
-      {
-        valid: false,
-        message: 'test',
-        validator: ''
-      },
-    ];
-
-    it('value change dispatches validationstateschange event', async () => {
-      const spy = sinon.spy();
-      element.addEventListener('validationstateschange', spy);
-      element.validationStates = states;
-      assert.deepEqual(spy.args[0][0].detail.value, states);
-    });
-
-    it('setting the same value ignores setter', async () => {
-      element.validationStates = states;
-      const spy = sinon.spy();
-      element.addEventListener('validationstateschange', spy);
-      element.validationStates = states;
-      assert.isFalse(spy.called);
-    });
-
-    it('sets hasValidationMessage when validationStates changes', () => {
-      element.invalid = true;
-      element.validationStates = states;
-      assert.isTrue(element.hasValidationMessage);
     });
 
     it('returns regexp for _patternRegExp when allowedPattern', () => {
@@ -148,119 +90,6 @@ describe('<anypoint-input>', () => {
     it('inputElement returns the input', () => {
       const result = element.inputElement;
       assert.equal(result.localName, 'input');
-    });
-  });
-
-  describe('_prefixed getter', () => {
-    it('returns null when no prefix', async () => {
-      const element = await basicFixture();
-      assert.equal(element._prefixed, null);
-    });
-
-    it('returns element when prefix', async () => {
-      const element = await prefixFixture();
-      assert.ok(element._prefixed);
-    });
-  });
-
-  describe('_labelClass getter', () => {
-    it('returns default value', async () => {
-      const element = await basicFixture();
-      assert.equal(element._labelClass, 'label resting');
-    });
-
-    it('returns floating value when value', async () => {
-      const element = await basicFixture();
-      element.value = 'test';
-      assert.equal(element._labelClass, 'label floating');
-    });
-
-    it('returns floating value when placeholder', async () => {
-      const element = await basicFixture();
-      element.placeholder = 'test';
-      assert.equal(element._labelClass, 'label floating');
-    });
-
-    it('returns floating value when focused', async () => {
-      const element = await basicFixture();
-      MockInteractions.focus(element);
-      assert.equal(element._labelClass, 'label floating');
-    });
-
-    it('returns with-prefix when has prefix widget', async () => {
-      const element = await prefixFixture();
-      assert.equal(element._labelClass, 'label with-prefix resting');
-    });
-
-    [
-      'date',
-      'color',
-      'datetime-local',
-      'file',
-      'month',
-      'time',
-      'week',
-    ].forEach(type => {
-      it(`returns floating value when type = ${type}`, async () => {
-        const element = await basicFixture();
-        // @ts-ignore
-        element.type = type;
-        assert.equal(element._labelClass, 'label floating');
-      });
-
-      it(`returns with-prefix value when type = ${type}`, async () => {
-        const element = await prefixFixture();
-        // @ts-ignore
-        element.type = type;
-        assert.equal(element._labelClass, 'label with-prefix floating');
-      });
-    });
-  });
-
-  describe('_infoAddonClass getter', () => {
-    let element: AnypointInputElement;
-    beforeEach(async () => {
-      element = await basicFixture();
-    });
-
-    it('returns default class', () => {
-      assert.equal(element._infoAddonClass, 'info');
-    });
-
-    it('returns default class when not invalid', () => {
-      element.invalidMessage = 'test';
-      assert.equal(element._infoAddonClass, 'info');
-    });
-
-    it('returns hidden class when invalid', () => {
-      element.invalidMessage = 'test';
-      element.invalid = true;
-      assert.equal(element._infoAddonClass, 'info label-hidden');
-    });
-  });
-
-  describe('_errorAddonClass getter', () => {
-    let element: AnypointInputElement;
-    beforeEach(async () => {
-      element = await basicFixture();
-    });
-
-    it('returns default class', () => {
-      assert.equal(element._errorAddonClass, 'invalid label-hidden');
-    });
-
-    it('returns info-offset class when with info message', () => {
-      element.infoMessage = 'test';
-      assert.equal(
-        element._errorAddonClass,
-        'invalid label-hidden info-offset'
-      );
-    });
-
-    it('returns visible class when invalid', () => {
-      element.infoMessage = 'test';
-      element.invalid = true;
-      assert.equal(element._errorAddonClass, 'invalid info-offset');
     });
   });
 
@@ -315,65 +144,23 @@ describe('<anypoint-input>', () => {
       element = await basicFixture();
     });
 
-    it('sets invalid state', () => {
-      element._invalidChanged(true);
+    it('sets invalid state', async () => {
+      element.invalid = true;
+      await nextFrame();
       // This is done in parent class.
       assert.equal(element.getAttribute('aria-invalid'), 'true');
     });
-
-    it('sets _hasValidationMessage when invalidMessage', () => {
-      element.invalidMessage = 'test';
-      element._invalidChanged(true);
-      assert.isTrue(element.hasValidationMessage);
-    });
-
-    it('sets _hasValidationMessage when no invalidMessage', () => {
-      element._invalidChanged(true);
-      assert.isFalse(element.hasValidationMessage);
-    });
-
-    it('calls _ensureInvalidAlertSate()', () => {
-      const spy = sinon.spy(element, '_ensureInvalidAlertSate');
-      element._invalidChanged(true);
-      assert.isTrue(spy.args[0][0]);
-    });
   });
 
-  describe('_ensureInvalidAlertSate()', () => {
-    let element: AnypointInputElement;
-    beforeEach(async () => {
-      element = await invalidMessageFixture();
-    });
-
-    it('sets role attribute on invalid label', () => {
-      element._ensureInvalidAlertSate(true);
-      const node = element.shadowRoot!.querySelector('p.invalid')!;
-      assert.equal(node.getAttribute('role'), 'alert');
-    });
-
-    it('removes role attribute from invalid label', () => {
-      const node = element.shadowRoot!.querySelector('p.invalid')!;
-      node.setAttribute('role', 'alert');
-      element._ensureInvalidAlertSate(false);
-      assert.isFalse(node.hasAttribute('role'));
-    });
-
-    it('removes role attribute from invalid label after timeout', async () => {
-      element._ensureInvalidAlertSate(true);
-      await aTimeout(1001);
-      const node = element.shadowRoot!.querySelector('p.invalid')!;
-      assert.isFalse(node.hasAttribute('role'));
-    });
-  });
-
-  describe('_focusBlurHandler()', () => {
+  describe('focus and blur', () => {
     let element: AnypointInputElement;
     beforeEach(async () => {
       element = await autoValidateFixture();
     });
 
-    it('focuses on the input', () => {
+    it('focuses on the input', async () => {
       MockInteractions.focus(element);
+      await nextFrame();
       assert.equal(document.activeElement, element);
     });
 
@@ -386,65 +173,60 @@ describe('<anypoint-input>', () => {
       assert.equal(input.selectionEnd, 4, 'selectionEnd is preserved');
     });
 
-    // I am too tired to fight with Safari.
-    // It fails on Safari 12.1.1.
-    it.skip('ignores other than text inputs', async () => {
-      element.type = 'number';
-      (element.inputElement as HTMLInputElement).type = 'number';
-      element.value = 22;
-      await nextFrame();
-      MockInteractions.focus(element);
-      const input = element.inputElement;
-      // Chrome and FF returns null (as spec says) but Safari and Edge
-      // returns 0...
-      const start = input.selectionStart;
-      assert.notOk(start, `input.selectionStart is not set, but has ${start}`);
-      const end = input.selectionEnd;
-      assert.notOk(end, `input.selectionEnd is not set, but has ${start}`);
-    });
-
     it('auto validates on blur', async () => {
       MockInteractions.focus(element);
       await nextFrame();
-      const spy = sinon.spy(element, 'validate');
+      const spy = sinon.spy(element, 'checkValidity');
       MockInteractions.blur(element);
       assert.isTrue(spy.called);
     });
   });
 
-  describe('_onKeydown()', () => {
+  describe('_keydownHandler()', () => {
     let element: AnypointInputElement;
     beforeEach(async () => {
       element = await autoValidateFixture();
     });
 
-    it('calls _onShiftTabDown()', async () => {
-      const spy = sinon.spy(element, '_onShiftTabDown');
-      MockInteractions.keyDownOn(element, 9, ['shift'], 'Tab');
-      assert.isTrue(spy.called);
+    it('sets the _shiftTabPressed', async () => {
+      const e = new KeyboardEvent('keydown', {
+        key: 'Tab',
+        shiftKey: true,
+      });
+      element.dispatchEvent(e);
+      assert.isTrue((element as any)._shiftTabPressed);
     });
 
     it('prevents invalid input', async () => {
       element.preventInvalidInput = true;
       element.allowedPattern = '[a-z]';
-      const spy = sinon.spy(element, '_announceInvalidCharacter');
-      MockInteractions.keyDownOn(element, 49, [], '1');
-      assert.isTrue(spy.called);
+      const e = new KeyboardEvent('keydown', {
+        key: '1',
+        cancelable: true,
+      });
+      element.dispatchEvent(e);
+      assert.isTrue(e.defaultPrevented);
     });
 
     it('ignores preventing when no pattern', async () => {
       element.preventInvalidInput = true;
-      const spy = sinon.spy(element, '_announceInvalidCharacter');
-      MockInteractions.keyDownOn(element, 49, [], '1');
-      assert.isFalse(spy.called);
+      const e = new KeyboardEvent('keydown', {
+        key: '1',
+        cancelable: true,
+      });
+      element.dispatchEvent(e);
+      assert.isFalse(e.defaultPrevented);
     });
 
     it('ignores preventing when no preventInvalidInput', async () => {
       element.preventInvalidInput = false;
       element.allowedPattern = '[a-z]';
-      const spy = sinon.spy(element, '_announceInvalidCharacter');
-      MockInteractions.keyDownOn(element, 49, [], '1');
-      assert.isFalse(spy.called);
+      const e = new KeyboardEvent('keydown', {
+        key: '1',
+        cancelable: true,
+      });
+      element.dispatchEvent(e);
+      assert.isFalse(e.defaultPrevented);
     });
 
     it('ignores preventing when number type', async () => {
@@ -452,56 +234,76 @@ describe('<anypoint-input>', () => {
       element.preventInvalidInput = true;
       element.type = 'number';
       await nextFrame();
-      const spy = sinon.spy(element, '_announceInvalidCharacter');
-      MockInteractions.keyDownOn(element, 49, [], '1');
-      assert.isFalse(spy.called);
+      const e = new KeyboardEvent('keydown', {
+        key: '1',
+        cancelable: true,
+      });
+      element.dispatchEvent(e);
+      assert.isFalse(e.defaultPrevented);
     });
 
-    it('ignores preventing when number type', async () => {
+    it('ignores preventing when file type', async () => {
       element.allowedPattern = '[a-z]';
       element.preventInvalidInput = true;
       element.type = 'file';
       await nextFrame();
-      const spy = sinon.spy(element, '_announceInvalidCharacter');
-      MockInteractions.keyDownOn(element, 49, [], '1');
-      assert.isFalse(spy.called);
+      const e = new KeyboardEvent('keydown', {
+        key: '1',
+        cancelable: true,
+      });
+      element.dispatchEvent(e);
+      assert.isFalse(e.defaultPrevented);
     });
 
     it('ignores preventing when meta key', async () => {
       element.allowedPattern = '[a-z]';
       element.preventInvalidInput = true;
-      const spy = sinon.spy(element, '_announceInvalidCharacter');
-      MockInteractions.keyDownOn(element, 49, ['meta'], '1');
-      assert.isFalse(spy.called);
+      const e = new KeyboardEvent('keydown', {
+        key: '1',
+        metaKey: true,
+        cancelable: true,
+      });
+      element.dispatchEvent(e);
+      assert.isFalse(e.defaultPrevented);
     });
 
     it('ignores preventing when ctrl key', async () => {
       element.allowedPattern = '[a-z]';
       element.preventInvalidInput = true;
-      const spy = sinon.spy(element, '_announceInvalidCharacter');
-      MockInteractions.keyDownOn(element, 49, ['ctrl'], '1');
-      assert.isFalse(spy.called);
+      const e = new KeyboardEvent('keydown', {
+        key: '1',
+        ctrlKey: true,
+        cancelable: true,
+      });
+      element.dispatchEvent(e);
+      assert.isFalse(e.defaultPrevented);
     });
 
     it('ignores preventing when Backspace key', async () => {
       element.allowedPattern = '[a-z]';
       element.preventInvalidInput = true;
-      const spy = sinon.spy(element, '_announceInvalidCharacter');
-      MockInteractions.keyDownOn(element, 8, [], 'Backspace');
-      assert.isFalse(spy.called);
+      const e = new KeyboardEvent('keydown', {
+        key: 'Backspace',
+        cancelable: true,
+      });
+      element.dispatchEvent(e);
+      assert.isFalse(e.defaultPrevented);
     });
 
     it('ignores preventing when allowed key', async () => {
       element.allowedPattern = '[a-z]';
       element.preventInvalidInput = true;
-      const spy = sinon.spy(element, '_announceInvalidCharacter');
-      MockInteractions.keyDownOn(element, 65, [], 'a');
-      assert.isFalse(spy.called);
+      const e = new KeyboardEvent('keydown', {
+        key: 'a',
+        cancelable: true,
+      });
+      element.dispatchEvent(e);
+      assert.isFalse(e.defaultPrevented);
     });
   });
 
   describe('_onShiftTabDown()', () => {
-    let element: AnypointInputElement;
+    let element: any;
     let e: KeyboardEvent;
     beforeEach(async () => {
       element = await basicFixture();
@@ -509,21 +311,9 @@ describe('<anypoint-input>', () => {
       element.dispatchEvent(e);
     });
 
-    it('sets tabIndex', () => {
-      element._onShiftTabDown(e);
-      assert.equal(element.getAttribute('tabindex'), '-1');
-    });
-
     it('sets _shiftTabPressed', () => {
       element._onShiftTabDown(e);
       assert.isTrue(element._shiftTabPressed);
-    });
-
-    it('resets tabIndex', async () => {
-      element.setAttribute('tabindex', '1');
-      element._onShiftTabDown(e);
-      await aTimeout(1);
-      assert.equal(element.getAttribute('tabindex'), '1');
     });
 
     it('resets _shiftTabPressed', async () => {
@@ -539,117 +329,73 @@ describe('<anypoint-input>', () => {
       element = await basicFixture();
     });
 
-    it('calls validate when true', () => {
-      const spy = sinon.spy(element, 'validate');
+    it('calls checkValidity when true', async () => {
+      const spy = sinon.spy(element, 'checkValidity');
       element.autoValidate = true;
+      await nextFrame();
       assert.isTrue(spy.called);
     });
 
-    it('ignores validate when false', () => {
+    it('ignores checkValidity when false', async () => {
       element.autoValidate = true;
-      const spy = sinon.spy(element, 'validate');
+      const spy = sinon.spy(element, 'checkValidity');
       element.autoValidate = false;
+      await nextFrame();
       assert.isFalse(spy.called);
     });
   });
 
-  describe('updateValueAndPreserveCaret()', () => {
+  describe('Events retargeting', () => {
     let element: AnypointInputElement;
     beforeEach(async () => {
       element = await basicFixture();
     });
 
-    it('preserves carret position', () => {
-      const input = element.inputElement;
-      input.value = 'nananana';
-      input.selectionStart = 2;
-      input.selectionEnd = 2;
-      element.updateValueAndPreserveCaret('nanananabatman');
-      assert.equal(input.selectionStart, 2, 'selectionStart is preserved');
-      assert.equal(input.selectionEnd, 2, 'selectionEnd is preserved');
-    });
-  });
-
-  describe('_updateAriaLabelledBy()', () => {
-    it('sets id the label when missing', async () => {
-      const element = await labeledFixture();
-      await nextFrame();
-      const slot = element.shadowRoot!.querySelector('slot[name="label"]') as HTMLSlotElement;
-      const label = slot.assignedNodes()[0] as HTMLElement;
-      assert.match(label.id, /anypoint-input-label-\d+/);
-    });
-
-    it('respects existing id', async () => {
-      const element = await labeledIdFixture();
-      await nextFrame();
-      const slot = element.shadowRoot!.querySelector('slot[name="label"]') as HTMLSlotElement;
-      const label = slot.assignedNodes()[0] as HTMLElement;
-      assert.equal(label.id, 'testLabel');
-    });
-
-    it('sets _ariaLabelledBy', async () => {
-      const element = await labeledIdFixture();
-      await nextFrame();
-      assert.equal(element._ariaLabelledBy, 'testLabel');
-    });
-
-    it('sets _ariaLabelledBy when no label', async () => {
-      const element = await basicFixture();
-      await nextFrame();
-      assert.equal(element._ariaLabelledBy, '');
-    });
-
-    it('sets aria-labelledby on the input', async () => {
-      const element = await labeledIdFixture();
-      await nextFrame();
-      const input = element.inputElement;
-      assert.equal(input.getAttribute('aria-labelledby'), 'testLabel');
-    });
-  });
-
-  describe('_onChange()', () => {
-    let element: AnypointInputElement;
-    beforeEach(async () => {
-      element = await basicFixture();
-    });
-
-    it('re-targets change event', () => {
+    it('retargets the change event', () => {
       const input = element.inputElement;
       const spy = sinon.spy();
       element.addEventListener('change', spy);
-      input.dispatchEvent(new CustomEvent('change', {}));
+      input.dispatchEvent(new Event('change'));
+      assert.isTrue(spy.called);
+    });
+
+    it('retargets the search event', () => {
+      const input = element.inputElement;
+      const spy = sinon.spy();
+      element.addEventListener('search', spy);
+      input.dispatchEvent(new Event('search'));
       assert.isTrue(spy.called);
     });
   });
 
   describe('_checkPatternValidity()', () => {
     it('returns true when no argument', async () => {
-      const element = await basicFixture();
+      const element = await basicFixture() as any;
       const result = element._checkPatternValidity();
       assert.isTrue(result);
     });
 
     it('returns true when no pattern', async () => {
-      const element = await basicFixture();
+      const element = await basicFixture() as any;
       const result = element._checkPatternValidity('test');
       assert.isTrue(result);
     });
 
     it('returns true when pattern matches', async () => {
-      const element = await patternFixture();
+      const element = await patternFixture() as any;
       const result = element._checkPatternValidity('test');
       assert.isTrue(result);
     });
 
     it('returns false when pattern does not match', async () => {
-      const element = await patternFixture();
+      const element = await patternFixture() as any;
       const result = element._checkPatternValidity('c4e');
       assert.isTrue(result);
     });
   });
 
-  describe('_onInput()', () => {
-    let element: AnypointInputElement;
+  describe('_inputHandler()', () => {
+    let element: any;
     let target: HTMLInputElement;
     let e: Event;
     beforeEach(async () => {
@@ -663,19 +409,19 @@ describe('<anypoint-input>', () => {
 
     it('sets _patternAlreadyChecked', () => {
       element._patternAlreadyChecked = true;
-      element._onInput(e);
+      element._inputHandler(e);
       assert.isFalse(element._patternAlreadyChecked);
     });
 
     it('sets _previousValidInput', () => {
-      element._onInput(e);
+      element._inputHandler(e);
       assert.equal(element._previousValidInput, 'test');
     });
 
-    it('calls validate() when autovalidate is on', async () => {
+    it('calls checkValidity() when auto validate is on', async () => {
       element.autoValidate = true;
-      const spy = sinon.spy(element, 'validate');
-      element._onInput(e);
+      const spy = sinon.spy(element, 'checkValidity');
+      element._inputHandler(e);
       assert.isTrue(spy.called);
     });
 
@@ -683,7 +429,7 @@ describe('<anypoint-input>', () => {
       element.preventInvalidInput = true;
       element.allowedPattern = '[a-z]';
       const spy = sinon.spy(element, '_checkPatternValidity');
-      element._onInput(e);
+      element._inputHandler(e);
       assert.isTrue(spy.called);
     });
 
@@ -692,7 +438,7 @@ describe('<anypoint-input>', () => {
       element.allowedPattern = '[a-z]';
       element._patternAlreadyChecked = true;
       const spy = sinon.spy(element, '_checkPatternValidity');
-      element._onInput(e);
+      element._inputHandler(e);
       assert.isFalse(spy.called);
     });
 
@@ -712,43 +458,27 @@ describe('<anypoint-input>', () => {
       element.preventInvalidInput = true;
       element.allowedPattern = '[a-z]';
       element._previousValidInput = 'test';
-      element._onInput(e);
+      element._inputHandler(e);
       // no error
     });
   });
 
-  describe('_announceInvalidCharacter()', () => {
-    let element: AnypointInputElement;
-    beforeEach(async () => {
-      element = await basicFixture();
-    });
-
-    it('dispatches announce event', () => {
-      const spy = sinon.spy();
-      element.addEventListener('announce', spy);
-      element._announceInvalidCharacter('test');
-      const e = spy.args[0][0];
-      assert.equal(e.detail.text, 'test');
-      assert.isTrue(e.bubbles);
-    });
-  });
-
   describe('_checkInputValidity()', () => {
-    let element: AnypointInputElement;
+    let element: any;
     beforeEach(async () => {
       element = await basicFixture();
     });
 
     it('returns false when required and no value', () => {
       element.required = true;
-      const result = element._checkInputValidity();
+      const result = element._checkInputValidity(element.inputElement);
       assert.isFalse(result);
     });
 
     it('returns true when file', async () => {
       element.type = 'file';
       await nextFrame();
-      const result = element._checkInputValidity();
+      const result = element._checkInputValidity(element.inputElement);
       assert.isTrue(result);
     });
 
@@ -756,7 +486,7 @@ describe('<anypoint-input>', () => {
       element.value = 'test123';
       element.pattern = '[a-z]';
       await nextFrame();
-      const result = element._checkInputValidity();
+      const result = element._checkInputValidity(element.inputElement);
       assert.isFalse(result);
     });
 
@@ -764,7 +494,7 @@ describe('<anypoint-input>', () => {
       element.value = 'a';
       element.minLength = 10;
       await nextFrame();
-      const result = element._checkInputValidity();
+      const result = element._checkInputValidity(element.inputElement);
       assert.isFalse(result);
     });
 
@@ -772,7 +502,7 @@ describe('<anypoint-input>', () => {
       element.value = 'ab';
       element.maxLength = 1;
       await nextFrame();
-      const result = element._checkInputValidity();
+      const result = element._checkInputValidity(element.inputElement);
       assert.isFalse(result);
     });
 
@@ -781,7 +511,7 @@ describe('<anypoint-input>', () => {
       element.value = 1;
       element.min = 2;
       await nextFrame();
-      const result = element._checkInputValidity();
+      const result = element._checkInputValidity(element.inputElement);
       assert.isFalse(result);
     });
 
@@ -790,7 +520,7 @@ describe('<anypoint-input>', () => {
       element.value = 2;
       element.max = 1;
       await nextFrame();
-      const result = element._checkInputValidity();
+      const result = element._checkInputValidity(element.inputElement);
       assert.isFalse(result);
     });
 
@@ -799,7 +529,7 @@ describe('<anypoint-input>', () => {
       element.value = 'test';
       element.max = 1;
       await nextFrame();
-      const result = element._checkInputValidity();
+      const result = element._checkInputValidity(element.inputElement);
       assert.isFalse(result);
     });
 
@@ -808,7 +538,7 @@ describe('<anypoint-input>', () => {
       element.value = 10.123;
       element.step = '1';
       await nextFrame();
-      const result = element._checkInputValidity();
+      const result = element._checkInputValidity(element.inputElement);
       assert.isFalse(result);
     });
 
@@ -819,7 +549,7 @@ describe('<anypoint-input>', () => {
       element.min = 1;
       element.max = 100;
       await nextFrame();
-      const result = element._checkInputValidity();
+      const result = element._checkInputValidity(element.inputElement);
       assert.isTrue(result);
     });
 
@@ -830,7 +560,7 @@ describe('<anypoint-input>', () => {
       element.minLength = 1;
       element.maxLength = 100;
       await nextFrame();
-      const result = element._checkInputValidity();
+      const result = element._checkInputValidity(element.inputElement);
       assert.isTrue(result);
     });
 
@@ -838,101 +568,8 @@ describe('<anypoint-input>', () => {
       element.type = 'number';
       element.value = 0;
       await nextFrame();
-      const result = element._checkInputValidity();
+      const result = element._checkInputValidity(element.inputElement);
       assert.isTrue(result);
-    });
-  });
-
-  describe('_validationStatesHandler()', () => {
-    let element: AnypointInputElement;
-    let states: any[];
-    beforeEach(async () => {
-      element = await basicFixture();
-      states = [
-        {
-          valid: false,
-          message: 'test 0',
-          validator: '',
-        },
-        {
-          valid: true,
-          message: 'test 1',
-          validator: '',
-        },
-        {
-          valid: false,
-          message: 'test 2',
-          validator: '',
-        },
-      ];
-    });
-
-    function fire(node: EventTarget, value?: any[]): void {
-      const e = new CustomEvent('validationstateschange', {
-        detail: {
-          value,
-        },
-      });
-      node.dispatchEvent(e);
-    }
-
-    it('sets invalid message', () => {
-      fire(element, states);
-      assert.equal(element.invalidMessage, 'test 0. test 2');
-    });
-
-    it('ignores message when no argument', () => {
-      fire(element);
-      assert.isUndefined(element.invalidMessage);
-    });
-
-    it('ignores message when empty', () => {
-      fire(element, []);
-      assert.isUndefined(element.invalidMessage);
-    });
-
-    it('sets empty invalid message', () => {
-      states[0].valid = true;
-      states[2].valid = true;
-      fire(element, states);
-      assert.equal(element.invalidMessage, '');
-    });
-  });
-
-  describe('_autofocusChanged', () => {
-    let element: AnypointInputElement;
-    let input: HTMLInputElement;
-    beforeEach(async () => {
-      element = await basicFixture();
-      input = document.createElement('input')!;
-      input.type = 'text';
-      input.setAttribute('tabindex', '0');
-      document.body.appendChild(input);
-    });
-
-    afterEach(() => {
-      document.body.removeChild(input);
-    });
-
-    it('focuses the element', () => {
-      element.autofocus = true;
-      assert.equal(document.activeElement, element);
-    });
-
-    it('ignores focus when other element is focused', async () => {
-      input.focus();
-      await nextFrame();
-      element.autofocus = true;
-      await nextFrame();
-      assert.equal(document.activeElement, input);
-    });
-
-    it('ignores when disabling', async () => {
-      element.autofocus = true;
-      await nextFrame();
-      input.focus();
-      element.autofocus = false;
-      assert.equal(document.activeElement, input);
     });
   });
 
@@ -993,12 +630,13 @@ describe('<anypoint-input>', () => {
           element = form.querySelector('anypoint-input')!;
         });
 
-        it('set value in forms submission value', () => {
+        it('set value in forms submission value', async () => {
           // @ts-ignore
           if (element._internals && element._internals.form) {
             // @ts-ignore
             const spy = sinon.spy(element._internals, 'setFormValue');
             element.value = 'test';
+            await nextFrame();
             assert.isTrue(spy.called);
           }
         });
@@ -1154,28 +792,11 @@ describe('<anypoint-input>', () => {
     });
   });
 
-  describe('Event re-targeting', () => {
-    it('re-targets search event', async () => {
-      const element = await searchFixture();
-      const spy = sinon.spy();
-      element.addEventListener('search', spy);
-      const input = element.inputElement;
-      input.dispatchEvent(new CustomEvent('search'));
-      assert.isTrue(spy.called);
-    });
-  });
-
   describe('a11y', () => {
     async function a11yBasicFixture(): Promise<AnypointInputElement> {
       const element = await fixture(html`<anypoint-input value="test value">
       <label slot="label">test label</label>
       </anypoint-input>`);
-      await aTimeout(1);
-      return element as AnypointInputElement;
-    }
-
-    async function a11yNoLabelFixture(): Promise<AnypointInputElement> {
-      const element = await fixture(html`<anypoint-input value="test value"></anypoint-input>`);
       await aTimeout(1);
       return element as AnypointInputElement;
     }
@@ -1243,12 +864,6 @@ describe('<anypoint-input>', () => {
       await assert.isAccessible(element);
     });
 
-    it('is not accessible without label', async () => {
-      const element = await a11yNoLabelFixture();
-      await nextFrame();
-      await assert.isNotAccessible(element);
-    });
-
     it('is accessible with a prefix', async () => {
       const element = await a11yPrefixFixture();
       await nextFrame();
@@ -1287,6 +902,7 @@ describe('<anypoint-input>', () => {
     });
 
     it('should render 0 value for integer input', async () => {
+      // @ts-ignore
       element.value = 0;
       element.autoValidate = true;
       // element.dataType = 'input';
@@ -1297,8 +913,7 @@ describe('<anypoint-input>', () => {
       await nextFrame();
 
       const input = element.shadowRoot!.querySelector('.input-element') as HTMLInputElement;
-      // @ts-ignore
-      assert.equal(input.value, 0);
+      assert.equal(input.value, '0', 'the input has the value');
     });
   });
 
@@ -1313,7 +928,14 @@ describe('<anypoint-input>', () => {
     it('floats the label for a zero value', async () => {
       const element = await zeroFixture();
       assert.isTrue(element._isFloating);
-      assert.include(element._labelClass, 'floating');
+    });
+  });
+
+  describe('legacy label slot', () => {
+    it('sets the "label" from the slotted element', async () => {
+      const element = await legacyLabelFixture();
+      await nextFrame();
+      assert.equal(element.label, 'Legacy label');
     });
   });
 });

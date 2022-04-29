@@ -1,5 +1,5 @@
 /* eslint-disable no-plusplus */
-import { fixture, assert, expect, aTimeout, html } from '@open-wc/testing';
+import { fixture, assert, expect, aTimeout, html, nextFrame, oneEvent } from '@open-wc/testing';
 import AnypointSelector from '../../src/elements/AnypointSelectorElement.js';
 import '../../src/define/anypoint-selector.js';
 
@@ -79,16 +79,17 @@ describe('AnypointSelector', () => {
       assert.equal(s2.selectedItem, document.querySelector('#item2') as HTMLElement);
     });
 
-    it('allows assignment to selected', () => {
+    it('allows assignment to selected', async () => {
       // set selected
       s2.selected = 'item4';
+      await nextFrame();
       // check selected class
       assert.isTrue(s2.children[4].classList.contains('selected'));
       // check item
       assert.equal(s2.selectedItem, s2.children[4] as HTMLElement);
     });
 
-    it('fire select when selected is set', () => {
+    it('fire select when selected is set', async () => {
       // setup listener for select event
       let selectedEventCounter = 0;
       s2.addEventListener('select', () => {
@@ -97,6 +98,7 @@ describe('AnypointSelector', () => {
       });
       // set selected
       s2.selected = 'item4';
+      await nextFrame();
       // check select event
       assert.equal(selectedEventCounter, 1);
     });
@@ -123,17 +125,20 @@ describe('AnypointSelector', () => {
         assert.equal(s2.selected, 'item2');
       });
 
-      it('`selectIndex()` selects an item with the given index', () => {
+      it('`selectIndex()` selects an item with the given index', async () => {
         // This selector has attributes `selected` and `attr-for-selected`
         // matching this item.
         assert.equal(s2.selectedItem, s2.items[2]);
         s2.selectIndex(1);
+        await nextFrame();
         assert.equal(s2.selected, 'item1');
         assert.equal(s2.selectedItem, s2.items[1]);
         s2.selectIndex(3);
+        await nextFrame();
         assert.equal(s2.selected, 'item3');
         assert.equal(s2.selectedItem, s2.items[3]);
         s2.selectIndex(4);
+        await nextFrame();
         assert.equal(s2.selected, 'item4');
         assert.equal(s2.selectedItem, s2.items[4]);
       });
@@ -166,19 +171,19 @@ describe('AnypointSelector', () => {
         expect(changeCount).to.be.equal(2);
       });
 
-      it('updates selected item', (done) => {
+      it('updates selected item', async () => {
         s1.selected = 0;
+        await nextFrame();
         let { firstElementChild } = s1;
         expect(firstElementChild).to.be.equal(s1.selectedItem);
         expect(firstElementChild!.classList.contains('selected')).to.be.eql(true);
 
-        s1.addEventListener('childrenchange', () => {
-          firstElementChild = s1.firstElementChild;
-          expect(firstElementChild).to.be.equal(s1.selectedItem);
-          expect(firstElementChild!.classList.contains('selected')).to.be.eql(true);
-          done();
-        });
+        const p = oneEvent(s1, 'childrenchange');
         s1.removeChild(s1.selectedItem!);
+        await p;
+        firstElementChild = s1.firstElementChild;
+        expect(firstElementChild).to.be.equal(s1.selectedItem);
+        expect(firstElementChild!.classList.contains('selected')).to.be.eql(true);
       });
     });
 

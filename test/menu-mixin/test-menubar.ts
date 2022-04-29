@@ -1,7 +1,7 @@
-import { LitElement, html, TemplateResult } from 'lit';
-import { MenubarMixin } from '../../src/index.js';
+import { html, TemplateResult } from 'lit';
+import MenubarElement from '../../src/elements/selector/MenubarElement.js';
 
-export class TestMenubar extends MenubarMixin(LitElement) {
+export class TestMenubar extends MenubarElement {
   get extraContent(): HTMLElement {
     return this.shadowRoot!.querySelector('.extraContent') as HTMLElement;
   }

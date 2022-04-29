@@ -46,9 +46,10 @@ describe('AnypointSelector', () => {
       assert.equal(s.items.length, 5);
     });
 
-    it('set multi-selection via selected property', () => {
+    it('set multi-selection via selected property', async () => {
       // set selectedValues
       s.selectedValues = [0, 2];
+      await nextFrame();
       // check selected class
       assert.isTrue(s.children[0].classList.contains('selected'));
       assert.isTrue(s.children[2].classList.contains('selected'));
@@ -58,10 +59,12 @@ describe('AnypointSelector', () => {
       assert.equal(s.selectedItems[1], s.children[2]);
     });
 
-    it('set multi-selection via tap', () => {
+    it('set multi-selection via tap', async () => {
       // set selectedValues
-      MockInteractions.tap(s.children[0]);
-      MockInteractions.tap(s.children[2]);
+      (s.children[0] as HTMLElement).click();
+      await nextFrame();
+      (s.children[2] as HTMLElement).click();
+      await nextFrame();
       // check selected class
       assert.isTrue(s.children[0].classList.contains('selected'));
       assert.isTrue(s.children[2].classList.contains('selected'));
@@ -71,7 +74,7 @@ describe('AnypointSelector', () => {
       assert.equal(s.selectedItems[1], s.children[2]);
     });
 
-    it('fire select/deselect events when selectedValues changes', () => {
+    it('fire select/deselect events when selectedValues changes', async () => {
       // setup listener for select/deselect events
       const items = [s.children[0], s.children[1], s.children[2]];
       const selectEventCounters = [0, 0, 0];
@@ -86,21 +89,24 @@ describe('AnypointSelector', () => {
       });
       // programmatically select values 0 and 1 (both fire select)
       s.selectedValues = [0, 1];
+      await nextFrame();
       // programmatically select values 1 and 2 (2 fires select, 0 fires
       // deselect)
       s.selectedValues = [1, 2];
+      await nextFrame();
       // programmatically deselect all values (1 and 2 fire deselect)
       s.selectedValues = [];
+      await nextFrame();
       // check events
-      assert.equal(selectEventCounters[0], 1);
-      assert.equal(deselectEventCounters[0], 1);
-      assert.equal(selectEventCounters[1], 1);
-      assert.equal(deselectEventCounters[1], 1);
-      assert.equal(selectEventCounters[2], 1);
-      assert.equal(deselectEventCounters[2], 1);
+      assert.equal(selectEventCounters[0], 1, 'first item select dispatched');
+      assert.equal(deselectEventCounters[0], 1, 'first item deselect dispatched');
+      assert.equal(selectEventCounters[1], 1, 'second item select dispatched');
+      assert.equal(deselectEventCounters[1], 1, 'second item unselect dispatched');
+      assert.equal(selectEventCounters[2], 1, 'third item select dispatched');
+      assert.equal(deselectEventCounters[2], 1, 'third item deselect dispatched');
     });
 
-    it('fire select/deselect events when selectedValues is modified', () => {
+    it('fire select/deselect events when selectedValues is modified', async () => {
       // setup listener for select/deselect events
       const items = [s.children[0], s.children[1], s.children[2]];
       const selectEventCounters = [0, 0, 0];
@@ -114,18 +120,23 @@ describe('AnypointSelector', () => {
         deselectEventCounters[items.indexOf(e.detail.item)]++;
       });
       s.selectedValues = [];
+      await nextFrame();
       // programmatically select value 0
       s.selectedValues.push(0, 1);
       s.selectedValues = [...s.selectedValues];
+      await nextFrame();
       // programmatically deselect value 0
       s.selectedValues.shift();
       s.selectedValues = [...s.selectedValues];
+      await nextFrame();
       // programmatically select value 2
       s.selectedValues.push(2);
       s.selectedValues = [...s.selectedValues];
+      await nextFrame();
       // programmatically deselect value 1
       s.selectedValues.shift();
       s.selectedValues = [...s.selectedValues];
+      await nextFrame();
       assert.equal(selectEventCounters[0], 1);
       assert.equal(deselectEventCounters[0], 1);
       assert.equal(selectEventCounters[1], 1);
@@ -134,7 +145,7 @@ describe('AnypointSelector', () => {
       assert.equal(deselectEventCounters[2], 0);
     });
 
-    it('fire select/deselect events when toggling items', () => {
+    it('fire select/deselect events when toggling items', async () => {
       // setup listener for select/deselect events
       const items = [s.children[0], s.children[1], s.children[2]];
       const selectEventCounters = [0, 0, 0];
@@ -150,11 +161,14 @@ describe('AnypointSelector', () => {
       // tap to select items 0 and 1 (both fire select)
       MockInteractions.tap(items[0]);
       MockInteractions.tap(items[1]);
+      await nextFrame();
       // programmatically select values 1 and 2 (2 fires select, 0 fires deselect)
       s.selectedValues = [1, 2];
+      await nextFrame();
       // tap to deselect items 1 and 2 (both fire deselect)
       MockInteractions.tap(items[1]);
       MockInteractions.tap(items[2]);
+      await nextFrame();
       // check events
       assert.equal(selectEventCounters[0], 1);
       assert.equal(deselectEventCounters[0], 1);
@@ -164,7 +178,7 @@ describe('AnypointSelector', () => {
       assert.equal(deselectEventCounters[2], 1);
     });
 
-    it('toggle selected class when toggling items selection', () => {
+    it('toggle selected class when toggling items selection', async () => {
       // setup listener for item-select/deselect events
       const item0 = s.children[0];
       const item1 = s.children[1];
@@ -172,22 +186,27 @@ describe('AnypointSelector', () => {
       assert.isFalse(item1.classList.contains('selected'));
       // tap to select item 0 (add selected class)
       MockInteractions.tap(item0);
+      await nextFrame();
       assert.isTrue(item0.classList.contains('selected'));
       assert.isFalse(item1.classList.contains('selected'));
       // tap to select item 1 (add selected class)
       MockInteractions.tap(item1);
+      await nextFrame();
       assert.isTrue(item0.classList.contains('selected'));
       assert.isTrue(item1.classList.contains('selected'));
       // tap to deselect item 1 (remove selected class)
       MockInteractions.tap(item1);
+      await nextFrame();
       assert.isTrue(item0.classList.contains('selected'));
       assert.isFalse(item1.classList.contains('selected'));
       // programmatically select both values (1 add selected class)
       s.selectedValues = [0, 1];
+      await nextFrame();
       assert.isTrue(item0.classList.contains('selected'));
       assert.isTrue(item1.classList.contains('selected'));
       // programmatically deselect all values (both removes selected class)
       s.selectedValues = [];
+      await nextFrame();
       assert.isFalse(item0.classList.contains('selected'));
       assert.isFalse(item1.classList.contains('selected'));
     });
@@ -207,7 +226,9 @@ describe('AnypointSelector', () => {
       const firstChild = s.querySelector(':first-child') as HTMLElement;
       const lastChild = s.querySelector(':last-child') as HTMLElement;
       MockInteractions.tap(firstChild);
+      await nextFrame();
       MockInteractions.tap(lastChild);
+      await nextFrame();
       assert.lengthOf(s.selectedItems, 2);
       s.removeChild(lastChild);
       await nextFrame();
@@ -233,18 +254,21 @@ describe('AnypointSelector', () => {
         assert.isTrue(selector.selectedValues.indexOf('item2') >= 0);
       });
 
-      it('`selectIndex()` selects an item with the given index', () => {
+      it('`selectIndex()` selects an item with the given index', async () => {
         selector.selectIndex(1);
+        await nextFrame();
         assert.equal(selector.selectedValues.length, 1);
         assert.isTrue(selector.selectedValues.indexOf('item1') >= 0);
         assert.equal(selector.selectedItems.length, 1);
         assert.isTrue(selector.selectedItems.indexOf(selector.items[1]) >= 0);
         selector.selectIndex(3);
+        await nextFrame();
         assert.equal(selector.selectedValues.length, 2);
         assert.isTrue(selector.selectedValues.indexOf('item3') >= 0);
         assert.equal(selector.selectedItems.length, 2);
         assert.isTrue(selector.selectedItems.indexOf(selector.items[3]) >= 0);
         selector.selectIndex(0);
+        await nextFrame();
         assert.equal(selector.selectedValues.length, 3);
         assert.isTrue(selector.selectedValues.indexOf('item0') >= 0);
         assert.equal(selector.selectedItems.length, 3);

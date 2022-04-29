@@ -1,8 +1,10 @@
-import { LitElement, html, css, TemplateResult, CSSResult } from 'lit';
-import { property } from 'lit/decorators.js';
-import { OverlayMixin } from '../../src/index.js';
+/* eslint-disable wc/no-self-class */
+import { html, css, TemplateResult, CSSResult } from 'lit';
+import { customElement, property } from 'lit/decorators.js';
+import OverlayElement from '../../src/elements/overlay/OverlayElement.js';
 
-export class TestOverlay extends OverlayMixin(LitElement) {
+@customElement('test-overlay')
+export class TestOverlay extends OverlayElement {
   get styles(): CSSResult {
     return css`
     :host {
@@ -37,18 +39,7 @@ export class TestOverlay extends OverlayMixin(LitElement) {
 
   constructor() {
     super();
-
-    this.__onTransitionEnd = this.__onTransitionEnd.bind(this);
-  }
-
-  connectedCallback(): void {
-    super.connectedCallback();
-    this.addEventListener('transitionend', this.__onTransitionEnd);
-  }
-
-  disconnectedCallback(): void {
-    super.disconnectedCallback();
-    this.removeEventListener('transitionend', this.__onTransitionEnd);
+    this.addEventListener('transitionend', this.__onTransitionEnd.bind(this));
   }
 
   _renderOpened(): void {
@@ -97,7 +88,6 @@ export class TestOverlay extends OverlayMixin(LitElement) {
     return html`<style>${this.styles}</style><slot></slot>`;
   }
 }
-customElements.define('test-overlay', TestOverlay);
 
 declare global {
   interface HTMLElementTagNameMap {

@@ -13,7 +13,7 @@ style.innerHTML = `.ghost, [hidden] {
 }`;
 document.head.appendChild(style);
 
-describe('AnypointMenuMixin', () => {
+describe('MenuElement', () => {
   async function basicFixture(): Promise<TestMenu> {
     return fixture(html`<test-menu>
       <div role="menuitem">item 1</div>
@@ -151,8 +151,9 @@ describe('AnypointMenuMixin', () => {
     it('selected item gets focus when menu is focused', async () => {
       const menu = await basicFixture();
       menu.selected = 1;
+      await nextFrame();
       menu.focus();
-      await aTimeout(0);
+      await nextFrame();
       const ownerRoot = ((menu.selectedItem!.getRootNode && menu.selectedItem!.getRootNode()) || document) as Document;
       const { activeElement } = ownerRoot;
       assert.equal(

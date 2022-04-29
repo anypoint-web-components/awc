@@ -1,6 +1,6 @@
-import { html, css, LitElement, TemplateResult, CSSResult } from 'lit';
+import { html, css, TemplateResult, CSSResult } from 'lit';
 import { property } from 'lit/decorators.js';
-import { ResizableMixin } from '../mixins/ResizableMixin.js';
+import ResizableElement from './overlay/ResizableElement.js';
 
 const transitionEndHandler = Symbol('transitionEndHandler');
 const updateSize = Symbol('updateSize');
@@ -18,7 +18,7 @@ const openedChanged = Symbol('openedChanged');
 const horizontalChanged = Symbol('horizontalChanged');
 const toggleAttribute = Symbol('toggleAttribute');
 
-export default class AnypointCollapseElement extends ResizableMixin(LitElement) {
+export default class AnypointCollapseElement extends ResizableElement {
   static get styles(): CSSResult {
     return css`
     :host {
@@ -41,8 +41,7 @@ export default class AnypointCollapseElement extends ResizableMixin(LitElement) 
   /**
    * Set noAnimation to true to disable animations.
    */
-  @property({ type: Boolean })
-  noAnimation?: boolean;
+  @property({ type: Boolean }) noAnimation?: boolean;
 
   _horizontal?: boolean;
 

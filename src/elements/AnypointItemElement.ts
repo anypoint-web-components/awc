@@ -12,38 +12,16 @@ License for the specific language governing permissions and limitations under
 the License.
 */
 import { html, css, CSSResult, TemplateResult } from 'lit';
-import AnypointElement from './AnypointElement.js';
-import { HoverableMixin } from '../mixins/HoverableMixin.js';
-import { ButtonStateMixin } from '../mixins/ButtonStateMixin.js';
-import { ControlStateMixin } from '../mixins/ControlStateMixin.js';
 import styles from '../styles/ItemStyles.js';
+import ButtonElement from './button/ButtonElement.js';
 
 /* eslint-disable class-methods-use-this */
 
 /**
  * `anypoint-item`
  * An Anypoint list item.
- * 
- * @attr {boolean} focused
- * @prop {boolean | undefined} focused
- * 
- * @attr {boolean} disabled
- * @prop {boolean | undefined} disabled
- * 
- * @attr {boolean} toggles
- * @prop {boolean | undefined} toggles
- * 
- * @attr {boolean} active
- * @prop {boolean | undefined} active
- * 
- * @attr {string} ariaActiveAttribute
- * @prop {string | undefined} ariaActiveAttribute
- * 
- * @prop {readonly boolean | undefined} pressed
- * @prop {readonly boolean | undefined} pointerDown
- * @prop {readonly boolean | undefined} receivedFocusFromKeyboard
  */
-export default class AnypointItemElement extends HoverableMixin(ControlStateMixin(ButtonStateMixin(AnypointElement))) {
+export default class AnypointItemElement extends ButtonElement {
   static get styles(): CSSResult[] {
     return [
       styles,

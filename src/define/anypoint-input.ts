@@ -1,4 +1,4 @@
-import Element from '../elements/AnypointInputElement.js';
+import Element from '../elements/input/AnypointInputElement.js';
 
 window.customElements.define('anypoint-input', Element);
 

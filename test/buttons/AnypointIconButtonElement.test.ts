@@ -2,7 +2,6 @@ import { fixture, assert, html, oneEvent } from '@open-wc/testing';
 import sinon from 'sinon';
 import '../../src/define/anypoint-icon-button.js';
 import '../../demo/lib/demo-icon.js';
-import * as MockInteractions from '@polymer/iron-test-helpers/mock-interactions.js';
 import { keyDownUp } from '../lib/helpers.js';
 import { AnypointIconButtonElement } from '../../src/index.js';
 
@@ -50,7 +49,7 @@ describe('<anypoint-icon-button>', () => {
     });
 
     it('Calls _enterDownHandler() when changing value', () => {
-      const spy = sinon.spy(element, '_enterDownHandler');
+      const spy = sinon.spy(element as any, '_enterDownHandler');
       element._spaceKeyDownHandler(new KeyboardEvent('keydown'));
       assert.isTrue(spy.calledOnce, 'Function called');
     });
@@ -63,27 +62,14 @@ describe('<anypoint-icon-button>', () => {
     });
 
     it('Calls _enterUpHandler() ', () => {
-      const spy = sinon.spy(element, '_enterUpHandler');
+      const spy = sinon.spy(element as any, '_enterUpHandler');
       element._spaceKeyUpHandler(new KeyboardEvent('keyup'));
       assert.isTrue(spy.called, 'Function called');
     });
   });
 
-  describe('_buttonStateChanged()', () => {
-    let element: AnypointIconButtonElement;
-    beforeEach(async () => {
-      element = await basicFixture();
-    });
-
-    it('Calls _calculateElevation() ', () => {
-      const spy = sinon.spy(element, '_calculateElevation');
-      element._buttonStateChanged();
-      assert.isTrue(spy.called, 'Function called');
-    });
-  });
-
   describe('_enterDownHandler()', () => {
-    let element: AnypointIconButtonElement;
+    let element: any;
     beforeEach(async () => {
       element = await basicFixture();
     });
@@ -102,25 +88,37 @@ describe('<anypoint-icon-button>', () => {
 
     it('is called from enter down event', () => {
       const spy = sinon.spy(element, '_enterDownHandler');
-      MockInteractions.keyDownOn(element, 13, [], 'Enter');
+      const e = new KeyboardEvent('keydown', {
+        cancelable: true,
+        code: 'Enter',
+      });
+      element.dispatchEvent(e);
       assert.isTrue(spy.called, 'Function called');
     });
 
     it('is called from num enter down event', () => {
       const spy = sinon.spy(element, '_enterDownHandler');
-      MockInteractions.keyDownOn(element, 13, [], 'NumpadEnter');
+      const e = new KeyboardEvent('keydown', {
+        cancelable: true,
+        code: 'NumpadEnter',
+      });
+      element.dispatchEvent(e);
       assert.isTrue(spy.called, 'Function called');
     });
 
     it('is not called from other down event', () => {
       const spy = sinon.spy(element, '_enterDownHandler');
-      MockInteractions.keyDownOn(element, 40, [], 'ArrowDown');
+      const e = new KeyboardEvent('keydown', {
+        cancelable: true,
+        code: 'ArrowDown',
+      });
+      element.dispatchEvent(e);
       assert.isFalse(spy.called, 'Function not called');
     });
   });
 
   describe('_enterUpHandler()', () => {
-    let element: AnypointIconButtonElement;
+    let element: any;
     beforeEach(async () => {
       element = await basicFixture();
     });
@@ -139,19 +137,31 @@ describe('<anypoint-icon-button>', () => {
 
     it('is called from enter up event', () => {
       const spy = sinon.spy(element, '_enterUpHandler');
-      MockInteractions.keyUpOn(element, 13, [], 'Enter');
+      const e = new KeyboardEvent('keyup', {
+        cancelable: true,
+        code: 'Enter',
+      });
+      element.dispatchEvent(e);
       assert.isTrue(spy.called, 'Function called');
     });
 
     it('is called from num enter down event', () => {
       const spy = sinon.spy(element, '_enterUpHandler');
-      MockInteractions.keyUpOn(element, 13, [], 'NumpadEnter');
+      const e = new KeyboardEvent('keyup', {
+        cancelable: true,
+        code: 'NumpadEnter',
+      });
+      element.dispatchEvent(e);
       assert.isTrue(spy.called, 'Function called');
     });
 
     it('is not called from other up event', () => {
       const spy = sinon.spy(element, '_enterUpHandler');
-      MockInteractions.keyUpOn(element, 40, [], 'ArrowDown');
+      const e = new KeyboardEvent('keyup', {
+        cancelable: true,
+        code: 'ArrowDown',
+      });
+      element.dispatchEvent(e);
       assert.isFalse(spy.called, 'Function not called');
     });
   });

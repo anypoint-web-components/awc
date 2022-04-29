@@ -1,4 +1,4 @@
-import { fixture, assert, aTimeout, oneEvent, html } from '@open-wc/testing';
+import { fixture, assert, aTimeout, oneEvent, html, nextFrame } from '@open-wc/testing';
 import { BottomSheetElement } from '../../src/index.js';
 import '../../src/define/bottom-sheet.js';
 
@@ -20,7 +20,7 @@ describe('<bottom-sheet>', () => {
 
     it('is hidden', async () => {
       sheet = await basicFixture();
-      assert.isFalse(sheet.opened);
+      assert.isUndefined(sheet.opened);
     });
 
     it('is visible', async () => {
@@ -41,8 +41,10 @@ describe('<bottom-sheet>', () => {
     });
 
     it('fires the opened event', async () => {
-      const element = await openedFixture();
-      await oneEvent(element, 'opened');
+      const element = await basicFixture();
+      const p = oneEvent(element, 'opened');
+      element.opened = true;
+      await p;
     });
 
     it('there is only 1 bottom-sheet opened', async () => {
@@ -50,9 +52,11 @@ describe('<bottom-sheet>', () => {
       const sheet2 = await openedFixture();
       sheet2.open();
       sheet1.open();
+      await nextFrame();
       assert.isTrue(sheet1.opened, 'sheet1 is opened');
       assert.isFalse(sheet2.opened, 'sheet2 is not opened');
       sheet2.open();
+      await nextFrame();
       assert.isFalse(sheet1.opened, 'sheet1 is now not opened');
       assert.isTrue(sheet2.opened, 'sheet2 is now opened');
     });

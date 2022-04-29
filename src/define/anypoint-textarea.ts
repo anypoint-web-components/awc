@@ -1,4 +1,4 @@
-import Element from '../elements/AnypointTextareaElement.js';
+import Element from '../elements/input/AnypointTextareaElement.js';
 
 window.customElements.define('anypoint-textarea', Element);
 

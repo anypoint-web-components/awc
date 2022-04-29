@@ -1,6 +1,6 @@
 import { assert, fixture, html } from '@open-wc/testing';
 import sinon from 'sinon';
-import { AnypointButtonBase } from '../../src/elements/AnypointButtonBase.js';
+import { AnypointButtonBase } from '../../src/elements/button/AnypointButtonBase.js';
 
 class TestButton extends AnypointButtonBase {
   render(): any {

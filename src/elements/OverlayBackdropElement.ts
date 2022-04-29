@@ -16,14 +16,11 @@ import { property } from 'lit/decorators.js';
 /* eslint-disable no-continue */
 
 /*
-`arc-overlay-backdrop` is a backdrop used by `OverlayMixin`. It
+`arc-overlay-backdrop` is a backdrop used by `OverlayElement`. It
 should be a singleton.
 
 Originally designed by the Polymer team, ported to LitElement by ARC team.
 
-### Styling
-
-The following custom properties and mixins are available for styling.
 */
 export default class OverlayBackdropElement extends LitElement {
   static get styles(): CSSResult {
@@ -131,7 +128,7 @@ export default class OverlayBackdropElement extends LitElement {
       // Auto-attach.
       this.prepare();
     } else {
-      // Animation might be disabled via the mixin or opacity custom property.
+      // Animation might be disabled via the element or opacity custom property.
       // If it is disabled in other ways, it's up to the user to call complete.
       const cs = window.getComputedStyle(this);
       if (cs.transitionDuration === '0s' || cs.opacity === '0') {

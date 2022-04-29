@@ -1,4 +1,4 @@
-import Element from '../elements/AnypointMenuButtonElement.js';
+import Element from '../elements/button/AnypointMenuButtonElement.js';
 
 window.customElements.define('anypoint-menu-button', Element);
 

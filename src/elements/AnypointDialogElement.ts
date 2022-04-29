@@ -1,12 +1,11 @@
 /* eslint-disable no-param-reassign */
 /* eslint-disable no-continue */
 /* eslint-disable class-methods-use-this */
-import { html, CSSResult, TemplateResult } from 'lit';
+import { html, CSSResult, TemplateResult, PropertyValueMap } from 'lit';
 import { property } from 'lit/decorators.js';
-import AnypointElement from './AnypointElement';
 import dialogStyles from '../styles/AnypointDialogStyles.js';
 import { IAnimationConfig, DefaultListCloseAnimation, DefaultListOpenAnimation } from '../lib/Animations.js';
-import { OverlayMixin } from '../mixins/OverlayMixin.js';
+import OverlayElement from './overlay/OverlayElement.js';
 
 interface IModelPreviousConfiguration {
   noCancelOnOutsideClick?: boolean;
@@ -14,125 +13,38 @@ interface IModelPreviousConfiguration {
   withBackdrop?: boolean;
 }
 /**
- * @fires cancel
- * @fires opened
- * @fires closed
- * @fires openedchange
- * 
- * @prop {HTMLElement | Window} fitInto
- * @prop {HTMLElement | Window} positionTarget
- * @prop {HTMLElement} sizingTarget
- * 
- * @attr {HorizontalAlign} horizontalAlign
- * @prop {HorizontalAlign | string | undefined} horizontalAlign
- * 
- * @attr {VerticalAlign} horizontalAlign
- * @prop {VerticalAlign | string | undefined} verticalAlign
- * 
- * @attr {boolean} noOverlap
- * @prop {boolean | undefined} noOverlap
- * 
- * @attr {boolean} dynamicAlign
- * @prop {boolean | undefined} dynamicAlign
- * 
- * @attr {boolean} autoFitOnAttach
- * @prop {boolean | undefined} autoFitOnAttach
- * 
- * @attr {boolean} fitPositionTarget
- * @prop {boolean | undefined} fitPositionTarget
- * 
- * @attr {number} horizontalOffset
- * @prop {number | undefined} horizontalOffset
- * 
- * @attr {number} verticalOffset
- * @prop {number | undefined} verticalOffset
- * 
- * @attr {boolean} noAutoFocus
- * @prop {boolean | undefined} noAutoFocus
- * 
- * @attr {boolean} noCancelOnEscKey
- * @prop {boolean | undefined} noCancelOnEscKey
- * 
- * @attr {boolean} noCancelOnOutsideClick
- * @prop {boolean | undefined} noCancelOnOutsideClick
- * 
- * @attr {boolean} restoreFocusOnClose
- * @prop {boolean | undefined} restoreFocusOnClose
- * 
- * @attr {boolean} allowClickThrough
- * @prop {boolean | undefined} allowClickThrough
- * 
- * @attr {boolean} alwaysOnTop
- * @prop {boolean | undefined} alwaysOnTop
- * 
- * @attr {boolean} opened
- * @prop {boolean | undefined} opened
- * 
- * @attr {boolean} withBackdrop
- * @prop {boolean | undefined} withBackdrop
- * 
- * @attr {string} scrollAction
- * @prop {string | undefined} scrollAction
- * 
- * @prop {boolean | undefined} canceled
- * 
- * @prop {any} closingReason
  */
-export default class AnypointDialogElement extends OverlayMixin(AnypointElement) {
+export default class AnypointDialogElement extends OverlayElement {
   static get styles(): CSSResult[] {
     return [
       dialogStyles,
     ];
   }
 
-  protected _modal?: boolean;
-
   /**
    * If `modal` is true, this implies `noCancelOnOutsideClick`,
    * `noCancelOnEscKey` and `withBackdrop`.
-   * @attribute
    */
-  @property({ type: Boolean, reflect: true })
-  get modal(): boolean | undefined {
-    return this._modal;
-  }
-
-  set modal(value: boolean | undefined) {
-    const old = this._modal;
-    /* istanbul ignore if */
-    if (old === value) {
-      return;
-    }
-    this._modal = value;
-    if (this.requestUpdate) {
-      this.requestUpdate('modal', old);
-    }
-    this._modalChanged(value);
-  }
-
-  private __ready = false;
+  @property({ type: Boolean, reflect: true }) modal?: boolean;
 
   /**
    * An animation config. If provided, this will be used to animate the
    * opening of the dialog. Pass an Array for multiple animations.
    */
-  @property({ type: Array })
-  openAnimationConfig?: IAnimationConfig[];
+  @property({ type: Array }) openAnimationConfig?: IAnimationConfig[];
 
   /**
    * An animation config. If provided, this will be used to animate the
    * closing of the dialog. Pass an Array for multiple animations.
    */
-  @property({ type: Array })
-  closeAnimationConfig?: IAnimationConfig[];
+  @property({ type: Array }) closeAnimationConfig?: IAnimationConfig[];
 
   /**
    * Set to true to disable animations when opening and closing the
    * dialog.
    * @attribute
    */
-  @property({ type: Boolean, reflect: true })
-  noAnimations?: boolean;
+  @property({ type: Boolean, reflect: true }) noAnimations?: boolean;
 
   constructor() {
     super();
@@ -146,7 +58,6 @@ export default class AnypointDialogElement extends OverlayMixin(AnypointElement)
     this.setAttribute('tabindex', '-1');
     this.addEventListener('click', this._clickHandler as EventListener);
     this.addEventListener('resize', this._resizeHandler);
-    this.__ready = true;
     if (this.modal) {
       this._modalChanged(this.modal);
     }
@@ -157,6 +68,13 @@ export default class AnypointDialogElement extends OverlayMixin(AnypointElement)
     this.removeEventListener('click', this._clickHandler as EventListener);
     this.removeEventListener('resize', this._resizeHandler);
     this.cancelAnimation();
+  }
+
+  protected willUpdate(cp: PropertyValueMap<any> | Map<PropertyKey, unknown>): void {
+    super.willUpdate(cp);
+    if (cp.has('modal')) {
+      this._modalChanged(this.modal)
+    }
   }
 
   _updateClosingReasonConfirmed(confirmed: boolean): void {
@@ -178,8 +96,7 @@ export default class AnypointDialogElement extends OverlayMixin(AnypointElement)
   }
 
   protected _clickHandler(e: PointerEvent): void {
-    // @ts-ignore
-    const path = (e.path || e.composedPath()) as Element[];
+    const path = e.composedPath() as Element[];
     for (let i = 0, l = path.indexOf(this); i < l; i++) {
       const target = path[i];
       if (this._isTargetClosingReason(target)) {
@@ -202,7 +119,7 @@ export default class AnypointDialogElement extends OverlayMixin(AnypointElement)
   private _modelPrevConf?: IModelPreviousConfiguration;
 
   protected _modalChanged(modal?: boolean): void {
-    if (!this.__ready) {
+    if (!this._isAttached) {
       return;
     }
     if (modal) {
@@ -222,9 +139,9 @@ export default class AnypointDialogElement extends OverlayMixin(AnypointElement)
     }
   }
 
-  _openedChanged(opened?: boolean): void {
+  _openedChanged(): void {
     this.cancelAnimation();
-    super._openedChanged(opened);
+    super._openedChanged();
   }
 
   _renderOpened(): void {

@@ -1,4 +1,4 @@
-import Element from '../elements/AnypointCheckboxElement.js';
+import Element from '../elements/checkbox/AnypointCheckboxElement.js';
 
 window.customElements.define('anypoint-checkbox', Element);
 

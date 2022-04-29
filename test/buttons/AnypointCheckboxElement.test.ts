@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/explicit-function-return-type */
-import { fixture, assert, aTimeout } from '@open-wc/testing';
+import { fixture, assert, aTimeout, nextFrame } from '@open-wc/testing';
 import * as MockInteractions from '@polymer/iron-test-helpers/mock-interactions.js';
 import '../../src/colors.js';
 import '../../src/define/anypoint-checkbox.js';
@@ -122,7 +122,7 @@ describe('<anypoint-checkbox>', () => {
     });
 
     it('check checkbox via click', async () => {
-      MockInteractions.tap(c1);
+      c1.click();
       await aTimeout(0);
       assert.equal(c1.getAttribute('aria-checked'), 'true', 'Has aria-checked');
       assert.isTrue(c1.checked, '.checked is true');
@@ -130,8 +130,8 @@ describe('<anypoint-checkbox>', () => {
 
     it('toggle checkbox via click', async () => {
       c1.checked = true;
-      MockInteractions.tap(c1);
-      await aTimeout(0);
+      c1.click();
+      await nextFrame();
       assert.isFalse(c1.getAttribute('aria-checked') !== 'false');
       assert.isFalse(c1.checked);
     });
@@ -139,7 +139,7 @@ describe('<anypoint-checkbox>', () => {
     it('disabled checkbox cannot be clicked', async () => {
       c1.disabled = true;
       c1.checked = true;
-      MockInteractions.tap(c1);
+      c1.click();
       await aTimeout(0);
       assert.isTrue(c1.getAttribute('aria-checked') === 'true');
       assert.isTrue(c1.checked);
@@ -147,17 +147,17 @@ describe('<anypoint-checkbox>', () => {
 
     it('checkbox can be validated', () => {
       c1.required = true;
-      assert.isFalse(c1.validate());
+      assert.isFalse(c1.checkValidity());
       c1.checked = true;
-      assert.isTrue(c1.validate());
+      assert.isTrue(c1.checkValidity());
     });
 
     it('disabled checkbox is always valid', () => {
       c1.disabled = true;
       c1.required = true;
-      assert.isTrue(c1.validate());
+      assert.isTrue(c1.checkValidity());
       c1.checked = true;
-      assert.isTrue(c1.validate());
+      assert.isTrue(c1.checkValidity());
     });
   });
 
@@ -167,23 +167,19 @@ describe('<anypoint-checkbox>', () => {
       element = await basicFixture();
     });
 
-    it('check checkbox via click', (done) => {
-      element.addEventListener('click', () => {
-        assert.equal(element.getAttribute('aria-checked'), 'true');
-        assert.isTrue(element.checked);
-        done();
-      });
+    it('check checkbox via click', async () => {
       element.click();
+      await nextFrame();
+      assert.equal(element.getAttribute('aria-checked'), 'true');
+      assert.isTrue(element.checked);
     });
 
-    it('Uncheck checkbox via click', (done) => {
+    it('uncheck checkbox via click', async () => {
       element.checked = true;
-      element.addEventListener('click', () => {
-        assert.equal(element.getAttribute('aria-checked'), 'false');
-        assert.isFalse(element.checked);
-        done();
-      });
       element.click();
+      await nextFrame();
+      assert.equal(element.getAttribute('aria-checked'), 'false');
+      assert.isFalse(element.checked);
     });
 
     it('disabled checkbox cannot be clicked', (done) => {
@@ -199,17 +195,17 @@ describe('<anypoint-checkbox>', () => {
 
     it('checkbox can be validated', () => {
       element.required = true;
-      assert.isFalse(element.validate(), 'not validated');
+      assert.isFalse(element.checkValidity(), 'not validated');
       element.checked = true;
-      assert.isTrue(element.validate(), 'is validated');
+      assert.isTrue(element.checkValidity(), 'is validated');
     });
 
     it('disabled checkbox is always valid', () => {
       element.disabled = true;
       element.required = true;
-      assert.isTrue(element.validate());
+      assert.isTrue(element.checkValidity());
       element.checked = true;
-      assert.isTrue(element.validate());
+      assert.isTrue(element.checkValidity());
     });
 
     it('Passes validation', () => {
@@ -248,35 +244,35 @@ describe('<anypoint-checkbox>', () => {
     });
   });
 
-  describe('_computeCheckboxClass()', () => {
+  describe('checkbox classes', () => {
     let element: AnypointCheckboxElement;
     beforeEach(async () => {
       element = await basicFixture();
     });
 
-    it('Returns empty string when no arguments', () => {
-      const result = element._computeCheckboxClass(false, false);
-      assert.equal(result, '');
+    it('has the checkbox class by default', () => {
+      const node = element.shadowRoot!.querySelector('.checkboxContainer').firstElementChild as HTMLElement;
+      assert.equal(node.className.trim(), 'checkbox');
     });
 
-    it('Returns checked class for checked', () => {
-      const result = element._computeCheckboxClass(true, false);
-      assert.equal(result, 'checked');
+    it('has the checked class when checked', async () => {
+      element.click();
+      await nextFrame();
+      const node = element.shadowRoot!.querySelector('.checkboxContainer').firstElementChild as HTMLElement;
+      assert.equal(node.className.trim(), 'checkbox checked');
     });
 
-    it('Returns invalid class for invalid', () => {
-      const result = element._computeCheckboxClass(false, true);
-      assert.equal(result, 'invalid');
-    });
-
-    it('Returns both classes', () => {
-      const result = element._computeCheckboxClass(true, true);
-      assert.equal(result, 'checked invalid');
+    it('has the invalid class when invalid', async () => {
+      element.required = true;
+      element.checkValidity();
+      await nextFrame();
+      const node = element.shadowRoot!.querySelector('.checkboxContainer').firstElementChild as HTMLElement;
+      assert.equal(node.className.trim(), 'checkbox invalid');
     });
   });
 
   describe('_internals', () => {
-    it('Has associated form', async () => {
+    it('has an associated form', async () => {
       const form = await formFixture();
       const element = form.querySelector('anypoint-checkbox')!;
       // @ts-ignore
@@ -285,7 +281,7 @@ describe('<anypoint-checkbox>', () => {
       }
     });
 
-    it('Form reset resets the control', async () => {
+    it('resets the control', async () => {
       const form = await formCheckedFixture();
       const element = form.querySelector('anypoint-checkbox')!;
       // @ts-ignore
@@ -295,12 +291,13 @@ describe('<anypoint-checkbox>', () => {
       }
     });
 
-    it('Sets custom validation', async () => {
+    it('sets the custom validation', async () => {
       const form = await formCheckedRequiredFixture();
       const element = form.querySelector('anypoint-checkbox')!;
       // @ts-ignore
       if (element._internals && element.form) {
         element.checked = false;
+        await nextFrame();
         assert.isTrue(element.matches(':invalid'));
       }
     });

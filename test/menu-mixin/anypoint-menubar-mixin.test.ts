@@ -3,7 +3,7 @@ import { fixture, assert, aTimeout, html, nextFrame } from '@open-wc/testing';
 import './test-menubar.js';
 import { TestMenubar } from './test-menubar.js';
 
-describe('AnypointMenubarMixin', () => {
+describe('MenubarElement', () => {
   async function basicFixture(): Promise<TestMenubar> {
     return fixture(html`<test-menubar>
       <div role="menuitem">item 1</div>
@@ -45,15 +45,16 @@ describe('AnypointMenubarMixin', () => {
     it('selected item gets focus when menubar is focused', async () => {
       const menubar = await basicFixture();
       menubar.selected = 1;
+      await nextFrame();
       menubar.focus();
-      await aTimeout(0);
+      await nextFrame();
       assert.equal(document.activeElement, menubar.selectedItem, 'document.activeElement is selected item');
     });
 
     it('selects focused item in up arrow', async () => {
       const menubar = await basicFixture();
       menubar.focus();
-      await aTimeout(0);
+      await nextFrame();
       // Key press up
       menubar.dispatchEvent(new KeyboardEvent('keydown', {
         bubbles: true,
@@ -63,7 +64,7 @@ describe('AnypointMenubarMixin', () => {
         key: 'ArrowUp',
       }));
 
-      await aTimeout(0);
+      await nextFrame();
       assert.equal(document.activeElement, menubar.selectedItem, 'document.activeElement is selected item');
     });
 

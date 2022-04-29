@@ -382,8 +382,9 @@ describe('AnypointTabsElement', () => {
       const element = await basicFixture();
       ensureDocumentHasFocus();
       element.select(0);
+      await nextFrame();
       keyDown(element.selectedItem!, 'ArrowRight');
-      await aTimeout(1);
+      await nextFrame();
       assert.equal(element.selected, 0);
       keyDown(element.selectedItem!, 'ArrowLeft');
       await aTimeout(1);
@@ -397,6 +398,7 @@ describe('AnypointTabsElement', () => {
       const element = await autoselectFixture();
       ensureDocumentHasFocus();
       element.select(1);
+      await nextFrame();
       keyDown(element.selectedItem!, 'ArrowRight');
       await aTimeout(2);
       assert.equal(element.selected, 2);
@@ -413,6 +415,7 @@ describe('AnypointTabsElement', () => {
       element.setAttribute('dir', 'rtl');
       ensureDocumentHasFocus();
       element.select(1);
+      await nextFrame();
       keyDown(element.selectedItem!, 'ArrowRight');
       await aTimeout(0);
       assert.equal(element.selected, 0);
@@ -428,6 +431,7 @@ describe('AnypointTabsElement', () => {
       const element = await autoselectFixture();
       ensureDocumentHasFocus();
       element.select(1);
+      await nextFrame();
       keyDown(element.selectedItem!, 'ArrowLeft');
       await aTimeout(0);
       assert.equal(element.selected, 0);
@@ -444,6 +448,7 @@ describe('AnypointTabsElement', () => {
       element.setAttribute('dir', 'rtl');
       ensureDocumentHasFocus();
       element.select(1);
+      await nextFrame();
       keyDown(element.selectedItem!, 'ArrowLeft');
       await aTimeout(0);
       assert.equal(element.selected, 2);

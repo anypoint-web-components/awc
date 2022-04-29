@@ -1,4 +1,4 @@
-import Element from '../elements/AnypointButtonElement.js';
+import Element from '../elements/button/AnypointButtonElement.js';
 
 window.customElements.define('anypoint-button', Element);
 

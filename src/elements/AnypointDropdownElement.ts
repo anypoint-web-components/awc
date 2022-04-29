@@ -1,9 +1,6 @@
-import { html, css, CSSResult, TemplateResult } from 'lit';
+import { html, css, CSSResult, TemplateResult, PropertyValueMap } from 'lit';
 import { property } from 'lit/decorators.js';
-import AnypointElement from './AnypointElement.js';
-import { OverlayMixin } from '../mixins/OverlayMixin.js';
-import { ControlStateMixin } from '../mixins/ControlStateMixin.js';
-import { VerticalAlign, HorizontalAlign } from '../mixins/FitMixin.js';
+import OverlayElement from './overlay/OverlayElement.js';
 import { IAnimationConfig, DefaultListCloseAnimation, DefaultListOpenAnimation } from '../lib/Animations.js';
 
 /* eslint-disable class-methods-use-this */
@@ -12,77 +9,8 @@ import { IAnimationConfig, DefaultListCloseAnimation, DefaultListOpenAnimation }
 /* eslint-disable no-param-reassign */
 
 /**
- * @fires cancel
- * @fires opened
- * @fires closed
- * @fires openedchange
- * 
- * @prop {HTMLElement | Window} fitInto
- * @prop {HTMLElement | Window} positionTarget
- * @prop {HTMLElement} sizingTarget
- * 
- * @attr {HorizontalAlign} horizontalAlign
- * @prop {HorizontalAlign | string | undefined} horizontalAlign
- * 
- * @attr {VerticalAlign} horizontalAlign
- * @prop {VerticalAlign | string | undefined} verticalAlign
- * 
- * @attr {boolean} noOverlap
- * @prop {boolean | undefined} noOverlap
- * 
- * @attr {boolean} dynamicAlign
- * @prop {boolean | undefined} dynamicAlign
- * 
- * @attr {boolean} autoFitOnAttach
- * @prop {boolean | undefined} autoFitOnAttach
- * 
- * @attr {boolean} fitPositionTarget
- * @prop {boolean | undefined} fitPositionTarget
- * 
- * @attr {number} horizontalOffset
- * @prop {number | undefined} horizontalOffset
- * 
- * @attr {number} verticalOffset
- * @prop {number | undefined} verticalOffset
- * 
- * @attr {boolean} noAutoFocus
- * @prop {boolean | undefined} noAutoFocus
- * 
- * @attr {boolean} noCancelOnEscKey
- * @prop {boolean | undefined} noCancelOnEscKey
- * 
- * @attr {boolean} noCancelOnOutsideClick
- * @prop {boolean | undefined} noCancelOnOutsideClick
- * 
- * @attr {boolean} restoreFocusOnClose
- * @prop {boolean | undefined} restoreFocusOnClose
- * 
- * @attr {boolean} allowClickThrough
- * @prop {boolean | undefined} allowClickThrough
- * 
- * @attr {boolean} alwaysOnTop
- * @prop {boolean | undefined} alwaysOnTop
- * 
- * @attr {boolean} opened
- * @prop {boolean | undefined} opened
- * 
- * @attr {boolean} withBackdrop
- * @prop {boolean | undefined} withBackdrop
- * 
- * @attr {string} scrollAction
- * @prop {string | undefined} scrollAction
- * 
- * @prop {boolean | undefined} canceled
- * 
- * @prop {any} closingReason
- * 
- * @attr {boolean} focused
- * @prop {boolean | undefined} focused
- * 
- * @attr {boolean} disabled
- * @prop {boolean | undefined} disabled
  */
-export default class AnypointDropdownElement extends OverlayMixin(ControlStateMixin(AnypointElement)) {
+export default class AnypointDropdownElement extends OverlayElement {
   static get styles(): CSSResult {
     return css`
     :host {
@@ -101,44 +29,33 @@ export default class AnypointDropdownElement extends OverlayMixin(ControlStateMi
   }
 
   /**
+   * If true, the button is a toggle and is currently in the active state.
+   */
+  @property({ reflect: true, type: Boolean }) disabled?: boolean;
+
+  /**
    * An animation config. If provided, this will be used to animate the
    * opening of the dropdown. Pass an Array for multiple animations.
    */
-  @property({ type: Array })
-  openAnimationConfig?: IAnimationConfig[];
+  @property({ type: Array }) openAnimationConfig?: IAnimationConfig[];
 
   /**
    * An animation config. If provided, this will be used to animate the
    * closing of the dropdown. Pass an Array for multiple animations.
    */
-  @property({ type: Array })
-  closeAnimationConfig?: IAnimationConfig[];
+  @property({ type: Array }) closeAnimationConfig?: IAnimationConfig[];
 
   /**
    * If provided, this will be the element that will be focused when
    * the dropdown opens.
    */
-  @property({ type: Object })
-  focusTarget?: HTMLElement;
+  @property({ type: Object }) focusTarget?: HTMLElement;
 
   /**
    * Set to true to disable animations when opening and closing the
    * dropdown.
    */
-  @property({ type: Boolean })
-  noAnimations?: boolean;
-
-  _allowOutsideScroll?: boolean;
-
-  _positionTarget?: HTMLElement;
-
-  _verticalAlign?: VerticalAlign;
-
-  _horizontalAlign?: HorizontalAlign;
-
-  _verticalOffset = 0;
-
-  _horizontalOffset = 0;
+  @property({ type: Boolean, reflect: true }) noAnimations?: boolean;
 
   /**
    * By default, the dropdown will constrain scrolling on the page
@@ -148,95 +65,7 @@ export default class AnypointDropdownElement extends OverlayMixin(ControlStateMi
    * This property is a shortcut to set `scrollAction` to lock or refit.
    * Prefer directly setting the `scrollAction` property.
    */
-  @property({ type: Boolean })
-  get allowOutsideScroll(): boolean | undefined {
-    return this._allowOutsideScroll;
-  }
-
-  set allowOutsideScroll(value: boolean | undefined) {
-    const old = this._allowOutsideScroll;
-    /* istanbul ignore if */
-    if (old === value) {
-      return;
-    }
-    this._allowOutsideScroll = value;
-    this._allowOutsideScrollChanged(value);
-  }
-
-  @property({ type: Object })
-  get positionTarget(): HTMLElement | undefined {
-    return this._positionTarget;
-  }
-
-  set positionTarget(value: HTMLElement | undefined) {
-    const old = this._positionTarget;
-    /* istanbul ignore if */
-    if (old === value) {
-      return;
-    }
-    this._positionTarget = value;
-    this._updateOverlayPosition();
-  }
-
-  @property()
-  get verticalAlign(): VerticalAlign | undefined {
-    return this._verticalAlign;
-  }
-  
-  set verticalAlign(value: VerticalAlign | undefined) {
-    const old = this._verticalAlign;
-    /* istanbul ignore if */
-    if (old === value) {
-      return;
-    }
-    this._verticalAlign = value;
-    this._updateOverlayPosition();
-  }
-
-  @property()
-  get horizontalAlign(): HorizontalAlign | undefined {
-    return this._horizontalAlign;
-  }
-
-  set horizontalAlign(value: HorizontalAlign | undefined) {
-    const old = this._horizontalAlign;
-    /* istanbul ignore if */
-    if (old === value) {
-      return;
-    }
-    this._horizontalAlign = value;
-    this._updateOverlayPosition();
-  }
-
-  @property({ type: Number })
-  get verticalOffset(): number {
-    return this._verticalOffset;
-  }
-
-  set verticalOffset(value: number) {
-    const old = this._verticalOffset;
-    /* istanbul ignore if */
-    if (old === value) {
-      return;
-    }
-    this._verticalOffset = value;
-    this._updateOverlayPosition();
-  }
-
-  @property({ type: Number })
-  get horizontalOffset(): number {
-    return this._horizontalOffset;
-  }
-
-  set horizontalOffset(value: number) {
-    const old = this._horizontalOffset;
-    /* istanbul ignore if */
-    if (old === value) {
-      return;
-    }
-    this._horizontalOffset = value;
-    this._updateOverlayPosition();
-  }
+  @property({ type: Boolean, reflect: true }) allowOutsideScroll?: boolean;
 
   /**
    * The element that is contained by the dropdown, if any.
@@ -259,8 +88,6 @@ export default class AnypointDropdownElement extends OverlayMixin(ControlStateMi
     return this.shadowRoot!.querySelector('.contentWrapper');
   }
 
-  _readied?: boolean;
-
   _activeAnimations?: Animation[];
 
   constructor() {
@@ -276,7 +103,6 @@ export default class AnypointDropdownElement extends OverlayMixin(ControlStateMi
     if (!this.scrollAction) {
       this.scrollAction = this.allowOutsideScroll ? 'refit' : 'lock';
     }
-    this._readied = true;
   }
 
   firstUpdated(): void {
@@ -290,6 +116,21 @@ export default class AnypointDropdownElement extends OverlayMixin(ControlStateMi
     this.cancelAnimation();
   }
 
+  protected willUpdate(cp: PropertyValueMap<any> | Map<PropertyKey, unknown>): void {
+    super.willUpdate(cp);
+    if (cp.has('positionTarget') || cp.has('verticalAlign') || cp.has('horizontalAlign') || cp.has('verticalOffset') || cp.has('horizontalOffset')) {
+      this._updateOverlayPosition();
+    }
+    if (cp.has('allowOutsideScroll')) {
+      this._allowOutsideScrollChanged();
+    }
+    if (cp.has('opened')) {
+      if (this.opened && this.disabled) {
+        this.opened = false;
+      }
+    }
+  }
+
   _setupSizingTarget(): void {
     if (!this.sizingTarget || this.sizingTarget === this) {
       this.sizingTarget = this.containedElement || this;
@@ -297,20 +138,20 @@ export default class AnypointDropdownElement extends OverlayMixin(ControlStateMi
   }
 
   _updateOverlayPosition(): void {
-    // from OverlayMixin
-    if (this.isAttached) {
-      // from ResizableMixin
+    // from OverlayElement
+    if (this._isAttached) {
+      // from ResizableElement
       this.notifyResize();
     }
   }
 
-  _openedChanged(opened?: boolean): void {
-    if (opened && this.disabled) {
-      // from OverlayMixin
+  _openedChanged(): void {
+    if (this.opened && this.disabled) {
+      // from OverlayElement
       this.cancel();
     } else {
       this.cancelAnimation();
-      super._openedChanged(opened);
+      super._openedChanged();
     }
   }
 
@@ -361,9 +202,10 @@ export default class AnypointDropdownElement extends OverlayMixin(ControlStateMi
    * Sets scrollAction according to the value of allowOutsideScroll.
    * Prefer setting directly scrollAction.
    */
-  _allowOutsideScrollChanged(allowOutsideScroll?: boolean): void {
+  _allowOutsideScrollChanged(): void {
+    const { allowOutsideScroll } = this;
     // Wait until initial values are all set.
-    if (!this._readied) {
+    if (!this._isAttached) {
       return;
     }
     if (!allowOutsideScroll) {

@@ -14,102 +14,48 @@ WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the
 License for the specific language governing permissions and limitations under
 the License.
 */
-import { LitElement, html, CSSResult, TemplateResult } from 'lit';
+import { html, CSSResult, TemplateResult, PropertyValueMap } from 'lit';
 import { classMap } from 'lit/directives/class-map.js';
 import { styleMap } from 'lit/directives/style-map.js';
 import { property } from 'lit/decorators.js';
-import { RangeMixin, rangeChanged, clampValue, computeRatio, computeDebounce } from '../mixins/RangeMixin.js';
 import elementStyles from '../styles/Progress.js';
-
-export const secondaryProgressValue = Symbol('secondaryProgressValue');
-export const indeterminateValue = Symbol('indeterminateValue');
-export const secondaryRatioValue = Symbol('secondaryRatioValue');
+import AnypointRangeElement from './RangeElement.js';
+import { floatConverter } from '../lib/AttributeConverters.js';
 
 /**
- * Anypoint styles progress bar.
+ * Anypoint styled progress bar.
  * 
  * The progress bars are for situations where the percentage completed can be
  * determined. They give users a quick sense of how much longer an operation
  * will take.
- * 
- * @attr {number} value
- * @prop {number | undefined} value
- * @attr {number} min
- * @prop {number | undefined} min
- * @attr {number} max
- * @prop {number | undefined} max
- * @attr {number} step
- * @prop {number | undefined} step
- * @fires ratiochange
  */
-export default class AnypointProgressElement extends RangeMixin(LitElement) {
+export default class AnypointProgressElement extends AnypointRangeElement {
   static get styles(): CSSResult {
     return elementStyles;
   }
 
+  protected _secondaryRatio?: number;
+
   /**
    * True if the progress is disabled.
    */
-  @property({ reflect: true, type: Boolean })
-  disabled?: boolean;
-
-  [secondaryProgressValue]?: number;
-
-  [secondaryRatioValue]?: number;
-
-  [indeterminateValue] = false;
+  @property({ reflect: true, type: Boolean }) disabled?: boolean;
 
   /**
    * The number that represents the current secondary progress.
    */
-  @property({ type: Number })
-  get secondaryProgress(): number {
-    return this[secondaryProgressValue] || 0;
-  }
-
-  set secondaryProgress(value: number) {
-    let parsed = value;
-    if (typeof parsed === 'string') {
-      parsed = parseFloat(parsed);
-    }
-    // const v = this[clampValue](parsed);
-    const old = this[secondaryProgressValue];
-    if (parsed === old) {
-      return;
-    }
-    this[secondaryProgressValue] = parsed;
-    this.requestUpdate('secondaryProgress', old);
-    this[computeDebounce]();
-  }
+  @property({ type: Number, converter: floatConverter }) secondaryProgress?: number;
 
   /**
    * Use an indeterminate progress indicator.
    */
-  @property({ reflect: true, type: Boolean })
-  get indeterminate(): boolean {
-    return this[indeterminateValue];
-  }
-
-  set indeterminate(value: boolean) {
-    const old = this[indeterminateValue];
-    if (value === old) {
-      return;
-    }
-    this[indeterminateValue] = value;
-    this.requestUpdate('indeterminate', old);
-    this[computeDebounce]();
-  }
+  @property({ reflect: true, type: Boolean }) indeterminate?: boolean;
 
   /**
    * @returns The ratio of the secondary progress.
    */
   get secondaryRatio(): number {
-    return this[secondaryRatioValue] || 0;
-  }
-
-  constructor() {
-    super();
-    this[secondaryProgressValue] = 0;
+    return this._secondaryRatio || 0;
   }
 
   connectedCallback(): void {
@@ -119,21 +65,38 @@ export default class AnypointProgressElement extends RangeMixin(LitElement) {
     }
   }
 
-  [rangeChanged](): void {
-    super[rangeChanged]();
-    const { value, min, max, indeterminate } = this;
-    const secondaryProgress = this[clampValue](this.secondaryProgress);
-    const secondaryRatio = this[computeRatio](secondaryProgress) * 100;
-    this[secondaryRatioValue] = secondaryRatio;
-
-    if (indeterminate) {
-      this.removeAttribute('aria-valuenow');
-    } else {
-      this.setAttribute('aria-valuenow', String(value));
+  protected willUpdate(cp: PropertyValueMap<any> | Map<PropertyKey, unknown>): void {
+    super.willUpdate(cp);
+    if (cp.has('secondaryProgress') || cp.has('indeterminate')) {
+      this._rangeChanged();
     }
-    this.setAttribute('aria-valuemin', String(min));
-    this.setAttribute('aria-valuemax', String(max));
-    this.requestUpdate();
+  }
+
+  protected updated(cp: PropertyValueMap<any> | Map<PropertyKey, unknown>): void {
+    if (cp.has('min')) {
+      this.setAttribute('aria-valuemin', String(this.min));
+    }
+    if (cp.has('max')) {
+      this.setAttribute('aria-valuemax', String(this.max));
+    }
+    if (cp.has('indeterminate') || cp.has('value')) {
+      if (this.indeterminate) {
+        this.removeAttribute('aria-valuenow');
+      } else {
+        this.setAttribute('aria-valuenow', String(this.value));
+      }
+    }
+  }
+
+  protected _rangeChanged(): void {
+    super._rangeChanged();
+    const { secondaryProgress: sp } = this;
+    if (typeof sp === 'number') {
+      const secondary = this._clampValue(sp);
+      this._secondaryRatio = this._computeRatio(secondary) * 100;
+    } else {
+      this._secondaryRatio = undefined;
+    }
   }
 
   render(): TemplateResult {

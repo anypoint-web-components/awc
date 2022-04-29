@@ -199,6 +199,7 @@ describe('AnypointInputComboboxElement', () => {
       const element = await listFixture();
       const item = element.querySelector('anypoint-item')!;
       item.click();
+      await nextFrame();
       assert.equal(element.value, '1');
     });
 
@@ -208,6 +209,7 @@ describe('AnypointInputComboboxElement', () => {
       element.addEventListener('change', spy);
       const item = element.querySelector('anypoint-item')!;
       item.click();
+      await nextFrame();
       assert.isTrue(spy.called);
     });
 
@@ -217,6 +219,7 @@ describe('AnypointInputComboboxElement', () => {
       element.addEventListener('input', spy);
       const item = element.querySelector('anypoint-item')!;
       item.click();
+      await nextFrame();
       assert.isTrue(spy.called);
     });
 
@@ -230,6 +233,7 @@ describe('AnypointInputComboboxElement', () => {
         }
       }));
       item.click();
+      await nextFrame();
       assert.equal(element.value, 'v1');
     });
   });

@@ -1,7 +1,7 @@
-import { LitElement, html, css, TemplateResult, CSSResult } from 'lit';
-import { OverlayMixin } from '../../src/index.js';
+import { html, css, TemplateResult, CSSResult } from 'lit';
+import OverlayElement from '../../src/elements/overlay/OverlayElement.js';
 
-export class TestOverlay2 extends OverlayMixin(LitElement) {
+export class TestOverlay2 extends OverlayElement {
   get styles(): CSSResult {
     return css`
     :host {

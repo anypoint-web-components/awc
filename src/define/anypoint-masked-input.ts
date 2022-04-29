@@ -1,4 +1,4 @@
-import Element from '../elements/AnypointMaskedInput.js';
+import Element from '../elements/input/AnypointMaskedInput.js';
 
 window.customElements.define('anypoint-masked-input', Element);
 

@@ -238,6 +238,7 @@ describe('AnypointAutocompleteElement', () => {
       notifyInput(input);
       await nextFrame();
       element._listbox!.selectNext();
+      await nextFrame();
       assert.equal(input.value, 'v1');
     });
 
@@ -438,28 +439,29 @@ describe('AnypointAutocompleteElement', () => {
     it('dispatches "selected" event', async () => {
       input.value = 'a';
       notifyInput(input);
-      await aTimeout(0);
+      await nextFrame();
       const spy = sinon.spy();
       element.addEventListener('selected', spy);
       element._listbox!.selectNext();
+      await nextFrame();
       assert.equal(spy.args[0][0].detail.value, 'Apple');
     });
 
     it('sets value on target when "selected" event not cancelled', async () => {
       input.value = 'a';
       notifyInput(input);
-      await aTimeout(0);
+      await nextFrame();
       element._listbox!.selectNext();
-      await aTimeout(1);
+      await nextFrame();
       assert.equal(input.value, 'Apple');
     });
 
     it('closes the suggestions', async () => {
       input.value = 'a';
       notifyInput(input);
-      await aTimeout(0);
+      await nextFrame();
       element._listbox!.selectNext();
-      await aTimeout(1);
+      await nextFrame();
       assert.isFalse(element.opened);
     });
 
@@ -479,6 +481,7 @@ describe('AnypointAutocompleteElement', () => {
       const spy = sinon.spy();
       element.addEventListener('selected', spy);
       element._listbox!.selectNext();
+      await nextFrame();
       assert.deepEqual(spy.args[0][0].detail.value, objectSuggestions[1]);
     });
 
@@ -490,6 +493,7 @@ describe('AnypointAutocompleteElement', () => {
       const spy = sinon.spy();
       element.addEventListener('selected', spy);
       element._listbox!.selectNext();
+      await nextFrame();
       assert.deepEqual(spy.args[0][0].detail.value.id, 2);
       assert.deepEqual(spy.args[0][0].detail.value.value, 'Apricot');
     });
@@ -1276,7 +1280,7 @@ describe('AnypointAutocompleteElement', () => {
     });
 
     it('has the default positioning target', () => {
-      assert.equal(dropDown.positionTarget!.localName, 'input');
+      assert.equal((dropDown.positionTarget as HTMLElement).localName, 'input');
     });
 
     it('has the set positioning target', async () => {

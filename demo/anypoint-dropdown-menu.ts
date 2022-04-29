@@ -476,12 +476,6 @@ class ComponentDemo extends DemoPage {
           automatically validate the input when selection change.
         </p>
 
-        <p>
-          Anypoint web components offers <code>ValidatorMixin</code> that allows to define
-          a custom element that validates an input field. This allows to reuse validation
-          logic across different parts of the application.
-        </p>
-
         <anypoint-dropdown-menu autoValidate required>
           <label slot="label">Select a dinosaur</label>
           <anypoint-listbox slot="dropdown-content" tabindex="-1">

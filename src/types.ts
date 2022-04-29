@@ -1,7 +1,6 @@
 import { TemplateResult, SVGTemplateResult } from 'lit';
 
-export { ValidationResult } from "./mixins/ValidatableMixin.js";
-export { VerticalAlign, HorizontalAlign } from './mixins/FitMixin.js';
+export { VerticalAlign, HorizontalAlign } from './elements/overlay/FitElement.js';
 export { IAnimationConfig } from './lib/Animations.js';
 
 export type SupportedInputTypes = "hidden" | "text" | "search" | "tel" | "url" | "email" | "password" | "datetime" | "date" | "month" | "week" | "time" | "datetime-local" | "number" | "range" | "color" | "checkbox" | "radio" | "file" | "submit" | "image" | "reset" | "button";

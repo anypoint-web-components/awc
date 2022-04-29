@@ -16,7 +16,7 @@ the License.
 import { html, css, CSSResult, TemplateResult } from 'lit';
 import { property, state } from 'lit/decorators.js';
 import { Suggestion } from '../types';
-import { HorizontalAlign, VerticalAlign } from '../mixins/FitMixin.js';
+import { HorizontalAlign, VerticalAlign } from './overlay/FitElement.js';
 import AnypointListboxElement from './AnypointListboxElement.js';
 import { addListener, getListener } from '../lib/ElementEventsRegistry.js';
 import AnypointElement from './AnypointElement.js';
@@ -644,7 +644,11 @@ export default class AnypointAutocompleteElement extends AnypointElement {
     if (!this.isAttached || this.disabled) {
       return;
     }
-    let { value } = this._oldTarget!;
+    const target = this._oldTarget;
+    if (!target) {
+      return;
+    }
+    let { value } = target;
     if (value === undefined || value === null) {
       value = '';
     }

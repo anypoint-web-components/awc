@@ -1,4 +1,4 @@
-import { fixture, assert, defineCE } from '@open-wc/testing';
+import { fixture, assert, defineCE, nextFrame } from '@open-wc/testing';
 import { LitElement, html, TemplateResult } from 'lit';
 import { property } from 'lit/decorators.js';
 import * as MockInteractions from '@polymer/iron-test-helpers/mock-interactions.js';
@@ -74,8 +74,9 @@ describe('AnypointSelector', () => {
       );
     });
 
-    it('selecting value programatically selects correct item', () => {
+    it('selecting value programmatically selects correct item', async () => {
       selector.select('value1');
+      await nextFrame();
       assert.equal(selector.selectedItem, items[1]);
     });
 
@@ -86,11 +87,13 @@ describe('AnypointSelector', () => {
       });
     });
 
-    it('setting attr-for-selected to null keeps current selection', () => {
+    it('setting attr-for-selected to null keeps current selection', async () => {
       selector.select('value0');
+      await nextFrame();
       assert.equal(selector.selectedItem, items[0]);
       assert.equal(selector.selected, 'value0');
       selector.attrForSelected = undefined;
+      await nextFrame();
       assert.equal(selector.selectedItem, items[0]);
       assert.equal(selector.selected, 0);
     });
@@ -109,8 +112,9 @@ describe('AnypointSelector', () => {
       }
     });
 
-    it('selecting value programatically selects correct item', () => {
+    it('selecting value programmatically selects correct item', async () => {
       selector.select('value1');
+      await nextFrame();
       assert.equal(selector.selectedItem, items[1]);
     });
 
@@ -137,9 +141,11 @@ describe('AnypointSelector', () => {
       }
     });
 
-    it('selecting value programatically selects correct item', () => {
+    it('selecting value programmatically selects correct item', async () => {
       for (let i = 0; i < items.length; i++) {
         selector.select(`value${i}`);
+        // eslint-disable-next-line no-await-in-loop
+        await nextFrame();
         assert.equal(selector.selectedItem, items[i]);
       }
     });
@@ -168,25 +174,27 @@ describe('AnypointSelector', () => {
       items = Array.from(selector.querySelectorAll('div[some-attr]'));
     });
 
-    it('setting non-existing value sets default', () => {
+    it('setting non-existing value sets default', async () => {
       selector.select('non-existing-value');
+      await nextFrame();
       assert.equal(selector.selected, 'default');
       assert.equal(selector.selectedItem, items[2]);
     });
 
-    it('setting non-existing value sets default with multi', () => {
+    it('setting non-existing value sets default with multi', async () => {
       selector.multi = true;
+      await nextFrame();
       selector.select('non-existing-value');
-      assert.deepEqual(selector.selectedValues, [
-        'default',
-        'non-existing-value',
-      ]);
+      await nextFrame();
+      assert.deepEqual(selector.selectedValues, ['default', 'non-existing-value']);
       assert.deepEqual(selector.selectedItems, [items[2]]);
     });
 
-    it('default not used when there was at least one match', () => {
+    it('default not used when there was at least one match', async () => {
       selector.multi = true;
+      await nextFrame();
       selector.selectedValues = ['non-existing-value', 'value0'];
+      await nextFrame();
       assert.deepEqual(selector.selectedValues, [
         'non-existing-value',
         'value0',
@@ -194,28 +202,35 @@ describe('AnypointSelector', () => {
       assert.deepEqual(selector.selectedItems, [items[0]]);
     });
 
-    it('default element not found does not result in infinite loop', () => {
+    it('default element not found does not result in infinite loop', async () => {
       selector.fallbackSelection = 'non-existing-fallback';
       selector.select('non-existing-value');
+      await nextFrame();
       assert.equal(selector.selectedItem, undefined);
       selector.multi = true;
       selector.selectedValues = ['non-existing-value'];
+      await nextFrame();
       assert.deepEqual(selector.selectedItems, []);
       selector.fallbackSelection = 'default';
+      await nextFrame();
       assert.deepEqual(selector.selectedItems, [items[2]]);
     });
 
-    it('selection is updated after fallback is set', () => {
+    it('selection is updated after fallback is set', async () => {
       selector.fallbackSelection = undefined;
+      await nextFrame();
       selector.select('non-existing-value');
+      await nextFrame();
       selector.fallbackSelection = 'default';
+      await nextFrame();
       assert.equal(selector.selectedItem, items[2]);
     });
 
-    it('multi-selection is updated after fallback is set', () => {
+    it('multi-selection is updated after fallback is set', async () => {
       selector.fallbackSelection = undefined;
       selector.selectedValues = ['non-existing-value'];
       selector.fallbackSelection = 'default';
+      await nextFrame();
       assert.equal(selector.selectedItem, items[2]);
     });
   });

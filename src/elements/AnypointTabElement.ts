@@ -1,6 +1,6 @@
 import { html, css, CSSResult, TemplateResult } from 'lit';
 import { property } from 'lit/decorators.js';
-import AnypointButtonElement from './AnypointButtonElement.js';
+import AnypointButtonElement from './button/AnypointButtonElement.js';
 import '../define/material-ripple.js';
 
 export default class AnypointTabElement extends AnypointButtonElement {

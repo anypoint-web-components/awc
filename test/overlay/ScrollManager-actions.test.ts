@@ -28,7 +28,7 @@ big.className = 'big';
 big.innerText = 'This element makes the page scrollable.';
 document.body.appendChild(big);
 
-describe('OverlayMixin - scroll actions', () => {
+describe('OverlayElement - scroll actions', () => {
   async function basicFixture(): Promise<TestOverlay> {
     return fixture(html`
       <test-overlay class="scrollable">

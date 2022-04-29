@@ -1,9 +1,9 @@
 /* eslint-disable wc/no-invalid-element-name */
-import { LitElement, html, css, TemplateResult, CSSResult } from 'lit';
+import { html, css, TemplateResult, CSSResult } from 'lit';
 import { property } from 'lit/decorators.js';
-import { ResizableMixin } from '../src/index.js';
+import ResizableElement from '../src/elements/overlay/ResizableElement.js';
 
-class XPuck extends ResizableMixin(LitElement) {
+class XPuck extends ResizableElement {
   static get styles(): CSSResult {
     return css`
     :host {

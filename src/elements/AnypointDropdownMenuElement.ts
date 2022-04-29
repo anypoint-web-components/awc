@@ -1,18 +1,16 @@
-import { html, CSSResult, TemplateResult } from 'lit';
+import { html, CSSResult, TemplateResult, PropertyValueMap } from 'lit';
 import { property, state } from 'lit/decorators.js';
 import { ifDefined } from 'lit/directives/if-defined.js';
 import { classMap } from 'lit/directives/class-map.js';
-import { ControlStateMixin } from '../mixins/ControlStateMixin.js';
-import { ValidatableMixin, ValidationResult } from '../mixins/ValidatableMixin.js';
-import { HorizontalAlign, VerticalAlign } from '../mixins/FitMixin.js';
+import { HorizontalAlign, VerticalAlign } from './overlay/FitElement.js';
 import { arrowDown } from '../resources/Icons.js';
-import AnypointElement from './AnypointElement.js';
 import AnypointListboxElement from './AnypointListboxElement.js';
 import DropdownStyles from '../styles/DropdownMenu.js';
 import { IAnimationConfig, DefaultListOpenAnimation, DefaultListCloseAnimation } from '../lib/Animations.js';
 import { retarget, retargetHandler } from '../lib/Events.js';
 import '../define/anypoint-dropdown.js';
 import '../define/anypoint-icon-button.js';
+import ValidatableElement from './ValidatableElement.js';
 
 /* eslint-disable class-methods-use-this */
 /* eslint-disable no-plusplus */
@@ -26,32 +24,8 @@ import '../define/anypoint-icon-button.js';
  * support.
  *
  * See README.md file for detailed documentation.
- * 
- * @attr {boolean} focused
- * @prop {boolean | undefined} focused
- * 
- * @attr {boolean} disabled
- * @prop {boolean | undefined} disabled
- * 
- * @fires invalidchange
- * @fires validationstateschange
- *
- * @attr {string} validator
- * @prop {string | undefined} validator
- *
- * @attr {boolean} invalid
- * @prop {boolean | undefined} invalid
- * 
- * @fires invalidchange
- * @fires validationstateschange
- *
- * @attr {string} validator
- * @prop {string | undefined} validator
- *
- * @attr {boolean} invalid
- * @prop {boolean | undefined} invalid
  */
-export default class AnypointDropdownMenuElement extends ValidatableMixin(ControlStateMixin(AnypointElement)) {
+export default class AnypointDropdownMenuElement extends ValidatableElement {
   static get styles(): CSSResult {
     return DropdownStyles;
   }
@@ -305,7 +279,7 @@ export default class AnypointDropdownMenuElement extends ValidatableMixin(Contro
     if (old === value) {
       return;
     }
-    if (value && (this._disabled || this._formDisabled)) {
+    if (value && (this.disabled || this._formDisabled)) {
       return;
     }
     this._opened = value;
@@ -366,27 +340,10 @@ export default class AnypointDropdownMenuElement extends ValidatableMixin(Contro
     }
   }
 
-  _disabled?: boolean;
-
   /**
    * When set the control is rendered as disabled form control.
    */
-  @property({ type: Boolean, reflect: true })
-  get disabled(): boolean {
-    return this._disabled || false;
-  }
-
-  set disabled(value: boolean) {
-    const old = this._disabled;
-    if (old === value) {
-      return;
-    }
-    this._disabled = value;
-    this.requestUpdate('disabled', old);
-    if (this.opened) {
-      this.opened = false;
-    }
-  }
+  @property({ reflect: true, type: Boolean }) disabled?: boolean;
 
   /**
    * An animation config. If provided, this will be used to animate the
@@ -533,10 +490,10 @@ export default class AnypointDropdownMenuElement extends ValidatableMixin(Contro
     super();
     this.value = '';
 
-    this._clickHandler = this._clickHandler.bind(this);
-    this._onKeydown = this._onKeydown.bind(this);
-    this._focusHandler = this._focusHandler.bind(this);
-    this._validationStatesHandler = this._validationStatesHandler.bind(this);
+    this.addEventListener('click', this._clickHandler.bind(this));
+    this.addEventListener('keydown', this._onKeydown.bind(this));
+    this.addEventListener('focus', this._focusHandler.bind(this));
+
     /* istanbul ignore else */
     if (this.attachInternals) {
       this._internals = this.attachInternals();
@@ -551,24 +508,16 @@ export default class AnypointDropdownMenuElement extends ValidatableMixin(Contro
     if (!this.hasAttribute('aria-haspopup')) {
       this.setAttribute('aria-haspopup', 'listbox');
     }
-    this.addEventListener('click', this._clickHandler);
-    this.addEventListener('keydown', this._onKeydown);
-    this.addEventListener('focus', this._focusHandler);
-    this.addEventListener('validationstateschange', this._validationStatesHandler);
   }
 
-  disconnectedCallback(): void {
-    super.disconnectedCallback();
-    this.removeEventListener('click', this._clickHandler);
-    this.removeEventListener('keydown', this._onKeydown);
-    this.removeEventListener('focus', this._focusHandler);
-    this.removeEventListener('validationstateschange', this._validationStatesHandler);
-  }
-
-  _validationStatesHandler(): void {
-    const value = this.validationStates;
-    this._hasValidationMessage = !!(value && value.length);
-    this._validationStatesChanged(value);
+  protected willUpdate(up: PropertyValueMap<any> | Map<PropertyKey, unknown>): void {
+    super.willUpdate(up);
+    if (up.has('disabled') && this.disabled && this.opened) {
+      this.opened = false;
+    }
+    if (up.has('invalid')) {
+      this._invalidChanged();
+    }
   }
 
   /**
@@ -785,7 +734,7 @@ export default class AnypointDropdownMenuElement extends ValidatableMixin(Contro
     retarget(e, this);
     this.opened = false;
     if (this.autoValidate) {
-      this.validate(this.value);
+      this.checkValidity();
       this._updateNativeValidationState();
     }
     this.focus();
@@ -835,41 +784,12 @@ export default class AnypointDropdownMenuElement extends ValidatableMixin(Contro
    * and the element has a valid selection.
    */
   _getValidity(): boolean {
-    return (
-      this.disabled
-      || this._formDisabled
-      || !this.required
-      || (this.required && !!this.value)
-    );
-  }
-
-  checkValidity(): boolean {
-    return (
-      this._getValidity() 
-      // @ts-ignore
-      && ((this._internals && !!this._internals.checkValidity && this._internals.checkValidity()) || true)
-    );
-  }
-
-  /**
-   * Called when validation states changed.
-   * Validation states are set by validatable mixin and is a result of calling
-   * a custom validator. Each validator returns an object with `valid` and `message`
-   * properties.
-   *
-   * See `ValidatableMixin` for more information.
-   */
-  _validationStatesChanged(states: ValidationResult[] | undefined): void {
-    if (!states || !states.length) {
-      return;
+    let result = (!!this.disabled || !!this._formDisabled || !this.required || (!!this.required && !!this.value));
+    // @ts-ignore
+    if (result && this._internals && !!this._internals.checkValidity && !this._internals.checkValidity()) {
+      result = false;
     }
-    const parts = [];
-    for (let i = 0, len = states.length; i < len; i++) {
-      if (!states[i].valid) {
-        parts[parts.length] = states[i].message;
-      }
-    }
-    this.invalidMessage = parts.join('. ');
+    return result;
   }
 
   /**
@@ -877,18 +797,14 @@ export default class AnypointDropdownMenuElement extends ValidatableMixin(Contro
    */
   _autoValidateChanged(value?: boolean): void {
     if (value) {
-      this.validate(this.value);
+      this.checkValidity();
     }
   }
 
-  /**
-   * From `ValidatableMixin`
-   * @param value Current invalid sate
-   */
-  _invalidChanged(value?: boolean): void {
-    super._invalidChanged(value);
-    this._hasValidationMessage = value && !!this.invalidMessage;
-    this._ensureInvalidAlertSate(value);
+  _invalidChanged(): void {
+    const { invalid } = this;
+    this._hasValidationMessage = !!invalid && !!this.invalidMessage;
+    this._ensureInvalidAlertSate(invalid);
   }
 
   _ensureInvalidAlertSate(invalid?: boolean): void {

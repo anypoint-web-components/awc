@@ -1,11 +1,9 @@
 import { html, CSSResult, TemplateResult } from 'lit';
 import { property, state, eventOptions } from 'lit/decorators.js';
-import AnypointElement from './AnypointElement.js';
-import { ResizableMixin } from '../mixins/ResizableMixin.js';
-import { MenubarMixin } from '../mixins/MenubarMixin.js';
 import AnypointTabElement from './AnypointTabElement.js';
 import '../define/anypoint-icon-button.js';
 import styles from '../styles/TabsStyles.js';
+import MenubarElement from './selector/MenubarElement.js';
 
 /* eslint-disable no-param-reassign */
 /* eslint-disable class-methods-use-this */
@@ -22,67 +20,8 @@ export function calcPercent(w: number, w0: number): number {
 
 /**
  * Tabs for anypoint web components
- * 
- * @fires deselect
- * @fires selected
- * @fires activate
- * @fires selectedchange
- * @fires itemschange
- * @fires selecteditemchange
- * @fires childrenchange
- * @fires selectedvalueschange
- * @fires selecteditemschange
- * 
- * @attr {string} selected The selected element. The default is to use the index of the item.
- * @prop {string | number | undefined} selected - The selected element. The default is to use the index of the item.
- * 
- * @attr {string} fallbackSelection
- * @prop {string | number | undefined} fallbackSelection
- * 
- * @attr {string} attrForSelected
- * @prop {string | undefined} attrForSelected
- * 
- * @attr {string} selectable
- * @prop {string | undefined} selectable
- * 
- * @attr {string} selectedClass
- * @prop {string | undefined} selectedClass
- * 
- * @attr {string} selectedAttribute
- * @prop {string | undefined} selectedAttribute
- * 
- * @attr {string} activateEvent
- * @prop {string | undefined} activateEvent
- * 
- * @prop {readonly HTMLElement[]} items
- * 
- * @attr {boolean} multi
- * @prop {boolean | undefined} multi
- * 
- * @attr {unknown[]} selectedValues
- * @prop {unknown[] | undefined} selectedValues
- * 
- * @prop {readonly HTMLElement[]} selectedItems
- * 
- * @attr {string} attrForItemTitle
- * @prop {string | undefined} attrForItemTitle
- * 
- * @attr {boolean} useAriaSelected
- * @prop {boolean | undefined} useAriaSelected
- * 
- * @attr {boolean} highlightAriaSelected
- * @prop {boolean | undefined} highlightAriaSelected
- * 
- * @attr {boolean} disabled
- * @prop {boolean | undefined} disabled
- * 
- * @prop {readonly HTMLElement | undefined} focusedItem
- * 
- * @prop {readonly HTMLElement | undefined} highlightedItem
- * 
- * @fires requestresizenotifications
  */
-export default class AnypointTabsElement extends MenubarMixin(ResizableMixin(AnypointElement)) {
+export default class AnypointTabsElement extends MenubarElement {
   static get styles(): CSSResult | CSSResult[] {
     return styles;
   }
@@ -90,69 +29,58 @@ export default class AnypointTabsElement extends MenubarMixin(ResizableMixin(Any
   /**
    * If true, the bottom bar to indicate the selected tab will not be shown.
    */
-  @property({ type: Boolean })
-  noBar?: boolean;
+  @property({ type: Boolean }) noBar?: boolean;
 
   /**
    * If true, the slide effect for the bottom bar is disabled.
    */
-  @property({ type: Boolean, reflect: true })
-  noSlide?: boolean;
+  @property({ type: Boolean, reflect: true }) noSlide?: boolean;
 
   /**
    * If true, tabs are scrollable and the tab width is based on the label
    * width.
    */
-  @property({ type: Boolean })
-  scrollable?: boolean;
+  @property({ type: Boolean }) scrollable?: boolean;
 
   /**
    * If true, tabs expand to fit their container. This currently only applies
    * when scrollable is true.
    */
-  @property({ type: Boolean })
-  fitContainer?: boolean;
+  @property({ type: Boolean }) fitContainer?: boolean;
 
   /**
    * If true, dragging on the tabs to scroll is disabled.
    */
-  @property({ type: Boolean })
-  disableDrag?: boolean;
+  @property({ type: Boolean }) disableDrag?: boolean;
 
   /**
    * If true, scroll buttons (left/right arrow) will be hidden for scrollable
    * tabs.
    */
-  @property({ type: Boolean, reflect: true })
-  hideScrollButtons?: boolean;
+  @property({ type: Boolean, reflect: true }) hideScrollButtons?: boolean;
 
   /**
    * If true, the tabs are aligned to bottom (the selection bar appears at the
    * top).
    */
-  @property({ type: Boolean })
-  alignBottom?: boolean;
+  @property({ type: Boolean }) alignBottom?: boolean;
 
   /**
    * If true, tabs are automatically selected when focused using the
    * keyboard.
    */
-  @property({ type: Boolean })
-  autoselect?: boolean;
+  @property({ type: Boolean }) autoselect?: boolean;
 
   /**
    * The delay (in milliseconds) between when the user stops interacting
    * with the tabs through the keyboard and when the focused item is
    * automatically selected (if `autoselect` is true).
    */
-  @property({ type: Number })
-  autoselectDelay = 0;
+  @property({ type: Number }) autoselectDelay = 0;
 
-  @state()
-  _leftHidden?: boolean;
+  @state() _leftHidden?: boolean;
 
-  @state()
-  _rightHidden?: boolean;
+  @state() _rightHidden?: boolean;
 
   get _contentClass(): string {
     const { scrollable, fitContainer } = this;

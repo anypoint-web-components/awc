@@ -1,4 +1,4 @@
-import Element from '../elements/AnypointRadioButtonElement.js';
+import Element from '../elements/button/AnypointRadioButtonElement.js';
 
 window.customElements.define('anypoint-radio-button', Element);
 
