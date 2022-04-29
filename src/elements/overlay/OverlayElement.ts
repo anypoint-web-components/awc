@@ -189,32 +189,32 @@ export default class OverlayElement extends FitElement {
   // with-backdrop needs tabindex to be set in order to trap the focus.
   // If it is not set, OverlayElement will set it, and remove it if
   // with-backdrop = false.
-  __shouldRemoveTabIndex = false;
+  protected __shouldRemoveTabIndex = false;
 
   // Used for wrapping the focus on TAB / Shift+TAB.
-  __firstFocusableNode?: HTMLElement;
+  protected __firstFocusableNode?: HTMLElement;
 
-  __lastFocusableNode?: HTMLElement;
+  protected __lastFocusableNode?: HTMLElement;
 
   // Used by to keep track of the RAF callbacks.
-  __rafs: Record<string, number> = {};
+  protected __rafs: Record<string, number> = {};
 
   // Focused node before overlay gets opened. Can be restored on close.
-  __restoreFocusNode?: HTMLElement;
+  protected __restoreFocusNode?: HTMLElement;
 
   // Scroll info to be restored.
-  __scrollTop?: number;
+  protected __scrollTop?: number;
 
-  __scrollLeft?: number;
+  protected __scrollLeft?: number;
 
   // Root nodes hosting the overlay, used to listen for scroll events on them.
-  __rootNodes?: (Document | DocumentFragment)[];
+  protected __rootNodes?: (Document | DocumentFragment)[];
 
-  _elementReady = false;
+  protected _elementReady = false;
 
-  _childrenObserver?: MutationObserver;
+  protected _childrenObserver?: MutationObserver;
 
-  _overlaySetup = false;
+  protected _overlaySetup = false;
 
   constructor() {
     super();
@@ -285,7 +285,7 @@ export default class OverlayElement extends FitElement {
     }
   }
 
-  _setupSlotListeners(): void {
+  protected _setupSlotListeners(): void {
     const observer = new MutationObserver((mutations) => {
       this._processMutations(mutations);
     });
@@ -293,7 +293,7 @@ export default class OverlayElement extends FitElement {
     this._childrenObserver.observe(this, { childList: true });
   }
 
-  _removeSlotListeners(): void {
+  protected _removeSlotListeners(): void {
     this._unlistenSlots(this.children);
     if (this._childrenObserver) {
       this._childrenObserver.disconnect();
@@ -301,7 +301,7 @@ export default class OverlayElement extends FitElement {
     }
   }
 
-  _processMutations(mutations: MutationRecord[]): void {
+  protected _processMutations(mutations: MutationRecord[]): void {
     if (mutations) {
       for (let i = 0; i < mutations.length; i++) {
         const mutation = mutations[i];
@@ -319,7 +319,7 @@ export default class OverlayElement extends FitElement {
   /**
    * @param nodeList Nodes that could change
    */
-  _listenSlots(nodeList: Node[] | NodeList | HTMLCollection): void {
+  protected _listenSlots(nodeList: Node[] | NodeList | HTMLCollection): void {
     for (let i = 0; i < nodeList.length; i++) {
       const n = nodeList[i] as Element;
       if (n.localName === 'slot') {
@@ -331,7 +331,7 @@ export default class OverlayElement extends FitElement {
   /**
    * @param nodeList Nodes that could change
    */
-  _unlistenSlots(nodeList: Node[] | NodeList | HTMLCollection): void {
+  protected _unlistenSlots(nodeList: Node[] | NodeList | HTMLCollection): void {
     for (let i = 0; i < nodeList.length; i++) {
       const n = nodeList[i] as Element;
       if (n.localName === 'slot') {
@@ -340,7 +340,7 @@ export default class OverlayElement extends FitElement {
     }
   }
 
-  _boundSchedule(): void {
+  protected _boundSchedule(): void {
     setTimeout(() => {
       this._onNodesChange();
     });
@@ -395,7 +395,7 @@ export default class OverlayElement extends FitElement {
     this.__lastFocusableNode = undefined;
   }
 
-  _ensureSetup(): void {
+  protected _ensureSetup(): void {
     if (this._overlaySetup) {
       return;
     }
@@ -429,7 +429,7 @@ export default class OverlayElement extends FitElement {
     }
   }
 
-  _ensureAria(opened: boolean | undefined = this.opened): void {
+  protected _ensureAria(opened: boolean | undefined = this.opened): void {
     if (opened) {
       this.removeAttribute('aria-hidden');
     } else {
@@ -437,12 +437,12 @@ export default class OverlayElement extends FitElement {
     }
   }
 
-  _canceledChanged(): void {
+  protected _canceledChanged(): void {
     this.closingReason = this.closingReason || {};
     this.closingReason.canceled = this.canceled;
   }
 
-  _withBackdropChanged(): void {
+  protected _withBackdropChanged(): void {
     // If tabindex is already set, no need to override it.
     if (this.withBackdrop && !this.hasAttribute('tabindex')) {
       this.setAttribute('tabindex', '-1');
@@ -460,7 +460,7 @@ export default class OverlayElement extends FitElement {
    * tasks which must occur before opening; e.g. making the element visible.
    * @protected
    */
-  _prepareRenderOpened(): void {
+  protected _prepareRenderOpened(): void {
     // Store focused node.
     this.__restoreFocusNode = this._manager.deepActiveElement as HTMLElement;
 
@@ -483,7 +483,7 @@ export default class OverlayElement extends FitElement {
    * animation.
    * @protected
    */
-  _renderOpened(): void {
+  protected _renderOpened(): void {
     this._finishRenderOpened();
   }
 
@@ -492,7 +492,7 @@ export default class OverlayElement extends FitElement {
    * animation.
    * @protected
    */
-  _renderClosed(): void {
+  protected _renderClosed(): void {
     this._finishRenderClosed();
   }
 
@@ -500,7 +500,7 @@ export default class OverlayElement extends FitElement {
    * Tasks to be performed at the end of open action. Will fire `opened`.
    * @protected
    */
-  _finishRenderOpened(): void {
+  protected _finishRenderOpened(): void {
     this.notifyResize();
     this._isAnimating = false;
     this.dispatchEvent(new Event('opened'));
@@ -510,7 +510,7 @@ export default class OverlayElement extends FitElement {
    * Tasks to be performed at the end of close action. Will fire `closed`.
    * @protected
    */
-  _finishRenderClosed(): void {
+  protected _finishRenderClosed(): void {
     // Hide the overlay.
     this.style.display = 'none';
     // Reset z-index only at the end of the animation.
@@ -523,13 +523,13 @@ export default class OverlayElement extends FitElement {
     this.dispatchEvent(new CustomEvent('closed', detail));
   }
 
-  _preparePositioning(): void {
+  protected _preparePositioning(): void {
     this.style.transition = 'none';
     this.style.transform = 'none';
     this.style.display = '';
   }
 
-  _finishPositioning(): void {
+  protected _finishPositioning(): void {
     // First, make it invisible & reactivate animations.
     this.style.display = 'none';
     // Force reflow before re-enabling animations so that they don't start.
@@ -554,7 +554,7 @@ export default class OverlayElement extends FitElement {
    * Applies focus according to the opened state.
    * @protected
    */
-  _applyFocus(): void {
+  protected _applyFocus(): void {
     if (this.opened) {
       if (!this.noAutoFocus) {
         this._focusNode.focus();
@@ -582,7 +582,7 @@ export default class OverlayElement extends FitElement {
    * Cancels (closes) the overlay. Call when click happens outside the overlay.
    * @protected
    */
-  _onCaptureClick(): void {
+  protected _onCaptureClick(): void {
     if (!this.noCancelOnOutsideClick) {
       this.cancel();
     }
@@ -592,7 +592,7 @@ export default class OverlayElement extends FitElement {
    * Keeps track of the focused child. If withBackdrop, traps focus within
    * overlay.
    */
-  _onCaptureFocus(event: Event): void {
+  protected _onCaptureFocus(event: Event): void {
     if (!this.withBackdrop) {
       return;
     }
@@ -613,7 +613,7 @@ export default class OverlayElement extends FitElement {
    * 
    * @protected
    */
-  _onCaptureEsc(): void {
+  protected _onCaptureEsc(): void {
     if (!this.noCancelOnEscKey) {
       this.cancel();
     }
@@ -623,7 +623,7 @@ export default class OverlayElement extends FitElement {
    * Handles TAB key events to track focus changes.
    * Will wrap focus for overlays withBackdrop.
    */
-  _onCaptureTab(event: KeyboardEvent): void {
+  protected _onCaptureTab(event: KeyboardEvent): void {
     if (!this.withBackdrop) {
       return;
     }
@@ -671,7 +671,10 @@ export default class OverlayElement extends FitElement {
    * Refits if the overlay is opened and not animating.
    * @protected
    */
-  _onResize(): void {
+  protected _onResize(e: Event): void {
+    if (e.target === this) {
+      return;
+    }
     if (this.opened && !this._isAnimating) {
       this._queue('refit', this.refit);
     }
@@ -682,7 +685,7 @@ export default class OverlayElement extends FitElement {
    * Can be overridden in order to avoid multiple observers on the same node.
    * @protected
    */
-  _onNodesChange(): void {
+  protected _onNodesChange(): void {
     if (this.opened && !this._isAnimating) {
       // It might have added focusable nodes, so invalidate cached values.
       this.invalidateTabbables();
@@ -694,7 +697,7 @@ export default class OverlayElement extends FitElement {
    * Updates the references to the first and last focusable nodes.
    * @private
    */
-  __ensureFirstLastFocusables(): void {
+  protected __ensureFirstLastFocusables(): void {
     const focusableNodes = this._focusableNodes;
     // eslint-disable-next-line prefer-destructuring
     this.__firstFocusableNode = focusableNodes[0] as HTMLElement;
@@ -706,10 +709,13 @@ export default class OverlayElement extends FitElement {
    * @param jobName
    * @param callback Always bound to `this`
    */
-  _queue(jobName: string, callback: Function): void {
+  protected _queue(jobName: string, callback: Function): void {
     const rafs = this.__rafs;
-    if (rafs[jobName] !== null) {
-      cancelAnimationFrame(rafs[jobName]);
+    if (typeof rafs[jobName] === 'number') {
+      // we let the previous job to finish, no need to reschedule
+      // the task.
+      return;
+      // cancelAnimationFrame(rafs[jobName]);
     }
     rafs[jobName] = requestAnimationFrame(() => {
       delete rafs[jobName];
@@ -717,7 +723,7 @@ export default class OverlayElement extends FitElement {
     });
   }
 
-  __updateScrollObservers(isAttached: boolean, opened: boolean, scrollAction?: string): void {
+  protected __updateScrollObservers(isAttached: boolean, opened: boolean, scrollAction?: string): void {
     if (!isAttached || !opened || !this.__isValidScrollAction(scrollAction)) {
       removeScrollLock(this);
       this.__removeScrollListeners();
@@ -730,10 +736,7 @@ export default class OverlayElement extends FitElement {
     }
   }
 
-  /**
-   * @private
-   */
-  __addScrollListeners(): void {
+  protected __addScrollListeners(): void {
     if (!this.__rootNodes) {
       this.__rootNodes = [];
       // Listen for scroll events in all shadowRoots hosting this overlay only
@@ -757,10 +760,7 @@ export default class OverlayElement extends FitElement {
     });
   }
 
-  /**
-   * @private
-   */
-  __removeScrollListeners(): void {
+  protected __removeScrollListeners(): void {
     if (this.__rootNodes) {
       this.__rootNodes.forEach((el) => {
         el.removeEventListener('scroll', this.__onCaptureScroll, {
@@ -773,16 +773,11 @@ export default class OverlayElement extends FitElement {
     }
   }
 
-  /**
-   * @param {string=} scrollAction
-   * @return {boolean}
-   * @private
-   */
-  __isValidScrollAction(scrollAction?: string): boolean {
+  protected __isValidScrollAction(scrollAction?: string): boolean {
     return scrollAction === 'lock' || scrollAction === 'refit' || scrollAction === 'cancel';
   }
 
-  __onCaptureScroll(event: Event): void {
+  protected __onCaptureScroll(event: Event): void {
     if (this._isAnimating) {
       return;
     }
@@ -812,9 +807,8 @@ export default class OverlayElement extends FitElement {
 
   /**
    * Memoizes the scroll position of the outside scrolling element.
-   * @private
    */
-  __saveScrollPosition(): void {
+  protected __saveScrollPosition(): void {
     if (document.scrollingElement) {
       this.__scrollTop = document.scrollingElement.scrollTop;
       this.__scrollLeft = document.scrollingElement.scrollLeft;
@@ -827,9 +821,8 @@ export default class OverlayElement extends FitElement {
 
   /**
    * Resets the scroll position of the outside scrolling element.
-   * @private
    */
-  __restoreScrollPosition(): void {
+  protected __restoreScrollPosition(): void {
     if (document.scrollingElement) {
       document.scrollingElement.scrollTop = this.__scrollTop!;
       document.scrollingElement.scrollLeft = this.__scrollLeft!;

@@ -36,7 +36,7 @@ document.body.appendChild(i);
 describe('OverlayElement', () => {
   async function basicFixture(): Promise<TestOverlay> {
     return (fixture(html`<test-overlay>
-      Basic Overlay
+      <p>Basic Overlay</p>
     </test-overlay>`));
   }
 
@@ -207,7 +207,7 @@ describe('OverlayElement', () => {
     it('open overlay refits on resize', async () => {
       await untilOpen(overlay);
       const spy = sinon.spy(overlay, 'refit');
-      overlay.dispatchEvent(new CustomEvent('resize', {
+      overlay.firstElementChild?.dispatchEvent(new Event('resize', {
         composed: true,
         bubbles: true
       }));
@@ -1338,18 +1338,18 @@ describe('OverlayElement', () => {
       assert.isTrue(element.onopened === f);
     });
 
-    it('Calls registered function', () => {
+    it('Calls registered function', async () => {
       let called = false;
       const f = () => {
         called = true;
       };
       element.onopened = f;
-      element._finishRenderOpened();
+      await untilOpen(element);
       element.onopened = undefined;
       assert.isTrue(called);
     });
 
-    it('Unregisteres old function', () => {
+    it('Unregisteres old function', async () => {
       let called1 = false;
       let called2 = false;
       const f1 = () => {
@@ -1360,7 +1360,7 @@ describe('OverlayElement', () => {
       };
       element.onopened = f1;
       element.onopened = f2;
-      element._finishRenderOpened();
+      await untilOpen(element);
       element.onopened = undefined;
       assert.isFalse(called1);
       assert.isTrue(called2);
@@ -1370,7 +1370,7 @@ describe('OverlayElement', () => {
   describe('onclosed', () => {
     let element: TestOverlay;
     beforeEach(async () => {
-      element = await basicFixture();
+      element = await openedFixture();
     });
 
     it('Getter returns previously registered handler', () => {
@@ -1380,18 +1380,18 @@ describe('OverlayElement', () => {
       assert.isTrue(element.onclosed === f);
     });
 
-    it('Calls registered function', () => {
+    it('calls the registered function', async () => {
       let called = false;
       const f = () => {
         called = true;
       };
       element.onclosed = f;
-      element._finishRenderClosed();
+      await untilClose(element);
       element.onclosed = undefined;
       assert.isTrue(called);
     });
 
-    it('Unregisteres old function', () => {
+    it('Unregisteres old function', async () => {
       let called1 = false;
       let called2 = false;
       const f1 = () => {
@@ -1402,7 +1402,7 @@ describe('OverlayElement', () => {
       };
       element.onclosed = f1;
       element.onclosed = f2;
-      element._finishRenderClosed();
+      await untilClose(element);
       element.onclosed = undefined;
       assert.isFalse(called1);
       assert.isTrue(called2);
