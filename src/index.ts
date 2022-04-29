@@ -41,8 +41,18 @@ export { default as MaterialRippleElement } from "./elements/MaterialRippleEleme
 export { default as ScrollThresholdElement } from './elements/ScrollThresholdElement.js';
 export { default as StarRatingElement } from './elements/StarRatingElement.js';
 
-export { default as AnypointRangeElement } from './elements/RangeElement.js';
-export { default as AnypointValidatableElement } from './elements/ValidatableElement.js';
+export { default as RangeElement } from './elements/RangeElement.js';
+export { default as ValidatableElement } from './elements/ValidatableElement.js';
+export { default as ButtonElement } from './elements/button/ButtonElement.js';
+export { default as CheckedElement } from './elements/checkbox/CheckedElement.js';
+export { default as InputElement } from './elements/input/InputElement.js';
+export { default as FitElement } from './elements/overlay/FitElement.js';
+export { default as OverlayElement } from './elements/overlay/OverlayElement.js';
+export { default as ResizableElement } from './elements/overlay/ResizableElement.js';
+export { default as MenubarElement } from './elements/selector/MenubarElement.js';
+export { default as MenuElement } from './elements/selector/MenuElement.js';
+export { default as MultiSelectableElement } from './elements/selector/MultiSelectableElement.js';
+export { default as SelectableElement } from './elements/selector/SelectableElement.js';
 
 export { default as AnypointDialogStyles } from './styles/AnypointDialogStyles.js';
 export { default as AnypointDialogStylesInternal } from './styles/AnypointDialogInternalStyles.js';
