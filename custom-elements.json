@@ -4602,588 +4602,6 @@
     },
     {
       "kind": "javascript-module",
-      "path": "src/define/anypoint-autocomplete.ts",
-      "declarations": [],
-      "exports": [
-        {
-          "kind": "custom-element-definition",
-          "name": "anypoint-autocomplete",
-          "declaration": {
-            "name": "Element",
-            "module": "/src/elements/AnypointAutocompleteElement.js"
-          }
-        }
-      ]
-    },
-    {
-      "kind": "javascript-module",
-      "path": "src/define/anypoint-button.ts",
-      "declarations": [],
-      "exports": [
-        {
-          "kind": "custom-element-definition",
-          "name": "anypoint-button",
-          "declaration": {
-            "name": "Element",
-            "module": "/src/elements/button/AnypointButtonElement.js"
-          }
-        }
-      ]
-    },
-    {
-      "kind": "javascript-module",
-      "path": "src/define/anypoint-checkbox.ts",
-      "declarations": [],
-      "exports": [
-        {
-          "kind": "custom-element-definition",
-          "name": "anypoint-checkbox",
-          "declaration": {
-            "name": "Element",
-            "module": "/src/elements/checkbox/AnypointCheckboxElement.js"
-          }
-        }
-      ]
-    },
-    {
-      "kind": "javascript-module",
-      "path": "src/define/anypoint-chip-input.ts",
-      "declarations": [],
-      "exports": [
-        {
-          "kind": "custom-element-definition",
-          "name": "anypoint-chip-input",
-          "declaration": {
-            "name": "Element",
-            "module": "/src/elements/AnypointChipInputElement.js"
-          }
-        }
-      ]
-    },
-    {
-      "kind": "javascript-module",
-      "path": "src/define/anypoint-chip.ts",
-      "declarations": [],
-      "exports": [
-        {
-          "kind": "custom-element-definition",
-          "name": "anypoint-chip",
-          "declaration": {
-            "name": "Element",
-            "module": "/src/elements/AnypointChipElement.js"
-          }
-        }
-      ]
-    },
-    {
-      "kind": "javascript-module",
-      "path": "src/define/anypoint-collapse.ts",
-      "declarations": [],
-      "exports": [
-        {
-          "kind": "custom-element-definition",
-          "name": "anypoint-collapse",
-          "declaration": {
-            "name": "Element",
-            "module": "/src/elements/AnypointCollapseElement.js"
-          }
-        }
-      ]
-    },
-    {
-      "kind": "javascript-module",
-      "path": "src/define/anypoint-combobox.ts",
-      "declarations": [],
-      "exports": [
-        {
-          "kind": "custom-element-definition",
-          "name": "anypoint-combobox",
-          "declaration": {
-            "name": "Element",
-            "module": "/src/elements/AnypointComboboxElement.js"
-          }
-        }
-      ]
-    },
-    {
-      "kind": "javascript-module",
-      "path": "src/define/anypoint-dialog-scrollable.ts",
-      "declarations": [],
-      "exports": [
-        {
-          "kind": "custom-element-definition",
-          "name": "anypoint-dialog-scrollable",
-          "declaration": {
-            "name": "Element",
-            "module": "/src/elements/AnypointDialogScrollableElement.js"
-          }
-        }
-      ]
-    },
-    {
-      "kind": "javascript-module",
-      "path": "src/define/anypoint-dialog.ts",
-      "declarations": [],
-      "exports": [
-        {
-          "kind": "custom-element-definition",
-          "name": "anypoint-dialog",
-          "declaration": {
-            "name": "Element",
-            "module": "/src/elements/AnypointDialogElement.js"
-          }
-        }
-      ]
-    },
-    {
-      "kind": "javascript-module",
-      "path": "src/define/anypoint-dropdown-menu.ts",
-      "declarations": [],
-      "exports": [
-        {
-          "kind": "custom-element-definition",
-          "name": "anypoint-dropdown-menu",
-          "declaration": {
-            "name": "Element",
-            "module": "/src/elements/AnypointDropdownMenuElement.js"
-          }
-        }
-      ]
-    },
-    {
-      "kind": "javascript-module",
-      "path": "src/define/anypoint-dropdown.ts",
-      "declarations": [],
-      "exports": [
-        {
-          "kind": "custom-element-definition",
-          "name": "anypoint-dropdown",
-          "declaration": {
-            "name": "Element",
-            "module": "/src/elements/AnypointDropdownElement.js"
-          }
-        }
-      ]
-    },
-    {
-      "kind": "javascript-module",
-      "path": "src/define/anypoint-icon-button.ts",
-      "declarations": [],
-      "exports": [
-        {
-          "kind": "custom-element-definition",
-          "name": "anypoint-icon-button",
-          "declaration": {
-            "name": "Element",
-            "module": "/src/elements/button/AnypointIconButtonElement.js"
-          }
-        }
-      ]
-    },
-    {
-      "kind": "javascript-module",
-      "path": "src/define/anypoint-icon-item.ts",
-      "declarations": [],
-      "exports": [
-        {
-          "kind": "custom-element-definition",
-          "name": "anypoint-icon-item",
-          "declaration": {
-            "name": "Element",
-            "module": "/src/elements/AnypointIconItemElement.js"
-          }
-        }
-      ]
-    },
-    {
-      "kind": "javascript-module",
-      "path": "src/define/anypoint-input-combobox.ts",
-      "declarations": [],
-      "exports": [
-        {
-          "kind": "custom-element-definition",
-          "name": "anypoint-input-combobox",
-          "declaration": {
-            "name": "Element",
-            "module": "/src/elements/AnypointInputComboboxElement.js"
-          }
-        }
-      ]
-    },
-    {
-      "kind": "javascript-module",
-      "path": "src/define/anypoint-input.ts",
-      "declarations": [],
-      "exports": [
-        {
-          "kind": "custom-element-definition",
-          "name": "anypoint-input",
-          "declaration": {
-            "name": "Element",
-            "module": "/src/elements/input/AnypointInputElement.js"
-          }
-        }
-      ]
-    },
-    {
-      "kind": "javascript-module",
-      "path": "src/define/anypoint-item-body.ts",
-      "declarations": [],
-      "exports": [
-        {
-          "kind": "custom-element-definition",
-          "name": "anypoint-item-body",
-          "declaration": {
-            "name": "Element",
-            "module": "/src/elements/AnypointItemBodyElement.js"
-          }
-        }
-      ]
-    },
-    {
-      "kind": "javascript-module",
-      "path": "src/define/anypoint-item.ts",
-      "declarations": [],
-      "exports": [
-        {
-          "kind": "custom-element-definition",
-          "name": "anypoint-item",
-          "declaration": {
-            "name": "Element",
-            "module": "/src/elements/AnypointItemElement.js"
-          }
-        }
-      ]
-    },
-    {
-      "kind": "javascript-module",
-      "path": "src/define/anypoint-listbox.ts",
-      "declarations": [],
-      "exports": [
-        {
-          "kind": "custom-element-definition",
-          "name": "anypoint-listbox",
-          "declaration": {
-            "name": "Element",
-            "module": "/src/elements/AnypointListboxElement.js"
-          }
-        }
-      ]
-    },
-    {
-      "kind": "javascript-module",
-      "path": "src/define/anypoint-masked-input.ts",
-      "declarations": [],
-      "exports": [
-        {
-          "kind": "custom-element-definition",
-          "name": "anypoint-masked-input",
-          "declaration": {
-            "name": "Element",
-            "module": "/src/elements/input/AnypointMaskedInput.js"
-          }
-        }
-      ]
-    },
-    {
-      "kind": "javascript-module",
-      "path": "src/define/anypoint-menu-button.ts",
-      "declarations": [],
-      "exports": [
-        {
-          "kind": "custom-element-definition",
-          "name": "anypoint-menu-button",
-          "declaration": {
-            "name": "Element",
-            "module": "/src/elements/button/AnypointMenuButtonElement.js"
-          }
-        }
-      ]
-    },
-    {
-      "kind": "javascript-module",
-      "path": "src/define/anypoint-progress.ts",
-      "declarations": [],
-      "exports": [
-        {
-          "kind": "custom-element-definition",
-          "name": "anypoint-progress",
-          "declaration": {
-            "name": "Element",
-            "module": "/src/elements/AnypointProgressElement.js"
-          }
-        }
-      ]
-    },
-    {
-      "kind": "javascript-module",
-      "path": "src/define/anypoint-radio-button.ts",
-      "declarations": [],
-      "exports": [
-        {
-          "kind": "custom-element-definition",
-          "name": "anypoint-radio-button",
-          "declaration": {
-            "name": "Element",
-            "module": "/src/elements/button/AnypointRadioButtonElement.js"
-          }
-        }
-      ]
-    },
-    {
-      "kind": "javascript-module",
-      "path": "src/define/anypoint-radio-group.ts",
-      "declarations": [],
-      "exports": [
-        {
-          "kind": "custom-element-definition",
-          "name": "anypoint-radio-group",
-          "declaration": {
-            "name": "Element",
-            "module": "/src/elements/button/AnypointRadioGroupElement.js"
-          }
-        }
-      ]
-    },
-    {
-      "kind": "javascript-module",
-      "path": "src/define/anypoint-selector.ts",
-      "declarations": [],
-      "exports": [
-        {
-          "kind": "custom-element-definition",
-          "name": "anypoint-selector",
-          "declaration": {
-            "name": "Element",
-            "module": "/src/elements/AnypointSelectorElement.js"
-          }
-        }
-      ]
-    },
-    {
-      "kind": "javascript-module",
-      "path": "src/define/anypoint-switch.ts",
-      "declarations": [],
-      "exports": [
-        {
-          "kind": "custom-element-definition",
-          "name": "anypoint-switch",
-          "declaration": {
-            "name": "Element",
-            "module": "/src/elements/checkbox/AnypointSwitchElement.js"
-          }
-        }
-      ]
-    },
-    {
-      "kind": "javascript-module",
-      "path": "src/define/anypoint-tab.ts",
-      "declarations": [],
-      "exports": [
-        {
-          "kind": "custom-element-definition",
-          "name": "anypoint-tab",
-          "declaration": {
-            "name": "Element",
-            "module": "/src/elements/AnypointTabElement.js"
-          }
-        }
-      ]
-    },
-    {
-      "kind": "javascript-module",
-      "path": "src/define/anypoint-tabs.ts",
-      "declarations": [],
-      "exports": [
-        {
-          "kind": "custom-element-definition",
-          "name": "anypoint-tabs",
-          "declaration": {
-            "name": "Element",
-            "module": "/src/elements/AnypointTabsElement.js"
-          }
-        }
-      ]
-    },
-    {
-      "kind": "javascript-module",
-      "path": "src/define/anypoint-textarea.ts",
-      "declarations": [],
-      "exports": [
-        {
-          "kind": "custom-element-definition",
-          "name": "anypoint-textarea",
-          "declaration": {
-            "name": "Element",
-            "module": "/src/elements/input/AnypointTextareaElement.js"
-          }
-        }
-      ]
-    },
-    {
-      "kind": "javascript-module",
-      "path": "src/define/bottom-sheet.ts",
-      "declarations": [],
-      "exports": [
-        {
-          "kind": "custom-element-definition",
-          "name": "bottom-sheet",
-          "declaration": {
-            "name": "Element",
-            "module": "/src/elements/BottomSheetElement.js"
-          }
-        }
-      ]
-    },
-    {
-      "kind": "javascript-module",
-      "path": "src/define/color-input-selector.ts",
-      "declarations": [],
-      "exports": [
-        {
-          "kind": "custom-element-definition",
-          "name": "color-input-selector",
-          "declaration": {
-            "name": "Element",
-            "module": "/src/elements/ColorInputSelectorElement.js"
-          }
-        }
-      ]
-    },
-    {
-      "kind": "javascript-module",
-      "path": "src/define/color-selector.ts",
-      "declarations": [],
-      "exports": [
-        {
-          "kind": "custom-element-definition",
-          "name": "color-selector",
-          "declaration": {
-            "name": "Element",
-            "module": "/src/elements/ColorSelectorElement.js"
-          }
-        }
-      ]
-    },
-    {
-      "kind": "javascript-module",
-      "path": "src/define/date-time.ts",
-      "declarations": [],
-      "exports": [
-        {
-          "kind": "custom-element-definition",
-          "name": "date-time",
-          "declaration": {
-            "name": "Element",
-            "module": "/src/elements/DateTimeElement.js"
-          }
-        }
-      ]
-    },
-    {
-      "kind": "javascript-module",
-      "path": "src/define/focusable-helper.ts",
-      "declarations": [
-        {
-          "kind": "variable",
-          "name": "FocusableHelper",
-          "default": "new Helper()"
-        }
-      ],
-      "exports": [
-        {
-          "kind": "js",
-          "name": "FocusableHelper",
-          "declaration": {
-            "name": "FocusableHelper",
-            "module": "src/define/focusable-helper.ts"
-          }
-        }
-      ]
-    },
-    {
-      "kind": "javascript-module",
-      "path": "src/define/material-ripple.ts",
-      "declarations": [],
-      "exports": [
-        {
-          "kind": "custom-element-definition",
-          "name": "material-ripple",
-          "declaration": {
-            "name": "Element",
-            "module": "/src/elements/MaterialRippleElement.js"
-          }
-        }
-      ]
-    },
-    {
-      "kind": "javascript-module",
-      "path": "src/define/overlay-backdrop.ts",
-      "declarations": [],
-      "exports": [
-        {
-          "kind": "custom-element-definition",
-          "name": "arc-overlay-backdrop",
-          "declaration": {
-            "name": "Element",
-            "module": "/src/elements/OverlayBackdropElement.js"
-          }
-        }
-      ]
-    },
-    {
-      "kind": "javascript-module",
-      "path": "src/define/overlay-manager.ts",
-      "declarations": [
-        {
-          "kind": "variable",
-          "name": "OverlayManager",
-          "default": "new Manager()"
-        }
-      ],
-      "exports": [
-        {
-          "kind": "js",
-          "name": "OverlayManager",
-          "declaration": {
-            "name": "OverlayManager",
-            "module": "src/define/overlay-manager.ts"
-          }
-        }
-      ]
-    },
-    {
-      "kind": "javascript-module",
-      "path": "src/define/scroll-threshold.ts",
-      "declarations": [],
-      "exports": [
-        {
-          "kind": "custom-element-definition",
-          "name": "scroll-threshold",
-          "declaration": {
-            "name": "Element",
-            "module": "/src/elements/ScrollThresholdElement.js"
-          }
-        }
-      ]
-    },
-    {
-      "kind": "javascript-module",
-      "path": "src/define/star-rating.ts",
-      "declarations": [],
-      "exports": [
-        {
-          "kind": "custom-element-definition",
-          "name": "star-rating",
-          "declaration": {
-            "name": "Element",
-            "module": "/src/elements/StarRatingElement.js"
-          }
-        }
-      ]
-    },
-    {
-      "kind": "javascript-module",
       "path": "src/lib/Animations.ts",
       "declarations": [
         {
@@ -7038,6 +6456,588 @@
           "declaration": {
             "name": "isRadioButton",
             "module": "src/lib/Utility.ts"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "src/define/anypoint-autocomplete.ts",
+      "declarations": [],
+      "exports": [
+        {
+          "kind": "custom-element-definition",
+          "name": "anypoint-autocomplete",
+          "declaration": {
+            "name": "Element",
+            "module": "/src/elements/AnypointAutocompleteElement.js"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "src/define/anypoint-button.ts",
+      "declarations": [],
+      "exports": [
+        {
+          "kind": "custom-element-definition",
+          "name": "anypoint-button",
+          "declaration": {
+            "name": "Element",
+            "module": "/src/elements/button/AnypointButtonElement.js"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "src/define/anypoint-checkbox.ts",
+      "declarations": [],
+      "exports": [
+        {
+          "kind": "custom-element-definition",
+          "name": "anypoint-checkbox",
+          "declaration": {
+            "name": "Element",
+            "module": "/src/elements/checkbox/AnypointCheckboxElement.js"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "src/define/anypoint-chip-input.ts",
+      "declarations": [],
+      "exports": [
+        {
+          "kind": "custom-element-definition",
+          "name": "anypoint-chip-input",
+          "declaration": {
+            "name": "Element",
+            "module": "/src/elements/AnypointChipInputElement.js"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "src/define/anypoint-chip.ts",
+      "declarations": [],
+      "exports": [
+        {
+          "kind": "custom-element-definition",
+          "name": "anypoint-chip",
+          "declaration": {
+            "name": "Element",
+            "module": "/src/elements/AnypointChipElement.js"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "src/define/anypoint-collapse.ts",
+      "declarations": [],
+      "exports": [
+        {
+          "kind": "custom-element-definition",
+          "name": "anypoint-collapse",
+          "declaration": {
+            "name": "Element",
+            "module": "/src/elements/AnypointCollapseElement.js"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "src/define/anypoint-combobox.ts",
+      "declarations": [],
+      "exports": [
+        {
+          "kind": "custom-element-definition",
+          "name": "anypoint-combobox",
+          "declaration": {
+            "name": "Element",
+            "module": "/src/elements/AnypointComboboxElement.js"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "src/define/anypoint-dialog-scrollable.ts",
+      "declarations": [],
+      "exports": [
+        {
+          "kind": "custom-element-definition",
+          "name": "anypoint-dialog-scrollable",
+          "declaration": {
+            "name": "Element",
+            "module": "/src/elements/AnypointDialogScrollableElement.js"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "src/define/anypoint-dialog.ts",
+      "declarations": [],
+      "exports": [
+        {
+          "kind": "custom-element-definition",
+          "name": "anypoint-dialog",
+          "declaration": {
+            "name": "Element",
+            "module": "/src/elements/AnypointDialogElement.js"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "src/define/anypoint-dropdown-menu.ts",
+      "declarations": [],
+      "exports": [
+        {
+          "kind": "custom-element-definition",
+          "name": "anypoint-dropdown-menu",
+          "declaration": {
+            "name": "Element",
+            "module": "/src/elements/AnypointDropdownMenuElement.js"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "src/define/anypoint-dropdown.ts",
+      "declarations": [],
+      "exports": [
+        {
+          "kind": "custom-element-definition",
+          "name": "anypoint-dropdown",
+          "declaration": {
+            "name": "Element",
+            "module": "/src/elements/AnypointDropdownElement.js"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "src/define/anypoint-icon-button.ts",
+      "declarations": [],
+      "exports": [
+        {
+          "kind": "custom-element-definition",
+          "name": "anypoint-icon-button",
+          "declaration": {
+            "name": "Element",
+            "module": "/src/elements/button/AnypointIconButtonElement.js"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "src/define/anypoint-icon-item.ts",
+      "declarations": [],
+      "exports": [
+        {
+          "kind": "custom-element-definition",
+          "name": "anypoint-icon-item",
+          "declaration": {
+            "name": "Element",
+            "module": "/src/elements/AnypointIconItemElement.js"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "src/define/anypoint-input-combobox.ts",
+      "declarations": [],
+      "exports": [
+        {
+          "kind": "custom-element-definition",
+          "name": "anypoint-input-combobox",
+          "declaration": {
+            "name": "Element",
+            "module": "/src/elements/AnypointInputComboboxElement.js"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "src/define/anypoint-input.ts",
+      "declarations": [],
+      "exports": [
+        {
+          "kind": "custom-element-definition",
+          "name": "anypoint-input",
+          "declaration": {
+            "name": "Element",
+            "module": "/src/elements/input/AnypointInputElement.js"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "src/define/anypoint-item-body.ts",
+      "declarations": [],
+      "exports": [
+        {
+          "kind": "custom-element-definition",
+          "name": "anypoint-item-body",
+          "declaration": {
+            "name": "Element",
+            "module": "/src/elements/AnypointItemBodyElement.js"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "src/define/anypoint-item.ts",
+      "declarations": [],
+      "exports": [
+        {
+          "kind": "custom-element-definition",
+          "name": "anypoint-item",
+          "declaration": {
+            "name": "Element",
+            "module": "/src/elements/AnypointItemElement.js"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "src/define/anypoint-listbox.ts",
+      "declarations": [],
+      "exports": [
+        {
+          "kind": "custom-element-definition",
+          "name": "anypoint-listbox",
+          "declaration": {
+            "name": "Element",
+            "module": "/src/elements/AnypointListboxElement.js"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "src/define/anypoint-masked-input.ts",
+      "declarations": [],
+      "exports": [
+        {
+          "kind": "custom-element-definition",
+          "name": "anypoint-masked-input",
+          "declaration": {
+            "name": "Element",
+            "module": "/src/elements/input/AnypointMaskedInput.js"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "src/define/anypoint-menu-button.ts",
+      "declarations": [],
+      "exports": [
+        {
+          "kind": "custom-element-definition",
+          "name": "anypoint-menu-button",
+          "declaration": {
+            "name": "Element",
+            "module": "/src/elements/button/AnypointMenuButtonElement.js"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "src/define/anypoint-progress.ts",
+      "declarations": [],
+      "exports": [
+        {
+          "kind": "custom-element-definition",
+          "name": "anypoint-progress",
+          "declaration": {
+            "name": "Element",
+            "module": "/src/elements/AnypointProgressElement.js"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "src/define/anypoint-radio-button.ts",
+      "declarations": [],
+      "exports": [
+        {
+          "kind": "custom-element-definition",
+          "name": "anypoint-radio-button",
+          "declaration": {
+            "name": "Element",
+            "module": "/src/elements/button/AnypointRadioButtonElement.js"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "src/define/anypoint-radio-group.ts",
+      "declarations": [],
+      "exports": [
+        {
+          "kind": "custom-element-definition",
+          "name": "anypoint-radio-group",
+          "declaration": {
+            "name": "Element",
+            "module": "/src/elements/button/AnypointRadioGroupElement.js"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "src/define/anypoint-selector.ts",
+      "declarations": [],
+      "exports": [
+        {
+          "kind": "custom-element-definition",
+          "name": "anypoint-selector",
+          "declaration": {
+            "name": "Element",
+            "module": "/src/elements/AnypointSelectorElement.js"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "src/define/anypoint-switch.ts",
+      "declarations": [],
+      "exports": [
+        {
+          "kind": "custom-element-definition",
+          "name": "anypoint-switch",
+          "declaration": {
+            "name": "Element",
+            "module": "/src/elements/checkbox/AnypointSwitchElement.js"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "src/define/anypoint-tab.ts",
+      "declarations": [],
+      "exports": [
+        {
+          "kind": "custom-element-definition",
+          "name": "anypoint-tab",
+          "declaration": {
+            "name": "Element",
+            "module": "/src/elements/AnypointTabElement.js"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "src/define/anypoint-tabs.ts",
+      "declarations": [],
+      "exports": [
+        {
+          "kind": "custom-element-definition",
+          "name": "anypoint-tabs",
+          "declaration": {
+            "name": "Element",
+            "module": "/src/elements/AnypointTabsElement.js"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "src/define/anypoint-textarea.ts",
+      "declarations": [],
+      "exports": [
+        {
+          "kind": "custom-element-definition",
+          "name": "anypoint-textarea",
+          "declaration": {
+            "name": "Element",
+            "module": "/src/elements/input/AnypointTextareaElement.js"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "src/define/bottom-sheet.ts",
+      "declarations": [],
+      "exports": [
+        {
+          "kind": "custom-element-definition",
+          "name": "bottom-sheet",
+          "declaration": {
+            "name": "Element",
+            "module": "/src/elements/BottomSheetElement.js"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "src/define/color-input-selector.ts",
+      "declarations": [],
+      "exports": [
+        {
+          "kind": "custom-element-definition",
+          "name": "color-input-selector",
+          "declaration": {
+            "name": "Element",
+            "module": "/src/elements/ColorInputSelectorElement.js"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "src/define/color-selector.ts",
+      "declarations": [],
+      "exports": [
+        {
+          "kind": "custom-element-definition",
+          "name": "color-selector",
+          "declaration": {
+            "name": "Element",
+            "module": "/src/elements/ColorSelectorElement.js"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "src/define/date-time.ts",
+      "declarations": [],
+      "exports": [
+        {
+          "kind": "custom-element-definition",
+          "name": "date-time",
+          "declaration": {
+            "name": "Element",
+            "module": "/src/elements/DateTimeElement.js"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "src/define/focusable-helper.ts",
+      "declarations": [
+        {
+          "kind": "variable",
+          "name": "FocusableHelper",
+          "default": "new Helper()"
+        }
+      ],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "FocusableHelper",
+          "declaration": {
+            "name": "FocusableHelper",
+            "module": "src/define/focusable-helper.ts"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "src/define/material-ripple.ts",
+      "declarations": [],
+      "exports": [
+        {
+          "kind": "custom-element-definition",
+          "name": "material-ripple",
+          "declaration": {
+            "name": "Element",
+            "module": "/src/elements/MaterialRippleElement.js"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "src/define/overlay-backdrop.ts",
+      "declarations": [],
+      "exports": [
+        {
+          "kind": "custom-element-definition",
+          "name": "arc-overlay-backdrop",
+          "declaration": {
+            "name": "Element",
+            "module": "/src/elements/OverlayBackdropElement.js"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "src/define/overlay-manager.ts",
+      "declarations": [
+        {
+          "kind": "variable",
+          "name": "OverlayManager",
+          "default": "new Manager()"
+        }
+      ],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "OverlayManager",
+          "declaration": {
+            "name": "OverlayManager",
+            "module": "src/define/overlay-manager.ts"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "src/define/scroll-threshold.ts",
+      "declarations": [],
+      "exports": [
+        {
+          "kind": "custom-element-definition",
+          "name": "scroll-threshold",
+          "declaration": {
+            "name": "Element",
+            "module": "/src/elements/ScrollThresholdElement.js"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "src/define/star-rating.ts",
+      "declarations": [],
+      "exports": [
+        {
+          "kind": "custom-element-definition",
+          "name": "star-rating",
+          "declaration": {
+            "name": "Element",
+            "module": "/src/elements/StarRatingElement.js"
           }
         }
       ]
