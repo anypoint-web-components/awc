@@ -2,7 +2,7 @@ import { html, css, CSSResult, TemplateResult } from 'lit';
 import { ifDefined } from 'lit/directives/if-defined.js';
 import { property } from 'lit/decorators.js';
 import AnypointInputElement from './AnypointInputElement.js';
-import commonStyles from '../../styles/anypoint-input-styles.js';
+import styles from './CommonStyles.js';
 import { retargetHandler } from '../../lib/Events.js';
 
 /* eslint-disable class-methods-use-this */
@@ -10,7 +10,7 @@ import { retargetHandler } from '../../lib/Events.js';
 export default class AnypointTextareaElement extends AnypointInputElement {
   static get styles(): CSSResult[] {
     return [
-      commonStyles,
+      styles,
       css`
         :host {
           min-height: 96px;

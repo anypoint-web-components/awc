@@ -1,4 +1,4 @@
-import Element from '../elements/AnypointComboboxElement.js';
+import Element from '../elements/input/AnypointComboboxElement.js';
 
 window.customElements.define('anypoint-combobox', Element);
 

@@ -1,4 +1,4 @@
-import Element from '../elements/AnypointChipInputElement.js';
+import Element from '../elements/chips/AnypointChipInputElement.js';
 
 window.customElements.define('anypoint-chip-input', Element);
 

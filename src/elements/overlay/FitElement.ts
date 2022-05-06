@@ -550,7 +550,6 @@ export default class FitElement extends ResizableElement {
         left: positionRect.right - size.width - this.horizontalOffset
       }
     ];
-
     if (this.noOverlap) {
       // Duplicate.
       for (let i = 0, l = positions.length; i < l; i++) {

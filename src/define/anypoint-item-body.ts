@@ -1,4 +1,4 @@
-import Element from '../elements/AnypointItemBodyElement.js';
+import Element from '../elements/lists/AnypointItemBodyElement.js';
 
 window.customElements.define('anypoint-item-body', Element);
 

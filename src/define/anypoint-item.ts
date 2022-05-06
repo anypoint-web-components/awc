@@ -1,4 +1,4 @@
-import Element from '../elements/AnypointItemElement.js';
+import Element from '../elements/lists/AnypointItemElement.js';
 
 window.customElements.define('anypoint-item', Element);
 declare global {

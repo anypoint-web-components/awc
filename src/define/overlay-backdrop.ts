@@ -1,4 +1,4 @@
-import Element from '../elements/OverlayBackdropElement.js';
+import Element from '../elements/dialog/OverlayBackdropElement.js';
 
 window.customElements.define('arc-overlay-backdrop', Element);
 

@@ -5,7 +5,7 @@ import { FocusableHelper } from '../../define/focusable-helper.js';
 import { OverlayManager } from '../../define/overlay-manager.js';
 import { pushScrollLock, removeScrollLock } from '../../lib/ScrollManager.js';
 import { addListener, getListener } from '../../lib/ElementEventsRegistry.js';
-import OverlayBackdropElement from '../OverlayBackdropElement.js';
+import OverlayBackdropElement from '../dialog/OverlayBackdropElement.js';
 import FitElement from "./FitElement.js";
 
 /**

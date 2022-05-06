@@ -1,4 +1,4 @@
-import Element from '../elements/AnypointCollapseElement.js';
+import Element from '../elements/collapse/AnypointCollapseElement.js';
 
 window.customElements.define('anypoint-collapse', Element);
 

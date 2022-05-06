@@ -1,4 +1,4 @@
-import Element from '../elements/AnypointProgressElement.js';
+import Element from '../elements/range/AnypointProgressElement.js';
 
 window.customElements.define('anypoint-progress', Element);
 

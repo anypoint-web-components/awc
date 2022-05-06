@@ -1,4 +1,4 @@
-import Element from '../elements/AnypointDialogElement.js';
+import Element from '../elements/dialog/AnypointDialogElement.js';
 
 window.customElements.define('anypoint-dialog', Element);
 

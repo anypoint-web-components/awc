@@ -1,4 +1,4 @@
-import Element from '../elements/AnypointListboxElement.js';
+import Element from '../elements/lists/AnypointListboxElement.js';
 
 window.customElements.define('anypoint-listbox', Element);
 

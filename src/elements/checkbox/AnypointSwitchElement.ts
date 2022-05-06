@@ -1,6 +1,6 @@
 import { html, CSSResult, TemplateResult } from 'lit';
 import { onIcon, offIcon } from '../../resources/AnypointSwitchIcons.js';
-import styles from '../../styles/Switch.js';
+import styles from './SwitchStyles.js';
 import AnypointCheckboxElement from './AnypointCheckboxElement.js';
 
 /**

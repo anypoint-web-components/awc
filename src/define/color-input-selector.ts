@@ -1,4 +1,4 @@
-import Element from '../elements/ColorInputSelectorElement.js';
+import Element from '../elements/color/ColorInputSelectorElement.js';
 
 window.customElements.define('color-input-selector', Element);
 

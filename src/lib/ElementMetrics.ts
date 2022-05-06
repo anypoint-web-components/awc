@@ -1,6 +1,6 @@
 import { distance } from './Utility.js';
 // eslint-disable-next-line import/no-cycle
-import MaterialRippleElement from '../elements/MaterialRippleElement.js';
+import MaterialRippleElement from '../elements/effects/MaterialRippleElement.js';
 
 export class ElementMetrics {
   get boundingRect(): DOMRect {

@@ -1,4 +1,4 @@
-import Element from '../elements/AnypointDropdownMenuElement.js';
+import Element from '../elements/drop-down/AnypointDropdownMenuElement.js';
 
 window.customElements.define('anypoint-dropdown-menu', Element);
 

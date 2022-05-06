@@ -1,4 +1,4 @@
-import Element from '../elements/AnypointSelectorElement.js';
+import Element from '../elements/lists/AnypointSelectorElement.js';
 
 window.customElements.define('anypoint-selector', Element);
 

@@ -1,6 +1,6 @@
 import { CSSResult, TemplateResult, html } from 'lit';
 import '../../colors.js';
-import radioStyles from '../../styles/RadioButton.js';
+import radioStyles from './RadioButtonStyles.js';
 import CheckedElement from '../checkbox/CheckedElement.js';
 
 /* eslint-disable class-methods-use-this */

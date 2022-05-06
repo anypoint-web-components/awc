@@ -1,4 +1,4 @@
-import Element from '../elements/MaterialRippleElement.js';
+import Element from '../elements/effects/MaterialRippleElement.js';
 
 window.customElements.define('material-ripple', Element);
 
