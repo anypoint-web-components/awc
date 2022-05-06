@@ -25,8 +25,10 @@ import { addListener, getListener } from '../../lib/ElementEventsRegistry.js';
 /* eslint-disable class-methods-use-this */
 
 /**
- * @fires chipschange
- * @slot prefix The prefix rendering slot
+ * @fires chipschange - When the chips value change. This also occurs when the chips are set on the setter.
+ * @fires added - When a chip was added through user interaction. This is not fired when a chip is added programmatically. Has the `index` and `label` properties set on the CustomEvent's detail.
+ * @fires removed - When a chip was removed through user interaction. This is not fired when a chip is removed programmatically. Has the `index` and `label` properties set on the CustomEvent's detail.
+ * @slot prefix - The prefix rendering slot
  */
 export default class AnypointChipInputElement extends AnypointInputElement {
   static get styles(): CSSResult[] {
@@ -362,11 +364,18 @@ export default class AnypointChipInputElement extends AnypointInputElement {
     if (!chips || !chips.length) {
       return;
     }
+    const removed = chips[index];
+    if (!removed) {
+      return;
+    }
     chips.splice(index, 1);
     this.requestUpdate();
     if (chips.length === 0) {
       this.checkValidity();
     }
+    this.dispatchEvent(new CustomEvent('removed', {
+      detail: { index, label: removed.label }
+    }));
   }
 
   /**
@@ -467,6 +476,9 @@ export default class AnypointChipInputElement extends AnypointInputElement {
     const icon = typed && typed.icon;
     this.addChip(value, true, icon, id);
     this.value = '';
+    this.dispatchEvent(new CustomEvent('added', {
+      detail: { index: this.chips!.length - 1, label: value }
+    }));
   }
 
   protected _blurHandler(): void {
@@ -534,10 +546,7 @@ export default class AnypointChipInputElement extends AnypointInputElement {
     if (!item.icon) {
       return '';
     }
-    return html`<span
-      class="icon"
-      slot="icon"
-    >${item.icon}</span>`;
+    return html`<span class="icon" slot="icon">${item.icon}</span>`;
   }
 
   render(): TemplateResult {

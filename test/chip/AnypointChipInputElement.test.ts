@@ -1,11 +1,12 @@
 /* eslint-disable @typescript-eslint/explicit-function-return-type */
-import { fixture, assert, nextFrame, aTimeout, html } from '@open-wc/testing';
+import { fixture, assert, nextFrame, aTimeout, html, oneEvent } from '@open-wc/testing';
+import sinon from 'sinon';
 import { clearAll } from '../../demo/lib/Icons.js';
 import { clear } from '../../src/resources/Icons.js';
 import { directionsBike, directionsBoat, directionsBus } from '../../demo/maps-icons.js';
-import '../../src/define/anypoint-chip-input.js';
 import { keyDown } from '../lib/helpers.js';
 import { AnypointChipInputElement } from '../../src/index.js';
+import '../../src/define/anypoint-chip-input.js';
 
 describe('AnypointChipInputElement', () => {
   async function basicFixture(): Promise<AnypointChipInputElement> {
@@ -184,6 +185,26 @@ describe('AnypointChipInputElement', () => {
       await nextFrame();
       assert.isEmpty(element.chipsValue, 'array');
     });
+
+    it('dispatches the "added" event when adding through a user interaction', async () => {
+      element = await basicFixture();
+      element.value = 'test';
+      await nextFrame();
+      const evPromise = oneEvent(element, 'added');
+      keyDown(element.inputElement!, 'Enter');
+      const e = await evPromise as CustomEvent;
+      assert.equal(e.detail.index, 0, 'the event has the detail.index property');
+      assert.equal(e.detail.label, 'test', 'the event has the detail.label property');
+    });
+
+    it('does not dispatch the "added" event when adding programmatic interface', async () => {
+      element = await basicFixture();
+      const spy = sinon.spy();
+      element.addEventListener('added', spy)
+      element.addChip('test');
+      await nextFrame();
+      assert.isFalse(spy.called);
+    });
   });
 
   describe('Removing a chip', () => {
@@ -192,7 +213,7 @@ describe('AnypointChipInputElement', () => {
       element = await basicFixture();
     });
 
-    it('do not removes chips when input has text', async () => {
+    it('does not remove chips when input has text', async () => {
       element = await allRemoveFixture();
       element.value = 'test';
       await nextFrame();
@@ -202,7 +223,7 @@ describe('AnypointChipInputElement', () => {
       assert.lengthOf(element.chipsValue, 3);
     });
 
-    it('Removes the chip when input is empty', async () => {
+    it('removes the chip when input is empty', async () => {
       element = await allRemoveFixture();
       await nextFrame();
       keyDown(element.inputElement!, 'Backspace');
@@ -236,6 +257,16 @@ describe('AnypointChipInputElement', () => {
       assert.typeOf(element.chipsValue, 'array');
       assert.lengthOf(element.chipsValue, 2);
       assert.deepEqual(element.chipsValue, ['c-1', 'c-3']);
+    });
+
+    it('dispatches the "removed" event through the user interaction', async () => {
+      element = await allRemoveFixture();
+      await nextFrame();
+      const evPromise = oneEvent(element, 'removed');
+      keyDown(element.inputElement!, 'Backspace');
+      const e = await evPromise as CustomEvent;
+      assert.equal(e.detail.index, 2, 'the event has the detail.index property');
+      assert.equal(e.detail.label, 'c-3', 'the event has the detail.label property');
     });
   });
 
