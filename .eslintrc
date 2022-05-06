@@ -122,6 +122,7 @@
     "ScrollBehavior": true,
     "NodeListOf": true,
     "GlobalEventHandlers": true,
+    "MutationObserverInit": true,
     "Keyframe": true
   }
 }

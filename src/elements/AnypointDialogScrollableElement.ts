@@ -1,4 +1,4 @@
-import { html, LitElement, css, CSSResult, TemplateResult } from 'lit';
+import { html, LitElement, css, CSSResult, TemplateResult, PropertyValueMap } from 'lit';
 import { property } from 'lit/decorators.js';
 
 /**
@@ -54,7 +54,8 @@ export default class AnypointDialogScrollableElement extends LitElement {
     return this.shadowRoot!.querySelector('.scrollable')!;
   }
 
-  firstUpdated(): void {
+  firstUpdated(cp: PropertyValueMap<any> | Map<PropertyKey, unknown>): void {
+    super.firstUpdated(cp);
     this._ensureTarget();
     // dialog styles has this style definition
     this.classList.add('no-padding');

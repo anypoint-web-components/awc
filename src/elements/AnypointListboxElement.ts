@@ -1,4 +1,4 @@
-import { html, css, CSSResult, TemplateResult } from 'lit';
+import { html, css, CSSResult, TemplateResult, PropertyValueMap } from 'lit';
 import MenuElement from './selector/MenuElement';
 
 /* eslint-disable no-plusplus */
@@ -69,7 +69,8 @@ export default class AnypointListboxElement extends MenuElement {
     this.removeEventListener('deselect', this._deselectHandler);
   }
 
-  firstUpdated(): void {
+  firstUpdated(cp: PropertyValueMap<any> | Map<PropertyKey, unknown>): void {
+    super.firstUpdated(cp);
     const { anypoint } = this;
     if (anypoint) {
       this._updateChildrenAnypoint(anypoint);

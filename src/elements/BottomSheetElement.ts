@@ -93,7 +93,8 @@ export default class BottomSheetElement extends OverlayElement {
     this.addEventListener('transitionend', this.__onTransitionEnd.bind(this));
   }
 
-  firstUpdated(): void {
+  firstUpdated(cp: PropertyValueMap<any> | Map<PropertyKey, unknown>): void {
+    super.firstUpdated(cp)
     this.sizingTarget = this.scrollTarget;
   }
 

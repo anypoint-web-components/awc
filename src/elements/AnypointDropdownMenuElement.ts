@@ -593,7 +593,8 @@ export default class AnypointDropdownMenuElement extends ValidatableElement {
     }
   }
 
-  firstUpdated(): void {
+  firstUpdated(cp: PropertyValueMap<any> | Map<PropertyKey, unknown>): void {
+    super.firstUpdated(cp)
     requestAnimationFrame(() => {
       this._assignContentElement();
     });

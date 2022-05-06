@@ -13,7 +13,7 @@ WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the
 License for the specific language governing permissions and limitations under
 the License.
 */
-import { html, css, CSSResult, TemplateResult } from 'lit';
+import { html, css, CSSResult, TemplateResult, PropertyValueMap } from 'lit';
 import { property, state } from 'lit/decorators.js';
 import { Suggestion } from '../types';
 import { HorizontalAlign, VerticalAlign } from './overlay/FitElement.js';
@@ -463,7 +463,8 @@ export default class AnypointAutocompleteElement extends AnypointElement {
     }
   }
 
-  firstUpdated(): void {
+  firstUpdated(cp: PropertyValueMap<any> | Map<PropertyKey, unknown>): void {
+    super.firstUpdated(cp);
     // Styles are defined here because it does not uses shadow root
     // to comply with accessibility requirements.
     // Styles defined in the component's `styles` getter won't be applied
@@ -786,9 +787,11 @@ export default class AnypointAutocompleteElement extends AnypointElement {
   }
 
   notifyResize(): void {
+    if (!this.opened) {
+      return;
+    }
     const node = this.querySelector('anypoint-dropdown');
     if (node) {
-      // @ts-ignore
       node.notifyResize();
       node.refit();
     }
@@ -1028,12 +1031,16 @@ export default class AnypointAutocompleteElement extends AnypointElement {
    */
   _listboxTemplate(): TemplateResult {
     return html`
-      <anypoint-listbox aria-label="Use arrows and enter to select list item. Escape to close the list."
-        slot="dropdown-content" selectable="anypoint-item,anypoint-item-body" useAriaSelected
-        @select="${this._selectionHandler}" ?anypoint="${this.anypoint}">
-        ${this._loaderTemplate()}
-        ${this._listTemplate()}
-      </anypoint-listbox>
+    <anypoint-listbox aria-label="Use arrows and enter to select list item. Escape to close the list."
+      slot="dropdown-content" 
+      selectable="anypoint-item" 
+      useAriaSelected 
+      @selected="${this._selectionHandler}" 
+      ?anypoint="${this.anypoint}"
+    >
+      ${this._loaderTemplate()}
+      ${this._listTemplate()}
+    </anypoint-listbox>
     `;
   }
 
@@ -1085,8 +1092,9 @@ export default class AnypointAutocompleteElement extends AnypointElement {
         </anypoint-item-body>
       </anypoint-item>`;
     }
-    return html`<anypoint-item ?anypoint="${anypoint}">
-  <div>${label}</div>
-</anypoint-item>`;
+    return html`
+    <anypoint-item ?anypoint="${anypoint}">
+      <div>${label}</div>
+    </anypoint-item>`;
   }
 }

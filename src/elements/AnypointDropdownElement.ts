@@ -109,7 +109,8 @@ export default class AnypointDropdownElement extends OverlayElement {
     }
   }
 
-  firstUpdated(): void {
+  firstUpdated(cp: PropertyValueMap<any> | Map<PropertyKey, unknown>): void {
+    super.firstUpdated(cp);
     requestAnimationFrame(() => {
       this._setupSizingTarget();
     });

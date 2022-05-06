@@ -157,8 +157,8 @@ class ComponentDemoPage extends DemoPage {
             .allowed="${allowed}"
             .infoMessage="${info}"
             .source="${source}"
+            label="Chips input"
           >
-            <label slot="label">Chips input</label>
           </anypoint-chip-input>
 
           <label slot="options" id="mainOptionsLabel">Options</label>
@@ -283,8 +283,8 @@ class ComponentDemoPage extends DemoPage {
             ...
             <anypoint-chip-input
               .chips="\${chips}"
+              label="Enter value"
             >
-              <label slot="label">Enter value</label>
             </anypoint-chip-input>`}
             </pre>
           </code>
@@ -300,9 +300,9 @@ class ComponentDemoPage extends DemoPage {
 
         <h4>Simple suggestions</h4>
         <anypoint-chip-input
-          .source="${this.simpleSuggestions}">
-          <label slot="label">Type your favourite fruits</label>
-        </anypoint-chip-input>
+          .source="${this.simpleSuggestions}"
+          label="Type your favourite fruits"
+        ></anypoint-chip-input>
 
         <details>
           <summary>Code example</summary>
@@ -314,8 +314,8 @@ class ComponentDemoPage extends DemoPage {
             ...
             <anypoint-chip-input
               .source="\${source}"
+              label="Type your favourite fruits"
             >
-              <label slot="label">Type your favourite fruits</label>
             </anypoint-chip-input>`}
             </pre>
           </code>
@@ -327,8 +327,9 @@ class ComponentDemoPage extends DemoPage {
         </p>
         <anypoint-chip-input
           .source="${this.iconSuggestions}"
-          infoMessage="Type 'b' in the input">
-          <label slot="label">Type your favourite fruits</label>
+          infoMessage="Type 'b' in the input"
+          label="Enter value"
+        >
         </anypoint-chip-input>
 
         <details>
@@ -351,8 +352,8 @@ class ComponentDemoPage extends DemoPage {
             ...
             <anypoint-chip-input
               .source="\${source}"
+              label="Enter value"
             >
-              <label slot="label">Enter value</label>
             </anypoint-chip-input>`}
             </pre>
           </code>
@@ -366,8 +367,9 @@ class ComponentDemoPage extends DemoPage {
         </p>
         <anypoint-chip-input
           .chipsValue="${this.auto5Out}"
-          .source="${this.iconSuggestions}">
-          <label slot="label">Type your favourite fruits</label>
+          .source="${this.iconSuggestions}"
+          label="Enter value"
+        >
         </anypoint-chip-input>
 
         <details>
@@ -392,8 +394,8 @@ class ComponentDemoPage extends DemoPage {
             <anypoint-chip-input
               .source="\${source}"
               .chipsValue="\${chipsValue}"
+              label="Enter value"
             >
-              <label slot="label">Enter value</label>
             </anypoint-chip-input>`}
             </pre>
           </code>
@@ -407,8 +409,9 @@ class ComponentDemoPage extends DemoPage {
 
         <anypoint-chip-input
           .allowed="${this.allowedChips}"
-          infoMessage="Only: Apple, Orange, and Banana">
-          <label slot="label">Only allowed will become chips and value</label>
+          infoMessage="Only: Apple, Orange, and Banana"
+          label="Only allowed will become chips and value"
+        >
         </anypoint-chip-input>
 
         <h3>Suggestions with IDs</h3>
@@ -418,8 +421,9 @@ class ComponentDemoPage extends DemoPage {
         </p>
 
         <anypoint-chip-input
-          .source="${this.idSuggestions}">
-          <label slot="label">Type your favourite fruits</label>
+          .source="${this.idSuggestions}"
+          label="Enter value"
+        >
         </anypoint-chip-input>
 
         <details>
@@ -445,8 +449,8 @@ class ComponentDemoPage extends DemoPage {
             ...
             <anypoint-chip-input
               .source="\${source}"
+              label="Enter value"
             >
-              <label slot="label">Type your favourite fruits</label>
             </anypoint-chip-input>`}
             </pre>
           </code>
@@ -461,8 +465,9 @@ class ComponentDemoPage extends DemoPage {
 
         <anypoint-chip-input
           .chipsValue="${this.auto4Out}"
-          .source="${this.idSuggestions}">
-          <label slot="label">Type your favourite fruits</label>
+          .source="${this.idSuggestions}"
+          label="Enter value"
+        >
         </anypoint-chip-input>
 
         <details>
@@ -490,8 +495,8 @@ class ComponentDemoPage extends DemoPage {
             <anypoint-chip-input
               .source="\${source}"
               .chipsValue="\${chipsValue}"
+              label="Enter value"
             >
-              <label slot="label">Type your favourite fruits</label>
             </anypoint-chip-input>`}
             </pre>
           </code>

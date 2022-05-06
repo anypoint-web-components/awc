@@ -479,7 +479,8 @@ export default class AnypointChipInputElement extends AnypointInputElement {
       .source="${this.source}"
       ?anypoint="${this.anypoint}"
       noOverlap
-      @pick="${this._selectedHandler}"></anypoint-autocomplete>`;
+      @pick="${this._selectedHandler}"
+    ></anypoint-autocomplete>`;
   }
 
   _renderChipsTemplate(): TemplateResult {
