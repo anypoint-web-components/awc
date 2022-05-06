@@ -2,7 +2,7 @@
 import { fixture, assert, nextFrame, html } from '@open-wc/testing';
 import sinon from 'sinon';
 import '../../src/define/anypoint-listbox.js';
-import { ensureNodeId } from '../../src/elements/AnypointListboxElement.js';
+import { ensureNodeId } from '../../src/elements/lists/AnypointListboxElement.js';
 import { AnypointListboxElement } from '../../src/index.js';
 
 describe('AnypointListbox', () => {

@@ -13,7 +13,7 @@ WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the
 License for the specific language governing permissions and limitations under
 the License.
 */
-import Element from '../elements/AnypointAutocompleteElement.js';
+import Element from '../elements/lists/AnypointAutocompleteElement.js';
 
 window.customElements.define('anypoint-autocomplete', Element);
 

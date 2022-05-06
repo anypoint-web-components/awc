@@ -1,7 +1,7 @@
 import { html, CSSResult, TemplateResult } from 'lit';
 import { AnypointButtonBase } from './AnypointButtonBase.js';
-import MaterialRippleElement from '../MaterialRippleElement.js';
-import elementStyles from '../../styles/ButtonIcon.js';
+import MaterialRippleElement from '../effects/MaterialRippleElement.js';
+import elementStyles from './ButtonIconStyles.js';
 import '../../define/material-ripple.js';
 
 /**

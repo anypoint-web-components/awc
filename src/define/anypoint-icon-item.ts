@@ -1,4 +1,4 @@
-import Element from '../elements/AnypointIconItemElement.js';
+import Element from '../elements/lists/AnypointIconItemElement.js';
 
 window.customElements.define('anypoint-icon-item', Element);
 

@@ -9,7 +9,7 @@ part of the polymer project is also subject to an additional IP rights grant
 found at http://polymer.github.io/PATENTS.txt
 */
 import '../define/overlay-backdrop.js';
-import OverlayBackdrop from '../elements/OverlayBackdropElement.js';
+import OverlayBackdrop from '../elements/dialog/OverlayBackdropElement.js';
 
 /* eslint-disable class-methods-use-this */
 /* eslint-disable no-plusplus */

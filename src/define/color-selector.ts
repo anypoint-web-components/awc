@@ -1,4 +1,4 @@
-import Element from '../elements/ColorSelectorElement.js';
+import Element from '../elements/color/ColorSelectorElement.js';
 
 window.customElements.define('color-selector', Element);
 

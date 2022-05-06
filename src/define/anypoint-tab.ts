@@ -1,4 +1,4 @@
-import Element from '../elements/AnypointTabElement.js';
+import Element from '../elements/tabs/AnypointTabElement.js';
 
 window.customElements.define('anypoint-tab', Element);
 

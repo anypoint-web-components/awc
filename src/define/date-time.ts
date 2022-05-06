@@ -1,4 +1,4 @@
-import Element from '../elements/DateTimeElement.js';
+import Element from '../elements/date/DateTimeElement.js';
 
 window.customElements.define('date-time', Element);
 

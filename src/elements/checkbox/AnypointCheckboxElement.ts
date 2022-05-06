@@ -1,7 +1,7 @@
 import { CSSResult, TemplateResult, html } from 'lit';
 import { property } from 'lit/decorators.js';
 import { classMap } from 'lit/directives/class-map.js';
-import checkboxStyles from '../../styles/Checkbox.js';
+import checkboxStyles from './CheckboxStyles.js';
 import { addListener, getListener } from '../../lib/ElementEventsRegistry.js';
 import CheckedElement from './CheckedElement.js';
 

@@ -3,7 +3,7 @@ import sinon from 'sinon';
 import { clearAll } from '../../demo/lib/Icons.js';
 import { clear } from '../../src/resources/Icons.js';
 import '../../src/define/anypoint-chip.js';
-import AnypointChip, { hasIconNodeValue } from '../../src/elements/AnypointChipElement.js';
+import AnypointChip, { hasIconNodeValue } from '../../src/elements/chips/AnypointChipElement.js';
 
 describe('AnypointChipElement', () => {
   async function basicFixture(): Promise<AnypointChip> {

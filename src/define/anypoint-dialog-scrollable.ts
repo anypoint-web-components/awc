@@ -1,4 +1,4 @@
-import Element from '../elements/AnypointDialogScrollableElement.js';
+import Element from '../elements/dialog/AnypointDialogScrollableElement.js';
 
 window.customElements.define('anypoint-dialog-scrollable', Element);
 
