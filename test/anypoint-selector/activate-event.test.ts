@@ -104,7 +104,7 @@ describe('AnypointSelector', () => {
 
     it('activates after detach and re-attach', async () => {
       // Detach and re-attach
-      const parent = s.parentNode;
+      const parent = s.parentNode!;
       parent.removeChild(s);
       parent.appendChild(s);
       await nextFrame();

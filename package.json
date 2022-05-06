@@ -1,6 +1,6 @@
 {
   "name": "@anypoint-web-components/awc",
-  "version": "3.0.5",
+  "version": "3.0.6",
   "description": "Anypoint web components - base components library",
   "license": "Apache-2.0",
   "main": "dist/index.js",

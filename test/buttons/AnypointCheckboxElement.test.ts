@@ -251,14 +251,14 @@ describe('<anypoint-checkbox>', () => {
     });
 
     it('has the checkbox class by default', () => {
-      const node = element.shadowRoot!.querySelector('.checkboxContainer').firstElementChild as HTMLElement;
+      const node = element.shadowRoot!.querySelector('.checkboxContainer')!.firstElementChild as HTMLElement;
       assert.equal(node.className.trim(), 'checkbox');
     });
 
     it('has the checked class when checked', async () => {
       element.click();
       await nextFrame();
-      const node = element.shadowRoot!.querySelector('.checkboxContainer').firstElementChild as HTMLElement;
+      const node = element.shadowRoot!.querySelector('.checkboxContainer')!.firstElementChild as HTMLElement;
       assert.equal(node.className.trim(), 'checkbox checked');
     });
 
@@ -266,7 +266,7 @@ describe('<anypoint-checkbox>', () => {
       element.required = true;
       element.checkValidity();
       await nextFrame();
-      const node = element.shadowRoot!.querySelector('.checkboxContainer').firstElementChild as HTMLElement;
+      const node = element.shadowRoot!.querySelector('.checkboxContainer')!.firstElementChild as HTMLElement;
       assert.equal(node.className.trim(), 'checkbox invalid');
     });
   });

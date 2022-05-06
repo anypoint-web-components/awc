@@ -8,7 +8,8 @@ class TestElement extends ValidatableElement {
   @property({ type: Number }) value?: number;
 
   protected _getValidity(): boolean {
-    return !Number.isNaN(this.value) && this.value > 1;
+    const { value = '' } = this;
+    return !Number.isNaN(value) && value > 1;
   }
 }
 

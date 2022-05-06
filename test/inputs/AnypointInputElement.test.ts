@@ -58,7 +58,7 @@ describe('<anypoint-input>', () => {
     it('sets value on input element', async () => {
       element.value = 'test';
       await nextFrame();
-      const input = element.inputElement;
+      const input = element.inputElement!;
       assert.equal(input.value, 'test');
     });
 
@@ -88,7 +88,7 @@ describe('<anypoint-input>', () => {
     });
 
     it('inputElement returns the input', () => {
-      const result = element.inputElement;
+      const result = element.inputElement!;
       assert.equal(result.localName, 'input');
     });
   });
@@ -168,7 +168,7 @@ describe('<anypoint-input>', () => {
       element.value = 'test';
       await nextFrame();
       MockInteractions.focus(element);
-      const input = element.inputElement;
+      const input = element.inputElement!;
       assert.equal(input.selectionStart, 4, 'selectionStart is preserved');
       assert.equal(input.selectionEnd, 4, 'selectionEnd is preserved');
     });
@@ -352,7 +352,7 @@ describe('<anypoint-input>', () => {
     });
 
     it('retargets the change event', () => {
-      const input = element.inputElement;
+      const input = element.inputElement!;
       const spy = sinon.spy();
       element.addEventListener('change', spy);
       input.dispatchEvent(new Event('change'));
@@ -360,7 +360,7 @@ describe('<anypoint-input>', () => {
     });
 
     it('retargets the search event', () => {
-      const input = element.inputElement;
+      const input = element.inputElement!;
       const spy = sinon.spy();
       element.addEventListener('search', spy);
       input.dispatchEvent(new Event('search'));
@@ -471,14 +471,14 @@ describe('<anypoint-input>', () => {
 
     it('returns false when required and no value', () => {
       element.required = true;
-      const result = element._checkInputValidity(element.inputElement);
+      const result = element._checkInputValidity(element.inputElement!);
       assert.isFalse(result);
     });
 
     it('returns true when file', async () => {
       element.type = 'file';
       await nextFrame();
-      const result = element._checkInputValidity(element.inputElement);
+      const result = element._checkInputValidity(element.inputElement!);
       assert.isTrue(result);
     });
 
@@ -486,7 +486,7 @@ describe('<anypoint-input>', () => {
       element.value = 'test123';
       element.pattern = '[a-z]';
       await nextFrame();
-      const result = element._checkInputValidity(element.inputElement);
+      const result = element._checkInputValidity(element.inputElement!);
       assert.isFalse(result);
     });
 
@@ -494,7 +494,7 @@ describe('<anypoint-input>', () => {
       element.value = 'a';
       element.minLength = 10;
       await nextFrame();
-      const result = element._checkInputValidity(element.inputElement);
+      const result = element._checkInputValidity(element.inputElement!);
       assert.isFalse(result);
     });
 
@@ -502,7 +502,7 @@ describe('<anypoint-input>', () => {
       element.value = 'ab';
       element.maxLength = 1;
       await nextFrame();
-      const result = element._checkInputValidity(element.inputElement);
+      const result = element._checkInputValidity(element.inputElement!);
       assert.isFalse(result);
     });
 
@@ -780,30 +780,28 @@ describe('<anypoint-input>', () => {
     });
 
     it('passes readonly to the input element', () => {
-      const input = element.inputElement;
+      const input = element.inputElement!;
       assert.isTrue(input.readOnly);
     });
 
     it('removes readonly from the input element', async () => {
       element.readOnly = false;
       await nextFrame();
-      const input = element.inputElement;
+      const input = element.inputElement!;
       assert.isFalse(input.readOnly);
     });
   });
 
   describe('a11y', () => {
     async function a11yBasicFixture(): Promise<AnypointInputElement> {
-      const element = await fixture(html`<anypoint-input value="test value">
-      <label slot="label">test label</label>
+      const element = await fixture(html`<anypoint-input value="test value" label="test label">
       </anypoint-input>`);
       await aTimeout(1);
       return element as AnypointInputElement;
     }
 
     async function a11yPrefixFixture(): Promise<AnypointInputElement> {
-      const element = await fixture(html`<anypoint-input name="amount-usd">
-        <label slot="label">Amount to transfer</label>
+      const element = await fixture(html`<anypoint-input name="amount-usd" label="Amount to transfer">
         <span slot="prefix" aria-label="Value in US dollars">$</span>
       </anypoint-input>`);
       await aTimeout(1);
@@ -811,8 +809,7 @@ describe('<anypoint-input>', () => {
     }
 
     async function a11ySuffixFixture(): Promise<AnypointInputElement> {
-      const element = await fixture(html`<anypoint-input type="email" name="email-suffix">
-        <label slot="label">Email</label>
+      const element = await fixture(html`<anypoint-input type="email" name="email-suffix" label="Email">
         <div slot="suffix">@mulesoft.com</div>
       </anypoint-input>`);
       await aTimeout(1);
@@ -823,8 +820,7 @@ describe('<anypoint-input>', () => {
       return fixture(html`
       <form>
         <fieldset name="form-fields">
-          <anypoint-input name="formItem" value="test-value">
-            <label slot="label">Text input</label>
+          <anypoint-input name="formItem" value="test-value" label="Text input">
           </anypoint-input>
         </fieldset>
         <input type="reset" value="Reset">
@@ -833,14 +829,12 @@ describe('<anypoint-input>', () => {
     }
 
     async function a11yOutlinedFixture(): Promise<AnypointInputElement> {
-      return fixture(html`<anypoint-input value="test value" outlined>
-      <label slot="label">test label</label>
+      return fixture(html`<anypoint-input value="test value" outlined label="test label">
       </anypoint-input>`);
     }
 
     async function a11yAnypointFixture(): Promise<AnypointInputElement> {
-      return fixture(html`<anypoint-input value="test value" anypoint>
-      <label slot="label">test label</label>
+      return fixture(html`<anypoint-input value="test value" anypoint label="test label">
       </anypoint-input>`);
     }
 

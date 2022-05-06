@@ -85,7 +85,8 @@ export default css`
 .label-area {
   position: relative;
   align-self: stretch;
-  flex: 1;
+  /* Gives the input at least 50% of the width */
+  flex: 1 0 var(--anypoint-input-input-min-width, 50%);
   display: flex;
 }
 
@@ -108,6 +109,8 @@ export default css`
 .suffixes {
   display: flex;
   align-items: center;
+  flex-wrap: wrap;
+  padding: 4px 0px;
 }
 
 .assistive-info {

@@ -101,7 +101,7 @@ describe('AnypointChipInputElement', () => {
       element = await basicFixture();
       element.value = 'test';
       await nextFrame();
-      keyDown(element.inputElement, 'Enter');
+      keyDown(element.inputElement!, 'Enter');
       await nextFrame();
       assert.typeOf(element.chipsValue, 'array');
       assert.lengthOf(element.chipsValue, 1);
@@ -112,7 +112,7 @@ describe('AnypointChipInputElement', () => {
       element = await basicFixture();
       element.value = '';
       await nextFrame();
-      keyDown(element.inputElement, 'Enter');
+      keyDown(element.inputElement!, 'Enter');
       await nextFrame();
       assert.isEmpty(element.chipsValue);
     });
@@ -121,7 +121,7 @@ describe('AnypointChipInputElement', () => {
       element = await basicFixture();
       element.value = 'test';
       await nextFrame();
-      keyDown(element.inputElement, 'Enter');
+      keyDown(element.inputElement!, 'Enter');
       await nextFrame();
       assert.equal(element.value, '');
     });
@@ -130,7 +130,7 @@ describe('AnypointChipInputElement', () => {
       element = await chipsFixture();
       element.value = 'c-1';
       await nextFrame();
-      keyDown(element.inputElement, 'Enter');
+      keyDown(element.inputElement!, 'Enter');
       await nextFrame();
       assert.typeOf(element.chipsValue, 'array');
       assert.lengthOf(element.chipsValue, 3);
@@ -140,7 +140,7 @@ describe('AnypointChipInputElement', () => {
       element = await chipsFixture();
       element.value = 'c-1';
       await nextFrame();
-      keyDown(element.inputElement, 'Enter');
+      keyDown(element.inputElement!, 'Enter');
       await nextFrame();
       assert.equal(element.value, '');
     });
@@ -149,7 +149,7 @@ describe('AnypointChipInputElement', () => {
       element = await allowedFixture();
       element.value = 'c1';
       await nextFrame();
-      keyDown(element.inputElement, 'Enter');
+      keyDown(element.inputElement!, 'Enter');
       await nextFrame();
       assert.equal(element.value, '');
     });
@@ -158,7 +158,7 @@ describe('AnypointChipInputElement', () => {
       element = await allowedFixture();
       element.value = 'c1';
       await nextFrame();
-      keyDown(element.inputElement, 'Enter');
+      keyDown(element.inputElement!, 'Enter');
       await nextFrame();
       assert.typeOf(element.chipsValue, 'array');
       assert.equal(element.chipsValue[0], 'c1');
@@ -169,7 +169,7 @@ describe('AnypointChipInputElement', () => {
       element.source = [{ value: 'c1 label', id: 'c1' }];
       element.value = 'c1 label';
       await nextFrame();
-      keyDown(element.inputElement, 'Enter');
+      keyDown(element.inputElement!, 'Enter');
       await nextFrame();
       assert.typeOf(element.chipsValue, 'array');
       assert.equal(element.chipsValue[0], 'c1');
@@ -180,7 +180,7 @@ describe('AnypointChipInputElement', () => {
       element.source = [{ value: 'c1 label', id: 'c-not-allowed' }];
       await nextFrame();
       element.value = 'c1 label';
-      keyDown(element.inputElement, 'Enter');
+      keyDown(element.inputElement!, 'Enter');
       await nextFrame();
       assert.isEmpty(element.chipsValue, 'array');
     });
@@ -196,7 +196,7 @@ describe('AnypointChipInputElement', () => {
       element = await allRemoveFixture();
       element.value = 'test';
       await nextFrame();
-      keyDown(element.inputElement, 'Backspace');
+      keyDown(element.inputElement!, 'Backspace');
       await nextFrame();
       assert.typeOf(element.chipsValue, 'array');
       assert.lengthOf(element.chipsValue, 3);
@@ -205,7 +205,7 @@ describe('AnypointChipInputElement', () => {
     it('Removes the chip when input is empty', async () => {
       element = await allRemoveFixture();
       await nextFrame();
-      keyDown(element.inputElement, 'Backspace');
+      keyDown(element.inputElement!, 'Backspace');
       assert.typeOf(element.chipsValue, 'array');
       assert.lengthOf(element.chipsValue, 2);
       assert.deepEqual(element.chipsValue, ['c-1', 'c-2']);
@@ -214,7 +214,7 @@ describe('AnypointChipInputElement', () => {
     it('removes only removable chips', async () => {
       element = await chipsFixture();
       await nextFrame();
-      keyDown(element.inputElement, 'Backspace');
+      keyDown(element.inputElement!, 'Backspace');
       assert.typeOf(element.chipsValue, 'array');
       assert.lengthOf(element.chipsValue, 2);
       assert.deepEqual(element.chipsValue, ['c-1', 'c-3']);
@@ -222,7 +222,7 @@ describe('AnypointChipInputElement', () => {
 
     it('Enters chip label into the input field', async () => {
       element = await allRemoveFixture();
-      keyDown(element.inputElement, 'Backspace');
+      keyDown(element.inputElement!, 'Backspace');
       await aTimeout(0);
       assert.equal(element.value, 'c-3');
     });
@@ -248,7 +248,7 @@ describe('AnypointChipInputElement', () => {
     it('Accepts allowed value', async () => {
       element.value = 'c1';
       await nextFrame();
-      keyDown(element.inputElement, 'Enter');
+      keyDown(element.inputElement!, 'Enter');
       await nextFrame();
       assert.equal(element.chipsValue[0], 'c1');
     });
@@ -256,7 +256,7 @@ describe('AnypointChipInputElement', () => {
     it('Ignores unknown value', async () => {
       element.value = 'unknown';
       await nextFrame();
-      keyDown(element.inputElement, 'Enter');
+      keyDown(element.inputElement!, 'Enter');
       await nextFrame();
       assert.isEmpty(element.chipsValue);
     });
@@ -271,7 +271,7 @@ describe('AnypointChipInputElement', () => {
     it('opens suggestions dropdown', async () => {
       element.value = 'c';
       await nextFrame();
-      element.inputElement.dispatchEvent(new CustomEvent('input'));
+      element.inputElement!.dispatchEvent(new CustomEvent('input'));
       await nextFrame();
       const node = element.shadowRoot!.querySelector('anypoint-autocomplete')!;
       assert.isTrue(node.opened);
@@ -280,7 +280,7 @@ describe('AnypointChipInputElement', () => {
     it('does no open suggestions when filtered empty', async () => {
       element.value = 'cz';
       await nextFrame();
-      element.inputElement.dispatchEvent(new CustomEvent('input'));
+      element.inputElement!.dispatchEvent(new CustomEvent('input'));
       await nextFrame();
       const node = element.shadowRoot!.querySelector('anypoint-autocomplete')!;
       assert.isFalse(node.opened);
@@ -289,7 +289,7 @@ describe('AnypointChipInputElement', () => {
     it('accepts a suggestion', async () => {
       element.value = 'c';
       await nextFrame();
-      element.inputElement.dispatchEvent(new CustomEvent('input'));
+      element.inputElement!.dispatchEvent(new CustomEvent('input'));
       await nextFrame();
       const node = element.shadowRoot!.querySelector('anypoint-autocomplete')!;
       node.dispatchEvent(new CustomEvent('pick', {

@@ -22,13 +22,13 @@ export default /** @type {import("@web/test-runner").TestRunnerConfig} */ ({
     return true;
   },
 
-  plugins: [esbuildPlugin({ ts: true })],
+  plugins: [esbuildPlugin({ ts: true, target: 'es2020' })],
 
   /** Compile JS for older browsers. Requires @web/dev-server-esbuild plugin */
   // esbuildTarget: 'auto',
 
   /** Amount of browsers to run concurrently */
-  concurrentBrowsers: 3,
+  concurrentBrowsers: 2,
 
   /** Amount of test files per browser to test concurrently */
   // concurrency: 1,

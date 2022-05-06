@@ -19,14 +19,12 @@ export default class InteractiveDemoElement extends LitElement {
    * The list of general style states for the element.
    * It renders list of tabs with labels from this array.
    */
-  @property({ type: Array })
-  states: string[] = [];
+  @property({ type: Array }) states: string[];
 
   /**
    * When set it renders the component in dark theme.
    */
-  @property({ type: Boolean, reflect: true })
-  dark = false;
+  @property({ type: Boolean, reflect: true }) dark?: boolean;
   
   /**
    * @returns {AnypointTabsElement}
@@ -80,6 +78,11 @@ export default class InteractiveDemoElement extends LitElement {
     this.requestUpdate('opened', old);
     this._updateTabsAnimation();
     this._updateOptionsTabindex();
+  }
+
+  constructor() {
+    super();
+    this.states = [];
   }
 
   firstUpdated(): void {
