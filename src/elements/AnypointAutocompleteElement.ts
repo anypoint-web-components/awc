@@ -679,9 +679,9 @@ export default class AnypointAutocompleteElement extends AnypointElement {
     if (this.loader) {
       this._loading = true;
       if (!this[openedValue]) {
+        this[openedValue] = true;
         this._setComboboxWidth();
         this.notifyResize();
-        this[openedValue] = true;
       }
     }
   }

@@ -180,8 +180,18 @@ describe('AnypointChipElement', () => {
   });
 
   describe('Focus and blur', () => {
+    let input: HTMLInputElement;
+    before(() => {
+      input = document.createElement('input');
+      document.body.appendChild(input);
+    });
+
+    after(() => {
+      document.body.removeChild(input);
+    });
+
     let element: AnypointChip;
-    before(async () => {
+    beforeEach(async () => {
       element = await basicFixture();
     });
 
@@ -194,7 +204,7 @@ describe('AnypointChipElement', () => {
     it('removes the "focused" when element blur', async () => {
       element.focus();
       await nextFrame();
-      element.blur();
+      input.focus();
       await nextFrame();
       assert.isFalse(element.focused);
     });

@@ -32,11 +32,11 @@ export default class AnypointComboboxElement extends AnypointInputElement {
   @property({ type: Array }) source?: Suggestion[] | string[];
 
   protected firstUpdated(cp: PropertyValueMap<any> | Map<PropertyKey, unknown>): void {
-    requestAnimationFrame(() => {
+    setTimeout(() => {
       // this is required for autocomplete to set up the
       // target as `inputElement` is computed getter.
       this.requestUpdate();
-    });
+    }, 0);
     super.firstUpdated(cp);
   }
 

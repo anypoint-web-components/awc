@@ -103,8 +103,9 @@ export default class AnypointChipElement extends AnypointElement {
     super();
     this.addEventListener('keydown', this._keyDownHandler.bind(this), true);
     this.addEventListener('click', this._clickHandler.bind(this), true);
-    this.addEventListener('focus', this._focusBlurHandler);
-    this.addEventListener('blur', this._focusBlurHandler);
+    const focusBlur = this._focusBlurHandler.bind(this);
+    this.addEventListener('focus', focusBlur);
+    this.addEventListener('blur', focusBlur);
     this._detectHasIcon = this._detectHasIcon.bind(this);
   }
 

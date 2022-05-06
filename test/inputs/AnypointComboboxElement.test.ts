@@ -1,4 +1,4 @@
-import { fixture, assert, html, aTimeout, nextFrame } from '@open-wc/testing';
+import { fixture, assert, html, nextFrame } from '@open-wc/testing';
 import '../../src/define/anypoint-combobox.js';
 import { AnypointComboboxElement } from '../../src/index.js'
 
@@ -14,13 +14,14 @@ describe('<anypoint-combobox>', () => {
 
     beforeEach(async () => {
       element = await sourceFixture(suggestions);
-      await aTimeout(1);
+      await nextFrame();
     });
 
     it('closes the autocomplete on activate event', async () => {
       const node = element.shadowRoot!.querySelector('anypoint-autocomplete')!;
+      await nextFrame();
       node.renderSuggestions();
-      await aTimeout(0);
+      await nextFrame();
       const item = node.querySelector('anypoint-item') as HTMLElement;
       item.click();
       await nextFrame();
@@ -34,8 +35,8 @@ describe('<anypoint-combobox>', () => {
         <anypoint-combobox
           .source="${source}"
           value="a"
+          label="Test"
         >
-          <label slot="label">Test</label>
         </anypoint-combobox>`);
     }
 
