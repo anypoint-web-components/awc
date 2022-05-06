@@ -1,13 +1,16 @@
 /* eslint-disable lit-a11y/click-events-have-key-events */
 /* eslint-disable class-methods-use-this */
-import { SVGTemplateResult, TemplateResult, CSSResult, html } from 'lit';
-import { property } from 'lit/decorators.js';
+import { SVGTemplateResult, TemplateResult, CSSResult, html, PropertyValueMap } from 'lit';
+import { property, query } from 'lit/decorators.js';
 import { classMap, ClassInfo } from 'lit/directives/class-map.js';
 import AnypointElement from './AnypointElement.js';
 import { clear } from '../resources/Icons.js';
 import elementStyles from '../styles/ChipStyles.js';
 
 export const hasIconNodeValue = Symbol('hasIconNodeValue');
+// eslint-disable-next-line no-use-before-define
+const tabIndexes = new WeakMap<AnypointChipElement, string>();
+
 /**
  * `anypoint-chip`
  *
@@ -33,8 +36,8 @@ export const hasIconNodeValue = Symbol('hasIconNodeValue');
  * application logic might use different ways of removing elements from dom
  * than web platform APIs.
  * 
- * @fires chipremoved
- * @slot icon Icons slot
+ * @fires chipremoved - Fired when the user requested to remove the chip.
+ * @slot icon - A slot dedicated to render the item icon. It is rendered as a prefix to the label
  * @slot - This element renders any child
  */
 export default class AnypointChipElement extends AnypointElement {
@@ -48,88 +51,35 @@ export default class AnypointChipElement extends AnypointElement {
    * `chipremoved` custom event to inform parent element about the action.
    * @attribute
    */
-  @property({ type: Boolean })
-  removable?: boolean;
+  @property({ type: Boolean, reflect: true }) removable?: boolean;
   
   /**
    * If true, the button toggles the active state with each click or press
    * of the space bar or enter.
    * @attribute
    */
-  @property({ type: Boolean, reflect: true })
-  toggles?: boolean;
-  
-  protected __disabled?: boolean;
-
-  protected __active?: boolean;
-
-  protected __focused?: boolean;
+  @property({ type: Boolean, reflect: true }) toggles?: boolean;
 
   [hasIconNodeValue] = false;
   
-  set disabled(value: boolean | undefined) {
-    this.__disabled = value;
-    this._disabledChanged(value);
-  }
-
   /**
    * If true, the user cannot interact with this element.
    * @attribute
    */
-  @property({ type: Boolean, reflect: true })
-  get disabled(): boolean | undefined {
-    return this.__disabled;
-  }
+  @property({ type: Boolean, reflect: true }) disabled?: boolean;
 
   /**
-   * @return True if the button is currently in active state. Only
-   * available if the button `toggles`.
+   * @return True if the button is currently in active state. Only available if the button `toggles`.
    */
-  get active(): boolean | undefined {
-    return this.__active;
-  }
-
-  get _active(): boolean | undefined {
-    return this.__active;
-  }
-
-  set _active(value: boolean | undefined) {
-    this.__active = value;
-    this.__activeChanged(value);
-  }
+  @property({ type: Boolean, reflect: true }) active?: boolean;
 
   /**
-   * @returns True if the button is currently in focused state.
+   * Whether the element is currently in the focused state.
    */
-  get focused(): boolean | undefined {
-    return this.__focused || false;
-  }
-
-  get _focused(): boolean | undefined {
-    return this.__focused;
-  }
-
-  set _focused(value: boolean | undefined) {
-    this.__focused = value;
-    if (value && !this.hasAttribute('focused')) {
-      this.setAttribute('focused', '');
-    } else if (!value && this.hasAttribute('focused')) {
-      this.removeAttribute('focused');
-    }
-  }
-
-  _removeIcon?: SVGTemplateResult;
+  @property({ type: Boolean, reflect: true }) focused?: boolean;
 
   /**
-   * @return An icon to render when `removable` is set.
-   * @default ARC's `clear` icon.
-   */
-  get removeIcon(): SVGTemplateResult {
-    return this._removeIcon || clear;
-  }
-
-  /**
-   * @param value An icon to be used to render "remove" icon.
+   * An icon to be used to render "remove" icon.
    * It must be an instance of `SVGTemplateResult` that can be created from `lit-html`
    * library.
    *
@@ -138,24 +88,24 @@ export default class AnypointChipElement extends AnypointElement {
    * const icon = svg`...`; // content of the icon.
    * ```
    */
-  set removeIcon(value: SVGTemplateResult) {
-    const old = this._removeIcon;
-    this._removeIcon = value;
-    this.requestUpdate('removeIcon', old);
-  }
+  @property({ type: Object }) removeIcon?: SVGTemplateResult;
 
   /**
    * @return Reference to the icon slot element.
    */
-  get _iconSlot(): HTMLSlotElement {
-    return this.shadowRoot!.querySelector('slot[name="icon"]') as HTMLSlotElement;
+  @query('slot[name="icon"]') protected _iconSlot?: HTMLSlotElement;
+
+  get _removeIcon(): SVGTemplateResult {
+    return this.removeIcon || clear;
   }
 
   constructor() {
     super();
-    this._keyDownHandler = this._keyDownHandler.bind(this);
-    this._focusBlurHandler = this._focusBlurHandler.bind(this);
-    this._clickHandler = this._clickHandler.bind(this);
+    this.addEventListener('keydown', this._keyDownHandler.bind(this), true);
+    this.addEventListener('click', this._clickHandler.bind(this), true);
+    this.addEventListener('focus', this._focusBlurHandler);
+    this.addEventListener('blur', this._focusBlurHandler);
+    this._detectHasIcon = this._detectHasIcon.bind(this);
   }
 
   connectedCallback(): void {
@@ -166,23 +116,24 @@ export default class AnypointChipElement extends AnypointElement {
     if (!this.hasAttribute('role')) {
       this.setAttribute('role', 'button');
     }
-    /* istanbul ignore else */
-    if (this.__active === undefined) {
-      this._active = false;
-    }
     this._addSlotEvent();
-    this.addEventListener('keydown', this._keyDownHandler, true);
-    this.addEventListener('focus', this._focusBlurHandler, true);
-    this.addEventListener('blur', this._focusBlurHandler, true);
-    this.addEventListener('click', this._clickHandler, true);
   }
 
-  disconnectedCallback(): void {
-    super.disconnectedCallback();
-    this.removeEventListener('keydown', this._keyDownHandler);
-    this.removeEventListener('focus', this._focusBlurHandler);
-    this.removeEventListener('blur', this._focusBlurHandler);
-    this.removeEventListener('click', this._clickHandler);
+  protected shouldUpdate(cp: PropertyValueMap<any> | Map<PropertyKey, unknown>): boolean {
+    if ((cp.has('active') || cp.has('focused')) && this.disabled) {
+      return false;
+    }
+    return true;
+  }
+
+  protected willUpdate(cp: PropertyValueMap<any> | Map<PropertyKey, unknown>): void {
+    if (cp.has('disabled')) {
+      this._disabledChanged();
+    }
+    if (cp.has('active')) {
+      this._activeChanged();
+    }
+    super.willUpdate(cp);
   }
 
   private __firstUpdated = false;
@@ -196,21 +147,21 @@ export default class AnypointChipElement extends AnypointElement {
   /**
    * Adds the `slotchange` event listener to the icon slot.
    */
-  _addSlotEvent(): void {
+  protected _addSlotEvent(): void {
     if (!this.__firstUpdated) {
       return;
     }
-    this._iconSlot.addEventListener('slotchange', () => this._detectHasIcon());
+    this._iconSlot?.addEventListener('slotchange', this._detectHasIcon);
   }
 
   /**
    * Handler for remove icon click event.
    * Cancels the event and calls `remove()`
    */
-  _removeHandler(e: Event): void {
+  protected _removeHandler(e: Event): void {
     e.preventDefault();
     e.stopPropagation();
-    this.remove();
+    this.notifyRemove();
   }
 
   /**
@@ -219,9 +170,9 @@ export default class AnypointChipElement extends AnypointElement {
    *
    * Note, this does not check if `removable` is set
    */
-  remove(): void {
-    this._active = false;
-    this.dispatchEvent(new CustomEvent('chipremoved'));
+  notifyRemove(): void {
+    this.active = false;
+    this.dispatchEvent(new Event('chipremoved'));
   }
   
   /**
@@ -230,9 +181,12 @@ export default class AnypointChipElement extends AnypointElement {
    * allow to detect when there's no content so it has to be done using
    * node observer.
    */
-  _detectHasIcon(): void {
-    const nodes = this._iconSlot.assignedNodes()
-      .filter((node) => node.nodeType === Node.ELEMENT_NODE);
+  protected _detectHasIcon(): void {
+    const slot = this._iconSlot;
+    if (!slot) {
+      return;
+    }
+    const nodes = slot.assignedNodes().filter((node) => node.nodeType === Node.ELEMENT_NODE);
     this[hasIconNodeValue] = !!nodes.length;
     this.requestUpdate();
   }
@@ -241,12 +195,47 @@ export default class AnypointChipElement extends AnypointElement {
    * Handler for key down when element is focused.
    * Removes the item when delete key is pressed.
    */
-  _keyDownHandler(e: KeyboardEvent): void {
+  protected _keyDownHandler(e: KeyboardEvent): void {
     if (this.removable && ['Backspace', 'Delete'].includes(e.code)) {
-      this.remove();
+      this.notifyRemove();
     } else if (['Enter', 'Space'].includes(e.code)) {
       this._clickHandler();
       this._asyncClick();
+    }
+  }
+
+  /**
+   * Called when the value of `disabled` property change. Sets `aria-disabled`
+   * and `tabIndex` attributes.
+   */
+  protected _disabledChanged(): void {
+    const { disabled } = this;
+    this.setAttribute('aria-disabled', disabled ? 'true' : 'false');
+    this.style.pointerEvents = disabled ? 'none' : '';
+    if (disabled) {
+      const old = this.getAttribute('tabindex');
+      if (old) {
+        tabIndexes.set(this, old);
+      }
+      this.setAttribute('tabindex', '-1');
+      this.blur();
+      this.active = false;
+      this.focused = false;
+    } else if (tabIndexes.has(this)) {
+      const old = tabIndexes.get(this)!;
+      this.setAttribute('tabindex', old);
+    } else {
+      this.removeAttribute('tabindex');
+    }
+  }
+
+  /**
+   * Called when the `active` value change.
+   * It sets `active` attribute and, if the button toggles, `aria-pressed` attribute.
+   */
+  protected _activeChanged(): void {
+    if (this.toggles) {
+      this.setAttribute('aria-pressed', this.active ? 'true' : 'false');
     }
   }
 
@@ -255,47 +244,19 @@ export default class AnypointChipElement extends AnypointElement {
    * listener.
    * @param e Either focus or blur events
    */
-  _focusBlurHandler(e: Event): void {
-    this._focused = e.type === 'focus';
-  }
-
-  private _oldTabIndex?: string | null;
-
-  /**
-   * Called when the value of `disabled` property change. Sets `aria-disabled`
-   * and `tabIndex` attributes.
-   * @param disabled Current value of `disabled` property.
-   */
-  _disabledChanged(disabled?: boolean): void {
-    this.setAttribute('aria-disabled', disabled ? 'true' : 'false');
-    this.style.pointerEvents = disabled ? 'none' : '';
-    if (disabled) {
-      // Read the `tabindex` attribute instead of the `tabIndex` property.
-      // The property returns `-1` if there is no `tabindex` attribute.
-      // This distinction is important when restoring the value because
-      // leaving `-1` hides shadow root children from the tab order.
-      this._oldTabIndex = this.getAttribute('tabindex');
-      this._focused = false;
-      this.setAttribute('tabindex', '-1');
-      this.blur();
-    } else if (this._oldTabIndex !== undefined) {
-      if (this._oldTabIndex === null) {
-        this.removeAttribute('tabindex');
-      } else {
-        this.setAttribute('tabindex', this._oldTabIndex);
-      }
-    }
+  protected _focusBlurHandler(e: Event): void {
+    this.focused = e.type === 'focus';
   }
 
   /**
    * Handles click event (as well as Space and Enter key down) as sets the
    * `active` property.
    */
-  _clickHandler(): void {
+  protected _clickHandler(): void {
     if (this.toggles) {
-      this._userActivate(!this._active);
-    } else if (this._active) {
-      this._active = false;
+      this._userActivate(!this.active);
+    } else if (this.active) {
+      this.active = false;
     }
   }
 
@@ -303,9 +264,9 @@ export default class AnypointChipElement extends AnypointElement {
    * Sets `_active` property depending on the input and current state of `_active`.
    * @param active The value to set.
    */
-  _userActivate(active?: boolean): void {
-    if (this._active !== active) {
-      this._active = active;
+  protected _userActivate(active?: boolean): void {
+    if (this.active !== active) {
+      this.active = active;
     }
   }
 
@@ -313,49 +274,25 @@ export default class AnypointChipElement extends AnypointElement {
    * Calls `click()` function on this element so event listeners can handle
    * the action.
    */
-  _asyncClick(): void {
+  protected _asyncClick(): void {
     setTimeout(() => {
       this.click();
     }, 1);
   }
 
-  /**
-   * Called when the `active` value change.
-   * It sets `active` attribute and, if the button toggles, `aria-pressed` attribute.
-   * @param active Current state of `active`./
-   */
-  __activeChanged(active?: boolean): void {
-    if (active) {
-      if (!this.hasAttribute('active')) {
-        this.setAttribute('active', '');
-      }
-    } else if (this.hasAttribute('active')) {
-      this.removeAttribute('active');
-    }
-    if (this.toggles) {
-      this.setAttribute('aria-pressed', active ? 'true' : 'false');
-    } else if (this.hasAttribute('aria-pressed')) {
-      this.removeAttribute('aria-pressed');
-    }
-  }
-
-  _iconSlotTemplate(): TemplateResult {
+  protected _iconSlotTemplate(): TemplateResult {
     return html`<span part="anypoint-chip-icon" class="icon"><slot name="icon"></slot></span>`;
   }
 
-  _removeTemplate(): TemplateResult | string {
+  protected _removeTemplate(): TemplateResult | string {
     if (!this.removable) {
       return '';
     }
-    const { removeIcon } = this;
-    return html`<span
-      part="anypoint-chip-remove"
-      class="close"
-      @click="${this._removeHandler}"
-    >${removeIcon}</span>`;
+    const { _removeIcon } = this;
+    return html`<span part="anypoint-chip-remove" class="close" @click="${this._removeHandler}" >${_removeIcon}</span>`;
   }
 
-  render(): TemplateResult {
+  protected render(): TemplateResult {
     const result: ClassInfo = {
       container: true,
       'with-icon': this[hasIconNodeValue],

@@ -500,14 +500,14 @@ describe('AnypointChipInputElement', () => {
       element = await chipsFixture();
       await nextFrame();
       const node = element.shadowRoot!.querySelector('anypoint-chip')!;
-      assert.equal(node.removeIcon, clear);
+      assert.equal(node._removeIcon, clear);
     });
 
     it('has the icon from attribute', async () => {
       element = await chipsWithIconFixture();
       await nextFrame();
       const node = element.shadowRoot!.querySelector('anypoint-chip')!;
-      assert.equal(node.removeIcon, clearAll);
+      assert.equal(node._removeIcon, clearAll);
     });
   });
 

@@ -1,6 +1,5 @@
 import { fixture, assert, nextFrame, aTimeout } from '@open-wc/testing';
 import sinon from 'sinon';
-import * as MockInteractions from '@polymer/iron-test-helpers/mock-interactions.js';
 import { clearAll } from '../../demo/lib/Icons.js';
 import { clear } from '../../src/resources/Icons.js';
 import '../../src/define/anypoint-chip.js';
@@ -105,22 +104,21 @@ describe('AnypointChipElement', () => {
     });
   });
 
-  describe('remove()', () => {
+  describe('notifyRemove()', () => {
     let element: AnypointChip;
+
     it('dispatches the `chipremoved` custom event', async () => {
       element = await removableFixture();
       const spy = sinon.spy();
       element.addEventListener('chipremoved', spy);
-      const node = element.shadowRoot!.querySelector('.close')!;
-      // @ts-ignore
+      const node = element.shadowRoot!.querySelector('.close') as HTMLElement;
       node.click();
       assert.isTrue(spy.called);
     });
 
     it('Chip is not active when removed', async () => {
       element = await togglesFixture();
-      const node = element.shadowRoot!.querySelector('.close')!;
-      // @ts-ignore
+      const node = element.shadowRoot!.querySelector('.close') as HTMLElement;
       node.click();
       assert.isFalse(element.active);
     });
@@ -130,114 +128,91 @@ describe('AnypointChipElement', () => {
     let element: AnypointChip;
     it('Computes value when no icon', async () => {
       element = await basicFixture();
-      element._detectHasIcon();
       assert.isFalse(element[hasIconNodeValue]);
     });
 
     it('Computes value when icon', async () => {
       element = await withIconFixture();
-      element._detectHasIcon();
       assert.isTrue(element[hasIconNodeValue]);
     });
   });
 
-  describe('_keyDownHandler()', () => {
-    let element: AnypointChip;
-
-    [
-      ['Backspace', 'remove'],
-      ['Delete', 'remove'],
-      ['Space', '_clickHandler'],
-      ['Enter', '_clickHandler'],
-      ['Space', '_asyncClick'],
-      ['Enter', '_asyncClick']
-    ].forEach((item) => {
-      it(`calls ${item[1]}() when ${item[0]} key`, async () => {
-        element = await removableFixture();
-        // @ts-ignore
-        const spy = sinon.spy(element, item[1]);
-        // @ts-ignore
-        element._keyDownHandler({
-          code: item[0],
-        });
-        assert.isTrue(spy.called);
+  describe('Keyboard manipulation', () => {
+    function dispatch(element: EventTarget, code: string): void {
+      const e = new KeyboardEvent('keydown', {
+        cancelable: true,
+        code,
       });
+      element.dispatchEvent(e);
+    }
+
+    it('notifies remove when Backspace', async () => {
+      const element = await removableFixture();
+      const spy = sinon.spy();
+      element.addEventListener('chipremoved', spy);
+      dispatch(element, 'Backspace');
+      assert.isTrue(spy.called);
     });
 
-    it('Ignores other keys', async () => {
-      element = await removableFixture();
-      const spy1 = sinon.spy(element, 'remove');
-      const spy2 = sinon.spy(element, '_clickHandler');
-      // @ts-ignore
-      element._keyDownHandler({
-        key: 'E'
-      });
-      assert.isFalse(spy1.called);
-      assert.isFalse(spy2.called);
+    it('notifies remove when Delete', async () => {
+      const element = await removableFixture();
+      const spy = sinon.spy();
+      element.addEventListener('chipremoved', spy);
+      dispatch(element, 'Delete');
+      assert.isTrue(spy.called);
+    });
+
+    it('clicks when Space', async () => {
+      const element = await removableFixture();
+      const spy = sinon.spy(element, 'click');
+      dispatch(element, 'Space');
+      await aTimeout(1);
+      assert.isTrue(spy.called);
+    });
+
+    it('clicks when Enter', async () => {
+      const element = await removableFixture();
+      const spy = sinon.spy(element, 'click');
+      dispatch(element, 'Space');
+      await aTimeout(1);
+      assert.isTrue(spy.called);
     });
   });
 
-  describe('_focusBlurHandler()', () => {
+  describe('Focus and blur', () => {
     let element: AnypointChip;
     before(async () => {
       element = await basicFixture();
     });
 
-    it('Sets "focused" when event type is focus', () => {
-      element._focusBlurHandler(new FocusEvent('focus'));
+    it('sets the "focused" on element focus', async () => {
+      element.focus();
+      await nextFrame();
       assert.isTrue(element.focused);
     });
 
-    it('Removes "focused" when event type is not focus', () => {
-      element._focusBlurHandler(new FocusEvent('blur'));
-      assert.isFalse(element.focused);
-    });
-
-    it('Sets "focused" property for focus event', () => {
-      MockInteractions.focus(element);
-      assert.isTrue(element.focused);
-    });
-
-    it('Removes "focused" property for blur event', async () => {
-      MockInteractions.focus(element);
+    it('removes the "focused" when element blur', async () => {
+      element.focus();
       await nextFrame();
-      element.dispatchEvent(new CustomEvent('blur', {}));
-      assert.isFalse(element.focused);
-    });
-
-    it('Sets "focused" attribute for focus event', () => {
-      MockInteractions.focus(element);
-      assert.isTrue(element.hasAttribute('focused'));
-    });
-
-    it('Removes "focused" attribute for blur event', async () => {
-      MockInteractions.focus(element);
+      element.blur();
       await nextFrame();
-      element.dispatchEvent(new CustomEvent('blur', {}));
-      assert.isFalse(element.hasAttribute('focused'));
+      assert.isFalse(element.focused);
     });
   });
 
-  describe('_iconSlot getter', () => {
-    it('Returns reference to icon slot', async () => {
-      const element = await basicFixture();
-      const ref = element._iconSlot;
-      assert.ok(ref);
-      assert.equal(ref.nodeName, 'SLOT');
-    });
-  });
-
-  describe('_disabledChanged()', () => {
-    it('Sets aria-disabled when disabled', async () => {
+  describe('Disabled state', () => {
+    it('sets aria-disabled when disabled', async () => {
       const element = await basicFixture();
       element.disabled = true;
+      await nextFrame();
       assert.isTrue(element.hasAttribute('aria-disabled'));
       assert.equal(element.getAttribute('aria-disabled'), 'true');
     });
 
-    it('Sets aria-disabled when not disabled', async () => {
+    it('sets aria-disabled when not disabled', async () => {
       const element = await disabledFixture();
       element.disabled = false;
+      await nextFrame();
       assert.isTrue(element.hasAttribute('aria-disabled'));
       assert.equal(element.getAttribute('aria-disabled'), 'false');
     });
@@ -245,6 +220,7 @@ describe('AnypointChipElement', () => {
     it('Sets pointer events style when disabled', async () => {
       const element = await basicFixture();
       element.disabled = true;
+      await nextFrame();
       const value = element.style.pointerEvents.trim().toLowerCase();
       assert.equal(value, 'none');
     });
@@ -252,6 +228,7 @@ describe('AnypointChipElement', () => {
     it('Re-sets pointer events style when not disabled', async () => {
       const element = await disabledFixture();
       element.disabled = false;
+      await nextFrame();
       const value = element.style.pointerEvents.trim();
       assert.equal(value, '');
     });
@@ -259,172 +236,84 @@ describe('AnypointChipElement', () => {
     it('Sets tabindex to -1 when disabled', async () => {
       const element = await tabIndexFixture();
       element.disabled = true;
+      await nextFrame();
       assert.equal(element.getAttribute('tabindex'), '-1');
     });
 
-    it('Sets _oldTabIndex property when disabled', async () => {
-      const element = await tabIndexFixture();
-      element.disabled = true;
-      // @ts-ignore
-      assert.equal(element._oldTabIndex, '1');
-    });
-
-    it('Removes focused state when disabled', async () => {
-      const element = await basicFixture();
-      element._focused = true;
-      element.disabled = true;
-      assert.isFalse(element._focused);
-    });
-
-    it('Calls blur() when disabled', async () => {
-      const element = await basicFixture();
-      const spy = sinon.spy(element, 'blur');
-      element.disabled = true;
-      assert.isTrue(spy.called);
-    });
-
-    it('restores tabindex when not disabled', async () => {
+    it('restores previously set tabindex when not disabled', async () => {
       const element = await tabIndexFixture();
       element.disabled = true;
       await nextFrame();
       element.disabled = false;
+      await nextFrame();
       assert.equal(element.getAttribute('tabindex'), '1');
     });
 
-    it('Removes tabindex when not disabled and was not set previously', async () => {
+    it('removes focused state when disabled', async () => {
+      const element = await basicFixture();
+      element.focused = true;
+      await nextFrame();
+      element.disabled = true;
+      await nextFrame();
+      assert.isFalse(element.focused);
+    });
+
+    it('calls blur() when disabled', async () => {
+      const element = await basicFixture();
+      const spy = sinon.spy(element, 'blur');
+      element.disabled = true;
+      await nextFrame();
+      assert.isTrue(spy.called);
+    });
+
+    it('removes tabindex when not disabled and was not set previously', async () => {
       const element = await basicFixture();
       // tabindex is added when missing when element is created
       element.removeAttribute('tabindex');
       element.disabled = true;
       await nextFrame();
       element.disabled = false;
+      await nextFrame();
       assert.isFalse(element.hasAttribute('tabindex'));
-    });
-
-    it('Does nothing otherwise', async () => {
-      const element = await basicFixture();
-      element._disabledChanged(false);
-      // coverage
     });
   });
 
   describe('_clickHandler()', () => {
-    let element: AnypointChip;
-    beforeEach(async () => {
-      element = await basicFixture();
-    });
-
-    it('Calls _userActivate() with when toggles and not active', () => {
-      const spy = sinon.spy(element, '_userActivate');
-      element.toggles = true;
-      element._clickHandler();
-      assert.isTrue(spy.args[0][0]);
-    });
-
-    it('Calls _userActivate() with false when toggles and active', () => {
-      const spy = sinon.spy(element, '_userActivate');
-      element._active = true;
-      element.toggles = true;
-      element._clickHandler();
-      assert.isFalse(spy.args[0][0]);
-    });
-
-    it('Sets active to false when not toggles and active', () => {
-      element._active = true;
-      element._clickHandler();
-      assert.isFalse(element.active);
-    });
-
-    it('Does nothing otherwise', () => {
-      element._clickHandler();
-      // It's for coverage
-      assert.isFalse(element.active);
-    });
-  });
-
-  describe('_userActivate()', () => {
-    let element: AnypointChip;
-    beforeEach(async () => {
-      element = await basicFixture();
-    });
-
-    it('Does nothing if "active" equals argument', () => {
-      element._active = true;
-      element._userActivate(true);
+    it('sets the active state when toggles', async () => {
+      const element = await togglesFixture();
+      element.click();
+      await nextFrame();
       assert.isTrue(element.active);
-      // It's for coverage
     });
 
-    it('Updates "active" value', () => {
-      element._active = true;
-      element._userActivate(false);
+    it('removes the active state when toggles', async () => {
+      const element = await togglesFixture();
+      element.click();
+      await nextFrame();
+      element.click();
+      await nextFrame();
       assert.isFalse(element.active);
-      // It's for coverage
     });
-  });
 
-  describe('_asyncClick()', () => {
-    it('Calls click() with a delay', async () => {
+    it('sets not active when not toggles', async () => {
       const element = await basicFixture();
-      const spy = sinon.spy(element, 'click');
-      element._asyncClick();
-      await aTimeout(1);
-      assert.isTrue(spy.called);
+      element.active = true;
+      await nextFrame();
+      element.click();
+      await nextFrame();
+      assert.isFalse(element.active);
     });
   });
 
-  describe('__activeChanged()', () => {
-    let element: AnypointChip;
-    beforeEach(async () => {
-      element = await basicFixture();
-    });
-
-    it('Adds active attribute when true and has none', () => {
-      element.__activeChanged(true);
-      assert.isTrue(element.hasAttribute('active'));
-    });
-
-    it('Does nothing when true and has attribute', () => {
-      element.setAttribute('active', '');
-      element.__activeChanged(true);
-      assert.isTrue(element.hasAttribute('active'));
-      // Coverage
-    });
-
-    it('Removes active attribute when false and has one', () => {
-      element.setAttribute('active', '');
-      element.__activeChanged(false);
-      assert.isFalse(element.hasAttribute('active'));
-    });
-
-    it('Does nothing when false and has no attribute', () => {
-      element.__activeChanged(false);
-      assert.isFalse(element.hasAttribute('active'));
-      // Coverage
-    });
-
-    it('Removes aria-pressed attribute when not toggles', () => {
-      element.setAttribute('aria-pressed', 'true');
-      element.__activeChanged(false);
-      assert.isFalse(element.hasAttribute('aria-pressed'));
-    });
-
-    it('Does nothing when not toggles and no aria-pressed', () => {
-      element.__activeChanged(false);
-      assert.isFalse(element.hasAttribute('aria-pressed'));
-      // For coverage
-    });
-
-    it('Sets aria-pressed to true', () => {
-      element.toggles = true;
-      element.__activeChanged(true);
-      assert.equal(element.getAttribute('aria-pressed'), 'true');
-    });
-
-    it('Sets aria-pressed to false', () => {
-      element.toggles = true;
-      element.__activeChanged(false);
-      assert.equal(element.getAttribute('aria-pressed'), 'false');
+  describe('Active state', () => {
+    it('sets "aria-pressed" when toggles', async () => {
+      const element = await togglesFixture();
+      element.active = true;
+      await nextFrame();
+      assert.equal(element.getAttribute('aria-pressed'), 'true', 'set to true');
+      element.active = false;
+      await nextFrame();
+      assert.equal(element.getAttribute('aria-pressed'), 'false', 'set to false');
     });
   });
 
@@ -435,12 +324,12 @@ describe('AnypointChipElement', () => {
     });
 
     it('has the default close icon', () => {
-      assert.equal(element.removeIcon, clear);
+      assert.equal(element._removeIcon, clear);
     });
 
     it('sets a custom icon', () => {
       element.removeIcon = clearAll;
-      assert.equal(element.removeIcon, clearAll);
+      assert.equal(element._removeIcon, clearAll);
     });
   });
 

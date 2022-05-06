@@ -30,7 +30,8 @@ export default css`
   flex-direction: row;
   align-items: center;
 
-  height: 100%;
+  height: inherit;
+  min-height: inherit;
   width: 100%;
   background-color: var(--anypoint-input-background-color, #f5f5f5);
 

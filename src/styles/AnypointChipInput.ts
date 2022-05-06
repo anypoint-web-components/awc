@@ -1,16 +1,10 @@
 import { css } from 'lit';
 
 export default css`
-/* :host {
-  position: relative;
-  width: auto;
-  min-width: 170px;
-  min-height: 56px;
-  height: auto;
-} */
-
 :host {
   width: auto;
+  height: auto;
+  min-height: var(--anypoint-input-height, 56px);
 }
 
 .chips {
@@ -23,15 +17,6 @@ export default css`
 .prefixes {
   max-width: 60%;
 }
-
-/* .input-container {
-  min-height: inherit;
-} */
-
-/* :host([anypoint]) {
-  min-height: 40px;
-  height: 40px;
-} */
 
 .icon {
   fill: currentColor;

@@ -13,14 +13,13 @@ interface ChipInfo {
 }
 
 class ComponentDemoPage extends DemoPage {
-  @demoProperty()
-  demoRemovable = false;
+  @demoProperty() demoRemovable = false;
 
-  @demoProperty()
-  demoDisabled = false;
+  @demoProperty() demoDisabled = false;
 
-  @demoProperty()
-  demoLeadingIcon = false;
+  @demoProperty() demoLeadingIcon = false;
+
+  @demoProperty() toggles = false;
 
   amenities: ChipInfo[] = [
     { label: 'Elevator', selected: false, },
@@ -89,7 +88,8 @@ class ComponentDemoPage extends DemoPage {
       darkThemeActive,
       demoLeadingIcon,
       demoRemovable,
-      demoDisabled
+      demoDisabled,
+      toggles,
     } = this;
     return html`
       <section class="documentation-section">
@@ -108,6 +108,7 @@ class ComponentDemoPage extends DemoPage {
             ?anypoint="${anypoint}"
             ?removable="${demoRemovable}"
             ?disabled="${demoDisabled}"
+            ?toggles="${toggles}"
           >
             ${demoLeadingIcon ? html`<demo-icon icon="message" slot="icon"></demo-icon>` : ''}
             Biking
@@ -129,6 +130,11 @@ class ComponentDemoPage extends DemoPage {
             slot="options"
             name="demoDisabled"
             @change="${this._toggleMainOption}">Disabled</anypoint-checkbox>
+          <anypoint-checkbox
+            aria-describedby="mainOptionsLabel"
+            slot="options"
+            name="toggles"
+            @change="${this._toggleMainOption}">Toggles</anypoint-checkbox>
 
         </interactive-demo>
       </section>
