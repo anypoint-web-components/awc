@@ -201,7 +201,7 @@ export default class AnypointAutocompleteElement extends AnypointElement {
     this[openedValuePrivate] = value;
     this.requestUpdate();
     this._openedChanged(value);
-    this.dispatchEvent(new CustomEvent('openedchange'));
+    this.dispatchEvent(new Event('openedchange'));
   }
 
   /**
@@ -828,13 +828,8 @@ export default class AnypointAutocompleteElement extends AnypointElement {
 
     if (!this.noTargetValueUpdate) {
       target.value = result;
-      target.dispatchEvent(
-        new CustomEvent('input', {
-          detail: {
-            autocomplete: this
-          }
-        })
-      );
+      target.dispatchEvent(new CustomEvent('input', { detail: { autocomplete: this } }));
+      target.dispatchEvent(new Event('change'));
     }
 
     this[openedValue] = false;

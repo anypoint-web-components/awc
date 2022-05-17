@@ -400,6 +400,50 @@ describe('AnypointAutocompleteElement', () => {
     });
   });
 
+  describe('selecting suggestions', () => {
+    let element: AnypointAutocomplete;
+    let input: HTMLInputElement;
+    beforeEach(async () => {
+      const region = await suggestionsFixture();
+      element = region.querySelector('anypoint-autocomplete')!;
+      input = region.querySelector('input')!;
+    });
+
+    it('dispatches the "input" event from the input target', async () => {
+      input.value = 'a';
+      notifyInput(input);
+      await nextFrame();
+      const spy = sinon.spy();
+      input.addEventListener('input', spy);
+      element._listbox!.selectNext();
+      await nextFrame();
+      assert.isTrue(spy.calledOnce, 'the event is dispatched');
+    });
+
+    it('dispatches the "change" event from the input target', async () => {
+      input.value = 'a';
+      notifyInput(input);
+      await nextFrame();
+      const spy = sinon.spy();
+      input.addEventListener('change', spy);
+      element._listbox!.selectNext();
+      await nextFrame();
+      assert.isTrue(spy.calledOnce, 'the event is dispatched');
+    });
+
+    it('dispatches the "pick" event from the autocomplete', async () => {
+      input.value = 'a';
+      notifyInput(input);
+      await nextFrame();
+      const spy = sinon.spy();
+      element.addEventListener('pick', spy);
+      element._listbox!.selectNext();
+      await nextFrame();
+      assert.isTrue(spy.calledOnce, 'the event is dispatched');
+      assert.deepEqual(spy.args[0][0].detail, { value: 'Apple' }, 'has the detail object');
+    });
+  });
+
   describe('Suggestions processing', () => {
     let element: AnypointAutocomplete;
     let input: HTMLInputElement;
