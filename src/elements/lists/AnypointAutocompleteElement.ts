@@ -417,9 +417,9 @@ export default class AnypointAutocompleteElement extends AnypointElement {
 
   _oldTarget?: HTMLInputElement;
 
-  [autocompleteFocus]: boolean;
+  [autocompleteFocus]?: boolean;
 
-  [ignoreNextFocus]: boolean;
+  [ignoreNextFocus]?: boolean;
 
   constructor() {
     super();
