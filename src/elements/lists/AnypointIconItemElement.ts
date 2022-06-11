@@ -43,7 +43,7 @@ export default class AnypointIconItemElement extends ButtonElement {
           display: flex;
           flex-direction: row;
           align-items: center;
-          width: var(--anypoint-item-icon-width, 40px);
+          min-width: var(--anypoint-item-icon-width, 40px);
         }
       `,
     ];
