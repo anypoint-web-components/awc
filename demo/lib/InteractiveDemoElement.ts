@@ -1,3 +1,4 @@
+/* eslint-disable import/extensions */
 /* eslint-disable class-methods-use-this */
 /* eslint-disable no-param-reassign */
 import { html, LitElement, CSSResult, TemplateResult } from 'lit';
@@ -23,12 +24,10 @@ export default class InteractiveDemoElement extends LitElement {
 
   /**
    * When set it renders the component in dark theme.
+   * @attribute
    */
   @property({ type: Boolean, reflect: true }) dark?: boolean;
   
-  /**
-   * @returns {AnypointTabsElement}
-   */
   get tabs(): AnypointTabsElement {
     return this.shadowRoot!.querySelector('anypoint-tabs') as AnypointTabsElement;
   }
@@ -38,6 +37,7 @@ export default class InteractiveDemoElement extends LitElement {
   /**
    * Currently selected state's index in the `states` array.
    * Change dispatches `state-changed` custom event.
+   * @attribute
    */
   @property({ type: Number })
   get selectedState(): number {
@@ -174,7 +174,7 @@ export default class InteractiveDemoElement extends LitElement {
     return html`
     <anypoint-tabs
       .selected="${selectedState}"
-      @selectedchange="${this._stateChangeHandler}"
+      @selected="${this._stateChangeHandler}"
       aria-label="Element state selection">
       ${states.map((item) => html`
         <anypoint-tab

@@ -668,3 +668,5 @@ class ComponentDemo extends DemoPage {
 }
 const instance = new ComponentDemo();
 instance.render();
+// @ts-ignore
+window.demo = instance;

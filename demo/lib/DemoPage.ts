@@ -73,6 +73,15 @@ export class DemoPage extends EventTarget {
     this.render();
   }
 
+  private _mainElement?: HTMLElement;
+
+  protected get mainElement(): HTMLElement | undefined {
+    if (!this._mainElement) {
+      this._mainElement = document.querySelector('#demo') as HTMLElement;
+    }
+    return this._mainElement;
+  }
+
   constructor() {
     super();
     this._mediaQueryHandler = this._mediaQueryHandler.bind(this);
@@ -207,16 +216,17 @@ export class DemoPage extends EventTarget {
   }
 
   _render(): void {
-    if (!this.firstRendered) {
+    const { mainElement, firstRendered } = this;
+    if (!firstRendered) {
       this.firstRendered = true;
       setTimeout(() => this.firstRender());
     }
-    const demo = document.querySelector('#demo') as HTMLElement;
-    if (!demo) {
+    if (!mainElement) {
       console.warn('The "#demo" element is not in the DOM.');
       return;
     }
-    render(this.pageTemplate(), demo, {
+    const tpl = this.pageTemplate();
+    render(tpl, mainElement, {
       host: this,
     });
   }
