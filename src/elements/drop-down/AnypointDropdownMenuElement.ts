@@ -758,6 +758,10 @@ export default class AnypointDropdownMenuElement extends ValidatableElement {
   }
 
   _dropdownClosed(e: Event): void {
+    if (this._opened === undefined) {
+      // the dropdown was never opened.
+      return;
+    }
     retarget(e, this);
     this.opened = false;
     if (this.autoValidate) {
