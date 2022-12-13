@@ -2,7 +2,7 @@ type EventRecords = Record<string, EventListener>;
 // eslint-disable-next-line no-undef
 const eventsMap = new WeakMap<EventTarget, EventRecords>();
 
-export function addListener(eventType: string, value: EventListener | undefined, target: EventTarget): void {
+export function addListener(eventType: string, value: EventListener | null, target: EventTarget): void {
   let events = eventsMap.get(target);
   if (!events) {
     events = {};
@@ -19,10 +19,10 @@ export function addListener(eventType: string, value: EventListener | undefined,
   target.addEventListener(eventType, value);
 }
 
-export function getListener(eventType: string, target: EventTarget): EventListener | undefined {
+export function getListener(eventType: string, target: EventTarget): EventListener | null {
   const events = eventsMap.get(target);
   if (!events) {
-    return undefined;
+    return null;
   }
   return events[eventType];
 }

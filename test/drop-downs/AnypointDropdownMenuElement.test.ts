@@ -195,7 +195,7 @@ describe('<anypoint-dropdown-menu>', () => {
       const element = await selectedFixture();
       // chrome needs this time to finish animation. Otherwise calculated
       // position is were the animation started.
-      await aTimeout(121);
+      await aTimeout(256);
       const label = element.querySelector('label')!;
       const input = element.shadowRoot!.querySelector('.input-spacer')!;
       const labelRect = label.getClientRects()[0];

@@ -169,7 +169,7 @@ export default class AnypointChipInputElement extends AnypointInputElement {
   /**
    * @return Previously registered handler for `chipschange` event
    */
-  get onchipschanged(): EventListener | undefined {
+  get onchipschanged(): EventListener | null {
     return getListener('chipschange', this);
   }
 
@@ -178,7 +178,7 @@ export default class AnypointChipInputElement extends AnypointInputElement {
    * @param value A callback to register. Pass `null` or `undefined`
    * to clear the listener.
    */
-  set onchipschanged(value: EventListener | undefined) {
+  set onchipschanged(value: EventListener | null) {
     addListener('chipschange', value, this);
   }
 

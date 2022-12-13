@@ -2,7 +2,7 @@ import { fixture, assert, defineCE, nextFrame } from '@open-wc/testing';
 import { LitElement, html, TemplateResult } from 'lit';
 import { property } from 'lit/decorators.js';
 import * as MockInteractions from '@polymer/iron-test-helpers/mock-interactions.js';
-import AnypointSelector from '../../src/elements/AnypointSelectorElement.js';
+import AnypointSelector from '../../src/elements/lists/AnypointSelectorElement.js';
 import '../../src/define/anypoint-selector.js';
 
 /* eslint-disable no-plusplus */

@@ -74,20 +74,20 @@ export default class AnypointMenuButtonElement extends AnypointElement {
    * @attr
    */
   @property({ reflect: true, type: Boolean }) disabled?: boolean;
-  
+
   /**
    * True if the content is currently displayed.
    * @attr
    */
   @property({ type: Boolean, reflect: true }) opened?: boolean;
-  
+
   /**
    * The orientation against which to align the menu dropdown
    * horizontally relative to the dropdown trigger.
    * @attr
    */
   @property({ type: String, reflect: true }) horizontalAlign: HorizontalAlign = 'left';
-  
+
   /**
    * The orientation against which to align the menu dropdown
    * vertically relative to the dropdown trigger.
@@ -126,7 +126,7 @@ export default class AnypointMenuButtonElement extends AnypointElement {
    * @attr
    */
   @property({ type: Boolean, reflect: true }) noOverlap?: boolean;
-  
+
   /**
    * Set to true to disable animations when opening and closing the
    * dropdown.
@@ -155,7 +155,7 @@ export default class AnypointMenuButtonElement extends AnypointElement {
    * for the `anypoint-dropdown` contained by `anypoint-menu-button`.
    */
   @state() _dropdownContent?: HTMLElement;
-  
+
   get dropdown(): AnypointDropdownElement {
     return this.shadowRoot!.querySelector('#dropdown') as AnypointDropdownElement;
   }
@@ -179,8 +179,8 @@ export default class AnypointMenuButtonElement extends AnypointElement {
   /**
    * @return Previously registered handler for `select` event
    */
-  get onselect(): EventListener {
-    return getListener('select', this) as EventListener;
+  get onselect(): EventListener | null {
+    return getListener('select', this);
   }
 
   /**
@@ -188,7 +188,7 @@ export default class AnypointMenuButtonElement extends AnypointElement {
    * @param value A callback to register. Pass `null` or `undefined`
    * to clear the listener.
    */
-  set onselect(value: EventListener) {
+  set onselect(value: EventListener | null) {
     addListener('select', value, this);
   }
 

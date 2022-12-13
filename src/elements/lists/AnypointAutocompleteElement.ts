@@ -368,9 +368,9 @@ export default class AnypointAutocompleteElement extends AnypointElement {
 
   /**
    * Will position the list around the input without overlapping it.
+   * @attribute
    */
-  @property({ type: Boolean, reflect: true })
-  noOverlap?: boolean;
+  @property({ type: Boolean, reflect: true }) noOverlap?: boolean;
 
   __listbox?: AnypointListboxElement;
 
@@ -386,7 +386,7 @@ export default class AnypointAutocompleteElement extends AnypointElement {
   /**
    * @return Previously registered handler for `query` event
    */
-  get onquery(): EventListener | undefined {
+  get onquery(): EventListener | null {
     return getListener('query', this);
   }
 
@@ -395,14 +395,14 @@ export default class AnypointAutocompleteElement extends AnypointElement {
    * @param value A callback to register. Pass `null` or `undefined`
    * to clear the listener.
    */
-  set onquery(value: EventListener | undefined) {
+  set onquery(value: EventListener | null) {
     addListener('query', value, this);
   }
 
   /**
    * @return {EventListener} Previously registered handler for `pick` event
    */
-  get onpick(): EventListener | undefined {
+  get onpick(): EventListener | null {
     return getListener('pick', this);
   }
 
@@ -411,7 +411,7 @@ export default class AnypointAutocompleteElement extends AnypointElement {
    * @param {EventListener} value A callback to register. Pass `null` or `undefined`
    * to clear the listener.
    */
-  set onpick(value: EventListener | undefined) {
+  set onpick(value: EventListener | null) {
     addListener('pick', value, this);
   }
 

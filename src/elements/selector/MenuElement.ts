@@ -469,13 +469,9 @@ export default class MenuElement extends MultiSelectableElement {
    */
   _onShiftTabDown(): void {
     const oldTabIndex = this.getAttribute('tabindex');
-
     this._shiftTabPressed = true;
-
     this._focusedItem = undefined;
-
     this.setAttribute('tabindex', '-1');
-
     setTimeout(() => {
       if (oldTabIndex) {
         this.setAttribute('tabindex', oldTabIndex);

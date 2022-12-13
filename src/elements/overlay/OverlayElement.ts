@@ -136,8 +136,9 @@ export default class OverlayElement extends FitElement {
 
   /**
    * @return Previously registered handler for `cancel` event
+   * @override
    */
-  get oncancel(): EventListener | undefined {
+  get oncancel(): EventListener | null {
     return getListener('cancel', this);
   }
 
@@ -145,15 +146,16 @@ export default class OverlayElement extends FitElement {
    * Registers a callback function for `cancel` event
    * @param value A callback to register. Pass `null` or `undefined`
    * to clear the listener.
+   * @override
    */
-  set oncancel(value: EventListener | undefined) {
+  set oncancel(value: EventListener | null) {
     addListener('cancel', value, this);
   }
 
   /**
    * @return Previously registered handler for `opened` event
    */
-  get onopened(): EventListener | undefined {
+  get onopened(): EventListener | null {
     return getListener('opened', this);
   }
 
@@ -162,14 +164,14 @@ export default class OverlayElement extends FitElement {
    * @param value A callback to register. Pass `null` or `undefined`
    * to clear the listener.
    */
-  set onopened(value: EventListener | undefined) {
+  set onopened(value: EventListener | null) {
     addListener('opened', value, this);
   }
 
   /**
    * @return Previously registered handler for `closed` event
    */
-  get onclosed(): EventListener | undefined {
+  get onclosed(): EventListener | null {
     return getListener('closed', this);
   }
 
@@ -178,7 +180,7 @@ export default class OverlayElement extends FitElement {
    * @param value A callback to register. Pass `null` or `undefined`
    * to clear the listener.
    */
-  set onclosed(value: EventListener | undefined) {
+  set onclosed(value: EventListener | null) {
     addListener('closed', value, this);
   }
 

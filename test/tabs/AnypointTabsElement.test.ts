@@ -344,7 +344,7 @@ describe('AnypointTabsElement', () => {
     });
 
     it('sets bar position under selected tab', async () => {
-      await aTimeout(200);
+      await aTimeout(256);
       const tab = element.items[1] as AnypointTabElement;
       checkSelectionBar(element, tab);
     });

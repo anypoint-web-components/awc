@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/explicit-function-return-type */
 import { fixture, assert, nextFrame } from '@open-wc/testing';
-import AnypointSelector from '../../src/elements/AnypointSelectorElement.js';
+import AnypointSelector from '../../src/elements/lists/AnypointSelectorElement.js';
 import '../../src/define/anypoint-selector.js';
 
 describe('AnypointSelector', () => {
@@ -51,7 +51,7 @@ describe('AnypointSelector', () => {
       element.onselectedchange = f;
       element._notifySelectedChange();
       await nextFrame();
-      element.onselectedchange = undefined;
+      element.onselectedchange = null;
       assert.isTrue(called);
     });
 
@@ -68,7 +68,7 @@ describe('AnypointSelector', () => {
       element.onselectedchange = f2;
       element._notifySelectedChange();
       await nextFrame();
-      element.onselectedchange = undefined;
+      element.onselectedchange = null;
       assert.isFalse(called1);
       assert.isTrue(called2);
     });
@@ -96,7 +96,7 @@ describe('AnypointSelector', () => {
       const item = element.querySelectorAll('div')[1];
       item.click();
       await nextFrame();
-      element.onselected = undefined;
+      element.onselected = null;
       assert.isTrue(called);
     });
 
@@ -106,7 +106,7 @@ describe('AnypointSelector', () => {
         called = true;
       };
       element.onselected = f;
-      element.onselected = undefined;
+      element.onselected = null;
       element.selected = 1;
       await nextFrame();
       assert.isFalse(called);
@@ -126,7 +126,7 @@ describe('AnypointSelector', () => {
       // @ts-ignore
       element._itemActivate(1, undefined);
       await nextFrame();
-      element.onselected = undefined;
+      element.onselected = null;
       assert.isFalse(called1);
       assert.isTrue(called2);
     });
@@ -153,7 +153,7 @@ describe('AnypointSelector', () => {
       element.onitemschange = f;
       element.appendChild(document.createElement('div'));
       await nextFrame();
-      element.onitemschange = undefined;
+      element.onitemschange = null;
       assert.isTrue(called);
     });
 
@@ -170,7 +170,7 @@ describe('AnypointSelector', () => {
       element.onitemschange = f2;
       element.appendChild(document.createElement('div'));
       await nextFrame();
-      element.onitemschange = undefined;
+      element.onitemschange = null;
       assert.isFalse(called1);
       assert.isTrue(called2);
     });
@@ -183,7 +183,7 @@ describe('AnypointSelector', () => {
     });
 
     it('Getter returns previously registered handler', () => {
-      assert.isUndefined(element.onselect);
+      assert.isNull(element.onselect);
       const f = () => {};
       element.onselect = f;
       assert.isTrue(element.onselect === f);
@@ -229,7 +229,7 @@ describe('AnypointSelector', () => {
     });
 
     it('Getter returns previously registered handler', () => {
-      assert.isUndefined(element.ondeselect);
+      assert.isNull(element.ondeselect);
       const f = () => {};
       element.ondeselect = f;
       assert.isTrue(element.ondeselect === f);
@@ -243,7 +243,7 @@ describe('AnypointSelector', () => {
       element.ondeselect = f;
       element.selected = 1;
       await nextFrame();
-      element.ondeselect = undefined;
+      element.ondeselect = null;
       assert.isTrue(called);
     });
 
@@ -260,7 +260,7 @@ describe('AnypointSelector', () => {
       element.ondeselect = f2;
       element.selected = 1;
       await nextFrame();
-      element.ondeselect = undefined;
+      element.ondeselect = null;
       assert.isFalse(called1);
       assert.isTrue(called2);
     });
@@ -273,7 +273,7 @@ describe('AnypointSelector', () => {
     });
 
     it('Getter returns previously registered handler', () => {
-      assert.isUndefined(element.onactivate);
+      assert.isNull(element.onactivate);
       const f = () => {};
       element.onactivate = f;
       assert.isTrue(element.onactivate === f);
@@ -288,7 +288,7 @@ describe('AnypointSelector', () => {
       const node = element.querySelector('div') as HTMLElement;
       node.click();
       await nextFrame();
-      element.onactivate = undefined;
+      element.onactivate = null;
       assert.isTrue(called);
     });
 
@@ -306,7 +306,7 @@ describe('AnypointSelector', () => {
       const node = element.querySelector('div') as HTMLElement;
       node.click();
       await nextFrame();
-      element.onactivate = undefined;
+      element.onactivate = null;
       assert.isFalse(called1);
       assert.isTrue(called2);
     });
@@ -332,7 +332,7 @@ describe('AnypointSelector', () => {
       };
       element.onselectedvalueschange = f;
       element._notifyValuesChanged();
-      element.onselectedvalueschange = undefined;
+      element.onselectedvalueschange = null;
       assert.isTrue(called);
     });
 
@@ -349,7 +349,7 @@ describe('AnypointSelector', () => {
       element.onselectedvalueschange = f2;
       element.selectedValues = [0, 1];
       element._notifyValuesChanged();
-      element.onselectedvalueschange = undefined;
+      element.onselectedvalueschange = null;
       assert.isFalse(called1);
       assert.isTrue(called2);
     });
@@ -375,7 +375,7 @@ describe('AnypointSelector', () => {
       };
       element.onselecteditemschange = f;
       element._notifySelectedItems();
-      element.onselecteditemschange = undefined;
+      element.onselecteditemschange = null;
       assert.isTrue(called);
     });
 
@@ -391,7 +391,7 @@ describe('AnypointSelector', () => {
       element.onselecteditemschange = f1;
       element.onselecteditemschange = f2;
       element._notifySelectedItems();
-      element.onselecteditemschange = undefined;
+      element.onselecteditemschange = null;
       assert.isFalse(called1);
       assert.isTrue(called2);
     });

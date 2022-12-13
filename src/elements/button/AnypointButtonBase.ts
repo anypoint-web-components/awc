@@ -3,7 +3,7 @@ import { property } from 'lit/decorators.js';
 import '../../define/material-ripple.js';
 import ButtonElement from './ButtonElement.js';
 
-export type EmphasisValue = 'low'|'medium'|'high';
+export type EmphasisValue = 'low' | 'medium' | 'high';
 
 /**
  * A base class for Anypoint buttons.

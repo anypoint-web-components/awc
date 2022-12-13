@@ -1028,7 +1028,9 @@ describe('OverlayElement', () => {
         // eslint-disable-next-line radix
         parseInt(overlay1.style.zIndex),
         // eslint-disable-next-line radix
-        parseInt(overlay2.style.zIndex), 'overlay1 on top of overlay2');
+        parseInt(overlay2.style.zIndex), 
+        'overlay1 on top of overlay2'
+      );
     });
   });
 
@@ -1290,7 +1292,7 @@ describe('OverlayElement', () => {
     });
 
     it('Getter returns previously registered handler', () => {
-      assert.isUndefined(element.oncancel);
+      assert.isNull(element.oncancel);
       const f = () => { };
       element.oncancel = f;
       assert.isTrue(element.oncancel === f);
@@ -1303,7 +1305,7 @@ describe('OverlayElement', () => {
       };
       element.oncancel = f;
       element.cancel();
-      element.oncancel = undefined;
+      element.oncancel = null;
       assert.isTrue(called);
     });
 
@@ -1319,7 +1321,7 @@ describe('OverlayElement', () => {
       element.oncancel = f1;
       element.oncancel = f2;
       element.cancel();
-      element.oncancel = undefined;
+      element.oncancel = null;
       assert.isFalse(called1);
       assert.isTrue(called2);
     });
@@ -1332,7 +1334,7 @@ describe('OverlayElement', () => {
     });
 
     it('Getter returns previously registered handler', () => {
-      assert.isUndefined(element.onopened);
+      assert.isNull(element.onopened);
       const f = () => { };
       element.onopened = f;
       assert.isTrue(element.onopened === f);
@@ -1345,7 +1347,7 @@ describe('OverlayElement', () => {
       };
       element.onopened = f;
       await untilOpen(element);
-      element.onopened = undefined;
+      element.onopened = null;
       assert.isTrue(called);
     });
 
@@ -1361,7 +1363,7 @@ describe('OverlayElement', () => {
       element.onopened = f1;
       element.onopened = f2;
       await untilOpen(element);
-      element.onopened = undefined;
+      element.onopened = null;
       assert.isFalse(called1);
       assert.isTrue(called2);
     });
@@ -1374,7 +1376,7 @@ describe('OverlayElement', () => {
     });
 
     it('Getter returns previously registered handler', () => {
-      assert.isUndefined(element.onclosed);
+      assert.isNull(element.onclosed);
       const f = () => { };
       element.onclosed = f;
       assert.isTrue(element.onclosed === f);
@@ -1387,7 +1389,7 @@ describe('OverlayElement', () => {
       };
       element.onclosed = f;
       await untilClose(element);
-      element.onclosed = undefined;
+      element.onclosed = null;
       assert.isTrue(called);
     });
 
@@ -1403,7 +1405,7 @@ describe('OverlayElement', () => {
       element.onclosed = f1;
       element.onclosed = f2;
       await untilClose(element);
-      element.onclosed = undefined;
+      element.onclosed = null;
       assert.isFalse(called1);
       assert.isTrue(called2);
     });

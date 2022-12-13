@@ -162,7 +162,7 @@ describe('<anypoint-menu-button>', () => {
     });
 
     it('Getter returns previously registered handler', () => {
-      assert.isUndefined(element.onselect);
+      assert.isNull(element.onselect);
       const f = () => {};
       element.onselect = f;
       assert.isTrue(element.onselect === f);
@@ -174,9 +174,8 @@ describe('<anypoint-menu-button>', () => {
         called = true;
       };
       element.onselect = f;
-      element.dispatchEvent(new CustomEvent('select', { bubbles: true, cancelable: true }));
-      // @ts-ignore
-      element.onselect = undefined;
+      element.dispatchEvent(new Event('select', { bubbles: true, cancelable: true }));
+      element.onselect = null;
       assert.isTrue(called);
     });
 
@@ -191,9 +190,8 @@ describe('<anypoint-menu-button>', () => {
       };
       element.onselect = f1;
       element.onselect = f2;
-      element.dispatchEvent(new CustomEvent('select', { bubbles: true, cancelable: true }));
-      // @ts-ignore
-      element.onselect = undefined;
+      element.dispatchEvent(new Event('select', { bubbles: true, cancelable: true }));
+      element.onselect = null;
       assert.isFalse(called1);
       assert.isTrue(called2);
     });

@@ -956,7 +956,7 @@ describe('AnypointAutocompleteElement', () => {
     });
 
     it('Getter returns previously registered handler', () => {
-      assert.isUndefined(element.onquery);
+      assert.isNull(element.onquery);
       const f = () => {};
       element.onquery = f;
       assert.isTrue(element.onquery === f);
@@ -969,7 +969,7 @@ describe('AnypointAutocompleteElement', () => {
       };
       element.onquery = f;
       element._dispatchQuery('test');
-      element.onquery = undefined;
+      element.onquery = null;
       assert.isTrue(called);
     });
 
@@ -985,7 +985,7 @@ describe('AnypointAutocompleteElement', () => {
       element.onquery = f1;
       element.onquery = f2;
       element._dispatchQuery('test');
-      element.onquery = undefined;
+      element.onquery = null;
       assert.isFalse(called1);
       assert.isTrue(called2);
     });
@@ -999,7 +999,7 @@ describe('AnypointAutocompleteElement', () => {
     });
 
     it('Getter returns previously registered handler', () => {
-      assert.isUndefined(element.onpick);
+      assert.isNull(element.onpick);
       const f = () => {};
       element.onpick = f;
       assert.isTrue(element.onpick === f);
@@ -1012,7 +1012,7 @@ describe('AnypointAutocompleteElement', () => {
       };
       element.onpick = f;
       element._inform('test');
-      element.onpick = undefined;
+      element.onpick = null;
       assert.isTrue(called);
     });
 
@@ -1028,7 +1028,7 @@ describe('AnypointAutocompleteElement', () => {
       element.onpick = f1;
       element.onpick = f2;
       element._inform('test');
-      element.onpick = undefined;
+      element.onpick = null;
       assert.isFalse(called1);
       assert.isTrue(called2);
     });

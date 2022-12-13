@@ -549,7 +549,7 @@ describe('AnypointChipInputElement', () => {
     });
 
     it('Getter returns previously registered handler', () => {
-      assert.isUndefined(element.onchipschanged);
+      assert.isNull(element.onchipschanged);
       const f = () => {};
       element.onchipschanged = f;
       assert.isTrue(element.onchipschanged === f);
@@ -562,7 +562,7 @@ describe('AnypointChipInputElement', () => {
       };
       element.onchipschanged = f;
       element.chipsValue = ['a'];
-      element.onchipschanged = undefined;
+      element.onchipschanged = null;
       assert.isTrue(called);
     });
 
@@ -578,7 +578,7 @@ describe('AnypointChipInputElement', () => {
       element.onchipschanged = f1;
       element.onchipschanged = f2;
       element.chipsValue = ['a'];
-      element.onchipschanged = undefined;
+      element.onchipschanged = null;
       assert.isFalse(called1);
       assert.isTrue(called2);
     });

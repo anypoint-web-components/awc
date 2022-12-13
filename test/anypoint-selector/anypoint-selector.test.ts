@@ -1,6 +1,6 @@
 /* eslint-disable no-plusplus */
 import { fixture, assert, expect, aTimeout, html, nextFrame, oneEvent } from '@open-wc/testing';
-import AnypointSelector from '../../src/elements/AnypointSelectorElement.js';
+import AnypointSelector from '../../src/elements/lists/AnypointSelectorElement.js';
 import '../../src/define/anypoint-selector.js';
 
 const style = document.createElement('style');

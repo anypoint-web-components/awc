@@ -172,11 +172,11 @@ export default class StarRatingElement extends HTMLElement {
     return this.__data__.readOnly || false;
   }
 
-  get onchange(): EventListener {
+  get onchange(): EventListener | null {
     return getListener('change', this)!;
   }
 
-  set onchange(value: EventListener) {
+  set onchange(value: EventListener | null) {
     addListener('change', value, this);
   }
 

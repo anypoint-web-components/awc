@@ -84,7 +84,7 @@ export default class ScrollThresholdElement extends ScrollTargetMixin(LitElement
   /**
    * @return Previously registered callback for `lowerthreshold`.
    */
-  get onlowerthreshold(): EventListener | undefined {
+  get onlowerthreshold(): EventListener | null {
     return getListener('lowerthreshold', this);
   }
 
@@ -93,14 +93,14 @@ export default class ScrollThresholdElement extends ScrollTargetMixin(LitElement
    * @param value Function to register. Pass null or undefined to clear
    * registered function.
    */
-  set onlowerthreshold(value: EventListener | undefined) {
+  set onlowerthreshold(value: EventListener | null) {
     addListener('lowerthreshold', value, this);
   }
 
   /**
    * @return Previously registered callback for `upperthreshold`.
    */
-  get onupperthreshold(): EventListener | undefined {
+  get onupperthreshold(): EventListener | null {
     return getListener('upperthreshold', this);
   }
 
@@ -109,7 +109,7 @@ export default class ScrollThresholdElement extends ScrollTargetMixin(LitElement
    * @param value Function to register. Pass null or undefined to clear
    * registered function.
    */
-  set onupperthreshold(value: EventListener | undefined) {
+  set onupperthreshold(value: EventListener | null) {
     addListener('upperthreshold', value, this);
   }
 

@@ -32,7 +32,7 @@ export default class MultiSelectableElement extends SelectableElement {
   /**
    * @return Previously registered handler for `selectedvalueschange` event
    */
-  get onselectedvalueschange(): EventListener | undefined {
+  get onselectedvalueschange(): EventListener | null {
     return getListener('selectedvalueschange', this);
   }
 
@@ -41,14 +41,14 @@ export default class MultiSelectableElement extends SelectableElement {
    * @param value A callback to register. Pass `null` or `undefined`
    * to clear the listener.
    */
-  set onselectedvalueschange(value: EventListener | undefined) {
+  set onselectedvalueschange(value: EventListener | null) {
     addListener('selectedvalueschange', value, this);
   }
 
   /**
    * @return Previously registered handler for `selecteditemschange` event
    */
-  get onselecteditemschange(): EventListener | undefined {
+  get onselecteditemschange(): EventListener | null {
     return getListener('selecteditemschange', this);
   }
 
@@ -57,7 +57,7 @@ export default class MultiSelectableElement extends SelectableElement {
    * @param value A callback to register. Pass `null` or `undefined`
    * to clear the listener.
    */
-  set onselecteditemschange(value: EventListener | undefined) {
+  set onselecteditemschange(value: EventListener | null) {
     addListener('selecteditemschange', value, this);
   }
 

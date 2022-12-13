@@ -404,7 +404,7 @@ describe('<star-rating>', () => {
     });
 
     it('Getter returns previously registered handler', () => {
-      assert.isUndefined(element.onchange);
+      assert.isNull(element.onchange);
       const f = () => {};
       element.onchange = f;
       assert.isTrue(element.onchange === f);
@@ -418,8 +418,7 @@ describe('<star-rating>', () => {
       element.onchange = f;
       const star = element.shadowRoot!.querySelector('.star') as SVGElement;
       click(star);
-      // @ts-ignore
-      element.onchange = undefined;
+      element.onchange = null;
       assert.isTrue(called);
     });
 
@@ -436,8 +435,7 @@ describe('<star-rating>', () => {
       element.onchange = f2;
       const star = element.shadowRoot!.querySelector('.star') as SVGElement;
       click(star);
-      // @ts-ignore
-      element.onchange = undefined;
+      element.onchange = null;
       assert.isFalse(called1);
       assert.isTrue(called2);
     });

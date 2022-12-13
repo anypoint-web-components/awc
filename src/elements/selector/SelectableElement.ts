@@ -63,7 +63,7 @@ export default class SelectableElement extends ResizableElement {
    * CSS selector are selectable.
    * @attr
    */
-  @property({ type: String, reflect: true }) selectable?: string;
+  @property({ type: String }) selectable?: string;
 
   /**
    * The class to set on elements when selected.
@@ -71,13 +71,13 @@ export default class SelectableElement extends ResizableElement {
    * @default selected
    * @attr
    */
-  @property({ type: String, reflect: true }) selectedClass: string = 'selected';
+  @property({ type: String }) selectedClass: string = 'selected';
 
   /**
    * The attribute to set on elements when selected.
    * @attr
    */
-  @property({ type: String, reflect: true }) selectedAttribute?: string;
+  @property({ type: String }) selectedAttribute?: string;
 
   /**
    * If you want to use an attribute value or property of an element for
@@ -90,7 +90,7 @@ export default class SelectableElement extends ResizableElement {
    * `attrOrPropertyName`.)
    * @attr
    */
-  @property({ type: String, reflect: true }) attrForSelected?: string
+  @property({ type: String }) attrForSelected?: string
 
   /**
    * The selected element. The default is to use the index of the item.
@@ -124,7 +124,7 @@ export default class SelectableElement extends ResizableElement {
    * @default click
    * @attr
    */
-  @property({ type: String, reflect: true }) activateEvent: string = 'click';
+  @property({ type: String }) activateEvent: string = 'click';
 
   /**
    * Default fallback if the selection based on selected with `attrForSelected` is not found.
@@ -135,7 +135,7 @@ export default class SelectableElement extends ResizableElement {
   /**
    * @return Previously registered handler for `selectedchange` event
    */
-  get onselectedchange(): EventListener | undefined {
+  get onselectedchange(): EventListener | null {
     return getListener('selectedchange', this);
   }
 
@@ -144,14 +144,14 @@ export default class SelectableElement extends ResizableElement {
    * @param value A callback to register. Pass `null` or `undefined`
    * to clear the listener.
    */
-  set onselectedchange(value: EventListener | undefined) {
+  set onselectedchange(value: EventListener | null) {
     addListener('selectedchange', value, this);
   }
 
   /**
    * @return Previously registered handler for `selectedchange` event
    */
-  get onselected(): EventListener | undefined {
+  get onselected(): EventListener | null {
     return getListener('selected', this);
   }
 
@@ -162,14 +162,14 @@ export default class SelectableElement extends ResizableElement {
    * 
    * @param value A callback to register. Pass `null` or `undefined` to clear the listener.
    */
-  set onselected(value: EventListener | undefined) {
+  set onselected(value: EventListener | null) {
     addListener('selected', value, this);
   }
 
   /**
    * @returns Previously registered handler for `itemschange` event
    */
-  get onitemschange(): EventListener | undefined {
+  get onitemschange(): EventListener | null {
     return getListener('itemschange', this);
   }
 
@@ -178,7 +178,7 @@ export default class SelectableElement extends ResizableElement {
    * @param value A callback to register. Pass `null` or `undefined`
    * to clear the listener.
    */
-  set onitemschange(value: EventListener | undefined) {
+  set onitemschange(value: EventListener | null) {
     addListener('itemschange', value, this);
   }
 
@@ -201,7 +201,7 @@ export default class SelectableElement extends ResizableElement {
   /**
    * @return Previously registered handler for `deselect` event
    */
-  get ondeselect(): EventListener | undefined {
+  get ondeselect(): EventListener | null {
     return getListener('deselect', this);
   }
 
@@ -210,14 +210,14 @@ export default class SelectableElement extends ResizableElement {
    * @param value A callback to register. Pass `null` or `undefined`
    * to clear the listener.
    */
-  set ondeselect(value: EventListener | undefined) {
+  set ondeselect(value: EventListener | null) {
     addListener('deselect', value, this);
   }
 
   /**
    * @return Previously registered handler for `activate` event
    */
-  get onactivate(): EventListener | undefined {
+  get onactivate(): EventListener | null {
     return getListener('activate', this);
   }
 
@@ -226,7 +226,7 @@ export default class SelectableElement extends ResizableElement {
    * @param value A callback to register. Pass `null` or `undefined`
    * to clear the listener.
    */
-  set onactivate(value: EventListener | undefined) {
+  set onactivate(value: EventListener | null) {
     addListener('activate', value, this);
   }
 
